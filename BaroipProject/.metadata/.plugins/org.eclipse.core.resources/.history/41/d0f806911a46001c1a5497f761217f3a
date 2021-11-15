@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import jdk.internal.org.jline.utils.Log;
-
 public class Interceptor extends  HandlerInterceptorAdapter{
 	
 	   @Override
@@ -60,7 +58,6 @@ public class Interceptor extends  HandlerInterceptorAdapter{
 				fileName = fileName.substring(fileName.lastIndexOf("/",1), fileName.length());
 			}
 			System.out.printf("viewName : [%s]%n",fileName);
-			Log.info("viewName : ["+fileName+"]");
 			return fileName;
 		}
 	}
