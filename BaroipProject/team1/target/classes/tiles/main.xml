@@ -13,6 +13,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/base/footer.jsp" />
 		<put-attribute name="quickMenu" value="/WEB-INF/views/base/quickMenu.jsp" />
 		<put-attribute name="favicon" value="/WEB-INF/views/base/favicon.jsp" />
+		<put-attribute name="chat" value="/WEB-INF/views/base/chat.jsp"/>
 	</definition>
 
 	<definition name="main" extends="UserLayout">

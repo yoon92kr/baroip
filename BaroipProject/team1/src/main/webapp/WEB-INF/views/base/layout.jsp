@@ -31,5 +31,6 @@
 
 </div>
 <tiles:insertAttribute name="quickMenu" />
+<tiles:insertAttribute name="chat" />
 </body>
 </html>
