@@ -17,9 +17,9 @@ public class MainController {
 
 	@RequestMapping(value= "/main.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
 
 		return mav;

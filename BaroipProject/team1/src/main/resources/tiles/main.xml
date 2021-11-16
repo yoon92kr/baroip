@@ -14,7 +14,7 @@
 		<!-- put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" / -->
 	</definition>
 
-	<definition name="/main" extends="UserLayout">
+	<definition name="main" extends="UserLayout">
 		<put-attribute name="title" value="바로입" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
