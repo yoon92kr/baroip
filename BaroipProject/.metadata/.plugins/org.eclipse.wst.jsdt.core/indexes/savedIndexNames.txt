@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+D:\BaroipProject\BaroipProject\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1549721769.index
-753317100.index
-3087968747.index
-2451940107.index
-45915350.index
-1380449661.index

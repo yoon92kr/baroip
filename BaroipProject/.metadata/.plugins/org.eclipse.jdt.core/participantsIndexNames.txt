@@ -1,5 +1,0 @@
-INDEX VERSION 1.131
-D:\BaroipProject\BaroipProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1400539113.index
-\team1\src\main\java
-D:\BaroipProject\BaroipProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\753317100.index
-\team1\src\main\java
