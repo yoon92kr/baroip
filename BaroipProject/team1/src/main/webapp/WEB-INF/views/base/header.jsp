@@ -6,33 +6,9 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
-<html>
-<head>
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,700'
-	rel='stylesheet'>
-
-<script>
-	$(document).ready(function() {
-
-		(function($) {
-
-			$('#header__icon').click(function(e) {
-				e.preventDefault();
-				$('body').toggleClass('with--sidebar');
-			});
-
-			$('#site-cache').click(function(e) {
-				$('body').removeClass('with--sidebar');
-			});
-
-		})(jQuery);
-
-	});
-</script>
-</head>
-<body>
 
 	<header class="header">
 
@@ -46,5 +22,3 @@
 
 	</header>
 
-</body>
-</html>

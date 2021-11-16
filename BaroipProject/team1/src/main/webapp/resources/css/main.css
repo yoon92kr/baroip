@@ -29,6 +29,7 @@ a {
 /* HEADER */
 .header {
 	position: fixed;
+	top : 0;
 	left: 0;
 	right: 0;
 	height: 66px;
@@ -65,12 +66,10 @@ a {
 }
 
 
-.footer {
-	position: bottom_absolute;
-	left: 0;
-	bottom: 0;
+footer {
+	position: absolute;
+	bottom : 0;
 	width: 100%;
-	border: 0px solid;
 	padding: 15px 0;
 	text-align: center;
 	font-size: 8pt;
@@ -80,6 +79,3 @@ a {
 	color : #737373;
 }
 
-.clear {
-	clear: both;
-}
