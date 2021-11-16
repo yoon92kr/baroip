@@ -6,7 +6,7 @@
 /* BASE */
 html, body {
 	font-family: 'Roboto', sans-serif;
-	font-size: 1em;
+	font-size: 10pt;
 	line-height: 1.4;
 	height: 100%;
 	margin: 0;
@@ -39,17 +39,21 @@ a {
 
 .header__logo {
 	font-weight: 700;
-	padding: 0 25px;
+	padding-left: 5px;
+	padding-right: 10px;
 	float: left;
+	font-size: 15pt;
 }
 
 .header__icon {
 	float : left;
+	padding-left: 15px;
 }
 
 /* MENU */
 .menu {
 	float: left;
+	font-size: 13pt;
 }
 
 .menu>a {
@@ -69,7 +73,7 @@ a {
 	border: 0px solid;
 	padding: 15px 0;
 	text-align: center;
-	font-size: 0.75em;
+	font-size: 8pt;
 }
 
 .footer_line {
