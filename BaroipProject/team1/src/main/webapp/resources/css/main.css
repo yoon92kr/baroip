@@ -29,11 +29,7 @@ a {
 /* HEADER */
 .header {
 	position: fixed;
-<<<<<<< HEAD
-	top : 0;
-=======
 	top: 0;
->>>>>>> 46a538166b34b2bbeccf8e77d6a384611954735c
 	left: 0;
 	right: 0;
 	height: 66px;
