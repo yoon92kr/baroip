@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <body>
 	<div class="sidebar-left" id="mypage">
+	
 	<a href="#"  class="no-underline">내정보</a><br>
 	<a href="#"  class="no-underline">회원정보 수정</a><br>
 	<a href="#"  class="no-underline">주문/배송조회</a><br>
