@@ -37,7 +37,7 @@
 
 			<div class="menu_item menu_cart_sitemap">
 				<a href="#"><img src="${contextPath}/resources/image/cart.png" alt="장바구니"></a> 
-				<a href="#"><img src="${contextPath}/resources/image/site_map.png" alt="사이트맵"></a>
+				<a class="site_map" href="#"><img src="${contextPath}/resources/image/site_map.png" alt="사이트맵"></a>
 			</div>
 
 		</div>
