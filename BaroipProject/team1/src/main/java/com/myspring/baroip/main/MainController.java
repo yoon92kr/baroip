@@ -21,7 +21,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
-
+		String a;
 		return mav;
 	}
 }
