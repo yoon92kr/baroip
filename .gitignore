@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# properties log
+pom.properties
+
 # Log file
 *.log
 
