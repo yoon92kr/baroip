@@ -16,9 +16,28 @@
 			src="${contextPath}/resources/image/baroip_main_logo.png"
 			alt="바로입 아이콘"></a> <a href="#" class="header__logo">바로입</a>
 
-		<span class="menu">
-			<a href="#">농산물</a> <a href="#">수산물</a> <a href="#">축산물</a>
-		</span>
+		<div class="menu">
+			<div class="menu_item" class="menu_category">
+				<a href="#">농산물</a> <a href="#">수산물</a> <a href="#">축산물</a>
+			</div>
+		
+			<div class="menu_item" class="menu_notice_cs">
+				<a href="#">공지사항</a> <a href="#">고객센터</a>
+			</div>
 
+			<div class="menu_item" class="menu_login_join">
+				<a href="#">로그인</a> <a href="#">회원가입</a>
+			</div>
+			
+			<div class="menu_item" class="menu_sreach">
+				<form>
+					<input type="text" size="1em" />
+				</form>
+			</div>
+
+			<div class="menu_item" class="menu_cart_sitemap">
+				<a href="#">장바구니</a> <a href="#">사이트맵</a>
+			</div>
+
+		</div>
 	</div>
-

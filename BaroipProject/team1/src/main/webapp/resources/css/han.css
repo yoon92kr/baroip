@@ -29,14 +29,14 @@
 
 /* MENU */
 .menu {
-	float: left;
-	font-size: 13pt;
+	display: flex;
+	font-size: 1.2em;
 }
 
-.menu>a {
-	padding: 0 10px;
+.menu > .menu_item {
+	flex-grow: 1;
 }
 
-.menu>a:hover {
+.menu a:hover {
 	color: #c5cae9;
 }
