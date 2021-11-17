@@ -19,11 +19,10 @@
 </head>
 <body>
 
-
+<div id="main_view">
 <header>
 <tiles:insertAttribute name="header" />
 </header>
-
 
 <nav>
 <tiles:insertAttribute name="side" />
@@ -33,6 +32,7 @@
 <tiles:insertAttribute name="body" />
 </article>
 
+
 <footer>
 <tiles:insertAttribute name="footer" />
 </footer>
@@ -41,6 +41,7 @@
 
 <tiles:insertAttribute name="quickMenu" />
 <tiles:insertAttribute name="chat" />
+</div>
 
 </body>
 </html>

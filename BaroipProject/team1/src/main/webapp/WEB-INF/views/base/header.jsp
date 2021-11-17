@@ -10,15 +10,15 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-	<header class="header">
+	<div class="header">
 
 		<a href="#" class="header__icon" id="header__icon"><img
 			src="${contextPath}/resources/image/baroip_main_logo.png"
 			alt="바로입 아이콘"></a> <a href="#" class="header__logo">바로입</a>
 
-		<nav class="menu">
+		<span class="menu">
 			<a href="#">농산물</a> <a href="#">수산물</a> <a href="#">축산물</a>
-		</nav>
+		</span>
 
-	</header>
+	</div>
 
