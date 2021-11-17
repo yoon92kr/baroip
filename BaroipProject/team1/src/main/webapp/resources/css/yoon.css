@@ -1,1 +1,32 @@
 @charset "UTF-8";
+
+
+.top_icon {
+	width : 10px;
+	height : 10px;
+}
+.quickMenu {
+  position: absolute;
+  right : 10px;
+  top : 50px;
+  
+  text-align: center;
+  width: 100px;
+  height: 160px;
+  background-color : #ffffff;
+  border: 3px solid #000000;
+  border-radius : 20px;
+
+  color: #000000;
+}
+
+.pastImage {
+	width: 80px;
+	height: 60px;
+	border: 1px solid #000000;
+}
+
+.test {
+	display : inline-flex;
+	flex-direction : column;
+}
