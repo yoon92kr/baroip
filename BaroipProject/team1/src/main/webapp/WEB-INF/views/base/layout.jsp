@@ -30,6 +30,7 @@
 
 <article>
 <tiles:insertAttribute name="body" />
+<tiles:insertAttribute name="quickMenu" />
 </article>
 
 
@@ -41,7 +42,7 @@
 
 
 
-<tiles:insertAttribute name="quickMenu" />
+
 <tiles:insertAttribute name="chat" />
 
 </body>
