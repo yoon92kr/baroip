@@ -24,9 +24,9 @@
 </header>
 
 
-<aside>
+<nav>
 <tiles:insertAttribute name="side" />
-</aside>
+</nav>
 
 <article>
 <tiles:insertAttribute name="body" />
