@@ -24,4 +24,14 @@ public class MainController {
 		String a;
 		return mav;
 	}
+	
+	@RequestMapping(value= "/mypage.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView user_mypage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		String a;
+		return mav;
+	}
 }

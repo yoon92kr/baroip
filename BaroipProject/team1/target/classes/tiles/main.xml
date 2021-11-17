@@ -19,4 +19,11 @@
 	<definition name="main" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
+	
+	<definition name="mypage" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/sidemenu.jsp" />
+		
+	</definition>
+	
 </tiles-definitions>

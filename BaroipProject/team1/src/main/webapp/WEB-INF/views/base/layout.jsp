@@ -10,10 +10,13 @@
 <head>
 <meta charset="UTF-8">
 <tiles:insertAttribute name="favicon" />
-<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css" media="screen">
 <title> <tiles:insertAttribute name="title" /> </title>
 </head>
 <body>
+
+<div id = "side">
+<tiles:insertAttribute name="side" />
+</div>
 
 <div id="container">
 <div id = "header">
