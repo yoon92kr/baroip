@@ -31,7 +31,7 @@
 			
 			<div class="menu_item menu_sreach">
 				<form>
-					<input type="text" size="1em" />
+					<input type="text" size="10em" />
 				</form>
 			</div>
 

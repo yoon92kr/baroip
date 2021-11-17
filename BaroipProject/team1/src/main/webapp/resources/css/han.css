@@ -35,6 +35,7 @@
 
 .menu > .menu_item {
 	flex-grow: 1;
+	word-spacing: 1.2em;
 }
 
 .menu > .menu_category {
@@ -44,6 +45,10 @@
 .menu > .menu_notice_cs, .menu_login_join,
 .menu_sreach, .menu_cart_sitemap {
 	text-align: right;
+}
+
+.menu > .menu_cart_sitemap {
+	padding-top: 0.5em;
 }
 
 .menu a:hover {
