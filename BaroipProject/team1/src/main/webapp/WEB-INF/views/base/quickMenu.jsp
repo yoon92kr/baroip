@@ -28,15 +28,14 @@
 	}).scroll();
 </script>
 
-<div class="quickMenu">
+<div id="quickMenu">
 	<div>
 		<a href="#" id="top_icon"><img
-			src="${contextPath}/resources/i
-			mage/top_icon.png" alt="맨 위로"></a>
+			src="${contextPath}/resources/image/top_icon.png" alt="맨 위로"></a>
 	</div>
 	<div>최근 본 상품</div>
 	<div>
-		<div class = "test">
+		<div class="test">
 			<a href="#"><img class="pastImage"
 				src="${contextPath}/resources/image/past_image1.jpg" alt="최근 본 상품 1"></a>
 		</div>

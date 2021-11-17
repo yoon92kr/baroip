@@ -33,6 +33,8 @@
 </article>
 
 
+</div>
+
 <footer>
 <tiles:insertAttribute name="footer" />
 </footer>
@@ -41,7 +43,6 @@
 
 <tiles:insertAttribute name="quickMenu" />
 <tiles:insertAttribute name="chat" />
-</div>
 
 </body>
 </html>
