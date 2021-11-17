@@ -26,44 +26,6 @@ a {
 	padding-top: 66px;
 }
 
-/* HEADER */
-.header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 66px;
-	line-height: 66px;
-	color: #fff;
-	background-color: #265209;
-}
-
-.header__logo {
-	font-weight: 700;
-	padding-left: 5px;
-	padding-right: 10px;
-	float: left;
-	font-size: 15pt;
-}
-
-.header__icon {
-	float : left;
-	padding-left: 15px;
-}
-
-/* MENU */
-.menu {
-	float: left;
-	font-size: 13pt;
-}
-
-.menu>a {
-	padding: 0 10px;
-}
-
-.menu>a:hover {
-	color: #c5cae9;
-}
 
 
 footer {
