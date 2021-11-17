@@ -19,27 +19,27 @@
 <body>
 
 
-<div id="container">
-<div id = "header">
+<header>
 <tiles:insertAttribute name="header" />
-</div>
+</header>
 
 
-<div id = "side">
+<aside>
 <tiles:insertAttribute name="side" />
-</div>
+</aside>
 
-<div id = "content">
+<article>
 <tiles:insertAttribute name="body" />
-</div>
+</article>
 
 <footer>
 <tiles:insertAttribute name="footer" />
 </footer>
 
 
-</div>
+
 <tiles:insertAttribute name="quickMenu" />
 <tiles:insertAttribute name="chat" />
+
 </body>
 </html>
