@@ -24,7 +24,7 @@
 
 .header__icon {
 	float : left;
-	padding-left: 15px;
+	padding-left: 1.1em;
 }
 
 /* MENU */
@@ -35,6 +35,15 @@
 
 .menu > .menu_item {
 	flex-grow: 1;
+}
+
+.menu > .menu_category {
+	text-align: center;
+}
+
+.menu > .menu_notice_cs, .menu_login_join,
+.menu_sreach, .menu_cart_sitemap {
+	text-align: right;
 }
 
 .menu a:hover {

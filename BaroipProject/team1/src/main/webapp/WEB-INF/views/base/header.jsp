@@ -17,26 +17,27 @@
 			alt="바로입 아이콘"></a> <a href="#" class="header__logo">바로입</a>
 
 		<div class="menu">
-			<div class="menu_item" class="menu_category">
+			<div class="menu_item menu_category">
 				<a href="#">농산물</a> <a href="#">수산물</a> <a href="#">축산물</a>
 			</div>
 		
-			<div class="menu_item" class="menu_notice_cs">
+			<div class="menu_item menu_notice_cs">
 				<a href="#">공지사항</a> <a href="#">고객센터</a>
 			</div>
 
-			<div class="menu_item" class="menu_login_join">
+			<div class="menu_item menu_login_join">
 				<a href="#">로그인</a> <a href="#">회원가입</a>
 			</div>
 			
-			<div class="menu_item" class="menu_sreach">
+			<div class="menu_item menu_sreach">
 				<form>
 					<input type="text" size="1em" />
 				</form>
 			</div>
 
-			<div class="menu_item" class="menu_cart_sitemap">
-				<a href="#">장바구니</a> <a href="#">사이트맵</a>
+			<div class="menu_item menu_cart_sitemap">
+				<a href="#"><img src="${contextPath}/resources/image/cart.png" alt="장바구니"></a> 
+				<a href="#"><img src="${contextPath}/resources/image/site_map.png" alt="사이트맵"></a>
 			</div>
 
 		</div>
