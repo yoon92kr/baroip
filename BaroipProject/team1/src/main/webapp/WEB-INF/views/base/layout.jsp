@@ -9,18 +9,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css" media="screen">
+<link href="${contextPath}/resources/css/lim.css" rel="stylesheet" type="text/css" media="screen">
+<link href="${contextPath}/resources/css/han.css" rel="stylesheet" type="text/css" media="screen">
+
 <tiles:insertAttribute name="favicon" />
 <title> <tiles:insertAttribute name="title" /> </title>
 </head>
 <body>
 
-<div id = "side">
-<tiles:insertAttribute name="side" />
-</div>
 
 <div id="container">
 <div id = "header">
 <tiles:insertAttribute name="header" />
+</div>
+
+
+<div id = "side">
+<tiles:insertAttribute name="side" />
 </div>
 
 <div id = "content">
