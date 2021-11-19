@@ -5,40 +5,97 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
-<link href="${contextPath}/resources/css/han.css" rel="stylesheet" type="text/css" media="screen">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="${contextPath}/resources/img/logo.png" alt="">
+							</a>
+						</div>
+						<!-- logo -->
 
-	<div class="header">
-
-		<a href="#" class="header__icon" id="header__icon"><img
-			src="${contextPath}/resources/image/baroip_main_logo.png"
-			alt="바로입 아이콘"></a> <a href="#" class="header__logo">바로입</a>
-
-		<div class="menu">
-			<div class="menu_item menu_category">
-				<a href="#">농산물</a> <a href="#">수산물</a> <a href="#">축산물</a>
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li class="current-list-item"><a href="#">Home</a>
+									<ul class="sub-menu">
+										<li><a href="index.html">Static Home</a></li>
+										<li><a href="index_2.html">Slider Home</a></li>
+									</ul>
+								</li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="#">Pages</a>
+									<ul class="sub-menu">
+										<li><a href="404.html">404 page</a></li>
+										<li><a href="about.html">About</a></li>
+										<li><a href="cart.html">Cart</a></li>
+										<li><a href="checkout.html">Check Out</a></li>
+										<li><a href="contact.html">Contact</a></li>
+										<li><a href="news.html">News</a></li>
+										<li><a href="shop.html">Shop</a></li>
+									</ul>
+								</li>
+								<li><a href="news.html">News</a>
+									<ul class="sub-menu">
+										<li><a href="news.html">News</a></li>
+										<li><a href="single-news.html">Single News</a></li>
+									</ul>
+								</li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="shop.html">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="shop.html">Shop</a></li>
+										<li><a href="checkout.html">Check Out</a></li>
+										<li><a href="single-product.html">Single Product</a></li>
+										<li><a href="cart.html">Cart</a></li>
+									</ul>
+								</li>
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
 			</div>
-		
-			<div class="menu_item menu_notice_cs">
-				<a href="#">공지사항</a> <a href="#">고객센터</a>
-			</div>
-
-			<div class="menu_item menu_login_join">
-				<a href="#">로그인</a> <a href="#">회원가입</a>
-			</div>
-			
-			<div class="menu_item menu_sreach">
-				<form>
-					<input type="text" size="10em" />
-				</form>
-			</div>
-
-			<div class="menu_item menu_cart_sitemap">
-				<a href="#"><img src="${contextPath}/resources/image/cart.png" alt="장바구니"></a> 
-				<a class="site_map" href="#"><img src="${contextPath}/resources/image/site_map.png" alt="사이트맵"></a>
-			</div>
-
 		</div>
 	</div>
+	<!-- end header -->
+	
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search area -->

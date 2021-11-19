@@ -4,5 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
  <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<!DOCTYPE html>
-<link href="${contextPath}/resources/image/baroip_main_logo.png" rel="icon" type="image/png" sizes="48x48" />
+
+	<link rel="shortcut icon" type="image/png" href="${contextPath}/resources/image/favicon.png">
+

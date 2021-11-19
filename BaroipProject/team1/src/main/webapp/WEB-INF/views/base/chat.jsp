@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
-<!DOCTYPE html>
-
 
 <script>
   (function() {
