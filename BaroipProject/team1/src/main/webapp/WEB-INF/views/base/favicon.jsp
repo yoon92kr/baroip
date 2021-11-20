@@ -5,5 +5,5 @@
 
  <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
-	<link rel="shortcut icon" type="image/png" href="${contextPath}/resources/image/favicon.png">
+
 
