@@ -52,6 +52,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
 	</div>
 	<!-- end product section -->
