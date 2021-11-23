@@ -20,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/js/slick.css"/>
  	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/js/slick-theme.css"/>
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="${contextPath}/resources/img/common/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="${contextPath }/resources/img/common/favicon.png">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -56,18 +56,7 @@
 
 	<tiles:insertAttribute name="chat" />
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.post-wrapper').slick({
-				slidesToShow : 1,
-				slidesToScroll : 1,
-				autoplay : true,
-				autoplaySpeed : 3000,
-				nextArrow : $('.next'),
-				prevArrow : $('.prev'),
-			});
-		});
-	</script>
+
 
 </body>
 </html>
