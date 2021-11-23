@@ -25,14 +25,14 @@
 				</div>
 
 				<div class="col-lg-2 text-right offset-lg-2">
-					<div class="menu_navi">
+					<div class="notice_navi">
 						<a href="#" class="header-navi">공지사항</a>
 						<a href="#" class="header-navi">고객센터</a>
 					</div>
 				</div>
 
 				<div class="col-lg-2 text-center">
-					<div class="menu_navi">
+					<div class="user_navi">
 						<a href="#" class="header-navi">로그인</a>
 						<a href="#" class="header-navi">회원가입</a>
 					</div>	

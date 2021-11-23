@@ -56,6 +56,7 @@
 
 	<tiles:insertAttribute name="chat" />
 
+	<tiles:insertAttribute name="quickMenu" />
 
 
 </body>

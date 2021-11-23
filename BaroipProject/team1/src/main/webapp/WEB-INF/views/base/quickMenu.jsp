@@ -5,27 +5,19 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<div id="quickMenu">
-
-	<div class="quickMenu_item">
-		<a href="#"><img id="top_icon"
-			src="${contextPath}/resources/image/top_icon.png" alt="맨 위로"></a>
-	</div>
-
-	<div class="quickMenu_item">최근 본 상품</div>
-
-
-	<div class="quickMenu_item">
-		<a href="#"><img class="pastImage"
-			src="${contextPath}/resources/image/past_image1.jpg" alt="최근 본 상품 1"></a>
-	</div>
-
-	<div class="quickMenu_item">
-		<a href="#"><img class="pastImage"
-			src="${contextPath}/resources/image/past_image2.jpg" alt="최근 본 상품 2"></a>
+	<div class="quick-menu">
+		<div class="quick-item up"><a href="#"><img src="${contextPath }/resources/img/common/top.png"></a></div>
+		<p>최근 본 상품</p>
+		
+		<div class="quick-item past-image"><a href="#"><img src="${contextPath }/resources/img/common/img-box.jpg"></a></div>
+		<div class="quick-item past-image"><a href="#"><img src="${contextPath }/resources/img/common/img-box.jpg"></a></div>
 	</div>
 	
-	<div class="quickMenu_item"></div>
-
-
-</div>
+	<script>
+	  $(function(){
+			$('.up').on('click',function(e){
+			e.preventDefault();
+			$('html,body').animate({scrollTop:0},300);
+			});
+		});
+  </script>
