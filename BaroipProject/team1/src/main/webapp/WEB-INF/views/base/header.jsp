@@ -12,7 +12,7 @@
 			<div class="row">
                 <div class="col-lg-1 text-right">
 					<a href="#" class="logo-text" > 
-						<img class="header-icon" src="${contextPath}/resource/img/common/favicon.png">   바로입
+						<img class="header-icon" src="${contextPath}/resources/img/common/favicon.png">   바로입
 					</a>
 				</div>
 				
@@ -46,8 +46,8 @@
 
 				<div class="col-lg-1 text-left" >
 					<div class="menu_navi">
-						<a href="#" class="header-navi"><img src="${contextPath}/resource/img/common/cart-icon.png"></a>
-						<a href="#" class="header-navi"><img src="${contextPath}/resource/img/common/site-map-icon.png"></a>
+						<a href="#" class="header-navi"><img src="${contextPath}/resources/img/common/cart-icon.png"></a>
+						<a href="#" class="header-navi"><img src="${contextPath}/resources/img/common/site-map-icon.png"></a>
 					</div>
 				</div>
 			</div>

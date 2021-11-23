@@ -12,19 +12,19 @@
   
 		  <div class="post-wrapper">
 			<div class="post">
-			  <img src="${contextPath}/resource/img/common/img-box.jpg" class="slider-image">
+			  <img src="${contextPath}/resources/img/common/img-box.jpg" class="slider-image">
 	
 			</div>
 			<div class="post">
-			  <img src="${contextPath}/resource/img/common/img-box.jpg" class="slider-image">
+			  <img src="${contextPath}/resources/img/common/img-box.jpg" class="slider-image">
 			</div>
 	
 			<div class="post">
-			  <img src="${contextPath}/resource/img/common/img-box.jpg" class="slider-image">
+			  <img src="${contextPath}/resources/img/common/img-box.jpg" class="slider-image">
 			</div>
 			
 			<div class="post">
-			  <img src="${contextPath}/resource/img/common/img-box.jpg" class="slider-image">
+			  <img src="${contextPath}/resources/img/common/img-box.jpg" class="slider-image">
 	
 			</div>
 		  </div>
@@ -57,19 +57,19 @@
 			<div class="row">
 				<div class="col-lg-4 text-center">
 					<div class="product-image">
-						<a href="#"><img src="${contextPath}/resource/img/common/img-box.jpg" alt=""></a>		
+						<a href="#"><img src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>		
 					</div>
 				</div>
 
 				<div class="col-lg-4  text-center">
 					<div class="product-image">
-						<a href="#"><img src="${contextPath}/resource/img/common/img-box.jpg" alt=""></a>
+						<a href="#"><img src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 					</div>
 				</div>
 
 				<div class="col-lg-4 text-center">
 					<div class="product-image">
-						<a href="#"><img src="${contextPath}/resource/img/common/img-box.jpg" alt=""></a>
+						<a href="#"><img src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 					</div>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 
 
 				<div class="col-lg-1 text-center">
-					<a href="#"><img class="cart-put-icon" src="${contextPath}/resource/img/common/cart-put-icon.png"></a>
+					<a href="#"><img class="cart-put-icon" src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
 				</div>
 
 				<div class="col-lg-2">
@@ -103,7 +103,7 @@
 				</div>
 
 				<div class="col-lg-1 text-center">
-					<a href="#"><img class="cart-put-icon" src="${contextPath}/resource/img/common/cart-put-icon.png"></a>
+					<a href="#"><img class="cart-put-icon" src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
 				</div>
 
 				<div class="col-lg-2">
@@ -118,7 +118,7 @@
 				</div>
 				
 				<div class="col-lg-1 text-center">
-					<a href="#"><img class="cart-put-icon" src="${contextPath}/resource/img/common/cart-put-icon.png"></a>
+					<a href="#"><img class="cart-put-icon" src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
 				</div>
 			</div>
 
