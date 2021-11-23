@@ -81,8 +81,9 @@
 					
 				</div>
 	
-				<div class="col-lg-1 text-right">
-					<a href="#" class="item-price"><상품원가></a><br>
+				<div class="col-lg-1 text-left">
+					<a href="#" class="item-price"><상품원가></a>
+					<a href="#" class="item-dc"><할인율></a><br>
 					<a href="#" class="item-real-price"><판매가></a>
 				</div>
 
