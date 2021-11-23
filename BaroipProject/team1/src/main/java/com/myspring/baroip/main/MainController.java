@@ -31,7 +31,15 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
-		String a;
+		return mav;
+	}
+	
+	@RequestMapping(value= "/login_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView login_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
 		return mav;
 	}
 }

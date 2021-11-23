@@ -25,4 +25,9 @@
 		
 	</definition>
 	
+		<definition name="login_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/login/login_01.jsp" />
+				
+	</definition>
+	
 </tiles-definitions>
