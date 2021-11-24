@@ -1,5 +1,39 @@
 @charset "UTF-8";
 
-.test{
-	border: 2px solid #000000;
+.cart_agree_bt {
+	margin-top: 60px;
+}
+
+.cart_title {
+	border-top: 2px solid #000000;
+	border-bottom: 1px solid #d9d9d9;
+	height: 40px;
+	line-height: 40px;
+}
+
+.cart_total {
+	border-top: 2px solid #000000;
+	border-bottom: 1px solid #d9d9d9;
+	background: #f2f2f2;
+	height: 40px;
+	line-height: 40px;
+}
+
+.cart_total_1 {
+	margin-left: 15px;
+}
+
+.cart_total_body {
+	background: #f2f2f2;
+	height : 90px;
+}
+
+.cart_body {
+	border-bottom: 1px solid #000000;
+	line-height: 100px;
+}
+
+.cart_image_clip {
+	width:120px;
+	border : 1px solid #000000;
 }

@@ -30,9 +30,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/login/login_02.jsp" />
 	</definition>
 	
-		<definition name="cs_01" extends="UserLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_01.jsp" />
-		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_side.jsp" />
+		<definition name="notice_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_01.jsp" />
+	</definition>
+	
+			<definition name="notice_02" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_02.jsp" />
 	</definition>
 	
 			<definition name="cart" extends="UserLayout">

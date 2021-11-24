@@ -54,15 +54,25 @@ public class MainController {
 		return mav;
 	}
 	
-	// 고객센터 페이지
-	@RequestMapping(value= "/cs_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView cs_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	// 공지사항 페이지
+	@RequestMapping(value= "/notice_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView notice_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	// 공지사항 상세페이지
+		@RequestMapping(value= "/notice_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView notice_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
 	
 	// 장바구니 페이지
 	@RequestMapping(value= "/cart.do" ,method={RequestMethod.POST,RequestMethod.GET})
