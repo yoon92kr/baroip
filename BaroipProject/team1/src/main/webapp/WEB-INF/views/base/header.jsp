@@ -13,7 +13,7 @@
 
 			<div class="row">
                 <div class="col-lg-1 text-right">
-					<a href="#" class="logo-text" > 
+					<a href="${contextPath}/main.do" class="logo-text" > 
 						<img class="header-icon" src="${contextPath}/resources/img/common/favicon.png">   바로입
 					</a>
 				</div>
@@ -35,7 +35,7 @@
 
 				<div class="col-lg-2 text-center">
 					<div class="user_navi">
-						<a href="#" class="header-navi">로그인</a>
+						<a href="${contextPath}/login_01.do" class="header-navi">로그인</a>
 						<a href="#" class="header-navi">회원가입</a>
 					</div>	
 				</div>
