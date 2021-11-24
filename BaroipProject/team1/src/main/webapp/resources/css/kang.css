@@ -1,1 +1,32 @@
 @charset "UTF-8";
+
+.notice_01_header{
+	background: #d9d9d9;
+	height: 50px;
+		line-height: 50px;
+		font-family: "kopub_bold";
+		font-size: 20px;
+		border-bottom: 1px solid #000000;
+		margin: 35px 0px 0px 0px;
+}
+
+.notice_01_section{
+	height: 60px;
+		line-height: 55px;
+		font-size: 15px;
+		border-bottom: 1px solid #000000;
+}
+.notice_01_line{
+
+		font-size: 20px;
+		margin: 60px 0px 30px 0px;
+}
+
+
+.cs > a {
+	color: #000;
+}
+
+.notice_01_next > a {
+	color: #000;
+}
