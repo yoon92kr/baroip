@@ -11,7 +11,7 @@
 	src: url('../fonts/KoPubWorld_Medium.otf');
 }
 
-/* 전체 설정 */
+/*------------------------------ 전체 설정 ------------------------------*/
 html {
 	text-decoration: none;
 	font-size: 14px;
@@ -55,11 +55,11 @@ hr {
 	background-color: black;
 }
 
-/* 헤더 설정 */
+/*------------------------------ Header 설정 ------------------------------*/
 .header {
 	font-family: "kopub_bold";
 	font-size: 16px;
-	line-height: 50px;
+	line-height: 60px;
 	height: 60px;
 	background-color: #456B2B;
 }
@@ -112,6 +112,96 @@ hr {
 	color: #ffffff;
 }
 
+.header-cart {
+	margin-right: 30px;
+}
+/* SiteMap 설정 */
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	background-color: #ffffff;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.5s;
+	border: 1px solid #e4e4e4;
+}
+
+/* The navigation menu links */
+.sidenav a {
+	padding: 8px 8px 8px 30px;
+	text-decoration: none;
+	font-size: 40px;
+	font-family: Gotham;
+	color: #000000;
+	transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus {
+	color: #c9c9c9;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 60px;
+	margin-left: 50px;
+}
+
+.shopingNav a {
+	font-family: kopub_bold;
+	font-size: 15px;
+	padding-right : 60px;
+}
+.sidenav hr {
+	margin : 0px 50px 0px 50px;
+}
+
+.sidenav h1 {
+	padding-left : 30px;
+}
+
+.shopingNav {
+	margin : 0px 0px 30px 65px;
+}
+
+.sidenav h3 {
+	padding : 50px 0px 30px 30px;
+	color: #c9c9c9;
+}
+
+.myPageNav a{
+	font-family: kopub_bold;
+	font-size: 22px;
+	padding-left : 80px;
+}
+
+.navImg {
+	padding-left : 40px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+	transition: margin-left .5s;
+	padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
+
 /* main.jsp 설정 */
 .section-title {
 	border: 1px solid black;
@@ -137,15 +227,12 @@ hr {
 	text-decoration: none;
 	color: #000000;
 	font-size: 8px;
-
 }
 
 .item-dc {
 	text-decoration: none;
 	color: #ff0000;
 	font-size: 6px;
-
-	
 }
 
 .cart-put-icon {
@@ -225,7 +312,7 @@ hr {
 	border-top-right-radius: 5px;
 }
 
-/* quickMenu.jsp 설정 */
+/*------------------------------ quickMenu.jsp 설정 ------------------------------*/
 .quick-menu {
 	font-size: 8px;
 	display: flex;
@@ -251,7 +338,7 @@ hr {
 	width: 60px;
 }
 
-/* 푸터 설정  */
+/*------------------------------ Footer 설정  ------------------------------*/
 .footer {
 	width: 100%;
 	height: 90px;
