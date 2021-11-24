@@ -6,17 +6,14 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <div class="container">
-    <div class="row">
+	<div class="row">
         <div class="col-lg-5"></div>
         <div class="col-lg-2 text-center">
         	<h1 class="page_title" >로그인</h1>
         </div>
         <div class="col-lg-5"></div>
     </div>
-</div>
-
-<div class="container">
-    <div class="row">
+	<div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
 	        <h3 class="login-title">이메일 로그인</h3>
@@ -26,14 +23,11 @@
         		<input class="login_01-btn" type="submit" value="로그인">
         	</form>
         	<p class="login_01-id-pwd-find">
-        		<a href="#">아이디 / 비밀번호 찾기</a>
+        		<a href="${contextPath}/login_02.do">아이디 / 비밀번호 찾기</a>
         	</p>
         </div>
         <div class="col-lg-4"></div>
     </div>
-</div>
-
-<div class="container">
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
@@ -54,9 +48,6 @@
         </div>
         <div class="col-lg-4"></div>
     </div>
-</div>
-
-<div class="container">
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">

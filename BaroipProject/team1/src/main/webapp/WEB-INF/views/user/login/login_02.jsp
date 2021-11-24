@@ -1,3 +1,4 @@
+<!-- 2021.11.24 한건희 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -15,6 +16,7 @@
 </div>
 <div class="login_02-main">
 	<div class="container border">
+		
 	    <div class="row">
 	        <div class="col-lg-6 text-center border-right">
 	        	<div class="login_02-top">아이디 찾기</div>

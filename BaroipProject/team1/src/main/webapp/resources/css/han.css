@@ -114,3 +114,43 @@
 .login_02-main {
 	margin-top: 100px;
 }
+/* login_02 end */
+
+/* login_03 start */
+.login_03-id-find-title {
+	font-family: 'kopub_bold';
+	font-size: 45px;
+	margin: 60px 0px 35px 0px;
+}
+
+.login_03-id-text {
+	margin: 50px 0px;
+	font-size: 35px;
+}
+
+.login_03-user-id {
+	font-family: 'kopub_bold';
+}
+
+.login_03-lookup {
+	margin: 50px 0px;
+}
+
+.login_03-btn {
+	width: 90%;
+	height: 50px;
+	border: none;
+	margin-top: 200px;
+}
+
+.login_03-btn > a {
+	color: #fff;
+}
+
+.login_03-id-pwd-find {
+	background-color: #787878;
+}
+
+.login_03-login-page {
+	background-color: #404040;
+}
