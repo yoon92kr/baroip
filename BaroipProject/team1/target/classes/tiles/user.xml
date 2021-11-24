@@ -35,5 +35,10 @@
 		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_side.jsp" />
 	</definition>
 	
+			<definition name="cart" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cart/cart.jsp" />
+	</definition>
+	
+	
 	
 </tiles-definitions>

@@ -55,6 +55,10 @@ hr {
 	background-color: black;
 }
 
+.page_title {
+	font-family: "kopub_bold";
+}
+
 /*------------------------------ Header 설정 ------------------------------*/
 .header {
 	font-family: "kopub_bold";
