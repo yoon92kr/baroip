@@ -62,6 +62,17 @@
 	
 	</div>
 </div>
+<div class="cart_list_body">
+<div class="row">
+
+	<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
+	<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+	<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
+	<div class="col-lg-1 text-center cart_body">수량</div>
+	<div class="col-lg-1 text-center cart_body"><상품가격></div>
+	
+</div>
+</div>
 
 <div class="cart_list_bt">
 	<div class="row">
