@@ -9,8 +9,7 @@
     <div class="row">
         <div class="col-lg-5"></div>
         <div class="col-lg-2 text-center">
-        	<br>
-        	<h1 class="login_header" >로그인</h1>
+        	<h1 class="page_title" >로그인</h1>
         </div>
         <div class="col-lg-5"></div>
     </div>
@@ -20,14 +19,13 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-	        <br><br>
-	        <h3 class="login_header">이메일 로그인</h3>
+	        <h3 class="login-title">이메일 로그인</h3>
         	<form>
-        		<input class="id_box" type="text" placeholder="아이디(이메일)를 입력해주세요.">
-        		<input class="pwd_box" type="text" placeholder="비밀번호를 입력해주세요."><br>
-        		<input class="login_btn" type="submit" value="로그인">
+        		<input class="login_01-id-box" type="text" placeholder="아이디(이메일)를 입력해주세요.">
+        		<input class="login_01-pwd-box" type="text" placeholder="비밀번호를 입력해주세요."><br>
+        		<input class="login_01-btn" type="submit" value="로그인">
         	</form>
-        	<p class="id_pwd_find">
+        	<p class="login_01-id-pwd-find">
         		<a href="#">아이디 / 비밀번호 찾기</a>
         	</p>
         </div>
@@ -40,17 +38,17 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
 	        <br><br>
-	        <h3 class="login_header">SNS 간편 로그인</h3>
-		        <div class="sns_login_btn">
-			        <a class="naver_login" href="#">
-			        	<img class="naver_kakao_login" src="${contextPath}/resources/img/common/naver_login_btn.png">
+	        <h3 class="login-title">SNS 간편 로그인</h3>
+		        <div class="login_01-sns-login-btn">
+			        <a class="login_01-naver-login" href="#">
+			        	<img class="login_01-naver-kakao-login" src="${contextPath}/resources/img/common/naver_login_btn.png">
 			        </a>
-			        <a class="kakao_login" href="#">
-			        	<img class="naver_kakao_login" src="${contextPath}/resources/img/common/kakao_login_btn.png">
+			        <a class="login_01-kakao-login" href="#">
+			        	<img class="login_01-naver-kakao-login" src="${contextPath}/resources/img/common/kakao_login_btn.png">
 			        </a>
 		        </div>
 	        <br>
-	        <p class="join_text">
+	        <p class="login_01-join-text">
 	        	바로입이 처음이신가요? <a href="#">회원가입하기</a>
 	        </p>
         </div>
@@ -63,7 +61,7 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
         	<br>
-        	<button class="non_member_search" type="button">
+        	<button class="login_01-non-member-search" type="button">
         		<a href="#">비회원 조회하기</a>
         	</button>
         </div>

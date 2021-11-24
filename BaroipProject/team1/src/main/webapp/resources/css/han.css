@@ -1,79 +1,116 @@
 @charset "UTF-8";
 
 /* login_01 start */
-.id_box, .pwd_box, .login_btn, .non_member_search{
+.login_01-id-box, .login_01-pwd-box, .login_01-btn, .login_01-non-member-search{
 	width: 100%;
 	height: 50px;
 }
 
-.id_box, .pwd_box {
+.login_01-id-box, .login_01-pwd-box {
 	margin-bottom: 5px;
 	padding-left: 30px;
 	background-position: left;
 	background-repeat: no-repeat;
 }
 
-.login_header {
-	font-family: "kopub_bold";
-}
-
-.id_box {
+.login_01-id-box {
 	background-image: url("../img/common/id_icon.png");
 }
 
-.pwd_box {
+.login_01-pwd-box {
 	background-image: url("../img/common/pwd_icon.png");
 }
 
-.login_btn {
+.login_01-btn {
 	border: none;
 	color: #fff;
 	background-color: #000;
 }
 
-.id_pwd_find {
+.login_01-id-pwd-find {
 	margin-top: 10px;
 	text-align: right;
 }
 
-.id_pwd_find > a {
+.login_01-id-pwd-find > a {
 	color: #000;
 }
 
-.naver_kakao_login {
+.login_01-naver-kakao-login {
 	width: 200px;
 	height: 50px;
 	
 }
-.naver_login {
+.login_01-naver-login {
 	background-color: #03c75a;
 }
 
-.kakao_login {
+.login_01-kakao-login {
 	background-color: #fee500;
 }
 
-.sns_login_btn > a {
+.login_01-sns-login-btn > a {
 	text-align: center;
 	display: block;
 	margin-bottom: 5px;
 }
 
-.join_text {
+.login_01-join-text {
 	margin-top: 5px;
 	font-size: 17px;
 	text-align: center;
 }
 
-.join_text > a {
+.login_01-join-text > a {
 	color: #427442;
 }
 
-.non_member_search {
+.login_01-non-member-search {
 	border: none;
 }
 
-.non_member_search > a {
+.login_01-non-member-search > a {
 	color: #000;
 }
 /* login_01 end */
+
+/* login_02 start */
+.login_02-top {
+	font-size: 22px;
+	margin: 30px 0px;
+}
+
+.login_02-id-find, .login_02-pwd-find {
+	padding-left: 10px;
+}
+
+.login_02-id-find, .login_02-pwd-find, .login_02-btn {
+	width: 92%;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+.login_02-btn {
+	border: none;
+	background-color: #404040;
+	color: #fff;
+	box-sizing: border-box;
+}
+
+.login_02-id-btn {
+	margin-top: 40px;
+}
+
+.login_02-pwd-btn-01, .login_02-pwd-btn-02 {
+	width: 43%;
+	margin-bottom: 60px;
+    margin-top: 110px;
+}
+
+.login_02-pwd-btn-01 {
+	margin-right: 21px;
+}
+
+.login_02-main {
+	margin-top: 100px;
+}
