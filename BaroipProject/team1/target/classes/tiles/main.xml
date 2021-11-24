@@ -3,8 +3,9 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
 <tiles-definitions>
-	<definition name="UserLayout"
+	<definition name="MainLayout"
 		template="/WEB-INF/views/base/layout.jsp">
 		<put-attribute name="title" value="바로입" />
 		<put-attribute name="header" value="/WEB-INF/views/base/header.jsp" />
@@ -15,26 +16,8 @@
 		<put-attribute name="chat" value="/WEB-INF/views/base/chat.jsp"/>
 	</definition>
 
-	<definition name="main" extends="UserLayout">
+	<definition name="main" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/main.jsp" />
 	</definition>
-	
-	<definition name="myPage_01" extends="UserLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_01.jsp" />
-		<put-attribute name="side" value="/WEB-INF/views/user/myPage/sideMenu.jsp" />
 		
-	</definition>
-	
-		<definition name="login_01" extends="UserLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/login/login_01.jsp" />
-				
-	</definition>
-	
-		<definition name="cs_01" extends="UserLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_01.jsp" />
-		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_side.jsp" />
-				
-	</definition>
-	
-	
 </tiles-definitions>

@@ -21,7 +21,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
-		String a;
+		
 		return mav;
 	}
 	
@@ -33,7 +33,8 @@ public class MainController {
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
+
+	// 로그인 페이지
 	@RequestMapping(value= "/login_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView login_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
@@ -43,8 +44,29 @@ public class MainController {
 		return mav;
 	}
 	
+	// 아이디 비밀번호 찾기
+	@RequestMapping(value= "/login_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView login_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 고객센터 페이지
 	@RequestMapping(value= "/cs_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView cs_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 장바구니 페이지
+	@RequestMapping(value= "/cart.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView cart(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
