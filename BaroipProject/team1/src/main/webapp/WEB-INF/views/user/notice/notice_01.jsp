@@ -7,24 +7,24 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 
+
+
+
+
+
 <div class="container-fluid">
+
 
     <div class="row">
         <div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">공지사항</h1></div>
     </div>
 
-    <div class="container-fluid">
       <div class="row">
         <div class="offset-lg-1 col-lg-10 offset-lg-1">
         <hr>
         </div>
         </div>
-    </div>
-  </div>
-
-
-
-<div class="container-fluid">
+   
           
           <div class="row">
 
@@ -35,11 +35,10 @@
         <hr>
         </div>
 
-</div>
 
 
 
-<div class="container-fluid">
+
           <div class="row">
         <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
         <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
@@ -48,9 +47,8 @@
         		<a href="#">공지 제목</a></div>
         <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
         </div>
-        </div>
+       
 
-<div class="container-fluid">
           <div class="row">
         <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
         <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
@@ -59,10 +57,8 @@
         		<a href="#">공지 제목</a></div>
         <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
         </div>
-        </div>
+       
 
-
-<div class="container-fluid">
           <div class="row">
         <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
         <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
@@ -71,9 +67,8 @@
         		<a href="#">공지 제목</a></div>
         <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
         </div>
-        </div>
+       
    
-   <div class="container-fluid">
           <div class="row">
         <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
         <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
@@ -82,9 +77,28 @@
         		<a href="#">공지 제목</a></div>
         <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
         </div>
+      
+        
+          <div class="row">
+        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
+        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
+        <div class="col-lg-4 text-center notice_01_section">
+        <p class="cs">
+        		<a href="#">공지 제목</a></div>
+        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
+        </div>
+      
+        
+          <div class="row">
+        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
+        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
+        <div class="col-lg-4 text-center notice_01_section">
+        <p class="cs">
+        		<a href="#">공지 제목</a></div>
+        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
         </div>
         
-        <div class="container-fluid">
+       
           <div class="row">
         <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
         <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
@@ -92,10 +106,10 @@
         <p class="cs">
         		<a href="#">공지 제목</a></div>
         <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
         </div>
         
-        <div class="container-fluid">
+        
+       
           <div class="row">
         <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
         <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
@@ -103,34 +117,12 @@
         <p class="cs">
         		<a href="#">공지 제목</a></div>
         <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
         </div>
         
-        <div class="container-fluid">
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="#">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-        </div>
-        
-        <div class="container-fluid">
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="#">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-        </div>
         
    
    
-   <div class="container-fluid">
+   
     <div class="row">
      <div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
      <p class="notice_01_next">
@@ -141,8 +133,8 @@
 	        	
 	        </p> </div>
 	        </div>
-	 
-	        </div>
+	 </div>
+	        
 	        
     
 
