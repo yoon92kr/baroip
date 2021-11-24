@@ -22,6 +22,9 @@
 		margin: 60px 0px 30px 0px;
 }
 
+.notice_02_line02{
+	margin: 0px 0px 50px 0px;
+}
 
 .cs > a {
 	color: #000;
@@ -30,3 +33,36 @@
 .notice_01_next > a {
 	color: #000;
 }
+
+.notice_02_box02{
+	height: 50px;
+		line-height: 50px;
+		font-size: 17px;
+}
+
+.notice_02_box01{
+background: #d9d9d9;
+	height: 50px;
+		line-height: 50px;
+		font-family: "kopub_bold";
+		font-size: 17px;
+}
+.notice_02_box03{
+background: #d9d9d9;
+	height: 300px;
+		line-height: 300px;
+		font-family: "kopub_bold";
+		font-size: 17px;
+}
+.notice_02_box04{
+	height: 300px;
+		line-height: 300px;
+		font-family: "kopub_bold";
+		font-size: 17px;
+}
+
+.notice_02_btn {
+	border: none;
+}
+
+
