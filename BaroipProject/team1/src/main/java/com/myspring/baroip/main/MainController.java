@@ -42,4 +42,13 @@ public class MainController {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	@RequestMapping(value= "/cs.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView cs_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
 }

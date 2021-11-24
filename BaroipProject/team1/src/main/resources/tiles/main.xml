@@ -30,4 +30,11 @@
 				
 	</definition>
 	
+		<definition name="cs_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_side.jsp" />
+				
+	</definition>
+	
+	
 </tiles-definitions>
