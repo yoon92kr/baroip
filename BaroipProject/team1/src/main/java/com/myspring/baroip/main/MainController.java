@@ -54,6 +54,37 @@ public class MainController {
 		return mav;
 	}
 	
+	// 아이디 찾기 결과
+	@RequestMapping(value= "/login_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView login_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping(value= "/login_04.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView login_04(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	
+	// 비밀번호 찾기 완료
+	@RequestMapping(value= "/login_05.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView login_05(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	// 공지사항 페이지
 	@RequestMapping(value= "/notice_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView notice_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
