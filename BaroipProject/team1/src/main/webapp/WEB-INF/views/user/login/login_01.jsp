@@ -19,7 +19,7 @@
 	        <h3 class="login-title">이메일 로그인</h3>
         	<form>
         		<input class="login_01-id-box" type="text" placeholder="아이디(이메일)를 입력해주세요.">
-        		<input class="login_01-pwd-box" type="text" placeholder="비밀번호를 입력해주세요."><br>
+        		<input class="login_01-pwd-box" type="password" placeholder="비밀번호를 입력해주세요."><br>
         		<input class="login_01-btn" type="submit" value="로그인">
         	</form>
         	<p class="login_01-id-pwd-find">
