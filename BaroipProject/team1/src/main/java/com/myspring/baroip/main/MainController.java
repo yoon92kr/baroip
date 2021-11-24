@@ -43,7 +43,7 @@ public class MainController {
 		return mav;
 	}
 	
-	@RequestMapping(value= "/cs.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value= "/cs_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView cs_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
