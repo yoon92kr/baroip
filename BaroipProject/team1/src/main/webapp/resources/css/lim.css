@@ -1,1 +1,47 @@
 @charset "UTF-8";
+
+
+.MyPage_side-section {
+	position:fixed;
+	top:200px;
+	left:0;
+	width:500px;
+	font-size:20px;
+	margin-top: 30px;
+}
+.haha {
+	 padding-top: 50px;
+}
+
+.MyPage_side-section a {
+	display:block;
+	line-height:60px;
+	background-color: #f2f2f2;
+	color: #000;
+}
+.MyPage_welcome {
+	
+	border-bottom : 1px solid #000000;
+}
+.MyPage_01 {
+
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.Mypage_01_header {
+	padding-top: 30px;
+}
+
+.MyPage_01_title {
+	margin-top: 30px;
+	font-size: 20px;
+	background-color: #d9d9d9;
+}
+
+.MyPage_01_content {
+	line-height: 200px;
+	font-size: 15px;
+	background-color: #ffffff;
+	font-weight: normal;
+}
