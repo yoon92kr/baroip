@@ -1,1 +1,79 @@
 @charset "UTF-8";
+
+/* login_01 start */
+.id_box, .pwd_box, .login_btn, .non_member_search{
+	width: 100%;
+	height: 50px;
+}
+
+.id_box, .pwd_box {
+	margin-bottom: 5px;
+	padding-left: 30px;
+	background-position: left;
+	background-repeat: no-repeat;
+}
+
+.login_header {
+	font-family: "kopub_bold";
+}
+
+.id_box {
+	background-image: url("../img/common/id_icon.png");
+}
+
+.pwd_box {
+	background-image: url("../img/common/pwd_icon.png");
+}
+
+.login_btn {
+	border: none;
+	color: #fff;
+	background-color: #000;
+}
+
+.id_pwd_find {
+	margin-top: 10px;
+	text-align: right;
+}
+
+.id_pwd_find > a {
+	color: #000;
+}
+
+.naver_kakao_login {
+	width: 200px;
+	height: 50px;
+	
+}
+.naver_login {
+	background-color: #03c75a;
+}
+
+.kakao_login {
+	background-color: #fee500;
+}
+
+.sns_login_btn > a {
+	text-align: center;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.join_text {
+	margin-top: 5px;
+	font-size: 17px;
+	text-align: center;
+}
+
+.join_text > a {
+	color: #427442;
+}
+
+.non_member_search {
+	border: none;
+}
+
+.non_member_search > a {
+	color: #000;
+}
+/* login_01 end */
