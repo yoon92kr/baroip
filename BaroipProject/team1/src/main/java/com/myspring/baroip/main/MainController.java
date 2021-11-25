@@ -154,4 +154,44 @@ public class MainController {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	// 고객센터 자주묻는질문
+	@RequestMapping(value= "/cs_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView cs_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 1:1문의 리스트
+	@RequestMapping(value= "/cs_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView cs_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 1:1 문의 작성
+	@RequestMapping(value= "/cs_02_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView cs_02_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 1:1 문의 상세보기
+	@RequestMapping(value= "/cs_02_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView cs_02_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
 }
