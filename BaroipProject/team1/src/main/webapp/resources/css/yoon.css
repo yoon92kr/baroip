@@ -10,7 +10,14 @@
 	height: 40px;
 	line-height: 40px;
 }
+#itemCountBox_form {
+	margin-top : 30px;
+		border: 1px solid #ddd;
+}
 
+.itemCount_row {
+		border-bottom: 1px solid #000000;
+}
 .cart_total {
 	border-top: 2px solid #000000;
 	border-bottom: 1px solid #d9d9d9;
@@ -26,6 +33,7 @@
 .cart_total_body {
 	background: #f2f2f2;
 	line-height: 50px;
+
 }
 
 .cart_list_body a {
@@ -34,8 +42,8 @@
 
 .cart_body {
 	border-bottom: 1px solid #000000;
-	line-height: 90px;
 	height: 90px;
+	line-height: 90px;
 }
 
 .cart_image_clip {
@@ -92,21 +100,18 @@
 
 form #cart_decrease {
 	margin-right: -6px;
-	border: 1px solid #ddd;
-	border-right: 0;
+
 }
 
 form #cart_increase {
 	margin-left: -6px;
-	border: 1px solid #ddd;
-	border-left: 0;
+
 }
 
-input#cart_item_count {
+ input#cart_item_count{
 	text-align: center;
 	border: none;
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+
 	margin: 0px;
 	width: 40px;
 	height: 25px;
