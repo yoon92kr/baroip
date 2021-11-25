@@ -171,3 +171,38 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .product_01_filter a:hover {
 	font-family: "kopub_bold";
 }
+
+/* 상품 상세 */
+.product_02_main_img img {
+	margin-top: 50px;
+	margin-bottom: 30px;
+	height: 300px;
+}
+
+.product_02_sub_img img {
+	margin-bottom: 20px;
+}
+
+.product_02_sub_img_top {
+	margin-top: 70px;
+}
+
+.product_02_title {
+	font-family: "kopub_bold";
+	font-size: 25px;
+	margin-top: 50px;
+}
+
+.product_02_discript {
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.product_02_option {
+	font-family: "kopub_bold";
+	font-size: 20px;
+}
+
+.product_02_form form{
+	display: inline;
+}
