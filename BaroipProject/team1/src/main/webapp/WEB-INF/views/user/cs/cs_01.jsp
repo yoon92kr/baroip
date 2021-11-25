@@ -8,7 +8,11 @@
 
 
 
-
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> <script> $(document).ready(function()
+		{ $("#spreadBtn02").click(function(){ if($("#hiddenList01").
+				is(":visible"))
+		{ $("#hiddenList01").slideUp(); }
+		else{ $("#hiddenList01").slideDown(); } }); }); </script>
 
 
 
@@ -77,8 +81,7 @@
 			<span>공지번호</span>
 		</div>
 		<div class="col-lg-4 text-left cs_01_section">
-
-				<a>제목</a>
+		
 		</div>
 	</div>
 	<div class="row">
@@ -86,77 +89,52 @@
 			<span>공지번호</span>
 		</div>
 		<div class="col-lg-4 text-left cs_01_section">
-
-				<a>제목</a>
+		
 		</div>
 	</div>
+	
+	
+	
+	
 	<div class="row">
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_section">
 			<span>공지번호</span>
 		</div>
 		<div class="col-lg-4 text-left cs_01_section">
-		<ul>
-			<li class="menu">
-				<a>제목</a>
-			
-			<ul class="hide">
-				<li>자주묻는질문 내용내용자는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용</li>
-
-			</ul>
-			
-			</ul>
-
+		
 		</div>
 	</div>
+	
+	
 	<div class="row">
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_section">
 			<span>공지번호</span>
 		</div>
 		<div class="col-lg-4 text-left cs_01_section">
-			<p class="menu">
-				<a>제목</a>
+			
 		</div>
 	</div>
+	
 
 	<div class="row">
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_section">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-4 text-left cs_01_section">
-		<ul>
-			<li class="menu">
-				<a>제목</a>
-			
-			<ul class="hide">
-				<li>자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용자주묻는질문 내용내용</li>
+		<div class="col-lg-4 text-left">
+		<button id="spreadBtn02" class="btn01">펼치기</button>
+		 <ul id="hiddenList01" class="example01" style="display: none;">
+		 <li>공간좀</li> 
+		 <li>펼쳐져라</li>
+		 <li>제발 ㅠ</li>
+		  </ul>
 
-			</ul>
 			
-			</ul>
+		</div>
 
 		</div>
 	</div>
-</div>
 
 
-
-
-<script>
-    // html dom 이 다 로딩된 후 실행된다.
-    $(document).ready(function(){
-        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-        $(".menu>a").click(function(){
-            var submenu = $(this).next("ul");
- 
-            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-            if( submenu.is(":visible") ){
-                submenu.slideUp();
-            }else{
-                submenu.slideDown();
-            }
-        });
-    });
-</script>
 
 
 
