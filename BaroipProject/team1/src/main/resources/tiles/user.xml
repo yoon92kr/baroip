@@ -66,22 +66,22 @@
 	
 	<definition name="cs_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_01.jsp" />
-		<put-attribute name="side" value="" />
+		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
 	</definition>
 	
 	<definition name="cs_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02.jsp" />
-		<put-attribute name="side" value="" />
+		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
 	</definition>
 	
 	<definition name="cs_02_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_01.jsp" />
-		<put-attribute name="side" value="" />
+		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
 	</definition>
 	
 	<definition name="cs_02_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_02.jsp" />
-		<put-attribute name="side" value="" />
+		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
 	</definition>
 
 	<definition name="cart" extends="UserLayout">
