@@ -54,21 +54,21 @@
 	<div class="row">
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
@@ -130,21 +130,21 @@
 	<div class="row">
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
@@ -206,21 +206,21 @@
 	<div class="row">
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
@@ -278,25 +278,25 @@
 					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
 			</div>
 		</div>
-		
-		<div class="row">
+	</div>
+	<div class="row">
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
-				<a href="#"><img
+				<a href="${contextPath}/product_02.do"><img
 					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 			</div>
 		</div>
@@ -355,6 +355,21 @@
 			</div>
 		</div>
 
+	</div>
+
+<!-- 필드 이동 -->
+
+<div class="row">
+	<div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
+		<p class="notice_01_next">
+			<a href="#"> < 이전 </a>
+	</div>
+	<div class="col-lg-1 text-center notice_01_line">
+		<p class="notice_01_next">
+			<a href="#"> 다음 > </a>
+
+		</p>
 	</div>
 </div>
 
+</div>

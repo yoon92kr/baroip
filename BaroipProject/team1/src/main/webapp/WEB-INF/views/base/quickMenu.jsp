@@ -15,11 +15,11 @@
 	<p>최근 본 상품</p>
 
 	<div class="quick-item past-image">
-		<a href="#"><img
+		<a href="${contextPath}/product_02.do"><img
 			src="${contextPath }/resources/img/common/img-box.jpg"></a>
 	</div>
 	<div class="quick-item past-image">
-		<a href="#"><img
+		<a href="${contextPath}/product_02.do"><img
 			src="${contextPath }/resources/img/common/img-box.jpg"></a>
 	</div>
 </div>

@@ -64,7 +64,7 @@
   					<hr>
   					<h3>메뉴</h3>
   					<span class="myPageNav">
-  					<a href="#">마이페이지</a><br>
+  					<a href="${contextPath}/myPage_01.do">마이페이지</a><br>
   					<a href="${contextPath}/cart.do">장바구니</a><br>
   					<a href="${contextPath}/notice_01.do">공지사항</a><br>
   					<a href="#">고객센터</a>

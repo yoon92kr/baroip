@@ -67,21 +67,21 @@
 		<div class="row">
 			<div class="col-lg-4 text-center">
 				<div class="product-image">
-					<a href="#"><img
+					<a href="${contextPath}/product_02.do"><img
 						src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 				</div>
 			</div>
 
 			<div class="col-lg-4  text-center">
 				<div class="product-image">
-					<a href="#"><img
+					<a href="${contextPath}/product_02.do"><img
 						src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 				</div>
 			</div>
 
 			<div class="col-lg-4 text-center">
 				<div class="product-image">
-					<a href="#"><img
+					<a href="${contextPath}/product_02.do"><img
 						src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
 				</div>
 			</div>

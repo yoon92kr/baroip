@@ -1,4 +1,4 @@
-<!-- 2021.11.25 윤상현 -->
+<!-- 2021.11.26 윤상현 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>

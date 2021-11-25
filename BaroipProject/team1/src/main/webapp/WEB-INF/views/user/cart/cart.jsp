@@ -19,7 +19,7 @@
 		<div class="col-lg-1 text-center cart_title">수량</div>
 		<div class="col-lg-1 text-center cart_title">가격</div>
 		<div class="col-lg-1 text-center cart_total cart_total_1">총 상품금액</div>
-		<div class="col-lg-1 text-center cart_total"><총상품금액></div>	
+		<div class="col-lg-1 text-center cart_total">[총 상품금액]</div>	
 	</div>
 </div>
 
@@ -27,8 +27,8 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
-		<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
   			<div class="value-button" id="cart_decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
@@ -36,9 +36,9 @@
   			<div class="value-button" id="cart_increase" onclick="increaseValue()" value="Increase Value">+</div>
 		</form>
 		</div>
-		<div class="col-lg-1 text-center cart_body"><상품가격></div>
+		<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
 		<div class="col-lg-1 text-center cart_total_body cart_total_1">총 배송비</div>
-		<div class="col-lg-1 text-right cart_total_body"><배송비></div>	
+		<div class="col-lg-1 text-right cart_total_body">[배송비]></div>	
 	</div>
 </div>
 
@@ -46,8 +46,8 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
-		<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
   			<div class="value-button" id="cart_decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
@@ -55,9 +55,9 @@
   			<div class="value-button" id="cart_increase" onclick="increaseValue()" value="Increase Value">+</div>
 		</form>
 		</div>
-		<div class="col-lg-1 text-center cart_body"><상품가격></div>
+		<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
 		<div class="col-lg-1 text-center cart_total_body cart_total_1">총 할인액</div>
-		<div class="col-lg-1 text-right cart_total_body"><상품할인금액></div>	
+		<div class="col-lg-1 text-right cart_total_body">[상품 할인 금액]</div>	
 	</div>
 </div>
 
@@ -65,8 +65,8 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
-		<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
   			<div class="value-button" id="cart_decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
@@ -74,7 +74,7 @@
   			<div class="value-button" id="cart_increase" onclick="increaseValue()" value="Increase Value">+</div>
 		</form>
 		</div>
-		<div class="col-lg-1 text-center cart_body"><상품가격></div>
+		<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
 		<div class="col-lg-1 text-center cart_total_body cart_total_1 cart_total_bottom"></div>
 		<div class="col-lg-1 text-right cart_total_body cart_total_bottom"><span class="maybe_cost_text">예상 결제 금액</span><br><span class="maybe_cost"><최종결제금액>원</span></div>
 	
@@ -86,8 +86,8 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
-		<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
   			<div class="value-button" id="cart_decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
@@ -95,7 +95,7 @@
   			<div class="value-button" id="cart_increase" onclick="increaseValue()" value="Increase Value">+</div>
 		</form>
 		</div>
-		<div class="col-lg-1 text-center cart_body"><상품가격></div>
+		<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
 
 	
 	</div>
@@ -105,10 +105,16 @@
 <div class="row">
 
 	<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-	<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
-	<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
-	<div class="col-lg-1 text-center cart_body">수량</div>
-	<div class="col-lg-1 text-center cart_body"><상품가격></div>
+	<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+	<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
+	<div class="col-lg-1 text-center itemCount_row">
+		<form name="itemCountBox" id="itemCountBox_form">
+  			<div class="value-button" id="cart_decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+  			<input type="number" id="cart_item_count" value="1" />
+  			<div class="value-button" id="cart_increase" onclick="increaseValue()" value="Increase Value">+</div>
+		</form>
+	</div>
+	<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
 	
 </div>
 </div>
