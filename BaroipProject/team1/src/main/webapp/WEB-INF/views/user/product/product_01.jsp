@@ -357,19 +357,20 @@
 
 	</div>
 
-<!-- 필드 이동 -->
+	<!-- 필드 이동 -->
 
-<div class="row">
-	<div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
-		<p class="notice_01_next">
-			<a href="#"> < 이전 </a>
-	</div>
-	<div class="col-lg-1 text-center notice_01_line">
-		<p class="notice_01_next">
-			<a href="#"> 다음 > </a>
+	<div class="row">
+		<div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
+			<p class="notice_01_next">
+				<a href="#"> < 이전 </a>
+		</div>
+		<div class="col-lg-1 text-center notice_01_line">
+			<p class="notice_01_next">
+				<a href="#"> 다음 > </a>
 
-		</p>
+			</p>
+		</div>
 	</div>
-</div>
+
 
 </div>
