@@ -18,10 +18,25 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
 	</definition>
-	
-		<definition name="myPage_02" extends="UserLayout">
+
+	<definition name="myPage_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_02.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+
+	<definition name="myPage_02_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_02_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+
+	<definition name="dropOut_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/dropOut_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+
+	<definition name="dropOut_02" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/dropOut_02.jsp" />
+
 	</definition>
 
 	<definition name="login_01" extends="UserLayout">
@@ -47,11 +62,11 @@
 	<definition name="join_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/join/join_01.jsp" />
 	</definition>
-	
+
 	<definition name="join_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/join/join_02.jsp" />
 	</definition>
-	
+
 	<definition name="join_03" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/join/join_03.jsp" />
 	</definition>
@@ -63,22 +78,22 @@
 	<definition name="notice_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_02.jsp" />
 	</definition>
-	
+
 	<definition name="cs_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
 	</definition>
-	
+
 	<definition name="cs_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
 	</definition>
-	
+
 	<definition name="cs_02_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
 	</definition>
-	
+
 	<definition name="cs_02_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_02.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
@@ -86,6 +101,10 @@
 
 	<definition name="cart" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cart/cart.jsp" />
+	</definition>
+
+	<definition name="product_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01.jsp" />
 	</definition>
 
 

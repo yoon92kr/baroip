@@ -43,6 +43,36 @@ public class MainController {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	// 회원정보 수정 입력
+	@RequestMapping(value= "/myPage_02_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView user_mypage_02_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 회원탈퇴
+	@RequestMapping(value= "/dropOut_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView dropOut_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 회원탈퇴 완료
+	@RequestMapping(value= "/dropOut_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView dropOut_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
 
 	// 로그인 페이지
 	@RequestMapping(value= "/login_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -188,6 +218,16 @@ public class MainController {
 	// 1:1 문의 상세보기
 	@RequestMapping(value= "/cs_02_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView cs_02_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 상품 목록
+	@RequestMapping(value= "/product_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView product_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
