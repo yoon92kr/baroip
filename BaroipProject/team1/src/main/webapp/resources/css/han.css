@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
 /* login_01 start */
-.login_01-id-box, .login_01-pwd-box, .login_01-btn, .login_01-non-member-search{
+.login_01-id-box, .login_01-pwd-box, .login_01-btn {
 	width: 100%;
 	height: 50px;
+}
+
+.sub-title {
+	font-family: 'kopub_bold';
 }
 
 .login_01-id-box, .login_01-pwd-box {
@@ -36,17 +40,22 @@
 	color: #000;
 }
 
-.login_01-naver-kakao-login {
+.login_01-naver-kakao-login, .login_01-non-member-search-btn {
 	width: 200px;
 	height: 50px;
 	
 }
+
 .login_01-naver-login {
 	background-color: #03c75a;
 }
 
 .login_01-kakao-login {
 	background-color: #fee500;
+}
+
+.login_01-non-member-search {
+	background-color: #7f7f7f;
 }
 
 .login_01-sns-login-btn > a {
@@ -65,13 +74,6 @@
 	color: #427442;
 }
 
-.login_01-non-member-search {
-	border: none;
-}
-
-.login_01-non-member-search > a {
-	color: #000;
-}
 /* login_01 end */
 
 /* login_02 start */
@@ -136,21 +138,36 @@
 	margin: 50px 0px;
 }
 
-.login_03-btn {
+.login_03-bottom-btn > a {
 	width: 90%;
 	height: 50px;
-	border: none;
+	text-align: center;
+	display: block;
 	margin-top: 200px;
 }
 
-.login_03-btn > a {
-	color: #fff;
+.login_03-login-page-btn {
+	background-color: #404040;
+	margin-left: 54px;
 }
 
-.login_03-id-pwd-find {
+.login_03-id-pwd-find-btn {
 	background-color: #787878;
 }
+/* login_03 end */
 
-.login_03-login-page {
-	background-color: #404040;
+/* login_04 start */
+.login_04-sub-title {
+	margin-top: 100px;
 }
+
+.login_04-btn {
+	margin-top: 15px;
+}
+/* login_04 end */
+
+/* login_05 start */
+.login_05-btn {
+	margin-left: 30px;
+}
+/* login_05 end */
