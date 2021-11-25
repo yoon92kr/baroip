@@ -10,7 +10,7 @@
 	margin-top: 30px;
 }
 .haha {
-	 padding-top: 50px;
+	padding-top: 20px;
 }
 
 .MyPage_side-section a {
@@ -43,5 +43,23 @@
 	line-height: 200px;
 	font-size: 15px;
 	background-color: #ffffff;
+}
+
+.MyPage_01_content > a {
+	color: #000;
+}
+
+.MyPage_02_hr {
+	padding-top: 65px;
+}
+
+.MyPage_02 {
+
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.MyPage_02_text {
+	font-size: 15px;
 	font-weight: normal;
 }

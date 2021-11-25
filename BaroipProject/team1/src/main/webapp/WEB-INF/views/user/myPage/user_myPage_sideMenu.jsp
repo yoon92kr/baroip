@@ -14,7 +14,7 @@
 			<div class="col-lg-4 offset-lg-4 text-center">
 
 			<a href="#"  class="no-underline">내정보</a>
-			<a href="#"  class="no-underline">회원정보 수정</a>
+			<a href="myPage_02.do"  class="no-underline">회원정보 수정</a>
 			<a href="#"  class="no-underline">주문/배송조회</a>
 			<a href="#"  class="no-underline">장바구니</a>
 			<a href="#"  class="no-underline">포인트 내역</a>
