@@ -68,3 +68,10 @@
 	border-top: 1px solid #000000;
 	padding-top : 10px;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+
+   opacity: 1;
+
+}

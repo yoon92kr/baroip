@@ -26,7 +26,17 @@ public class MainController {
 	}
 	
 	@RequestMapping(value= "/myPage_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView user_mypage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView user_mypage_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 회원정보 수정
+	@RequestMapping(value= "/myPage_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView user_mypage_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");

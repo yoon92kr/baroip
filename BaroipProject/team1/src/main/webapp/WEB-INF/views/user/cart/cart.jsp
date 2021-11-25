@@ -29,7 +29,7 @@
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
 		<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
-		<div class="col-lg-1 text-center cart_body">수량</div>
+		<div class="col-lg-1 text-center cart_body"><input type="number" value=1></div>
 		<div class="col-lg-1 text-center cart_body"><상품가격></div>
 		<div class="col-lg-1 text-center cart_total_body cart_total_1">총 배송비</div>
 		<div class="col-lg-1 text-right cart_total_body"><배송비></div>	
@@ -61,6 +61,21 @@
 		<div class="col-lg-1 text-right cart_total_body cart_total_bottom"><span class="maybe_cost_text">예상 결제 금액</span><br><span class="maybe_cost"><최종결제금액>원</span></div>
 	
 	</div>
+	
+</div>
+
+<div class="cart_list_body">
+	<div class="row">
+
+		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
+		<div class="col-lg-2 text-center cart_body"><a href="#"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-3 text-center cart_body"><a href="#"><상품이름></a></div>
+		<div class="col-lg-1 text-center cart_body">수량</div>
+		<div class="col-lg-1 text-center cart_body"><상품가격></div>
+
+	
+	</div>
+	
 </div>
 
 <div class="cart_list_bt">

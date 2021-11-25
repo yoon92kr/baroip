@@ -18,6 +18,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/myPage/sideMenu.jsp" />
 	</definition>
+	
+		<definition name="myPage_02" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/sideMenu.jsp" />
+	</definition>
 
 	<definition name="login_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/login/login_01.jsp" />
