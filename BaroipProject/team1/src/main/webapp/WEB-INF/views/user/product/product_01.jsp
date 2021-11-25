@@ -278,6 +278,82 @@
 					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
 			</div>
 		</div>
+		
+		<div class="row">
+		<div class="col-lg-4 text-center">
+			<div class="product_01_image">
+				<a href="#"><img
+					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+			</div>
+		</div>
+
+		<div class="col-lg-4  text-center">
+			<div class="product_01_image">
+				<a href="#"><img
+					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+			</div>
+		</div>
+
+		<div class="col-lg-4 text-center">
+			<div class="product_01_image">
+				<a href="#"><img
+					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+			</div>
+		</div>
+	</div>
+	<div class="item-format">
+		<div class="row">
+			<div class="col-lg-2">
+				<a href="#" class="item-title">[상품명]</a><br> <a href="#"
+					class="item-comment">[상품 설명]</a>
+
+			</div>
+
+			<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
+				<a href="#" class="item-price">[상품 원가]</a> <a href="#"
+					class="item-dc">[할인]</a><br> <a href="#"
+					class="item-real-price">[판매가]</a>
+			</div>
+
+
+			<div class="col-lg-1 text-center">
+				<a href="#"><img class="cart-put-icon"
+					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+			</div>
+
+			<div class="col-lg-2">
+				<a href="#" class="item-title">[상품명]</a><br> <a href="#"
+					class="item-comment">[상품 설명]</a>
+
+			</div>
+
+			<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
+				<a href="#" class="item-price">[상품 원가]</a> <a href="#"
+					class="item-dc">[할인]</a><br> <a href="#"
+					class="item-real-price">[판매가]</a>
+			</div>
+			<div class="col-lg-1 text-center">
+				<a href="#"><img class="cart-put-icon"
+					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+			</div>
+
+			<div class="col-lg-2">
+				<a href="#" class="item-title">[상품명]</a><br> <a href="#"
+					class="item-comment">[상품 설명]</a>
+
+			</div>
+
+			<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
+				<a href="#" class="item-price">[상품 원가]</a> <a href="#"
+					class="item-dc">[할인]</a><br> <a href="#"
+					class="item-real-price">[판매가]</a>
+			</div>
+
+			<div class="col-lg-1 text-center">
+				<a href="#"><img class="cart-put-icon"
+					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+			</div>
+		</div>
 
 	</div>
 </div>
