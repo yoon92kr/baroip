@@ -16,7 +16,7 @@
 	<div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-	        <h3 class="login-title">이메일 로그인</h3>
+	        <h3 class="sub-title">이메일 로그인</h3>
         	<form>
         		<input class="login_01-id-box" type="text" placeholder="아이디(이메일)를 입력해주세요.">
         		<input class="login_01-pwd-box" type="password" placeholder="비밀번호를 입력해주세요."><br>
@@ -43,7 +43,7 @@
 		        </div>
 	        <br>
 	        <p class="login_01-join-text">
-	        	바로입이 처음이신가요? <a href="#">회원가입하기</a>
+	        	바로입이 처음이신가요? <a href="${contextPath}/join_01.do">회원가입하기</a>
 	        </p>
         </div>
         <div class="col-lg-4"></div>
@@ -52,9 +52,12 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
         	<br>
-        	<button class="login_01-non-member-search" type="button">
-        		<a href="#">비회원 조회하기</a>
-        	</button>
+<!-- 비회원 주문 조회 버튼 -->
+        	<div class="login_01-sns-login-btn">
+		        <a class="login_01-non-member-search" href="#">
+					<img class="login_01-non-member-search-btn" src="${contextPath}/resources/img/common/non_member_search_btn.png">
+		        </a>
+        	</div>
         </div>
         <div class="col-lg-4"></div>
     </div>

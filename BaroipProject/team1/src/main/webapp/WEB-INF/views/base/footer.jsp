@@ -9,9 +9,9 @@
 
 <div class="footer">
 	<hr>
-	<div class="container">
+ <div class="container"> 
 		<div class="row">
-			<div class="col-lg-12 col-md-12">
+			<div class="col-lg-12 col-md-12"> 
 
 				<p>
 					㈜바로입 대표이사 : 홍길동 | 주소 : 대전광역시 서구 대덕대로 182<br> 사업자 등록번호 :

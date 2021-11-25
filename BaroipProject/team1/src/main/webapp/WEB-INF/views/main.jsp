@@ -51,8 +51,7 @@
 
 			<div class="col-lg-2 text-center">
 				<div class="section-title">
-					<p>BEST ITEM
-					<p>
+					<p>BEST ITEM</p>
 				</div>
 			</div>
 

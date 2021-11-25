@@ -23,21 +23,27 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10 text-center">
-        	<h3 class="login_03-id-text"><회원 이름>님이 가입하신 아이디는 
-        	<span class="login_03-user-id"><회원 아이디></span> 입니다.</h3>
+        	<h3 class="login_03-id-text">[회원 이름]님이 가입하신 아이디는 
+        	<span class="login_03-user-id">[회원 아이디]</span> 입니다.</h3>
         </div>
         <div class="col-lg-1"></div>
     </div>
     <div class="row">
-        <div class="col-lg-6 text-right">
-        	<button class="login_03-id-pwd-find login_03-btn" type="button">
-        		<a href="#">아이디 / 비밀번호 찾기</a>
-        	</button>
+        <div class="col-lg-6">
+        <!-- 로그인 페이지 하단 버튼 -->
+        	<div class="login_03-bottom-btn">
+	        	<a class="login_03-login-page-btn" href="${contextPath}/login_01.do">
+					<img src="${contextPath}/resources/img/common/login_page_btn.png">
+			     </a>
+        	</div>
         </div>
-        <div class="col-lg-6 text-left">
-        	<button class="login_03-login-page login_03-btn" type="button">
-        		<a href="#">로그인 페이지</a>
-        	</button>
+        <div class="col-lg-6">
+        <!-- 아이디 / 비밀번호 찾기 하단 버튼 -->
+       		<div class="login_03-bottom-btn">
+	        	<a class="login_03-id-pwd-find-btn" href="#">
+					<img src="${contextPath}/resources/img/common/id_pwd_find_btn.png">
+			    </a>
+		    </div>
         </div>
     </div>
 </div>

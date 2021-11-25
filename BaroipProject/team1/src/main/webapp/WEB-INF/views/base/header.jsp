@@ -20,23 +20,23 @@
 				
 				<div class="col-lg-3 text-center">
 					<div class="category">
-						<a href="#" class="header-navi">농산물</a>
-						<a href="#" class="header-navi">수산물</a>
-						<a href="#" class="header-navi">축산물</a>
+						<a href="${contextPath}/product_01.do" class="header-navi">농산물</a>
+						<a href="${contextPath}/product_01.do" class="header-navi">수산물</a>
+						<a href="${contextPath}/product_01.do" class="header-navi">축산물</a>
 					</div>
 				</div>
 
 				<div class="col-lg-2 text-right offset-lg-2">
 					<div class="notice_navi">
 						<a href="${contextPath}/notice_01.do" class="header-navi">공지사항</a>
-						<a href="#" class="header-navi navi-button">고객센터</a>
+						<a href="${contextPath}/cs_01.do" class="header-navi navi-button">고객센터</a>
 					</div>
 				</div>
 
 				<div class="col-lg-2 text-center">
 					<div class="user_navi">
 						<a href="${contextPath}/login_01.do" class="header-navi">로그인</a>
-						<a href="#" class="header-navi">회원가입</a>
+						<a href="${contextPath}/join_01.do" class="header-navi">회원가입</a>
 					</div>	
 				</div>
 
@@ -57,9 +57,9 @@
   					<a href="#"><img src="${contextPath}/resources/img/common/meat_icon.png"></a>
   					</div>
   					<div class="shopingNav">
-  					<a href="#">농산물</a>
-  					<a href="#">수산물</a>
-  					<a href="#">축산물</a>
+  					<a href="${contextPath}/product_01.do">농산물</a>
+  					<a href="${contextPath}/product_01.do">수산물</a>
+  					<a href="${contextPath}/product_01.do">축산물</a>
   					</div>
   					<hr>
   					<h3>메뉴</h3>
