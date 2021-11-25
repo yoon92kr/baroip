@@ -44,6 +44,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/login/login_05.jsp" />
 	</definition>
 
+	<definition name="join_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/join/join_01.jsp" />
+	</definition>
+	
+	<definition name="join_02" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/join/join_02.jsp" />
+	</definition>
+	
+	<definition name="join_03" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/join/join_03.jsp" />
+	</definition>
 
 	<definition name="notice_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_01.jsp" />

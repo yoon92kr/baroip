@@ -124,4 +124,34 @@ public class MainController {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	// 약관동의
+	@RequestMapping(value= "/join_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView join_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 회원가입 정보 입력
+	@RequestMapping(value= "/join_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView join_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	// 회원가입 완료
+	@RequestMapping(value= "/join_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView join_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
 }
