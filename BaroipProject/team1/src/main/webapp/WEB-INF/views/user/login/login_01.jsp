@@ -43,7 +43,7 @@
 		        </div>
 	        <br>
 	        <p class="login_01-join-text">
-	        	바로입이 처음이신가요? <a href="#">회원가입하기</a>
+	        	바로입이 처음이신가요? <a href="${contextPath}/join_01.do">회원가입하기</a>
 	        </p>
         </div>
         <div class="col-lg-4"></div>

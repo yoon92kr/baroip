@@ -8,7 +8,7 @@
 	top:200px;
 	left:0;
 	width:500px;
-	font-size:20px;
+	font-size:16px;
 	margin-top: 30px;
 }
 .MyPage_padding {
@@ -23,9 +23,16 @@
 }
 .MyPage_welcome {
 	
-	border-bottom : 1px solid #000000;
+	border-bottom : 2px solid #000000;
 }
-.MyPage_01 {
+
+.MyPage_01_subtitle a {
+	color: #000000;
+	
+}
+
+
+.MyPage_title {
 
 	font-size: 25px;
 	font-weight: bold;
@@ -62,7 +69,7 @@
 }
 
 .MyPage_02_text {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: normal;
 	padding-top: 100px;
 	padding-bottom: 100px;
@@ -77,25 +84,38 @@
 .MyPage_02_button_01 {
 	display: block;
 	background-color: #385723;
-	font-size: 30px;
+	font-size: 16px;
+	height: 45px;
 	color: #ffffff;
 	margin-left: 220px;
 	margin-right: 100px;
+	padding-top: 10px;
 }
+
 
 .MyPage_02_button_02 {
 	display: block;
 	background-color: #767171;
-	font-size: 30px;
+	font-size: 16px;
 	color: #ffffff;
+	padding-top: 10px;
+}
+
+.MyPage_02_button_01:hover, .MyPage_02_button_02:hover {
+	color: #fff;
 }
 
 .MyPage_02_01_info {
 	display:block;
 	line-height:60px;
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: normal;
 	background-color: #f2f2f2;
 	color: #000;
 }
 
+.dropOut_01_sub {
+	display: block;
+	height: 60px;
+	
+}

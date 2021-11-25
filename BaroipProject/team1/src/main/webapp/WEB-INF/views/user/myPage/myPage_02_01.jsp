@@ -13,7 +13,7 @@
 </div>
 
 <div class="container">
-	<div class="MyPage_01">
+	<div class="MyPage_title">
 	<div class="MyPage_welcome">
 		<div class="row">
 			<div class="col-lg-10 text-left MyPage_padding" style="margin-left: 20px;">회원정보 수정</div>

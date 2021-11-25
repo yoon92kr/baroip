@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10 text-center">
-        	<h3 class="login_03-id-text"><회원 이름>님의 비밀번호가 정상적으로 변경되었습니다.</h3>
+        	<h3 class="login_03-id-text">[회원 이름]님의 비밀번호가 정상적으로 변경되었습니다.</h3>
         </div>
         <div class="col-lg-1"></div>
     </div>
