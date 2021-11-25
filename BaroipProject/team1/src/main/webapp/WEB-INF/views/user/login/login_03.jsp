@@ -23,8 +23,8 @@
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10 text-center">
-        	<h3 class="login_03-id-text"><회원 이름>님이 가입하신 아이디는 
-        	<span class="login_03-user-id"><회원 아이디></span> 입니다.</h3>
+        	<h3 class="login_03-id-text">[회원 이름]님이 가입하신 아이디는 
+        	<span class="login_03-user-id">[회원 아이디]</span> 입니다.</h3>
         </div>
         <div class="col-lg-1"></div>
     </div>

@@ -54,7 +54,7 @@
 	background-color: #fee500;
 }
 
-.login_01-non-member-search {
+.login_01-non-member-search, .join_01-back {
 	background-color: #7f7f7f;
 }
 
@@ -146,7 +146,7 @@
 	margin-top: 200px;
 }
 
-.login_03-login-page-btn {
+.login_03-login-page-btn, .join_01-next {
 	background-color: #404040;
 	margin-left: 54px;
 }
@@ -171,3 +171,109 @@
 	margin-left: 30px;
 }
 /* login_05 end */
+
+/* join_01 start */
+.join-sub-title {
+	background-image: url("../img/common/join_title_icon.png");
+	background-repeat: no-repeat;
+	background-position: 37%;
+	background-color: #f2f2f2;
+	padding: 20px 0px;
+}
+
+.join_01-sub-title, .join_02-sub-title {
+	font-family: 'kopub_bold';
+}
+
+.join_01-check-01 {
+	top:5px;
+	position: relative;
+	width: 25px;
+	height: 25px;
+}
+
+.join_01-check-text {
+	font-size: 25px;
+	position: relative;
+	left: 10px;
+}
+
+.join_01-content-1 {
+	border: 1px solid #000;
+	overflow-y:scroll;
+	white-space: pre-line;
+	width: max;
+	height:200px;
+}
+
+.join_01-content-top {
+	margin: 10px 0px 0px 5px;
+}
+
+.join_01-content-topline {
+	margin: 15px 35px;
+}
+
+.join_01-check-02 {
+	margin-top: 20px;
+}
+
+.join_01-btn > a {
+	width: 90%;
+	height: 50px;
+	text-align: center;
+	display: block;
+	margin-top: 20px;
+}
+
+.join_01-next {
+	margin-left: 61px;
+}
+
+.join_01-btn-img {
+	height: 50px;
+}
+/* join_01 end */
+
+/* join_02 start */
+.join_02-top {
+	background-image: url("../img/common/id_icon.png");
+	background-repeat: no-repeat;
+	background-position: 0% 45%;
+	padding-left: 35px;
+	position: relative;
+	margin-top: 5px;
+	font-size: 25px;
+}
+
+.join_02-main-left {
+	background: #f2f2f2;
+	height: 40px;
+	padding-top: 6px;
+/* 	line-height: 40px; */
+	font-size: 15px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+
+.join_02-main-right {
+	height: 40px;
+	padding-top: 1px;
+/* 	line-height: 40px; */
+	font-size: 15px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+
+.join_02-text-box {
+	width: 700px;
+	height: 35px;
+	margin-left: 60px;
+	border: 1px solid #d9d9d9;
+}
+.join_02-submit-box {
+	width: 150px;
+	height: 35px;
+	margin-left: 30px;
+	border: 1px solid #d9d9d9;
+}
