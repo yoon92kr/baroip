@@ -38,10 +38,14 @@
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box03" ><span>내용</span></div>
         <div class="col-lg-4 text-center notice_02_box04"><span>공지 내용</span></div>
     </div>
+    
+    <div class="offset-lg-5 col-lg-2 text-right">
+				<div class="notice_back_btn">
+					<a href="${contextPath}/notice_01.do"><img
+						src="${contextPath}/resources/img/common/back_kang.png" alt=""></a>
+				</div>
+			</div>
    
-       
-        
-        
     </div>
 
   

@@ -38,31 +38,44 @@
 	height: 50px;
 		line-height: 50px;
 		font-size: 17px;
+		border-collapse: collapse;
+		border: 1px solid 
+		#d9d9d9;
 }
 
 .notice_02_box01{
-background: #d9d9d9;
+background: #f2f2f2;
 	height: 50px;
 		line-height: 50px;
 		font-family: "kopub_bold";
 		font-size: 17px;
+		border-collapse: collapse;
+		border: 1px solid 
+		#d9d9d9;
 }
 .notice_02_box03{
-background: #d9d9d9;
+background: #f2f2f2;
 	height: 300px;
 		line-height: 300px;
 		font-family: "kopub_bold";
 		font-size: 17px;
+		border-collapse: collapse;
+		border: 1px solid #d9d9d9;
+		
 }
 .notice_02_box04{
 	height: 300px;
 		line-height: 300px;
-		font-family: "kopub_bold";
 		font-size: 17px;
+		border-collapse: collapse;
+		border: 1px solid #d9d9d9;
+		
 }
-
-.notice_02_btn {
-	border: none;
+.notice_back_btn{
+	
+		margin: 50px 0px 50px 0px;
+		
 }
+		
 
 
