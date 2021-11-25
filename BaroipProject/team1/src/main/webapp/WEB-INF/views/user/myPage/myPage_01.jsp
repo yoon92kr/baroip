@@ -1,3 +1,5 @@
+<!-- 2021.11.25 임석희 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -8,7 +10,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 offset-lg-4 text-center haha"><h1 class="page_title">마이 페이지</h1></div>
+        <div class="col-lg-4 offset-lg-4 text-center MyPage_padding"><h1 class="page_title">마이 페이지</h1></div>
     </div>
 </div>
 
@@ -17,7 +19,7 @@
 	<div class="MyPage_welcome">
     	<div class="row">
     		<div class="col-lg-2 text-center"><img src="${contextPath}/resources/img/common/normalgamja.png"></div>
-    		<div class="col-lg-10 text-left haha">환영합니다 <회원 이름> 님!</div>
+    		<div class="col-lg-10 text-left MyPage_padding">환영합니다 [회원 이름] 님!</div>
 
         </div>
         </div>
@@ -32,10 +34,10 @@
     		
     		<div class="MyPage_01_content">
     		<div class="row">
-    			<a href="#" class="col-lg-3 text-center no-underline"><현재 회원등급></a>
-        		<a href="#" class="col-lg-3 text-center no-underline"><회원 주문내역 건수></a>
-        		<a href="#" class="col-lg-3 text-center no-underline"><회원 장바구니 건수></a>
-        		<a href="#" class="col-lg-3 text-center no-underline"><회원 잔여 포인트></a>
+    			<a href="#" class="col-lg-3 text-center no-underline">[현재 회원등급]</a>
+        		<a href="#" class="col-lg-3 text-center no-underline">[회원 주문내역 건수]</a>
+        		<a href="#" class="col-lg-3 text-center no-underline">[회원 장바구니 건수]</a>
+        		<a href="#" class="col-lg-3 text-center no-underline">[회원 잔여 포인트]</a>
     		</div>
     		
     		
