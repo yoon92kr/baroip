@@ -42,7 +42,7 @@
     <div class="offset-lg-5 col-lg-2 text-right">
 				<div class="notice_back_btn">
 					<a href="${contextPath}/notice_01.do"><img
-						src="${contextPath}/resources/img/common/back_kang.png" alt=""></a>
+						src="${contextPath}/resources/img/common/notice_return.png" alt=""></a>
 				</div>
 			</div>
    
