@@ -61,6 +61,7 @@ hr {
 	
 }
 
+
 /*------------------------------ Header 설정 ------------------------------*/
 .header {
 	font-family: "kopub_bold";
@@ -72,6 +73,7 @@ hr {
 
 .header-navi {
 	color: #ffffff;
+	
 }
 
 .header-navi:hover {

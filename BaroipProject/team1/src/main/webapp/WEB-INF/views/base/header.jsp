@@ -28,8 +28,8 @@
 
 				<div class="col-lg-2 text-right offset-lg-2">
 					<div class="notice_navi">
-						<a href="#" class="header-navi">공지사항</a>
-						<a href="#" class="header-navi">고객센터</a>
+						<a href="${contextPath}/notice_01.do" class="header-navi">공지사항</a>
+						<a href="#" class="header-navi navi-button">고객센터</a>
 					</div>
 				</div>
 
@@ -65,15 +65,15 @@
   					<h3>메뉴</h3>
   					<span class="myPageNav">
   					<a href="#">마이페이지</a><br>
-  					<a href="#">장바구니</a><br>
-  					<a href="#">공지사항</a><br>
+  					<a href="${contextPath}/cart.do">장바구니</a><br>
+  					<a href="${contextPath}/notice_01.do">공지사항</a><br>
   					<a href="#">고객센터</a>
   					</span>
 				</div>
 				
 				<div class="col-lg-1 text-left" >
 					<div class="menu_navi">
-						<a href="#" class="header-cart"><img src="${contextPath}/resources/img/common/cart-icon.png"></a>
+						<a href="${contextPath}/cart.do" class="header-cart"><img src="${contextPath}/resources/img/common/cart-icon.png"></a>
 						<span onclick="openNav()" class="header-navi"><img src="${contextPath}/resources/img/common/site-map-icon.png"></span>
 					</div>
 				</div>
@@ -83,13 +83,13 @@
 	
 	
 <script>
-/* Set the width of the side navigation to 250px */
+/* 사이트맵 설정 */
 function openNav() {
     document.getElementById("mySidenav").style.width = "500px";
 }
 
-/* Set the width of the side navigation to 0 */
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
 </script>
