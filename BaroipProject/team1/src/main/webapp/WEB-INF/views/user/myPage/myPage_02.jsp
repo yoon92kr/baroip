@@ -24,7 +24,7 @@
     </div>
     	<div class="MyPage_02_text">
     		<div class="row">
-    			<div class="col-lg-offset-2 col-lg-4 text-right">비밀번호</div>
+    			<div class="col-lg-offset-2 col-lg-4 text-right" style="padding-top: 2px;">비밀번호</div>
         		<input class="MyPage_02_password_box" type="password">
     		</div>
     	</div>
