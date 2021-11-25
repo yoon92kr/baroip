@@ -176,7 +176,7 @@
 .join-sub-title {
 	background-image: url("../img/common/join_title_icon.png");
 	background-repeat: no-repeat;
-	background-position: 37%;
+	background-position: 39%;
 	background-color: #f2f2f2;
 	padding: 20px 0px;
 }
@@ -248,8 +248,8 @@
 
 .join_02-main-left {
 	background: #f2f2f2;
-	height: 40px;
-	padding-top: 6px;
+	height: 50px;
+	padding-top: 11px;
 /* 	line-height: 40px; */
 	font-size: 15px;
 	border-collapse: collapse;
@@ -257,8 +257,8 @@
 }
 
 .join_02-main-right {
-	height: 40px;
-	padding-top: 1px;
+	height: 50px;
+	padding-top: 7px;
 /* 	line-height: 40px; */
 	font-size: 15px;
 	border-collapse: collapse;
@@ -276,4 +276,47 @@
 	height: 35px;
 	margin-left: 30px;
 	border: 1px solid #d9d9d9;
+}
+
+.join_02-year-month-day {
+	margin-left: 60px;
+	margin-right: 15px;
+	height: 35px;
+	width: 115px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+}
+
+.join_02-mobile {
+	margin-left: 60px;
+	margin-right: 40px;
+	height: 35px;
+	width: 115px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+}
+
+.join_02-mobile-02 {
+	margin-right: 40px;
+	margin-left: 40px;
+	height: 35px;
+	width: 115px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+}
+
+.join_02-year-month-day-text {
+	display: inline-block;
+	font-size: 15px;
+}
+
+.join_02-submit-box-02 {
+	width: 150px;
+	height: 35px;
+	margin-left: 148px;
+	border: 1px solid #d9d9d9;
+}
+
+.join_02-bottom-btn {
+	margin-top: 35px;
 }

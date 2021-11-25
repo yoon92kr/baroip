@@ -16,7 +16,9 @@
 
     <div class="row">
         <div class="col-lg-10 offset-lg-1 text-center">
-        <h2 class="join-sub-title"><span class="join_01-sub-title">01. 약관동의</span> > 02. 정보입력</h2>
+	        <h4 class="join-sub-title">
+	        	<span class="join_01-sub-title">01. 약관동의</span> > 02. 정보입력
+	        </h4>
         </div>
     </div>
     
