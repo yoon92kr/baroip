@@ -17,13 +17,16 @@
 			<img src="${contextPath}/resources/img/common/img-box.jpg">
 		</div>
 		
-		<div class="col-lg-5 offset-lg-1">
+		<div class="col-lg-4 offset-lg-2">
 			<div class="product_02_title">[상품 상세 이름]</div>
 			<div class="product_02_discript">[상품 간편 설명]</div>
-			<div><span class="product_02_option">옵션</span></div> 
+			<div class="product_02_discript">[상품 간편 설명]</div>
+			
+			<div class="product_02_option_box">
+			<div class="product_02_option_box"><span class="product_02_option">옵션</span></div> 
 
 			
-			<div class="product_02_form">
+			<div class="product_02_form product_02_option_box">
 			<span class="product_02_option">수량</span> 
 			
 			<form name="itemCountBox" id="itemCountBox_form">
@@ -31,6 +34,7 @@
   			<input type="number" id="cart_item_count" value="1" />
   			<div class="value-button" id="cart_increase" onclick="increaseValue()" value="Increase Value">+</div>
 			</form>	
+			</div>
 			</div>
 			<hr>
 			<img src="${contextPath}/resources/img/common/product_buy_now.png">

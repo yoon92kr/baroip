@@ -10,17 +10,17 @@
 <div class="quick-menu">
 	<div class="quick-item up">
 		<a href="#"><img
-			src="${contextPath }/resources/img/common/top.png"></a>
+			src="${contextPath }/resources/img/common/top.png" alt="퀵메뉴 상단 이동 버튼 이미지"></a>
 	</div>
 	<p>최근 본 상품</p>
 
 	<div class="quick-item past-image">
 		<a href="${contextPath}/product_02.do"><img
-			src="${contextPath }/resources/img/common/img-box.jpg"></a>
+			src="${contextPath }/resources/img/common/img-box.jpg" alt="퀵메뉴 상품 이미지"></a>
 	</div>
 	<div class="quick-item past-image">
 		<a href="${contextPath}/product_02.do"><img
-			src="${contextPath }/resources/img/common/img-box.jpg"></a>
+			src="${contextPath }/resources/img/common/img-box.jpg" alt="퀵메뉴 상품 이미지"></a>
 	</div>
 </div>
 

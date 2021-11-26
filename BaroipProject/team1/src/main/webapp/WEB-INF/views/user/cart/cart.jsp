@@ -38,7 +38,7 @@
 		</div>
 		<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
 		<div class="col-lg-1 text-center cart_total_body cart_total_1">총 배송비</div>
-		<div class="col-lg-1 text-right cart_total_body">[배송비]></div>	
+		<div class="col-lg-1 text-right cart_total_body">[배송비]</div>	
 	</div>
 </div>
 
@@ -76,7 +76,7 @@
 		</div>
 		<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
 		<div class="col-lg-1 text-center cart_total_body cart_total_1 cart_total_bottom"></div>
-		<div class="col-lg-1 text-right cart_total_body cart_total_bottom"><span class="maybe_cost_text">예상 결제 금액</span><br><span class="maybe_cost"><최종결제금액>원</span></div>
+		<div class="col-lg-1 text-right cart_total_body cart_total_bottom"><span class="maybe_cost_text">예상 결제 금액</span><br><span class="maybe_cost">[최종결제금액]원</span></div>
 	
 	</div>
 	

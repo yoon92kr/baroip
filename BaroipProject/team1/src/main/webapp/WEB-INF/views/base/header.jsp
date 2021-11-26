@@ -14,7 +14,7 @@
 			<div class="row">
                 <div class="col-lg-1 text-right">
 					<a href="${contextPath}/main.do" class="logo-text" > 
-						<img class="header-icon" src="${contextPath}/resources/img/common/favicon.png">   바로입
+						<img class="header-icon" src="${contextPath}/resources/img/common/favicon.png" alt="로고 이미지">   바로입
 					</a>
 				</div>
 				
@@ -52,9 +52,9 @@
   					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   					<h3> 쇼핑하기 </h3>
   					<div class="navImg" >
-  					<a href="#"><img src="${contextPath}/resources/img/common/vegi_icon.png"></a>
-  					<a href="#"><img src="${contextPath}/resources/img/common/fish_icon.png"></a>
-  					<a href="#"><img src="${contextPath}/resources/img/common/meat_icon.png"></a>
+  					<a href="#"><img src="${contextPath}/resources/img/common/vegi_icon.png" alt="농산물 아이콘 이미지"></a>
+  					<a href="#"><img src="${contextPath}/resources/img/common/fish_icon.png" alt="수산물 아이콘 이미지"></a>
+  					<a href="#"><img src="${contextPath}/resources/img/common/meat_icon.png" alt="축산물 아이콘 이미지"></a>
   					</div>
   					<div class="shopingNav">
   					<a href="${contextPath}/product_01.do">농산물</a>
@@ -73,8 +73,8 @@
 				
 				<div class="col-lg-1 text-left" >
 					<div class="menu_navi">
-						<a href="${contextPath}/cart.do" class="header-cart"><img src="${contextPath}/resources/img/common/cart-icon.png"></a>
-						<span onclick="openNav()" class="header-navi"><img src="${contextPath}/resources/img/common/site-map-icon.png"></span>
+						<a href="${contextPath}/cart.do" class="header-cart"><img src="${contextPath}/resources/img/common/cart-icon.png" alt="장바구니 아이콘 이미지"></a>
+						<span onclick="openNav()" class="header-navi"><img src="${contextPath}/resources/img/common/site-map-icon.png" alt="사이트맵 아이콘 이미지"></span>
 					</div>
 				</div>
 			</div>

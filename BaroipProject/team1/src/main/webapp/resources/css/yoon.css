@@ -177,10 +177,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	margin-top: 50px;
 	margin-bottom: 30px;
 	height: 300px;
+	border: 1px solid #000000;
 }
 
 .product_02_sub_img img {
 	margin-bottom: 20px;
+	border: 1px solid #000000;
 }
 
 .product_02_sub_img_top {
@@ -205,4 +207,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .product_02_form form {
 	display: inline;
+}
+
+.product_02_option_box {
+	margin-top:20px;
 }
