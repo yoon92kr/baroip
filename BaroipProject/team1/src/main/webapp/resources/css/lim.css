@@ -2,6 +2,7 @@
 
 @charset "UTF-8";
 
+/* MyPage */
 
 .MyPage_side-section {
 	position:fixed;
@@ -11,8 +12,14 @@
 	font-size:16px;
 	margin-top: 30px;
 }
+
+.MyPage_top-underline {
+	border-bottom : 2px solid #000000;
+}
+
 .MyPage_padding {
 	padding-top: 20px;
+	height: 80px;
 }
 
 .MyPage_side-section a {
@@ -21,10 +28,11 @@
 	background-color: #f2f2f2;
 	color: #000;
 }
-.MyPage_welcome {
-	
+.MyPage_welcome, .MyPage_solid {
 	border-bottom : 2px solid #000000;
 }
+
+/* MyPage_01 start  */
 
 .MyPage_01_subtitle a {
 	color: #000000;
@@ -57,6 +65,9 @@
 .MyPage_01_content > a {
 	color: #000;
 }
+
+
+/* MyPage_02 start */
 
 .MyPage_02_hr {
 	padding-top: 65px;
@@ -105,17 +116,133 @@
 	color: #fff;
 }
 
-.MyPage_02_01_info {
-	display:block;
-	line-height:60px;
-	font-size: 16px;
-	font-weight: normal;
-	background-color: #f2f2f2;
-	color: #000;
-}
-
+/* dropOut_01 start */
 .dropOut_01_sub {
 	display: block;
 	height: 60px;
 	
+}
+
+.dropOut_01_text {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+
+/* MyPage_02_01 */
+
+.MyPage_02_01_top {
+	margin-top: 30px;
+}
+
+.MyPage_02_01_menu-left {
+	background: #f2f2f2;
+	height: 50px;
+	padding-top: 11px;
+	font-size: 15px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+	margin-left: 50px;
+}
+
+.MyPage_02_01_menu-right {
+	height: 50px;
+	padding-top: 7px;
+	font-size: 15px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+
+.MyPage_02_01_text-box {
+	width: 500px;
+	height: 35px;
+	margin-left: 60px;
+	border: 1px solid #d9d9d9;
+}
+
+.MyPage_02_01-submit-box {
+	width: 150px;
+	height: 35px;
+	margin-left: 30px;
+	border: 1px solid #d9d9d9;
+}
+
+.MyPage_02_01-year-month-day {
+	margin-left: 60px;
+	/*margin-right: 15px;*/
+	height: 35px;
+	width: 112px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+}
+
+.MyPage_02_01-year-month-day-text {
+	display: inline-block;
+	font-size: 15px;
+}
+
+.MyPage_02_01-mobile {
+	margin-left: 60px;
+	margin-right: 35px;
+	height: 35px;
+	width: 110px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+}
+
+.MyPage_02_01-mobile-02 {
+	margin-right: 35px;
+	margin-left: 30px;
+	height: 35px;
+	width: 113px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+}
+
+
+.MyPage_02_01-submit-box-02 {
+	width: 150px;
+	height: 35px;
+	margin-left: -5px;
+	border: 1px solid #d9d9d9;
+}
+
+.MyPage_02_01_button_03 {
+	display: block;
+	background-color: #385723;
+	font-size: 16px;
+	height: 45px;
+	color: #ffffff;
+	padding-top: 10px;
+	margin-left: 60px;
+	margin-right: 60px;
+}
+
+
+.MyPage_02_01_button_04 {
+	display: block;
+	background-color: #767171;
+	font-size: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+	margin-right: 60px;
+}
+
+.MyPage_02_01_button_05 {
+	display: block;
+	background-color: #404040;
+	font-size: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+}
+
+/*  
+.MyPage_02_01_button > a {
+	display:block;
+	line-height:100px;
+}
+*/
+
+.MyPage_02_01_button_03:hover, .MyPage_02_01_button_04:hover, .MyPage_02_01_button_05:hover {
+	color: #fff;
 }

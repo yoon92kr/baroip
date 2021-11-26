@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 offset-lg-4 text-center MyPage_padding"><h1 class="page_title">마이 페이지</h1></div>
+        <div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">마이 페이지</h1></div>
     </div>
 </div>
 
