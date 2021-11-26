@@ -282,4 +282,24 @@ public class MainController {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	// 회원 주문 / 결제
+		@RequestMapping(value= "/order_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView order_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+	// 주문 결제 완료
+		@RequestMapping(value= "/order_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView order_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+
 }

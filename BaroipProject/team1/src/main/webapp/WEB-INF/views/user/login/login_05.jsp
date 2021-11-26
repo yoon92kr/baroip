@@ -32,7 +32,7 @@
         <!-- 로그인 페이지 하단 버튼 -->
         	<div class="login_03-bottom-btn">
 	        	<a class="login_03-login-page-btn login_05-btn" href="${contextPath}/login_01.do">
-					<img src="${contextPath}/resources/img/common/login_page_btn.png">
+					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/login_page_btn.png">
 			     </a>
         	</div>
         </div>

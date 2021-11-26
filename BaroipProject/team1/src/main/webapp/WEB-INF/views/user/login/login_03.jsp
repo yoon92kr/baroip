@@ -33,7 +33,7 @@
         <!-- 로그인 페이지 하단 버튼 -->
         	<div class="login_03-bottom-btn">
 	        	<a class="login_03-login-page-btn" href="${contextPath}/login_01.do">
-					<img src="${contextPath}/resources/img/common/login_page_btn.png">
+					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/login_page_btn.png">
 			     </a>
         	</div>
         </div>
@@ -41,7 +41,7 @@
         <!-- 아이디 / 비밀번호 찾기 하단 버튼 -->
        		<div class="login_03-bottom-btn">
 	        	<a class="login_03-id-pwd-find-btn" href="#">
-					<img src="${contextPath}/resources/img/common/id_pwd_find_btn.png">
+					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/id_pwd_find_btn.png">
 			    </a>
 		    </div>
         </div>

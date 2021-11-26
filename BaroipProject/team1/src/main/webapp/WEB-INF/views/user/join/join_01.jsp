@@ -432,14 +432,14 @@ E - M A I L　: admin@baroip.com
         <div class="col-lg-4 offset-lg-2">
         	<div class="join_01-btn">
 	        	<a class="join_01-back" href="${contextPath}/login_01.do">
-					<img class="join_01-btn-img" src="${contextPath}/resources/img/common/back_page_btn.png">
+					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/back_page_btn.png">
 			    </a>
 		    </div>
         </div>
 		<div class="col-lg-4">
         	<div class="join_01-btn">
 	        	<a class="join_01-next" href="join_02.do">
-					<img class="join_01-btn-img" src="${contextPath}/resources/img/common/join_next_btn.png">
+					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/join_next_btn.png">
 			    </a>
 		    </div>
         </div>

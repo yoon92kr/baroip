@@ -55,7 +55,7 @@
 <!-- 비회원 주문 조회 버튼 -->
         	<div class="login_01-sns-login-btn">
 		        <a class="login_01-non-member-search" href="#">
-					<img class="login_01-non-member-search-btn" src="${contextPath}/resources/img/common/non_member_search_btn.png">
+					<img class="login_01-non-member-search-btn bottom_btn_size" src="${contextPath}/resources/img/common/non_member_search_btn.png">
 		        </a>
         	</div>
         </div>

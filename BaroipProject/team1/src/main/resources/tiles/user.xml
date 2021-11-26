@@ -126,6 +126,14 @@
 		<definition name="product_06" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_06.jsp" />
 	</definition>
+	
+	<definition name="order_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/order/order_01.jsp" />
+	</definition>
+	
+	<definition name="order_02" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/order/order_02.jsp" />
+	</definition>
 
 
 </tiles-definitions>
