@@ -106,6 +106,26 @@
 	<definition name="product_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01.jsp" />
 	</definition>
+	
+		<definition name="product_02" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_02.jsp" />
+	</definition>
+	
+		<definition name="product_03" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_03.jsp" />
+	</definition>
+	
+		<definition name="product_04" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_04.jsp" />
+	</definition>
+	
+		<definition name="product_05" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_05.jsp" />
+	</definition>
+	
+		<definition name="product_06" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_06.jsp" />
+	</definition>
 
 
 </tiles-definitions>

@@ -50,25 +50,27 @@
 
 <body>
 
-
-	<!-- Header 배치 -->
-	<tiles:insertAttribute name="header" />
+	<div class="content">
+	<div class="content-inside">
+		<!-- Header 배치 -->
+		<tiles:insertAttribute name="header" />
+		
+		<!--  Side 배치 -->
+		<tiles:insertAttribute name="side" />
+		
+		<!-- Body 배치 -->
+		<tiles:insertAttribute name="body" />
 	
-	<!--  Side 배치 -->
-	<tiles:insertAttribute name="side" />
-	
-	<!-- Body 배치 -->
-	<tiles:insertAttribute name="body" />
+		<!-- Chat API 배치 -->
+		<tiles:insertAttribute name="chat" />
+		
+		<!-- Quick Menu 배치 -->
+		<tiles:insertAttribute name="quickMenu" />
+	</div>
+	</div>
 
 	<!--  Footer 배치 -->
 	<tiles:insertAttribute name="footer" />
-
-	<!-- Chat API 배치 -->
-	<tiles:insertAttribute name="chat" />
-	
-	<!-- Quick Menu 배치 -->
-	<tiles:insertAttribute name="quickMenu" />
-
 
 </body>
 </html>

@@ -159,7 +159,7 @@
 		<div class="col-lg-4 join_02-bottom-btn">
         	<div class="join_01-btn">
 	        	<a class="join_01-next" href="join_02.do">
-					<img class="join_01-btn-img" src="${contextPath}/resources/img/common/join_next_btn.png">
+					<img class="join_01-btn-img" src="${contextPath}/resources/img/common/join_btn.png">
 			    </a>
 		    </div>
         </div>
@@ -205,5 +205,4 @@ function lastday() {
 	}
 }
 </script>
-<!-- 생년월일 함수 -->
 
