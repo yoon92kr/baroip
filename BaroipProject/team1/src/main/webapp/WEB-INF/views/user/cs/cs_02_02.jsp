@@ -33,46 +33,56 @@
 	
 	   <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>제목</span></div>
-        <div class="col-lg-4 text-center cs_02_02_box02"><span>공지 제목</span></div>
+        <div class="col-lg-4 text-center cs_02_02_box02"><span>문의 작성</span></div>
         </div>
         
         <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>작성자</span></div>
-        <div class="col-lg-4 text-center cs_02_02_box02"><span>공지 작성자</span></div>
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>문의유형</span></div>
+        <div class="col-lg-4 text-center cs_02_02_box02"><span>문의 작성</span></div>
         </div>
         
         <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>작성 일자</span></div>
-        <div class="col-lg-4 text-center cs_02_02_box02"><span>공지 작성일자</span></div>
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03" ><span>내용</span></div>
+        <div class="col-lg-4 text-center cs_02_02_box04"><span>문의 내용</span></div>
     </div>
     <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03" ><span>내용</span></div>
-        <div class="col-lg-4 text-center cs_02_02_box04"><span>공지 내용</span></div>
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03" ><span>답변</span></div>
+        <div class="col-lg-4 text-center cs_02_02_box04"><span>관리자 답변 내용</span></div>
 	
 	
 	
 	
 	</div>
 	</div>
-	
-	
-	
-	
+
 		
-	
-	<div class="container-fluid">
-	    <div class="row">
-     <div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
-     <p class="notice_01_next">
-	        	<a href="#"> < 이전 </a> </div>
-	        	 <div class="col-lg-1 text-center notice_01_line">
-     <p class="notice_01_next">
-	        	<a href="#">  다음 > </a>
-	        	
-	        </p> </div>
-	        </div>
-		</div>
 		
+<div class="container-fluid">
+
+<div class="row">
+<div class="offset-lg-3 col-lg-2 text-center">
+				<div class="cs_correct_btn">
+					<a href="#"><img
+						src="${contextPath}/resources/img/common/cs_correct.png" alt=""></a>
+				</div>
+			</div>
+		
+		  <div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<a href="#"><img
+						src="${contextPath}/resources/img/common/notice_return.png" alt=""></a>
+				</div>
+			</div>
+			
+			<div class="col-lg-2 text-center">
+				<div class="cs_delte_btn">
+					<a href="#"><img
+						src="${contextPath}/resources/img/common/cs_delete.png" alt=""></a>
+				</div>
+			</div>
+			
+			</div>
+			</div>
 		
 	
 	
