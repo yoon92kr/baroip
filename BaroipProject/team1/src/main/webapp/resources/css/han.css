@@ -187,11 +187,11 @@
 	padding: 20px 0px;
 }
 
-.join_01-sub-title, .join_02-sub-title, .order_01-sub-title, .order_01-cart-list-title {
+.join_01-sub-title, .join_02-sub-title, .order_01-sub-title, .order_01-content-hedaer-text {
 	font-family: 'kopub_bold';
 }
 
-.join_01-check-01 {
+.join_01-check-01, .order_01-check {
 	top:5px;
 	position: relative;
 	width: 25px;
@@ -339,33 +339,85 @@
 /* join_03 end */
 /* ------------------------------------------------------------------------------- */
 /* order_01 start */
-.order_01-cart-list-title {
+.order_01-content-header {
 	background-color: #f2f2f2;
 	padding: 10px 0px;
 }
 
-.order_01-cart-list-underbar {
-	margin-top: 5px;
+.order_01-content-hedaer-text {
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
 
-.order_01-sub-title-all {
+.order_01-sub-title-page {
 	margin-top: 60px;
 	font-size: 17px;
 }
 
-.order_01-item-img {
-	width: 130px;
-	height: 70px;
+.order_01-content-body {
+	margin-top: 10px;
+	padding-top: 12px;
+	border-top: 2px solid;
+	border-bottom: 1px solid;
+	height: 50px;
+/* 	line-height: 50px; */
 }
 
-.order_01-cart-list-info {
-	margin-left: 140px;	
+.order_01-content-item-img a {
+	color: #000;
 }
 
 .order_01-item-name {
+	margin-left: 50px;
+}
+
+.order_01-content-item-img {
+	padding-top: 11px;
+	border-bottom: 1px solid;
+	height: 90px;
+}
+
+.order_01-content-item-point {
+	padding-top: 28px;
+	border-bottom: 1px solid;
+	height: 90px;
+}
+
+.order_01-content-item {
+	padding-top: 33px;
+	border-bottom: 1px solid;
+	height: 90px;
+/* 	line-height: 90px; */
+}
+
+.order_01-content-item-price {
+	font-family: 'kopub_bold';
+	font-size: 20px;
+	height: 70px;
+/* 	line-height: 70px; */
+}
+
+.order_01-content-price {
 	margin-left: 60px;
 }
 
-.order_01-cart-list-body-text {
-	margin-top: 23px;
+.order_01-user-name, .order_01-price-point {
+	display: inline-block;
+}
+
+.order_01-content-03 {
+	margin: 30px 0px 10px 0px;
+}
+
+.order_01-content-04 {
+	margin: 30px 0px 0px 0px;
+}
+
+.order_01-point-box {
+	border: 1px solid #d9d9d9;
+}
+
+.order_01-check-text {
+	display: inline-block;
+	margin-left: 28px;
 }
