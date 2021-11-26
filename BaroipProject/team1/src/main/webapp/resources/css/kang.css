@@ -19,7 +19,7 @@
 
 .notice_01_line {
 	font-size: 20px;
-	margin: 60px 0px 30px 0px;
+	margin: 75px 0px 40px 0px;
 }
 
 .notice_02_line02 {
@@ -34,19 +34,19 @@
 	color: #000;
 }
 
-.notice_02_box02 {
-	height: 50px;
-	line-height: 50px;
-	font-size: 17px;
-	border-collapse: collapse;
-	border: 1px solid #d9d9d9;
-}
 
 .notice_02_box01 {
 	background: #f2f2f2;
 	height: 50px;
 	line-height: 50px;
 	font-family: "kopub_bold";
+	font-size: 17px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+.notice_02_box02 {
+	height: 50px;
+	line-height: 50px;
 	font-size: 17px;
 	border-collapse: collapse;
 	border: 1px solid #d9d9d9;
@@ -79,13 +79,14 @@
 	top: 200px;
 	left: 0;
 	width: 500px;
-	font-size: 20px;
+	font-size: 16px;
 	margin-top: 30px;
 }
 
 .cs01-section a {
 	display: block;
-	line-height: 60px;
+	height: 70px;
+	line-height: 70px;
 	background-color: #f2f2f2;
 	color: #000;
 }
@@ -115,18 +116,82 @@
 	left: 15px;
 }
 
-.cs_01_section {
+.cs_01_listsection {
+	height: (65px, auto);
+	line-height: 60px;
+	font-size: 15px;
+	border-bottom: 1px solid #000000;
+	left: 15px;
+
+	
+}
+
+
+.cs_02_writebtn {
+	height: 20px;
+	line-height: 30px;
+	margin: 23px 0px 0px 0px;
+	left: 60px;
+}
+
+
+.cs_02_header {
+	background: #d9d9d9;
+	height: 50px;
+	line-height: 50px;
+	font-family: "kopub_bold";
+	font-size: 20px;
+	border-bottom: 1px solid #000000;
+	margin: 25px 0px 0px 0px;
+	left: 15px;
+}
+
+.cs_02_listsection {
 	height: 60px;
 	line-height: 55px;
 	font-size: 15px;
 	border-bottom: 1px solid #000000;
 	left: 15px;
+
+	
 }
- 
- .btn01, .btn02{padding: 2px 4px 2px 4px; text-align: 
- center; font-weight: 600; line-height: 
- 1.4em; box-shadow: 1px 1px 2px #333; border-radius: 15px;}
-  .btn01{background-color: #008DFF; color: #333;} 
-  .btn02{background-color: #FF3E00; color: #fff;} 
-  .example01{padding: 5px; text-align: center; 
-  border: 1px solid #000;}
+
+.cs_02_02_box01 {
+	background: #f2f2f2;
+	height: 50px;
+	line-height: 50px;
+	font-family: "kopub_bold";
+	font-size: 17px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+.cs_02_02_box02 {
+	height: 50px;
+	line-height: 50px;
+	font-size: 17px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+
+.cs_02_02_box03 {
+	background: #f2f2f2;
+	height: 300px;
+	line-height: 300px;
+	font-family: "kopub_bold";
+	font-size: 17px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+
+.cs_02_02_box04 {
+	height: 300px;
+	line-height: 300px;
+	font-size: 17px;
+	border-collapse: collapse;
+	border: 1px solid #d9d9d9;
+}
+
+.cs_02_02_row {
+	margin: 0px 0px 30px 0px;
+}
+
