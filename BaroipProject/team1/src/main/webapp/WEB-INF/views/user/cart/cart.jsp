@@ -27,7 +27,7 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
@@ -46,7 +46,7 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"  alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
@@ -65,7 +65,7 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
@@ -86,7 +86,7 @@
 	<div class="row">
 
 		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
@@ -105,7 +105,7 @@
 <div class="row">
 
 	<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
-	<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"></a></div>
+	<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 	<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 	<div class="col-lg-1 text-center itemCount_row">
 		<form name="itemCountBox" id="itemCountBox_form">
@@ -137,9 +137,9 @@
 <div class="cart_list_order_bt">
 	<div class="row">
 
-		<div class="col-lg-3 offset-lg-2"><a href="#"><img src="${contextPath}/resources/img/common/all_item_order.png"></a></div>
-		<div class="col-lg-3"><a href="#"><img src="${contextPath}/resources/img/common/select_item_order.png"></a></div>
-		<div class="col-lg-2"><a href="${contextPath}/main.do"><img src="${contextPath}/resources/img/common/continue_shopping.png"></a></div>
+		<div class="col-lg-3 offset-lg-2"><a href="#"><img src="${contextPath}/resources/img/common/all_item_order.png" alt="장바구니 전체 주문 버튼 이미지"></a></div>
+		<div class="col-lg-3"><a href="#"><img src="${contextPath}/resources/img/common/select_item_order.png" alt="장바구니 선택 주문 버튼 이미지"></a></div>
+		<div class="col-lg-2"><a href="${contextPath}/main.do"><img src="${contextPath}/resources/img/common/continue_shopping.png" alt="장바구니 쇼핑 계속하기 버튼 이미지"></a></div>
 	
 	</div>
 </div>
