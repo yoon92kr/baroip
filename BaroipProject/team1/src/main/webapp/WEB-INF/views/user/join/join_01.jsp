@@ -432,14 +432,14 @@ E - M A I L　: admin@baroip.com
         <div class="col-lg-4 offset-lg-2">
         	<div class="join_01-btn">
 	        	<a class="join_01-back" href="${contextPath}/login_01.do">
-					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/back_page_btn.png">
+					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/back_page_btn.png" alt="회원가입 약관동의 이전페이지 버튼 이미지">
 			    </a>
 		    </div>
         </div>
 		<div class="col-lg-4">
         	<div class="join_01-btn">
 	        	<a class="join_01-next" href="join_02.do">
-					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/join_next_btn.png">
+					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/join_next_btn.png" alt="회원가입 약관동의 동의하기 버튼 이미지">
 			    </a>
 		    </div>
         </div>
