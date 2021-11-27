@@ -13,7 +13,7 @@
     </div>
 		
     	<div class="row">
-    	<div class="col-lg-2 text-center"><img src="${contextPath}/resources/img/common/normalgamja.png"></div>
+    	<div class="col-lg-2 text-center"><img src="${contextPath}/resources/img/common/normalgamja.png" alt="회원정보수정페이지 회원등급 이미지"></div>
     		<div class="col-lg-10 text-left MyPage_padding">회원정보 수정</div>
     		
     <div class="container">
