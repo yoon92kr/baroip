@@ -33,7 +33,7 @@
 	<div class="row">
 		<div class="offset-lg-9 col-lg-1 text-left cs_02_writebtn">
 		<a href="#"><img
-		src="${contextPath}/resources/img/common/cs_write.png" alt=""></a>
+		src="${contextPath}/resources/img/common/cs_write.png" alt="1:1문의 글쓰기 버튼 이미지"></a>
 		</div>
 	</div>
 	</div>

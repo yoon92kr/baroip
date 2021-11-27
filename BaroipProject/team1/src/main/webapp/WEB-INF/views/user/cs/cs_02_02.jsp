@@ -63,21 +63,21 @@
 <div class="offset-lg-3 col-lg-2 text-center">
 				<div class="cs_correct_btn">
 					<a href="#"><img
-						src="${contextPath}/resources/img/common/cs_correct.png" alt=""></a>
+						src="${contextPath}/resources/img/common/cs_correct.png" alt="1:1문의 수정하기 버튼 이미지"></a>
 				</div>
 			</div>
 		
 		  <div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
 					<a href="#"><img
-						src="${contextPath}/resources/img/common/notice_return.png" alt=""></a>
+						src="${contextPath}/resources/img/common/notice_return.png" alt="1:1문의 목록 버튼 이미지"></a>
 				</div>
 			</div>
 			
 			<div class="col-lg-2 text-center">
 				<div class="cs_delte_btn">
 					<a href="#"><img
-						src="${contextPath}/resources/img/common/cs_delete.png" alt=""></a>
+						src="${contextPath}/resources/img/common/cs_delete.png" alt="1:1문의 삭제하기 버튼 이미지"></a>
 				</div>
 			</div>
 			
