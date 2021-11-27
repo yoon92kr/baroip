@@ -9,12 +9,12 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-3 offset-lg-1 product_02_main_img">
-			<img src="${contextPath}/resources/img/common/img-box.jpg">
+			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 메인 이미지">
 		</div>
 		<div class="col-lg-1 product_02_sub_img">
-			<img class="product_02_sub_img_top" src="${contextPath}/resources/img/common/img-box.jpg"> 
-			<img src="${contextPath}/resources/img/common/img-box.jpg"> 
-			<img src="${contextPath}/resources/img/common/img-box.jpg">
+			<img class="product_02_sub_img_top" src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 서브 이미지"> 
+			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 서브 이미지"> 
+			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 서브 이미지">
 		</div>
 		
 		<div class="col-lg-4 offset-lg-2">
@@ -37,8 +37,8 @@
 			</div>
 			</div>
 			<hr>
-			<img src="${contextPath}/resources/img/common/product_buy_now.png">
-			<img src="${contextPath}/resources/img/common/product_get_cart.png">
+			<img src="${contextPath}/resources/img/common/product_buy_now.png" alt="상품상세페이지 바로구매 버튼 이미지">
+			<img src="${contextPath}/resources/img/common/product_get_cart.png" alt="상품상세페이지 장바구니 담기 버튼 이미지">
 			
 
 		</div>
@@ -53,7 +53,7 @@
 
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1">
-			<img src="${contextPath}/resources/img/common/img-box.jpg">
+			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 상품상세정보 이미지">
 		</div>
 
 	</div>

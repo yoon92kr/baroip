@@ -10,7 +10,7 @@
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-center product_01_banner">
 			<img id="product_01_main_img"
-				src="${contextPath}/resources/img/common/vegi_main_banner.jpg">
+				src="${contextPath}/resources/img/common/vegi_main_banner.jpg" alt="상품리스트 배너 이미지">
 		</div>
 	</div>
 
@@ -55,21 +55,21 @@
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -106,7 +106,7 @@
 			</div>
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -123,7 +123,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 		</div>
 	</div>
@@ -131,21 +131,21 @@
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 	</div>
@@ -166,7 +166,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -182,7 +182,7 @@
 			</div>
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -199,7 +199,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 		</div>
 	</div>
@@ -207,21 +207,21 @@
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 	</div>
@@ -242,7 +242,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -258,7 +258,7 @@
 			</div>
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -275,7 +275,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 		</div>
 	</div>
@@ -283,21 +283,21 @@
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4  text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 
 		<div class="col-lg-4 text-center">
 			<div class="product_01_image">
 				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt=""></a>
+					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
 			</div>
 		</div>
 	</div>
@@ -318,7 +318,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -334,7 +334,7 @@
 			</div>
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 
 			<div class="col-lg-2">
@@ -351,7 +351,7 @@
 
 			<div class="col-lg-1 text-center">
 				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png"></a>
+					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
 			</div>
 		</div>
 
