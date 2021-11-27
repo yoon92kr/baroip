@@ -35,10 +35,10 @@
 	        <h3 class="login-title">SNS 간편 로그인</h3>
 		        <div class="login_01-sns-login-btn">
 			        <a class="login_01-naver-login" href="#">
-			        	<img class="login_01-naver-kakao-login" src="${contextPath}/resources/img/common/naver_login_btn.png">
+			        	<img class="login_01-naver-kakao-login" src="${contextPath}/resources/img/common/naver_login_btn.png" alt="로그인페이지 네이버 로그인 버튼 이미지">
 			        </a>
 			        <a class="login_01-kakao-login" href="#">
-			        	<img class="login_01-naver-kakao-login" src="${contextPath}/resources/img/common/kakao_login_btn.png">
+			        	<img class="login_01-naver-kakao-login" src="${contextPath}/resources/img/common/kakao_login_btn.png" alt="로그인페이지 카카오 로그인 버튼 이미지">
 			        </a>
 		        </div>
 	        <br>
@@ -55,7 +55,7 @@
 <!-- 비회원 주문 조회 버튼 -->
         	<div class="login_01-sns-login-btn">
 		        <a class="login_01-non-member-search" href="#">
-					<img class="login_01-non-member-search-btn bottom_btn_size" src="${contextPath}/resources/img/common/non_member_search_btn.png">
+					<img class="login_01-non-member-search-btn bottom_btn_size" src="${contextPath}/resources/img/common/non_member_search_btn.png" alt="로그인페이지 비회원 조회 버튼 이미지">
 		        </a>
         	</div>
         </div>
