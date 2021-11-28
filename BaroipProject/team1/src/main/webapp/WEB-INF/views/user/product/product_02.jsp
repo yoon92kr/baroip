@@ -37,8 +37,8 @@
 			</div>
 			</div>
 			<hr>
-			<img src="${contextPath}/resources/img/common/product_buy_now.png" alt="상품상세페이지 바로구매 버튼 이미지">
-			<img src="${contextPath}/resources/img/common/product_get_cart.png" alt="상품상세페이지 장바구니 담기 버튼 이미지">
+			<img src="${contextPath}/resources/img/common/product_buy_now.png" alt="상품상세페이지_바로구매 버튼 이미지">
+			<img src="${contextPath}/resources/img/common/product_get_cart.png" alt="상품상세페이지_장바구니 담기 버튼 이미지">
 			
 
 		</div>
