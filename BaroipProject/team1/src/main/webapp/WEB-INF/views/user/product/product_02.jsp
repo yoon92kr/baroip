@@ -67,7 +67,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-10 offset-lg-1 text-left">
+		<div class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text">
 			<a href="${contextPath}/product_02.do">상품 상세정보</a> 
 			<a href="${contextPath}/product_03.do">고객 후기</a> 
 			<a href="${contextPath}/product_04.do">배송 / 교환 /반품 안내</a> 

@@ -250,6 +250,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	font-family: "kopub_bold";
 }
 
-.product_02_item_detail_img {
-	width: 100%;
+.product_02_item_detail_img img{
+	width: 3000px;
 }

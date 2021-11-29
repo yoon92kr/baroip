@@ -26,7 +26,7 @@ html {
 }
 
 body {
-/*  	min-height: 100%; */
+	/*  	min-height: 100%; */
 	/* 2021.11.26 -한건희- 추가 */
 	height: 100%;
 	margin: 0;
@@ -38,7 +38,6 @@ body {
 	line-height: 1.8;
 	color: #051922;
 	overflow-x: hidden;
-	
 }
 
 /* 추가 */
@@ -51,7 +50,6 @@ body {
 	padding-bottom: 90px;
 }
 /* ----- */
-
 body img {
 	max-width: 100%;
 }
@@ -79,10 +77,8 @@ hr {
 
 .page_title {
 	font-family: "kopub_bold";
-    margin: 30px 0px 20px 0px;
-	
+	margin: 30px 0px 20px 0px;
 }
-
 
 /*------------------------------ Header 설정 ------------------------------*/
 .header {
@@ -93,9 +89,16 @@ hr {
 	background-color: #456B2B;
 }
 
+.admin_header {
+	font-family: "kopub_bold";
+	font-size: 16px;
+	line-height: 60px;
+	height: 60px;
+	background-color: #203864;
+}
+
 .header-navi {
 	color: #ffffff;
-	
 }
 
 .header-navi:hover {
@@ -187,33 +190,34 @@ hr {
 .shopingNav a {
 	font-family: kopub_bold;
 	font-size: 15px;
-	padding-right : 60px;
+	padding-right: 60px;
 }
+
 .sidenav hr {
-	margin : 0px 50px 0px 50px;
+	margin: 0px 50px 0px 50px;
 }
 
 .sidenav h1 {
-	padding-left : 30px;
+	padding-left: 30px;
 }
 
 .shopingNav {
-	margin : 0px 0px 30px 65px;
+	margin: 0px 0px 30px 65px;
 }
 
 .sidenav h3 {
-	padding : 50px 0px 30px 30px;
+	padding: 50px 0px 30px 30px;
 	color: #c9c9c9;
 }
 
-.myPageNav a{
+.myPageNav a {
 	font-family: kopub_bold;
 	font-size: 22px;
-	padding-left : 80px;
+	padding-left: 80px;
 }
 
 .navImg {
-	padding-left : 40px;
+	padding-left: 40px;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -372,7 +376,7 @@ hr {
 .footer {
 	width: 100%;
 	height: 75px;
-/* 	position: absolute; */
+	/* 	position: absolute; */
 	bottom: 0;
 	background: #ffffff;
 	text-align: center;
