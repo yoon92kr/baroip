@@ -19,7 +19,7 @@
 
 .notice_01_line {
 	font-size: 20px;
-	margin: 75px 0px 40px 0px;
+	margin: 40px 0px 0px 0px;
 }
 
 .notice_02_line02 {
@@ -71,7 +71,7 @@
 }
 
 .notice_back_btn {
-	margin: 70px 0px 50px 0px;
+	margin: 50px 0px 40px 0px;
 }
 
 .cs01-section {
@@ -193,10 +193,52 @@
 
 
 .cs_correct_btn{
-	margin: 70px 0px 50px 0px;
+	margin: 50px 0px 40px 0px;
+	left:15px;
+}
+.cs_delete_btn {
+	margin: 50px 0px 40px 0px;
+	right:15px;
+
+
 }
 
-.cs_delte_btn {
-	margin: 70px 0px 50px 0px;
+.cs_02_select {
+	border: 1px solid #d9d9d9;
+	text-align: center;
+	width: 160px;
 }
+
+.cs_02_01_text-box {
+	border: 1px solid #d9d9d9;
+	text-align: center;
+	width: 88px;
+	height:51px;
+}
+
+.cs_01-check-text {
+	display: inline-block;
+}
+.cs_02_02_ex01box02 {
+	height: 50px;
+	line-height: 50px;
+	font-size: 17px;
+	border: 1px solid #d9d9d9;
+	border-right-width : 0px;
+	
+}
+
+.cs_02_02_ex02box02 {
+	height: 50px;
+	line-height: 50px;
+	font-size: 17px;
+	border: 1px solid #d9d9d9;
+	border-left-width : 0px;
+	
+}
+
+
+
+
+
 

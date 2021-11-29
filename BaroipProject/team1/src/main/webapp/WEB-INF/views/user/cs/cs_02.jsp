@@ -32,7 +32,7 @@
 	
 	<div class="row">
 		<div class="offset-lg-9 col-lg-1 text-left cs_02_writebtn">
-		<a href="#"><img
+		<a href="${contextPath}/cs_02_01.do"><img
 		src="${contextPath}/resources/img/common/cs_write.png" alt="1:1문의 글쓰기 버튼 이미지"></a>
 		</div>
 	</div>
@@ -52,8 +52,8 @@
 				<span>상태</span>
 			</div>
 			<div class="col-lg-3 text-center cs_02_header">
-				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+				<span>문의제목</span>
+				</div>
 			<div class="col-lg-2 text-center cs_02_header">
 				<span>작성일</span>
 			</div>
@@ -75,7 +75,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+        		<a href="${contextPath}/cs_02_02.do">문의 제목</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>작성일</span>
 			</div>
@@ -97,7 +97,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+        		<a href="${contextPath}/cs_02_02.do">문의 제목</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>작성일</span>
 			</div>
@@ -120,7 +120,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+        		<a href="${contextPath}/cs_02_02.do">문의 제목</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>작성일</span>
 			</div>
@@ -143,7 +143,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+        		<a href="${contextPath}/cs_02_02.do">문의 제목</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>작성일</span>
 			</div>
@@ -166,7 +166,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+        		<a href="${contextPath}/cs_02_02.do">문의 제목</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>작성일</span>
 			</div>
@@ -187,7 +187,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+        		<a href="${contextPath}/cs_02_02.do">문의 제목</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>작성일</span>
 			</div>
@@ -210,12 +210,23 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">문의 제목</a></div>
+        		<a href="${contextPath}/cs_02_02.do">문의 제목</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>작성일</span>
 			</div>
 			
 			</div>
+			
+			<div class="row">
+     <div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
+     <p class="notice_01_next">
+	        	<a href="#"> < 이전 </a> </div>
+	        	 <div class="col-lg-1 text-center notice_01_line">
+     <p class="notice_01_next">
+	        	<a href="#">  다음 > </a>
+	        	
+	        </p> </div>
+	        </div>
 			
 		</div>
 

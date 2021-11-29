@@ -22,21 +22,21 @@
     
      <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>제목</span></div>
-        <div class="col-lg-4 text-center notice_02_box02"><span>공지 제목</span></div>
+        <div class="col-lg-4 text-center notice_02_box02"><span><공지 제목></span></div>
         </div>
         
         <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_02_box02"><span>공지 작성자</span></div>
+        <div class="col-lg-4 text-center notice_02_box02"><span><공지 작성자></span></div>
         </div>
         
         <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성 일자</span></div>
-        <div class="col-lg-4 text-center notice_02_box02"><span>공지 작성일자</span></div>
+        <div class="col-lg-4 text-center notice_02_box02"><span><공지 작성일자></span></div>
     </div>
     <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box03" ><span>내용</span></div>
-        <div class="col-lg-4 text-center notice_02_box04"><span>공지 내용</span></div>
+        <div class="col-lg-4 text-center notice_02_box04"><span><공지 내용></span></div>
     </div>
     
     <div class="offset-lg-5 col-lg-2 text-right">
