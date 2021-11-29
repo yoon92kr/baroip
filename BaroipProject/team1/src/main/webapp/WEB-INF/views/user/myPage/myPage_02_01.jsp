@@ -1,4 +1,4 @@
-<!-- 2021.11.25 임석희 -->
+<!-- 2021.11.25 임석희 mypage_02_01 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -77,7 +77,7 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<select class="MyPage_02_01-year-month-day" 
+        		<select class="MyPage_02_01-year-month-day"
         		id="select_year" onchange="javascript:lastday();"></select> 
         		<span class="MyPage_02_01-year-month-day-text">년</span>
         		<select class="MyPage_02_01-year-month-day" 
@@ -161,7 +161,12 @@
     </div>
 </div>
 
+
+
+
+
 <!-- 생년월일 값 -->
+
 <script>
 var start_year="1970"; //시작 년도
 var today = new Date();
