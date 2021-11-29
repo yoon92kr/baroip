@@ -1,4 +1,4 @@
-<!-- 2021.11.24 한건희 -->
+<!-- 2021.11.29 한건희 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -129,15 +129,19 @@
     <div class="row">
 		<div class="col-lg-10 offset-lg-1 order_01-content-header order_01-content-03">
 	        <h4 class="order_01-content-hedaer-text">배송 정보</h4>
-	        <hr>
 	    </div>
 	</div>
 	
 	<div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+		<div class="col-lg-10 offset-lg-1 order_01-content-body-top-line">
+	    </div>
+	</div>
+	
+	<div class="row">
+        <div class="col-lg-1 offset-lg-1 text-center join_02-main-left">
         	이 름
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-9 join_02-main-right">
         	<form class="order_01-user-name">
         		<input class="join_02-text-box" type="text">
         		<span class="order_01-check-text">주문자 정보와 동일</span>
@@ -148,10 +152,10 @@
     </div>
 
 	<div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-1 offset-lg-1 text-center join_02-main-left">
         	주 소
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-9 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
         		<input class="join_02-submit-box" type="submit" value="우편번호 검색">
@@ -160,10 +164,10 @@
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-1 offset-lg-1 text-center join_02-main-left">
         	상세 주소
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-9 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
         	</form>
@@ -171,10 +175,10 @@
     </div>
 
 	<div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-1 offset-lg-1 text-center join_02-main-left">
         	핸드폰 번호
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-9 join_02-main-right">
         	<form>
         		<select class="join_02-mobile">
         			<option value="010">010</option>
@@ -191,10 +195,10 @@
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-1 offset-lg-1 text-center join_02-main-left">
         	주문 메세지
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-9 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
         	</form>
@@ -246,28 +250,125 @@
 	    </div>
 	</div>
 	
+	<div class="order_01-select-card-noBank-mobile">
 	<div class="row">
         <div class="col-lg-2 offset-lg-1 text-center order_01-content-body">
         	결제 수단
         </div>
         <div class="col-lg-8 text-center order_01-content-body">
         	<form>
-        		<input type="radio" name="chk_info" value="card" checked="checked">신용 / 체크 카드
-				<input type="radio" name="chk_info" value="bank">무통장 입금
-				<input type="radio" name="chk_info" value="mobile">휴대폰 결제
+        		<input id="order_01-selectPay-card" type="radio" name="payment" value="card" onClick="selectPay(this.id)" checked>
+        		<label for="order_01-selectPay-card">신용 / 체크 카드</label>
+				<input id="order_01-selectPay-noBank" class="order_01-radio-btn" type="radio" name="payment" value="noBank" onClick="selectPay(this.id)">
+				<label for="order_01-selectPay-noBank">무통장 입금</label>
+				<input id="order_01-selectPay-mobile" class="order_01-radio-btn" type="radio" name="payment" value="mobile" onClick="selectPay(this.id)">
+				<label for="order_01-selectPay-mobile">휴대폰 결제</label>
         	</form>
         </div>
     </div>
     
+    <!-- 결제 방식에 따른 결제 방법 상세 -->
     <div class="row">
         <div class="col-lg-2 offset-lg-1 text-center order_01-content-item">
         	세부 내용
         </div>
         <div class="col-lg-8 text-center order_01-content-item">
-        	<form>
+        	<div id="order_01-selectPay-card-text">
+
+        		<span class="order_01-select-card">카드 선택</span>
+        		<select class="order_01-select-choice-card order_01-select-card">
+        			<option value="선택해주세요">선택해주세요</option>
+        			<option value="신한카드">신한카드</option>
+        			<option value="하나카드">하나카드</option>
+        			<option value="삼성카드">삼성카드</option>
+        			<option value="농협카드">농협카드</option>
+        			<option value="국민카드">국민카드</option>
+        			<option value="현대카드">현대카드</option>
+        		</select>
         		
-        	</form>
+        		<span class="order_01-select-choice-card-text order_01-select-card">할부 개월 수</span>
+        		<select class="order_01-select-choice-card order_01-select-card">
+        			<option value="일시불">일시불</option>
+        			<option value="2개월">2개월</option>
+        			<option value="3개월">3개월</option>
+        			<option value="4개월">4개월</option>
+        			<option value="5개월">5개월</option>
+        			<option value="6개월">6개월</option>
+        		</select>
+
+        	</div>
+        	
+        	<div id="order_01-selectPay-noBank-text">
+
+        			무통장 입금자 명 <input class="order_01-noBank-text-box" type="text">
+
+        	</div>
+        	
+        	<div id="order_01-selectPay-mobile-text">
+
+        		휴대폰 결제 
+        		<select class="join_02-mobile">
+        			<option value="010">010</option>
+        			<option value="011">011</option>
+        			<option value="016">016</option>
+        			<option value="017">017</option>
+        			<option value="019">019</option>
+        			<option value="070">070</option>
+        		</select> - 
+        		<input class="join_02-mobile-02" type="number"> - 
+        		<input class="join_02-mobile-02" type="number">
+
+        	</div>
+        	
+        </div>
+    </div>
+	</div>
+    
+    <!-- 하단 버튼 -->
+    <div class="row">
+        <div class="col-lg-4 offset-lg-2 text-center order_01-bottom-btn">
+        	<div class="join_01-btn">
+	        	<a class="join_01-back" href="${contextPath}/cart_01.do">
+					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/return_page_btn.png" alt="이전 페이지 돌아가기 버튼 이미지">
+			    </a>
+		    </div>
+        </div>
+		<div class="col-lg-4 text-center order_01-bottom-btn">
+        	<div class="join_01-btn">
+	        	<a class="order_01-select-btn" href="order_02.do">
+					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/price_btn.png" alt="결제 하기 버튼 이미지">
+			    </a>
+		    </div>
         </div>
     </div>
     
 </div>
+
+<script type="text/javascript">
+function selectPay(selectId) {
+	   let card = '#order_01-selectPay-card-text';
+	   let noBank = '#order_01-selectPay-noBank-text';
+	   let mobile = '#order_01-selectPay-mobile-text';
+
+	   let targetPay =  '#'.concat(selectId, '-text');
+
+	   if (targetPay == card) {
+	      document.querySelector(card).style.display = 'inline';
+	      document.querySelector(noBank).style.display = 'none';
+	      document.querySelector(mobile).style.display = 'none';
+	   }
+
+	   else if (targetPay == noBank) {
+	      document.querySelector(card).style.display = 'none';
+	      document.querySelector(noBank).style.display = 'inline';
+	      document.querySelector(mobile).style.display = 'none';
+	   }
+
+	   else if (targetPay == mobile) {
+	      document.querySelector(card).style.display = 'none';
+	      document.querySelector(noBank).style.display = 'none';
+	      document.querySelector(mobile).style.display = 'inline';
+	   }
+	   
+	}
+</script>
