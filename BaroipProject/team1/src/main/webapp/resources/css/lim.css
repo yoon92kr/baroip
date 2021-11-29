@@ -1,20 +1,18 @@
 /* 2021.11.24 ÀÓ¼®Èñ */
-
 @charset "UTF-8";
 
 /* MyPage */
-
 .MyPage_side-section {
-	position:fixed;
-	top:200px;
-	left:0;
-	width:500px;
-	font-size:16px;
+	position: fixed;
+	top: 200px;
+	left: 0;
+	width: 500px;
+	font-size: 16px;
 	margin-top: 30px;
 }
 
 .MyPage_top-underline {
-	border-bottom : 2px solid #000000;
+	border-bottom: 2px solid #000000;
 }
 
 .MyPage_padding {
@@ -23,25 +21,22 @@
 }
 
 .MyPage_side-section a {
-	display:block;
-	line-height:60px;
+	display: block;
+	line-height: 60px;
 	background-color: #f2f2f2;
 	color: #000;
 }
+
 .MyPage_welcome, .MyPage_solid {
-	border-bottom : 2px solid #000000;
+	border-bottom: 2px solid #000000;
 }
 
 /* MyPage_01 start  */
-
 .MyPage_01_subtitle a {
 	color: #000000;
-	
 }
 
-
 .MyPage_title {
-
 	font-size: 25px;
 	font-weight: bold;
 }
@@ -62,19 +57,16 @@
 	background-color: #ffffff;
 }
 
-.MyPage_01_content > a {
+.MyPage_01_content>a {
 	color: #000;
 }
 
-
 /* MyPage_02 start */
-
 .MyPage_02_hr {
 	padding-top: 65px;
 }
 
 .MyPage_02 {
-
 	font-size: 25px;
 	font-weight: bold;
 }
@@ -91,7 +83,6 @@
 	height: 35px;
 }
 
-
 .MyPage_02_button_01 {
 	display: block;
 	background-color: #385723;
@@ -102,7 +93,6 @@
 	margin-right: 100px;
 	padding-top: 10px;
 }
-
 
 .MyPage_02_button_02 {
 	display: block;
@@ -116,21 +106,8 @@
 	color: #fff;
 }
 
-/* dropOut_01 start */
-.dropOut_01_sub {
-	display: block;
-	height: 60px;
-	
-}
-
-.dropOut_01_text {
-	font-size: 25px;
-	font-weight: bold;
-}
-
 
 /* MyPage_02_01 */
-
 .MyPage_02_01_top {
 	margin-top: 30px;
 }
@@ -199,7 +176,6 @@
 	border: 1px solid #d9d9d9;
 }
 
-
 .MyPage_02_01-submit-box-02 {
 	width: 150px;
 	height: 35px;
@@ -217,7 +193,6 @@
 	margin-left: 60px;
 	margin-right: 60px;
 }
-
 
 .MyPage_02_01_button_04 {
 	display: block;
@@ -242,7 +217,90 @@
 	line-height:100px;
 }
 */
-
-.MyPage_02_01_button_03:hover, .MyPage_02_01_button_04:hover, .MyPage_02_01_button_05:hover {
+.MyPage_02_01_button_03:hover, .MyPage_02_01_button_04:hover,
+	.MyPage_02_01_button_05:hover {
 	color: #fff;
 }
+
+
+/* dropOut_01 start */
+.DropOut_01_sub {
+	display: block;
+	height: 500px;
+}
+
+.DropOut_01_text {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.DropOut_01_03_text {
+	margin-top: 15px;
+	margin-left: 25px;
+}
+
+.DropOut_01_02_text {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 65px;
+}
+
+.DropOut_01_04_text {
+	margin-top: 65px;
+	margin-left: 25px;
+}
+
+.DropOut_01_button {
+	display: block;
+	background-color: #767171;
+	font-size: 16px;
+	height: 45px;
+	color: #ffffff;
+	margin-left: 220px;
+	margin-right: 100px;
+	padding-top: 10px;
+}
+
+.DropOut_01_button_02 {
+	display: block;
+	background-color: #404040;
+	font-size: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+}
+
+.DropOut_01_button:hover, .DropOut_01_button_02:hover {
+	color: #fff;
+}
+
+/* dropOut_02 start  */
+.DropOut_02 {
+	font-size: 25px;
+}
+
+.DropOut_02_text {
+	font-size: 20px;
+	display: block;
+	height: 50px;
+	margin-top: 100px;
+}
+
+.DropOut_02_button {
+	display: block;
+	background-color: #404040;
+	font-size: 22px;
+	color: #ffffff;
+	height: 40px;
+}
+
+.DropOut_02_botton_position {
+	margin-top: 100px;
+}
+
+.DropOut_02_button:hover {
+	color: #fff;
+}
+
