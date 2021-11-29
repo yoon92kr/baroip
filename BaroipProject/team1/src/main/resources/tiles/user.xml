@@ -29,6 +29,51 @@
 		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
 	</definition>
 
+	<definition name="myPage_03" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+
+	<definition name="myPage_03_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+
+	<definition name="myPage_03_02" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="myPage_04" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_04.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
+		<definition name="myPage_05" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_05.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
+		<definition name="myPage_06" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
+		<definition name="myPage_06_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
+		<definition name="myPage_07" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_07.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
+		<definition name="myPage_07_01" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_07_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
 	<definition name="dropOut_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/dropOut_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
@@ -106,31 +151,31 @@
 	<definition name="product_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01.jsp" />
 	</definition>
-	
-		<definition name="product_02" extends="UserLayout">
+
+	<definition name="product_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_02.jsp" />
 	</definition>
-	
-		<definition name="product_03" extends="UserLayout">
+
+	<definition name="product_03" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_03.jsp" />
 	</definition>
-	
-		<definition name="product_04" extends="UserLayout">
+
+	<definition name="product_04" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_04.jsp" />
 	</definition>
-	
-		<definition name="product_05" extends="UserLayout">
+
+	<definition name="product_05" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_05.jsp" />
 	</definition>
-	
-		<definition name="product_06" extends="UserLayout">
+
+	<definition name="product_06" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_06.jsp" />
 	</definition>
-	
+
 	<definition name="order_01" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/order/order_01.jsp" />
 	</definition>
-	
+
 	<definition name="order_02" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/order/order_02.jsp" />
 	</definition>
