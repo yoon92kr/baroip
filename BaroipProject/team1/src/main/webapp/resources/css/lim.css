@@ -365,3 +365,26 @@
 .MyPage_03_text_position_03 {
 	margin-left: 40px;
 }
+
+.MyPage_03_bottom_return_next {
+	font-size: 14px;
+	margin-top: 30px;
+	margin-left: 450px;
+}
+
+.MyPage_03_left_text {
+	display: block;
+	color: #d9d9d9;
+}
+
+.MyPage_03_left_text {
+	display: block;
+	color: #000000;
+}
+
+/* MyPage_04 start */
+
+.MyPage_04_info_center {
+	font-size: 16px;
+	margin-left: 450px;
+}

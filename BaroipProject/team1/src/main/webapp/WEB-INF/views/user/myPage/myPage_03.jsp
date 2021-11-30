@@ -110,48 +110,83 @@
         <div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
         <div class="col-lg-2 MyPage_03_text_position_03">
         	<div>[배송 상태]</div>
-        	<input class="MyPage_03-submit-box-02" type="button" value="주문 취소">
+        	<input class="MyPage_03-submit-box-02" type="button" value="주문 취소" onclick="order_cancel()">
+        	</div>
+        </div>
+    </div>
+    
+    <div class="MyPage_03_center-box-01 text-center">
+    <div class="row">
+        <div class="col-lg-2 text-center">
+        	<div>[상품 주문 일자]</div>
+        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
+        </div>
+        	<a href="product_02.do" class="col-lg-2 MyPage_03_text_position_02">[주문 상품 명]</a>
+        <div class="col-lg-2 MyPage_03_text_position_02">[주문 수량]</div>
+        <div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
+        <div class="col-lg-2 MyPage_03_text_position_03">
+        	<div>[배송 상태]</div>
+        	<input class="MyPage_03-submit-box-02" type="button" value="배송 조회" onclick="delivery_check()">
+        	<input class="MyPage_03-submit-box-02" type="button" value="구매 확정" onclick="buy_complete()">
+        	</div>
+        </div>
+    </div>
+    
+    <div class="MyPage_03_center-box-01 text-center">
+    <div class="row">
+        <div class="col-lg-2 text-center">
+        	<div>[상품 주문 일자]</div>
+        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
+        </div>
+        	<a href="product_02.do" class="col-lg-2 MyPage_03_text_position_02">[주문 상품 명]</a>
+        <div class="col-lg-2 MyPage_03_text_position_02">[주문 수량]</div>
+        <div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
+        <div class="col-lg-2 MyPage_03_text_position_03">
+        	<div>[배송 상태]</div>
+        	<input class="MyPage_03-submit-box-02" type="button" value="반품 / 교환" onclick="item_exchange()">
+        	<input class="MyPage_03-submit-box-02" type="button" value="상품 후기" onclick="item_review()">
+        	</div>
         </div>
     </div>
 	
+	<div class="MyPage_03_bottom_return_next">
+	<div class="row">
+        <div class="col-lg-2 MyPage_03_left_text">◁이전</div>
+        <div class="col-lg-2 MyPage_03_right_text">다음▷</div>
+        
+    </div>
+	</div>
+	<div class="row">
+    	<div class="col-lg"><hr>
+    </div>
 	</div>
 </div>
 
 
 
+
 <script type="text/javascript">
+	function order_cancel() {
+		let returnValue = confirm('정말 주문을 취소 하시겠습니까?');	
+	}
+	
+	function delivery_check() {
+		let returnValue = confirm('택배 배송 조회페이지 연결할까요?');
+	}
+	
+	function buy_complete() {
+		let returnValue = confirm('구매 확정 하시겠습니까?');
+	}
+	
+	function item_exchange() {
+		let link = 'myPage_03_02.do';
+			location.href=link;
+	}
+	
+	function item_review() {
+		let link = 'myPage_03_03.do';
+			location.href=link;
+	}
+	
 </script>
 
-
-
-
-
-<!-- 
-function selectPay(selectId) {
-	   let card = '#order_01-selectPay-card-text';
-	   let noBank = '#order_01-selectPay-noBank-text';
-	   let mobile = '#order_01-selectPay-mobile-text';
-
-	   let targetPay =  '#'.concat(selectId, '-text');
-
-	   if (targetPay == card) {
-	      document.querySelector(card).style.display = 'inline';
-	      document.querySelector(noBank).style.display = 'none';
-	      document.querySelector(mobile).style.display = 'none';
-	   }
-
-	   else if (targetPay == noBank) {
-	      document.querySelector(card).style.display = 'none';
-	      document.querySelector(noBank).style.display = 'inline';
-	      document.querySelector(mobile).style.display = 'none';
-	   }
-
-	   else if (targetPay == mobile) {
-	      document.querySelector(card).style.display = 'none';
-	      document.querySelector(noBank).style.display = 'none';
-	      document.querySelector(mobile).style.display = 'inline';
-	   }
-	   
-	}
-
- --> 
