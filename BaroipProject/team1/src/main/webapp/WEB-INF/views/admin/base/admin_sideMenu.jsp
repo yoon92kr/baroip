@@ -11,14 +11,15 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 text-center">
 
-			<a href="myPage_01.do"  class="no-underline">내정보</a>
-			<a href="myPage_02.do"  class="no-underline">회원정보 수정</a>
-			<a href="myPage_03.do"  class="no-underline">주문/배송조회</a>
-			<a href="#"  class="no-underline">장바구니</a>
-			<a href="#"  class="no-underline">포인트 내역</a>
-			<a href="#"  class="no-underline">회원등급 안내</a>
-			<a href="${contextPath}/myPage_06.do"  class="no-underline">문의내역</a>
-			<a href="#"  class="no-underline">상품후기</a>
+			<a href="#" class="no-underline">사이트 정보</a>
+			<a href="#" class="no-underline">회원 관리</a>
+			<a href="#"  class="no-underline">상품 관리</a>
+			<a href="#"  class="no-underline">주문 관리</a>
+			<a href="#"  class="no-underline">문의 관리</a>
+			<a href="#"  class="no-underline">후기 관리</a>
+			<a href="#"  class="no-underline">실시간 채팅</a>
+			<a href="#"  class="no-underline">공지 관리</a>
+			<a href="#"  class="no-underline">Q&A 관리</a>
 	
 			</div>
 		</div>

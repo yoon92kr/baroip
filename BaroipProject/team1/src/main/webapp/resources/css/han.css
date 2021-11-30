@@ -513,7 +513,7 @@
 /* myPage_03_01 end */
 /* myPage_05 start */
 .myPage_05-member-ranking-info {
-	margin: 20px 0px;
+	margin: 20px 0px 0px 0px;
 }
 
 .myPage_05-memeber-info {
@@ -543,4 +543,52 @@
 
 .myPage_05-member-image {
 	padding-top: 10px;
+}
+/* myPage_05 end */
+/* admin start */
+.admin_main_image {
+	padding-top: 10px;
+}
+
+.adminUser_01-content-header {
+	margin-top: 10px;
+}
+
+.adminUser_01-button-top, .adminUser_01-select-box-lookup {
+	border: 1px solid #d9d9d9;
+	text-align: center;
+}
+
+.adminUser_01-select-box-lookup {
+	margin-left: 60px;
+	width: 120px;
+}
+
+.adminUser_01-button-top {
+	margin-left: 20px;
+	width: 60px;
+	height: 24px;
+}
+
+.adminUser_01-member-change-btn, .adminUser_01-member-detail-lookup-btn {
+	border: none;
+	font-size: 11px;
+}
+
+.adminUser_01-member-detail-lookup-btn, .adminUser_01-button-top {
+	background-color: #7f7f7f;
+}
+
+.adminUser_01-member-change-btn {
+	color: #fff;
+	background-color: #203864;
+}
+
+.adminUser_01-member-change-item {
+	margin-top: 13px;
+}
+
+.adminUser_01-member-change-item, .adminUser_01-member-change-item-name {
+	border-bottom: 1px solid;
+	padding: 20px 0px;
 }

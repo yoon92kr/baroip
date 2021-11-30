@@ -18,5 +18,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/base/admin.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
 	</definition>
+	
+	<definition name="adminUser_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/base/adminUser_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
 		
 </tiles-definitions>

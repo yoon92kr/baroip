@@ -414,5 +414,14 @@ public class MainController {
 			mav.setViewName(viewName);
 			return mav;
 		}
+		// admin-회원 관리
+		@RequestMapping(value= "/adminUser_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminUser_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
 
 }

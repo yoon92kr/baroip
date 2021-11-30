@@ -9,12 +9,12 @@
 <div class="container">
     <div class="MyPage_title">
     	<div class="row">
-        	<div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">마이 페이지</h1></div>
+        	<div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">관리자 페이지</h1></div>
     	</div>
     	
     	<div class="row">
-    		<div class="col-lg-2 text-center"><img src="${contextPath}/resources/img/common/basic_member_icon.png" alt="마이페이지 회원등급 이미지"></div>
-    		<div class="col-lg-10 text-left MyPage_padding">환영합니다 [회원 이름] 님!</div>
+    		<div class="col-lg-2 text-center"><img class="admin_main_image" src="${contextPath}/resources/img/common/admin_icon.png" alt="관리자 이미지"></div>
+    		<div class="col-lg-10 text-left MyPage_padding">환영합니다 [관리자 이름] 님!</div>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>
@@ -25,18 +25,18 @@
 <div class="container">
 			<div class="MyPage_01_title">
 				<div class="row">
-        		<div class="col-lg-3 text-center">회원등급</div>
-        		<div class="col-lg-3 text-center">주문내역</div>
-        		<div class="col-lg-3 text-center">장바구니</div>
-        		<div class="col-lg-3 text-center">포인트</div>
+        		<div class="col-lg-3 text-center">배송 대기 내역</div>
+        		<div class="col-lg-3 text-center">배송 내역</div>
+        		<div class="col-lg-3 text-center">문의 내역</div>
+        		<div class="col-lg-3 text-center">후기 내역</div>
     		</div>
     		
     		<div class="MyPage_01_content MyPage_01_subtitle">
     		<div class="row">
-    			<a href="#" class="col-lg-3 text-center">[현재 회원등급]</a>
-        		<a href="#" class="col-lg-3 text-center">[회원 주문내역 건수]</a>
-        		<a href="#" class="col-lg-3 text-center">[회원 장바구니 건수]</a>
-        		<a href="#" class="col-lg-3 text-center">[회원 잔여 포인트]</a>
+    			<a href="#" class="col-lg-3 text-center">[총 주문 건수]</a>
+        		<a href="#" class="col-lg-3 text-center">[총 배송 진행중 건수]</a>
+        		<a href="#" class="col-lg-3 text-center">[미답변 문의 내역 건수]</a>
+        		<a href="#" class="col-lg-3 text-center">[미답변 후기 내역 건수]</a>
     		</div>
     		
     		
