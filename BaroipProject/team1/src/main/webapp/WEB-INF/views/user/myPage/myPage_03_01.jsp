@@ -1,3 +1,4 @@
+<!-- 2021.11.29 한건희 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -122,11 +123,11 @@
         </div>
         <div class="col-lg-9 text-center order_01-content-body">
         	<form>
-        		<input id="order_01-selectPay-card" type="radio" name="payment" value="card" onClick="selectPay(this.id)" checked>
+        		<input id="order_01-selectPay-card" type="radio" name="payment" value="card" onClick="selectPay(this.id)" checked disabled>
         		<label for="order_01-selectPay-card">신용 / 체크 카드</label>
-				<input id="order_01-selectPay-noBank" class="order_01-radio-btn" type="radio" name="payment" value="noBank" onClick="selectPay(this.id)">
+				<input id="order_01-selectPay-noBank" class="order_01-radio-btn" type="radio" name="payment" value="noBank" onClick="selectPay(this.id)" disabled>
 				<label for="order_01-selectPay-noBank">무통장 입금</label>
-				<input id="order_01-selectPay-mobile" class="order_01-radio-btn" type="radio" name="payment" value="mobile" onClick="selectPay(this.id)">
+				<input id="order_01-selectPay-mobile" class="order_01-radio-btn" type="radio" name="payment" value="mobile" onClick="selectPay(this.id)" disabled>
 				<label for="order_01-selectPay-mobile">휴대폰 결제</label>
         	</form>
         </div>

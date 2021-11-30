@@ -510,3 +510,37 @@
 	display: block;
 	margin-top: 60px;
 }
+/* myPage_03_01 end */
+/* myPage_05 start */
+.myPage_05-member-ranking-info {
+	margin: 20px 0px;
+}
+
+.myPage_05-memeber-info {
+	margin-top: 20px;
+	font-size: 17px;
+}
+
+.myPage_05-ranking-info-all {
+	margin-top:14px;
+}
+
+.myPage_05-ranking-info-left {
+	font-family: 'kopub_bold';
+}
+
+.myPage_05-ranking-info {
+	margin-top: 20px;
+}
+
+.myPage_05-member-image-basic {
+	margin-left:135px;
+}
+
+.myPage_05-member-image-under {
+	margin-left:60px;
+}
+
+.myPage_05-member-image {
+	padding-top: 10px;
+}

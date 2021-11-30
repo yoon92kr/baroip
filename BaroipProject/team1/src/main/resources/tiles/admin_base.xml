@@ -6,18 +6,17 @@
 
 <tiles-definitions>
 	<definition name="AdminLayout"
-		template="/WEB-INF/views/admin/admin_layout.jsp">
-		<put-attribute name="title" value="바로입" />
-		<put-attribute name="header" value="/WEB-INF/views/admin/admin_header.jsp" />
+		template="/WEB-INF/views/admin/base/admin_layout.jsp">
+		<put-attribute name="title" value="바로입 관리자" />
+		<put-attribute name="header" value="/WEB-INF/views/base/header.jsp" />
 		<put-attribute name="side" value="" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/base/footer.jsp" />
-		<put-attribute name="quickMenu" value="/WEB-INF/views/base/quickMenu.jsp" />
-		<put-attribute name="chat" value="/WEB-INF/views/base/chat.jsp"/>
 	</definition>
 
-	<definition name="admin_main" extends="AdminLayout">
-		<put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+	<definition name="admin" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/base/admin.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
 	</definition>
 		
 </tiles-definitions>

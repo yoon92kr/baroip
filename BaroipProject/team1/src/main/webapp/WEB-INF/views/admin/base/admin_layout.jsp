@@ -60,12 +60,8 @@
 		
 		<!-- Body 배치 -->
 		<tiles:insertAttribute name="body" />
-	
-		<!-- Chat API 배치 -->
-		<tiles:insertAttribute name="chat" />
-		
-		<!-- Quick Menu 배치 -->
-		<tiles:insertAttribute name="quickMenu" />
+
+
 	</div>
 	</div>
 

@@ -25,8 +25,8 @@ public class MainController {
 		return mav;
 	}
 	
-	@RequestMapping(value= "/admin_main.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView admin_main(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value= "/admin.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView admin(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
