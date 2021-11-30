@@ -303,3 +303,65 @@
 .DropOut_02_button:hover {
 	color: #fff;
 }
+
+
+/* MyPage_03 start */
+.MyPage_03_top {
+	display: block;
+	margin-top: 15px;
+	font-size: 18px;
+}
+
+
+.MyPage_03-submit-box {
+	width: 200px;
+	height: 35px;
+	border: 1px solid #d9d9d9;
+}
+
+.MyPage_03_center-box {
+	font-size: 16px;
+	padding-top: 7px;
+	margin-top: 20px;
+	font-weight: bold;
+	background-color: #d9d9d9;
+	height: 40px;
+	border-bottom: 1px solid #000000;
+}
+
+.MyPage_03_center-box-01 {
+	border-bottom: 1px solid #000000;
+	font-size: 16px;
+	padding-top: 50px;
+	height: 140px;
+}
+
+.MyPage_03-submit-box-01 {
+	font-size: 14px;
+	font-weight: normal;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	color: #ffffff;
+	background-color: #404040;
+}
+
+.MyPage_03-submit-box-02 {
+	font-size: 14px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	color: #ffffff;
+	background-color: #385723;
+}
+
+.MyPage_03_text_position{
+	margin-left: 760px;
+}
+
+.MyPage_03_text_position_02{
+	margin-left: 50px;
+	color: #000000;
+}
+
+.MyPage_03_text_position_03 {
+	margin-left: 40px;
+}
