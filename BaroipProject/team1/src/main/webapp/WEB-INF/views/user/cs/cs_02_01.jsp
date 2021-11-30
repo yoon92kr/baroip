@@ -100,7 +100,8 @@
         <div class="col-lg-4 text-left cs_02_02_box04"> 
         		<div class="form-group">
 		<textarea class="form-control" rows="8"
-			placeholder="내용을 입력해주세요." style="margin-top:8px">
+		style="resize: none; margin-top:8px;"
+			placeholder="내용을 입력해주세요.">
 			</textarea>
 	</div>
         	

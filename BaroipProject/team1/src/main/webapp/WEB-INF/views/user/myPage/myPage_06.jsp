@@ -1,4 +1,4 @@
-<!--  2021.11.29 강보석 -->
+<!--  2021.11.30 강보석 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -91,7 +91,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">[문의글 제목]</a></div>
+        		<a href="${contextPath}/myPage_06_01.do">[문의글 제목]</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>[문의 진행 상태]</span>
 			</div>
@@ -111,7 +111,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">[문의글 제목]</a></div>
+        		<a href="${contextPath}/myPage_06_01.do">[문의글 제목]</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>[문의 진행 상태]</span>
 			</div>
@@ -130,7 +130,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">[문의글 제목]</a></div>
+        		<a href="${contextPath}/myPage_06_01.do">[문의글 제목]</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>[문의 진행 상태]</span>
 			</div>
@@ -149,7 +149,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">[문의글 제목]</a></div>
+        		<a href="${contextPath}/myPage_06_01.do">[문의글 제목]</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>[문의 진행 상태]</span>
 			</div>
@@ -168,7 +168,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">[문의글 제목]</a></div>
+        		<a href="${contextPath}/myPage_06_01.do">[문의글 제목]</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>[문의 진행 상태]</span>
 			</div>
@@ -187,7 +187,7 @@
 			</div>
 			<div class="col-lg-3 text-center cs_02_listsection ">
 				<p class="cs">
-        		<a href="#">[문의글 제목]</a></div>
+        		<a href="${contextPath}/myPage_06_01.do">[문의글 제목]</a></div>
 			<div class="col-lg-2 text-center cs_02_listsection ">
 				<span>[문의 진행 상태]</span>
 			</div>

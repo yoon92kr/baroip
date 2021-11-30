@@ -55,15 +55,15 @@
       
         
         <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>반품/취소사유</span></div>
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>상품평점</span></div>
         <div class="col-lg-4 text-left cs_02_02_box02">
         		 <form>
        
         		<input type="radio" name="chk_info" value="Very satisfied " checked="checked">  매우 만족
-        <input type="radio" name="chk_info" value="Satisfied" checked="checked">  만족
-         <input type="radio" name="chk_info" value="Moderately " checked="checked">  보통
-          <input type="radio" name="chk_info" value="dissatisfied" checked="checked">  불만
-           <input type="radio" name="chk_info" value="Very dissatisfied" checked="checked">  매우 불만
+        <input  type="radio" name="chk_info" value="Satisfied" checked="checked" style="margin-left:50px">  만족
+         <input  type="radio" name="chk_info" value="Moderately " checked="checked" style="margin-left:50px" >  보통
+          <input  type="radio" name="chk_info" value="dissatisfied" checked="checked" style="margin-left:50px" >  불만족
+           <input  type="radio" name="chk_info" value="Very dissatisfied" checked="checked" style="margin-left:50px" >  매우 불만족
        
         	</form>
         	
@@ -80,7 +80,8 @@
         <div class="col-lg-4 text-left cs_02_02_box04"> 
         		<div class="form-group">
 		<textarea class="form-control" rows="8"
-			placeholder="내용을 입력하세요" style="margin-top:8px">
+		 style="resize: none; margin-top:8px;"
+			placeholder="내용을 입력하세요">
 			</textarea>
 	</div>
         	

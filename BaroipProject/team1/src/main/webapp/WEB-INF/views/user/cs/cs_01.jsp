@@ -27,10 +27,10 @@
     text-align: left;
   }
   .question:hover {
-    color: #2962ff;
+    color: #d9d9d9;
   }
   [id$="-toggle"] {
-    margin-right: 15px;
+    margin-right: 60px;
   }
 </style>
 
