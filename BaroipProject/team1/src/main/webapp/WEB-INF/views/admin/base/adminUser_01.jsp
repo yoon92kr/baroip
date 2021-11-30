@@ -1,3 +1,4 @@
+<!-- 2021.11.30 한건희 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -23,23 +24,24 @@
     <div class="row">
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	조회 유형
-        	<select class="adminUser_01-select-box-lookup">
-        			<option value="회원 등급">회원 등급</option>
-        			<option value="가입일">가입일</option>
-        			<option value="최종 접속일">최종 접속일</option>
-        			<option value="특정 아이디">특정 아이디</option>
-        			<option value="생년월일">생년월일</option>
+        	<select class="adminUser_01-select-box-lookup" onchange="selectLookup(this.value)">
+        			<option value="ranking">회원 등급</option>
+			        <option value="joinDate">가입일</option>
+			        <option value="lastAccess">최종 접속일</option>
+			        <option value="id">아이디</option>
+			        <option value="birthYear">생년월일</option>
         		</select>
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	조회 기준
-        	<select class="adminUser_01-select-box-lookup">
-        			<option value="회원 등급">회원 등급</option>
-        			<option value="가입일">가입일</option>
-        			<option value="최종 접속일">최종 접속일</option>
-        			<option value="특정 아이디">특정 아이디</option>
-        			<option value="생년월일">생년월일</option>
+        	<select id="adminUser_01-member-ranking-text" class="adminUser_01-select-box-lookup">
+        			<option value="일반">일반 회원</option>
+        			<option value="우수">우수 회원</option>
+        			<option value="단골">단골 회원</option>
+        			<option value="FLEX">FLEX 회원</option>
         		</select>
+        		<input id="adminUser_01-member-date-text" class="adminUser_01-select-box-lookup" type="date">
+        		<input id="adminUser_01-member-id-text" class="adminUser_01-select-box-lookup" type="text">
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	<input class="adminUser_01-button-top" type="button" value="조회하기">
@@ -74,7 +76,9 @@
 	<div class="row">
         <div class="col-lg-2 text-center adminUser_01-member-change-item-name">
         	<div>[회원 아이디]</div>
-        	<input class="adminUser_01-member-detail-lookup-btn" type="button" value="회원 상세 정보">
+        	<form action="adminUser_02.do">
+        	<input class="adminUser_01-member-detail-lookup-btn" type="submit" value="회원 상세 정보">
+        	</form>
         </div>
         <div class="col-lg-1 text-center adminUser_01-member-change-item">
         	[회원 등급]
@@ -92,14 +96,16 @@
         	[회원 접속일]
         </div>
         <div class="col-lg-1 adminUser_01-member-change-item">
-        	<input class="adminUser_01-member-change-btn" type="button" value="회원 정보 수정">
+        	<input class="adminUser_01-member-change-btn" type="submit" value="회원 정보 수정">
         </div>
     </div>
     
     <div class="row">
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
         	<div>[회원 아이디]</div>
-        	<input class="adminUser_01-member-detail-lookup-btn" type="button" value="회원 상세 정보">
+        	<form action="adminUser_02.do">
+        	<input class="adminUser_01-member-detail-lookup-btn" type="submit" value="회원 상세 정보">
+        	</form>
         </div>
         <div class="col-lg-1 text-center adminUser_01-member-change-item">
         	[회원 등급]
@@ -124,30 +130,39 @@
 </div>
 
 <script type="text/javascript">
-function selectPay(selectId) {
-	   let card = '#order_01-selectPay-card-text';
-	   let noBank = '#order_01-selectPay-noBank-text';
-	   let mobile = '#order_01-selectPay-mobile-text';
+function selectLookup(selectValue) {
 
-	   let targetPay =  '#'.concat(selectId, '-text');
+    let adminUser_01_member_ranking = '#adminUser_01-member-ranking-text';
+    let adminUser_01_member_joinDate = '#adminUser_01-member-date-text';
+    let adminUser_01_member_lastAccess = '#adminUser_01-member-date-text';
+    let adminUser_01_member_id = '#adminUser_01-member-id-text';
+    let adminUser_01_member_birthYear = '#adminUser_01-member-date-text';
 
-	   if (targetPay == card) {
-	      document.querySelector(card).style.display = 'inline';
-	      document.querySelector(noBank).style.display = 'none';
-	      document.querySelector(mobile).style.display = 'none';
-	   }
+    let adminUser_member = '#adminUser_01-member-'.concat(selectValue, '-text');
 
-	   else if (targetPay == noBank) {
-	      document.querySelector(card).style.display = 'none';
-	      document.querySelector(noBank).style.display = 'inline';
-	      document.querySelector(mobile).style.display = 'none';
-	   }
 
-	   else if (targetPay == mobile) {
-	      document.querySelector(card).style.display = 'none';
-	      document.querySelector(noBank).style.display = 'none';
-	      document.querySelector(mobile).style.display = 'inline';
-	   }
-	   
-	}
+    if (adminUser_member == adminUser_01_member_ranking) {
+       document.querySelector(adminUser_01_member_ranking).style.display = 'inline';
+       document.querySelector(adminUser_01_member_joinDate).style.display = 'none';
+       document.querySelector(adminUser_01_member_lastAccess).style.display = 'none';
+       document.querySelector(adminUser_01_member_birthYear).style.display = 'none';
+       document.querySelector(adminUser_01_member_id).style.display = 'none';
+    }
+    else if (adminUser_member == adminUser_01_member_id) {
+       document.querySelector(adminUser_01_member_id).style.display = 'inline';
+       document.querySelector(adminUser_01_member_ranking).style.display = 'none';
+       document.querySelector(adminUser_01_member_joinDate).style.display = 'none';
+       document.querySelector(adminUser_01_member_lastAccess).style.display = 'none';
+       document.querySelector(adminUser_01_member_birthYear).style.display = 'none';
+    }
+    else if (adminUser_member == adminUser_01_member_joinDate || adminUser_01_member_lastAccess || adminUser_01_member_birthYear) {
+		document.querySelector(adminUser_01_member_joinDate).style.display = 'inline';
+     	document.querySelector(adminUser_01_member_lastAccess).style.display = 'inline';
+        document.querySelector(adminUser_01_member_birthYear).style.display = 'inline';
+    	document.querySelector(adminUser_01_member_ranking).style.display = 'none';
+        document.querySelector(adminUser_01_member_id).style.display = 'none';
+    }
+
+    
+ }
 </script>

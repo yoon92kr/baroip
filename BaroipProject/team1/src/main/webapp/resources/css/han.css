@@ -545,7 +545,7 @@
 	padding-top: 10px;
 }
 /* myPage_05 end */
-/* admin start */
+/* adminUser_01 start */
 .admin_main_image {
 	padding-top: 10px;
 }
@@ -562,6 +562,7 @@
 .adminUser_01-select-box-lookup {
 	margin-left: 60px;
 	width: 120px;
+	height: 30px;
 }
 
 .adminUser_01-button-top {
@@ -576,7 +577,7 @@
 }
 
 .adminUser_01-member-detail-lookup-btn, .adminUser_01-button-top {
-	background-color: #7f7f7f;
+	background-color: #d9d9d9;
 }
 
 .adminUser_01-member-change-btn {
@@ -592,3 +593,8 @@
 	border-bottom: 1px solid;
 	padding: 20px 0px;
 }
+
+#adminUser_01-member-date-text, #adminUser_01-member-id-text{
+	display: none;
+}
+/* adminUser_01 end */
