@@ -6,33 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<style>
-  .answer {
-    display: none;
-    padding-bottom: 30px;
-  }
-  #faq-title {
-    font-size: 15px;
-  }
-  .faq-content {
-  }
-  .question {
-    line-height: 50px;
-	font-size: 15px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background: none;
-    width: 100%;
-    text-align: left;
-  }
-  .question:hover {
-    color: #d9d9d9;
-  }
-  [id$="-toggle"] {
-    margin-right: 60px;
-  }
-</style>
+
 
 <div class="container-fluid">
 
@@ -47,7 +21,14 @@
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
 			<h3>자주 묻는 질문</h3>
 		</div>
+		<div class="offset-lg-3 col-lg-1 text-right cs_01_search-box">
+			<form>
+				<input class="search-box" type="text">
+			</form>
+		</div>
 	</div>
+		
+	
 
 
 
@@ -59,36 +40,32 @@
 	</div>
 
 
-	<div class="row">
-		<div class="offset-lg-9 col-lg-1 text-left cs_01_search-box">
-			<form>
-				<input class="search-box" type="text">
-			</form>
-		</div>
-	</div>
-
-
 		<div class="row">
 
-			<div class="offset-lg-2 col-lg-4 text-left cs_01_header">
+			<div class="offset-lg-2 col-lg-4 text-left cs_01_01header">
 				<span>번호</span>
 			</div>
-			<div class="col-lg-4 text-left cs_01_header">
+			<div class="col-lg-4 text-left cs_01_01header">
 				<span>제목</span>
 			</div>
 
 			<hr>
 		</div>
+		</div>
+		
+		
+		
 <div class="container-fluid">
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_listsection">
+		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-4 text-left cs_01_listsection">
+		<div class="col-lg-5 text-center cs_01_listsection">
 <div class="faq-content">
-  <button class="question" id="que-1"><span id="que-1-toggle">∨</span>
-  <span>꺼내줘</span></button>
+  <button class="question" id="que-1">
+  <span>꺼내줘</span>
+  <span id="que-1-toggle">∨</span></button>
   <div class="answer" id="ans-1">배그하고싶다</div>
 </div>
 				
@@ -98,26 +75,28 @@
 
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_listsection">
+		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-4 text-left cs_01_listsection">
+		<div class="col-lg-5 text-center cs_01_listsection">
 		<div class="faq-content">
-  <button class="question" id="que-2"><span id="que-1-toggle">∨</span>
-  <span>술 마시고 싶다</span></button>
+  <button class="question" id="que-2">
+  <span>술 마시고 싶다</span>
+  <span id="que-2-toggle">∨</span></button>
   <div class="answer" id="ans-2">배그하고싶다</div>
 </div>
 </div>
 		
 		</div>
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_listsection">
+		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-4 text-left cs_01_listsection">
+		<div class="col-lg-5 text-center cs_01_listsection">
 		<div class="faq-content">
-  <button class="question" id="que-3"><span id="que-1-toggle">∨</span>
-  <span>집에 가고 싶다</span></button>
+  <button class="question" id="que-3">
+  <span>집에 가고 싶다</span>
+  <span id="que-3-toggle">∨</span></button>
   <div class="answer" id="ans-3">배그하고싶다</div>
 </div>
 		</div>
@@ -127,13 +106,14 @@
 
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_listsection">
+		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-4 text-left cs_01_listsection">
+		<div class="col-lg-5 text-center cs_01_listsection">
 		       <div class="faq-content">
-  <button class="question" id="que-4"><span id="que-1-toggle">∨</span>
-  <span>도망쳐</span></button>
+  <button class="question" id="que-4">
+  <span>도망쳐</span>
+  <span id="que-4-toggle">∨</span></button>
   <div class="answer" id="ans-4">배그하고싶다</div>
 </div>
 		</div>
@@ -142,26 +122,28 @@
 		
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_listsection">
+		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-4 text-left cs_01_listsection">
+		<div class="col-lg-5 text-center cs_01_listsection">
 		       <div class="faq-content">
-  <button class="question" id="que-5"><span id="que-1-toggle">∨</span>
-  <span>도망쳐</span></button>
+  <button class="question" id="que-5">
+  <span>도망쳐</span>
+  <span id="que-5-toggle">∨</span></button>
   <div class="answer" id="ans-5">배그하고싶다</div>
 </div>
 		</div>
 		</div>
 		
 		<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_listsection">
+		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-4 text-left cs_01_listsection">
+		<div class="col-lg-5 text-center cs_01_listsection">
 		       <div class="faq-content">
-  <button class="question" id="que-6"><span id="que-1-toggle">∨</span>
-  <span>도망쳐</span></button>
+  <button class="question" id="que-6">
+  <span>도망쳐</span>
+  <span id="que-6-toggle">∨</span></button>
   <div class="answer" id="ans-6">배그하고싶다</div>
 </div>
 		</div>
@@ -181,7 +163,7 @@
 	        	
 	        </p> </div>
 	        </div>
-		</div>
+	
 
 
 

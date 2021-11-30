@@ -65,7 +65,7 @@
        <form>
        
         		<input type="radio" name="chk_info" value="public" checked="checked">  공개
-        <input type="radio" name="chk_info" value="private" checked="checked">  비공개
+        <input type="radio" name="chk_info" value="private" checked="checked" style="margin-left:100px">  비공개
        
         	</form>
         </div>
@@ -100,8 +100,7 @@
         <div class="col-lg-4 text-left cs_02_02_box04"> 
         		<div class="form-group">
 		<textarea class="form-control" rows="8"
-		style="resize: none; margin-top:8px;"
-			placeholder="내용을 입력해주세요.">
+		style="resize: none; margin-top:8px;">
 			</textarea>
 	</div>
         	

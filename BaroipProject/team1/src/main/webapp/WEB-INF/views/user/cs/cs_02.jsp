@@ -21,6 +21,11 @@
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
 			<h3> 1:1 문의</h3>
 		</div>
+		<div class="col-lg-4 text-right cs_02_writebtn">
+		<a href="${contextPath}/cs_02_01.do"><img
+		src="${contextPath}/resources/img/common/cs_write.png" alt="1:1문의 글쓰기 버튼 이미지"></a>
+		
+	</div>
 	</div>
 	
 	
@@ -30,31 +35,26 @@
 		</div>
 	</div>
 	
-	<div class="row">
-		<div class="offset-lg-9 col-lg-1 text-left cs_02_writebtn">
-		<a href="${contextPath}/cs_02_01.do"><img
-		src="${contextPath}/resources/img/common/cs_write.png" alt="1:1문의 글쓰기 버튼 이미지"></a>
-		</div>
-	</div>
+	
 	</div>
 	
 	
 	<div class="container-fluid">
 			<div class="row">
 
-			<div class="offset-lg-2 col-lg-1 text-left cs_02_header">
+			<div class="offset-lg-2 col-lg-1 text-left cs_02_02header">
 				<span>번호</span>
 			</div>
-			<div class="col-lg-1 text-left cs_02_header">
+			<div class="col-lg-1 text-left cs_02_02header">
 				<span>아이디</span>
 			</div>
-			<div class="col-lg-1 text-left cs_02_header">
+			<div class="col-lg-1 text-left cs_02_02header">
 				<span>상태</span>
 			</div>
-			<div class="col-lg-3 text-center cs_02_header">
+			<div class="col-lg-3 text-center cs_02_02header">
 				<span>문의제목</span>
 				</div>
-			<div class="col-lg-2 text-center cs_02_header">
+			<div class="col-lg-2 text-center cs_02_02header">
 				<span>작성일</span>
 			</div>
 			

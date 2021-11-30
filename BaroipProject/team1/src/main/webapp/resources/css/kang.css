@@ -80,7 +80,7 @@
 	left: 0;
 	width: 500px;
 	font-size: 16px;
-	margin-top: 30px;
+	margin-top: 48px;
 }
 
 .cs01-section a {
@@ -100,9 +100,8 @@
 }
 
 .cs_01_search-box {
-	height: 20px;
-	line-height: 30px;
-	margin: 23px 0px 0px 0px;
+	height: 0px;
+	line-height: 110px;
 }
 
 .cs_01_header {
@@ -128,10 +127,8 @@
 
 
 .cs_02_writebtn {
-	height: 20px;
 	line-height: 30px;
-	margin: 23px 0px 0px 0px;
-	left: 60px;
+	margin: 35px 0px 0px 0px;
 }
 
 
@@ -240,6 +237,49 @@
 	margin-left: 50px;
 	
 }
+
+.answer {
+    display: none;
+    padding-bottom: 30px;
+  }
+  #faq-title {
+    font-size: 15px;
+  }
+  .question {
+    line-height: 50px;
+	font-size: 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  [id$="-toggle"] {
+    margin-left: 300px;
+  }
+  
+  .cs_01_01header {
+	background: #d9d9d9;
+	height: 50px;
+	line-height: 50px;
+	font-family: "kopub_bold";
+	font-size: 20px;
+	border-bottom: 1px solid #000000;
+	left: 15px;
+}
+
+.cs_02_02header {
+	background: #d9d9d9;
+	height: 50px;
+	line-height: 50px;
+	font-family: "kopub_bold";
+	font-size: 20px;
+	border-bottom: 1px solid #000000;
+	left: 15px;
+}
+
 
 
 
