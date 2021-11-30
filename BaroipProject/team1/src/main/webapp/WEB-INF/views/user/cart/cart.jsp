@@ -26,7 +26,7 @@
 <div class="cart_list_body">
 	<div class="row">
 
-		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow" ></div>
+		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" class="join_01-check-01" name="checkRow" ></div>
 		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
@@ -45,7 +45,7 @@
 <div class="cart_list_body">
 	<div class="row">
 
-		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
+		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" class="join_01-check-01" name="checkRow"></div>
 		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg"  alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
@@ -64,7 +64,7 @@
 <div class="cart_list_body">
 	<div class="row">
 
-		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
+		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" class="join_01-check-01" name="checkRow"></div>
 		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
@@ -85,7 +85,7 @@
 <div class="cart_list_body">
 	<div class="row">
 
-		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
+		<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" class="join_01-check-01" name="checkRow"></div>
 		<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 		<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 		<div class="col-lg-1 text-center itemCount_row">
@@ -104,7 +104,7 @@
 <div class="cart_list_body">
 <div class="row">
 
-	<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" name="checkRow"></div>
+	<div class="col-lg-1 offset-lg-1 text-center cart_body cart_checkbox"><input type="checkbox" class="join_01-check-01" name="checkRow"></div>
 	<div class="col-lg-2 text-center cart_body"><a href="${contextPath}/product_02.do"><img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지"></a></div>
 	<div class="col-lg-3 text-center cart_body"><a href="${contextPath}/product_02.do">[상품 이름]</a></div>
 	<div class="col-lg-1 text-center itemCount_row">

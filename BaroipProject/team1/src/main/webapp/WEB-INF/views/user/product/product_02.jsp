@@ -39,30 +39,24 @@
 			<div class="product_02_form product_02_option_area">
 				<span class="product_02_option">수량</span>
 
-				<form name="itemCountBox" id="itemCountBox_form">
-					<div class="value-button cart_decrease" id="cart_decrease"
-						onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
-					<input type="number" class="cart_item_count" id="cart_item_count"
-						value="1"
-						onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
-					<div class="value-button cart_increase" id="cart_increase"
-						onclick="increaseValue(this.id)" value="Increase Value">+</div>
+				<form name="itemCountBox" id="itemCountBox_form_detail">
+					<div class="value-button cart_decrease" id="cart_decrease"	onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
+					<input type="number" class="cart_item_count" id="cart_item_count" value="1"	onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+					<div class="value-button cart_increase" id="cart_increase"	onclick="increaseValue(this.id)" value="Increase Value">+</div>
 				</form>
 
 			</div>
 
-
 			<hr>
-			<a href="#"><img
-				src="${contextPath}/resources/img/common/product_buy_now.png"
-				alt="상품상세페이지_바로구매 버튼 이미지"> </a> <a href="#"><img
-				src="${contextPath}/resources/img/common/product_get_cart.png"
-				alt="상품상세페이지_장바구니 담기 버튼 이미지"></a>
-
+			
+			<a href="#">
+			<img src="${contextPath}/resources/img/common/product_buy_now.png" alt="상품상세페이지_바로구매 버튼 이미지"> 
+			</a> 
+			<a href="#">
+			<img src="${contextPath}/resources/img/common/product_get_cart.png" class="product_02_cart_btn"	alt="상품상세페이지_장바구니 담기 버튼 이미지">
+			</a>
 
 		</div>
-
-
 
 	</div>
 
@@ -77,8 +71,7 @@
 
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 product_02_item_detail_img">
-			<img src="${contextPath}/resources/img/common/img-box.jpg"
-				alt="상품상세페이지 상품상세정보 이미지">
+			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 상품상세정보 이미지">
 		</div>
 
 	</div>
