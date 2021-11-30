@@ -5,48 +5,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
-<div class="container-fluid">
+<div class="container">
 
     <div class="row">
         <div class="col-lg-6 offset-lg-3 text-center">
-        	<h1 class="page_title">회원가입</h1>
+        	<h1 class="page_title">관리자 페이지</h1>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-lg-10 offset-lg-1 text-center">
-	        <h4 class="join-sub-title">01. 약관동의 > 
-	        	<span class="join_01-sub-title">02. 정보입력</span>
-	        </h4>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-        	<div class="join_02-top">
-        		가입정보 입력
-        	</div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-2 text-center join_02-main-left">
         	아이디
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
-        		<input class="join_02-submit-box" type="submit" value="중복 확인">
         	</form>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-2 text-center join_02-main-left">
         	비밀번호
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="password">
         	</form>
@@ -54,21 +36,10 @@
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
-        	비밀번호 확인
+        <div class="col-lg-2 text-center join_02-main-left">
+        	가입일
         </div>
-        <div class="col-lg-7 join_02-main-right">
-        	<form>
-        		<input class="join_02-text-box" type="password">
-        	</form>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
-        	이 름
-        </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
         	</form>
@@ -76,10 +47,21 @@
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-2 text-center join_02-main-left">
+        	이 름
+        </div>
+        <div class="col-lg-10 join_02-main-right">
+        	<form>
+        		<input class="join_02-text-box" type="text">
+        	</form>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-2 text-center join_02-main-left">
         	생년월일
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<select class="join_02-year-month-day" 
         		id="select_year" onchange="javascript:lastday();"></select> 
@@ -95,10 +77,10 @@
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-2 text-center join_02-main-left">
         	핸드폰 번호
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<select class="join_02-mobile">
         			<option value="010">010</option>
@@ -110,16 +92,15 @@
         		</select> - 
         		<input class="join_02-mobile-02" type="number"> - 
         		<input class="join_02-mobile-02" type="number">
-        		<input class="join_02-submit-box-02" type="submit" value="인증번호 전송">
         	</form>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
-        	인증 번호
+        <div class="col-lg-2 text-center join_02-main-left">
+        	회원 등급
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
         	</form>
@@ -127,10 +108,21 @@
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-2 text-center join_02-main-left">
+        	누적 구매액
+        </div>
+        <div class="col-lg-10 join_02-main-right">
+        	<form>
+        		<input class="join_02-text-box" type="text">
+        	</form>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-2 text-center join_02-main-left">
         	주 소
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
         		<input class="join_02-submit-box" type="submit" value="우편번호 검색">
@@ -139,10 +131,10 @@
     </div>
     
     <div class="row">
-        <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+        <div class="col-lg-2 text-center join_02-main-left">
         	상세 주소
         </div>
-        <div class="col-lg-7 join_02-main-right">
+        <div class="col-lg-10 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
         	</form>
@@ -165,7 +157,7 @@
 		    </div>
         </div>
     </div>
-    
+
 </div>
 
 <!-- 생년월일 값 -->
