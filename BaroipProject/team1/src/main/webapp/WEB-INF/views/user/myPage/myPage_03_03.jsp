@@ -19,7 +19,7 @@
 
 	<div class="row">
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
-			<h3> 반품 / 교환신청</h3>
+			<h3> 상품 후기</h3>
 		</div>
 	</div>
 	
@@ -44,9 +44,9 @@
         	
         	       <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" >
-        <span>주문 번호</span></div>
+        <span>상품명</span></div>
         <div class="col-lg-4 cs_02_02_box02">
-        <span>[상품 주문 번호]</span>
+        <span>[주문 상품 명]</span>
         </div>
 
         
@@ -57,16 +57,14 @@
         <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>반품/취소사유</span></div>
         <div class="col-lg-4 text-left cs_02_02_box02">
-        		<form>
-        		<select class="cs_02_select">
-        			<option value="010">구매의사취소</option>
-        			<option value="011">색상/사이즈변경</option>
-        			<option value="016">교환/환불/반품문의</option>
-        			<option value="017">재주문</option>
-        			<option value="016">배송지연</option>
-        			<option value="017">배송누락</option>
-        			<option value="017">오배송</option>
-        		</select>
+        		 <form>
+       
+        		<input type="radio" name="chk_info" value="Very satisfied " checked="checked">  매우 만족
+        <input type="radio" name="chk_info" value="Satisfied" checked="checked">  만족
+         <input type="radio" name="chk_info" value="Moderately " checked="checked">  보통
+          <input type="radio" name="chk_info" value="dissatisfied" checked="checked">  불만
+           <input type="radio" name="chk_info" value="Very dissatisfied" checked="checked">  매우 불만
+       
         	</form>
         	
         	</div>
@@ -113,7 +111,7 @@
 <div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
 					<a href="#"><img
-						src="${contextPath}/resources/img/common/myPage_application.png" alt="1:1문의 이전페이지 이미지"></a>
+						src="${contextPath}/resources/img/common/cs_register.png" alt="마이페이지 신청하기 버튼 이미지"></a>
 				</div>
 			</div>
 		

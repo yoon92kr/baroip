@@ -44,6 +44,11 @@
 		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
 	</definition>
 	
+	<definition name="myPage_03_03" extends="UserLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03_03.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
+	</definition>
+	
 	<definition name="myPage_04" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_04.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/user/myPage/user_myPage_sideMenu.jsp" />
