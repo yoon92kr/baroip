@@ -432,5 +432,65 @@ public class MainController {
 					mav.setViewName(viewName);
 					return mav;
 		}
+		
+		// admin- Q&A 관리 목록
+		@RequestMapping(value= "/adminCS_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminCS_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+		// admin- Q&A 작성
+		@RequestMapping(value= "/adminCS_01_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminCS_01_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+		// admin- Q&A 수정
+		@RequestMapping(value= "/adminCS_01_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminCS_01_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+		// admin- Q&A 상세
+		@RequestMapping(value= "/adminCS_01_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminCS_01_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+		// admin- Q&A 문의 관리
+		@RequestMapping(value= "/adminCS_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminCS_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+		// admin- Q&A 문의 답변 작성
+		@RequestMapping(value= "/adminCS_02_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminCS_02_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
 
 }

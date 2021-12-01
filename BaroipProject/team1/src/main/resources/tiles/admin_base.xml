@@ -20,12 +20,42 @@
 	</definition>
 	
 	<definition name="adminUser_01" extends="AdminLayout">
-		<put-attribute name="body" value="/WEB-INF/views/admin/base/adminUser_01.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminUser/adminUser_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
 	</definition>
 	
 	<definition name="adminUser_02" extends="AdminLayout">
-		<put-attribute name="body" value="/WEB-INF/views/admin/base/adminUser_02.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminUser/adminUser_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01_03" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01_03.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_02_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_02_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
 	</definition>
 		

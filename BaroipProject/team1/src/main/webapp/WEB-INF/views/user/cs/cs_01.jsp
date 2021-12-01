@@ -66,10 +66,10 @@
 		</div>
 		<div class="col-lg-3 text-left cs_01_listsection">
 <div class="faq-content">
-  <button class="question" id="que-1">
-  <span id="que-1-toggle">∨</span></button>
+  
   <div class="answer" id="ans-1">배송 전 취소 및 배송지 변경, 옵션(사이즈/색상) 변경을 원하시는 고객님들께서는 상품 출고 전(오후 12시 이전),
-  고객센터(1600-7846)로 문의하시면 처리 가능합니다^_^</div>
+  고객센터(1600-7846)로 문의하시면 처리 가능합니다^_^</div><button class="question" id="que-1">
+  <span id="que-1-toggle">∨</span></button>
 </div>
 				
 				</div>
