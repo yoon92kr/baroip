@@ -313,11 +313,13 @@
 }
 
 .MyPage_03_yeer {
-	border: 1px solid #d9d9d9
+	border: 1px solid #d9d9d9;
+	font-size: 16px;
 }
 
 .MyPage_03_month {
-	border: 1px solid #d9d9d9
+	border: 1px solid #d9d9d9;
+	font-size: 16px;
 }
 
 
@@ -354,11 +356,13 @@
 }
 
 .MyPage_03-submit-box-02 {
+	
 	font-size: 14px;
 	height: 30px;
 	border: 1px solid #d9d9d9;
 	color: #ffffff;
-	background-color: #385723;
+	background-color: #548235;
+	width: 110px;
 }
 
 .MyPage_03_text_position{
@@ -385,9 +389,10 @@
 	color: #d9d9d9;
 }
 
-.MyPage_03_left_text {
+.MyPage_03_right_text {
 	display: block;
 	color: #000000;
+	padding-bottom: 20px;
 }
 
 /* MyPage_04 start */

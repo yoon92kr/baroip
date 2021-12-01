@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-lg-2 text-center">주문 기간</div>
     <from>
-        <select class="MyPage_03_yeer"> <!-- name -> class로 변경 후 css 적용  -->
+        <select name="yeer" class="MyPage_03_yeer">
         	<option value="none">[조회 년도]</option>
         	<option value="2021">2021</option>
         	<option value="2020">2020</option>
@@ -39,7 +39,7 @@
 	</from>
         <div class="col-lg-1">년</div>
     <from>
-        <select class="MyPage_03_month">
+        <select name="month" class="MyPage_03_month">
         	<option value="none">[조회 월]</option>
         	<option value="january">1</option>
         	<option value="february">2</option>
@@ -57,7 +57,7 @@
 	</from>
         <div class="col-lg-1">월 ~</div>
 	<from>
-        <select name="yeer_03" style="border: 1px solid #d9d9d9">
+        <select class="MyPage_03_yeer">
         	<option value="none">[조회 년도]</option>
         	<option value="2021">2021</option>
         	<option value="2020">2020</option>
@@ -68,7 +68,7 @@
 	</from>
 		<div class="col-lg-1">년</div>
 	<from>
-        <select name="month_03" style="border: 1px solid #d9d9d9">
+        <select class="MyPage_03_month">
         	<option value="none">[조회 월]</option>
         	<option value="january">1</option>
         	<option value="february">2</option>
@@ -110,56 +110,32 @@
         <div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
         <div class="col-lg-2 MyPage_03_text_position_03">
         	<div>[배송 상태]</div>
+        <div>
         	<input class="MyPage_03-submit-box-02" type="button" value="주문 취소" onclick="order_cancel()">
-        	</div>
         </div>
-    </div>
-    
-    <div class="MyPage_03_center-box-01 text-center">
-    <div class="row">
-        <div class="col-lg-2 text-center">
-        	<div>[상품 주문 일자]</div>
-        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
+        <div>
+        	<input class="MyPage_03-submit-box-02" type="button" value="배송 조회" onclick="order_cancel()">
+        	<input class="MyPage_03-submit-box-02" type="button" value="구매 확정" onclick="order_cancel()">
         </div>
-        	<a href="product_02.do" class="col-lg-2 MyPage_03_text_position_02">[주문 상품 명]</a>
-        <div class="col-lg-2 MyPage_03_text_position_02">[주문 수량]</div>
-        <div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
-        <div class="col-lg-2 MyPage_03_text_position_03">
-        	<div>[배송 상태]</div>
-        	<input class="MyPage_03-submit-box-02" type="button" value="배송 조회" onclick="delivery_check()">
-        	<input class="MyPage_03-submit-box-02" type="button" value="구매 확정" onclick="buy_complete()">
-        	</div>
+        <div>
+        	<input class="MyPage_03-submit-box-02" type="button" value="반품 / 교환 신청" onclick="order_cancel()">
+        	<input class="MyPage_03-submit-box-02" type="button" value="상품 후기" onclick="order_cancel()">
         </div>
-    </div>
-    
-    <div class="MyPage_03_center-box-01 text-center">
-    <div class="row">
-        <div class="col-lg-2 text-center">
-        	<div>[상품 주문 일자]</div>
-        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
-        </div>
-        	<a href="product_02.do" class="col-lg-2 MyPage_03_text_position_02">[주문 상품 명]</a>
-        <div class="col-lg-2 MyPage_03_text_position_02">[주문 수량]</div>
-        <div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
-        <div class="col-lg-2 MyPage_03_text_position_03">
-        	<div>[배송 상태]</div>
-        	<input class="MyPage_03-submit-box-02" type="button" value="반품 / 교환" onclick="item_exchange()">
-        	<input class="MyPage_03-submit-box-02" type="button" value="상품 후기" onclick="item_review()">
         	</div>
         </div>
     </div>
 	
 	<div class="MyPage_03_bottom_return_next">
 	<div class="row">
-        <div class="col-lg-2 MyPage_03_left_text">◁이전</div>
-        <div class="col-lg-2 MyPage_03_right_text">다음▷</div>
+        <div class="col-lg-2 text-center MyPage_03_left_text">◁이전</div>
+        <div class="col-lg-2 text-center MyPage_03_right_text">다음▷</div>
         
     </div>
 	</div>
-	<div class="row">
-    	<div class="col-lg"><hr>
+	
+	<div class="container">
+	    <div class="MyPage_top-underline"></div>
     </div>
-	</div>
 </div>
 
 
