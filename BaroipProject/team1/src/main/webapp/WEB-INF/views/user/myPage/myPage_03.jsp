@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-lg-2 text-center">주문 기간</div>
     <from>
-        <select name="yeer_03" style="border: 1px solid #d9d9d9">
+        <select class="MyPage_03_yeer"> <!-- name -> class로 변경 후 css 적용  -->
         	<option value="none">[조회 년도]</option>
         	<option value="2021">2021</option>
         	<option value="2020">2020</option>
@@ -39,7 +39,7 @@
 	</from>
         <div class="col-lg-1">년</div>
     <from>
-        <select name="month_03" style="border: 1px solid #d9d9d9">
+        <select class="MyPage_03_month">
         	<option value="none">[조회 월]</option>
         	<option value="january">1</option>
         	<option value="february">2</option>
