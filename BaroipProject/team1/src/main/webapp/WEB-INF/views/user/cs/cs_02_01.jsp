@@ -37,7 +37,7 @@
         </div>
         <div class="col-lg-4 text-left cs_02_02_box02">
         		<input type="text" class="form-control" 
-        		placeholder="제목을 입력하세요." style="margin-top:8px"></div>
+        		placeholder="제목을 입력하세요."></div>
         	
         	</div>
       
@@ -83,7 +83,7 @@
         <div class="col-lg-1 text-left cs_02_02_ex01box02">
         
         		<input type="password" class="form-control" 
-        		placeholder="비밀번호" style="margin-top:8px">
+        		placeholder="비밀번호">
         		</div>
         		
         		
@@ -98,16 +98,14 @@
     <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03" ><span>내용</span></div>
         <div class="col-lg-4 text-left cs_02_02_box04"> 
-        		<div class="form-group">
-		<textarea class="form-control" rows="8"
-		style="resize: none; margin-top:8px;">
+		<textarea class="form-control" rows="8">
 			</textarea>
 	</div>
         	
         
         </div>
 	
-	</div>
+	
 </div>
 		
 		
@@ -123,7 +121,7 @@
 		
 		  <div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs_02.do""><img
+					<a href="${contextPath}/cs_02.do"><img
 						src="${contextPath}/resources/img/common/cs_return.png" alt="1:1문의 등록 버튼 이미지"></a>
 				</div>
 			</div>

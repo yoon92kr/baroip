@@ -42,10 +42,10 @@
 
 		<div class="row">
 
-			<div class="offset-lg-2 col-lg-4 text-left cs_01_01header">
+			<div class="offset-lg-2 col-lg-1 text-left cs_01_01header">
 				<span>번호</span>
 			</div>
-			<div class="col-lg-4 text-left cs_01_01header">
+			<div class="col-lg-7 text-left cs_01_01header">
 				<span>제목</span>
 			</div>
 
@@ -58,96 +58,109 @@
 <div class="container-fluid">
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
+		<div class="offset-lg-2 col-lg-1 text-left cs_01_listsection">
 			<span>공지번호</span>
 		</div>
-		<div class="col-lg-5 text-center cs_01_listsection">
+		<div class="col-lg-4 text-left cs_01_listsection">
+		<span>[배송문의] 배송 전 취소 및 배송지 변경, 옵션(사이즈/색상)을 변경 할 수 있나요?</span>
+		</div>
+		<div class="col-lg-3 text-left cs_01_listsection">
 <div class="faq-content">
   <button class="question" id="que-1">
-  <span>꺼내줘</span>
   <span id="que-1-toggle">∨</span></button>
-  <div class="answer" id="ans-1">배그하고싶다</div>
+  <div class="answer" id="ans-1">배송 전 취소 및 배송지 변경, 옵션(사이즈/색상) 변경을 원하시는 고객님들께서는 상품 출고 전(오후 12시 이전),
+  고객센터(1600-7846)로 문의하시면 처리 가능합니다^_^</div>
+</div>
+				
+				</div>
+	</div>
+		<div class="row">
+		<div class="offset-lg-2 col-lg-1 text-left cs_01_listsection">
+			<span>공지번호</span>
+		</div>
+		<div class="col-lg-4 text-left cs_01_listsection">
+		<span>[입금문의] 입금했는데 주문이 취소 되었어요.</span>
+		</div>
+		<div class="col-lg-3 text-left cs_01_listsection">
+<div class="faq-content">
+  <button class="question" id="que-2">
+  <span id="que-2-toggle">∨</span></button>
+  <div class="answer" id="ans-2">주문일로부터 7일이 지난 경우입니다.
+결제가 완료되지 않은 상태로 게시판이나 고객상담실(1600-7846)로 문의하시면 처리 도와드리겠습니다.</div>
+</div>
+				
+				</div>
+	</div>
+		<div class="row">
+		<div class="offset-lg-2 col-lg-1 text-left cs_01_listsection">
+			<span>공지번호</span>
+		</div>
+		<div class="col-lg-4 text-left cs_01_listsection">
+		<span>나는 어디 여긴 어디</span>
+		</div>
+		<div class="col-lg-3 text-left cs_01_listsection">
+<div class="faq-content">
+  <button class="question" id="que-3">
+  <span id="que-3-toggle">∨</span></button>
+  <div class="answer" id="ans-3">배그하고싶다</div>
+</div>
+				
+				</div>
+	</div>
+
+		<div class="row">
+		<div class="offset-lg-2 col-lg-1 text-left cs_01_listsection">
+			<span>공지번호</span>
+		</div>
+		<div class="col-lg-4 text-left cs_01_listsection">
+		<span>나는 어디 여긴 어디</span>
+		</div>
+		<div class="col-lg-3 text-left cs_01_listsection">
+<div class="faq-content">
+  <button class="question" id="que-4">
+  <span id="que-4-toggle">∨</span></button>
+  <div class="answer" id="ans-4">배그하고싶다</div>
+</div>
+				
+				</div>
+	</div>
+		<div class="row">
+		<div class="offset-lg-2 col-lg-1 text-center cs_01_listsection">
+			<span>공지번호</span>
+		</div>
+		<div class="col-lg-7 text-center cs_01_listsection">
+		
+<div class="faq-content">
+
+  <button class="question" id="que-5">
+  <span id="que-5-toggle">∨</span>
+  <span>[입금문의] 입금했는데 주문이 취소 되었어요.</span>
+  </button>
+  <div class="answer" id="ans-5">주문일로부터 7일이 지난 경우입니다.
+결제가 완료되지 않은 상태로 게시판이나 고객상담실(1600-7846)로 문의하시면 처리 도와드리겠습니다.</div>
+</div>
+				
+				</div>
+	</div>
+	
+			<div class="row">
+		<div class="offset-lg-2 col-lg-1 text-left cs_01_listsection">
+			<span>공지번호</span>
+		</div>
+		<div class="col-lg-4 text-left cs_01_listsection">
+		<span>나는 어디 여긴 어디</span>
+		</div>
+		<div class="col-lg-3 text-left cs_01_listsection">
+<div class="faq-content">
+  <button class="question" id="que-6">
+  <span id="que-6-toggle">∨</span></button>
+  <div class="answer" id="ans-6">배그하고싶다</div>
 </div>
 				
 				</div>
 	</div>
 
 
-
-	<div class="row">
-		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
-			<span>공지번호</span>
-		</div>
-		<div class="col-lg-5 text-center cs_01_listsection">
-		<div class="faq-content">
-  <button class="question" id="que-2">
-  <span>술 마시고 싶다</span>
-  <span id="que-2-toggle">∨</span></button>
-  <div class="answer" id="ans-2">배그하고싶다</div>
-</div>
-</div>
-		
-		</div>
-	<div class="row">
-		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
-			<span>공지번호</span>
-		</div>
-		<div class="col-lg-5 text-center cs_01_listsection">
-		<div class="faq-content">
-  <button class="question" id="que-3">
-  <span>집에 가고 싶다</span>
-  <span id="que-3-toggle">∨</span></button>
-  <div class="answer" id="ans-3">배그하고싶다</div>
-</div>
-		</div>
-	</div>
-	
-	
-
-
-	<div class="row">
-		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
-			<span>공지번호</span>
-		</div>
-		<div class="col-lg-5 text-center cs_01_listsection">
-		       <div class="faq-content">
-  <button class="question" id="que-4">
-  <span>도망쳐</span>
-  <span id="que-4-toggle">∨</span></button>
-  <div class="answer" id="ans-4">배그하고싶다</div>
-</div>
-		</div>
-		</div>
-		
-		
-
-	<div class="row">
-		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
-			<span>공지번호</span>
-		</div>
-		<div class="col-lg-5 text-center cs_01_listsection">
-		       <div class="faq-content">
-  <button class="question" id="que-5">
-  <span>도망쳐</span>
-  <span id="que-5-toggle">∨</span></button>
-  <div class="answer" id="ans-5">배그하고싶다</div>
-</div>
-		</div>
-		</div>
-		
-		<div class="row">
-		<div class="offset-lg-2 col-lg-3 text-left cs_01_listsection">
-			<span>공지번호</span>
-		</div>
-		<div class="col-lg-5 text-center cs_01_listsection">
-		       <div class="faq-content">
-  <button class="question" id="que-6">
-  <span>도망쳐</span>
-  <span id="que-6-toggle">∨</span></button>
-  <div class="answer" id="ans-6">배그하고싶다</div>
-</div>
-		</div>
-		</div>
 		
 		</div>
 		
