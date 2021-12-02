@@ -50,26 +50,26 @@
     </div>
     
     <div class="row">
-		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info">
+		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">회원 아이디</h6>
 	    </div>
-	    <div class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info">
+	    <div class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">회원 등급</h6>
 	    </div>
-	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info">
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">누적 구매액</h6>
 	    </div>
-	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info">
-	        <h6 class="order_01-content-hedaer-text">누적 구매 건수</h6>
+	    <div class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">총 구매 건</h6>
 	    </div>
-	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info">
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">최초 가입일</h6>
 	    </div>
-	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info">
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">최종 접속일</h6>
 	    </div>
-	    <div class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info">
-	        <h6 class="order_01-content-hedaer-text">회원 수정</h6>
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">회원 권한 수정</h6>
 	    </div>
 	</div>
 	
@@ -77,7 +77,7 @@
         <div class="col-lg-2 text-center adminUser_01-member-change-item-name">
         	<div>[회원 아이디]</div>
         	<form action="adminUser_02.do">
-        	<input class="adminUser_01-member-detail-lookup-btn" type="submit" value="회원 상세 정보">
+        	<input class="adminUser_01-member-detail-lookup-btn" type="submit" value="회원 정보 수정">
         	</form>
         </div>
         <div class="col-lg-1 text-center adminUser_01-member-change-item">
@@ -86,8 +86,8 @@
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
         	[회원 누적 구매액]
         </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 누적 구매 건수]
+        <div class="col-lg-1 text-center adminUser_01-member-change-item">
+        	[누적 구매 건수]
         </div>
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
         	[회원 가입일]
@@ -95,8 +95,16 @@
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
         	[회원 접속일]
         </div>
-        <div class="col-lg-1 adminUser_01-member-change-item">
-        	<input class="adminUser_01-member-change-btn" type="submit" value="회원 정보 수정">
+        <div class="col-lg-2 text-center adminUser_01-member-change-item">
+        <form class="admin_01-user-ranking">
+        	<select class="adminUser_01-ranking">
+        		<option value="0">비회원</option>
+			    <option value="1">회원</option>
+			    <option value="2">관리자1</option>
+			    <option value="3">관리자2</option>
+        	</select>
+        	<input class="adminUser_01-ranking" type="submit" value="변경">
+        </form>
         </div>
     </div>
     
@@ -113,7 +121,7 @@
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
         	[회원 누적 구매액]
         </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
+        <div class="col-lg-1 text-center adminUser_01-member-change-item">
         	[회원 누적 구매 건수]
         </div>
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
@@ -122,7 +130,7 @@
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
         	[회원 접속일]
         </div>
-        <div class="col-lg-1 adminUser_01-member-change-item">
+        <div class="col-lg-2 adminUser_01-member-change-item">
         	<input class="adminUser_01-member-change-btn" type="button" value="회원 정보 수정">
         </div>
     </div>

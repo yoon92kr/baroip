@@ -23,7 +23,7 @@
 			<div class="product_02_discript">[상품 간편 설명]</div>
 			<div class="product_02_discript">[상품 간편 설명]</div>
 
-			<div class="product_02_option_area">
+			<!-- <div class="product_02_option_area">
 				<span class="product_02_option">옵션</span> 
 				<select class="product_02_option_box">
 					<option value="선택옵션 1">선택옵션 1</option>
@@ -33,7 +33,7 @@
 
 				</select>
 
-			</div>
+			</div> -->
 
 
 			<div class="product_02_form product_02_option_area">

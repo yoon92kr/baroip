@@ -513,6 +513,7 @@ public class MainController {
 			return mav;
 		}
 		
+		
 //		admin - 반품 / 교환 신청서 확인 페이지
 		@RequestMapping(value= "/adminReturn_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView adminReturn_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -523,4 +524,34 @@ public class MainController {
 			return mav;
 		}
 
+//		admin - 상품 관리
+		@RequestMapping(value= "/adminProduct_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminProduct_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		 admin - 상품 등록
+		@RequestMapping(value= "/adminProduct_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminProduct_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 상품 수정
+		@RequestMapping(value= "/adminProduct_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminProduct_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
 }

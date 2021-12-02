@@ -447,7 +447,9 @@
 	margin-left:150px;
 }
 
-#order_01-selectPay-noBank-text, #order_01-selectPay-mobile-text {
+#order_01-selectPay-noBank-text, #order_01-selectPay-mobile-text, 
+#adminUser_01-member-date-text, #adminUser_01-member-id-text, 
+#adminProduct_01-productName-text {
 	display: none;
 }
 
@@ -554,12 +556,14 @@
 	margin-top: 10px;
 }
 
-.adminUser_01-button-top, .adminUser_01-select-box-lookup {
+.adminUser_01-button-top, .adminUser_01-select-box-lookup, 
+#adminProduct_01-productUpDate-text, #adminProduct_01-productName-text {
 	border: 1px solid #d9d9d9;
 	text-align: center;
 }
 
-.adminUser_01-select-box-lookup {
+.adminUser_01-select-box-lookup, #adminProduct_01-productUpDate-text, 
+#adminProduct_01-productName-text {
 	margin-left: 60px;
 	width: 120px;
 	height: 30px;
@@ -580,7 +584,9 @@
 	background-color: #d9d9d9;
 }
 
-.adminUser_01-member-change-btn {
+.adminUser_01-member-change-btn, .adminProduct_01-product, 
+.adminProduct_01-product, .adminProduct_01-button-top, 
+.admin_01-itemCountBox-btn {
 	color: #fff;
 	background-color: #203864;
 }
@@ -594,7 +600,172 @@
 	padding: 20px 0px;
 }
 
-#adminUser_01-member-date-text, #adminUser_01-member-id-text{
-	display: none;
+.adminUser_01-ranking {
+	width: 70px;
+    font-size: 14px;
+    height: 25px;
+    border: 1px solid #d9d9d9;
+}
+
+.admin_01-user-ranking {
+	display: inline-block;	
 }
 /* adminUser_01 end */
+
+/* adminUser_02 start */
+.adminUser_02-btn-color, .adminProduct_01-product {
+	background-color: #203864;
+}
+/* adminUser_02 end */
+
+/* adminProduct_01 start */
+.adminUser_01-header-border {
+	border-bottom: 1px solid;
+}
+
+.adminProduct_01-product {
+	width: 100px;
+	height: 22px;
+	font-size: 12px;
+	border: none;
+	padding-bottom: 2px;
+}
+
+.admin_01-itemCountBox-btn {
+	margin-left: 15px;
+	border: none;
+	height: 25px;
+	font-size: 12px;
+}
+
+.adminProduct_01-product-top {
+	margin-bottom: 5px;
+}
+
+.adminProduct_01-content-item {
+	padding-top: 18px;
+	border-bottom: 1px solid;
+	height: 90px;
+}
+
+.adminProduct_01-option {
+	font-size: 12px;
+}
+
+#adminProduct_01-itemCountBox-detail {
+	display: inline-block;
+	border: 1px solid #ddd;
+ 	width: 100px;
+	height: 25px;
+}
+
+.adminProduct_01-value-button {
+	display: inline-block;
+	margin: 0px;
+	/* width: 10%; */
+	height: 22px;
+	text-align: center;
+	background: #fff;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.adminProduct_01-value-button:hover {
+	cursor: pointer;
+	color: #d9d9d9
+}
+
+form .adminProduct_01-decrease {
+	margin: 0px 10px 0px 8px;
+}
+
+form .adminProduct_01-increase {
+	margin-left: 10px;
+}
+
+.adminProdut_01-cart_item_count {
+	text-align: center;
+	border: none;
+	width: 35px;
+	height: 90%;
+}
+
+.adminProduct_01-header-button {
+	border: none;
+	margin: 3px 0px 0px 20px;
+	width: 70px;
+	height: 25px;
+}
+/* adminProduct_01 end */
+
+/* adminProduct_01 start */
+.adminProduct_02-content-body-mainInfo, .adminProduct_02-optionName {
+	border: 1px solid #d9d9d9;
+	width: 89px;
+	height: 30px;
+}
+
+.adminProduct_02-content-body-mainInfo {
+	margin-top: 5px;
+}
+
+.adminProduct_02-optionName {
+	width: 560px;
+	margin-left: 30px;
+}
+
+.adminProduct_02-content-body-left-text {
+	margin-left: 60px;
+}
+
+.admin_02-test04 {
+	margin-left: 30px;
+}
+
+.adminProduct_02-optionForm, .adminProduct_02-optionForm-left {
+	height: 75px;
+}
+
+.adminProduct_02-optionForm-left {
+	padding-top: 24px;
+}
+
+.adminProduct_02-content-body-category-text {
+	margin-left: 140px;
+}
+
+.adminProduct_02-category {
+	margin-left: 40px;
+	margin-right: 44px;
+	height: 35px;
+	width: 140px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+}
+
+.adminProduct_02-main-content-left {
+	padding-top: 320px;
+	height: 790px;
+	background: #f2f2f2;
+	border: 1px solid #d9d9d9;
+}
+
+.adminProduct_02-main-content-text {
+	margin: 15px 0px 15px 0px;
+	width: 915px;
+	height: 700px;
+	resize: none;
+}
+
+.adminProduct_02-main-right {
+	border: 1px solid #d9d9d9;	
+}
+
+.adminProduct_02-main-content-file {
+	margin-top: 15px;
+	border: none;
+}
