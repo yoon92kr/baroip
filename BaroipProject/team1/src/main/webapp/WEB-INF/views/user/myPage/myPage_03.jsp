@@ -109,14 +109,16 @@
         <div class="col-lg-2 MyPage_03_text_position_02">[주문 수량]</div>
         <div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
         <div class="col-lg-2 MyPage_03_text_position_03">
-        	<div>[배송 상태]</div>
+        	<div>[상품 준비 중]</div>
         <div>
         	<input class="MyPage_03-submit-box-02" type="button" value="주문 취소" onclick="order_cancel()">
         </div>
+        	<div>[상품 배송 중]</div>
         <div>
         	<input class="MyPage_03-submit-box-02" type="button" value="배송 조회" onclick="order_cancel()">
         	<input class="MyPage_03-submit-box-02" type="button" value="구매 확정" onclick="order_cancel()">
         </div>
+        	<div>[배송 완료]</div>
         <div>
         	<input class="MyPage_03-submit-box-02" type="button" value="반품 / 교환 신청" onclick="order_cancel()">
         	<input class="MyPage_03-submit-box-02" type="button" value="상품 후기" onclick="order_cancel()">

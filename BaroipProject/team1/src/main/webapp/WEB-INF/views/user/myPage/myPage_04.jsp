@@ -126,8 +126,8 @@
     
     	<div class="MyPage_03_bottom_return_next">
 			<div class="row">
-        <div class="col-lg-2">◁이전</div>
-        <div class="col-lg-2">다음▷</div>
+		<div class="col-lg-2 text-center MyPage_03_left_text">◁이전</div>
+		<div class="col-lg-2 text-center MyPage_03_right_text">다음▷</div>
     
     </div>
 </div>

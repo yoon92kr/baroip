@@ -16,8 +16,9 @@
 }
 
 .MyPage_padding {
-	padding-top: 20px;
+	padding-top: 30px;
 	height: 80px;
+	font-size: 22px;
 }
 
 .MyPage_side-section a {
@@ -39,6 +40,10 @@
 .MyPage_title {
 	font-size: 25px;
 	font-weight: bold;
+}
+
+.MyPage_title_02 {
+	font-weight: lighter;
 }
 
 .Mypage_01_header {
@@ -353,6 +358,8 @@
 	border: 1px solid #d9d9d9;
 	color: #ffffff;
 	background-color: #404040;
+	width: 110px;
+	margin-top: 3px;
 }
 
 .MyPage_03-submit-box-02 {
@@ -400,4 +407,58 @@
 .MyPage_04_info_center {
 	font-size: 16px;
 	margin-left: 450px;
+}
+
+/* adminReturn_01 start */
+
+.AdminReturn_center-box-01 {
+	border-bottom: 1px solid #000000;
+	font-size: 16px;
+	padding-top: 30px;
+	height: 140px;
+}
+
+.AdminReturn_02_top{
+	margin-top: 15px;
+}
+
+.AdminReturn_02-textarea {
+	resize: none;
+}
+
+.AdminReturn_02-height{
+	height: 280px;
+}
+
+.AdminReturn_02-height-01 {
+	height: 260px;
+	width: 700px;
+	margin-left: 60px;
+	border: 1px solid #d9d9d9;
+}
+
+.AdminReturn_02-text-box {
+	width: 700px;
+	height: 35px;
+	margin-left: 60px;
+	border: 1px solid #d9d9d9;
+}
+
+.AdminReturn_02-height-02{
+	height: 90px;
+}
+
+.AdminReturn_02-bottom-button {
+	display: block;
+	background-color: #767171;
+	font-size: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+	height: 50px;
+	margin-left: 550px;
+	
+}
+
+.AdminReturn_02-bottom-button:hover {
+	color: #fff;
 }
