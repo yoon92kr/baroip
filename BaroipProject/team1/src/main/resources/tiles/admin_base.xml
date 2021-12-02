@@ -58,5 +58,20 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_02_01.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
 	</definition>
+	
+	<definition name="adminOrder" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminOrder/adminOrder.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReturn_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReturn/adminReturn_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReturn_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReturn/adminReturn_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
 		
 </tiles-definitions>

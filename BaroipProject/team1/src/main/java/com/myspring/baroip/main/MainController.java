@@ -492,5 +492,35 @@ public class MainController {
 			mav.setViewName(viewName);
 			return mav;
 		}
+		
+//		admin - 주문 관리
+		@RequestMapping(value= "/adminOrder.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminOrder(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 반품 / 교환 관리
+		@RequestMapping(value= "/adminReturn_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminReturn_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 반품 / 교환 신청서 확인 페이지
+		@RequestMapping(value= "/adminReturn_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminReturn_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
 
 }

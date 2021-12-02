@@ -14,12 +14,20 @@
     </div>
     
     <div class="row">
+        <div class="col-lg-12 text-left myPage_03_01-content-body">
+        	<h6 class="order_01-sub-title-page">
+        		<span class="order_01-sub-title">회원 상세 정보</span>
+        	</h6>
+        </div>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-2 text-center join_02-main-left">
         	아이디
         </div>
         <div class="col-lg-10 join_02-main-right">
         	<form>
-        		<input class="join_02-text-box" type="text">
+        		<input class="join_02-text-box" type="text" disabled>
         	</form>
         </div>
     </div>
@@ -41,7 +49,7 @@
         </div>
         <div class="col-lg-10 join_02-main-right">
         	<form>
-        		<input class="join_02-text-box" type="text">
+        		<input class="join_02-text-box" type="text" disabled>
         	</form>
         </div>
     </div>
@@ -64,13 +72,13 @@
         <div class="col-lg-10 join_02-main-right">
         	<form>
         		<select class="join_02-year-month-day" 
-        		id="select_year" onchange="javascript:lastday();"></select> 
+        		id="select_year" onchange="javascript:lastday();" disabled></select> 
         		<span class="join_02-year-month-day-text">년</span>
         		<select class="join_02-year-month-day" 
-        		id="select_month" onchange="javascript:lastday();"></select> 
+        		id="select_month" onchange="javascript:lastday();" disabled></select> 
         		<span class="join_02-year-month-day-text">월</span>
         		<select class="join_02-year-month-day" 
-        		id="select_day" onchange="javascript:lastday();"></select> 
+        		id="select_day" onchange="javascript:lastday();" disabled></select> 
         		<span class="join_02-year-month-day-text">일</span>
         	</form>
         </div>
@@ -113,7 +121,7 @@
         </div>
         <div class="col-lg-10 join_02-main-right">
         	<form>
-        		<input class="join_02-text-box" type="text">
+        		<input class="join_02-text-box" type="text" disabled>
         	</form>
         </div>
     </div>
@@ -125,7 +133,6 @@
         <div class="col-lg-10 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
-        		<input class="join_02-submit-box" type="submit" value="우편번호 검색">
         	</form>
         </div>
     </div>
