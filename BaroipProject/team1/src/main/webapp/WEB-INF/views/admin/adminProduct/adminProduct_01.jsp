@@ -36,7 +36,7 @@
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	<input class="adminProduct_01-header-button" type="button" value="조회하기">
-        	<input class="adminProduct_01-header-button adminProduct_01-button-top" type="submit" value="상품 등록" formaction="${contextPath}/adminProduct_02.do">
+        	<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="상품 등록" onclick="location.href='${contextPath}/adminProduct_02.do'">
         </div>
     </div>
     
@@ -81,7 +81,7 @@
 				<input class="admin_01-itemCountBox-btn" type="submit" value="변경">
         </div>
         <div class="col-lg-2 text-center adminProduct_01-content-item">
-        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="상품 수정">
+        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="상품 수정" onclick="location.href='${contextPath}/adminProduct_03.do'">
         	<input class="adminProduct_01-product" type="button" value="상품 삭제">
         </div>
     </div>

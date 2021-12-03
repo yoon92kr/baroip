@@ -449,7 +449,9 @@
 
 #order_01-selectPay-noBank-text, #order_01-selectPay-mobile-text, 
 #adminUser_01-member-date-text, #adminUser_01-member-id-text, 
-#adminProduct_01-productName-text {
+#adminProduct_01-productName-text, #adminProduct_02_category_02-text, 
+#adminProduct_02_category_03-text, #adminProduct_03_category_02-text, 
+#adminProduct_03_category_03-text {
 	display: none;
 }
 
@@ -702,7 +704,7 @@ form .adminProduct_01-increase {
 }
 /* adminProduct_01 end */
 
-/* adminProduct_01 start */
+/* adminProduct_02 start */
 .adminProduct_02-content-body-mainInfo, .adminProduct_02-optionName {
 	border: 1px solid #d9d9d9;
 	width: 89px;
@@ -759,6 +761,7 @@ form .adminProduct_01-increase {
 	width: 915px;
 	height: 700px;
 	resize: none;
+	border: 1px solid #d9d9d9;
 }
 
 .adminProduct_02-main-right {
@@ -768,4 +771,22 @@ form .adminProduct_01-increase {
 .adminProduct_02-main-content-file {
 	margin-top: 15px;
 	border: none;
+}
+
+.adminProduct_02-main-img-add-btn {
+	margin-bottom: 5px;
+}
+
+.adminProduct_02-sub-img-add-btn {
+	display: block;
+	margin: 5px 0px;
+}
+
+.adminProduct_02-img-add-left {
+	background: #f2f2f2;
+	padding-top: 45px;
+}
+
+.adminProduct_02-img-add-left, .adminProduct_02-img-add-right {
+	border: 1px solid #d9d9d9;
 }
