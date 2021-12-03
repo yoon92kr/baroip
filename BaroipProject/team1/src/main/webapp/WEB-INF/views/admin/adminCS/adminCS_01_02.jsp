@@ -63,14 +63,14 @@
 <div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
 					<a href="#"><img
-						src="${contextPath}/resources/img/common/Q&A_correctform.png" alt="관리자페이지 등록하기 이미지"></a>
+						src="${contextPath}/resources/img/common/Q&A_correctform.png" alt="Q&A 수정하기페이지 수정하기 이미지"></a>
 				</div>
 			</div>
 		
 		  <div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs_02.do"><img
-						src="${contextPath}/resources/img/common/cs_return.png" alt="1:1문의 등록 버튼 이미지"></a>
+					<a href="${contextPath}/adminCS_01.do"><img
+						src="${contextPath}/resources/img/common/cs_return.png" alt="Q&A 수정하기페이지 돌아가기 버튼 이미지"></a>
 				</div>
 			</div>
 			

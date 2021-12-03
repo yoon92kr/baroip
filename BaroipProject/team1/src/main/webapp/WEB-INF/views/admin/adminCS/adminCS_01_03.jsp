@@ -19,7 +19,7 @@
 
 	<div class="row">
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
-			<h3> Q&A 수정하기</h3>
+			<h3> Q&A 상세보기</h3>
 		</div>
 	</div>
 	
@@ -63,8 +63,8 @@
 		
 		  <div class="offset-lg-5 col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs_02.do"><img
-						src="${contextPath}/resources/img/common/cs_list.png" alt="1:1문의 목록 버튼 이미지"></a>
+					<a href="${contextPath}/adminCS_01.do"><img
+						src="${contextPath}/resources/img/common/cs_list.png" alt="Q&A상세보기 목록 버튼 이미지"></a>
 				</div>
 			</div>
 		

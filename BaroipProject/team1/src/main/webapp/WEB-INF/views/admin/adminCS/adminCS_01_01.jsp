@@ -1,4 +1,4 @@
-<!--  2021.11.29 강보석 -->
+<!--  2021.12-03 강보석 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -69,7 +69,7 @@
 		
 		  <div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs_02.do"><img
+					<a href="${contextPath}/adminCS_01.do"><img
 						src="${contextPath}/resources/img/common/cs_return.png" alt="1:1문의 등록 버튼 이미지"></a>
 				</div>
 			</div>
