@@ -1,5 +1,5 @@
 <!-- 2021.11.24 윤상현 -->
-
+<!-- 2021.12.03 한건희 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
@@ -91,8 +91,25 @@
 		</div>
 		<div class="item-format">
 			<div class="row">
-				<div class="col-lg-3">
-					<a href="#" class="">
+				<div class="col-lg-3 main_item_bottom_text">
+					<a href="${contextPath}/product_02.do" class="">
+						<span class="item-title item-location-left-top">[상품명]</span>
+						<span class="item-price"></span>
+						<span class="item-dc">[할인]</span>
+						<br>
+						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
+						<span class="item-real-price">[판매가]</span>
+					</a>
+				</div>
+				
+				<div class="col-lg-1 text-center main_item_bottom_text">
+					<form>
+						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</form>
+				</div>
+
+				<div class="col-lg-3 main_item_bottom_text">
+					<a href="${contextPath}/product_02.do" class="">
 						<span class="item-title item-location-left-top">[상품명]</span>
 						<span class="item-price">[상품원가]</span>
 						<span class="item-dc">[할인]</span>
@@ -102,47 +119,28 @@
 					</a>
 				</div>
 				
-				<div class="col-lg-1 text-center">
+				<div class="col-lg-1 text-center main_item_bottom_text">
 					<form>
 						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
 					</form>
 				</div>
 
-				<div class="col-lg-2">
-					<a href="#" class="item-title">[상품명]</a><br> <a href="#"
-						class="item-comment">[상품설명]</a>
-
+				<div class="col-lg-3 main_item_bottom_text">
+					<a href="${contextPath}/product_02.do" class="">
+						<span class="item-title item-location-left-top">[상품명]</span>
+						<span class="item-price">[상품원가]</span>
+						<span class="item-dc">[할인]</span>
+						<br>
+						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
+						<span class="item-real-price">[판매가]</span>
+					</a>
 				</div>
-
-				<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
-					<a href="#" class="item-price">[상품 원가]</a> <a href="#"
-						class="item-dc">[할인]</a><br> <a href="#"
-						class="item-real-price">[판매가]</a>
+				
+				<div class="col-lg-1 text-center main_item_bottom_text">
+					<form>
+						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</form>
 				</div>
-				<div class="col-lg-1 text-center">
-					<a href="#"><img class="cart-put-icon"
-						src="${contextPath}/resources/img/common/cart-put-icon.png"
-						alt="카트 담기 버튼 이미지"></a>
-				</div>
-
-				<div class="col-lg-2">
-					<a href="#" class="item-title">[상품명]</a><br> <a href="#"
-						class="item-comment">[상품설명]</a>
-
-				</div>
-
-				<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
-					<a href="#" class="item-price">[상품 원가]</a> <a href="#"
-						class="item-dc">[할인]</a><br> <a href="#"
-						class="item-real-price">[판매가]</a>
-				</div>
-
-				<div class="col-lg-1 text-center">
-					<a href="#"><img class="cart-put-icon"
-						src="${contextPath}/resources/img/common/cart-put-icon.png"
-						alt="카트 담기 버튼 이미지"></a>
-				</div>
-			</div>
 
 		</div>
 	</div>
