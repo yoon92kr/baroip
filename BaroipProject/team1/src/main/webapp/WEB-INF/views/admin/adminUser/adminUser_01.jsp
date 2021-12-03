@@ -87,7 +87,7 @@
         	[회원 누적 구매액]
         </div>
         <div class="col-lg-1 text-center adminUser_01-member-change-item">
-        	[누적 구매 건수]
+        	[누적 건]
         </div>
         <div class="col-lg-2 text-center adminUser_01-member-change-item">
         	[회원 가입일]
@@ -105,33 +105,6 @@
         	</select>
         	<input class="adminUser_01-ranking" type="submit" value="변경">
         </form>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	<div>[회원 아이디]</div>
-        	<form action="adminUser_02.do">
-        	<input class="adminUser_01-member-detail-lookup-btn" type="submit" value="회원 상세 정보">
-        	</form>
-        </div>
-        <div class="col-lg-1 text-center adminUser_01-member-change-item">
-        	[회원 등급]
-        </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 누적 구매액]
-        </div>
-        <div class="col-lg-1 text-center adminUser_01-member-change-item">
-        	[회원 누적 구매 건수]
-        </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 가입일]
-        </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 접속일]
-        </div>
-        <div class="col-lg-2 adminUser_01-member-change-item">
-        	<input class="adminUser_01-member-change-btn" type="button" value="회원 정보 수정">
         </div>
     </div>
 

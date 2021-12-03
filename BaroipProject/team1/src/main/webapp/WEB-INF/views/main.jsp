@@ -45,17 +45,17 @@
 	<div class="container-fluid">
 
 		<div class="row">
-			<div class="col-lg-4 offset-lg-1">
+			<div class="col-lg-4 offset-lg-1 main-section-solid">
 				<hr>
 			</div>
 
 			<div class="col-lg-2 text-center">
 				<div class="section-title">
-					<p>BEST ITEM</p>
+					BEST ITEM
 				</div>
 			</div>
 
-			<div class="col-lg-4">
+			<div class="col-lg-4 main-section-solid">
 				<hr>
 			</div>
 		</div>
@@ -91,23 +91,21 @@
 		</div>
 		<div class="item-format">
 			<div class="row">
-				<div class="col-lg-2">
-					<a href="#" class="item-title">[상품명]</a><br> <a href="#"
-						class="item-comment">[상품설명]</a>
-
+				<div class="col-lg-3">
+					<a href="#" class="">
+						<span class="item-title item-location-left-top">[상품명]</span>
+						<span class="item-price">[상품원가]</span>
+						<span class="item-dc">[할인]</span>
+						<br>
+						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
+						<span class="item-real-price">[판매가]</span>
+					</a>
 				</div>
-
-				<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
-					<a href="#" class="item-price">[상품 원가]</a> <a href="#"
-						class="item-dc">[할인]</a><br> <a href="#"
-						class="item-real-price">[판매가]</a>
-				</div>
-
-
+				
 				<div class="col-lg-1 text-center">
-					<a href="#"><img class="cart-put-icon"
-						src="${contextPath}/resources/img/common/cart-put-icon.png"
-						alt="카트 담기 버튼 이미지"></a>
+					<form>
+						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</form>
 				</div>
 
 				<div class="col-lg-2">

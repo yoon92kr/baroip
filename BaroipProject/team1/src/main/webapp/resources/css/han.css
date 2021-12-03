@@ -233,7 +233,10 @@
 }
 
 .join_01-next {
-	margin-left: 61px;
+	text-align: center;
+    margin-left: 61px;
+    height: 50px;
+    margin-top: 20px;
 }
 
 .join_01-btn-img {

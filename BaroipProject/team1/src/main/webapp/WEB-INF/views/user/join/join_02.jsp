@@ -159,9 +159,9 @@
         </div>
 		<div class="col-lg-4 join_02-bottom-btn">
         	<div class="join_01-btn">
-	        	<a class="join_01-next" href="join_03.do">
-					<img class="bottom_btn_size" class="join_01-btn-img" src="${contextPath}/resources/img/common/join_btn.png" alt="회원가입 정보입력 가입하기 버튼 이미지">
-			    </a>
+	        	<form  class="join_01-next" action="join_03.do">
+	        		<input class="bottom_btn_size join_01-btn-img" type="image" src="${contextPath}/resources/img/common/join_btn.png" alt="회원가입 정보입력 가입하기 버튼 이미지">
+	        	</form>
 		    </div>
         </div>
     </div>
