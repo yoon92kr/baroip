@@ -299,6 +299,34 @@
 	margin-right:30px;
 }
 
+.admincs_02_02_box03 {
+	background: #f2f2f2;
+	height: 350px;
+	line-height: 300px;
+	font-family: "kopub_bold";
+	font-size: 17px;
+	border: 1px solid #d9d9d9;
+}
+
+.admincs_02_02_box04 {
+	height: 350px;
+	line-height: 300px;
+	font-size: 17px;
+	border: 1px solid #d9d9d9;
+}
+
+.admincs_01_btn{
+}
+
+.cs_02_listsection {
+	font-size: 15px;
+	border-bottom: 1px solid #000000;
+	left: 15px;
+	word-break:nowrap
+
+	
+}
+
 
 
 
