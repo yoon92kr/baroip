@@ -437,8 +437,19 @@
 	height: 280px;
 }
 
+.AdminReturn_02-height-04{
+	height: 200px;
+}
+
 .AdminReturn_02-height-01 {
 	height: 260px;
+	width: 700px;
+	margin-left: 60px;
+	border: 1px solid #d9d9d9;
+}
+
+.AdminReturn_02-height-06 {
+	height: 180px;
 	width: 700px;
 	margin-left: 60px;
 	border: 1px solid #d9d9d9;
@@ -466,7 +477,31 @@
 	
 }
 
-.AdminReturn_02-bottom-button:hover {
+.AdminReturn_02-bottom-button-2 {
+	display: block;
+	background-color: #203864;
+	font-size: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+	height: 50px;
+	margin-left: 400px;
+	
+}
+
+.AdminReturn_02-bottom-button-3 {
+	display: block;
+	background-color: #767171;
+	font-size: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+	height: 50px;
+	margin-left: 50px;
+	
+}
+
+
+.AdminReturn_02-bottom-button:hover, .AdminReturn_02-bottom-button-2:hover,
+.AdminReturn_02-bottom-button-3:hover {
 	color: #fff;
 }
 

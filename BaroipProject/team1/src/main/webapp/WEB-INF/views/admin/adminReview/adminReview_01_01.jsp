@@ -26,7 +26,7 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<input class="AdminReturn_02-text-box text-center" type="text" placeholder="[반품 / 교환 신청 제목]">
+        		<input class="AdminReturn_02-text-box text-center" type="text" disabled placeholder="[후기 제목]">
         	</form>
         </div>
         </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<input class="AdminReturn_02-text-box text-center" type="text" disabled placeholder="[상품 주문 번호]">
+        		<input class="AdminReturn_02-text-box text-center" type="text" disabled placeholder="[주문 상품 명]">
         	</form>
         </div>
     </div>
@@ -49,18 +49,18 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<input class="AdminReturn_02-text-box text-center" type="text" placeholder="[문의 유형]">
+        		<input class="AdminReturn_02-text-box text-center" type="text" disabled placeholder="[상품 평점]">
         	</form>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-lg-2 text-center MyPage_02_01_menu-left AdminReturn_02-height">
+        <div class="col-lg-2 text-center MyPage_02_01_menu-left AdminReturn_02-height-04">
         	내 용
         </div>
-        <div class="col-lg-9 MyPage_02_01_menu-right AdminReturn_02-height">
+        <div class="col-lg-9 MyPage_02_01_menu-right AdminReturn_02-height-04">
         	<form>
-        		<textarea class="AdminReturn_02-height-01 AdminReturn_02-textarea"></textarea>
+        		<textarea class="AdminReturn_02-height-06 AdminReturn_02-textarea text-center" disabled placeholder="[후기 내용]"></textarea>
         	</form>
         </div>
     </div>
@@ -68,15 +68,12 @@
     
     
     <div class="row">
-        <div class="col-lg-2 text-center MyPage_02_01_menu-left AdminReturn_02-height-02">
+        <div class="col-lg-2 text-center MyPage_02_01_menu-left AdminReturn_02-height-04">
         	답 변
         </div>
-        <div class="col-lg-9 MyPage_02_01_menu-right AdminReturn_02-height-02">
+        <div class="col-lg-9 MyPage_02_01_menu-right AdminReturn_02-height-04">
         	<form>
-        		<img class="cart_image_clip" 
-        		src="${contextPath}/resources/img/common/img-box.jpg" alt="주문페이지 상품 이미지">
-        		<img class="cart_image_clip" 
-        		src="${contextPath}/resources/img/common/img-box.jpg" alt="주문페이지 상품 이미지">
+        		<textarea class="AdminReturn_02-height-06 AdminReturn_02-textarea"></textarea>
         	</form>
         </div>
     </div>
@@ -86,9 +83,9 @@
     </div>
     
     <div class="container">
-    <div class="MyPage_02_01_button">
       <div class="row">
-    	<a href="${contextPath}/adminReturn_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button">목 록</a>
+      	<a href="${contextPath}/adminReturn_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button-2">답변 등록</a>
+    	<a href="${contextPath}/adminReturn_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button-3">목 록</a>
       </div>
     </div>
     </div>
