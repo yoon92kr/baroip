@@ -1,4 +1,4 @@
-<!--  2021.11.30 윤상현 -->
+<!--  2021.11.30 강보석 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -11,91 +11,117 @@
 <div class="container-fluid">
 
 	<div class="row">
-		<div class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text product_03_mini_category_text">
-			<a href="${contextPath}/product_02.do">상품 상세정보</a> 
-			<a href="${contextPath}/product_03.do">고객 후기</a> 
-			<a href="${contextPath}/product_04.do">배송 / 교환 /반품 안내</a> 
-			<a href="${contextPath}/product_05.do">상품 문의</a>
+		<div class="col-lg-4 offset-lg-4 text-center">
+			<h1 class="page_title">문의 작성</h1>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
+			<h3> 문의 내용 작성</h3>
 		</div>
 	</div>
 	
-
+	
 	<div class="row">
-		<div class="col-lg-4 offset-lg-4 text-center">
-			<div class="product_03_title">상품 문의 작성</div>	
+		<div class="offset-lg-2 col-lg-8 cs_02_02_row">
+			<hr>
 		</div>
 	</div>
+	
+	
+	   <div class="row">
+        <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" >
+        <span>제목</span>
+        </div>
+        <div class="col-lg-4 text-left cs_02_02_box02">
+        		<input type="text" class="form-control" 
+        		placeholder="제목을 입력하세요."></div>
+        	
+        	</div>
+      
+        
+        <div class="row">
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>문의유형</span></div>
+        <div class="col-lg-4 text-left cs_02_02_box02">
+        		<span>[상품명]</span>
+        	</div>
+        	</div>
+       
+        
+        <div class="row">
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" >
+        <span>공개여부</span></div>
+        <div class="col-lg-4 cs_02_02_box02">
+       <form>
+       
+        		<input type="radio" name="chk_info" value="public" checked="checked">  공개
+        <input type="radio" name="chk_info" value="private" checked="checked" style="margin-left:100px">  비공개
+       
+        	</form>
+        </div>
 
-
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center product_06_form_title">
-			<span>제목</span>
-		</div>
-		<div class="col-lg-4 text-left product_06_form_box">
-			<input class="product_06_text_box" type="text" placeholder=" 제목을 입력해주세요.">
-		</div>
+        
+        </div>
+        
+        
+   <div class="row">
+        <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" >
+        <span>비밀번호</span>
+        </div>
+        
+        
+        <div class="col-lg-1 text-left cs_02_02_ex01box02">
+        
+        		<input type="password" class="form-control" 
+        		placeholder="비밀번호">
+        		</div>
+        		
+        		
+        		 <div class="col-lg-3 text-left cs_02_02_ex02box02">
+        		</div>
+        	
+        	
+        	</div>
+      
+   
+    
+    <div class="row">
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03" ><span>내용</span></div>
+        <div class="col-lg-4 text-left cs_02_02_box04"> 
+		<textarea class="form-control" rows="8" placeholder="내용을 입력하세요."></textarea>
 	</div>
-
-
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center product_06_form_title">
-			<span>공개여부</span>
-		</div>
-		<div class="col-lg-4 product_06_form_box">
-			<form>
-				<input type="radio" name="chk_info" value="public" checked="checked">공개 
-				<input type="radio" name="chk_info" value="private"	checked="checked"> 비공개
-			</form>
-		</div>
-	</div>
-
-
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center product_06_form_title">
-			<span>문의 상품명</span>
-		</div>
-		<div class="col-lg-4 text-center product_06_form_box">
-			<input type="text" class="product_06_text_box product_06_item_title" value="[상품명]" readonly >
-		</div>
-	</div>
-
-
-
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center product_06_form_title">
-			<span>내용</span>
-		</div>
-		<div class="col-lg-4 text-left product_form_box">
-			<input type="text" class="product_06_form_text_box" placeholder=" 내용을 입력해주세요.">
-		</div>
-
-	</div>
+        	
+        
+        </div>
+	
+	
 </div>
-
-
+		
+		
 <div class="container-fluid">
 
-	<div class="row">
-		<div class="offset-lg-4 col-lg-2 text-center">
-			<div class="cs_correct_btn">
-				<a href="${contextPath}/product_05.do"><img
-					src="${contextPath}/resources/img/common/cs_register.png"
-					alt="상품문의 등록하기 버튼 이미지"></a>
+<div class="row">
+<div class="offset-lg-4 col-lg-2 text-center">
+				<div class="cs_correct_btn">
+					<a href="#"><img
+						src="${contextPath}/resources/img/common/cs_register.png" alt="1:1문의 이전페이지 이미지"></a>
+				</div>
 			</div>
-		</div>
-
-		<div class="col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<a href="${contextPath}/product_05.do"><img
-					src="${contextPath}/resources/img/common/cs_return.png"
-					alt="상품문의 돌아가기 버튼 이미지"></a>
+		
+		  <div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<a href="${contextPath}/cs_02.do"><img
+						src="${contextPath}/resources/img/common/cs_return.png" alt="1:1문의 등록 버튼 이미지"></a>
+				</div>
 			</div>
-		</div>
-
-
-
-	</div>
-</div>
-
-
-
+			
+	
+			
+			</div>
+			</div>
+		
+	
+	
+	

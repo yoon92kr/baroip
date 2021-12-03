@@ -48,8 +48,8 @@
         		<form>
         		<select class="cs_02_select">
         			<option value="010">상품문의</option>
-        			<option value="011">배송문의</option>
-        			<option value="016">교환/환불/반품문의</option>
+        			<option value="011">계정문의</option>
+        			<option value="016">결제문의</option>
         			<option value="017">기타문의</option>
         		</select>
         	</form>
@@ -98,8 +98,7 @@
     <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03" ><span>내용</span></div>
         <div class="col-lg-4 text-left cs_02_02_box04"> 
-		<textarea class="form-control" rows="8">
-			</textarea>
+		<textarea class="form-control" rows="8" placeholder="내용을 입력하세요."></textarea>
 	</div>
         	
         

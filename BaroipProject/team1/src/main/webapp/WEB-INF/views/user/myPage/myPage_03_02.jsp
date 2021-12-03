@@ -55,17 +55,15 @@
       
         
         <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>반품/취소사유</span></div>
+        <div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01" ><span>반품/교환 사유</span></div>
         <div class="col-lg-4 text-left cs_02_02_box02">
         		<form>
         		<select class="cs_02_select">
-        			<option value="010">구매의사취소</option>
-        			<option value="011">색상/사이즈변경</option>
-        			<option value="016">교환/환불/반품문의</option>
-        			<option value="017">재주문</option>
-        			<option value="016">배송지연</option>
-        			<option value="017">배송누락</option>
+        			
+        			
+        			<option value="017">상품불량</option>
         			<option value="017">오배송</option>
+        			<option value="016">기타</option>
         		</select>
         	</form>
         	
@@ -81,8 +79,7 @@
         </div>
         <div class="col-lg-4 text-left cs_02_02_box04"> 
         		<div class="form-group">
-		<textarea class="form-control" rows="8">
-			</textarea>
+		<textarea class="form-control" rows="8" placeholder="내용을 입력하세요."></textarea>
 	</div>
         	
         
