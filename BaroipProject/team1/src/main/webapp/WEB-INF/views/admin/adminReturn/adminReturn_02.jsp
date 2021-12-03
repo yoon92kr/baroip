@@ -94,7 +94,7 @@
     <div class="container">
     <div class="MyPage_02_01_button">
       <div class="row">
-    	<a href="${contextpath}/adminReturn_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button">목 록</a>
+    	<a href="${contextPath}/adminReturn_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button">목 록</a>
       </div>
     </div>
     </div>

@@ -15,7 +15,7 @@
 	border-bottom: 2px solid #000000;
 }
 
-.MyPage_padding {
+.MyPage_padding { /* .order_01-sub-title-page 참고 <h6> 사용 */
 	padding-top: 30px;
 	height: 80px;
 	font-size: 22px;
@@ -383,6 +383,13 @@
 
 .MyPage_03_text_position_03 {
 	margin-left: 40px;
+	padding-top: 10px;
+}
+
+.MyPage_03_text_position_04 {
+	margin-top: 25px;
+	margin-left: 50px;
+	color: #000000;
 }
 
 .MyPage_03_bottom_return_next {
@@ -414,8 +421,8 @@
 .AdminReturn_center-box-01 {
 	border-bottom: 1px solid #000000;
 	font-size: 16px;
-	padding-top: 30px;
-	height: 140px;
+	padding-top: 15px;
+	height: 120px;
 }
 
 .AdminReturn_02_top{
@@ -460,5 +467,16 @@
 }
 
 .AdminReturn_02-bottom-button:hover {
+	color: #fff;
+}
+
+/* AdminOrder start */
+.AdminOrder_boxsize {
+	width: 40px;
+	height: 30px;
+	font-size: 12px;
+	border: none;
+	padding-bottom: 2px;
+	background-color: #203864;
 	color: #fff;
 }

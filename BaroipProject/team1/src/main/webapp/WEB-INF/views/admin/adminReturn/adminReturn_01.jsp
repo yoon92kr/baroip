@@ -70,9 +70,9 @@
         	<input class="MyPage_03-submit-box-01" type="button" value="반품 신청서 확인">
         	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
         </div>
-        	<div class="col-lg-2 MyPage_03_text_position_02">[주문 상품 명]</div>
-        	<div class="col-lg-2 MyPage_03_text_position_02">[결제 금액]</div>
-        	<div class="col-lg-2 MyPage_03_text_position_02">[반품 / 교환 사유]</div>
+        	<div class="col-lg-2 MyPage_03_text_position_04">[주문 상품 명]</div>
+        	<div class="col-lg-2 MyPage_03_text_position_04">[결제 금액]</div>
+        	<div class="col-lg-2 MyPage_03_text_position_04">[반품 / 교환 사유]</div>
         	<div class="col-lg-2 MyPage_03_text_position_03">
         <div>
         	<input class="MyPage_03-submit-box-01" type="button" value="수 락" onclick="order_cancel()">

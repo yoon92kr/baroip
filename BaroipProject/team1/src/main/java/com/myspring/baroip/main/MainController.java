@@ -554,4 +554,64 @@ public class MainController {
 			return mav;
 		}
 		
+//		admin - 공지사항
+		@RequestMapping(value= "/adminNotice_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminNotice_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 공지사항
+		@RequestMapping(value= "/adminNotice_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminNotice_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 공지사항
+		@RequestMapping(value= "/adminNotice_02_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminNotice_02_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 공지사항
+		@RequestMapping(value= "/adminNotice_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminNotice_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 리뷰
+		@RequestMapping(value= "/adminReview_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminReview_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		admin - 리뷰
+		@RequestMapping(value= "/adminReview_01_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView adminReview_01_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			// HttpSession session;
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
 }

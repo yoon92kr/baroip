@@ -88,5 +88,34 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_03.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
 	</definition>
-		
+	
+	<definition name="adminNotice_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminNotice_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminNotice_02_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_02_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminNotice_03" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_03.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReview_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminReview_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReview_01_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminReview_01_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>	
 </tiles-definitions>
