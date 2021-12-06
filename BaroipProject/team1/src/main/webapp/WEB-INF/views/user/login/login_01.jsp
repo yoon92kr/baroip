@@ -17,7 +17,7 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
 	        <h3 class="sub-title">이메일 로그인</h3>
-        	<form>
+        	<form action="${contextPath}/main.do">
         		<input class="login_01-id-box" type="text" placeholder="아이디(이메일)를 입력해주세요.">
         		<input class="login_01-pwd-box" type="password" placeholder="비밀번호를 입력해주세요."><br>
         		<input class="login_01-btn" type="submit" value="로그인">
@@ -34,7 +34,7 @@
 	        <br><br>
 	        <h3 class="login-title">SNS 간편 로그인</h3>
 		        <div class="login_01-sns-login-btn">
-			        <a class="login_01-naver-login" href="#">
+			        <a id="naver_id_login" class="login_01-naver-login" href="https://nid.naver.com/oauth2.0/authorize">
 			        	<img class="login_01-naver-kakao-login" src="${contextPath}/resources/img/common/naver_login_btn.png" alt="로그인페이지 네이버 로그인 버튼 이미지">
 			        </a>
 			        <a class="login_01-kakao-login" href="#">
@@ -61,3 +61,14 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("metNeTJSOQeJYHhl4Gnd", "http://localhost:8080/baroip/main.do");
+	var state = naver_id_login.getUniqState();
+	naver_id_login.setButton("white", 2,40);
+	naver_id_login.setDomain("http://localhost:8080/baroip/main.do");
+	naver_id_login.setState(state);
+	naver_id_login.setPopup();
+	naver_id_login.init_naver_id_login();
+</script>

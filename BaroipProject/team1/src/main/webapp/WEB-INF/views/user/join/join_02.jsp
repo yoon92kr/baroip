@@ -99,17 +99,16 @@
         	핸드폰 번호
         </div>
         <div class="col-lg-7 join_02-main-right">
-        	<form>
+        	<form onsubmit="return false;">
         		<select class="join_02-mobile">
         			<option value="010">010</option>
         			<option value="011">011</option>
         			<option value="016">016</option>
         			<option value="017">017</option>
         			<option value="019">019</option>
-        			<option value="070">070</option>
         		</select> - 
-        		<input class="join_02-mobile-02" type="number"> - 
-        		<input class="join_02-mobile-02" type="number">
+        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number(this, 4)"> - 
+        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number(this, 4)">
         		<input class="join_02-submit-box-02" type="submit" value="인증번호 전송">
         	</form>
         </div>
@@ -122,6 +121,7 @@
         <div class="col-lg-7 join_02-main-right">
         	<form>
         		<input class="join_02-text-box" type="text">
+        		<input class="join_02-submit-box" type="submit" value="인증번호 확인">
         	</form>
         </div>
     </div>
@@ -205,5 +205,12 @@ function lastday() {
 		}
 	}
 }
+
+function join_02_mobile_number(el, maxlength) {
+	if(el.value.length > maxlength) {
+		el.value = el.value.substr(0, maxlength);
+	}
+}
+
 </script>
 

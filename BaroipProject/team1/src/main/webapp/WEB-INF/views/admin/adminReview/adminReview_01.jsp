@@ -8,8 +8,12 @@
 
 <div class="container">
 <div class="MyPage_title">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">관리자 페이지</h1></div>
+    </div>
+		
     	<div class="row">
-    		<div class="col-lg-2 text-center MyPage_padding AdminReview_01-top">후기 관리</div>
+    		<div class="col-lg-2 text-center MyPage_padding">후기 관리</div>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>

@@ -21,7 +21,6 @@
     </div>
     </div>
     </div>
-
    
     <div class="row">
         <div class="col-lg-4 text-center adminUser_01-content-header">
@@ -52,15 +51,23 @@
         </div>
     </div>
     
-    	<div class="MyPage_03_center-box text-center">
     <div class="row">
-        <div class="col-lg-2">회원아이디</div>
-        <div class="col-lg-3">주문 내역</div>
-        <div class="col-lg-2">결제 금액</div>
-        <div class="col-lg-3">반품 / 교환 사유</div>
-        <div class="col-lg-2">승인 / 거절</div>
-    </div>
-    </div>
+		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">회원아이디</h6>
+	    </div>
+	    <div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">주문 내역</h6>
+	    </div>
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">결제 금액</h6>
+	    </div>
+	    <div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">반품 / 교환 사유</h6>
+	    </div>
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">승인 / 거절</h6>
+	    </div>
+	</div>
     
     
    	<div class="AdminReturn_center-box-01 text-center">
