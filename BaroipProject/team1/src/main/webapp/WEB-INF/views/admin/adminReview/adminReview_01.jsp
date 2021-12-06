@@ -89,8 +89,8 @@
         	[후기 제목]
         </div>
         <div class="col-lg-2 text-center adminProduct_01-content-item">
-        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제">
-        	<input class="adminProduct_01-product" type="button" value="답변 작성">
+        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제" onclick="review_cancel()">
+        	<input class="adminProduct_01-product" type="button" value="답변 작성" onclick="location.href='${contextPath}/adminReview_01_01.do'">
         </div>
 	</div>
 	
@@ -101,3 +101,10 @@
 	    </div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	function review_cancel() {
+		let returnValue = confirm('삭제하시겠습니까?');	
+	}
+</script>

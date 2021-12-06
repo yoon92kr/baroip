@@ -14,7 +14,7 @@
 		
     	<div class="row">
     		<div class="col-lg-2 text-center MyPage_padding">주문 관리</div>
-    		<div class="col-lg-10 text-left MyPage_padding MyPage_title_02">반품 / 교환</div>
+    		<a href="${contextPath}/adminReturn_01.do" class="col-lg-10 text-left MyPage_padding MyPage_title_02 adminOrder_hov">반품 / 교환</a>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>
@@ -75,7 +75,7 @@
 	<div class="row">
         <div class="col-lg-2 text-center adminProduct_01-content-item">
         	<div>[회원 아이디]</div>
-        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
+        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보" onclick="location.href='${contextPath}/myPage_03_01.do'">
         </div>
         <div class="col-lg-2 text-center order_01-content-item">
         	[주문 상품 명]
