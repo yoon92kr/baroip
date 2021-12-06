@@ -179,7 +179,7 @@
         	핸드폰 번호
         </div>
         <div class="col-lg-9 join_02-main-right">
-        	<form>
+        	<form onsubmit="return false;">
         		<select class="join_02-mobile">
         			<option value="010">010</option>
         			<option value="011">011</option>
@@ -188,8 +188,8 @@
         			<option value="019">019</option>
         			<option value="070">070</option>
         		</select> - 
-        		<input class="join_02-mobile-02" type="number"> - 
-        		<input class="join_02-mobile-02" type="number">
+        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number01(this, 4)"> - 
+        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number01(this, 4)">
         	</form>
         </div>
     </div>
@@ -315,8 +315,8 @@
         			<option value="019">019</option>
         			<option value="070">070</option>
         		</select> - 
-        		<input class="join_02-mobile-02" type="number"> - 
-        		<input class="join_02-mobile-02" type="number">
+        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number01(this, 4)"> - 
+        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number01(this, 4)">
 
         	</div>
         	
@@ -371,4 +371,10 @@ function selectPay(selectId) {
 	   }
 	   
 	}
+	
+function join_02_mobile_number01(el, maxlength) {
+	if(el.value.length > maxlength) {
+		el.value = el.value.substr(0, maxlength);
+	}
+}
 </script>
