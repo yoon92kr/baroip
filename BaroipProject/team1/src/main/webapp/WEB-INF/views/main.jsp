@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		<br>
-
+	</div>
 	</div>
 
 	<div class="container">
@@ -94,7 +94,7 @@
 				<div class="col-lg-3 main_item_bottom_text">
 					<a href="${contextPath}/product_02.do" class="">
 						<span class="item-title item-location-left-top">[상품명]</span>
-						<span class="item-price"></span>
+						<span class="item-price">[상품원가]</span>
 						<span class="item-dc">[할인]</span>
 						<br>
 						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
