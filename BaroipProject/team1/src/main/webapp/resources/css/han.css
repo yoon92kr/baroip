@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+/* ==================== 중간중간 수정 ================================= */
+/* product_01 검색창 추가 */
+.product_01_search-box {
+	padding-left: 55px;
+}
+/* join_02 비밀번호 옆 text 추가 */
+.join_02_pass_info {
+	color: #ff0000;
+	font-size: 11px;
+	margin-left: 30px;
+}
+
+/* ================================================================ */
 /* img_btn_size */
 .bottom_btn_size {
 	width: 200px;

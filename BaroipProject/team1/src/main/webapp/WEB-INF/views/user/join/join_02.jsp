@@ -48,18 +48,19 @@
         </div>
         <div class="col-lg-7 join_02-main-right">
         	<form>
-        		<input class="join_02-text-box" type="password">
+        		<input id="join_02_password" class="join_02-text-box" type="password">
+        		<span class="join_02_pass_info">※ 비밀번호는 영문(소) / 숫자 / 특수문자가 포함되어야 합니다.</span>
         	</form>
         </div>
     </div>
-    
+    <!-- input창 password에 id = 나중에 비밀번호 유효성 검사 위해 넣어놓음 -->
     <div class="row">
         <div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
         	비밀번호 확인
         </div>
         <div class="col-lg-7 join_02-main-right">
         	<form>
-        		<input class="join_02-text-box" type="password">
+        		<input id="join_02_passowrd_check" class="join_02-text-box" type="password">
         	</form>
         </div>
     </div>
@@ -107,9 +108,9 @@
         			<option value="017">017</option>
         			<option value="019">019</option>
         		</select> - 
-        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number(this, 4)"> - 
-        		<input class="join_02-mobile-02" type="number" oninput="join_02_mobile_number(this, 4)">
-        		<input class="join_02-submit-box-02" type="submit" value="인증번호 전송">
+        		<input id="join_02_mobile_center" class="join_02-mobile-02" type="number" oninput="join_02_mobile_number(this, 4)"> - 
+        		<input id="join_02_mobile_last" class="join_02-mobile-02" type="number" oninput="join_02_mobile_number(this, 4)">
+        		<input class="join_02-submit-box-02" type="submit" value="인증번호 전송" onclick="numberCheck(this)">
         	</form>
         </div>
     </div>
@@ -206,11 +207,25 @@ function lastday() {
 	}
 }
 
+/* 핸드폰 중간 및 마지막 번호 text 4자리로 제한 */
 function join_02_mobile_number(el, maxlength) {
 	if(el.value.length > maxlength) {
 		el.value = el.value.substr(0, maxlength);
 	}
 }
+
+/* 핸드폰 번호 확인 이벤트 */
+function numberCheck(center, last) {
+        let join_02_mobile_center = document.getElementById('join_02_mobile_center').value
+        let join_02_mobile_last = document.getElementById('join_02_mobile_last').value
+
+		if(join_02_mobile_center.length < 3) {
+			alert( '핸드폰 번호를 확인해 주세요' );
+ 		}
+		else if(join_02_mobile_last.length != 4) {
+ 			alert('핸드폰 번호를 확인해 주세요');
+ 		}
+  }
 
 </script>
 
