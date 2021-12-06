@@ -62,8 +62,10 @@
 <div class="row">
 <div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
-					<a href="#"><img
-						src="${contextPath}/resources/img/common/notice_enroll_01.png" alt="문의 등록하기 이미지"></a>
+				<form>
+					<input type="image" value="submit"
+						src="${contextPath}/resources/img/common/notice_enroll_01.png" alt="공지작성 등록하기 이미지">
+						</form>
 				</div>
 			</div>
 		

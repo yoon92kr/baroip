@@ -23,7 +23,7 @@
 		</div>
 		<div class="col-lg-4 text-right cs_02_writebtn">
 		<a href="${contextPath}/adminCS_01_01.do"><img
-		src="${contextPath}/resources/img/common/cs_write.png" alt="1:1문의 글쓰기 버튼 이미지"></a>
+		src="${contextPath}/resources/img/common/cs_write.png" alt="Q&A 글쓰기 버튼 이미지"></a>
 		
 	</div>
 	</div>
@@ -81,12 +81,12 @@
 			<div class="col-lg-2 text-center admincs_01_01listsection ">
 			
 
-					<a class="myPage_test-t" href="#"><img
-						src="${contextPath}/resources/img/common/Q&A_correct.png" alt="문의내역 목록 수정하기버튼 이미지"></a>
+					<a class="myPage_test-t" href="${contextPath}/adminCS_01_02.do"><img
+						src="${contextPath}/resources/img/common/Q&A_correct.png" alt="Q&A  목록 수정하기버튼 이미지"></a>
 						<br>
 						
 					<a class="myPage_test-t" href="#"><img
-						src="${contextPath}/resources/img/common/Q&A_delete.png" alt="문의내역 목록 삭제버튼 이미지"
+						src="${contextPath}/resources/img/common/Q&A_delete.png" alt="Q&A 목록 삭제버튼 이미지"
 						></a>
 						
 						

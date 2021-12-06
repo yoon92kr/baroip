@@ -23,9 +23,9 @@
 		</div>
 		<div class="col-lg-4 text-right cs_02_writebtn">
 		<a href="${contextPath}/adminNotice_02.do"><img
-		src="${contextPath}/resources/img/common/cs_write.png" alt="1:1문의 글쓰기 버튼 이미지"></a>
-		
+		src="${contextPath}/resources/img/common/cs_write.png" alt="공지사항 글쓰기 버튼 이미지"></a>
 	</div>
+		
 	</div>
 	
 	
@@ -80,7 +80,7 @@
 			<div class="col-lg-2 text-center admincs_01_01listsection ">
 			
 
-					<a class="myPage_test-t" href="#"><img
+					<a class="myPage_test-t" href="${contextPath}/adminNotice_02_01.do"><img
 						src="${contextPath}/resources/img/common/notice_correct.png" alt="공지목록 수정하기버튼 이미지"></a>
 						<br>
 						

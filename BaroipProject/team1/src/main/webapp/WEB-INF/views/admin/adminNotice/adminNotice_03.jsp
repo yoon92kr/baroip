@@ -63,8 +63,8 @@
 		
 		  <div class="offset-lg-5 col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs_02.do"><img
-						src="${contextPath}/resources/img/common/cs_list.png" alt="1:1문의 목록 버튼 이미지"></a>
+					<a href="${contextPath}/adminNotice_01.do"><img
+						src="${contextPath}/resources/img/common/cs_list.png" alt="공지사항 상세보기 목록 버튼 이미지"></a>
 				</div>
 			</div>
 		
