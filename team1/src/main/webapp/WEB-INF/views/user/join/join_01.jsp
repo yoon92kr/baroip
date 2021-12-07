@@ -1,41 +1,35 @@
 <!-- 2021.11.25 한건희 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <div class="container-fluid">
 
 	<div class="row">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4 text-center">
-        <h1 class="page_title">회원가입</h1>
-    </div>
-    <div class="col-lg-4"></div>
-</div>
+		<div class="col-lg-4 offset-lg-4 text-center">
+			<h1 class="page_title">회원가입</h1>
+		</div>
+	</div>
 
-<div class="row">
-    <div class="col-lg-10 offset-lg-1 text-center">
-        <h4 class="join-sub-title">
-            <span class="join_01-sub-title">01. 약관동의</span> > 02. 정보입력
-        </h4>
-    </div>
-</div>
+	<div class="row">
+		<div class="col-lg-10 offset-lg-1 text-center">
+			<h4 class="join-sub-title">
+				<span class="join_01-sub-title">01. 약관동의</span> > 02. 정보입력
+			</h4>
+		</div>
+	</div>
+	<form action="${contextPath}/user/join_02.do" name="chk" method="post">
+		<div class="row">
+			<div class="col-lg-10 offset-lg-1">
 
-<div class="row">
-    <div class="col-lg-10 offset-lg-1">
-        <form action="${contextPath}/user/join_02.do" name="chk" method="post" onsubmit="return join_01_checkBox(this)">
-            <table class="join_01_table_class">
-                <tr>
-                    <td class="table_td">
-                        <input id="join_01_checkbox_01" class="join_01-check-01" type="checkbox" name="join_01_checkbox">
-                        <label for="join_01_checkbox_01" class="join_01-check-text">바로입 서비스 약관 동의</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <textarea class="join_01_contents" disabled>
+				<label class="join_01-check-text"> <input
+					id="join_01_checkbox_01" class="join_01-check-01" type="checkbox"
+					name="join_01_checkbox"> 바로입 서비스 약관 동의
+				</label>
+
+				<textarea class="join_01_contents" disabled>
 [이용약관]
 
 제 1장 총 칙
@@ -274,17 +268,13 @@
 2. 2016년 2월 4일부터 시행되던 종전의 약관은 본 약관으로 대체합니다.
 이전 약관 보러가기 >
                         </textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="table_td">
-                        <input id="join_01_checkbox_02" class="join_01-check-01" type="checkbox" name="join_01_checkbox">
-                        <label for="join_01_checkbox_02" class="join_01-check-text">개인정보 이용 방침</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <textarea class="join_01_contents" disabled>
+
+				<label class="join_01-check-text"> <input
+					id="join_01_checkbox_02" class="join_01-check-01" type="checkbox"
+					name="join_01_checkbox"> 개인정보 이용 방침
+				</label>
+
+				<textarea class="join_01_contents" disabled>
 [개인정보 처리방침]
 
 주식회사 바로입은(이하"회사"는) 이용자의 개인정보보호를 매우 중요시하며, 이용자가 회사의 서비스를 이용함과 동시에 온라인상에서 회사에 제공한 개인정보가 보호받을 수 있도록 최선을 다하고 있습니다. 이에 회사는 정보통신망 이용촉진 및 정보보호에 관한 법률 제27조의2 및 개인정보보호법 제30조에 따라 이용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립/공개합니다.
@@ -422,28 +412,29 @@ E - M A I L　: admin@baroip.com
 -시행일자 : 2021년 11월 15일
 이전 약관 보러가기 >
                         </textarea>
-                    </td>
-                </tr>
-                <tr>
-                	<td class="join_01_table_bottom_btn">
-                		<div class="join_01-btn">
-				        	<a class="join_01-back" href="${contextPath}/user/login_01.do">
-								<img class="bottom_btn_size" src="${contextPath}/resources/img/common/back_page_btn.png" alt="회원가입 약관동의 이전페이지 버튼 이미지">
-						    </a>
-					    </div>
-                	</td>
-                	<td>
-                		<div class="join_01-btn join_01-next">
-                			<input class="bottom_btn_size" type="image" src="${contextPath}/resources/img/common/join_next_btn.png" alt="회원가입 약관동의 동의하기 버튼 이미지">
-						</div>                		
-                	</td>
-                </tr>
-            </table>
-        </form>
-        
-    </div>
-</div>
-    
+
+
+				<div class="row">
+					<div class="col-lg-3 offset-lg-2">
+						<div class="join_01-btn">
+							<a class="join_01-back" href="${contextPath}/user/login_01.do">
+								<img class="bottom_btn_size"
+								src="${contextPath}/resources/img/common/back_page_btn.png"
+								alt="회원가입 약관동의 이전페이지 버튼 이미지">
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-3 offset-lg-2">
+						<div class="join_01-btn join_01-next">
+							<input class="bottom_btn_size" type="image"
+								src="${contextPath}/resources/img/common/join_next_btn.png"
+								alt="회원가입 약관동의 동의하기 버튼 이미지">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
 
 <script type="text/javascript">

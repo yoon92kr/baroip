@@ -223,10 +223,6 @@
 	left: 10px;
 }
 
-.join_01_table_class {
-	width: 100%;
-}
-
 .join_01-content-1 {
 	border: 1px solid #000;
 	overflow-y:scroll;
@@ -260,7 +256,7 @@
 	/* width: 90%; */
 	height: 50px;
 	text-align: center;
- 	display: block;
+ 	display: inline-block;
 	margin-top: 20px;
 }
 
