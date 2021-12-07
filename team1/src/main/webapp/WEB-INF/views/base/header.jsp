@@ -32,11 +32,27 @@
 						<a href="${contextPath}/cs/cs_01.do" class="header-navi navi-button">고객센터</a>
 					</div>
 				</div>
-
+		
 				<div class="col-lg-2 text-center">
 					<div class="user_navi">
+					<c:choose>
+					
+						<c:when test="${loginOn==true and userInfo.user_rank =='4'}">
+								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
+								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi">관리자 페이지</a>
+						</c:when>
+							
+						<c:when test="${loginOn==true and not empty userInfo }">
+								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
+								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi">마이 페이지</a>
+						</c:when>
+						
+						<c:otherwise>
 						<a href="${contextPath}/user/login_01.do" class="header-navi">로그인</a>
 						<a href="${contextPath}/user/join_01.do" class="header-navi">회원가입</a>
+						</c:otherwise>
+						
+					</c:choose>
 					</div>	
 				</div>
 
@@ -91,5 +107,7 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
+
 
 </script>
