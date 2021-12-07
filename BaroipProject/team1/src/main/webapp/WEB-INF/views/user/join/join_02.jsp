@@ -153,15 +153,15 @@
     <div class="row">
         <div class="col-lg-4 offset-lg-2 join_02-bottom-btn">
         	<div class="join_01-btn">
-	        	<a class="join_01-back" href="${contextPath}/join_01.do">
-					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/back_page_btn.png" alt="회원가입 정보입력 이전페이지 버튼 이미지">
+	        	<a class="join_01-back" href="${contextPath}/user/join_01.do">
+					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/back_page_btn.png" alt="회원가입 정보입력 이전페이지 버튼 이미지">
 			    </a>
 		    </div>
         </div>
 		<div class="col-lg-4 join_02-bottom-btn">
         	<div class="join_01-btn">
-	        	<form  class="join_01-next" action="join_03.do">
-	        		<input class="bottom_btn_size join_01-btn-img" type="image" src="${contextPath}/resources/img/common/join_btn.png" alt="회원가입 정보입력 가입하기 버튼 이미지">
+	        	<form  class="join_01-next" action="${contextPath}/user/join_03.do">
+	        		<input class="bottom_btn_size" type="image" src="${contextPath}/resources/img/common/join_btn.png" alt="회원가입 정보입력 가입하기 버튼 이미지">
 	        	</form>
 		    </div>
         </div>

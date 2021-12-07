@@ -35,8 +35,8 @@
 
 				<div class="col-lg-2 text-center">
 					<div class="user_navi">
-						<a href="${contextPath}/login_01.do" class="header-navi">로그인</a>
-						<a href="${contextPath}/join_01.do" class="header-navi">회원가입</a>
+						<a href="${contextPath}/user/login_01.do" class="header-navi">로그인</a>
+						<a href="${contextPath}/user/join_01.do" class="header-navi">회원가입</a>
 					</div>	
 				</div>
 
@@ -65,7 +65,7 @@
   					<h3>메뉴</h3>
   					<span class="myPageNav">
   					<a href="${contextPath}/myPage_01.do">마이페이지</a><br>
-  					<a href="${contextPath}/cart.do">장바구니</a><br>
+  					<a href="${contextPath}cart/cartList.do">장바구니</a><br>
   					<a href="${contextPath}/notice_01.do">공지사항</a><br>
   					<a href="${contextPath}/cs_01.do">고객센터</a>
   					</span>
@@ -73,7 +73,7 @@
 				
 				<div class="col-lg-1 text-left" >
 					<div class="menu_navi">
-						<a href="${contextPath}/cart.do" class="header-cart"><img src="${contextPath}/resources/img/common/cart-icon.png" alt="장바구니 아이콘 이미지"></a>
+						<a href="${contextPath}/cart/cartList.do" class="header-cart"><img src="${contextPath}/resources/img/common/cart-icon.png" alt="장바구니 아이콘 이미지"></a>
 						<span onclick="openNav()" class="header-navi"><img src="${contextPath}/resources/img/common/site-map-icon.png" alt="사이트맵 아이콘 이미지"></span>
 					</div>
 				</div>

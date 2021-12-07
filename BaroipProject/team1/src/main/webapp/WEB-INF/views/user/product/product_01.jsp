@@ -92,7 +92,7 @@
 				</div>
 				
 				<div class="col-lg-1 text-center main_item_bottom_text">
-					<form>
+					<form action="${contextPath}/cart/cartLst.do">
 						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
 					</form>
 				</div>

@@ -328,7 +328,7 @@
     <div class="row">
         <div class="col-lg-4 offset-lg-2 text-center order_01-bottom-btn">
         	<div class="join_01-btn">
-	        	<a class="join_01-back" href="${contextPath}/cart_01.do">
+	        	<a class="join_01-back" href="${contextPath}/cart/cartList.do">
 					<img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/return_page_btn.png" alt="이전 페이지 돌아가기 버튼 이미지">
 			    </a>
 		    </div>
