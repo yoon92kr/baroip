@@ -46,8 +46,12 @@
         		<input id="adminUser_01-member-id-text" class="adminUser_01-select-box-lookup" type="text">
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
+		<form>
+			<input type="radio" name="answer" checked="checked" value="전체" /> 전체 
+			<input type="radio" name="answer" class="adminReview_01-radio-box" value="답변" /> 답변 
+			<input type="radio" name="answer" class="adminReview_01-radio-box" value="미답변" /> 미답변 
         	<input class="adminUser_01-button-top" type="button" value="조회하기">
-        	<input class="adminUser_01-button-top" type="button" value="삭제하기">
+		</form>
         </div>
     </div>
     
