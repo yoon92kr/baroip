@@ -20,6 +20,7 @@
 			</h4>
 		</div>
 	</div>
+	
 	<form action="${contextPath}/user/join_02.do" name="chk" method="post">
 		<div class="row">
 			<div class="col-lg-10 offset-lg-1">
@@ -412,29 +413,29 @@ E - M A I L　: admin@baroip.com
 -시행일자 : 2021년 11월 15일
 이전 약관 보러가기 >
                         </textarea>
-
-
-				<div class="row">
-					<div class="col-lg-3 offset-lg-2">
-						<div class="join_01-btn">
-							<a class="join_01-back" href="${contextPath}/user/login_01.do">
-								<img class="bottom_btn_size"
-								src="${contextPath}/resources/img/common/back_page_btn.png"
-								alt="회원가입 약관동의 이전페이지 버튼 이미지">
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-3 offset-lg-2">
-						<div class="join_01-btn join_01-next">
-							<input class="bottom_btn_size" type="image"
-								src="${contextPath}/resources/img/common/join_next_btn.png"
-								alt="회원가입 약관동의 동의하기 버튼 이미지">
-						</div>
-					</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-3 offset-lg-2">
+				<div class="join_01-btn">
+					<a class="join_01-back" href="${contextPath}/user/login_01.do">
+						<img class="bottom_btn_size"
+						src="${contextPath}/resources/img/common/back_page_btn.png"
+						alt="회원가입 약관동의 이전페이지 버튼 이미지">
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 offset-lg-2">
+				<div class="join_01-btn join_01-next">
+					<input class="bottom_btn_size" type="image"
+						src="${contextPath}/resources/img/common/join_next_btn.png"
+						alt="회원가입 약관동의 동의하기 버튼 이미지">
 				</div>
 			</div>
 		</div>
 	</form>
+	
 </div>
 
 <script type="text/javascript">
