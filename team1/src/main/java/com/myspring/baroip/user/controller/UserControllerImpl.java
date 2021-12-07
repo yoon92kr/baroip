@@ -24,6 +24,7 @@ public class UserControllerImpl implements UserController{
 	@Autowired
 	private UserVO userVO;
 	
+//	로그인
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam Map<String, String> userMap,
@@ -51,6 +52,18 @@ public class UserControllerImpl implements UserController{
 			mav.addObject("message", message);
 			mav.setViewName("/user/login_01.do");
 		}
+		return mav;
+	}
+	
+//	로그아웃
+	@RequestMapping(value = "/logout.do", method=RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginOn");
+		session.removeAttribute("userInfo");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/main.do");
 		return mav;
 	}
 

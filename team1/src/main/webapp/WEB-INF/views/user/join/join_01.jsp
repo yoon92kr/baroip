@@ -447,11 +447,5 @@ E - M A I L　: admin@baroip.com
 </div>
 
 <script type="text/javascript">
-	function join_01_checkBox(chk) {
-		let chkBox = document.chk.join_01_checkbox.checked;
-		
-		if(chk == "") {
-			alert("약관에 동의해 주세요.");
-			return false;
-		}
+	
 </script>
