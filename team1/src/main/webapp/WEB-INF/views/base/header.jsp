@@ -20,16 +20,16 @@
 				
 				<div class="col-lg-3 text-center">
 					<div class="category">
-						<a href="${contextPath}/product_01.do" class="header-navi">농산물</a>
-						<a href="${contextPath}/product_01.do" class="header-navi">수산물</a>
-						<a href="${contextPath}/product_01.do" class="header-navi">축산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi">농산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi">수산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi">축산물</a>
 					</div>
 				</div>
 
 				<div class="col-lg-2 text-right offset-lg-2">
 					<div class="notice_navi">
-						<a href="${contextPath}/notice_01.do" class="header-navi">공지사항</a>
-						<a href="${contextPath}/cs_01.do" class="header-navi navi-button">고객센터</a>
+						<a href="${contextPath}/notice/notice_01.do" class="header-navi">공지사항</a>
+						<a href="${contextPath}/cs/cs_01.do" class="header-navi navi-button">고객센터</a>
 					</div>
 				</div>
 
@@ -52,22 +52,22 @@
   					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   					<h3> 쇼핑하기 </h3>
   					<div class="navImg" >
-  					<a href="${contextPath}/product_01.do"><img src="${contextPath}/resources/img/common/vegi_icon.png" alt="농산물 아이콘 이미지"></a>
-  					<a href="${contextPath}/product_01.do"><img src="${contextPath}/resources/img/common/fish_icon.png" alt="수산물 아이콘 이미지"></a>
-  					<a href="${contextPath}/product_01.do"><img src="${contextPath}/resources/img/common/meat_icon.png" alt="축산물 아이콘 이미지"></a>
+  					<a href="${contextPath}/product/product_01.do"><img src="${contextPath}/resources/img/common/vegi_icon.png" alt="농산물 아이콘 이미지"></a>
+  					<a href="${contextPath}/product/product_01.do"><img src="${contextPath}/resources/img/common/fish_icon.png" alt="수산물 아이콘 이미지"></a>
+  					<a href="${contextPath}/product/product_01.do"><img src="${contextPath}/resources/img/common/meat_icon.png" alt="축산물 아이콘 이미지"></a>
   					</div>
   					<div class="shopingNav">
-  					<a href="${contextPath}/product_01.do">농산물</a>
-  					<a href="${contextPath}/product_01.do">수산물</a>
-  					<a href="${contextPath}/product_01.do">축산물</a>
+  					<a href="${contextPath}/product/product_01.do">농산물</a>
+  					<a href="${contextPath}/product/product_01.do">수산물</a>
+  					<a href="${contextPath}/product/product_01.do">축산물</a>
   					</div>
   					<hr>
   					<h3>메뉴</h3>
   					<span class="myPageNav">
-  					<a href="${contextPath}/myPage_01.do">마이페이지</a><br>
-  					<a href="${contextPath}cart/cartList.do">장바구니</a><br>
-  					<a href="${contextPath}/notice_01.do">공지사항</a><br>
-  					<a href="${contextPath}/cs_01.do">고객센터</a>
+  					<a href="${contextPath}/myPage/myPage_01.do">마이페이지</a><br>
+  					<a href="${contextPath}/cart/cartList.do">장바구니</a><br>
+  					<a href="${contextPath}/notice/notice_01.do">공지사항</a><br>
+  					<a href="${contextPath}/cs/cs_01.do">고객센터</a>
   					</span>
 				</div>
 				
