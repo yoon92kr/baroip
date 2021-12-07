@@ -115,15 +115,17 @@
 	<div class="row">
 		<div class="offset-lg-4 col-lg-2 text-center">
 			<div class="cs_correct_btn">
-				<a href="#"><img
+				<form>
+				<input type="image"
 					src="${contextPath}/resources/img/common/cs_correct_01.png"
-					alt="상품후기 수정 버튼 이미지"></a>
+					alt="상품후기 수정 버튼 이미지">
+					</form>
 			</div>
 		</div>
 
 		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
-				<a href="${contextPath}/cs_02.do"><img
+				<a href="${contextPath}/myPage_07.do"><img
 					src="${contextPath}/resources/img/common/cs_return.png"
 					alt="상품후기 목록 버튼 이미지"></a>
 			</div>

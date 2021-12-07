@@ -1,4 +1,4 @@
-<!-- 2021.12.06 강보석 adminReview_01 -->
+<!-- 2021.12.06 강보석  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -89,7 +89,7 @@
         </div>
         <div class="col-lg-2 text-center adminProduct_01-content-item">
         	<input class="adminProduct_01-product adminProduct_01-product-top" 
-        	 type="button" value="후기 삭제">
+        	 type="button" value="후기 삭제" onclick="alert('삭제하시겠습니까?')">
         	 <form action="${contextPath}/adminCS_02_01.do">
         	<input class="adminProduct_01-product" type="submit"  value="답변 작성">
         	</form>
