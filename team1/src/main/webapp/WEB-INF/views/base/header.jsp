@@ -6,7 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <c:set var="loginCheck" value="${userInfo.user_rank }" />
+
+
 
 <div class="header">
 		<div class="container-fluid">
@@ -109,10 +112,12 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 
+
 window.onload = checkRank();
 
 function checkRank() {
-	if (${loginCheck} == '4') {
+
+	if ('${loginCheck}' == '4') {
 
 			var elements = document.getElementsByClassName('header'); // get all elements
 			for(var i = 0; i < elements.length; i++){
@@ -120,8 +125,8 @@ function checkRank() {
 			}
 
 	}
+
 }
-
-
+ 
 
 </script>
