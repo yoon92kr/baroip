@@ -303,6 +303,7 @@
 	height: 35px;
 	margin-left: 60px;
 	border: 1px solid #d9d9d9;
+	padding-left: 15px;
 }
 .join_02-submit-box {
 	width: 150px;
@@ -336,6 +337,10 @@
 	width: 115px;
 	text-align: center;
 	border: 1px solid #d9d9d9;
+}
+
+.join_02_email_domain {
+	margin-left: 53px;
 }
 
 .join_02-year-month-day-text {

@@ -32,6 +32,25 @@
 			 
 		]]>
 	</select>
+	
+	<insert id="insertNewUser" parameterType="UserVO">
+		<![CDATA[
+			insert into user (user_id, user_pw, user_name, 
+							user_last_date, user_post_code, 
+							user_old_address, user_new_address, 
+							user_detail_address, user_birth_year, 
+							user_birth_month, user_birth_day, 
+							user_mobile_1, user_mobile_2, user_mobile_3, 
+							user_rank, user_membership, user_email)
+					values (#{user_id}, #{user_pw}, #{user_name}, 
+							now(), #{user_post_code}, 
+							#{user_old_address}, #{user_new_address}, 
+							#{user_detail_address}, #{user_birth_year}, 
+							#{user_birth_month}, #{user_birth_day}, 
+							#{user_mobile_1}, #{user_mobile_2}, #{user_mobile_3}, 
+							1, 1, null)
+		]]>
+	</insert>
 
 
 

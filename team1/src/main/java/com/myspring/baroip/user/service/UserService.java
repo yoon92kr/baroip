@@ -6,5 +6,7 @@ import com.myspring.baroip.user.vo.UserVO;
 
 public interface UserService {
 	public UserVO login(Map loginMap) throws Exception;
+	
+	public void addUser(UserVO userVO) throws Exception;
 
 }

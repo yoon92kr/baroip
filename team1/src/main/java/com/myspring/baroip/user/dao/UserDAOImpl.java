@@ -10,14 +10,18 @@ import org.springframework.stereotype.Repository;
 import com.myspring.baroip.user.vo.UserVO;
 
 @Repository("userDAO")
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Override
-	public UserVO login(Map loginMap) throws DataAccessException{
+	public UserVO login(Map loginMap) throws DataAccessException {
 		UserVO user=(UserVO)sqlSession.selectOne("mapper.user.login",loginMap);
 	   return user;
+	}
+	
+	public void insertNewUser(UserVO userVO) throws DataAccessException {
+		sqlSession.insert("mapper.user.insertNewUser",userVO);
 	}
 
 }

@@ -12,14 +12,18 @@ import com.myspring.baroip.user.vo.UserVO;
 
 @Service("memberService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
 	
 	@Override
-	public UserVO login(Map  loginMap) throws Exception{
+	public UserVO login(Map  loginMap) throws Exception {
 		return userDAO.login(loginMap);
+	}
+	
+	public void addUser(UserVO userVO) throws Exception {
+		userDAO.insertNewUser(userVO);
 	}
 
 }

@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +60,7 @@ public class UserControllerImpl implements UserController{
 	}
 	
 //	로그아웃
+	@Override
 	@RequestMapping(value = "/logout.do", method=RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
@@ -65,6 +70,31 @@ public class UserControllerImpl implements UserController{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/main.do");
 		return mav;
+	}
+	
+//	회원가입
+	@Override
+	@RequestMapping(value="/addUser.do" ,method = RequestMethod.POST)
+	public ResponseEntity addUser(@ModelAttribute("userVO") UserVO _userVO,
+            HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			userService.addUser(_userVO);
+			message  = "<script>";
+		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
+		    message += " location.href='"+request.getContextPath()+"/user/login_01.do';";
+		    message += " </script>";
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		resEntity =new ResponseEntity(responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 
 	// 로그인 페이지
