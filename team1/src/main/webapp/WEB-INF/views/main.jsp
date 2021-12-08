@@ -14,22 +14,22 @@
 
 			<div class="post-wrapper">
 				<div class="post">
-					<img src="${contextPath}/resources/img/common/img-box.jpg"
+					<img src="${contextPath}/resources/img/common/mainImage1.jpg"
 						class="slider-image" alt="메인 이미지">
 
 				</div>
 				<div class="post">
-					<img src="${contextPath}/resources/img/common/img-box.jpg"
+					<img src="${contextPath}/resources/img/common/mainImage2.jpg"
 						class="slider-image" alt="메인 이미지">
 				</div>
 
 				<div class="post">
-					<img src="${contextPath}/resources/img/common/img-box.jpg"
+					<img src="${contextPath}/resources/img/common/mainImage3.jpg"
 						class="slider-image" alt="메인 이미지">
 				</div>
 
 				<div class="post">
-					<img src="${contextPath}/resources/img/common/img-box.jpg"
+					<img src="${contextPath}/resources/img/common/mainImage4.jpg"
 						class="slider-image" alt="메인 이미지">
 
 				</div>
@@ -152,7 +152,7 @@
 			slidesToShow : 1,
 			slidesToScroll : 1,
 			autoplay : true,
-			autoplaySpeed : 3000,
+			autoplaySpeed : 6000,
 			nextArrow : $('.next'),
 			prevArrow : $('.prev'),
 		});

@@ -41,7 +41,7 @@
 					<div class="user_navi">
 					<c:choose>
 					
-						<c:when test="${loginOn==true and userInfo.user_rank =='4'}">
+						<c:when test="${loginOn==true and userInfo.user_rank > 1}">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
 								<a href="${contextPath}/admin.do" class="header-navi">관리자 페이지</a>
 						</c:when>
@@ -117,7 +117,7 @@ window.onload = checkRank();
 
 function checkRank() {
 
-	if ('${loginCheck}' == '4') {
+	if ('${loginCheck}' > 1) {
 
 			var elements = document.getElementsByClassName('header'); // get all elements
 			for(var i = 0; i < elements.length; i++){
