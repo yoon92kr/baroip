@@ -37,7 +37,7 @@
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	<input class="adminProduct_01-header-button" type="button" value="조회하기">
-        	<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="상품 임시 등록" onclick="location.href='${contextPath}/admin/product/addProduct.do'">
+        	<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="상품 임시 등록" onclick="location.href='${contextPath}/admin/product/addProductForm.do'">
         </div>
     </div>
     

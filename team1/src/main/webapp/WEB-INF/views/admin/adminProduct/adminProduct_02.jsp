@@ -1,5 +1,6 @@
 <!-- 2021.12.03 한건희 -->
 <!-- 2021.12.08 윤상현 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -22,14 +23,14 @@
         </div>
     </div>
     
+    <form action="${contextPath}/admin/product/addProduct.do" method="post">
+    
     <div class="row">
         <div class="col-lg-2 text-center join_02-main-left">
         	메인 상품명
         </div>
         <div class="col-lg-10 join_02-main-right">
-        	<form>
-        		<input class="join_02-text-box" type="text">
-        	</form>
+        		<input class="join_02-text-box" type="text" name="product_main_title">
         </div>
     </div>
     
@@ -38,9 +39,7 @@
         	상품 부제목
         </div>
         <div class="col-lg-10 join_02-main-right">
-        	<form>
-        		<input class="join_02-text-box" type="text">
-        	</form>
+        		<input class="join_02-text-box" type="text" name="product_sub_title">
         </div>
     </div>
     
@@ -50,13 +49,11 @@
         </div>
         
         <div class="col-lg-10 join_02-main-right">
-        	<form>
         		<span class="adminProduct_02-content-body-left-text">상품금액 : </span>
-        		<input class="adminProduct_02-content-body-mainInfo" type="text">
-        		할인금액 : <input class="adminProduct_02-content-body-mainInfo" type="text">
-        		최종금액 : <input class="adminProduct_02-content-body-mainInfo" type="text" disabled>
-        		재고수량 : <input class="adminProduct_02-content-body-mainInfo" type="text">
-        	</form>
+        		<input class="adminProduct_02-content-body-mainInfo" type="number" name="product_price" id="input_price" onchange="cost()">
+        		할인금액 : <input class="adminProduct_02-content-body-mainInfo" type="number" name="product_discount" id="input_discount" onchange="cost()" value="0">
+        		최종금액 : <input class="adminProduct_02-content-body-mainInfo" type="number" disabled id="sumcost">
+        		재고수량 : <input class="adminProduct_02-content-body-mainInfo" type="number" name="product_amount">
         </div>
     </div>
     
@@ -65,9 +62,8 @@
         	상품 분류
         </div>
         <div class="col-lg-10 join_02-main-right">
-        	<form>
         		<span class="adminProduct_02-content-body-left-text">대분류</span>
-        		<select class="adminProduct_02-category" onchange="productCategory02(this.value)">
+        		<select class="adminProduct_02-category" onchange="productCategory02(this.value)" name="product_main_category">
         			<option value="category_01">농산물</option>
         			<option value="category_02">수산물</option>
         			<option value="category_03">축산물</option>
@@ -75,24 +71,23 @@
         		
         		<span class="adminProduct_02-content-body-left-text adminProduct_02-content-body-category-text">소분류</span>
         		
-        		<select id="adminProduct_02_category_01-text" class="adminProduct_02-category">
+        		<select id="adminProduct_02_category_01-text" class="adminProduct_02-category" name="product_sub_category">
         			<option value="product_02_01_01">채소</option>
         			<option value="product_02_01_02">곡물</option>
         			<option value="product_02_01_03">과일</option>
         		</select>
         		
-        		<select id="adminProduct_02_category_02-text" class="adminProduct_02-category">
+        		<select id="adminProduct_02_category_02-text" class="adminProduct_02-category" name="product_sub_category">
         			<option value="product_02_02_01">생선류</option>
         			<option value="product_02_02_02">갑각류</option>
         			<option value="product_02_02_03">해조류</option>
         		</select>
         		
-        		<select id="adminProduct_02_category_03-text" class="adminProduct_02-category">
+        		<select id="adminProduct_02_category_03-text" class="adminProduct_02-category" name="product_sub_category">
         			<option value="product_02_03_01">돼지고기</option>
         			<option value="product_02_03_02">소고기</option>
         			<option value="product_02_03_03">기타</option>
         		</select>
-        	</form>
         </div>
     </div>
     
@@ -101,8 +96,8 @@
         	내용
         </div>
         <div class="col-lg-10 adminProduct_02-main-right">
-       		<input class="adminProduct_02-main-img-add-btn" type="file">
-        	<textarea class="adminProduct_02-main-content-text"></textarea>
+       		<input class="adminProduct_02-main-img-add-btn" type="file" name="">
+        	<textarea class="adminProduct_02-main-content-text" name="product_body"></textarea>
         </div>
     </div>
     
@@ -125,7 +120,7 @@
         	<input class="adminProduct_02-sub-img-add-btn" type="file">
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-lg-4 offset-lg-2 join_02-bottom-btn">
         	<div class="join_01-btn">
@@ -136,13 +131,15 @@
         </div>
 		<div class="col-lg-4 join_02-bottom-btn">
         	<div class="join_01-btn">
-	        	<a class="adminUser_02-btn-color" href="javascript:productInfoCange()">
-					<img class="bottom_btn_size join_01-btn-img" src="${contextPath}/resources/img/common/product_up_load_btn.png" alt="상품 등록 버튼 이미지">
-			    </a>
+        		<input class="bottom_btn_size join_01-btn-img" type="image"
+						src="${contextPath}/resources/img/common/product_up_load_btn.png"
+						alt="상품 등록 버튼 이미지">
+	        	
 		    </div>
         </div>
     </div>
-
+    <input type="hidden" name="product_states" value="0">
+    </form>
 </div>
 
 <script type="text/javascript">
@@ -173,6 +170,8 @@ function productCategory02(productValue02) {
 	
  }
 
+/*
+// 한건희 작업물, 미사용으로 주석처리
 function productInfoCange() {
 	if(confirm("상품을 등록 하시겠습니까?") == true) {
 		alert("등록 되었습니다.");
@@ -181,6 +180,34 @@ function productInfoCange() {
 	else {
 		return;
 	}
+}
+*/
+
+/* 2021.12.08 윤상현*/
+// 최종금액 연산 
+function cost() {
+	let price = document.getElementById('input_price').value;
+	let discount = document.getElementById('input_discount').value;
+	let sumcost = price - discount;
+	
+	if (price < '0' || sumcost < '0') {
+		alert("상품금액은 0원보다 작을 수 없습니다.");
+		document.getElementById('input_price').value = '0';
+		document.getElementById('input_discount').value = '0';
+		document.getElementById('sumcost').value='0';
+	}
+	
+	else if (discount < '0' || sumcost < '0') {
+		alert("할인금액을 양수로 입력해주세요.");
+		document.getElementById('input_discount').value = '0';
+		document.getElementById('sumcost').value=price;
+	}
+
+	else {
+
+		document.getElementById('sumcost').value=sumcost;
+	}
+	
 }
 
 </script>

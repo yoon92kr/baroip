@@ -17,6 +17,8 @@ public class ProductVO {
 	private String product_main_category;
 	private String product_sub_category;
 	private String product_states;
+	
+	
 	public String getProduct_id() {
 		return product_id;
 	}

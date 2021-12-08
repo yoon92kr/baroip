@@ -1,0 +1,24 @@
+package com.myspring.baroip.adminProduct.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.myspring.baroip.adminProduct.dao.AdminProductDAO;
+import com.myspring.baroip.product.vo.ProductVO;
+
+@Service("Service")
+@Transactional(propagation=Propagation.REQUIRED)
+public class AdminProductServiceImpl implements AdminProductService {
+	
+	@Autowired
+	private AdminProductDAO adminProductDAO;
+	
+	
+	public void addProduct(ProductVO productVO) throws Exception {
+		adminProductDAO.insertProduct(productVO);
+		
+		
+	}
+}
