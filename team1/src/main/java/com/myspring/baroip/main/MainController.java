@@ -25,20 +25,10 @@ public class MainController {
 	
 	
 	
-	/*
-	 * 
-	 * 
-	 * @RequestMapping(value= "/admin.do"
-	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
-	 * admin(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * mav.setViewName(viewName);
-	 * 
-	 * return mav; }
-	 * 
-	 * 
-	 * 
+	
+
+
+	/* 
 	 * 
 	 * // admin-회원 관리
 	 * 
