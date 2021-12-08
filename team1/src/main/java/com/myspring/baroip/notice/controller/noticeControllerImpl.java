@@ -14,10 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller("noticeController")
 @RequestMapping(value="/notice")
-public class noticeControllerImpl{
+public class NoticeControllerImpl{
 
 
-	// 공지사항 페이지
+	// 공지사항 리스트페이지
 	@RequestMapping(value= "/notice_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView notice_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;

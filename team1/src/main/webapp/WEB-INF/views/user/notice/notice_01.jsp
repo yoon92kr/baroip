@@ -44,78 +44,7 @@
         <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
         <div class="col-lg-4 text-center notice_01_section">
         <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-       
-
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-       
-
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-       
-   
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-      
-        
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-      
-        
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-        
-       
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
-        <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
-        </div>
-        
-        
-       
-          <div class="row">
-        <div class="offset-lg-1 col-lg-2 text-center notice_01_section"><span>공지번호</span></div>
-        <div class="col-lg-1 text-left notice_01_section"><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_01_section">
-        <p class="cs">
-        		<a href="${contextPath}/notice_02.do">공지 제목</a></div>
+        		<a href="${contextPath}/notice/notice_02.do">공지 제목</a></div>
         <div class="col-lg-3 text-center notice_01_section"><span>공지 작성 일자</span></div>
         </div>
         
