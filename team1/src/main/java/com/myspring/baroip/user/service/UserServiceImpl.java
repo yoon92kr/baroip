@@ -22,8 +22,14 @@ public class UserServiceImpl implements UserService {
 		return userDAO.login(loginMap);
 	}
 	
+	@Override
 	public void addUser(UserVO userVO) throws Exception {
 		userDAO.insertNewUser(userVO);
+	}
+	
+	@Override
+	public String userIdOverlap(String id) throws Exception{
+		return userDAO.selectIdOverlap(id);
 	}
 
 }

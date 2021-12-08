@@ -36,7 +36,7 @@ public class UserControllerImpl implements UserController{
 		ModelAndView mav = new ModelAndView();
 		 userVO=userService.login(userMap);
 		 // 받아온 userVo의 유효성 검토
-		if(userVO!= null && userVO.getUser_id()!=null){
+		if(userVO!= null && userVO.getUser_id()!=null) {
 			// 세션 생성
 			HttpSession session=request.getSession();
 			session=request.getSession();
@@ -47,11 +47,8 @@ public class UserControllerImpl implements UserController{
 			
 			mav.setViewName("redirect:/main.do");	
 			System.out.println(userVO.getUser_id());
-	
-			
-			
-			
-		}else{
+		}
+		else {
 			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
 			mav.addObject("message", message);
 			mav.setViewName("/user/login_01.do");
@@ -86,14 +83,28 @@ public class UserControllerImpl implements UserController{
 		try {
 			userService.addUser(_userVO);
 			message  = "<script>";
-		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
-		    message += " location.href='"+request.getContextPath()+"/user/login_01.do';";
+		    message += " location.href='"+request.getContextPath()+"/user/join_03.do';";
 		    message += " </script>";
 		} 
 		catch (Exception e) {
+			message  = "<script>";
+		    message += " alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+		    message += " location.href='"+request.getContextPath()+"/user/join_01.do';";
+		    message += " </script>";
 			e.printStackTrace();
 		}
-		resEntity =new ResponseEntity(responseHeaders, HttpStatus.OK);
+		resEntity =new ResponseEntity(message ,responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+	
+//	아이디 중복 확인
+	@Override
+	@RequestMapping(value="/userIdOverlap.do" ,method = RequestMethod.POST)
+	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseEntity resEntity = null;
+		String result = userService.userIdOverlap(id);
+		resEntity =new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
 

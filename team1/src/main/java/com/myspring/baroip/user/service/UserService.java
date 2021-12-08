@@ -8,5 +8,7 @@ public interface UserService {
 	public UserVO login(Map loginMap) throws Exception;
 	
 	public void addUser(UserVO userVO) throws Exception;
+	
+	public String userIdOverlap(String id) throws Exception;
 
 }

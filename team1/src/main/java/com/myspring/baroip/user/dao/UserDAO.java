@@ -10,4 +10,6 @@ public interface UserDAO {
 	public UserVO login(Map loginMap) throws DataAccessException;
 	
 	public void insertNewUser(UserVO userVO) throws DataAccessException;
+	
+	public String selectIdOverlap(String id) throws DataAccessException;
 }

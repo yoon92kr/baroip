@@ -21,6 +21,9 @@ public interface UserController {
 	
 	public ResponseEntity addUser(@ModelAttribute("user") UserVO user,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
 
 	

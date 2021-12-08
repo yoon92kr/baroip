@@ -35,8 +35,10 @@
 				아이디
 			</div>
 			<div class="col-lg-7 join_02-main-right">
-				<input class="join_02-text-box" type="text" name="user_id">
-				<input class="join_02-submit-box" type="button" value="중복 확인">
+				<input id="join_02_user_new_id" class="join_02-text-box" type="text" name="user_id">
+				<input id="join_02_user_id" type="hidden" name="user_id">
+				<input id="join_02_user_id_overlap_btn" class="join_02-submit-box" 
+					type="button" value="중복 확인" onClick="idOverlap()">
 			</div>
 		</div>
 
@@ -257,7 +259,39 @@
 
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
+<script type="text/javascript">
+
+function idOverlap() {
+    var _id=$("#join_02_user_new_id").val();
+    if(_id==''){
+   	 alert("ID를 입력하세요");
+   	 return;
+    }
+    $.ajax({
+       type:"post",
+       async:false,  
+       url:"${contextPath}/user/userIdOverlap.do",
+       dataType:"text",
+       data: {id:_id},
+       success:function (data,textStatus){
+          if(data=='false'){
+       	    alert("사용 가능한 아이디 입니다.");
+       	    $('#join_02_user_id_overlap_btn').prop("disabled", true);
+       	    $('#join_02_user_new_id').prop("disabled", true);
+       	    $('#join_02_user_id').val(_id);
+          }else{
+        	  alert("사용할 수 없는 ID입니다.");
+          }
+       },
+       error:function(data,textStatus){
+          alert("사용할 수 없는 ID 입니다2.");ㅣ
+       },
+       complete:function(data,textStatus){
+          //alert("작업을완료 했습니다");
+       }
+    });  //end ajax	 
+ }
+
 <!-- 생년월일 selectbox 이벤트 -->
 	/* var start_year = "1970"; //시작 년도
 	var today = new Date();
