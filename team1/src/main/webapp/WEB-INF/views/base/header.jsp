@@ -43,7 +43,7 @@
 					
 						<c:when test="${loginOn==true and userInfo.user_rank > 1}">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
-								<a href="${contextPath}/admin.do" class="header-navi">관리자 페이지</a>
+								<a href="${contextPath}/admin/main.do" class="header-navi">관리자 페이지</a>
 						</c:when>
 							
 						<c:when test="${loginOn==true and not empty userInfo }">

@@ -1,4 +1,5 @@
 <!-- 2021.12.02 한건희 -->
+<!-- 2021.12.08 윤상현 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -36,7 +37,7 @@
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	<input class="adminProduct_01-header-button" type="button" value="조회하기">
-        	<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="상품 임시 등록" onclick="location.href='${contextPath}/adminProduct_02.do'">
+        	<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="상품 임시 등록" onclick="location.href='${contextPath}/admin/product/addProduct.do'">
         </div>
     </div>
     
@@ -128,7 +129,7 @@ function decreaseValue(tagId) {
 	}
 	
 	countValue = isNaN(countValue) ? 0 : countValue;
-	countValue < 2 ? countValue = 2 : '';
+	countValue < 1 ? countValue = 1 : '';
 	countValue--;
 	document.getElementById('adminProdut_01_cart_item_count').value = countValue;
 };

@@ -4,8 +4,12 @@
 
 <tiles-definitions>
 
-	<definition name="/adminProduct/product" extends="AdminLayout">
+	<definition name="/admin/product/list" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_01.jsp" />
+	</definition>
+	
+		<definition name="/admin/product/addProduct" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_02.jsp" />
 	</definition>
 
 </tiles-definitions>

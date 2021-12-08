@@ -11,7 +11,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/base/footer.jsp" />
 	</definition>
 
-	<definition name="admin" extends="AdminLayout">
+	<definition name="/admin/main" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/base/admin.jsp" />
 	</definition>
 
