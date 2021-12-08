@@ -2,6 +2,9 @@ package com.myspring.baroip.cs.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("csVO")
 public class CsVO {
 	
 	private String notice_id;
