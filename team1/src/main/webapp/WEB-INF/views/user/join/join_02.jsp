@@ -284,7 +284,7 @@ function idOverlap() {
           }
        },
        error:function(data,textStatus){
-          alert("사용할 수 없는 ID 입니다2.");ㅣ
+          alert("사용할 수 없는 ID 입니다.");ㅣ
        },
        complete:function(data,textStatus){
           //alert("작업을완료 했습니다");

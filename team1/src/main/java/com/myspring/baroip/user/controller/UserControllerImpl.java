@@ -1,5 +1,13 @@
 package com.myspring.baroip.user.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,15 +36,27 @@ public class UserControllerImpl implements UserController{
 	@Autowired
 	private UserVO userVO;
 	
+	
+// 로그인 페이지
+	@RequestMapping(value= "/login_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView login_01(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 //	로그인
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam Map<String, String> userMap,
-			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+				HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		 userVO=userService.login(userMap);
 		 // 받아온 userVo의 유효성 검토
-		if(userVO!= null && userVO.getUser_id()!=null) {
+		 if(userVO!= null && userVO.getUser_id()!=null) {
 			// 세션 생성
 			HttpSession session=request.getSession();
 			session=request.getSession();
@@ -55,6 +75,17 @@ public class UserControllerImpl implements UserController{
 		}
 		return mav;
 	}
+	
+	/*
+	 * // 네이버 로그인
+	 * 
+	 * @RequestMapping(value= "/naver_callback.do"
+	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
+	 * login_04(HttpServletRequest request, HttpServletResponse response) throws
+	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
+	 * String viewName = (String)request.getAttribute("viewName");
+	 * mav.setViewName(viewName); return mav; }
+	 */
 	
 //	로그아웃
 	@Override
@@ -108,15 +139,6 @@ public class UserControllerImpl implements UserController{
 		return resEntity;
 	}
 
-	// 로그인 페이지
-	@RequestMapping(value= "/login_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView login_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
 	
 	// 아이디 비밀번호 찾기
 	@RequestMapping(value= "/login_02.do" ,method={RequestMethod.POST,RequestMethod.GET})

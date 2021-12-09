@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.baroip.user.dao.UserDAO;
 import com.myspring.baroip.user.vo.UserVO;
 
-@Service("memberService")
+@Service("UserService")
 @Transactional(propagation=Propagation.REQUIRED)
 public class UserServiceImpl implements UserService {
 	
@@ -23,8 +23,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void addUser(UserVO userVO) throws Exception {
-		userDAO.insertNewUser(userVO);
+	public String addUser(UserVO userVO) throws Exception {
+		/* userDAO.insertNewUser(userVO); */
+		return userDAO.insertNewUser(userVO);
 	}
 	
 	@Override

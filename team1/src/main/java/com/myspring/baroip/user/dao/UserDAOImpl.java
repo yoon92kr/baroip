@@ -21,14 +21,16 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public void insertNewUser(UserVO userVO) throws DataAccessException {
+	public String insertNewUser(UserVO userVO) throws DataAccessException {
 		sqlSession.insert("mapper.user.insertNewUser",userVO);
+		String user_name = userVO.getUser_name();
+		return user_name;
 	}
 	
 	
 	@Override
 	public String selectIdOverlap(String id) throws DataAccessException {
-		String result =  sqlSession.selectOne("mapper.member.selectIdOverlap",id);
+		String result = sqlSession.selectOne("mapper.user.selectIdOverlap",id);
 		return result;
 	}
 

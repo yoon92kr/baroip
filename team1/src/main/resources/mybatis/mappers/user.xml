@@ -33,6 +33,8 @@
 		]]>
 	</select>
 	
+	
+	
 	<insert id="insertNewUser" parameterType="UserVO">
 		<![CDATA[
 			insert into user (user_id, user_pw, user_name, 
@@ -59,5 +61,7 @@
 			where user_id = #{id}
 		]]>
 	</select>
-
+	
+	<!--  -->
+	
 </mapper>
