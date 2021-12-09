@@ -19,11 +19,10 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	public String insertProduct(ProductVO productVO) throws DataAccessException {
 		// product insert query
 		sqlSession.insert("mapper.adminProduct.insertProduct",productVO);
+				
+		String product_id = "product_"+sqlSession.selectOne("mapper.adminProduct.selectMatchID");
 		
-		// 추가한 product 상품명 반환
-		String addProductName = productVO.getProduct_main_title();
-		
-		return addProductName;
+		return product_id;
 	}
 
 }

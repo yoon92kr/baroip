@@ -19,7 +19,8 @@
 		<result property="product_states" column="product_states" />
 	</resultMap>
 
-	
+
+	<!-- 상품 등록 쿼리 -->
 	<insert id="insertProduct" parameterType="ProductVO">
 		<![CDATA[
 			insert into product (
@@ -49,6 +50,13 @@
 		]]>
 	</insert>
 
+	<!-- image와 매칭할 id 조회 쿼리 -->
+	<select id="selectMatchID" resultType="java.lang.String">
+		<![CDATA[
+			select count_no from sequences 
+			 where sequence_name='product'	 
+		]]>
+	</select>
 
 
 </mapper>

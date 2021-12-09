@@ -2,8 +2,6 @@
 
 package com.myspring.baroip.adminProduct.controller;
 
-import java.util.Iterator;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminProduct.service.AdminProductService;
+import com.myspring.baroip.image.controller.ImageController;
 import com.myspring.baroip.product.vo.ProductVO;
 
 @Controller("adminProductController")
@@ -24,6 +23,8 @@ public class AdminProductControllerImpl implements AdminProductController {
 	
 	@Autowired
 	private AdminProductService adminProductService;
+	@Autowired
+	private ImageController imageController;
 
 	// 상품관리 페이지 전체 mapping
 	@Override
@@ -42,23 +43,23 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@Override
 	@RequestMapping(value = "/addProduct.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
-		
-		Iterator<String> test = multipartRequest.getFileNames();
-				
-		
-		while(test.hasNext()) {
-			System.out.println(test.next());
-		}
-
 
 		
 		ModelAndView mav = new ModelAndView();
 		
 		
-		String addProductName = adminProductService.addProduct(productVO);
-		String message = "["+addProductName+"] 상품의 임시등록이 완료되었습니다.";
+		String product_id = adminProductService.addProduct(productVO);
+		String message = "["+product_id+"]의 임시등록이 완료되었습니다.";
 		mav.addObject("message", message);
 		mav.setViewName("/admin/product/list");
+		
+		imageController.ImageSetImageVO(multipartRequest, product_id);
+
+		// 등록된 상품 이미지 파일 저장
+		
+		
+
+		
 
 		return mav;
 	}

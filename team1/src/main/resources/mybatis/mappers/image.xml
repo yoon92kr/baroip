@@ -5,7 +5,7 @@
 
 <mapper namespace="mapper.image">
 	<!-- 리절트 맵 정의 -->
-	<resultMap id="imageResult" type="imageVO">
+	<resultMap id="imageResult" type="ImageVO">
 		<result property="image_id" column="image_id" />
 		<result property="image_match_id" column="image_match_id" />
 		<result property="image_category" column="image_category" />
@@ -21,19 +21,13 @@
 			image_match_id, 
 			image_category,
 			image_file_name,
-			image_file,
+			image_file
 			)
 			values (
-			concat('product_', nextval('product')),
-			#{product_main_title}, 
-			#{product_sub_title},
-			#{product_body}, 
-			#{product_price}, 
-			#{product_discount}, 				
-			#{product_amount}, 
-			#{product_main_category},
-			#{product_sub_category},
-			0
+			#{image_match_id},
+			#{image_category}, 
+			#{image_file_name},
+			#{image_file}
 			)
 		]]>
 	</insert>

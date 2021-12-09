@@ -106,7 +106,7 @@
         	메인 이미지
         </div>
         <div class="col-lg-10 join_02-main-right">
-        	<input class="adminProduct_02-main-img-add-btn" type="file" name="image_file_name" accept="image/*">
+        	<input class="adminProduct_02-main-img-add-btn" type="file" name="main" accept="image/*">
         </div>
     </div>
     

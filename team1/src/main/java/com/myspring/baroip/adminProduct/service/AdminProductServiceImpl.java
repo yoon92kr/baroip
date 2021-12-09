@@ -20,8 +20,8 @@ public class AdminProductServiceImpl implements AdminProductService {
 	
 	public String addProduct(ProductVO productVO) throws Exception {
 		
-		String addProductName = adminProductDAO.insertProduct(productVO);
+		String product_id = adminProductDAO.insertProduct(productVO);
 		
-		return addProductName;
+		return product_id;
 	}
 }
