@@ -19,7 +19,7 @@ public interface UserController {
 	public ModelAndView logout(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
 	
-	public ResponseEntity addUser(@ModelAttribute("user") UserVO user,
+	public ModelAndView addUser(@ModelAttribute("user") UserVO user,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ResponseEntity userIdOverlap(@RequestParam("id") String id,

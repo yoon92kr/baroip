@@ -1,13 +1,5 @@
 package com.myspring.baroip.user.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -103,29 +95,20 @@ public class UserControllerImpl implements UserController{
 //	회원가입
 	@Override
 	@RequestMapping(value="/addUser.do" ,method = RequestMethod.POST)
-	public ResponseEntity addUser(@ModelAttribute("userVO") UserVO _userVO,
+	public ModelAndView addUser(@ModelAttribute("userVO") UserVO _userVO,
             HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		ModelAndView mav = new ModelAndView();
 		try {
 			userService.addUser(_userVO);
-			message  = "<script>";
-		    message += " location.href='"+request.getContextPath()+"/user/join_03.do';";
-		    message += " </script>";
+			mav.setViewName("redirect:/user/join_03.do");
 		} 
 		catch (Exception e) {
-			message  = "<script>";
-		    message += " alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-		    message += " location.href='"+request.getContextPath()+"/user/join_01.do';";
-		    message += " </script>";
+			mav.setViewName("redirect:/user/join_01.do");
 			e.printStackTrace();
 		}
-		resEntity =new ResponseEntity(message ,responseHeaders, HttpStatus.OK);
-		return resEntity;
+		return mav;
 	}
 	
 //	아이디 중복 확인

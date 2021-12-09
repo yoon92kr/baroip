@@ -6,7 +6,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 request.setCharacterEncoding("UTF-8");
-String user_name = request.getParameter("user_name");
+String user_name = (String)request.getParameter("user_name");
 %>
 <div class="container-fluid">
 
