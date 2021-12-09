@@ -23,7 +23,7 @@
         </div>
     </div>
     
-    <form action="${contextPath}/admin/product/addProduct.do" method="post">
+    <form action="${contextPath}/admin/product/addProduct.do" method="post" enctype="multipart/form-data">
     
     <div class="row">
         <div class="col-lg-2 text-center join_02-main-left">
@@ -63,30 +63,30 @@
         </div>
         <div class="col-lg-10 join_02-main-right">
         		<span class="adminProduct_02-content-body-left-text">대분류</span>
-        		<select class="adminProduct_02-category" onchange="productCategory02(this.value)" name="product_main_category">
-        			<option value="category_01">농산물</option>
-        			<option value="category_02">수산물</option>
-        			<option value="category_03">축산물</option>
+        		<select class="adminProduct_02-category" onchange="productCategory02(this.options[this.selectedIndex].id)" name="product_main_category">
+        			<option id="category_01" value="농산물">농산물</option>
+        			<option id="category_02" value="수산물">수산물</option>
+        			<option id="category_03" value="축산물">축산물</option>
         		</select>
         		
         		<span class="adminProduct_02-content-body-left-text adminProduct_02-content-body-category-text">소분류</span>
         		
         		<select id="adminProduct_02_category_01-text" class="adminProduct_02-category" name="product_sub_category">
-        			<option value="product_02_01_01">채소</option>
-        			<option value="product_02_01_02">곡물</option>
-        			<option value="product_02_01_03">과일</option>
+        			<option value="채소">채소</option>
+        			<option value="곡물">곡물</option>
+        			<option value="과일">과일</option>
         		</select>
         		
-        		<select id="adminProduct_02_category_02-text" class="adminProduct_02-category" name="product_sub_category">
-        			<option value="product_02_02_01">생선류</option>
-        			<option value="product_02_02_02">갑각류</option>
-        			<option value="product_02_02_03">해조류</option>
+        		<select id="adminProduct_02_category_02-text" class="adminProduct_02-category" name="product_sub_category" disabled>
+        			<option value="생선류">생선류</option>
+        			<option value="갑각류">갑각류</option>
+        			<option value="해조류">해조류</option>
         		</select>
         		
-        		<select id="adminProduct_02_category_03-text" class="adminProduct_02-category" name="product_sub_category">
-        			<option value="product_02_03_01">돼지고기</option>
-        			<option value="product_02_03_02">소고기</option>
-        			<option value="product_02_03_03">기타</option>
+        		<select id="adminProduct_02_category_03-text" class="adminProduct_02-category" name="product_sub_category" disabled>
+        			<option value="돼지고기">돼지고기</option>
+        			<option value="소고기">소고기</option>
+        			<option value="기타">기타</option>
         		</select>
         </div>
     </div>
@@ -96,7 +96,7 @@
         	내용
         </div>
         <div class="col-lg-10 adminProduct_02-main-right">
-       		<input class="adminProduct_02-main-img-add-btn" type="file" name="">
+       		<input class="adminProduct_02-main-img-add-btn" type="file" name="body" multiple="multiple" accept="image/*">
         	<textarea class="adminProduct_02-main-content-text" name="product_body"></textarea>
         </div>
     </div>
@@ -106,7 +106,7 @@
         	메인 이미지
         </div>
         <div class="col-lg-10 join_02-main-right">
-        	<input class="adminProduct_02-main-img-add-btn" type="file">
+        	<input class="adminProduct_02-main-img-add-btn" type="file" name="image_file_name" accept="image/*">
         </div>
     </div>
     
@@ -115,9 +115,9 @@
         	추가 이미지
         </div>
         <div class="col-lg-10 adminProduct_02-img-add-right">
-        	<input class="adminProduct_02-sub-img-add-btn" type="file">
-        	<input class="adminProduct_02-sub-img-add-btn" type="file">
-        	<input class="adminProduct_02-sub-img-add-btn" type="file">
+        	<input class="adminProduct_02-sub-img-add-btn" type="file" name="sub1" accept="image/*">
+        	<input class="adminProduct_02-sub-img-add-btn" type="file" name="sub2" accept="image/*">
+        	<input class="adminProduct_02-sub-img-add-btn" type="file" name="sub3" accept="image/*">
         </div>
     </div>
 
@@ -143,30 +143,40 @@
 </div>
 
 <script type="text/javascript">
-
+// 2021.12.09 윤상현 수정
 function productCategory02(productValue02) {
-	let adminProduct_02_category_01 = '#adminProduct_02_category_01-text';
-	let adminProduct_02_category_02 = '#adminProduct_02_category_02-text';
-	let adminProduct_02_category_03 = '#adminProduct_02_category_03-text';
+   let adminProduct_02_category_01 = '#adminProduct_02_category_01-text';
+   let adminProduct_02_category_02 = '#adminProduct_02_category_02-text';
+   let adminProduct_02_category_03 = '#adminProduct_02_category_03-text';
 
-	let adminProduct_02 = '#adminProduct_02_'.concat(productValue02, '-text');
+   let adminProduct_02 = '#adminProduct_02_'.concat(productValue02, '-text');
 
+   if (adminProduct_02 == adminProduct_02_category_01) {
+      document.querySelector(adminProduct_02_category_01).style.display = 'inline';
+      document.querySelector(adminProduct_02_category_01).disabled = false;
+      document.querySelector(adminProduct_02_category_02).style.display = 'none';
+      document.querySelector(adminProduct_02_category_02).disabled = true;
+      document.querySelector(adminProduct_02_category_03).style.display = 'none';
+      document.querySelector(adminProduct_02_category_03).disabled = true;
 
-	if (adminProduct_02 == adminProduct_02_category_01) {
-	   document.querySelector(adminProduct_02_category_01).style.display = 'inline';
-	   document.querySelector(adminProduct_02_category_02).style.display = 'none';
-	   document.querySelector(adminProduct_02_category_03).style.display = 'none';
-	}
-	else if (adminProduct_02 == adminProduct_02_category_02) {
-		document.querySelector(adminProduct_02_category_01).style.display = 'none';
-		document.querySelector(adminProduct_02_category_02).style.display = 'inline';
-		document.querySelector(adminProduct_02_category_03).style.display = 'none';
-	}
-	else {
-		document.querySelector(adminProduct_02_category_01).style.display = 'none';
-		document.querySelector(adminProduct_02_category_02).style.display = 'none';
-		document.querySelector(adminProduct_02_category_03).style.display = 'inline';
-	}
+   }
+   else if (adminProduct_02 == adminProduct_02_category_02) {
+      document.querySelector(adminProduct_02_category_01).style.display = 'none';
+      document.querySelector(adminProduct_02_category_01).disabled = true;
+      document.querySelector(adminProduct_02_category_02).style.display = 'inline';
+      document.querySelector(adminProduct_02_category_02).disabled = false;
+      document.querySelector(adminProduct_02_category_03).style.display = 'none';
+      document.querySelector(adminProduct_02_category_03).disabled = true;
+   }
+   else {
+      document.querySelector(adminProduct_02_category_01).style.display = 'none';
+      document.querySelector(adminProduct_02_category_01).disabled = true;
+      document.querySelector(adminProduct_02_category_02).style.display = 'none';
+      document.querySelector(adminProduct_02_category_02).disabled = true;
+      document.querySelector(adminProduct_02_category_03).style.display = 'inline';
+      document.querySelector(adminProduct_02_category_03).disabled = false;
+   }
+
 	
  }
 

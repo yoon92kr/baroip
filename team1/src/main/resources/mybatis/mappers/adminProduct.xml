@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- 2021.12.09 윤상현 -->
+
 <mapper namespace="mapper.adminProduct">
 	<!-- 리절트 맵 정의 -->
 	<resultMap id="productResult" type="ProductVO">
@@ -20,7 +22,7 @@
 	
 	<insert id="insertProduct" parameterType="ProductVO">
 		<![CDATA[
-			insert into user (
+			insert into product (
 			product_id, 
 			product_main_title, 
 			product_sub_title,
@@ -33,7 +35,7 @@
 			product_states
 			)
 			values (
-			#{user_id},
+			concat('product_', nextval('product')),
 			#{product_main_title}, 
 			#{product_sub_title},
 			#{product_body}, 

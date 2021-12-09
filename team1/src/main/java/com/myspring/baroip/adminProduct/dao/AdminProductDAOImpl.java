@@ -1,3 +1,5 @@
+// 2021.12.09 윤상현
+
 package com.myspring.baroip.adminProduct.dao;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,8 +16,14 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	private SqlSession sqlSession;
 	
 	
-	public void insertProduct(ProductVO productVO) throws DataAccessException {
+	public String insertProduct(ProductVO productVO) throws DataAccessException {
+		// product insert query
 		sqlSession.insert("mapper.adminProduct.insertProduct",productVO);
+		
+		// 추가한 product 상품명 반환
+		String addProductName = productVO.getProduct_main_title();
+		
+		return addProductName;
 	}
 
 }

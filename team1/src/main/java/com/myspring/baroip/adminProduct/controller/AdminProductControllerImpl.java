@@ -2,6 +2,8 @@
 
 package com.myspring.baroip.adminProduct.controller;
 
+import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,51 +12,54 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.baroip.adminProduct.service.AdminProductService;
 import com.myspring.baroip.product.vo.ProductVO;
 
 @Controller("adminProductController")
-@RequestMapping(value="/admin/product")
+@RequestMapping(value = "/admin/product")
 public class AdminProductControllerImpl implements AdminProductController {
 	
 	@Autowired
-	private ProductVO productVO;
+	private AdminProductService adminProductService;
 
-	// 상품관리 페이지
+	// 상품관리 페이지 전체 mapping
 	@Override
-	@RequestMapping(value="/list.do" ,method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView adminProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
 
-			String viewName = (String)request.getAttribute("viewName");
-			mav.setViewName(viewName);	
-	
-		return mav;
-	}
-	
-	// 상품등록 페이지
-	@Override
-	@RequestMapping(value="/addProductForm.do" ,method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView addProductForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		mav.setViewName(viewName);
 
-			String viewName = (String)request.getAttribute("viewName");
-			mav.setViewName(viewName);	
-	
 		return mav;
 	}
 
-	
+
 	// 상품 임시 등록
 	@Override
-	@RequestMapping(value="/addProduct.do" ,method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/addProduct.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+		
+		Iterator<String> test = multipartRequest.getFileNames();
+				
+		
+		while(test.hasNext()) {
+			System.out.println(test.next());
+		}
+
+
 		
 		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);	
-	
+		
+		
+		String addProductName = adminProductService.addProduct(productVO);
+		String message = "["+addProductName+"] 상품의 임시등록이 완료되었습니다.";
+		mav.addObject("message", message);
+		mav.setViewName("/admin/product/list");
+
 		return mav;
 	}
 }

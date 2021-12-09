@@ -1,3 +1,5 @@
+// 2021.12.09 À±»óÇö
+
 package com.myspring.baroip.adminProduct.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.baroip.adminProduct.dao.AdminProductDAO;
 import com.myspring.baroip.product.vo.ProductVO;
 
-@Service("Service")
+@Service("adminProductService")
 @Transactional(propagation=Propagation.REQUIRED)
 public class AdminProductServiceImpl implements AdminProductService {
 	
@@ -16,9 +18,10 @@ public class AdminProductServiceImpl implements AdminProductService {
 	private AdminProductDAO adminProductDAO;
 	
 	
-	public void addProduct(ProductVO productVO) throws Exception {
-		adminProductDAO.insertProduct(productVO);
+	public String addProduct(ProductVO productVO) throws Exception {
 		
+		String addProductName = adminProductDAO.insertProduct(productVO);
 		
+		return addProductName;
 	}
 }
