@@ -2,7 +2,6 @@
 
 package com.myspring.baroip.image.vo;
 
-import java.sql.Blob;
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ public class ImageVO {
 	private String image_category;
 	private String image_file_name;
 	private Date image_cre_date;
-	private Blob image_file;
+	private byte[] image_file;
 	
 	
 	public String getImage_id() {
@@ -47,13 +46,12 @@ public class ImageVO {
 	public void setImage_cre_date(Date image_cre_date) {
 		this.image_cre_date = image_cre_date;
 	}
-	public Blob getImage_file() {
+	public byte[] getImage_file() {
 		return image_file;
 	}
-	public void setImage_file(Blob image_file) {
+	public void setImage_file(byte[] image_file) {
 		this.image_file = image_file;
 	}
-	
 	
 
 }
