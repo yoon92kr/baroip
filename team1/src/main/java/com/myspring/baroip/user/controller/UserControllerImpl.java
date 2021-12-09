@@ -95,13 +95,15 @@ public class UserControllerImpl implements UserController{
 //	회원가입
 	@Override
 	@RequestMapping(value="/addUser.do" ,method = RequestMethod.POST)
-	public ModelAndView addUser(@ModelAttribute("userVO") UserVO _userVO,
+	public ModelAndView addUser(@ModelAttribute("userVO") UserVO userVO,
             HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
+		String user_name = userService.addUser(userVO);
 		ModelAndView mav = new ModelAndView();
 		try {
-			userService.addUser(_userVO);
+			mav.addObject("user_name", user_name);
+			System.out.println(user_name);
 			mav.setViewName("redirect:/user/join_03.do");
 		} 
 		catch (Exception e) {
