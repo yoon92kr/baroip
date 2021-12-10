@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,6 +28,17 @@ public class UserControllerImpl implements UserController{
 	private UserVO userVO;
 	
 	
+	// 회원가입 완료
+		@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+		}
+	
+	
 // 로그인 페이지
 	@RequestMapping(value= "/login_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView login_01(HttpServletRequest request, 
@@ -47,6 +57,7 @@ public class UserControllerImpl implements UserController{
 				HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		 userVO=userService.login(userMap);
+		 
 		 // 받아온 userVo의 유효성 검토
 		 if(userVO!= null && userVO.getUser_id()!=null) {
 			// 세션 생성
@@ -104,10 +115,9 @@ public class UserControllerImpl implements UserController{
 		try {
 			mav.addObject("user_name", user_name);
 			System.out.println(user_name);
-			mav.setViewName("redirect:/user/join_03.do");
+			mav.setViewName("/user/join_03");
 		} 
 		catch (Exception e) {
-			mav.setViewName("redirect:/user/join_01.do");
 			e.printStackTrace();
 		}
 		return mav;
@@ -135,15 +145,16 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-	// 아이디 찾기 결과
-	@RequestMapping(value= "/login_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView login_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
+	/*
+	 * // 아이디 찾기 결과
+	 * 
+	 * @RequestMapping(value= "/login_03.do"
+	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
+	 * login_03(HttpServletRequest request, HttpServletResponse response) throws
+	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
+	 * String viewName = (String)request.getAttribute("viewName");
+	 * mav.setViewName(viewName); return mav; }
+	 */
 	
 	// 비밀번호 찾기
 	@RequestMapping(value= "/login_04.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -155,15 +166,16 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-	// 비밀번호 찾기 완료
-	@RequestMapping(value= "/login_05.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView login_05(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
+	/*
+	 * // 비밀번호 찾기 완료
+	 * 
+	 * @RequestMapping(value= "/login_05.do"
+	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
+	 * login_05(HttpServletRequest request, HttpServletResponse response) throws
+	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
+	 * String viewName = (String)request.getAttribute("viewName");
+	 * mav.setViewName(viewName); return mav; }
+	 */
 	
 	// 약관동의
 	@RequestMapping(value= "/join_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -175,25 +187,27 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-	// 회원가입 정보 입력
-	@RequestMapping(value= "/join_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView join_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
+	/*
+	 * // 회원가입 정보 입력
+	 * 
+	 * @RequestMapping(value= "/join_02.do"
+	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
+	 * join_02(HttpServletRequest request, HttpServletResponse response) throws
+	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
+	 * String viewName = (String)request.getAttribute("viewName");
+	 * mav.setViewName(viewName); return mav; }
+	 */
 	
-	// 회원가입 완료
-	@RequestMapping(value= "/join_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView join_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
+	/*
+	 * // 회원가입 완료
+	 * 
+	 * @RequestMapping(value= "/join_03.do"
+	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
+	 * join_03(HttpServletRequest request, HttpServletResponse response) throws
+	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
+	 * String viewName = (String)request.getAttribute("viewName");
+	 * mav.setViewName(viewName); return mav; }
+	 */
 
 	
 }

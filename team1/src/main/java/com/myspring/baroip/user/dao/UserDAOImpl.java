@@ -27,7 +27,6 @@ public class UserDAOImpl implements UserDAO {
 		return user_name;
 	}
 	
-	
 	@Override
 	public String selectIdOverlap(String id) throws DataAccessException {
 		String result = sqlSession.selectOne("mapper.user.selectIdOverlap",id);
