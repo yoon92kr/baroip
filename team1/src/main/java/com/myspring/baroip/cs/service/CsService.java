@@ -1,8 +1,10 @@
 package com.myspring.baroip.cs.service;
 
-public class CsService {
+import java.util.Map;
 
-	public static void main(String[] args) {
-		System.out.println("gg");
-	}
+import com.myspring.baroip.cs.vo.CsVO;
+
+public interface CsService {
+	public CsVO csList(Map csMap) throws Exception;
+
 }

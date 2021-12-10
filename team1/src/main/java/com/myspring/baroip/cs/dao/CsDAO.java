@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.baroip.cs.vo.CsVO;
 
 public interface CsDAO {
-	public CsVO login(Map loginMap) throws DataAccessException;
+	public CsVO csList(Map csMap) throws DataAccessException;
 	
 	
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.cs">
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="csResult" type="CsVO">
+		<result property="notice_id" column="notice_id" />
+		<result property="user_id" column="user_id" />
+		<result property="notice_category" column="notice_category" />
+		<result property="notice_pw" column="notice_pw" />
+		<result property="notice_title" column="notice_title" />
+		<result property="notice_body" column="notice_body" />
+		<result property="notice_cre_date" column="notice_cre_date" />
+		<result property="notice_grade" column="notice_grade" />
+		<result property="notice_private" column="notice_private" />
+		<result property="notice_type" column="notice_type" />
+		<result property="order_id" column="order_id" />
+		<result property="product_id" column="product_id" />
+	</resultMap>
+	
+	<select id="csList" resultMap="csResult">
+		<![CDATA[
+		select * from cs
+		]]>
+	</select>
+	
+</mapper>
