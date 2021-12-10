@@ -5,7 +5,11 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+<c:if test='${not empty message }'>
+<script>
+	alert("${message}");
+</script>
+</c:if>
 
 <div class="container">
 
@@ -17,13 +21,13 @@
 	
 	<div class="row">
 		<div class="col-lg-4 offset-lg-4">
-			<h3 class="sub-title">이메일 로그인</h3>
-			<form action="${contextPath}/user/login.do" name="Login_01_LoginForm" method="post">
+			<h3 class="sub-title">아이디 로그인</h3>
+			<form id="login_01_loginForm" <%--action="${contextPath}/user/login.do"--%> name="Login_01_LoginForm" method="post">
 				<input class="login_01-id-box" name="user_id" type="text"
 					placeholder="아이디(이메일)를 입력해주세요."> 
 				<input class="login_01-pwd-box" name="user_pw" type="password"
 					placeholder="비밀번호를 입력해주세요."><br> 
-				<input class="login_01-btn" type="button" value="로그인" onClick="checkLogin()">
+				<input class="login_01-btn" type="button" value="로그인"  <%--onClick="checkLogin()"--%>>
 			</form>
 			<p class="login_01-id-pwd-find">
 				<a href="${contextPath}/user/login_02.do">아이디 / 비밀번호 찾기</a>
@@ -85,7 +89,16 @@
 
 <script type="text/javascript">
 
-	function checkLogin() {
+	/* 로그인 버튼 */
+	$(".login_01-btn").click(function() {
+		/* alert("로그인 버튼"); */
+		$("#login_01_loginForm").attr("action", "${contextPath}/user/login.do");
+		$("#login_01_loginForm").submit();
+		
+	});
+	
+
+	/* function checkLogin() {
 		var form = document.Login_01_LoginForm;
 		
 		if(form.user_id.value == "" || form.user_id.length == 0) {
@@ -100,6 +113,6 @@
 		}
 		form.submit();
 			
-	}
+	} */
 
 </script>

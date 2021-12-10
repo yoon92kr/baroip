@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.user.service.UserService;
@@ -28,7 +29,7 @@ public class UserControllerImpl implements UserController{
 	private UserVO userVO;
 	
 	
-	// 회원가입 완료
+//		user 전체적인 접근
 		@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws Exception{
 			
@@ -50,18 +51,32 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
+	
+//	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
+//	public ModelAndView login(@RequestParam Map<String, String> loginMap,
+//			HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		ModelAndView mav = new ModelAndView();
+//		UserVO user = userService.login(loginMap);
+//		System.out.println("login");
+//		System.out.println(user);
+//		
+//		HttpSession session = request.getSession();
+//		
+//		return mav;
+//	}
+	
 //	로그인
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam Map<String, String> userMap,
 				HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		 userVO=userService.login(userMap);
+			ModelAndView mav = new ModelAndView();
+			HttpSession session=request.getSession();
+			userVO=userService.login(userMap);
 		 
 		 // 받아온 userVo의 유효성 검토
 		 if(userVO!= null && userVO.getUser_id()!=null) {
 			// 세션 생성
-			HttpSession session=request.getSession();
 			session=request.getSession();
 			// 접속여부 세션 set
 			session.setAttribute("loginOn", true);
@@ -69,12 +84,12 @@ public class UserControllerImpl implements UserController{
 			session.setAttribute("userInfo",userVO);
 			
 			mav.setViewName("redirect:/main.do");	
-			System.out.println(userVO.getUser_id());
+//			System.out.println(userVO.getUser_id());
 		}
 		else {
 			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
 			mav.addObject("message", message);
-			mav.setViewName("/user/login_01.do");
+			mav.setViewName("/user/login_01");
 		}
 		return mav;
 	}
@@ -114,7 +129,7 @@ public class UserControllerImpl implements UserController{
 		ModelAndView mav = new ModelAndView();
 		try {
 			mav.addObject("user_name", user_name);
-			System.out.println(user_name);
+//			System.out.println(user_name);
 			mav.setViewName("/user/join_03");
 		} 
 		catch (Exception e) {
@@ -123,16 +138,36 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-//	아이디 중복 확인
+//	아이디 중복 검사
 	@Override
 	@RequestMapping(value="/userIdOverlap.do" ,method = RequestMethod.POST)
-	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
-			HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ResponseEntity userIdOverlap(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ResponseEntity resEntity = null;
 		String result = userService.userIdOverlap(id);
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
+		System.out.println(result);
 		return resEntity;
 	}
+	
+	
+//	@Override
+//	@ResponseBody
+//	@RequestMapping(value="/userIdOverlap.do" ,method = RequestMethod.POST)
+//	public ModelAndView userIdOverlap(@RequestParam("id") String id,
+//			HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		String user_id = userService.userIdOverlap(id);
+//		ModelAndView mvc = new ModelAndView();
+//		
+//		try {
+//			mvc.addObject("user_id", user_id);
+//			System.out.println(user_id);
+//			mvc.setViewName("/user/join_02.do");
+//		} 
+//		catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return mvc;
+//	}
 
 	
 	// 아이디 비밀번호 찾기

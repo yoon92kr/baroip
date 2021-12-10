@@ -14,6 +14,7 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		try {
+			
 			// 요청 view 이름 설정
 			String viewName = getViewName(request);
 			HttpSession session = request.getSession();

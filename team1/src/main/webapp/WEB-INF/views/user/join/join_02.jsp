@@ -270,7 +270,7 @@ function idOverlap() {
     $.ajax({
        type:"post",
        async:false,  
-       url:"${contextPath}/user/userIdOverlap.do",
+       url:"${contextPath}/user/userIdOverlap",
        dataType:"text",
        data: {id:_id},
        success:function (data,textStatus){
@@ -284,7 +284,7 @@ function idOverlap() {
           }
        },
        error:function(data,textStatus){
-          alert("사용할 수 없는 ID 입니다.");ㅣ
+          alert("페이지 에러.");
        },
        complete:function(data,textStatus){
           //alert("작업을완료 했습니다");
