@@ -9,13 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.myspring.baroip.user.vo.UserVO;
-
 public class MainInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		try {
+			
 			// 요청 view 이름 설정
 			String viewName = getViewName(request);
 			HttpSession session = request.getSession();
@@ -83,4 +82,5 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 
 		return fileName;
 	}
+	
 }
