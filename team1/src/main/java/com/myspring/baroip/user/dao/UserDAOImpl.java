@@ -17,6 +17,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public UserVO login(Map loginMap) throws DataAccessException {
 		UserVO user=(UserVO)sqlSession.selectOne("mapper.user.login",loginMap);
+		System.out.printf("baroip : [%s]님이 로그인 하셨습니다.", user.getUser_id());
 	   return user;
 	}
 	
