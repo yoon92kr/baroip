@@ -78,7 +78,7 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 		if (fileName.lastIndexOf("/") != -1) {
 			fileName = fileName.substring(fileName.lastIndexOf("/", 1), fileName.length());
 		}
-		System.out.printf("viewName : [%s]%n", fileName);
+		System.out.printf("baroip : [%s]의 mapping으로 이동합니다.%n", fileName);
 
 		return fileName;
 	}
