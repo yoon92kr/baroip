@@ -31,6 +31,14 @@
 			)
 		]]>
 	</insert>
+	
+		<!-- 상품 이미지 조회 -->
+	<select id="selectProductImage" resultType="imageVO">
+		<![CDATA[
+			SELECT * FROM image 
+			order by product_count desc limit 3;	 
+		]]>
+	</select>
 
 
 
