@@ -17,6 +17,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class productControllerImpl{
 
 
+	// 베스트 아이템
+	@RequestMapping(value= "/bestItem.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView bestItem(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 
 	// 상품 목록
 	@RequestMapping(value= "/product_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
