@@ -1,6 +1,8 @@
 package com.myspring.baroip.product.service;
 
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,13 +59,17 @@ public class ProductServiceImpl implements ProductService {
 				// 상품 내용과 이미지를 담을 객체 생성
 				Map<String, Object> productInfo = new HashMap<String, Object>();
 				
+				// byte[] 자료를 img 태그에 사용가능하도록 encode
+				Encoder base = Base64.getEncoder();
+				String encodeImage = new String(base.encode(productImage.getImage_file()));
+				
 				
 
 				productInfo.put("product_main_title", product.getProduct_main_title());
 				productInfo.put("product_sub_title", product.getProduct_sub_title());
 				productInfo.put("product_price", product.getProduct_price());
 				productInfo.put("product_discount", product.getProduct_discount());
-				productInfo.put("image_file", productImage.getImage_file());
+				productInfo.put("image_file", encodeImage);
 
 				bestProductInfo.put("mainProduct" + (i+1), productInfo);
 				
