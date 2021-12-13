@@ -83,7 +83,7 @@ public class UserControllerImpl implements UserController{
 			session.setAttribute("userInfo",userVO);
 			
 			mav.setViewName("redirect:/main.do");	
-			System.out.printf("baroip : [%s]님이 로그인 하셨습니다.", userVO.getUser_id());
+			System.out.printf("baroip : [%s]님이 로그인 하셨습니다.%n", userVO.getUser_id());
 		}
 		else {
 			String message = "아이디나  비밀번호가 틀립니다. 다시 로그인해주세요.";
