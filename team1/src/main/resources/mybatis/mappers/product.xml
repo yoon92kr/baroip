@@ -20,11 +20,11 @@
 	</resultMap>
 
 
-	<!-- 베스트 상품 조회 -->
-	<select id="selectBestItem" resultType="productVO">
+	<!-- 베스트 상품 조회(3개의 상품 조회) -->
+	<select id="selectBestItem" resultType="ProductVO">
 		<![CDATA[
-			SELECT * FROM product 
-			order by product_count desc limit 3;	 
+			select * from product where product_states = 1 order by product_count desc limit 3 
+					 
 		]]>
 	</select>
 

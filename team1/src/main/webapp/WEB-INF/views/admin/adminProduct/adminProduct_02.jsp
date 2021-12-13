@@ -24,6 +24,7 @@
     </div>
     
     <form action="${contextPath}/admin/product/addProduct.do" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="user_id" value="${user_id}">
     
     <div class="row">
         <div class="col-lg-2 text-center join_02-main-left">
