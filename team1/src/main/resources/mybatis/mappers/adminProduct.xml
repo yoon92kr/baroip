@@ -24,31 +24,31 @@
 	<insert id="insertProduct" parameterType="ProductVO">
 		<![CDATA[
 			insert into product (
-			product_id, 
-			user_id,
-			product_main_title, 
-			product_sub_title,
-			product_body,
-			product_price,
-			product_discount,
-			product_amount,
-			product_main_category,
-			product_sub_category,
-			product_states
-			)
+				product_id, 
+				user_id,
+				product_main_title, 
+				product_sub_title,
+				product_body,
+				product_price,
+				product_discount,
+				product_amount,
+				product_main_category,
+				product_sub_category,
+				product_states
+				)
 			values (
-			concat('product_', nextval('product')),
-			#{user_id},
-			#{product_main_title}, 
-			#{product_sub_title},
-			#{product_body}, 
-			#{product_price}, 
-			#{product_discount}, 				
-			#{product_amount}, 
-			#{product_main_category},
-			#{product_sub_category},
-			0
-			)
+				concat('product_', nextval('product')),
+				#{user_id},
+				#{product_main_title}, 
+				#{product_sub_title},
+				#{product_body}, 
+				#{product_price}, 
+				#{product_discount}, 				
+				#{product_amount}, 
+				#{product_main_category},
+				#{product_sub_category},
+				0
+				)
 		]]>
 	</insert>
 
