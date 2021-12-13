@@ -53,18 +53,12 @@ public class ProductServiceImpl implements ProductService {
 				ImageVO productImage = imageService.selectProductImage(option);
 				// byte를 img로 변환하기 위한 encode
 				
-				
-
-
 				// 상품 내용과 이미지를 담을 객체 생성
 				Map<String, Object> productInfo = new HashMap<String, Object>();
 				
 				// byte[] 자료를 img 태그에 사용가능하도록 encode
-				Encoder base = Base64.getEncoder();
-				String encodeImage = new String(base.encode(productImage.getImage_file()));
+				String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
 				
-				
-
 				productInfo.put("product_main_title", product.getProduct_main_title());
 				productInfo.put("product_sub_title", product.getProduct_sub_title());
 				productInfo.put("product_price", product.getProduct_price());
