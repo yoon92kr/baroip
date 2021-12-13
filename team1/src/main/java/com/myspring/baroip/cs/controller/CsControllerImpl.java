@@ -1,28 +1,41 @@
 package com.myspring.baroip.cs.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.servlet.ModelAndView;
+
+import com.myspring.baroip.cs.service.CsService;
+import com.myspring.baroip.cs.vo.CsVO;
 
 
 
 @Controller("csController")
 @RequestMapping(value="/cs")
-public class CsControllerImpl{
-
+public class CsControllerImpl implements CsController {
+	@Autowired
+	CsService csService;
+	@Autowired
+	CsVO csVO;
 	
 	// °í°´¼¾ÅÍ ÀÚÁÖ¹¯´ÂÁú¹®
-	@RequestMapping(value= "/cs_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView cs_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@Override
+	@RequestMapping(value= "/cs_01.do" , method={RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView cs_01(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception{
 		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		List<CsVO> QAList = csService.csList();
+		System.out.println(QAList.get(0).getNotice_title());
+		mav.addObject("QAList", QAList);
 		mav.setViewName(viewName);
 		return mav;
 	}

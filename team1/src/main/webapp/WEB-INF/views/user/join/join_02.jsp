@@ -28,14 +28,15 @@
 		</div>
 	</div>
 	
-	<form action="${contextPath}/user/addUser.do" name="joinUser" method="post">
+	<form action="${contextPath}/user/addUser.do" name="joinNewUser" method="post">
 		
 		<div class="row">
 			<div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
 				아이디
 			</div>
 			<div class="col-lg-7 join_02-main-right">
-				<input id="join_02_user_new_id" class="join_02-text-box" type="text" name="user_id">
+				<input id="join_02_user_new_id" class="join_02-text-box" type="text" 
+					name="user_id">
 				<input id="join_02_user_id" type="hidden" name="user_id">
 				<input id="join_02_user_id_overlap_btn" class="join_02-submit-box" 
 					type="button" value="중복 확인" onClick="idOverlap()">
@@ -93,6 +94,16 @@
 					<option value="naver.com">naver.com</option>
 					<option value="nate.com">nate.com</option>
 				</select> -->
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
+				이메일 인증
+			</div>
+			<div class="col-lg-7 join_02-main-right">
+				<input class="join_02-text-box" type="text"> 
+				<input class="join_02-submit-box" type="button" value="이메일 인증 번호">
 			</div>
 		</div>
 
@@ -270,7 +281,7 @@ function idOverlap() {
     $.ajax({
        type:"post",
        async:false,  
-       url:"${contextPath}/user/userIdOverlap",
+       url:"${contextPath}/user/userIdOverlap.do",
        dataType:"text",
        data: {id:_id},
        success:function (data,textStatus){

@@ -18,9 +18,10 @@
 		<result property="product_id" column="product_id" />
 	</resultMap>
 	
-	<select id="csList" resultMap="csResult">
+	<select id="csList" resultMap="csResult" parameterType="CsVO">
 		<![CDATA[
-		select * from cs
+		select notice_id, notice_title, notice_body from notice where notice_category='QA'
+		order by notice_cre_date desc
 		]]>
 	</select>
 	

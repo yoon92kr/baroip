@@ -21,13 +21,14 @@
 		</div>
 	</div>
 	
-	<form action="${contextPath}/user/join_02.do" name="chk" method="post">
+	<form action="${contextPath}/user/join_02.do" name="checkForm" method="post" 
+		onSubmit="return CheckForm(this)">
 		<div class="row">
 			<div class="col-lg-10 offset-lg-1">
 
-				<label class="join_01-check-text"> <input
-					id="join_01_checkbox_01" class="join_01-check-01" type="checkbox"
-					name="join_01_checkbox"> 바로입 서비스 약관 동의
+				<label class="join_01-check-text"> 
+					<input id="join_01_checkbox_01" class="join_01-check-01" type="checkbox"
+						name="join_01_checkbox_01"> 바로입 서비스 약관 동의
 				</label>
 
 				<textarea class="join_01_contents" disabled>
@@ -270,9 +271,9 @@
 이전 약관 보러가기 >
                         </textarea>
 
-				<label class="join_01-check-text"> <input
-					id="join_01_checkbox_02" class="join_01-check-01" type="checkbox"
-					name="join_01_checkbox"> 개인정보 이용 방침
+				<label class="join_01-check-text"> 
+					<input id="join_01_checkbox_02" class="join_01-check-01" type="checkbox"
+						name="join_01_checkbox_02"> 개인정보 이용 방침
 				</label>
 
 				<textarea class="join_01_contents" disabled>
@@ -439,5 +440,21 @@ E - M A I L　: admin@baroip.com
 </div>
 
 <script type="text/javascript">
+function CheckForm(Join){
 	
+	var chk1=document.checkForm.join_01_checkbox_01.checked;
+    var chk2=document.checkForm.join_01_checkbox_02.checked;
+    
+    if(!chk1){
+        alert('바로입 서비스 약관에 동의해 주세요');
+        return false;
+    } 
+    else if(!chk2) {
+        alert('개인정보 이용 방침에 동의해 주세요');
+        return false;
+    }
+    
+}
+
+
 </script>

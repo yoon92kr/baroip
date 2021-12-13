@@ -1,14 +1,12 @@
 package com.myspring.baroip.cs.dao;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.baroip.cs.vo.CsVO;
 
 public interface CsDAO {
-	public CsVO csList(Map csMap) throws DataAccessException;
-	
-	
+	public List<CsVO> csList() throws DataAccessException;
 
 }

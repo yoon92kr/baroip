@@ -1,10 +1,10 @@
 package com.myspring.baroip.cs.service;
 
-import java.util.Map;
+import java.util.List;
 
 import com.myspring.baroip.cs.vo.CsVO;
 
 public interface CsService {
-	public CsVO csList(Map csMap) throws Exception;
+	public List<CsVO> csList() throws Exception;
 
 }

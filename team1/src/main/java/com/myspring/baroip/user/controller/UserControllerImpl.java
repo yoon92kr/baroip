@@ -73,7 +73,6 @@ public class UserControllerImpl implements UserController{
 			ModelAndView mav = new ModelAndView();
 			HttpSession session=request.getSession();
 			userVO=userService.login(userMap);
-		 
 		 // 받아온 userVo의 유효성 검토
 		 if(userVO!= null && userVO.getUser_id()!=null) {
 			// 세션 생성
@@ -84,26 +83,17 @@ public class UserControllerImpl implements UserController{
 			session.setAttribute("userInfo",userVO);
 			
 			mav.setViewName("redirect:/main.do");	
-//			System.out.println(userVO.getUser_id());
+			System.out.printf("baroip : [%s]님이 로그인 하셨습니다.", userVO.getUser_id());
 		}
 		else {
-			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
+			String message = "아이디나  비밀번호가 틀립니다. 다시 로그인해주세요.";
 			mav.addObject("message", message);
 			mav.setViewName("/user/login_01");
 		}
 		return mav;
 	}
 	
-	/*
-	 * // 네이버 로그인
-	 * 
-	 * @RequestMapping(value= "/naver_callback.do"
-	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
-	 * login_04(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * mav.setViewName(viewName); return mav; }
-	 */
+
 	
 //	로그아웃
 	@Override
@@ -141,34 +131,14 @@ public class UserControllerImpl implements UserController{
 //	아이디 중복 검사
 	@Override
 	@RequestMapping(value="/userIdOverlap.do" ,method = RequestMethod.POST)
-	public ResponseEntity userIdOverlap(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ResponseEntity resEntity = null;
 		String result = userService.userIdOverlap(id);
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
 		System.out.println(result);
 		return resEntity;
 	}
-	
-	
-//	@Override
-//	@ResponseBody
-//	@RequestMapping(value="/userIdOverlap.do" ,method = RequestMethod.POST)
-//	public ModelAndView userIdOverlap(@RequestParam("id") String id,
-//			HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		String user_id = userService.userIdOverlap(id);
-//		ModelAndView mvc = new ModelAndView();
-//		
-//		try {
-//			mvc.addObject("user_id", user_id);
-//			System.out.println(user_id);
-//			mvc.setViewName("/user/join_02.do");
-//		} 
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return mvc;
-//	}
-
 	
 	// 아이디 비밀번호 찾기
 	@RequestMapping(value= "/login_02.do" ,method={RequestMethod.POST,RequestMethod.GET})

@@ -28,7 +28,7 @@
 		<![CDATA[
 			select * from user 
 			 where user_id=#{user_id}
-			 and user_pw=#{user_pw}			
+			 and user_pw=#{user_pw}
 			 
 		]]>
 	</select>
