@@ -92,7 +92,7 @@
 		</div>
 		<div class="item-format">
 			<div class="row">
-				<div class="col-lg-2 main_item_bottom_text">
+				<div class="col-lg-2">
 					<a href="${contextPath}/product_02.do" class="">
 						<span class="item-title">${bestProducts.mainProduct1.product_main_title} </span>
 						<br>
@@ -100,7 +100,7 @@
 					
 					</a>
 				</div>
-				<div class="col-lg-1 main_item_bottom_text">
+				<div class="col-lg-1 main_item_bottom_text ">
 					<a href="${contextPath}/product_02.do" class="">
 					
 						<span class="item-price">${bestProducts.mainProduct1.product_price}원</span>
@@ -110,13 +110,14 @@
 					</a>
 				</div>
 				
-				<div class="col-lg-1 text-center main_item_bottom_text">
+				<div class="col-lg-1 text-right">
 					<form action="${contextPath}/cart/cartLst.do">
-						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지" >
 					</form>
 				</div>
+				
 
-								<div class="col-lg-2 main_item_bottom_text">
+				<div class="col-lg-2">
 					<a href="${contextPath}/product_02.do" class="">
 						<span class="item-title">${bestProducts.mainProduct2.product_main_title} </span>
 						<br>
@@ -134,13 +135,13 @@
 					</a>
 				</div>
 				
-				<div class="col-lg-1 text-center main_item_bottom_text">
+				<div class="col-lg-1 text-right">
 					<form action="${contextPath}/cart/cartLst.do">
 						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
 					</form>
 				</div>
 
-				<div class="col-lg-2 main_item_bottom_text">
+				<div class="col-lg-2">
 					<a href="${contextPath}/product_02.do" class="">
 						<span class="item-title">${bestProducts.mainProduct3.product_main_title} </span>
 						<br>
@@ -158,7 +159,7 @@
 					</a>
 				</div>
 				
-				<div class="col-lg-1 text-center main_item_bottom_text">
+				<div class="col-lg-1 text-right">
 					<form action="${contextPath}/cart/cartLst.do">
 						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
 					</form>

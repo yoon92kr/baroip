@@ -261,9 +261,8 @@ hr {
 }
 
 .main_item_bottom_text {
-	margin-bottom: 18px;
+	padding : 0px 0px 0px 5px;
 }
-
 
 .product-image img {
 	width: 400px;
@@ -280,11 +279,12 @@ hr {
 }
 
 .item-title {
-	font-size: 10px;
+	font-size: 13px;
 	width: 100%;
 	text-decoration: none;
 	text-align: left;
 	color: #000000;
+	font-family: kopub_bold;
 }
 
 .item-price, .item-real-price {
@@ -298,6 +298,7 @@ hr {
 	text-decoration: none;
 	color: #ff0000;
 	font-size: 6px;
+	margin-left : 5px;
 }
 
 .cart-put-icon {
