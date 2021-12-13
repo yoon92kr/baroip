@@ -41,6 +41,7 @@
 <br>
 
 <!-- product section -->
+<img src="${bestProducts.mainProduct1.image_file }">
 <div class="product-section">
 	<div class="container-fluid">
 

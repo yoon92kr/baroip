@@ -32,6 +32,8 @@ public class MainController {
 		mav.addObject("bestProducts", bestProducts);
 		mav.setViewName(viewName);
 		
+		
+		
 		return mav;
 	}
 	
