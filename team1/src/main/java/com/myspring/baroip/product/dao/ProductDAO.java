@@ -1,0 +1,13 @@
+package com.myspring.baroip.product.dao;
+
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+
+import com.myspring.baroip.product.vo.ProductVO;
+
+public interface ProductDAO {
+	
+	public List<ProductVO> selectBestProduct() throws DataAccessException;
+
+}
