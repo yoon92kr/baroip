@@ -41,7 +41,7 @@
 <br>
 
 <!-- product section -->
-<img src="${bestProducts.mainProduct1.image_file }">
+<img src="data:image/png;base64,${bestProducts.mainProduct1.image_file }">
 <div class="product-section">
 	<div class="container-fluid">
 
