@@ -4,6 +4,7 @@ package com.myspring.baroip.adminProduct.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.baroip.adminProduct.service.AdminProductService;
 import com.myspring.baroip.image.controller.ImageController;
 import com.myspring.baroip.product.vo.ProductVO;
+import com.myspring.baroip.user.vo.UserVO;
 
 @Controller("adminProductController")
 @RequestMapping(value = "/admin/product")
@@ -25,13 +27,18 @@ public class AdminProductControllerImpl implements AdminProductController {
 	private AdminProductService adminProductService;
 	@Autowired
 	private ImageController imageController;
+	
 
 	// 상품관리 페이지 전체 mapping
 	@Override
 	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView adminProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		HttpSession session=request.getSession();
+		
+		UserVO userVO = (UserVO)session.getAttribute("userInfo");
 		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("user_id", userVO.getUser_id());
 		String viewName = (String) request.getAttribute("viewName");
 		mav.setViewName(viewName);
 

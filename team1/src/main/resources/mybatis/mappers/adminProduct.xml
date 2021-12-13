@@ -25,6 +25,7 @@
 		<![CDATA[
 			insert into product (
 			product_id, 
+			user_id,
 			product_main_title, 
 			product_sub_title,
 			product_body,
@@ -37,6 +38,7 @@
 			)
 			values (
 			concat('product_', nextval('product')),
+			#{user_id},
 			#{product_main_title}, 
 			#{product_sub_title},
 			#{product_body}, 

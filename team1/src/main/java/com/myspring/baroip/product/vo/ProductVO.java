@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component("productVO")
 public class ProductVO {
 	private String product_id;
+	private String user_id;
 	private Date product_cre_date;
 	private String product_main_title;
 	private String product_sub_title;
@@ -26,6 +27,12 @@ public class ProductVO {
 	}
 	public void setProduct_id(String product_id) {
 		this.product_id = product_id;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public Date getProduct_cre_date() {
 		return product_cre_date;
@@ -87,5 +94,6 @@ public class ProductVO {
 	public void setProduct_states(String product_states) {
 		this.product_states = product_states;
 	}
-
+	
+	
 }
