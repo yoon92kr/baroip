@@ -24,16 +24,16 @@
 				
 				<div class="col-lg-3 text-center">
 					<div class="category">
-						<a href="${contextPath}/product/product_01.do" class="header-navi">농산물</a>
-						<a href="${contextPath}/product/product_01.do" class="header-navi">수산물</a>
-						<a href="${contextPath}/product/product_01.do" class="header-navi">축산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi set_farm">농산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi set_marine">수산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi set_meat">축산물</a>
 					</div>
 				</div>
 
 				<div class="col-lg-2 text-right offset-lg-2">
 					<div class="notice_navi">
-						<a href="${contextPath}/notice/notice_01.do" class="header-navi">공지사항</a>
-						<a href="${contextPath}/cs/cs_01.do" class="header-navi navi-button">고객센터</a>
+						<a href="${contextPath}/notice/notice_01.do" class="header-navi set_notice">공지사항</a>
+						<a href="${contextPath}/cs/cs_01.do" class="header-navi navi-button set_cs">고객센터</a>
 					</div>
 				</div>
 		
@@ -43,17 +43,17 @@
 					
 						<c:when test="${loginOn==true and userInfo.user_rank > 1}">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
-								<a href="${contextPath}/admin/main.do" class="header-navi">관리자 페이지</a>
+								<a href="${contextPath}/admin/main.do" class="header-navi set_admin">관리자 페이지</a>
 						</c:when>
 							
 						<c:when test="${loginOn==true and not empty userInfo }">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
-								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi">마이 페이지</a>
+								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi set_myPage">마이 페이지</a>
 						</c:when>
 						
 						<c:otherwise>
-						<a href="${contextPath}/user/login_01.do" class="header-navi">로그인</a>
-						<a href="${contextPath}/user/join_01.do" class="header-navi">회원가입</a>
+						<a href="${contextPath}/user/login_01.do" class="header-navi set_login">로그인</a>
+						<a href="${contextPath}/user/join_01.do" class="header-navi set_join">회원가입</a>
 						</c:otherwise>
 						
 					</c:choose>
