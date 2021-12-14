@@ -15,8 +15,19 @@ public class CsDAOImpl implements CsDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<CsVO> csList() throws DataAccessException{
-		List<CsVO> QAList = sqlSession.selectList("mapper.cs.csList");
+	public List<CsVO> QAList() throws DataAccessException{
+		List<CsVO> QAList = sqlSession.selectList("mapper.cs.QAList");
 		return QAList;
+	}
+	
+	@Override
+	public List<CsVO> questList() throws DataAccessException {
+		List<CsVO> questList = sqlSession.selectList("mapper.cs.questList");
+		return questList;
+	}
+	
+	@Override
+	public void insertNewQuest(CsVO csVO) throws DataAccessException {
+		sqlSession.insert("mapper.cs.insertNewQuest", csVO);
 	}
 }

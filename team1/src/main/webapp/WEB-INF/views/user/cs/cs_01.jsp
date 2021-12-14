@@ -60,10 +60,10 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 					<div class="col-lg-7 text-center cs_01_listsection">
 						<div class="faq-content">
-							<button class="question" id="que-1">
-								<span id="que-1-toggle">∨</span> <span>${QAList.notice_title }</span>
+							<button class="question" id="que-${QAListNum.index }">
+								<span id="que-${QAListNum.index }-toggle" class="cs_01-que-tollge">∨</span> <span>${QAList.notice_title }</span>
 							</button>
-							<div class="answer" id="ans-1">${QAList.notice_body }</div>
+							<div class="answer" id="ans-${QAListNum.index }">${QAList.notice_body }</div>
 						</div>
 					</div>
 				</div>
@@ -91,14 +91,17 @@ request.setCharacterEncoding("UTF-8");
 
   function openCloseAnswer() {
     const answerId = this.id.replace('que', 'ans');
-
-    if(document.getElementById(answerId).style.display === 'block') {
-      document.getElementById(answerId).style.display = 'none';
-      document.getElementById(this.id + '-toggle').textContent = '∨';
-    } else {
-      document.getElementById(answerId).style.display = 'block';
-      document.getElementById(this.id + '-toggle').textContent = '∧';
-    }
+    for(var i = 0; i < ${QAListSize}; i ++) {
+    	    
+	    if(document.getElementById(answerId).style.display === 'block') {
+	      document.getElementById(answerId).style.display = 'none';
+	      document.getElementById(this.id + i + '-toggle').textContent = '∨';
+	    } else {
+	      document.getElementById(answerId).style.display = 'block';
+	      document.getElementById(this.id + i + '-toggle').textContent = '∧';
+	    }
+    
+    }	
   }
 
   items.forEach(item => item.addEventListener('click', openCloseAnswer));

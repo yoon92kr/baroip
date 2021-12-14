@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.cs_02_01_private_btn {
+	margin-left: 100px;
+}
+
 .notice_01_header {
 	background: #d9d9d9;
 	height: 50px;
@@ -281,43 +285,10 @@
 }
 .mypage_radiobox {
 	margin-left:50px;
-
 }
 
-#que-5-toggle {
-	margin-right:30px;
-}
-
-
-#que-2-toggle {
-	margin-right:30px;
-}
-
-#que-3-toggle {
-	margin-right:30px;
-}
-#que-4-toggle {
-	margin-right:30px;
-}
-
-#que-6-toggle {
-	margin-right:30px;
-}
-
-#que-7-toggle {
-	margin-right:30px;
-}
-#que-8-toggle {
-	margin-right:30px;
-}
-#que-9-toggle {
-	margin-right:30px;
-}
-#que-10-toggle {
-	margin-right:30px;
-}
-#que-11-toggle {
-	margin-right:30px;
+.cs_01-que-tollge {
+	margin-right: 30px;
 }
 
 .admincs_02_02_box03 {

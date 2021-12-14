@@ -18,11 +18,35 @@
 		<result property="product_id" column="product_id" />
 	</resultMap>
 	
-	<select id="csList" resultMap="csResult" parameterType="CsVO">
+	<select id="QAList" resultMap="csVO" parameterType="CsVO">
 		<![CDATA[
 		select notice_id, notice_title, notice_body from notice where notice_category='QA'
 		order by notice_cre_date desc
 		]]>
 	</select>
+	
+	<select id="questList" resultMap="csResult" parameterType="CsVO">
+		<![CDATA[
+		select notice_id, user_id, notice_private, notice_title, notice_cre_date from notice 
+		where notice_category = 'user_quest'
+		]]>
+	</select>
+	
+	<insert id="insertNewQuest" parameterType="CsVO">
+		<![CDATA[
+			insert into notice (
+								notice_id, user_id, 
+								notice_category, notice_match_no, 
+								notice_title, notice_type, notice_private, 
+								notice_pw, notice_body)
+						values (
+								concat('notice_', nextval('notice')), #{user_id}, 
+								'user_quest', 
+								select count_no from sequences where sequence_name = 'notice',
+								
+								 #{notice_title}, #{notice_type}, #{notice_private}, 
+										#{notice_pw}, #{notice_body})
+		]]>
+	</insert>
 	
 </mapper>
