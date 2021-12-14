@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.image.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
@@ -12,4 +13,5 @@ public interface ImageDAO {
 	
 	public String insertImageFile(ImageVO imageVO) throws DataAccessException;
 	public ImageVO selectProductImages(Map<String, String> option) throws DataAccessException;
+	public List<String> selectImageCategory(String match_id) throws DataAccessException;
 }

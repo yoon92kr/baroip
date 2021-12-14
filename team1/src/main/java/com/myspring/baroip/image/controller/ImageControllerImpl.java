@@ -46,7 +46,7 @@ public class ImageControllerImpl implements ImageController {
 						if (imageFiles.get(i).getOriginalFilename() != null
 								&& imageFiles.get(i).getOriginalFilename() != "") {
 							imageVO.setImage_match_id(match_id);
-							imageVO.setImage_category(imageCategory);
+							imageVO.setImage_category(imageCategory+(i+1));
 							imageVO.setImage_file_name(imageFiles.get(i).getOriginalFilename());
 							imageVO.setImage_file(imageFiles.get(i).getBytes());
 

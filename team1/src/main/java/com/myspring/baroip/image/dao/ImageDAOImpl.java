@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.image.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,6 +18,7 @@ public class ImageDAOImpl implements ImageDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	@Override
 	public String insertImageFile(ImageVO imageVO) throws DataAccessException {
 		sqlSession.insert("mapper.image.insertImage",imageVO);
 		
@@ -24,10 +26,20 @@ public class ImageDAOImpl implements ImageDAO {
 		return imageName;
 	}
 	
+	@Override
 	public ImageVO selectProductImages(Map<String, String> option) throws DataAccessException {
 		
 		ImageVO image = sqlSession.selectOne("mapper.image.selectProductImage", option);
 		
 		return image;
+	}
+	
+	@Override
+	public List<String> selectImageCategory(String match_id) throws DataAccessException {
+		
+		List<String> categoryList = sqlSession.selectList("mapper.image.selectImageCategory", match_id);
+		
+		return categoryList;
+		
 	}
 }
