@@ -18,10 +18,19 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public List<ProductVO> selectBestProduct() throws DataAccessException {
 		List<ProductVO> bestProductList = sqlSession.selectList("mapper.product.selectBestItem");
-
-
+				
 		return bestProductList;
      
 	}
+	
+	@Override
+	public ProductVO selectProduct(String product_id) throws DataAccessException {
+		ProductVO productInfo = sqlSession.selectOne("mapper.product.selectProduct", product_id);
+				
+		return productInfo;
+		
+		
+	}
+	
 
 }

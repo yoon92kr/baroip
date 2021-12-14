@@ -9,5 +9,6 @@ import com.myspring.baroip.product.vo.ProductVO;
 public interface ProductDAO {
 	
 	public List<ProductVO> selectBestProduct() throws DataAccessException;
+	public ProductVO selectProduct(String product_id) throws DataAccessException;
 
 }

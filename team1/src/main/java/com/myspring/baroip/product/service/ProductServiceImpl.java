@@ -26,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
 	private ImageService imageService;
 
 	// best product select
+	@Override
 	public Map<String, Map<String, Object>> bestProductList() throws Exception {
 
 		// 베스트 상품 리스트 대입
@@ -64,6 +65,7 @@ public class ProductServiceImpl implements ProductService {
 				productInfo.put("product_price", product.getProduct_price());
 				productInfo.put("product_discount", product.getProduct_discount());
 				productInfo.put("image_file", encodeImage);
+				productInfo.put("product_id", product.getProduct_id());
 
 				bestProductInfo.put("mainProduct" + (i+1), productInfo);
 				
@@ -73,5 +75,43 @@ public class ProductServiceImpl implements ProductService {
 
 		return bestProductInfo;
 
+	}
+	
+	// product detail 조회 service
+	@Override
+	public Map<String, Object> productDetail(String product_id) throws Exception {
+		
+		// 이미지정보 / 상품정보를 담을 객체 생성
+		Map<String, Object> productInfo= new HashMap<String, Object>();
+		// 이미지 정보를 불러올 option 객체 생성
+		Map<String, String> option = new HashMap<String, String>();
+			
+		option.put("match_id", product_id);
+		
+		// 카테고리 정보를 담을 객체 생성 및 상품에 해당하는 이미지 카테고리 대입
+		List<String> categoryList = imageService.selectImageCategory(product_id);
+		
+		for (int i = 0 ; i<categoryList.size() ; i++) {
+			option.put("image_category", categoryList.get(i));
+			ImageVO productImage = imageService.selectProductImage(option);
+			
+			String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
+			
+			productInfo.put(categoryList.get(i), encodeImage);
+			
+			
+		}
+		
+		// 상품 정보 대입
+		productInfo.put("productVO", productDAO.selectProduct(product_id));
+		
+		return productInfo;
+		
+		
+		
+		
+		
+		
+		
 	}
 }
