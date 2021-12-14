@@ -1,4 +1,4 @@
-// 2021.12.09 윤상현
+// 2021.12.09 ??????
 
 package com.myspring.baroip.image.service;
 
@@ -28,7 +28,7 @@ public class ImageServiceImpl implements ImageService {
 		return imageName;
 	}
 	
-	// option 에는 match_id / image_category 가 대입되어야 한다.
+	// option ???? match_id / image_category ?? ??????? ???.
 	@Override
 	public ImageVO selectProductImage(Map<String, String> option) throws Exception {
 		ImageVO image = imageDAO.selectProductImages(option);
