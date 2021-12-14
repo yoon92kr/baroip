@@ -15,10 +15,13 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		try {
 
-			// 요청 view 이름 설정
-			ModelAndView mav = new ModelAndView();
-			String viewName = getViewName(request);
 			HttpSession session = request.getSession();
+			ModelAndView mav = new ModelAndView();
+			
+			// 요청 view 이름 설정
+			String viewName = getViewName(request);
+			// 헤더 색상 변경
+			setHeader(request, viewName);
 			// admin 접근시 관리자 rank 유효성 검사
 			/*
 			 * if (viewName.contains("admin")) {
@@ -33,22 +36,8 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 			 * request.setAttribute("viewName", "redirect:/main.do"); } } else {
 			 * request.setAttribute("viewName", viewName); }
 			 */
-			// 헤더 색상 변경
-			if (viewName.contains("notice")) {
-				request.setAttribute("pageInfo", "set_notice");
-			}
-			else if (viewName.contains("cs")) {
-				request.setAttribute("pageInfo", "set_cs");
-			}
-			else if (viewName.contains("myPage")) {
-				request.setAttribute("pageInfo", "set_myPage");
-			}
-			else if (viewName.contains("login")) {
-				request.setAttribute("pageInfo", "set_login");
-			}
-			else if (viewName.contains("join")) {
-				request.setAttribute("pageInfo", "set_join");
-			}
+
+
 			
 			request.setAttribute("viewName", viewName);
 			
@@ -100,6 +89,27 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 		System.out.printf("baroip : [%s]의 mapping으로 이동합니다.%n", fileName);
 
 		return fileName;
+	}
+	
+	
+	
+	private void setHeader(HttpServletRequest request, String viewName)  {
+		
+		if (viewName.contains("notice")) {
+			request.setAttribute("pageInfo", "set_notice");
+		}
+		else if (viewName.contains("cs")) {
+			request.setAttribute("pageInfo", "set_cs");
+		}
+		else if (viewName.contains("myPage")) {
+			request.setAttribute("pageInfo", "set_myPage");
+		}
+		else if (viewName.contains("login")) {
+			request.setAttribute("pageInfo", "set_login");
+		}
+		else if (viewName.contains("join")) {
+			request.setAttribute("pageInfo", "set_join");
+		}
 	}
 
 }

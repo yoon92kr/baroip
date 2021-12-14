@@ -201,13 +201,13 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	font-size: 18px;
 }
 
-.product_02_sale{
-	font-size:18px;
+.product_02_sale {
+	font-size: 18px;
 }
 
-.product_02_sale p{
-	color : red;
-	display : inline;
+.product_02_sale p {
+	color: red;
+	display: inline;
 }
 
 .product_02_sub_img img {
@@ -215,7 +215,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	border: 1px solid #000000;
 	width: 72px;
 	width: 130px;
-	
 }
 
 .product_02_sub_img_top {
@@ -279,6 +278,17 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .product_02_item_detail {
 	width: 3000px;
+	border: 1px solid #000000;
+}
+
+.product_02_item_detail pre {
+	font-family: "kopub_medium";
+	margin-top:30px;
+	font-size : 16px;
+}
+
+.product_02_item_detail img {
+	margin-top:30px;
 }
 
 .product_03_title {

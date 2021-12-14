@@ -87,7 +87,8 @@ public class ProductServiceImpl implements ProductService {
 		Map<String, String> option = new HashMap<String, String>();
 			
 		option.put("match_id", product_id);
-		
+		// jsp에서 sub이미지의 갯수만큼 반복문 사용을 위한 카운트 변수
+		int sub_count = 0;
 		// 카테고리 정보를 담을 객체 생성 및 상품에 해당하는 이미지 카테고리 대입
 		List<String> categoryList = imageService.selectImageCategory(product_id);
 		
@@ -99,11 +100,15 @@ public class ProductServiceImpl implements ProductService {
 			
 			productInfo.put(categoryList.get(i), encodeImage);
 			
-			
+			if (categoryList.get(i).contains("sub")) {
+				sub_count++;
+			}
 		}
 		
+	
 		// 상품 정보 대입
 		productInfo.put("productVO", productDAO.selectProduct(product_id));
+		productInfo.put("sub_count", sub_count);
 		
 		return productInfo;
 		
