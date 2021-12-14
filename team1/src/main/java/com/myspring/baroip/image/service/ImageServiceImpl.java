@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.image.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,14 @@ public class ImageServiceImpl implements ImageService {
 		
 		
 	}
+	
+	@Override
+	public List<String> selectImageCategory(String match_id) throws Exception {
+		
+		List<String> categoryList = imageDAO.selectImageCategory(match_id);
+		
+		return categoryList;
+		
+	}
+	
 }

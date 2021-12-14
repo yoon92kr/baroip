@@ -42,6 +42,13 @@
 			image_category =#{image_category}
 		]]>
 	</select>
+	
+		<select id="selectImageCategory" resultType="java.lang.String" parameterType="java.lang.String">
+		<![CDATA[
+			select image_category from image where image_match_id=#{match_id}
+		]]>
+	</select>
+
 
 
 
