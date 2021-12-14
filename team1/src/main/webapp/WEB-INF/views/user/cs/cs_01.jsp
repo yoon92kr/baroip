@@ -70,18 +70,34 @@ request.setCharacterEncoding("UTF-8");
 			</c:forEach>
 		</c:when>
 	</c:choose>
+	
+	<c:set var="page" value="${(param.p == null)? 1: param.p}" />
+	<c:set var="startNum" value="${page-(page-1)%5}" />
+	<c:set var="lastNum" value="23" />
 
-	<div class="row">
-		<div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
-			<p class="notice_01_next">
-				<a href="#"> < 이전 </a>
+		<div class="row">
+			<div class="offset-lg-5 col-lg-2 text-center notice_01_line ">
+				<span class="notice_01_next">
+					<c:if test="${startNum > 1}">
+						<a href="?p=${startNum-1}&t=&q=" >< 이전</a>				
+					</c:if>
+					<c:if test="${startNum <= 1}">
+						<span onclick="alert('이전 페이지가 없습니다.');">< 이전</span>			
+					</c:if>
+				</span>
+				<c:forEach var="i" begin="0" end="4">
+					<a class="cs_01_page_Num" href="?p=${startNum+i}&t=&q=">${i + 1}</a>
+				</c:forEach>
+				<span class="notice_01_next">
+					<c:if test="${startNum + 5 < lastNum}">
+						<a href="?p=${startNum+5}&t=&q=" >다음 ></a>
+					</c:if>
+					<c:if test="${startNum+5 >= lastNum}">
+						<span onclick="alert('다음 페이지가 없습니다.');">다음 ></span>
+					</c:if>
+				</span>
+			</div>
 		</div>
-		<div class="col-lg-1 text-center notice_01_line">
-			<p class="notice_01_next">
-				<a href="#"> 다음 > </a>
-			</p>
-		</div>
-	</div>
 
 </div>
 

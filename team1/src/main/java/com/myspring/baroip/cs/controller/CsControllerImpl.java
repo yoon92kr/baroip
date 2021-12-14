@@ -82,6 +82,7 @@ public class CsControllerImpl implements CsController {
 			String user_id = user.getUser_id();
 			csVO.setUser_id(user_id);
 			csService.addNewQuest(csVO);
+			System.out.println(user_id);
 			System.out.println(csVO);
 			mav.setViewName("viewName");
 			try {
