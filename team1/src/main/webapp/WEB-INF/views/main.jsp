@@ -68,7 +68,7 @@
 		<div class="row">
 			<div class="col-lg-4 text-center">
 				<div class="product-image">
-					<a href="${contextPath}/product/productDetail?product_id=${bestProducts.mainProduct1.product_id}"><img
+					<a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.mainProduct1.product_id}"><img
 						src="data:image/jpeg;base64,${bestProducts.mainProduct1.image_file }"
 						alt="베스트 상품 이미지"></a>
 				</div>

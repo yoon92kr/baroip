@@ -12,17 +12,9 @@
 <!-- 클릭한 메뉴 색상변경을 위한 페이지 정보 확인 -->
 <c:if test='${not empty pageInfo }'>
 <script>
-window.onload = changeMenu();
-
-function changeMenu(){
-	let set_class = new Array("set_farm", "set_marine", "set_meat", "set_notice", "set_cs", "set_admin", "set_myPage", "set_login", "set_join");
-	
-	for(var i=0; i < set_class.length ; i++) {
-		if ("${pageInfo}" == set_class[i]) {
-			 document.getElementById("${pageInfo}").style.color = "#e6b822";
-		} 
-	}
-}
+window.addEventListener('load', function() {
+				 document.getElementById("${pageInfo}").style.color = "#e6b822";
+});
 </script>
 </c:if>
 

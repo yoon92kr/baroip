@@ -5,23 +5,26 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+<c:set var="VO" value="${productInfo.productVO}" />
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-3 offset-lg-1 product_02_main_img">
-			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 메인 이미지">
+			<img id="p_main_img" src="data:image/jpeg;base64,${productInfo.main}" alt="상품상세페이지 메인 이미지">
 		</div>
 		<div class="col-lg-1 product_02_sub_img">
-			<img class="product_02_sub_img_top"	src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 서브 이미지"> 
-			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 서브 이미지"> 
-			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 서브 이미지">
+
+			<img id="p_sub_img1" class="product_02_sub_img_top"	src="data:image/jpeg;base64,${productInfo.sub1}" alt="상품상세페이지 서브 이미지">
+			<img id="p_sub_img2" src="data:image/jpeg;base64,${productInfo.sub2}" alt="상품상세페이지 서브 이미지"> 
+			<img id="p_sub_img3" src="data:image/jpeg;base64,${productInfo.sub3}" alt="상품상세페이지 서브 이미지">
 		</div>
 
 		<div class="col-lg-4 offset-lg-2">
 
-			<div class="product_02_title">[상품 상세 이름]</div>
-			<div class="product_02_discript">[상품 간편 설명]</div>
-			<div class="product_02_discript">[상품 간편 설명]</div>
+			<div class="product_02_title">${VO.product_main_title}</div>
+			<div class="product_02_discript">${VO.product_sub_title}</div>
+			<div class="product_02_price">기준가 : ${VO.product_price}원</div>
+			<div class="product_02_sale">햘인가 : ${VO.product_price-VO.product_discount}원 <p>${Math.round((VO.product_discount/VO.product_price)*100)}% 할인</p></div>
+			
 
 			<!-- <div class="product_02_option_area">
 				<span class="product_02_option">옵션</span> 
@@ -52,9 +55,9 @@
 			<a href="${contextPath}/order_01.do">
 			<img src="${contextPath}/resources/img/common/product_buy_now.png" class="product_02_cart_btn" alt="상품상세페이지_바로구매 버튼 이미지"> 
 			</a> 
-			<form action="${contextPath}/cart/cartLst.do">
-				<input class="product_02_cart_btn" type="image" src="${contextPath}/resources/img/common/product_get_cart.png" alt="상품상세페이지_장바구니 담기 버튼 이미지">
-			</form>
+			<a href="${contextPath}/cart/cartLst.do">
+				<img class="product_02_cart_btn" src="${contextPath}/resources/img/common/product_get_cart.png" alt="상품상세페이지_장바구니 담기 버튼 이미지">
+			</a>
 
 		</div>
 
@@ -70,7 +73,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-10 offset-lg-1 product_02_item_detail_img">
+		<div class="col-lg-10 offset-lg-1 product_02_item_detail">
 			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 상품상세정보 이미지">
 		</div>
 
@@ -132,4 +135,5 @@
 		}
 
 	}
+
 </script>
