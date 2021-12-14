@@ -6,6 +6,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
+<c:if test='${not empty message }'>
+<script>
+	alert("${message}");
+</script>
+</c:if>
 
 <div class="container">
     <div class="row">
@@ -22,12 +27,14 @@
 	<div class="row">
         <div class="col-lg-12 text-center MyPage_padding">회원정보를 수정하기 위해서 비밀번호를 다시 확인해주세요.</div>
     </div>
+    <form id="check_pw" action="${contextPath}/myPage/checkPassword.do" method="post">
     	<div class="MyPage_02_text">
     		<div class="row">
     			<div class="col-lg-offset-2 col-lg-4 text-right" style="padding-top: 2px;">비밀번호</div>
-        		<input class="MyPage_02_password_box" type="password">
+        		<input class="MyPage_02_password_box" type="password" name="user_pw">
     		</div>
     	</div>
+    </form>
 	</div>
 	
 	<div class="row">
@@ -36,9 +43,15 @@
     
     <div class="container">
     <div class="row">
-    	<a href="myPage_02_01.do" class="col-lg-offset-2 col-lg-3 col-lg-offset-1 text-center MyPage_02_button_01">회원정보 수정</a>
+    	<a href="#" onclick="submit_mypage()" class="col-lg-offset-2 col-lg-3 col-lg-offset-1 text-center MyPage_02_button_01">회원정보 수정</a>
     	<a href="myPage_01.do" class="col-lg-3 text-center MyPage_02_button_02">돌아가기</a>
     </div>
     </div>
     </div>
 </div>
+
+<script>
+	function submit_mypage() {
+		document.getElementById('check_pw').submit();
+	}
+</script>

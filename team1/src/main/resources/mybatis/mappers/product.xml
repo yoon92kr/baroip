@@ -27,6 +27,13 @@
 					 
 		]]>
 	</select>
+	
+	
+	<select id="selectProduct" resultType="ProductVO" parameterType="java.lang.String" >
+		<![CDATA[
+		select * from product where product_id =#{product_id}					 
+		]]>
+	</select>
 
 
 </mapper>

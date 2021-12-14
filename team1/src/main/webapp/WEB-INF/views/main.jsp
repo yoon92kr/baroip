@@ -68,7 +68,7 @@
 		<div class="row">
 			<div class="col-lg-4 text-center">
 				<div class="product-image">
-					<a href="${contextPath}/product_02.do"><img
+					<a href="${contextPath}/product/productDetail?product_id=${bestProducts.mainProduct1.product_id}"><img
 						src="data:image/jpeg;base64,${bestProducts.mainProduct1.image_file }"
 						alt="베스트 상품 이미지"></a>
 				</div>
@@ -76,7 +76,7 @@
 
 			<div class="col-lg-4  text-center">
 				<div class="product-image">
-					<a href="${contextPath}/product_02.do"><img
+					<a href="${contextPath}/product/product_02.do"><img
 						src="data:image/jpeg;base64,${bestProducts.mainProduct2.image_file }"
 						alt="베스트 상품 이미지"></a>
 				</div>
@@ -84,7 +84,7 @@
 
 			<div class="col-lg-4 text-center">
 				<div class="product-image">
-					<a href="${contextPath}/product_02.do"><img
+					<a href="${contextPath}/product/product_02.do"><img
 						src="data:image/jpeg;base64,${bestProducts.mainProduct3.image_file }"
 						alt="베스트 상품 이미지"></a>
 				</div>
@@ -93,7 +93,7 @@
 		<div class="item-format">
 			<div class="row">
 				<div class="col-lg-2">
-					<a href="${contextPath}/product_02.do" class="">
+					<a href="${contextPath}/product/product_02.do" class="">
 						<span class="item-title">${bestProducts.mainProduct1.product_main_title} </span>
 						<br>
 						<span class="item-comment">${bestProducts.mainProduct1.product_sub_title}</span>
@@ -101,7 +101,7 @@
 					</a>
 				</div>
 				<div class="col-lg-1 main_item_bottom_text ">
-					<a href="${contextPath}/product_02.do" class="">
+					<a href="${contextPath}/product/product_02.do" class="">
 					
 						<span class="item-price">${bestProducts.mainProduct1.product_price}원</span>
 						<span class="item-dc">${bestProducts.mainProduct1.product_discount}원</span>

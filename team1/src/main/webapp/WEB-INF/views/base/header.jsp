@@ -9,6 +9,22 @@
 
 <c:set var="loginCheck" value="${userInfo.user_rank }" />
 
+<!-- 클릭한 메뉴 색상변경을 위한 페이지 정보 확인 -->
+<c:if test='${not empty pageInfo }'>
+<script>
+window.onload = changeMenu();
+
+function changeMenu(){
+	let set_class = new Array("set_farm", "set_marine", "set_meat", "set_notice", "set_cs", "set_admin", "set_myPage", "set_login", "set_join");
+	
+	for(var i=0; i < set_class.length ; i++) {
+		if ("${pageInfo}" == set_class[i]) {
+			 document.getElementById("${pageInfo}").style.color = "#e6b822";
+		} 
+	}
+}
+</script>
+</c:if>
 
 
 <div class="header">
@@ -24,16 +40,16 @@
 				
 				<div class="col-lg-3 text-center">
 					<div class="category">
-						<a href="${contextPath}/product/product_01.do" class="header-navi set_farm">농산물</a>
-						<a href="${contextPath}/product/product_01.do" class="header-navi set_marine">수산물</a>
-						<a href="${contextPath}/product/product_01.do" class="header-navi set_meat">축산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi" id="set_farm">농산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi" id="set_marine">수산물</a>
+						<a href="${contextPath}/product/product_01.do" class="header-navi" id="set_meat">축산물</a>
 					</div>
 				</div>
 
 				<div class="col-lg-2 text-right offset-lg-2">
 					<div class="notice_navi">
-						<a href="${contextPath}/notice/notice_01.do" class="header-navi set_notice">공지사항</a>
-						<a href="${contextPath}/cs/cs_01.do" class="header-navi navi-button set_cs">고객센터</a>
+						<a href="${contextPath}/notice/notice_01.do" class="header-navi" id="set_notice">공지사항</a>
+						<a href="${contextPath}/cs/cs_01.do" class="header-navi navi-button" id="set_cs">고객센터</a>
 					</div>
 				</div>
 		
@@ -43,17 +59,17 @@
 					
 						<c:when test="${loginOn==true and userInfo.user_rank > 1}">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
-								<a href="${contextPath}/admin/main.do" class="header-navi set_admin">관리자 페이지</a>
+								<a href="${contextPath}/admin/main.do" class="header-navi" id="set_admin">관리자 페이지</a>
 						</c:when>
 							
 						<c:when test="${loginOn==true and not empty userInfo }">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
-								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi set_myPage">마이 페이지</a>
+								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi" id="set_myPage">마이 페이지</a>
 						</c:when>
 						
 						<c:otherwise>
-						<a href="${contextPath}/user/login_01.do" class="header-navi set_login">로그인</a>
-						<a href="${contextPath}/user/join_01.do" class="header-navi set_join">회원가입</a>
+						<a href="${contextPath}/user/login_01.do" class="header-navi" id="set_login">로그인</a>
+						<a href="${contextPath}/user/join_01.do" class="header-navi" id="set_join">회원가입</a>
 						</c:otherwise>
 						
 					</c:choose>
@@ -127,6 +143,8 @@ function checkRank() {
 	}
 
 }
+
+
  
 
 </script>
