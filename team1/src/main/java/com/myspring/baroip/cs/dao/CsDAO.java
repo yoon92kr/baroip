@@ -8,11 +8,12 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.baroip.cs.vo.CsVO;
 
 public interface CsDAO {
+//	자주 묻는 질문 리스트
 	public List<CsVO> QAList() throws DataAccessException;
-	
+//	1:1 문의 리스트
 	public List<CsVO> questList() throws DataAccessException;
-
+//	1:1 문의 작성
 	public void insertNewQuest(CsVO csVO) throws DataAccessException;
-	
-	
+//	1:1 문의 상세
+	public String questDetail() throws DataAccessException;
 }

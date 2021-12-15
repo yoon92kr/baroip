@@ -14,20 +14,29 @@ public class CsDAOImpl implements CsDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+//	자주 묻는 질문 리스트
 	@Override
 	public List<CsVO> QAList() throws DataAccessException{
 		List<CsVO> QAList = sqlSession.selectList("mapper.cs.QAList");
 		return QAList;
 	}
 	
+//	1:1 문의 리스트
 	@Override
 	public List<CsVO> questList() throws DataAccessException {
 		List<CsVO> questList = sqlSession.selectList("mapper.cs.questList");
 		return questList;
 	}
 	
+//	1:1 문의 작성
 	@Override
 	public void insertNewQuest(CsVO csVO) throws DataAccessException {
 		sqlSession.insert("mapper.cs.insertNewQuest", csVO);
+	}
+	
+//	1:1 문의 상세
+	@Override
+	public String questDetail() throws DataAccessException {
+		return sqlSession.selectOne("mapper.cs.questDetail");
 	}
 }

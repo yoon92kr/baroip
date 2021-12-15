@@ -27,11 +27,24 @@
 			</a>
 		</div>
 	</div>
-
+	
 	<div class="row">
-		<div class="offset-lg-2 col-lg-8">
-			<hr>
+		<div class="offset-lg-2 col-lg-1 text-left cs_01_01header">
+			<span>번호</span>
 		</div>
+		<div class="col-lg-1 text-left cs_01_01header">
+			<span>아이디</span>
+		</div>
+		<div class="col-lg-1 text-center cs_01_01header">
+			<span>공개 상태</span>
+		</div>
+		<div class="col-lg-3 text-center cs_01_01header">
+			<span>제목</span>
+		</div>
+		<div class="col-lg-2 text-center cs_01_01header">
+			<span>작성일</span>
+		</div>
+		<hr>
 	</div>
 	
 	<c:choose>
@@ -46,13 +59,12 @@
 			<c:forEach var="questList" items="${questList }" begin="0" step="1" varStatus="questListNum">
 				<div class="row">
 					<div class="offset-lg-2 col-lg-1 text-left cs_02_listsection ">
-						<!-- 번호 -->
 						<span>${questListNum.count }</span>
 					</div>
 					<div class="col-lg-1 text-left cs_02_listsection ">
 						<span>${questList.user_id }</span>
 					</div>
-					<div class="col-lg-1 text-left cs_02_listsection ">
+					<div class="col-lg-1 text-center cs_02_listsection ">
 						<span>${questList.notice_private }</span>
 					</div>
 					<div class="col-lg-3 text-center cs_02_listsection ">

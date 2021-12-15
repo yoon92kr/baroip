@@ -39,7 +39,7 @@ public class CsControllerImpl implements CsController {
 			return mav;
 		}
 	
-	// 고객센터 자주묻는질문
+//	자주 묻는 질문
 	@Override
 	@RequestMapping(value= "/cs_01.do" , method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView cs_01(HttpServletRequest request, 
@@ -60,7 +60,7 @@ public class CsControllerImpl implements CsController {
 	@Override
 	@RequestMapping(value= "/cs_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView cs_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
+		// HttpSession session;		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		List<CsVO> questList = csService.questList();
@@ -82,8 +82,16 @@ public class CsControllerImpl implements CsController {
 			String user_id = user.getUser_id();
 			csVO.setUser_id(user_id);
 			csService.addNewQuest(csVO);
+			String np = csVO.getNotice_private();
+			System.out.println(np);
+			if(np == "1") {
+				np = "공개";
+			} else {
+				np = "비공개";
+			}
 			System.out.println(user_id);
-			System.out.println(csVO.getNotice_title());
+//			System.out.println(csVO.getNotice_title());
+			session.setAttribute("csVO", csVO);
 			mav.setViewName("viewName");
 			try {
 				mav.setViewName("/cs/cs_02_02");
@@ -96,16 +104,19 @@ public class CsControllerImpl implements CsController {
 	
 	
 	// 1:1 문의 상세보기
-	@RequestMapping(value= "/cs_02_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView cs_02_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
+	@Override
+	@RequestMapping(value= "/quest_datail.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView quest_datail(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception{
+//		 HttpSession session;
 		ModelAndView mav = new ModelAndView();
-		HttpSession session=request.getSession();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
+		String questDetail = csService.questDetail();
+//		String viewName = (String)request.getAttribute("viewName");
+		System.out.println(questDetail);
+		mav.addObject("questDetail", questDetail);
+		mav.setViewName("/cs/cs_02_02");
 		return mav;
 	}
-
 
 	
 }

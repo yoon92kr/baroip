@@ -59,10 +59,10 @@
 				<span>공개여부</span>
 			</div>
 			<div class="col-lg-4 cs_02_02_box02">
-				<input type="radio" name="notice_private" value="1" 
+				<input type="radio" name="notice_private" value="'1'" 
 				checked="checked"> 공개 
 				<input class="cs_02_01_private_btn" type="radio" 
-				name="notice_private" value="0"> 비공개
+				name="notice_private" value="'0'"> 비공개
 			</div>
 		</div>
 	

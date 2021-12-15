@@ -15,7 +15,7 @@ public class CsVO {
 	private String notice_body;
 	private Date notice_cre_date;
 	private int notice_grade;
-	private int notice_private;
+	private String notice_private;
 	private String notice_type;
 	private int order_id;
 	private String product_id;
@@ -71,10 +71,10 @@ public class CsVO {
 	public void setNotice_grade(int notice_grade) {
 		this.notice_grade = notice_grade;
 	}
-	public int getNotice_private() {
+	public String getNotice_private() {
 		return notice_private;
 	}
-	public void setNotice_private(int notice_private) {
+	public void setNotice_private(String notice_private) {
 		this.notice_private = notice_private;
 	}
 	public String getNotice_type() {

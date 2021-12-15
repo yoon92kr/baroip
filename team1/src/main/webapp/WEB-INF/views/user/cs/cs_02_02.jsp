@@ -1,4 +1,5 @@
 <!--  2021.11.26 강보석 -->
+<!-- 2021.12.15 한건희 수정 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -36,7 +37,8 @@
 			<span>제목</span>
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
-			<input class="cs_02_02_text_box1" type="text" readonly>
+			<input class="cs_02_02_text_box1" type="text" 
+			name="notice_title" value="${questDetail.notice_title}" readonly>
 		</div>
 	</div>
 
@@ -45,7 +47,18 @@
 			<span>문의유형</span>
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
-			<input class="cs_02_02_text_box1" type="text" readonly>
+			<input class="cs_02_02_text_box1" type="text"
+			name="notice_type" value="${questDetail.notice_type}" readonly>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
+			<span>작성자 아이디</span>
+		</div>
+		<div class="col-lg-4 text-center cs_02_02_box02">
+			<input class="cs_02_02_text_box1" type="text"
+			name="user_id" value="${questDetail.user_id}" readonly>
 		</div>
 	</div>
 
@@ -54,23 +67,15 @@
 			<span>내용</span>
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box04">
-			<span>[문의 내용]</span>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
-			<span>답변</span>
-		</div>
-		<div class="col-lg-4 text-center cs_02_02_box04">
-			<span>[관리자 답변 내용]</span>
+			<textarea class="cs_02_02_quest_content"
+			name="notice_body" readonly>${questDetail.notice_body}</textarea>
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center">
 			<div class="notice_back_btn">
-				<form>
+				<form action="${contextPath}/cs/cs_02_01.do" method="post">
 					<input type="image"
 						src="${contextPath}/resources/img/common/cs_correct_01.png"
 						alt="1:1문의 수정하기 버튼 이미지">

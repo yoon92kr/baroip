@@ -55,5 +55,14 @@
                         0)
 	]]>
 	</insert>
+	
+	<select id="questDetail" resultMap="csResult" parameterType="CsVO">
+		<![CDATA[
+			select notice_id, notice_category, notice_title,
+				notice_body, notice_type, user_id
+			from notice 
+			where notice_id=#{notice_id} and notice_category=#{notice_category}
+		]]>
+	</select>
 
 </mapper>

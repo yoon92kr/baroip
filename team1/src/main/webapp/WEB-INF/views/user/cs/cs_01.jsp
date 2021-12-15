@@ -1,4 +1,5 @@
 <!--  2021.11.25 강보석 -->
+<!-- 2021.12.14 한건희 수정 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -86,7 +87,7 @@ request.setCharacterEncoding("UTF-8");
 					</c:if>
 				</span>
 				<c:forEach var="i" begin="0" end="4">
-					<a class="cs_01_page_Num" href="?p=${startNum+i}&t=&q=">${i + 1}</a>
+					<a class="cs_01_page_Num" href="?p=${startNum+i}&t=${param.f}&q=${param.q}">${startNum+i}</a>
 				</c:forEach>
 				<span class="notice_01_next">
 					<c:if test="${startNum + 5 < lastNum}">
@@ -103,6 +104,7 @@ request.setCharacterEncoding("UTF-8");
 
 
 <script>
+/* 2021.12.14 한건희 수정 */
   const items = document.querySelectorAll('.question');
 
   function openCloseAnswer() {
