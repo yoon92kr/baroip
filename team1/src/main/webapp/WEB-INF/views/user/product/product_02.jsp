@@ -6,17 +6,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="VO" value="${productInfo.productVO}" />
+<c:set var="VO" value="${productInfo.product.productVO}" />
+<c:set var="Img" value="${productInfo.image}" />
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-3 offset-lg-1 product_02_main_img">
-			<img id="p_main_img" src="data:image/jpeg;base64,${productInfo.main}" alt="상품상세페이지 메인 이미지">
+			<img id="p_main_img" src="data:image/jpeg;base64,${Img.main}" alt="상품상세페이지 메인 이미지">
 		</div>
 		<div class="col-lg-1 product_02_sub_img">
 
-			<img id="p_sub_img1" class="product_02_sub_img_top"	src="data:image/jpeg;base64,${productInfo.sub1}" alt="상품상세페이지 서브 이미지">
-			<img id="p_sub_img2" src="data:image/jpeg;base64,${productInfo.sub2}" alt="상품상세페이지 서브 이미지"> 
-			<img id="p_sub_img3" src="data:image/jpeg;base64,${productInfo.sub3}" alt="상품상세페이지 서브 이미지">
+			<img id="p_sub_img1" class="product_02_sub_img_top"	src="data:image/jpeg;base64,${Img.sub1}" alt="상품상세페이지 서브 이미지">
+			<img id="p_sub_img2" src="data:image/jpeg;base64,${Img.sub2}" alt="상품상세페이지 서브 이미지"> 
+			<img id="p_sub_img3" src="data:image/jpeg;base64,${Img.sub3}" alt="상품상세페이지 서브 이미지">
 		</div>
 
 		<div class="col-lg-4 offset-lg-2">
@@ -76,8 +77,12 @@
 
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 product_02_item_detail text-center">
-			<img src="${contextPath}/resources/img/common/img-box.jpg" alt="상품상세페이지 상품상세정보 이미지">
-		
+		<c:if test="${not empty Img.body}">
+			<c:forEach var="bodyImg" items="${Img.body}" >
+			<img src="data:image/jpeg;base64,${bodyImg}" alt="상품상세페이지 상품상세정보 이미지">
+			</c:forEach>
+			
+		</c:if>
 		
 		<div>
 		<pre>${VO.product_body}</pre>

@@ -28,7 +28,7 @@ public class ImageServiceImpl implements ImageService {
 		return imageName;
 	}
 	
-	// option ???? match_id / image_category ?? ??????? ???.
+	// option의 파라미터는 match_id/값 , image_category/값의 두가지 Map이 들어가야한다..
 	@Override
 	public ImageVO selectProductImage(Map<String, String> option) throws Exception {
 		ImageVO image = imageDAO.selectProductImages(option);

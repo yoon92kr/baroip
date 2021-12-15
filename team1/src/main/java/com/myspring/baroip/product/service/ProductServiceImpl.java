@@ -1,8 +1,8 @@
 package com.myspring.baroip.product.service;
 
 
+import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Base64.Encoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,36 +79,42 @@ public class ProductServiceImpl implements ProductService {
 	
 	// product detail 조회 service
 	@Override
-	public Map<String, Object> productDetail(String product_id) throws Exception {
+	public Map<String, Map<String, Object>> productDetail(String product_id) throws Exception {
 		
 		// 이미지정보 / 상품정보를 담을 객체 생성
-		Map<String, Object> productInfo= new HashMap<String, Object>();
+		Map<String, Map<String, Object>> productInfo= new HashMap<String, Map<String, Object>>();
 		// 이미지 정보를 불러올 option 객체 생성
 		Map<String, String> option = new HashMap<String, String>();
 			
 		option.put("match_id", product_id);
 		// jsp에서 sub이미지의 갯수만큼 반복문 사용을 위한 카운트 변수
-		int sub_count = 0;
+
 		// 카테고리 정보를 담을 객체 생성 및 상품에 해당하는 이미지 카테고리 대입
 		List<String> categoryList = imageService.selectImageCategory(product_id);
-		
+		Map<String, Object> item = new HashMap<String, Object>();
+		List<String> imageList = new ArrayList<String>();
 		for (int i = 0 ; i<categoryList.size() ; i++) {
 			option.put("image_category", categoryList.get(i));
 			ImageVO productImage = imageService.selectProductImage(option);
 			
 			String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
-			
-			productInfo.put(categoryList.get(i), encodeImage);
-			
-			if (categoryList.get(i).contains("sub")) {
-				sub_count++;
+			if (categoryList.get(i).contains("body")) {
+				imageList.add(encodeImage);
+
+			} else {
+				item.put(categoryList.get(i), encodeImage);
+				productInfo.put("image", item);
 			}
+
 		}
 		
-	
+		item.put("body", imageList);
+		productInfo.put("image", item);
+		
+		item.put("productVO", productDAO.selectProduct(product_id));
 		// 상품 정보 대입
-		productInfo.put("productVO", productDAO.selectProduct(product_id));
-		productInfo.put("sub_count", sub_count);
+		productInfo.put("product", item);
+
 		
 		return productInfo;
 		
