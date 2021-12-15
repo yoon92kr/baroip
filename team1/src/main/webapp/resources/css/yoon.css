@@ -289,6 +289,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .product_02_item_detail img {
 	margin-top:30px;
+	max-width: 70%; 
+	height: auto;
+	
 }
 
 .product_03_title {

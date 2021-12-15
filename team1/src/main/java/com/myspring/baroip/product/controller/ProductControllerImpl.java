@@ -50,10 +50,10 @@ public class ProductControllerImpl implements ProductController {
 	public ModelAndView productDetail(@RequestParam("product_id") String product_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");		
-		Map<String, Object> productInfo = productService.productDetail(product_id);
+		Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);
 		
 		
-		ProductVO product = (ProductVO)productInfo.get("productVO");
+		ProductVO product = (ProductVO)productInfo.get("product").get("productVO");
 		// 선택된 상품의 카테고리를 식별하여 헤더 style 설정을 위한 세팅
 		String pageInfo = "";
 		if (product.getProduct_main_category().equals("농산물")) {
