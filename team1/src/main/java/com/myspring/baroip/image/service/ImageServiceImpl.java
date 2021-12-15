@@ -1,4 +1,4 @@
-// 2021.12.09 ??????
+// 2021.12.09 À±»óÇö
 
 package com.myspring.baroip.image.service;
 
