@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.myspring.baroip.user.vo.UserVO;
+
 public class MainInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
@@ -16,35 +18,38 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 		try {
 
 			HttpSession session = request.getSession();
-			ModelAndView mav = new ModelAndView();
-			
+
 			// 요청 view 이름 설정
 			String viewName = getViewName(request);
 			// 헤더 색상 변경
 			setHeader(request, viewName);
 			// admin 접근시 관리자 rank 유효성 검사
-			/*
-			 * if (viewName.contains("admin")) {
-			 * 
-			 * if (session.getAttribute("userInfo") != null) { UserVO userVO = (UserVO)
-			 * session.getAttribute("userInfo");
-			 * 
-			 * if (Integer.parseInt(userVO.getUser_rank()) > 1) {
-			 * request.setAttribute("viewName", viewName); }
-			 * 
-			 * else { request.setAttribute("viewName", "redirect:/main.do"); } } else {
-			 * request.setAttribute("viewName", "redirect:/main.do"); } } else {
-			 * request.setAttribute("viewName", viewName); }
-			 */
 
+			if (viewName.contains("admin")) {
 
-			
-			request.setAttribute("viewName", viewName);
-			
+				if (session.getAttribute("userInfo") != null) {
+					UserVO userVO = (UserVO) session.getAttribute("userInfo");
+
+					if (Integer.parseInt(userVO.getUser_rank()) > 1) {
+						request.setAttribute("viewName", viewName);
+					}
+
+					else {
+						request.setAttribute("viewName", "redirect:/main.do");
+					}
+				} else {
+					request.setAttribute("viewName", "redirect:/main.do");
+				}
+			} else {
+
+				request.setAttribute("viewName", viewName);
+
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return true;
 	}
 
@@ -90,24 +95,18 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 
 		return fileName;
 	}
-	
-	
-	
-	private void setHeader(HttpServletRequest request, String viewName)  {
-		
+
+	private void setHeader(HttpServletRequest request, String viewName) {
+
 		if (viewName.contains("notice")) {
 			request.setAttribute("pageInfo", "set_notice");
-		}
-		else if (viewName.contains("cs")) {
+		} else if (viewName.contains("cs")) {
 			request.setAttribute("pageInfo", "set_cs");
-		}
-		else if (viewName.contains("myPage")) {
+		} else if (viewName.contains("myPage")) {
 			request.setAttribute("pageInfo", "set_myPage");
-		}
-		else if (viewName.contains("login")) {
+		} else if (viewName.contains("login")) {
 			request.setAttribute("pageInfo", "set_login");
-		}
-		else if (viewName.contains("join")) {
+		} else if (viewName.contains("join")) {
 			request.setAttribute("pageInfo", "set_join");
 		}
 	}

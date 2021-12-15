@@ -94,8 +94,9 @@ hr {
 }
 /*------------------------------ Header 설정 ------------------------------*/
 #set_farm {
-	color : #ffffff;
+	color: #ffffff;
 }
+
 .header {
 	font-family: "kopub_bold";
 	font-size: 16px;
@@ -264,7 +265,7 @@ hr {
 }
 
 .main_item_bottom_text {
-	padding : 0px 0px 0px 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .product-image img {
@@ -301,7 +302,7 @@ hr {
 	text-decoration: none;
 	color: #ff0000;
 	font-size: 6px;
-	margin-left : 5px;
+	margin-left: 5px;
 }
 
 .cart-put-icon {
