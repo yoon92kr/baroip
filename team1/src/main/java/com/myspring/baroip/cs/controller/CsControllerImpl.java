@@ -83,10 +83,10 @@ public class CsControllerImpl implements CsController {
 			csVO.setUser_id(user_id);
 			csService.addNewQuest(csVO);
 			System.out.println(user_id);
-			System.out.println(csVO);
+			System.out.println(csVO.getNotice_title());
 			mav.setViewName("viewName");
 			try {
-				mav.setViewName("/cs/cs_02_01.do");
+				mav.setViewName("/cs/cs_02_02");
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
@@ -100,6 +100,7 @@ public class CsControllerImpl implements CsController {
 	public ModelAndView cs_02_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
+		HttpSession session=request.getSession();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
 		return mav;

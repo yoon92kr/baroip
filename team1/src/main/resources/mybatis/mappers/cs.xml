@@ -17,34 +17,43 @@
 		<result property="order_id" column="order_id" />
 		<result property="product_id" column="product_id" />
 	</resultMap>
-	
+
 	<select id="QAList" resultMap="csResult" parameterType="CsVO">
 		<![CDATA[
 		select notice_id, notice_title, notice_body from notice where notice_category='QA'
 		order by notice_cre_date desc
 		]]>
 	</select>
-	
+
 	<select id="questList" resultMap="csResult" parameterType="CsVO">
 		<![CDATA[
 		select notice_id, user_id, notice_private, notice_title, notice_cre_date from notice 
 		where notice_category = 'user_quest'
 		]]>
 	</select>
-	
+
 	<insert id="insertNewQuest" parameterType="CsVO">
-		<![CDATA[
-			insert into notice (
-								notice_id, user_id, 
-								notice_category, notice_match_no, notice_parent_no
-								notice_title, notice_type, notice_private, 
-								notice_pw, notice_body)
-						values (
-								concat('notice_', nextval('notice')), #{user_id}, 
-								'user_quest', , 
-								 #{notice_title}, #{notice_type}, #{notice_private}, 
-										#{notice_pw}, #{notice_body})
-		]]>
+		<selectKey resultType="String" keyProperty="notice_id" order="BEFORE">
+			<![CDATA[
+				select concat('notice_', nextval('notice'))
+			]]>
+		</selectKey>
+      <![CDATA[
+      insert into notice (notice_id, 
+                        user_id, notice_category, 
+                        notice_pw, notice_title, notice_body, 
+                        notice_cre_date, notice_private, 
+                        notice_type, 
+                        notice_match_no, 
+                        notice_parent_no)
+                  values (#{notice_id}, 
+                        #{user_id}, 'user_quest',
+                        #{notice_pw}, #{notice_title}, #{notice_body}, 
+                        now(), #{notice_private},
+                        #{notice_type}, 
+                        #{notice_id}, 
+                        0)
+	]]>
 	</insert>
-	
+
 </mapper>

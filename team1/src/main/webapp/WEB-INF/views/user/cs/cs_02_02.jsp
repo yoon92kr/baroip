@@ -36,7 +36,7 @@
 			<span>제목</span>
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
-			<span>[문의 작성]</span>
+			<input class="cs_02_02_text_box1" type="text" readonly>
 		</div>
 	</div>
 
@@ -45,7 +45,7 @@
 			<span>문의유형</span>
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
-			<span>[문의 작성]</span>
+			<input class="cs_02_02_text_box1" type="text" readonly>
 		</div>
 	</div>
 
@@ -57,6 +57,7 @@
 			<span>[문의 내용]</span>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
 			<span>답변</span>
@@ -64,17 +65,8 @@
 		<div class="col-lg-4 text-center cs_02_02_box04">
 			<span>[관리자 답변 내용]</span>
 		</div>
-
-
-
-
 	</div>
-</div>
-
-
-
-<div class="container-fluid">
-
+	
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center">
 			<div class="notice_back_btn">
@@ -85,7 +77,6 @@
 				</form>
 			</div>
 		</div>
-
 		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
 				<a href="${contextPath}/cs_02.do"><img
@@ -93,7 +84,6 @@
 					alt="1:1문의 목록 버튼 이미지"></a>
 			</div>
 		</div>
-
 		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
 				<a href="#"><img
@@ -101,8 +91,8 @@
 					alt="1:1문의 삭제하기 버튼 이미지" onclick="alert('삭제하시겠습니까?')"></a>
 			</div>
 		</div>
-
 	</div>
+	
 </div>
 
 

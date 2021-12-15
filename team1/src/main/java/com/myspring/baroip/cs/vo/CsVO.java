@@ -19,6 +19,8 @@ public class CsVO {
 	private String notice_type;
 	private int order_id;
 	private String product_id;
+	private String notice_match_no;
+	private String notice_parent_no;
 	
 	
 	public String getNotice_id() {
@@ -92,6 +94,18 @@ public class CsVO {
 	}
 	public void setProduct_id(String product_id) {
 		this.product_id = product_id;
+	}
+	public String getNotice_match_no() {
+		return notice_match_no;
+	}
+	public void setNotice_match_no(String notice_match_no) {
+		this.notice_match_no = notice_match_no;
+	}
+	public String getNotice_parent_no() {
+		return notice_parent_no;
+	}
+	public void setNotice_parent_no(String notice_parent_no) {
+		this.notice_parent_no = notice_parent_no;
 	}
 	
 }

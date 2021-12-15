@@ -30,7 +30,6 @@
 	
 	<form id="NewQuestForm" action="${contextPath}/cs/addQuest.do" 
 	name="questContent" method="post">
-	<input type="hidden" name="user_id" value="">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 				<span>제목</span>
