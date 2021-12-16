@@ -21,7 +21,8 @@
 
 
 	<!-- 상품 등록 쿼리 -->
-	<insert id="insertProduct" parameterType="ProductVO">
+	<insert id="insertProduct" parameterType="ProductVO" >
+
 		<![CDATA[
 			insert into product (
 				product_id, 
@@ -59,6 +60,8 @@
 			 where sequence_name='product'	 
 		]]>
 	</select>
+	
+
 
 
 </mapper>
