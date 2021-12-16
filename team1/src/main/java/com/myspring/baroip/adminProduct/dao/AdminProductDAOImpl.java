@@ -15,7 +15,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	
+	@Override
 	public String insertProduct(ProductVO productVO) throws DataAccessException {
 		// product insert query
 		sqlSession.insert("mapper.adminProduct.insertProduct",productVO);
@@ -24,5 +24,6 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		
 		return product_id;
 	}
+	
 
 }

@@ -33,12 +33,9 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@Override
 	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView adminProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session=request.getSession();
-		
-		UserVO userVO = (UserVO)session.getAttribute("userInfo");
+
+
 		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("user_id", userVO.getUser_id());
 		String viewName = (String) request.getAttribute("viewName");
 		mav.setViewName(viewName);
 
