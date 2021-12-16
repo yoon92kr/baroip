@@ -31,22 +31,23 @@ public class ProductServiceImpl implements ProductService {
 
 		// 베스트 상품 리스트 대입
 		List<ProductVO> bestProducts = productDAO.selectBestProduct();
+		
+		
 		// 메인화면에 호출할 세개의 상품정보 + 이미지를 담을 객체 생성 (mainProduct 1~3)
 		Map<String, Map<String, Object>> bestProductInfo = new HashMap<String, Map<String, Object>>();
 		// 이미지 호출을 위한 option Map 객체 생성
 		Map<String, String> option = new HashMap<String, String>();
 			
-
+		
 		for (int i = 0; i < bestProducts.size(); i++) {
 
 			ProductVO product = bestProducts.get(i);
-
+			
 			if (product != null) {
-
+				
 				String match_id = product.getProduct_id();
 				String image_category = "main";
-
-
+				
 				option.put("match_id", match_id);
 				option.put("image_category", image_category);
 
@@ -67,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
 				productInfo.put("image_file", encodeImage);
 				productInfo.put("product_id", product.getProduct_id());
 
-				bestProductInfo.put("mainProduct" + (i+1), productInfo);
+				bestProductInfo.put("product" + (i+1), productInfo);
 				
 			}
 

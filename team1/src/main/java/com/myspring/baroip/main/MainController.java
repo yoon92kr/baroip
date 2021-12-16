@@ -28,11 +28,11 @@ public class MainController {
 
 		ModelAndView mav = new ModelAndView();
 		Map<String, Map<String, Object>> bestProducts = productService.bestProductList();
+		
+		
 		String viewName = (String)request.getAttribute("viewName");
 		mav.addObject("bestProducts", bestProducts);
 		mav.setViewName(viewName);
-		
-		
 		
 		return mav;
 	}
