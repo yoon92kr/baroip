@@ -42,4 +42,5 @@ public class ImageDAOImpl implements ImageDAO {
 		return categoryList;
 		
 	}
+
 }

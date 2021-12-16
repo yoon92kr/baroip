@@ -12,5 +12,5 @@ public interface ImageService {
 	public String addImageFile(ImageVO imageVO) throws Exception;
 	public ImageVO selectProductImage(Map<String, String> option) throws Exception;
 	public List<String> selectImageCategory(String match_id) throws Exception;
-
+	
 }

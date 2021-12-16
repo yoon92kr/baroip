@@ -14,6 +14,7 @@ public class ImageVO {
 	private String image_file_name;
 	private Date image_cre_date;
 	private byte[] image_file;
+	private String image_file_encode;
 	
 	
 	public String getImage_id() {
@@ -51,6 +52,12 @@ public class ImageVO {
 	}
 	public void setImage_file(byte[] image_file) {
 		this.image_file = image_file;
+	}
+	public String getImage_file_encode() {
+		return image_file_encode;
+	}
+	public void setImage_file_encode(String image_file_encode) {
+		this.image_file_encode = image_file_encode;
 	}
 	
 
