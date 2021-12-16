@@ -17,7 +17,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 	@Autowired
 	private AdminProductDAO adminProductDAO;
 	
-	
+	@Override
 	public String addProduct(ProductVO productVO) throws Exception {
 		
 		String product_id = adminProductDAO.insertProduct(productVO);
