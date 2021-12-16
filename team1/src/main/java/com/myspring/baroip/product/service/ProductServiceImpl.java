@@ -124,7 +124,7 @@ public class ProductServiceImpl implements ProductService {
 	public Map<String, Map<String, Object>> selectProductList(String product_states) throws Exception {
 		
 		// 베스트 상품 리스트 대입
-				List<ProductVO> bestProducts = productDAO.selectBestProduct();
+				List<ProductVO> productList = productDAO.selectProductList(product_states);
 				
 				
 				// 메인화면에 호출할 세개의 상품정보 + 이미지를 담을 객체 생성 (mainProduct 1~3)
@@ -133,9 +133,9 @@ public class ProductServiceImpl implements ProductService {
 				Map<String, String> option = new HashMap<String, String>();
 					
 				
-				for (int i = 0; i < bestProducts.size(); i++) {
+				for (int i = 0; i < productList.size(); i++) {
 
-					ProductVO product = bestProducts.get(i);
+					ProductVO product = productList.get(i);
 					
 					if (product != null) {
 						
@@ -156,9 +156,9 @@ public class ProductServiceImpl implements ProductService {
 						String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
 						
 						productInfo.put("product_main_title", product.getProduct_main_title());
-						productInfo.put("product_sub_title", product.getProduct_sub_title());
-						productInfo.put("product_price", product.getProduct_price());
-						productInfo.put("product_discount", product.getProduct_discount());
+						productInfo.put("product_cre_date", product.getProduct_cre_date());
+						productInfo.put("product_amount", product.getProduct_amount());
+						productInfo.put("product_states", product.getProduct_states());
 						productInfo.put("image_file", encodeImage);
 						productInfo.put("product_id", product.getProduct_id());
 

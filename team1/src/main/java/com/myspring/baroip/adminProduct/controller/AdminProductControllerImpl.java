@@ -2,6 +2,8 @@
 
 package com.myspring.baroip.adminProduct.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminProduct.service.AdminProductService;
 import com.myspring.baroip.image.controller.ImageController;
+import com.myspring.baroip.product.service.ProductService;
 import com.myspring.baroip.product.vo.ProductVO;
 
 @Controller("adminProductController")
@@ -25,6 +28,8 @@ public class AdminProductControllerImpl implements AdminProductController {
 	private AdminProductService adminProductService;
 	@Autowired
 	private ImageController imageController;
+	@Autowired
+	private ProductService productService;
 	
 	// 상품관리 페이지 전체 mapping
 	@Override
@@ -61,12 +66,15 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@RequestMapping(value = "/list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
+		
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
+		mav.addObject("extraList", extraList);
+		
 		mav.setViewName(viewName);
 		
 
-		// 등록된 상품 이미지 파일 저장
 		return mav;
 	}
 	
