@@ -22,7 +22,7 @@
 	<div class="row">
         <div class="col-lg-12 text-left myPage_03_01-content-body">
         	<h6 class="order_01-sub-title-page">
-        		<span class="order_01-sub-title">상품 관리</span>
+        		<span class="order_01-sub-title">상품 등록</span>
         	</h6>
         </div>
     </div>
