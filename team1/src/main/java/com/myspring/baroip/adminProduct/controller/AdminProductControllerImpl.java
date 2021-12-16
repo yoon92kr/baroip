@@ -58,10 +58,12 @@ public class AdminProductControllerImpl implements AdminProductController {
 	}
 	
 	@Override
-	@RequestMapping(value = "/addProduct.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView selectExtraList(HttpServletRequest Request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/list.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		mav.setViewName(viewName);
 		
 
 		// 등록된 상품 이미지 파일 저장

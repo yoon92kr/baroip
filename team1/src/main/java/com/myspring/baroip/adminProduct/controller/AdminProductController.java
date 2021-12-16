@@ -16,6 +16,6 @@ public interface AdminProductController {
 
 	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView selectExtraList(HttpServletRequest Request, HttpServletResponse response) throws Exception;
+	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

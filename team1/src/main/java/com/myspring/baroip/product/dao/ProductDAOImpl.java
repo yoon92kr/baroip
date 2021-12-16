@@ -17,6 +17,7 @@ public class ProductDAOImpl implements ProductDAO{
 
 	@Override
 	public List<ProductVO> selectBestProduct() throws DataAccessException {
+		
 		List<ProductVO> bestProductList = sqlSession.selectList("mapper.product.selectBestItem");
 				
 		return bestProductList;
@@ -32,8 +33,7 @@ public class ProductDAOImpl implements ProductDAO{
 	
 	@Override
 	public List<ProductVO> selectProductList(String product_states) throws DataAccessException {
-		// product insert query
-		
+				
 		List<ProductVO> productList = sqlSession.selectOne("mapper.adminProduct.selectAllProduct", product_states);
 		
 		return productList;

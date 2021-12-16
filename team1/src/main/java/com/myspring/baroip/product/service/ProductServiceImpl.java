@@ -115,15 +115,8 @@ public class ProductServiceImpl implements ProductService {
 		item.put("productVO", productDAO.selectProduct(product_id));
 		// 상품 정보 대입
 		productInfo.put("product", item);
-
 		
 		return productInfo;
-		
-		
-		
-		
-		
-		
-		
+			
 	}
 }
