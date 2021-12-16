@@ -25,27 +25,27 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 			setHeader(request, viewName);
 			// admin 접근시 관리자 rank 유효성 검사
 
-			if (viewName.contains("admin")) {
-
-				if (session.getAttribute("userInfo") != null) {
-					UserVO userVO = (UserVO) session.getAttribute("userInfo");
-
-					if (Integer.parseInt(userVO.getUser_rank()) > 1) {
-						request.setAttribute("viewName", viewName);
-					}
-
-					else {
-						request.setAttribute("viewName", "redirect:/main.do");
-					}
-				} else {
-					request.setAttribute("viewName", "redirect:/main.do");
-				}
-			} else {
-
-				request.setAttribute("viewName", viewName);
-
-			}
-
+//			if (viewName.contains("admin")) {
+//
+//				if (session.getAttribute("userInfo") != null) {
+//					UserVO userVO = (UserVO) session.getAttribute("userInfo");
+//
+//					if (Integer.parseInt(userVO.getUser_rank()) > 1) {
+//						request.setAttribute("viewName", viewName);
+//					}
+//
+//					else {
+//						request.setAttribute("viewName", "redirect:/main.do");
+//					}
+//				} else {
+//					request.setAttribute("viewName", "redirect:/main.do");
+//				}
+//			} else {
+//
+//				request.setAttribute("viewName", viewName);
+//
+//			}
+			request.setAttribute("viewName", viewName);	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
