@@ -82,7 +82,7 @@
 						src="data:image/jpeg;base64,${product.image_file}"
 						alt="상품 관리 페이지 상품 이미지">
 					</a>
-				</div>
+				</div> 
 				<div class="col-lg-3 text-center order_01-content-item">[상품 명]
 				</div>
 				<div class="col-lg-2 order_01-content-item">
