@@ -37,8 +37,9 @@ public class CsServiceImpl implements CsService {
 	
 //	1:1 문의 상세
 	@Override
-	public String questDetail() throws Exception {
-		return csDAO.questDetail();
+	public CsVO questDetail(String noticeNO) throws Exception {
+		CsVO noticeID = csDAO.questDetail(noticeNO);
+		return noticeID;
 	}
 
 }

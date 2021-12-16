@@ -56,23 +56,25 @@
 			</div>
 		</c:when>
 		<c:when test="${questList != null }">
-			<c:forEach var="questList" items="${questList }" begin="0" step="1" varStatus="questListNum">
+			<c:forEach var="questitem" items="${questList }" begin="0" step="1" varStatus="questItemNum">
 				<div class="row">
 					<div class="offset-lg-2 col-lg-1 text-left cs_02_listsection ">
-						<span>${questListNum.count }</span>
+						<span>${questItemNum.count }</span>
 					</div>
 					<div class="col-lg-1 text-left cs_02_listsection ">
-						<span>${questList.user_id }</span>
+						<span>${questitem.user_id }</span>
 					</div>
 					<div class="col-lg-1 text-center cs_02_listsection ">
-						<span>${questList.notice_private }</span>
+						<span>${questitem.notice_private}</span>
 					</div>
 					<div class="col-lg-3 text-center cs_02_listsection ">
 						<p class="cs">
-							<a href="${contextPath}/cs/cs_02_02.do">${questList.notice_title }</a>
+							<a href="${contextPath}/cs/quest_datail.do?notice_id=${questitem.notice_id}">
+								${questitem.notice_title}
+							</a>
 					</div>
 					<div class="col-lg-2 text-center cs_02_listsection ">
-						<span>${questList.notice_cre_date }</span>
+						<span>${questitem.notice_cre_date}</span>
 					</div>
 				</div>
 			</c:forEach>
@@ -93,5 +95,7 @@
 
 </div>
 
-
+<script>
+	
+</script>
 

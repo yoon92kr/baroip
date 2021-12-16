@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.cs.service.CsService;
@@ -64,6 +65,17 @@ public class CsControllerImpl implements CsController {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		List<CsVO> questList = csService.questList();
+
+		for (int i = 0 ; i < questList.size() ; i++) {
+//			System.out.println(questList.get(i).getNotice_private());
+			if (questList.get(i).getNotice_private().equals("1")) {
+				questList.get(i).setNotice_private("공개");
+			}
+			else {
+				questList.get(i).setNotice_private("비공개");
+			}
+		}
+		
 //		System.out.println(questList.get(0).getNotice_title());
 		mav.addObject("questList", questList);
 //		System.out.println(QAList.size());
@@ -82,16 +94,9 @@ public class CsControllerImpl implements CsController {
 			String user_id = user.getUser_id();
 			csVO.setUser_id(user_id);
 			csService.addNewQuest(csVO);
-			String np = csVO.getNotice_private();
-			System.out.println(np);
-			if(np == "1") {
-				np = "공개";
-			} else {
-				np = "비공개";
-			}
 			System.out.println(user_id);
-//			System.out.println(csVO.getNotice_title());
-			session.setAttribute("csVO", csVO);
+			System.out.println(csVO.getNotice_title());
+			mav.addObject("pageInfo", csVO);
 			mav.setViewName("viewName");
 			try {
 				mav.setViewName("/cs/cs_02_02");
@@ -106,14 +111,15 @@ public class CsControllerImpl implements CsController {
 	// 1:1 문의 상세보기
 	@Override
 	@RequestMapping(value= "/quest_datail.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView quest_datail(HttpServletRequest request, 
+	public ModelAndView quest_datail(@RequestParam("notice_id") String notice_id, 
+			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 //		 HttpSession session;
+		csVO = csService.questDetail(notice_id);
 		ModelAndView mav = new ModelAndView();
-		String questDetail = csService.questDetail();
 //		String viewName = (String)request.getAttribute("viewName");
-		System.out.println(questDetail);
-		mav.addObject("questDetail", questDetail);
+		System.out.println(csVO.getNotice_id());
+		mav.addObject("pageInfo", csVO);
 		mav.setViewName("/cs/cs_02_02");
 		return mav;
 	}

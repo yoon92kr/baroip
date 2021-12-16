@@ -59,10 +59,11 @@
 				<span>공개여부</span>
 			</div>
 			<div class="col-lg-4 cs_02_02_box02">
-				<input type="radio" name="notice_private" value="'1'" 
-				checked="checked"> 공개 
-				<input class="cs_02_01_private_btn" type="radio" 
-				name="notice_private" value="'0'"> 비공개
+				<input id="NPY" type="radio" name="notice_private" value="1" 
+				onClick="this.form.notice_pw.disabled=true" checked="checked"> 공개 
+				<input id="NPN" class="cs_02_01_private_btn" type="radio" 
+				onClick="this.form.notice_pw.disabled=false"
+				name="notice_private" value="0"> 비공개
 			</div>
 		</div>
 	
@@ -71,8 +72,8 @@
 				<span>비밀번호</span>
 			</div>
 			<div class="col-lg-1 text-left cs_02_02_ex01box02">
-				<input type="password" class="form-control" name="notice_pw" 
-				placeholder="비밀번호">
+				<input id="NPPwd" type="password" class="form-control" name="notice_pw" 
+				disabled placeholder="비밀번호">
 			</div>
 			<div class="col-lg-3 text-left cs_02_02_ex02box02"></div>
 		</div>
@@ -109,5 +110,5 @@
 </div>
 
 <script>
-
+	
 </script>

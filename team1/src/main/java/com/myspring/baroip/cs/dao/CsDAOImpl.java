@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.baroip.cs.vo.CsVO;
 
+import jdk.internal.org.jline.utils.Log;
+
 @Repository("csDAO")
 public class CsDAOImpl implements CsDAO {
 	@Autowired
@@ -36,7 +38,7 @@ public class CsDAOImpl implements CsDAO {
 	
 //	1:1 문의 상세
 	@Override
-	public String questDetail() throws DataAccessException {
-		return sqlSession.selectOne("mapper.cs.questDetail");
+	public CsVO questDetail(String noticeId) throws DataAccessException {
+		return sqlSession.selectOne("mapper.cs.questDetail", noticeId);
 	}
 }

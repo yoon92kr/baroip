@@ -17,5 +17,5 @@ public interface CsService {
 	public void addNewQuest(CsVO csVO) throws Exception;
 
 //	1:1 문의 상세
-	public String questDetail() throws Exception;
+	public CsVO questDetail(String noticeNO) throws Exception;
 }

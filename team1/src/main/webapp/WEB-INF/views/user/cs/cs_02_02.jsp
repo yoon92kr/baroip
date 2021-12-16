@@ -38,7 +38,7 @@
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
 			<input class="cs_02_02_text_box1" type="text" 
-			name="notice_title" value="${questDetail.notice_title}" readonly>
+			name="notice_title" value="${pageInfo.notice_title}" readonly>
 		</div>
 	</div>
 
@@ -48,7 +48,7 @@
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
 			<input class="cs_02_02_text_box1" type="text"
-			name="notice_type" value="${questDetail.notice_type}" readonly>
+			name="notice_type" value="${pageInfo.notice_type}" readonly>
 		</div>
 	</div>
 	
@@ -58,7 +58,7 @@
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
 			<input class="cs_02_02_text_box1" type="text"
-			name="user_id" value="${questDetail.user_id}" readonly>
+			name="user_id" value="${pageInfo.user_id}" readonly>
 		</div>
 	</div>
 
@@ -68,7 +68,7 @@
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box04">
 			<textarea class="cs_02_02_quest_content"
-			name="notice_body" readonly>${questDetail.notice_body}</textarea>
+			name="notice_body" readonly>${pageInfo.notice_body}</textarea>
 		</div>
 	</div>
 	
@@ -84,7 +84,7 @@
 		</div>
 		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
-				<a href="${contextPath}/cs_02.do"><img
+				<a href="${contextPath}/cs/cs_02.do"><img
 					src="${contextPath}/resources/img/common/cs_list.png"
 					alt="1:1문의 목록 버튼 이미지"></a>
 			</div>

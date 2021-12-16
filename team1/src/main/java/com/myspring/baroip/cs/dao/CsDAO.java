@@ -15,5 +15,5 @@ public interface CsDAO {
 //	1:1 문의 작성
 	public void insertNewQuest(CsVO csVO) throws DataAccessException;
 //	1:1 문의 상세
-	public String questDetail() throws DataAccessException;
+	public CsVO questDetail(String noticeId) throws DataAccessException;
 }

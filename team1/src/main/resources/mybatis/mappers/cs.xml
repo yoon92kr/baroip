@@ -27,7 +27,7 @@
 
 	<select id="questList" resultMap="csResult" parameterType="CsVO">
 		<![CDATA[
-		select notice_id, user_id, notice_private, notice_title, notice_cre_date from notice 
+		select * from notice 
 		where notice_category = 'user_quest'
 		]]>
 	</select>
@@ -56,12 +56,9 @@
 	]]>
 	</insert>
 	
-	<select id="questDetail" resultMap="csResult" parameterType="CsVO">
+	<select id="questDetail" resultType="CsVO" parameterType="String">
 		<![CDATA[
-			select notice_id, notice_category, notice_title,
-				notice_body, notice_type, user_id
-			from notice 
-			where notice_id=#{notice_id} and notice_category=#{notice_category}
+			select * from notice where notice_id=#{notice_id}
 		]]>
 	</select>
 
