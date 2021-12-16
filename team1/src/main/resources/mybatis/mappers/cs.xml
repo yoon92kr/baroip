@@ -61,5 +61,11 @@
 			select * from notice where notice_id=#{notice_id}
 		]]>
 	</select>
+	
+	<update id="">
+		<![CDATA[
+			
+		]]>
+	</update>
 
 </mapper>

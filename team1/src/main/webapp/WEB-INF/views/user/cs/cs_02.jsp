@@ -72,6 +72,7 @@
 							<a href="${contextPath}/cs/quest_datail.do?notice_id=${questitem.notice_id}">
 								${questitem.notice_title}
 							</a>
+						</p>
 					</div>
 					<div class="col-lg-2 text-center cs_02_listsection ">
 						<span>${questitem.notice_cre_date}</span>
@@ -94,8 +95,3 @@
 	</div>
 
 </div>
-
-<script>
-	
-</script>
-
