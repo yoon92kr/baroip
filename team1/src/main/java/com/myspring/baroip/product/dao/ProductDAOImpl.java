@@ -34,7 +34,7 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public List<ProductVO> selectProductList(String product_states) throws DataAccessException {
 				
-		List<ProductVO> productList = sqlSession.selectOne("mapper.adminProduct.selectAllProduct", product_states);
+		List<ProductVO> productList = sqlSession.selectOne("mapper.product.selectAllProduct", product_states);
 		
 		return productList;
 	}

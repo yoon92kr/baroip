@@ -74,7 +74,7 @@
 		<div class="col-lg-12 text-center">임시 등록된 상품이 없습니다.</div>
 	</c:if>
 	<c:if test="${not empty extraList}">
-		<c:forEach var="product" items="${extraList}">
+		<c:forEach var="product" items="${extraList}" varStatus="status">
 			<div class="row">
 				<div class="col-lg-2 text-center order_01-content-item">${product.product_cre_date}</div>
 				<div class="col-lg-3 text-center order_01-content-item-img">
