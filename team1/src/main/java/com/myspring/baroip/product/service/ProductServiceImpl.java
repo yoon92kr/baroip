@@ -124,11 +124,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Map<String, Map<String, Object>> selectProductList(String product_states) throws Exception {
 		
-		// 베스트 상품 리스트 대입
+		
 				List<ProductVO> productList = productDAO.selectProductList(product_states);
+				String encodeImage = "";
 				
-				
-				Map<String, Map<String, Object>> bestProductInfo = new HashMap<String, Map<String, Object>>();
+				Map<String, Map<String, Object>> selectProductList = new HashMap<String, Map<String, Object>>();
 				// 이미지 호출을 위한 option Map 객체 생성
 				Map<String, String> option = new HashMap<String, String>();
 					
@@ -154,7 +154,10 @@ public class ProductServiceImpl implements ProductService {
 						Map<String, Object> productInfo = new HashMap<String, Object>();
 						
 						// byte[] 자료를 img 태그에 사용가능하도록 encode
-						String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
+						if(productImage != null) {
+						 encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
+						}
+						
 						
 						productInfo.put("product_main_title", product.getProduct_main_title());
 						productInfo.put("product_cre_date", product.getProduct_cre_date());
@@ -163,7 +166,7 @@ public class ProductServiceImpl implements ProductService {
 						productInfo.put("image_file", encodeImage);
 						productInfo.put("product_id", product.getProduct_id());
 
-						bestProductInfo.put("product" + (i+1), productInfo);
+						selectProductList.put("product" + (i+1), productInfo);
 						
 					}
 
@@ -173,6 +176,6 @@ public class ProductServiceImpl implements ProductService {
 					System.out.println("baroip : 임시등록된 상품이 없습니다.");
 				}
 
-				return bestProductInfo;
+				return selectProductList;
 	}
 }

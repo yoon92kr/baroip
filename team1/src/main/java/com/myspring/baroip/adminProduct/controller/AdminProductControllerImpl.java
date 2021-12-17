@@ -66,6 +66,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@RequestMapping(value = "/list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		// product_states가 0인 Product을 호출
 		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
 		
 		ModelAndView mav = new ModelAndView();

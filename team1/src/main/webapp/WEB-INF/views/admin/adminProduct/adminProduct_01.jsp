@@ -74,12 +74,12 @@
 		<div class="col-lg-12 text-center">임시 등록된 상품이 없습니다.</div>
 	</c:if>
 	<c:if test="${not empty extraList}">
-		<c:forEach var="product" items="${extraList}" varStatus="num">
+		<c:forEach var="item" items="${extraList}" varStatus="num">
 			<div class="row">
-				<div class="col-lg-2 text-center order_01-content-item">${product.product_cre_date}</div>
+				<div class="col-lg-2 text-center order_01-content-item">${item.product_cre_date}</div>
 				<div class="col-lg-3 text-center order_01-content-item-img">
 					<a href="#"> <img class="cart_image_clip"
-						src="data:image/jpeg;base64,${product.image_file}"
+						src="data:image/jpeg;base64,"
 						alt="상품 관리 페이지 상품 이미지">
 					</a>
 				</div> 
