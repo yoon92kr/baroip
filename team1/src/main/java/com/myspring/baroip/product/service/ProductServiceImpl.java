@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 		// 이미지 호출을 위한 option Map 객체 생성
 		Map<String, String> option = new HashMap<String, String>();
 			
-		
+		if(bestProducts != null && !bestProducts.isEmpty() ) {
 		for (int i = 0; i < bestProducts.size(); i++) {
 
 			ProductVO product = bestProducts.get(i);
@@ -72,6 +72,7 @@ public class ProductServiceImpl implements ProductService {
 				
 			}
 
+		}
 		}
 
 		return bestProductInfo;
@@ -127,12 +128,12 @@ public class ProductServiceImpl implements ProductService {
 				List<ProductVO> productList = productDAO.selectProductList(product_states);
 				
 				
-				// 메인화면에 호출할 세개의 상품정보 + 이미지를 담을 객체 생성 (mainProduct 1~3)
 				Map<String, Map<String, Object>> bestProductInfo = new HashMap<String, Map<String, Object>>();
 				// 이미지 호출을 위한 option Map 객체 생성
 				Map<String, String> option = new HashMap<String, String>();
 					
-				
+				if(productList != null && !productList.isEmpty() ) {
+								
 				for (int i = 0; i < productList.size(); i++) {
 
 					ProductVO product = productList.get(i);
@@ -166,6 +167,10 @@ public class ProductServiceImpl implements ProductService {
 						
 					}
 
+				}
+				}
+				else {
+					System.out.println("baroip : 임시등록된 상품이 없습니다.");
 				}
 
 				return bestProductInfo;

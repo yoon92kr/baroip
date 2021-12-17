@@ -62,6 +62,11 @@
       <br>
    </div>
 </div>
+	<c:if test="${empty bestProducts}">
+		<div class="col-lg-12 text-center"> 등록된 상품이 없습니다.</div>
+	</c:if>
+	<c:if test="${not empty bestProducts}">
+	
 
 <div class="container">
    <div class="row">
@@ -174,7 +179,7 @@
       </div>
    </div>
 </div>
-
+	</c:if>
 <script type="text/javascript">
    $(document).ready(function() {
       $('.post-wrapper').slick({
