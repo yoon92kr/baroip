@@ -16,4 +16,6 @@ public interface CsDAO {
 	public void insertNewQuest(CsVO csVO) throws DataAccessException;
 //	1:1 문의 상세
 	public CsVO questDetail(String noticeId) throws DataAccessException;
+//	1:1 문의 수정
+	public void updateQuest(Map csMap) throws  DataAccessException;
 }

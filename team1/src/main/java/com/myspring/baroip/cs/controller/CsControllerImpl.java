@@ -1,7 +1,10 @@
 package com.myspring.baroip.cs.controller;
 
 
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +33,6 @@ public class CsControllerImpl implements CsController {
 	CsVO csVO;
 	
 	
-	// 1:1 문의 상세보기
 		@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView cs(HttpServletRequest request, HttpServletResponse response) throws Exception{
 			// HttpSession session;
@@ -114,13 +116,58 @@ public class CsControllerImpl implements CsController {
 	public ModelAndView quest_datail(@RequestParam("notice_id") String notice_id, 
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
-//		 HttpSession session;
+//		HttpSession session;
+//		HttpSession session=request.getSession();
 		csVO = csService.questDetail(notice_id);
 		ModelAndView mav = new ModelAndView();
 //		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(csVO.getNotice_id());
+//		session.setAttribute("pageInfo", csVO);
 		mav.addObject("pageInfo", csVO);
 		mav.setViewName("/cs/cs_02_02");
+		return mav;
+	}
+	
+// 1:1 문의 수정!
+	@RequestMapping(value= "/updateQuest.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView updateQuest(@RequestParam("notice_id") String notice_id, 
+			HttpServletRequest request, 
+			HttpServletResponse response) throws Exception{
+//		HttpSession session;
+		csVO = csService.questDetail(notice_id);
+		ModelAndView mav = new ModelAndView();
+//		String viewName = (String)request.getAttribute("viewName");
+		System.out.println(csVO.getNotice_id());
+		
+		mav.addObject("pageInfo", csVO);
+		mav.setViewName("/cs/cs_02_03");
+		return mav;
+	}
+	
+//	1:1 문의 수정 페이지
+	@RequestMapping(value= "/questUpdate.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView questUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// HttpSession session;
+		ModelAndView mav = new ModelAndView();
+		HttpSession session=request.getSession();
+		UserVO user = (UserVO) session.getAttribute("userInfo");
+		String user_id = user.getUser_id();
+//		CsVO noticeID = (CsVO) session.getAttribute("pageInfo");
+//		String notice_id = noticeID.getNotice_id();
+		Map<String, Object> csMap = new HashMap<String, Object>();
+		csMap.put("user_id", user_id);
+//		csMap.put("notice_id", notice_id);
+//		String viewName = (String)request.getAttribute("viewName");
+		mav.addObject("pageInfo");
+		Enumeration enu = request.getParameterNames();
+		while(enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = request.getParameter(name);
+			csMap.put(name, value);
+			System.out.println(csMap);
+		}
+		csService.updateQuest(csMap);
+		mav.setViewName("redirect:/cs/cs_02");
 		return mav;
 	}
 

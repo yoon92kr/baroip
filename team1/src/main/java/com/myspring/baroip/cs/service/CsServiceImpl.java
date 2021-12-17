@@ -41,5 +41,11 @@ public class CsServiceImpl implements CsService {
 		CsVO noticeID = csDAO.questDetail(noticeNO);
 		return noticeID;
 	}
+	
+//	1:1 문의 수정
+	@Override
+	public void updateQuest(Map csMap) throws  Exception {
+		csDAO.updateQuest(csMap);
+	}
 
 }

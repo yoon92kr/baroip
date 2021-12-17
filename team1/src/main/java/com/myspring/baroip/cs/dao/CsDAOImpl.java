@@ -1,6 +1,7 @@
 package com.myspring.baroip.cs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class CsDAOImpl implements CsDAO {
 	@Override
 	public CsVO questDetail(String noticeId) throws DataAccessException {
 		return sqlSession.selectOne("mapper.cs.questDetail", noticeId);
+	}
+	
+//	1:1 문의 수정
+	public void updateQuest(Map csMap) throws  DataAccessException {
+		sqlSession.update("mapper.cs.updateQuest", csMap);
 	}
 }

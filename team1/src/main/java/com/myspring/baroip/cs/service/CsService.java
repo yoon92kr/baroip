@@ -3,6 +3,8 @@ package com.myspring.baroip.cs.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.dao.DataAccessException;
+
 import com.myspring.baroip.cs.vo.CsVO;
 
 public interface CsService {
@@ -18,4 +20,7 @@ public interface CsService {
 
 //	1:1 문의 상세
 	public CsVO questDetail(String noticeNO) throws Exception;
+	
+//	1:1 문의 수정
+	public void updateQuest(Map csMap) throws  Exception;
 }

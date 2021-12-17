@@ -31,74 +31,69 @@
 		</div>
 	</div>
 
+	<form action="${contextPath}/cs/updateQuest.do" method="post">
+		<div class="row">
+			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
+				<span>제목</span>
+				<input type="hidden" name="notice_id" value="${pageInfo.notice_id}">
+			</div>
+			<div class="col-lg-4 text-center cs_02_02_box02">
+				<input class="cs_02_02_text_box1" type="text" name="notice_title"
+					value="${pageInfo.notice_title}" readonly>
+			</div>
+		</div>
 
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
-			<span>제목</span>
+		<div class="row">
+			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
+				<span>문의유형</span>
+			</div>
+			<div class="col-lg-4 text-center cs_02_02_box02">
+				<input class="cs_02_02_text_box1" type="text" name="notice_type"
+					value="${pageInfo.notice_type}" readonly>
+			</div>
 		</div>
-		<div class="col-lg-4 text-center cs_02_02_box02">
-			<input class="cs_02_02_text_box1" type="text" 
-			name="notice_title" value="${pageInfo.notice_title}" readonly>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
-			<span>문의유형</span>
+		<div class="row">
+			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
+				<span>작성자 아이디</span>
+			</div>
+			<div class="col-lg-4 text-center cs_02_02_box02">
+				<input class="cs_02_02_text_box1" type="text" name="user_id"
+					value="${pageInfo.user_id}" readonly>
+			</div>
 		</div>
-		<div class="col-lg-4 text-center cs_02_02_box02">
-			<input class="cs_02_02_text_box1" type="text"
-			name="notice_type" value="${pageInfo.notice_type}" readonly>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
-			<span>작성자 아이디</span>
-		</div>
-		<div class="col-lg-4 text-center cs_02_02_box02">
-			<input class="cs_02_02_text_box1" type="text"
-			name="user_id" value="${pageInfo.user_id}" readonly>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
-			<span>내용</span>
+		<div class="row">
+			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
+				<span>내용</span>
+			</div>
+			<div class="col-lg-4 text-center cs_02_02_box04">
+				<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${pageInfo.notice_body}</textarea>
+			</div>
 		</div>
-		<div class="col-lg-4 text-center cs_02_02_box04">
-			<textarea class="cs_02_02_quest_content"
-			name="notice_body" readonly>${pageInfo.notice_body}</textarea>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<form action="${contextPath}/cs/cs_02_01.do" method="post">
+
+		<div class="row">
+			<div class="offset-lg-3 col-lg-2 text-center">
+				<div class="notice_back_btn">
 					<input type="image"
 						src="${contextPath}/resources/img/common/cs_correct_01.png"
 						alt="1:1문의 수정하기 버튼 이미지">
-				</form>
+				</div>
+			</div>
+			<div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<a href="${contextPath}/cs/cs_02.do"><img
+						src="${contextPath}/resources/img/common/cs_list.png"
+						alt="1:1문의 목록 버튼 이미지"></a>
+				</div>
+			</div>
+			<div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<a href="#"><img
+						src="${contextPath}/resources/img/common/cs_delete_01.png"
+						alt="1:1문의 삭제하기 버튼 이미지" onclick="alert('삭제하시겠습니까?')"></a>
+				</div>
 			</div>
 		</div>
-		<div class="col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<a href="${contextPath}/cs/cs_02.do"><img
-					src="${contextPath}/resources/img/common/cs_list.png"
-					alt="1:1문의 목록 버튼 이미지"></a>
-			</div>
-		</div>
-		<div class="col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<a href="#"><img
-					src="${contextPath}/resources/img/common/cs_delete_01.png"
-					alt="1:1문의 삭제하기 버튼 이미지" onclick="alert('삭제하시겠습니까?')"></a>
-			</div>
-		</div>
-	</div>
-	
+	</form>
 </div>
-
-
-
