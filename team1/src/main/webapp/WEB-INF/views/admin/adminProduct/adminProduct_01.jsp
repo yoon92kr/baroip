@@ -81,32 +81,36 @@
 			<div class="row">
 				<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}</div>
 				<div class="col-lg-3 text-center order_01-content-item-img">
-					<a href="${contextPath}/product/productDetail.do?product_id=${extraList[key].product_id}"> <img class="cart_image_clip"
+					<a
+						href="${contextPath}/product/productDetail.do?product_id=${extraList[key].product_id}">
+						<img class="cart_image_clip"
 						src="data:image/jpeg;base64,${extraList[key].image_file}"
 						alt="상품 관리 페이지 상품 이미지">
 					</a>
 				</div>
-				<div class="col-lg-3 text-center order_01-content-item">${extraList[key].product_main_title}
+				<div id="admin_product_title${i}" class="col-lg-3 text-center order_01-content-item">${extraList[key].product_main_title}
 				</div>
 				<div class="col-lg-2 order_01-content-item">
 					<form name="itemCountBox" id="adminProduct_01-itemCountBox-detail">
 						<div class="adminProduct_01-value-button adminProduct_01-decrease"
-							id="cart_decrease${i}" onclick="decreaseValue(this.id)">-</div>
-						<input type="number" class="adminProdut_01-cart_item_count"
-							id="cart_item_count${i}" value="${extraList[key].product_amount}"
+							id="amount_decrease${i}" onclick="decreaseValue(this.id)">-</div>
+						<input type="number" class="adminProduct_product_amount_count"
+							id="product_item_count${i}" value="${extraList[key].product_amount}"
 							onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 						<div class="adminProduct_01-value-button adminProduct_01-increase"
-							id="cart_increase${i}" onclick="increaseValue(this.id)">+</div>
-							<input type="hidden" id="cart_item_id${i}" value="${extraList[key].product_id}">
+							id="amount_increase${i}" onclick="increaseValue(this.id)">+</div>
+						<input type="hidden" id="product_${i}"
+							value="${extraList[key].product_id}">
 						<!-- 					<input class="admin_01-itemCountBox-btn" type="submit" value="변경"> -->
 					</form>
-					<input class="admin_01-itemCountBox-btn" id="${i}" type="button" value="변경" onclick="update_amount(this.id)">
+					<input class="admin_01-itemCountBox-btn" id="${i}" type="button"
+						value="변경" onclick="update_amount(this.id)">
 				</div>
 				<div class="col-lg-2 text-center adminProduct_01-content-item">
 					<input class="adminProduct_01-product adminProduct_01-product-top"
 						type="button" value="상품 수정"
 						onclick="location.href='${contextPath}/adminProduct_03.do'">
-					<input class="adminProduct_01-product" type="button" value="상품 삭제">
+					<input class="adminProduct_01-product" id="${i}" type="button" value="상품 삭제" onclick="delete_product(this.id)">
 				</div>
 			</div>
 		</c:forEach>
@@ -136,8 +140,8 @@
 	function increaseValue(tagId) {
 		let targetValue = '';
 		for (i = 0; i < 10; i++) {
-			if (String('cart_increase').concat(i) == String(tagId)) {
-				targetValue = 'cart_item_count'.concat(i);
+			if (String('amount_increase').concat(i) == String(tagId)) {
+				targetValue = 'product_item_count'.concat(i);
 			}
 
 		}
@@ -152,8 +156,8 @@
 	function decreaseValue(tagId) {
 		let targetValue = '';
 		for (i = 0; i < 10; i++) {
-			if (String('cart_decrease').concat(i) == String(tagId)) {
-				targetValue = 'cart_item_count'.concat(i);
+			if (String('amount_decrease').concat(i) == String(tagId)) {
+				targetValue = 'product_item_count'.concat(i);
 			}
 
 		}
@@ -181,11 +185,12 @@
 
 	/* 수량입력 후 다른 영역 클릭 시 이벤트 */
 	/* window.addEventListener('load', eventPlus()); */
-	 window.onload = eventPlus();
+	window.onload = eventPlus();
 
 	function eventPlus() {
 
-		let target = document.querySelectorAll('.adminProdut_01-cart_item_count');
+		let target = document
+				.querySelectorAll('.adminProduct_product_amount_count');
 
 		for (i = 0; i < target.length; i++) {
 			let item = target.item(i);
@@ -200,13 +205,62 @@
 		}
 
 	}
-	
+	/* 상품 수량 수정 ajax */
 	function update_amount(target) {
-		let target_id = document.getElementById('cart_item_id'.concat(target)).value;
-		let change_count_value = document.getElementById('cart_item_count'.concat(target)).value;
-		
+		let target_id = document.getElementById('product_'.concat(target)).value;
+		let change_count_value = document.getElementById('product_item_count'
+				.concat(target)).value;
 
-		alert(target_id);
-		alert(change_count_value);
+		$.ajax({
+			type : "post",
+			async : false,
+			url : "${contextPath}/admin/product/update_amount.do",
+			dataType : "text",
+			data : {
+				"product_id" : target_id,
+				"product_amount" : change_count_value
+			},
+			success : function(message) {
+
+				alert(message);
+
+			},
+			error : function() {
+				alert("재고 수량 변경에 문제가 발생하였습니다.");
+			}
+
+		});
+	}
+	
+	/* 상품 삭제 ajax */
+	function delete_product(target) {
+		
+		let product_title = document.getElementById('admin_product_title'.concat(target)).value;
+		let product_id = document.getElementById('product_'.concat(target)).value;
+		var confirmFlag = confirm(product_title+"을 정말 삭제하시겠습니까?")
+		if(confirmFlag){
+			
+			$.ajax({
+				type : "post",
+				async : false,
+				url : "${contextPath}/admin/product/delete_product.do",
+				dataType : "text",
+				data : {
+					"product_id" : product_id			
+				},
+				success : function(message) {
+
+					alert("he");
+
+				},
+				error : function() {
+					alert("재고 수량 변경에 문제가 발생하였습니다.");
+				}
+
+			});
+		}
+			
+
+	
 	}
 </script>

@@ -2,6 +2,8 @@
 
 package com.myspring.baroip.adminProduct.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -25,5 +27,15 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		return product_id;
 	}
 	
-
+	@Override
+	public void updateAmount(Map<String, String> option) throws DataAccessException {
+		sqlSession.update("mapper.adminProduct.updateAmount", option);
+		
+	}
+	
+	@Override
+	public void deleteProduct(String product_id) throws DataAccessException {
+		sqlSession.delete("mapper.adminProduct.deleteProduct", product_id);
+		
+	}
 }

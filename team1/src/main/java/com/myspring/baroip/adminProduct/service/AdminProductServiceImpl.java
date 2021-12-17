@@ -2,6 +2,8 @@
 
 package com.myspring.baroip.adminProduct.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,11 +19,28 @@ public class AdminProductServiceImpl implements AdminProductService {
 	@Autowired
 	private AdminProductDAO adminProductDAO;
 	
+	// 상품 등록 서비스
 	@Override
 	public String addProduct(ProductVO productVO) throws Exception {
 		
 		String product_id = adminProductDAO.insertProduct(productVO);
 		
 		return product_id;
+	}
+	
+	// 상품 수량 변경 서비스
+	@Override
+	public void updateAmount(Map<String, String> option) throws Exception {
+		
+		adminProductDAO.updateAmount(option);
+		
+	}
+	
+	// 상품 삭제 서비스
+	@Override
+	public void deleteProduct(String product_id) throws Exception {
+		
+		adminProductDAO.deleteProduct(product_id);
+		
 	}
 }

@@ -21,7 +21,7 @@
 
 
 	<!-- 상품 등록 쿼리 -->
-	<insert id="insertProduct" parameterType="ProductVO" >
+	<insert id="insertProduct" parameterType="ProductVO">
 
 		<![CDATA[
 			insert into product (
@@ -60,7 +60,23 @@
 			 where sequence_name='product'	 
 		]]>
 	</select>
-	
-	
+
+	<!-- 상품 수량 수정 쿼리 -->
+	<update id="updateAmount" parameterType="java.util.Map">
+		<![CDATA[
+		update product
+		set product_amount=#{product_amount}
+		where	 
+		product_id=#{product_id}
+		]]>
+	</update>
+	<!-- 상품 삭제 쿼리 -->
+	<delete id="deleteProduct" parameterType="String">
+		<![CDATA[
+	  delete from product
+	  where product_id=#{product_id}
+		]]>
+	</delete>
+
 
 </mapper>
