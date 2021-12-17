@@ -71,34 +71,36 @@
 		</div>
 	</div>
 	<c:if test="${empty extraList}">
+		<br>
 		<div class="col-lg-12 text-center">임시 등록된 상품이 없습니다.</div>
 	</c:if>
 	<c:if test="${not empty extraList}">
-		<c:forEach var="item" items="${extraList}" varStatus="num">
+		<c:forEach var="i" begin="1" end="${extraList.size()}">
+			<c:set var="key" value="product${i}" />
+
 			<div class="row">
-				<div class="col-lg-2 text-center order_01-content-item">${item.product_cre_date}</div>
+				<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}</div>
 				<div class="col-lg-3 text-center order_01-content-item-img">
-					<a href="#"> <img class="cart_image_clip"
-						src="data:image/jpeg;base64,"
+					<a href="${contextPath}/product/productDetail.do?product_id=${extraList[key].product_id}"> <img class="cart_image_clip"
+						src="data:image/jpeg;base64,${extraList[key].image_file}"
 						alt="상품 관리 페이지 상품 이미지">
 					</a>
-				</div> 
-				<div class="col-lg-3 text-center order_01-content-item">[상품 명]
+				</div>
+				<div class="col-lg-3 text-center order_01-content-item">${extraList[key].product_main_title}
 				</div>
 				<div class="col-lg-2 order_01-content-item">
 					<form name="itemCountBox" id="adminProduct_01-itemCountBox-detail">
 						<div class="adminProduct_01-value-button adminProduct_01-decrease"
-							id="adminProduct_01_cart_decrease"
-							onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
+							id="cart_decrease${i}" onclick="decreaseValue(this.id)">-</div>
 						<input type="number" class="adminProdut_01-cart_item_count"
-							id="adminProdut_01_cart_item_count" value="0"
+							id="cart_item_count${i}" value="${extraList[key].product_amount}"
 							onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 						<div class="adminProduct_01-value-button adminProduct_01-increase"
-							id="adminProduct_01_cart_increase"
-							onclick="increaseValue(this.id)" value="Increase Value">+</div>
+							id="cart_increase${i}" onclick="increaseValue(this.id)">+</div>
+							<input type="hidden" id="cart_item_id${i}" value="${extraList[key].product_id}">
 						<!-- 					<input class="admin_01-itemCountBox-btn" type="submit" value="변경"> -->
 					</form>
-					<input class="admin_01-itemCountBox-btn" type="submit" value="변경">
+					<input class="admin_01-itemCountBox-btn" id="${i}" type="button" value="변경" onclick="update_amount(this.id)">
 				</div>
 				<div class="col-lg-2 text-center adminProduct_01-content-item">
 					<input class="adminProduct_01-product adminProduct_01-product-top"
@@ -128,31 +130,43 @@
 			document.querySelector(adminProduct_01_Date).style.display = 'none';
 		}
 	}
-
 	/*---------- 수량 증감 input 박스 설정 ----------*/
 
 	/* 수량 증감 */
 	function increaseValue(tagId) {
-		let countValue = parseInt(document
-				.getElementById('adminProdut_01_cart_item_count').value, 10);
+		let targetValue = '';
+		for (i = 0; i < 10; i++) {
+			if (String('cart_increase').concat(i) == String(tagId)) {
+				targetValue = 'cart_item_count'.concat(i);
+			}
+
+		}
+		let countValue = parseInt(document.getElementById(targetValue).value,
+				10);
 
 		countValue = isNaN(countValue) ? 0 : countValue;
 		countValue++;
-		document.getElementById('adminProdut_01_cart_item_count').value = countValue;
+		document.getElementById(targetValue).value = countValue;
 	};
 
 	function decreaseValue(tagId) {
+		let targetValue = '';
+		for (i = 0; i < 10; i++) {
+			if (String('cart_decrease').concat(i) == String(tagId)) {
+				targetValue = 'cart_item_count'.concat(i);
+			}
 
-		let countValue = parseInt(document
-				.getElementById('adminProdut_01_cart_item_count').value, 10);
-		if (countValue <= 0) {
-			alert("수량은 0보다 작을 수 없습니다.");
 		}
-
+		let countValue = parseInt(document.getElementById(targetValue).value,
+				10);
+		if (countValue <= 0) {
+			alert("수량은 0보다 작을 수 없습니다.")
+		}
+		;
 		countValue = isNaN(countValue) ? 0 : countValue;
 		countValue < 1 ? countValue = 1 : '';
 		countValue--;
-		document.getElementById('adminProdut_01_cart_item_count').value = countValue;
+		document.getElementById(targetValue).value = countValue;
 	};
 	/* 수량입력 후 엔터 입력시 이벤트 */
 
@@ -166,11 +180,17 @@
 	}
 
 	/* 수량입력 후 다른 영역 클릭 시 이벤트 */
-	window.onload = eventPlus();
+	/* window.addEventListener('load', eventPlus()); */
+	 window.onload = eventPlus();
 
 	function eventPlus() {
 
-		document.itemCountBox.adminProdut_01_cart_item_count.onblur = eventGo;
+		let target = document.querySelectorAll('.adminProdut_01-cart_item_count');
+
+		for (i = 0; i < target.length; i++) {
+			let item = target.item(i);
+			item.onblur = eventGo;
+		}
 
 	}
 	function eventGo() {
@@ -179,5 +199,14 @@
 			document.getElementById(this.id).value = 0;
 		}
 
+	}
+	
+	function update_amount(target) {
+		let target_id = document.getElementById('cart_item_id'.concat(target)).value;
+		let change_count_value = document.getElementById('cart_item_count'.concat(target)).value;
+		
+
+		alert(target_id);
+		alert(change_count_value);
 	}
 </script>

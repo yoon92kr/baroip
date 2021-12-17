@@ -54,7 +54,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		String product_id = adminProductService.addProduct(productVO);
 		String message = "["+product_id+"]의 임시등록이 완료되었습니다.";
 		mav.addObject("message", message);
-		mav.setViewName("/admin/product/list");
+		mav.setViewName("redirect:/admin/product/list.do");
 		
 		imageController.ImageSetImageVO(multipartRequest, product_id);
 
@@ -65,6 +65,23 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@Override
 	@RequestMapping(value = "/list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		// product_states가 0인 Product을 호출
+		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		mav.addObject("extraList", extraList);
+		
+		mav.setViewName(viewName);
+		
+
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value = "/update_amount.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView update_amount(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// product_states가 0인 Product을 호출
 		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");

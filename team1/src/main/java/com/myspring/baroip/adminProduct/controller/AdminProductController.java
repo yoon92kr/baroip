@@ -18,4 +18,5 @@ public interface AdminProductController {
 	
 	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ModelAndView update_amount(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
