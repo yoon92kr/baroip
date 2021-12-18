@@ -210,6 +210,7 @@
 		let target_id = document.getElementById('product_'.concat(target)).value;
 		let change_count_value = document.getElementById('product_item_count'
 				.concat(target)).value;
+		let target_title = document.getElementById('admin_product_title'.concat(target)).innerText;
 
 		$.ajax({
 			type : "post",
@@ -218,7 +219,8 @@
 			dataType : "text",
 			data : {
 				"product_id" : target_id,
-				"product_amount" : change_count_value
+				"product_amount" : change_count_value,
+				"product_title" : target_title
 			},
 			success : function(message) {
 
@@ -235,22 +237,21 @@
 	/* 상품 삭제 ajax */
 	function delete_product(target) {
 		
-		let product_title = document.getElementById('admin_product_title'.concat(target)).value;
+		let product_title = document.getElementById('admin_product_title'.concat(target)).innerText;
+		alert(product_title);
 		let product_id = document.getElementById('product_'.concat(target)).value;
 		var confirmFlag = confirm(product_title+"을 정말 삭제하시겠습니까?")
 		if(confirmFlag){
 			
 			$.ajax({
 				type : "post",
-				async : false,
+				async : true,
 				url : "${contextPath}/admin/product/delete_product.do",
 				dataType : "text",
 				data : {
 					"product_id" : product_id			
 				},
 				success : function(message) {
-
-					alert("he");
 
 				},
 				error : function() {

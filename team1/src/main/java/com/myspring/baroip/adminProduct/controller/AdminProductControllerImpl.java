@@ -87,11 +87,11 @@ public class AdminProductControllerImpl implements AdminProductController {
 	public String update_amount(@RequestParam Map<String, String> info) throws Exception {
 		
 		adminProductService.updateAmount(info);
-		String id = info.get("product_id");
+		String title = info.get("product_title");
 		String amount = info.get("product_amount");
-		String message = "["+id+"]의 재고 수량이 ["+amount+"]개로 정상적으로 변경되었습니다.";
+		String message = "["+title+"]의 재고 수량이 ["+amount+"]개로 정상적으로 변경되었습니다.";
 		
-		System.out.printf("baorip : [%s]의 재고 수량이 [%s]로 변경되었습니다.%n", id, amount);
+		System.out.printf("baorip : [%s]의 재고 수량이 [%s]로 변경되었습니다.%n", title, amount);
 				
 
 		return message;
