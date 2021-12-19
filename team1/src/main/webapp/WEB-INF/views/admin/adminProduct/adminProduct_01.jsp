@@ -238,7 +238,6 @@
 	function delete_product(target) {
 		
 		let product_title = document.getElementById('admin_product_title'.concat(target)).innerText;
-		alert(product_title);
 		let product_id = document.getElementById('product_'.concat(target)).value;
 		var confirmFlag = confirm(product_title+"을 정말 삭제하시겠습니까?")
 		if(confirmFlag){
