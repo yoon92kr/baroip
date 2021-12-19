@@ -244,17 +244,18 @@
 			
 			$.ajax({
 				type : "post",
-				async : true,
+				async : false,
 				url : "${contextPath}/admin/product/delete_product.do",
 				dataType : "text",
 				data : {
 					"product_id" : product_id			
 				},
 				success : function(message) {
-
+			/* 		alert(message); */
+					location.reload();
 				},
 				error : function() {
-					alert("재고 수량 변경에 문제가 발생하였습니다.");
+					alert("해당 상품 삭제에 문제가 발생하였습니다.");
 				}
 
 			});

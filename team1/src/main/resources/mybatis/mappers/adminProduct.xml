@@ -78,5 +78,12 @@
 		]]>
 	</delete>
 
+	<delete id="deleteImage" parameterType="String">
+		<![CDATA[
+	  delete from image
+	  where image_match_id=#{product_id}
+		]]>
+	</delete>
+
 
 </mapper>
