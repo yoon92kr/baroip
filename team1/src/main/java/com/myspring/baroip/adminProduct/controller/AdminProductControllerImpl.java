@@ -57,11 +57,10 @@ public class AdminProductControllerImpl implements AdminProductController {
 		String product_id = adminProductService.addProduct(productVO);
 		String message = "["+product_id+"]의 임시등록이 완료되었습니다.";
 		HttpSession session=multipartRequest.getSession();
-		session.removeAttribute("message");
 		session.setAttribute("message", message);
-		/* mav.addObject("message", message); */
-		mav.setViewName("redirect:/admin/product/list.do");
 		
+		mav.setViewName("redirect:/admin/product/list.do");
+		System.out.println("baroip : "+message);
 		imageController.ImageSetImageVO(multipartRequest, product_id);
 
 		// 등록된 상품 이미지 파일 저장
@@ -74,11 +73,10 @@ public class AdminProductControllerImpl implements AdminProductController {
 		
 		// product_states가 0인 Product을 호출
 		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
-		
 		ModelAndView mav = new ModelAndView();
+	
 		String viewName = (String) request.getAttribute("viewName");
 		mav.addObject("extraList", extraList);
-		
 		mav.setViewName(viewName);
 		
 
@@ -107,15 +105,10 @@ public class AdminProductControllerImpl implements AdminProductController {
 		
 		ModelAndView mav = new ModelAndView();
 		adminProductService.deleteProduct(product_id);
-		String message = "해당 상품이 정상적으로 삭제 되었습니다.";
-		HttpSession session=request.getSession();
-		session.removeAttribute("message");
-		session.setAttribute("message", message);
-		
-		mav.addObject("message", message);
-		mav.setViewName("redirect:/admin/product/list.do");
-		
 
+		System.out.printf("baroip : [%s]상품이 정삭적으로 삭제되었습니다.%n",product_id);
+		mav.setViewName("redirect:/admin/product/list.do");
+	
 		return mav;
 	}
 	

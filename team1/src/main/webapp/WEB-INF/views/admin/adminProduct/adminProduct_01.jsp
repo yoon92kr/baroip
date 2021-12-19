@@ -10,6 +10,9 @@
 	<script>
 		alert("${message}");
 	</script>
+	<%
+	session.removeAttribute("message");
+	%>
 </c:if>
 <div class="container">
 
@@ -251,8 +254,8 @@
 					"product_id" : product_id			
 				},
 				success : function(message) {
-			/* 		alert(message); */
-					location.reload();
+					alert(product_title+" 상품이 정상적으로 삭제되었습니다.");
+			 		location.reload();
 				},
 				error : function() {
 					alert("해당 상품 삭제에 문제가 발생하였습니다.");
