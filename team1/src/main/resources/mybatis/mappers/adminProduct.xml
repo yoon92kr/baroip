@@ -85,5 +85,26 @@
 		]]>
 	</delete>
 
+	<!-- 상품 수정 쿼리 -->
+	<update id="updateProduct" parameterType="ProductVO">
+
+		<![CDATA[
+		update product 
+		set  
+				user_id = #{user_id},
+				product_main_title = #{product_main_title}, 
+				product_sub_title = #{product_sub_title},
+				product_body = #{product_body},
+				product_price = #{product_price},
+				product_discount = #{product_discount},
+				product_amount = #{product_amount},
+				product_main_category = #{product_main_category},
+				product_sub_category = #{product_sub_category}
+				where product_id = #{product_id}
+				
+			
+				
+		]]>
+	</update>
 
 </mapper>

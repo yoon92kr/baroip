@@ -15,13 +15,25 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.baroip.product.vo.ProductVO;
 
 public interface AdminProductController {
+
+	// 관리자 페이지 상품 등록 전체 매핑
 	public ModelAndView adminProduct(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	//  관리자 페이지 상품 등록
 	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
+	
 	
 	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	//  관리자 페이지 상품 수량 변경
 	public String update_amount(@RequestParam Map<String, String> info) throws Exception;
 	
+	// 관리자 페이지 상품 삭제
 	public ModelAndView delete_product(@RequestParam("product_id") String product_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//  관리자 페이지 상품 수정 폼
+	public ModelAndView update_product_form (@RequestParam("product_id") String product_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	// 관리자 페이지 상품 수정
+	public ModelAndView update_product(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 }

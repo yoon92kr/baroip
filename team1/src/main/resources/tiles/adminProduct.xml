@@ -7,8 +7,12 @@
 	<definition name="/admin/product/list" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_01.jsp" />
 	</definition>
-	
-		<definition name="/admin/product/addProductForm" extends="AdminLayout">
+
+	<definition name="/admin/product/addProductForm" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_02.jsp" />
+	</definition>
+
+	<definition name="/admin/product/update_product_form" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_02.jsp" />
 	</definition>
 

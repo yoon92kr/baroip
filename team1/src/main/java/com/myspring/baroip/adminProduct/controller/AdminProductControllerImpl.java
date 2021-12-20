@@ -112,4 +112,37 @@ public class AdminProductControllerImpl implements AdminProductController {
 		return mav;
 	}
 	
+	@Override
+	@RequestMapping(value = "/update_product_form.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView update_product_form (@RequestParam("product_id") String product_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");	
+		
+		Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);
+		
+		mav.addObject("productInfo", productInfo);
+		mav.setViewName(viewName);
+		return mav;
+		
+	}
+	
+	@Override
+	@RequestMapping(value = "/update_product.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView update_product(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String product_id = adminProductService.addProduct(productVO);
+		String message = "["+product_id+"]의 임시등록이 완료되었습니다.";
+		HttpSession session=multipartRequest.getSession();
+		session.setAttribute("message", message);
+		
+		mav.setViewName("redirect:/admin/product/list.do");
+		System.out.println("baroip : "+message);
+		imageController.ImageSetImageVO(multipartRequest, product_id);
+
+		// 등록된 상품 이미지 파일 저장
+		return mav;
+	}
+	
 }

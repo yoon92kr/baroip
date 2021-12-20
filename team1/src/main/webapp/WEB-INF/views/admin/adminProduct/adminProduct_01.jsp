@@ -82,7 +82,7 @@
 			<c:set var="key" value="product${i}" />
 
 			<div class="row">
-				<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}</div>
+				<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}  ${extraList[key].user_id}</div>
 				<div class="col-lg-3 text-center order_01-content-item-img">
 					<a
 						href="${contextPath}/product/productDetail.do?product_id=${extraList[key].product_id}">
@@ -104,15 +104,15 @@
 							id="amount_increase${i}" onclick="increaseValue(this.id)">+</div>
 						<input type="hidden" id="product_${i}"
 							value="${extraList[key].product_id}">
-						<!-- 					<input class="admin_01-itemCountBox-btn" type="submit" value="변경"> -->
+						<input type="hidden" id="user_id_${i}" value="${extraList[key].user_id}">
 					</form>
 					<input class="admin_01-itemCountBox-btn" id="${i}" type="button"
 						value="변경" onclick="update_amount(this.id)">
 				</div>
 				<div class="col-lg-2 text-center adminProduct_01-content-item">
 					<input class="adminProduct_01-product adminProduct_01-product-top"
-						type="button" value="상품 수정"
-						onclick="location.href='${contextPath}/adminProduct_03.do'">
+						type="button" value="상품 수정" id="${i}"
+						onclick="update_product_form(this.id)">
 					<input class="adminProduct_01-product" id="${i}" type="button" value="상품 삭제" onclick="delete_product(this.id)">
 				</div>
 			</div>
@@ -263,6 +263,32 @@
 
 			});
 		}
+			
+
+	
+	}
+	
+	/* 상품 수정 ajax */
+	function update_product_form(target) {
+		let user_id = document.getElementById('user_id_'.concat(target)).value;
+		let target_id = document.getElementById('product_'.concat(target)).value;
+		window.sStorage = window.sessionStorage;
+		
+		if(${userInfo.user_rank > 2} || "${userInfo.user_id}" == user_id) {
+
+			location.href='${contextPath}/admin/product/update_product_form.do?product_id='+target_id;
+			
+		}
+		
+		else {
+			alert("해당 상품을 수정할 권한이 없습니다.");
+		}
+			
+		
+	
+			
+
+		
 			
 
 	

@@ -113,7 +113,11 @@ public class ProductServiceImpl implements ProductService {
 		item.put("body", imageList);
 		productInfo.put("image", item);
 		
-		item.put("productVO", productDAO.selectProduct(product_id));
+		ProductVO product = productDAO.selectProduct(product_id);
+		String body = product.getProduct_body().replaceAll("(\r\n|\r|\n|\n\r)", "&#10;");
+		product.setProduct_body(body);
+		
+		item.put("productVO", product);
 		// 상품 정보 대입
 		productInfo.put("product", item);
 		
@@ -165,6 +169,7 @@ public class ProductServiceImpl implements ProductService {
 						productInfo.put("product_states", product.getProduct_states());
 						productInfo.put("image_file", encodeImage);
 						productInfo.put("product_id", product.getProduct_id());
+						productInfo.put("user_id", product.getUser_id());
 
 						selectProductList.put("product" + (i+1), productInfo);
 						
