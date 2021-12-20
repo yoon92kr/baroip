@@ -69,7 +69,7 @@
 					</div>
 					<div class="col-lg-3 text-center cs_02_listsection ">
 						<p class="cs">
-							<a href="${contextPath}/cs/quest_datail.do?notice_id=${questitem.notice_id}">
+							<a id="cs_02_move" href="${contextPath}/cs/quest_datail.do?notice_id=${questitem.notice_id}">
 								${questitem.notice_title}
 							</a>
 						</p>
@@ -81,7 +81,8 @@
 			</c:forEach>
 		</c:when>
 	</c:choose>
-
+	<form id="cs_02_moveForm" method="get">
+	</form>
 	<div class="row">
 		<div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
 			<p class="notice_01_next">
@@ -95,3 +96,17 @@
 	</div>
 
 </div>
+
+<script>
+
+
+	let moveForm=$("#cs_02_moveForm");
+	
+	$("#cs_02_move").on("click", function(e) {
+		e.preventDefault();
+		
+		moveForm.append("<input type='hidden' name='cs_02_notice_id' value='" + $(this).attr("href") + "'>'");
+		moveForm.attr("action", "${contextPath}/cs/cs_02_02.do");
+		moveForm.submit();
+	});
+</script>

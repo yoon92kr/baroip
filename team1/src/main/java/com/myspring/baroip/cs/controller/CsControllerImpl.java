@@ -128,36 +128,32 @@ public class CsControllerImpl implements CsController {
 		return mav;
 	}
 	
-// 1:1 문의 수정!
-	@RequestMapping(value= "/updateQuest.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView updateQuest(@RequestParam("notice_id") String notice_id, 
+// 1:1 문의 수정 페이지 이동
+	@RequestMapping(value= "/questUpdate.do" ,method={RequestMethod.GET})
+	public ModelAndView questUpdateGET(@RequestParam("notice_id") String notice_id, 
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 //		HttpSession session;
 		csVO = csService.questDetail(notice_id);
 		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
+//		System.out.println(csVO.getNotice_id());
 		System.out.println(csVO.getNotice_id());
-		
+		System.out.println(csVO.getNotice_title());
 		mav.addObject("pageInfo", csVO);
 		mav.setViewName("/cs/cs_02_03");
 		return mav;
 	}
 	
 //	1:1 문의 수정 페이지
-	@RequestMapping(value= "/questUpdate.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView questUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value= "/questUpdate.do" ,method={RequestMethod.POST})
+	public ModelAndView questUpdatePOST(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		HttpSession session=request.getSession();
 		UserVO user = (UserVO) session.getAttribute("userInfo");
 		String user_id = user.getUser_id();
-//		CsVO noticeID = (CsVO) session.getAttribute("pageInfo");
-//		String notice_id = noticeID.getNotice_id();
 		Map<String, Object> csMap = new HashMap<String, Object>();
 		csMap.put("user_id", user_id);
-//		csMap.put("notice_id", notice_id);
-//		String viewName = (String)request.getAttribute("viewName");
 		mav.addObject("pageInfo");
 		Enumeration enu = request.getParameterNames();
 		while(enu.hasMoreElements()) {
@@ -167,7 +163,7 @@ public class CsControllerImpl implements CsController {
 			System.out.println(csMap);
 		}
 		csService.updateQuest(csMap);
-		mav.setViewName("redirect:/cs/cs_02");
+		mav.setViewName("redirct:/cs/cs_02");
 		return mav;
 	}
 

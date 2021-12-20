@@ -28,7 +28,7 @@
 		</div>
 	</div>
 	
-	<form id="NewQuestForm" action="${contextPath}/cs/addQuest.do" 
+	<form id="NewQuestForm" action="${contextPath}/cs/questUpdate.do" 
 	name="questContent" method="post">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
@@ -86,22 +86,19 @@
 		<div class="row">
 			<div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
-						<input type="image"
-							src="${contextPath}/resources/img/common/cs_register.png"
-							alt="1:1문의 등록 버튼 이미지">
+					<input type="button" value="수정하기">
 				</div>
 			</div>
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs_02.do">
-						<img src="${contextPath}/resources/img/common/cs_return.png"
-						alt="1:1문의 이전페이지 버튼 이미지">
-					</a>
+					<input type="button" value="돌아가기">
 				</div>
 			</div>
 		</div>
 	</form>
-	
+	<form>
+		<input type="hidden" id="" name="" value="${pageInfo.notice_id}">
+	</form>
 </div>
 
 <script>

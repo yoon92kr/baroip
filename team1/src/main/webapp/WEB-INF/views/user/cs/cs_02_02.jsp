@@ -31,69 +31,81 @@
 		</div>
 	</div>
 
-	<form action="${contextPath}/cs/updateQuest.do" method="post">
-		<div class="row">
-			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
-				<span>제목</span>
-				<input type="hidden" name="notice_id" value="${pageInfo.notice_id}">
-			</div>
-			<div class="col-lg-4 text-center cs_02_02_box02">
-				<input class="cs_02_02_text_box1" type="text" name="notice_title"
-					value="${pageInfo.notice_title}" readonly>
-			</div>
+	<div class="row">
+		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
+			<span>제목</span> <input type="hidden" name="notice_id"
+				value="${pageInfo.notice_id}">
 		</div>
+		<div class="col-lg-4 text-center cs_02_02_box02">
+			<input class="cs_02_02_text_box1" type="text" name="notice_title"
+				value="${pageInfo.notice_title}" readonly>
+		</div>
+	</div>
 
-		<div class="row">
-			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
-				<span>문의유형</span>
-			</div>
-			<div class="col-lg-4 text-center cs_02_02_box02">
-				<input class="cs_02_02_text_box1" type="text" name="notice_type"
-					value="${pageInfo.notice_type}" readonly>
-			</div>
+	<div class="row">
+		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
+			<span>문의유형</span>
 		</div>
+		<div class="col-lg-4 text-center cs_02_02_box02">
+			<input class="cs_02_02_text_box1" type="text" name="notice_type"
+				value="${pageInfo.notice_type}" readonly>
+		</div>
+	</div>
 
-		<div class="row">
-			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
-				<span>작성자 아이디</span>
-			</div>
-			<div class="col-lg-4 text-center cs_02_02_box02">
-				<input class="cs_02_02_text_box1" type="text" name="user_id"
-					value="${pageInfo.user_id}" readonly>
-			</div>
+	<div class="row">
+		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
+			<span>작성자 아이디</span>
 		</div>
+		<div class="col-lg-4 text-center cs_02_02_box02">
+			<input class="cs_02_02_text_box1" type="text" name="user_id"
+				value="${pageInfo.user_id}" readonly>
+		</div>
+	</div>
 
-		<div class="row">
-			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
-				<span>내용</span>
-			</div>
-			<div class="col-lg-4 text-center cs_02_02_box04">
-				<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${pageInfo.notice_body}</textarea>
-			</div>
+	<div class="row">
+		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
+			<span>내용</span>
 		</div>
+		<div class="col-lg-4 text-center cs_02_02_box04">
+			<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${pageInfo.notice_body}</textarea>
+		</div>
+	</div>
 
-		<div class="row">
-			<div class="offset-lg-3 col-lg-2 text-center">
-				<div class="notice_back_btn">
-					<input type="image"
-						src="${contextPath}/resources/img/common/cs_correct_01.png"
-						alt="1:1문의 수정하기 버튼 이미지">
-				</div>
-			</div>
-			<div class="col-lg-2 text-center">
-				<div class="notice_back_btn">
-					<a href="${contextPath}/cs/cs_02.do"><img
-						src="${contextPath}/resources/img/common/cs_list.png"
-						alt="1:1문의 목록 버튼 이미지"></a>
-				</div>
-			</div>
-			<div class="col-lg-2 text-center">
-				<div class="notice_back_btn">
-					<a href="#"><img
-						src="${contextPath}/resources/img/common/cs_delete_01.png"
-						alt="1:1문의 삭제하기 버튼 이미지" onclick="alert('삭제하시겠습니까?')"></a>
-				</div>
+	<div class="row">
+		<div class="offset-lg-3 col-lg-2 text-center">
+			<div class="notice_back_btn">
+				<input type="button" id="cs_02_02_update_btn" value="수정하기">
 			</div>
 		</div>
+		<div class="col-lg-2 text-center">
+			<div class="notice_back_btn">
+				<input type="button" id="cs_02_02_list_btn" value="목록">
+			</div>
+		</div>
+		<div class="col-lg-2 text-center">
+			<div class="notice_back_btn">삭제버튼</div>
+		</div>
+	</div>
+	<form id="infoForm" action="${contextPath}/cs/questUpdate" method="get">
+		<input type="hidden" id="cs_02_02_NI" name="notice_id"
+			value="${pageInfo.notice_id}">
 	</form>
 </div>
+
+<script>
+
+	let form = $("#infoForm");
+	
+	// 수정하기 버튼
+	$("#cs_02_02_update_btn").on("click", function(e) {
+		form.attr("action", "${contextPath}/cs/questUpdate.do");
+		form.submit();
+	});
+	
+	// 목록 이동 버튼
+	$("#cs_02_02_list_btn").on("click", function(e) {
+		form.find("#cs_02_02_NI").remove();
+		form.attr("action", "${contextPath}/cs/cs_02.do");
+		form.submit();
+	});
+</script>
