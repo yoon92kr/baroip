@@ -44,8 +44,8 @@ public class CsServiceImpl implements CsService {
 	
 //	1:1 문의 수정
 	@Override
-	public void updateQuest(Map csMap) throws  Exception {
-		csDAO.updateQuest(csMap);
+	public void updateQuest(CsVO csVO) throws  Exception {
+		csDAO.updateQuest(csVO);
 	}
 
 }

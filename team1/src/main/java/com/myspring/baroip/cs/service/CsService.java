@@ -22,5 +22,5 @@ public interface CsService {
 	public CsVO questDetail(String noticeNO) throws Exception;
 	
 //	1:1 문의 수정
-	public void updateQuest(Map csMap) throws  Exception;
+	public void updateQuest(CsVO csVO) throws  Exception;
 }

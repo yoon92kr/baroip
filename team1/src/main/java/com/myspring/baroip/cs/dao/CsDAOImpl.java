@@ -44,7 +44,7 @@ public class CsDAOImpl implements CsDAO {
 	}
 	
 //	1:1 문의 수정
-	public void updateQuest(Map csMap) throws  DataAccessException {
-		sqlSession.update("mapper.cs.updateQuest", csMap);
+	public void updateQuest(CsVO csVO) throws  DataAccessException {
+		sqlSession.update("mapper.cs.updateQuest", csVO);
 	}
 }

@@ -28,7 +28,7 @@
 		</div>
 	</div>
 	
-	<form id="NewQuestForm" action="${contextPath}/cs/questUpdate.do" 
+	<form id="questUpdateForm" action="${contextPath}/cs/questUpdate.do" 
 	name="questContent" method="post">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
@@ -86,21 +86,32 @@
 		<div class="row">
 			<div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
-					<input type="button" value="수정하기">
+					<input class="" id="cs_02_03_update_btn" type="button" value="수정하기">
 				</div>
 			</div>
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<input type="button" value="돌아가기">
+					<input id="cs_02_03_cancel_btn" type="button" value="돌아가기">
 				</div>
 			</div>
 		</div>
 	</form>
-	<form>
-		<input type="hidden" id="" name="" value="${pageInfo.notice_id}">
+	<form id="UpdateFormInfo" action="${contextPath}/cs/questUpdate.do" method="get">
+		<input type="hidden" id="cs_02_03_btn" name="notice_id" value="${pageInfo.notice_id}">
 	</form>
 </div>
 
 <script>
+	let form = $("#UpdateFormInfo");
+	let uForm = $("#questUpdateForm");
 	
+	$("#cs_02_03_update_btn").on("click", function(e) {
+		uForm.submit();
+	});
+	
+	$("#cs_02_03_cancel_btn").on("click", function(e) {
+		form.find("#cs_02_03_btn").remove();
+		form.attr("action", "${contextPath}/cs/cs_02.do");
+		form.submit();
+	});
 </script>

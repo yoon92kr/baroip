@@ -152,20 +152,26 @@ public class CsControllerImpl implements CsController {
 		HttpSession session=request.getSession();
 		UserVO user = (UserVO) session.getAttribute("userInfo");
 		String user_id = user.getUser_id();
-		Map<String, Object> csMap = new HashMap<String, Object>();
-		csMap.put("user_id", user_id);
-		mav.addObject("pageInfo");
-		Enumeration enu = request.getParameterNames();
-		while(enu.hasMoreElements()) {
-			String name = (String) enu.nextElement();
-			String value = request.getParameter(name);
-			csMap.put(name, value);
-			System.out.println(csMap);
-		}
-		csService.updateQuest(csMap);
-		mav.setViewName("redirct:/cs/cs_02");
+//		Map<String, Object> csMap = new HashMap<String, Object>();
+//		csMap.put("user_id", user_id);
+//		mav.addObject("pageInfo");
+//		Enumeration enu = request.getParameterNames();
+//		while(enu.hasMoreElements()) {
+//			String name = (String) enu.nextElement();
+//			String value = request.getParameter(name);
+//			csMap.put(name, value);
+//			System.out.println(csMap);
+//		}
+		System.out.println("---------------update-----------------");
+		System.out.println(csVO.getNotice_id());
+		System.out.println(csVO.getUser_id());
+		System.out.println(csVO.getNotice_title());
+		csVO.setUser_id(user_id);
+		csService.updateQuest(csVO);
+		mav.addObject(csVO);
+		mav.setViewName("/cs/cs_02_02");
+		
 		return mav;
 	}
 
-	
 }

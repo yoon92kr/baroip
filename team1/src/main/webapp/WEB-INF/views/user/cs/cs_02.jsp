@@ -50,7 +50,7 @@
 	<c:choose>
 		<c:when test="${questList == null }">
 			<div class="row">
-				<div class="offset-lg-2 col-lg-1 text-left cs_01_listsection">
+				<div class="offset-lg-2 col-lg-8 text-center cs_01_listsection">
 						<span>등록된 글이 없습니다.</span>
 				</div>
 			</div>

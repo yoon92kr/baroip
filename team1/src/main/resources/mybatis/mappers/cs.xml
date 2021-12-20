@@ -62,7 +62,7 @@
 		]]>
 	</select>
 	
-	<update id="updateQuest" parameterType="java.util.Map">
+	<update id="updateQuest" parameterType="CsVO">
 		<![CDATA[
 			update notice set notice_title=#{notice_title}, notice_body=#{notice_body}, 
 			notice_cre_date=now() where notice_id=#{notice_id} and user_id=#{user_id}
