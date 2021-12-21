@@ -106,8 +106,7 @@
          </div>
          <div class="col-lg-1 main_item_bottom_text ">
             <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product1.product_id}" class=""> <span
-               class="item-price"><fmt:formatNumber
-                     value="${bestProducts.product1.product_price}" />원</span> <span
+               class="item-price"><fmt:formatNumber value="${bestProducts.product1.product_price}" />원</span> <span
                class="item-dc"><fmt:formatNumber
                      value="${bestProducts.product1.product_discount}" />원</span> <br>
                <span class="item-real-price"><fmt:formatNumber
