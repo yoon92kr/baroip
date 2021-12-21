@@ -46,6 +46,7 @@ public class CsServiceImpl implements CsService {
 	@Override
 	public void updateQuest(CsVO csVO) throws  Exception {
 		csDAO.updateQuest(csVO);
+		System.out.println("문의 수정 service[csVO] : " + csVO.getNotice_title());
 	}
 
 }

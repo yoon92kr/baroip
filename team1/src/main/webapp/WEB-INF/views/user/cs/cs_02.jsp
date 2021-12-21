@@ -100,7 +100,7 @@
 <script>
 
 
-	let moveForm=$("#cs_02_moveForm");
+/* 	let moveForm=$("#cs_02_moveForm");
 	
 	$("#cs_02_move").on("click", function(e) {
 		e.preventDefault();
@@ -108,5 +108,5 @@
 		moveForm.append("<input type='hidden' name='cs_02_notice_id' value='" + $(this).attr("href") + "'>'");
 		moveForm.attr("action", "${contextPath}/cs/cs_02_02.do");
 		moveForm.submit();
-	});
+	}); */
 </script>

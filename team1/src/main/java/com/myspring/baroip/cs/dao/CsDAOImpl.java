@@ -46,5 +46,6 @@ public class CsDAOImpl implements CsDAO {
 //	1:1 문의 수정
 	public void updateQuest(CsVO csVO) throws  DataAccessException {
 		sqlSession.update("mapper.cs.updateQuest", csVO);
+		System.out.println("문의 수정 DAO[csVO] : " + csVO.getNotice_title());
 	}
 }
