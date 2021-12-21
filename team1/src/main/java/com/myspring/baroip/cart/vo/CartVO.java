@@ -5,15 +5,16 @@ import org.springframework.stereotype.Component;
 
 @Component("cartVO")
 public class CartVO {
-	private String cart_id;
+	private int cart_id;
 	private String product_id;
 	private String user_id;
 	private int cart_count;
 	
-	public String getCart_id() {
+	
+	public int getCart_id() {
 		return cart_id;
 	}
-	public void setCart_id(String cart_id) {
+	public void setCart_id(int cart_id) {
 		this.cart_id = cart_id;
 	}
 	public String getProduct_id() {
@@ -35,5 +36,4 @@ public class CartVO {
 		this.cart_count = cart_count;
 	}
 	
-
 }

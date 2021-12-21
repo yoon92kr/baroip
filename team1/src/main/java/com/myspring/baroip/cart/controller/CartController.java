@@ -10,5 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 public interface CartController {
-	public ModelAndView cart(@RequestParam Map<String, String> loginMap,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
 }

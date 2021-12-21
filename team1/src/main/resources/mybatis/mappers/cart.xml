@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
+<!-- 2021.12.21 한건희  -->
 <mapper namespace="mapper.cart">
 	<!-- 리절트 맵 정의 -->
 	<resultMap id="cartResult" type="CartVO">
@@ -8,8 +10,14 @@
 		<result property="product_id" column="product_id" />
 		<result property="user_id" column="user_id" />
 		<result property="cart_count" column="cart_count" />
-
 	</resultMap>
-
-
+	
+	<!-- 장바구니 리스트 -->
+	<select id="selectCartList" resultMap="cartResult" parameterType="cartVO">
+		<![CDATA[
+			select cart_id, user_id, product_id from cart 
+			where user_id = #{user_id}
+		]]>
+	</select>
+	
 </mapper>
