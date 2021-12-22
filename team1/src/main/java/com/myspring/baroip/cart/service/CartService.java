@@ -6,6 +6,6 @@ import com.myspring.baroip.cart.vo.CartVO;
 
 public interface CartService {
 	
-	public List<CartVO> myCartList(CartVO cartVO) throws Exception;
+	public List myCartList(CartVO cartVO) throws Exception;
 	
 }

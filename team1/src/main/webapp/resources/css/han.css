@@ -31,6 +31,10 @@
     border: 1px solid #d9d9d9;
 }
 
+.cart_check_delete_btn {
+	margin-bottom: 50px;
+}
+
 /* ================================================================ */
 /* img_btn_size */
 .bottom_btn_size {
