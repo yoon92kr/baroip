@@ -43,4 +43,11 @@ public class AdminProductServiceImpl implements AdminProductService {
 		adminProductDAO.deleteProduct(product_id);
 		
 	}
+	
+	// 상품 수정 서비스
+	public void updateProduct(ProductVO productVO) throws Exception {
+		
+		adminProductDAO.updateProduct(productVO);
+		
+	}
 }

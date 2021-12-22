@@ -16,4 +16,7 @@ public interface AdminProductService {
 	
 	// 상품 삭제 서비스
 	public void deleteProduct(String product_id) throws Exception;
+	
+	// 상품 수정 서비스
+	public void updateProduct(ProductVO productVO) throws Exception;
 }

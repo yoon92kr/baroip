@@ -42,4 +42,9 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		sqlSession.delete("mapper.adminProduct.deleteImage", product_id);
 		
 	}
+	
+	@Override
+	public void updateProduct(ProductVO productVO) throws DataAccessException {
+		sqlSession.update("mapper.adminProduct.updateProduct", productVO);
+	}
 }

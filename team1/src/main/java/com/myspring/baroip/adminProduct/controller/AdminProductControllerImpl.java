@@ -132,14 +132,14 @@ public class AdminProductControllerImpl implements AdminProductController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String product_id = adminProductService.addProduct(productVO);
-		String message = "["+product_id+"]의 임시등록이 완료되었습니다.";
+		adminProductService.updateProduct(productVO);
+		String message = "["+productVO.getProduct_main_title()+"]의 수정이 완료되었습니다.";
 		HttpSession session=multipartRequest.getSession();
 		session.setAttribute("message", message);
 		
 		mav.setViewName("redirect:/admin/product/list.do");
 		System.out.println("baroip : "+message);
-		imageController.ImageSetImageVO(multipartRequest, product_id);
+		imageController.ImageSetImageVO(multipartRequest, productVO.getProduct_id());
 
 		// 등록된 상품 이미지 파일 저장
 		return mav;

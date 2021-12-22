@@ -14,4 +14,6 @@ public interface AdminProductDAO {
 	public void updateAmount(Map<String, String> option) throws DataAccessException;
 	
 	public void deleteProduct(String product_id) throws DataAccessException;
+	
+	public void updateProduct(ProductVO productVO) throws DataAccessException;
 }

@@ -45,5 +45,13 @@ public class ImageServiceImpl implements ImageService {
 		return categoryList;
 	}
 	
+	@Override
+	public String updateImageFile(ImageVO imageVO) throws Exception {
+
+		String imageName = imageDAO.insertImageFile(imageVO);
+
+		return imageName;
+	}
+	
 
 }

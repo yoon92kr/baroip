@@ -2,14 +2,14 @@
 <!-- 2021.12.08 윤상현 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="VO" value="${productInfo.product.productVO}" />
 <c:set var="Img" value="${productInfo.image}" />
 <c:if test='${not empty userInfo && not empty productInfo }'>
-   <script>
+	<script>
    if(${userInfo.user_rank > 2}) {
 
    }
@@ -27,7 +27,7 @@
 
 </c:if>
 <c:if test='${empty userInfo }'>
-   <script>
+	<script>
 
       alert("잘못된 접근입니다.");
       location.replace('${contextPath}/main.do')
@@ -39,138 +39,151 @@
 
 <div class="container">
 
-    <div class="row">
-        <div class="col-lg-6 offset-lg-3 text-center">
-           <h1 class="page_title">관리자 페이지</h1>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-12 text-left myPage_03_01-content-body">
-           <h6 class="order_01-sub-title-page">
-              <span class="order_01-sub-title">[ ${VO.product_main_title} ] 상품 수정</span>
-           </h6>
-        </div>
-    </div>
-    
-    <form action="${contextPath}/admin/product/addProduct.do" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="user_id" value="${userInfo.user_id}">
-    
-    <div class="row">
-        <div class="col-lg-2 text-center join_02-main-left">
-           메인 상품명
-        </div>
-        <div class="col-lg-10 join_02-main-right">
-              <input class="join_02-text-box" type="text" name="product_main_title" value="${VO.product_main_title}">
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center join_02-main-left">
-           상품 부제목
-        </div>
-        <div class="col-lg-10 join_02-main-right">
-              <input class="join_02-text-box" type="text" name="product_sub_title" value = "${VO.product_sub_title}">
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center join_02-main-left">
-           메인 정보
-        </div>
-        
-        <div class="col-lg-10 join_02-main-right">
-              <span class="adminProduct_02-content-body-left-text">상품금액 : </span>
-              <input class="adminProduct_02-content-body-mainInfo" type="number" name="product_price" id="input_price" onchange="cost()" value = "${VO.product_price}">
-              할인금액 : <input class="adminProduct_02-content-body-mainInfo" type="number" name="product_discount" id="input_discount" onchange="cost()" value = "${VO.product_discount}">
-              최종금액 : <input class="adminProduct_02-content-body-mainInfo" type="number" disabled id="sumcost">
-              재고수량 : <input class="adminProduct_02-content-body-mainInfo" type="number" name="product_amount" value = "${VO.product_amount}">
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center join_02-main-left">
-           상품 분류
-        </div>
-        <div class="col-lg-10 join_02-main-right">
-              <span class="adminProduct_02-content-body-left-text">대분류</span>
-              <select class="adminProduct_02-category" onchange="productCategory02(this.options[this.selectedIndex].id)" name="product_main_category" id="main_category_value">
-                 <option id="category_01" value="농산물">농산물</option>
-                 <option id="category_02" value="수산물">수산물</option>
-                 <option id="category_03" value="축산물">축산물</option>
-              </select>
-              
-              <span class="adminProduct_02-content-body-left-text adminProduct_02-content-body-category-text">소분류</span>
-              
-              <select id="adminProduct_02_category_01-text" class="adminProduct_02-category" name="product_sub_category">
-                 <option value="채소">채소</option>
-                 <option value="곡물">곡물</option>
-                 <option value="과일">과일</option>
-              </select>
-              
-              <select id="adminProduct_02_category_02-text" class="adminProduct_02-category" name="product_sub_category" disabled>
-                 <option value="생선류">생선류</option>
-                 <option value="갑각류">갑각류</option>
-                 <option value="해조류">해조류</option>
-              </select>
-              
-              <select id="adminProduct_02_category_03-text" class="adminProduct_02-category" name="product_sub_category" disabled>
-                 <option value="돼지고기">돼지고기</option>
-                 <option value="소고기">소고기</option>
-                 <option value="기타">기타</option>
-              </select>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center adminProduct_02-main-content-left">
-           내용
-        </div>
-        <div class="col-lg-10 adminProduct_02-main-right">
-             <input class="adminProduct_02-main-img-add-btn" type="file" name="body" multiple="multiple" accept="image/*">
-           <textarea class="adminProduct_02-main-content-text" name="product_body">${VO.product_body}</textarea>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center join_02-main-left">
-           메인 이미지
-        </div>
-        <div class="col-lg-10 join_02-main-right">
-           <input class="adminProduct_02-main-img-add-btn" type="file" name="main" accept="image/*">
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center adminProduct_02-img-add-left">
-           추가 이미지
-        </div>
-        <div class="col-lg-10 adminProduct_02-img-add-right">
-           <input class="adminProduct_02-sub-img-add-btn" type="file" name="sub1" accept="image/*">
-           <input class="adminProduct_02-sub-img-add-btn" type="file" name="sub2" accept="image/*">
-           <input class="adminProduct_02-sub-img-add-btn" type="file" name="sub3" accept="image/*">
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-lg-6 offset-lg-3 text-center">
+			<h1 class="page_title">관리자 페이지</h1>
+		</div>
+	</div>
 
-    <div class="row">
-        <div class="col-lg-4 offset-lg-2 join_02-bottom-btn">
-           <div class="join_01-btn">
-              <a class="join_01-back" href="${contextPath}/adminProduct_01.do">
-               <img class="join_01-btn-img bottom_btn_size" src="${contextPath}/resources/img/common/product_list_btn.png" alt="상품 목록 이동 버튼 이미지">
-             </a>
-          </div>
-        </div>
-      <div class="col-lg-4 join_02-bottom-btn">
-           <div class="join_01-btn">
-              <input class="bottom_btn_size join_01-btn-img" type="image"
-                  src="${contextPath}/resources/img/common/product_up_load_btn.png"
-                  alt="상품 등록 버튼 이미지">
-              
-          </div>
-        </div>
-    </div>
-    <input type="hidden" name="product_states" value="0">
-    </form>
+	<div class="row">
+		<div class="col-lg-12 text-left myPage_03_01-content-body">
+			<h6 class="order_01-sub-title-page">
+				<span class="order_01-sub-title">[ ${VO.product_main_title} ]
+					상품 수정</span>
+			</h6>
+		</div>
+	</div>
+
+	<form action="${contextPath}/admin/product/update_product.do" method="post"
+		enctype="multipart/form-data">
+		<input type="hidden" name="user_id" value="${userInfo.user_id}">
+
+		<div class="row">
+			<div class="col-lg-2 text-center join_02-main-left">메인 상품명</div>
+			<div class="col-lg-10 join_02-main-right">
+				<input class="join_02-text-box" type="text"
+					name="product_main_title" value="${VO.product_main_title}">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 text-center join_02-main-left">상품 부제목</div>
+			<div class="col-lg-10 join_02-main-right">
+				<input class="join_02-text-box" type="text" name="product_sub_title"
+					value="${VO.product_sub_title}">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 text-center join_02-main-left">메인 정보</div>
+
+			<div class="col-lg-10 join_02-main-right">
+				<span class="adminProduct_02-content-body-left-text">상품금액 : </span>
+				<input class="adminProduct_02-content-body-mainInfo" type="number"
+					name="product_price" id="input_price" onchange="cost()"
+					value="${VO.product_price}"> 할인금액 : <input
+					class="adminProduct_02-content-body-mainInfo" type="number"
+					name="product_discount" id="input_discount" onchange="cost()"
+					value="${VO.product_discount}"> 최종금액 : <input
+					class="adminProduct_02-content-body-mainInfo" type="number"
+					disabled id="sumcost"> 재고수량 : <input
+					class="adminProduct_02-content-body-mainInfo" type="number"
+					name="product_amount" value="${VO.product_amount}">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 text-center join_02-main-left">상품 분류</div>
+			<div class="col-lg-10 join_02-main-right">
+				<span class="adminProduct_02-content-body-left-text">대분류</span> <select
+					class="adminProduct_02-category"
+					onchange="productCategory02(this.options[this.selectedIndex].id)"
+					name="product_main_category" id="main_category_value">
+					<option id="category_01" value="농산물">농산물</option>
+					<option id="category_02" value="수산물">수산물</option>
+					<option id="category_03" value="축산물">축산물</option>
+				</select> <span
+					class="adminProduct_02-content-body-left-text adminProduct_02-content-body-category-text">소분류</span>
+
+				<select id="adminProduct_02_category_01-text"
+					class="adminProduct_02-category" name="product_sub_category">
+					<option value="채소">채소</option>
+					<option value="곡물">곡물</option>
+					<option value="과일">과일</option>
+				</select> <select id="adminProduct_02_category_02-text"
+					class="adminProduct_02-category" name="product_sub_category"
+					disabled>
+					<option value="생선류">생선류</option>
+					<option value="갑각류">갑각류</option>
+					<option value="해조류">해조류</option>
+				</select> <select id="adminProduct_02_category_03-text"
+					class="adminProduct_02-category" name="product_sub_category"
+					disabled>
+					<option value="돼지고기">돼지고기</option>
+					<option value="소고기">소고기</option>
+					<option value="기타">기타</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 text-center adminProduct_02-main-content-left">
+				내용</div>
+			<div class="col-lg-10 adminProduct_02-main-right">
+				<input class="adminProduct_02-main-img-add-btn" type="file"
+					name="body" multiple="multiple" accept="image/*"> <span
+					class="admin_product_Form_notice">※ 새로운 이미지를 업로드하면, 기존 등록된
+					이미지는 모두 삭제됩니다.</span>
+				<textarea class="adminProduct_02-main-content-text"
+					name="product_body">${VO.product_body}</textarea>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 text-center join_02-main-left">메인 이미지</div>
+			<div class="col-lg-10 join_02-main-right">
+				<input class="adminProduct_02-main-img-add-btn" type="file"
+					name="main" accept="image/*"> <span
+					class="admin_product_Form_notice">※ 새로운 이미지를 업로드하면, 기존 등록된
+					이미지는 모두 삭제됩니다.</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 text-center adminProduct_02-img-add-left">
+				추가 이미지</div>
+			<div class="col-lg-10 adminProduct_02-img-add-right">
+
+				<input class="adminProduct_02-sub-img-add-btn" type="file"
+					name="sub1" accept="image/*"> <input
+					class="adminProduct_02-sub-img-add-btn" type="file" name="sub2"
+					accept="image/*"> <input
+					class="adminProduct_02-sub-img-add-btn" type="file" name="sub3"
+					accept="image/*">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4 offset-lg-2 join_02-bottom-btn text-right">
+
+				<a href="${contextPath}/admin/product/list.do"> <img
+					class="bottom_btn_size admin_product_list_btn"
+					src="${contextPath}/resources/img/common/product_list_btn.png"
+					alt="상품 목록 이동 버튼 이미지">
+				</a>
+
+			</div>
+			<div class="col-lg-4 join_02-bottom-btn">
+				<div class="join_01-btn">
+					<input class="bottom_btn_size join_01-btn-img" type="image"
+						src="${contextPath}/resources/img/common/product_up_date_btn.png"
+						alt="상품 수정 버튼 이미지">
+
+				</div>
+			</div>
+		</div>
+		<input type="hidden" name="product_states" value="0">
+	</form>
 </div>
 
 <script type="text/javascript">

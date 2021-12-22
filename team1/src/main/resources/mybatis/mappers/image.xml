@@ -49,6 +49,18 @@
 		]]>
 	</select>
 	
+		<!-- 상품  이미지 수정 쿼리 -->
+	<update id="updateImage" parameterType="imageVO">
+
+		<![CDATA[
+		update image set  
+			image_category = #{image_category}, 
+			image_file_name = #{image_file_name},
+			image_file = #{image_file}
+		where image_match_id = #{image_match_id}
+		]]>
+	</update>
+	
 
 
 

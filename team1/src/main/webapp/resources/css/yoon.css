@@ -400,3 +400,13 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .product_02_cart_btn {
 	margin-left: 50px;
 }
+
+.admin_product_Form_notice {
+	margin-left : 10px;
+	color : red;
+	font-size : 8px;
+}
+
+.admin_product_list_btn {
+	max-width : 200px
+}
