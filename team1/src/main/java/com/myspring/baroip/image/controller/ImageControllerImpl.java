@@ -80,7 +80,7 @@ public class ImageControllerImpl implements ImageController {
 		}
 
 	}
-	
+	// 해당 이미지 카테고리에 입력값이 없을경우, 기존값 유지.. 있을경우 업데이트!
 	@Override
 	public void updateImage(MultipartHttpServletRequest multipartRequest, String match_id) throws Exception {
 		// multipart로 전달된 첨부파일의 name 속성값 전체 대입

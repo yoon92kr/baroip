@@ -54,10 +54,9 @@
 
 		<![CDATA[
 		update image set  
-			image_category = #{image_category}, 
 			image_file_name = #{image_file_name},
 			image_file = #{image_file}
-		where image_match_id = #{image_match_id}
+		where image_match_id = #{image_match_id} and image_category = #{image_category}
 		]]>
 	</update>
 	
