@@ -48,7 +48,7 @@ public class ImageServiceImpl implements ImageService {
 	@Override
 	public String updateImageFile(ImageVO imageVO) throws Exception {
 
-		String imageName = imageDAO.insertImageFile(imageVO);
+		String imageName = imageDAO.updateImageFile(imageVO);
 
 		return imageName;
 	}

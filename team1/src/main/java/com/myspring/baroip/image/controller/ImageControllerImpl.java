@@ -80,5 +80,21 @@ public class ImageControllerImpl implements ImageController {
 		}
 
 	}
+	
+	@Override
+	public void updateImage(MultipartHttpServletRequest multipartRequest, String match_id) throws Exception {
+		// multipart로 전달된 첨부파일의 name 속성값 전체 대입
+				Iterator<String> imageFileNames = multipartRequest.getFileNames();
+				// 값이 있는지 확인 후 while 조건문 반복
+				while (imageFileNames.hasNext()) {
+					// 해당 반복문의 name(product의 경우 body, main, sub) 대입
+					String imageCategory = imageFileNames.next();
+					// category가 body의 경우 multiple의 형태이기때문에 getFiles를 통해 리스트화 한다.
+					
+					MultipartFile imageFile = multipartRequest.getFile(imageCategory);
+					System.out.println(imageCategory);
+					System.out.println(imageFile.isEmpty());
+				}
+	}
 
 }

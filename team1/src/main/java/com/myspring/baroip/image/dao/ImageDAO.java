@@ -11,8 +11,16 @@ import com.myspring.baroip.image.vo.ImageVO;
 
 public interface ImageDAO {
 	
+	// 이미지 등록 DAO
 	public String insertImageFile(ImageVO imageVO) throws DataAccessException;
+	
+	// 상품과 관계된 imageVO 호출 DAO, 파라미터 key 에는 "match_id" , "image_category" 가 입력되어야 한다.
 	public ImageVO selectProductImages(Map<String, String> option) throws DataAccessException;
+	
+	// 매칭아이디에 연계된 카테고리 셀렉 DAO
 	public List<String> selectImageCategory(String match_id) throws DataAccessException;
+	
+	// 이미지 수정 DAO
+	public String updateImageFile(ImageVO imageVO) throws DataAccessException;
 	
 }

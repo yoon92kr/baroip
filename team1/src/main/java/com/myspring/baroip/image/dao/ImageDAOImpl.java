@@ -42,5 +42,16 @@ public class ImageDAOImpl implements ImageDAO {
 		return categoryList;
 		
 	}
+	
+	@Override
+	public String updateImageFile(ImageVO imageVO) throws DataAccessException {
+		sqlSession.update("mapper.image.updateImage", imageVO);
+		
+		String imageName = imageVO.getImage_file_name();
+		return imageName;
+	}
+	
+	
+	
 
 }

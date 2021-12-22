@@ -2,6 +2,8 @@
 
 package com.myspring.baroip.adminProduct.controller;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -133,15 +136,14 @@ public class AdminProductControllerImpl implements AdminProductController {
 		ModelAndView mav = new ModelAndView();
 		
 		adminProductService.updateProduct(productVO);
-		String message = "["+productVO.getProduct_main_title()+"]의 수정이 완료되었습니다.";
+		String message = "관리자 "+productVO.getUser_id()+" 님이 ["+productVO.getProduct_main_title()+"]의 수정을 완료되었습니다.";
 		HttpSession session=multipartRequest.getSession();
 		session.setAttribute("message", message);
 		
 		mav.setViewName("redirect:/admin/product/list.do");
 		System.out.println("baroip : "+message);
-		imageController.ImageSetImageVO(multipartRequest, productVO.getProduct_id());
+		imageController.updateImage(multipartRequest, productVO.getProduct_id());
 
-		// 등록된 상품 이미지 파일 저장
 		return mav;
 	}
 	
