@@ -36,8 +36,6 @@ public class CartControllerImpl implements CartController{
 		String user_id = userVO.getUser_id();
 		cartVO.setUser_id(user_id);
 		ModelAndView mav = new ModelAndView();
-		Map<String ,List> cartMap=cartService.myCartList(cartVO);
-		session.setAttribute("cartMap", cartMap);
 		mav.setViewName(viewName);
 		return mav;
 	}

@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 public interface CartController {
+
+	ModelAndView mycartList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 }
