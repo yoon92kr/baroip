@@ -31,20 +31,22 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-4 text-center adminUser_01-content-header">
+		<div class="col-lg-3 text-center adminUser_01-content-header">
 			조회 유형 <select class="adminUser_01-select-box-lookup"
-				onchange="Productchange(this.value)">
+				onchange="Productchange(this.value)" id="search_option_category">
 				<option value="productUpDate">상품 등록일</option>
 				<option value="productName">상품 명</option>
 			</select>
 		</div>
-		<div class="col-lg-4 text-center adminUser_01-content-header">
-			조회 기준 <input id="adminProduct_01-productUpDate-text" type="date">
+		<div class="col-lg-6 text-center adminUser_01-content-header">
+			
+			<input id="adminProduct_01-productUpDate-text" type="date">    부터
+			<input id="adminProduct_01-productUpDate-text" type="date">  까지
 			<input id="adminProduct_01-productName-text" type="text">
 		</div>
-		<div class="col-lg-4 text-center adminUser_01-content-header">
+		<div class="col-lg-3 text-center adminUser_01-content-header">
 			<input class="adminProduct_01-header-button" type="button"
-				value="조회하기"> <input
+				value="조회하기" onclick="test()"> <input
 				class="adminProduct_01-header-button adminProduct_01-button-top"
 				type="button" value="상품 임시 등록"
 				onclick="location.href='${contextPath}/admin/product/addProductForm.do'">
@@ -283,14 +285,12 @@
 		else {
 			alert("해당 상품을 수정할 권한이 없습니다.");
 		}
-			
-		
-	
-			
-
-		
-			
-
-	
 	}
+	
+	function test() {
+		productUpDate
+		alert(document.getElementById('search_option_category').value);
+		alert(document.getElementById('adminProduct_01-productUpDate-text').value);
+	}
+	
 </script>

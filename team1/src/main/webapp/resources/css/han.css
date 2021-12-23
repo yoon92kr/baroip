@@ -621,7 +621,8 @@
 
 .adminUser_01-select-box-lookup, #adminProduct_01-productUpDate-text, 
 #adminProduct_01-productName-text {
-	margin-left: 60px;
+	margin-left: 20px;
+	margin-right: 20px;
 	width: 140px;
 	height: 30px;
 }
