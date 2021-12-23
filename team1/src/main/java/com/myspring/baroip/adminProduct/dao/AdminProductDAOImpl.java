@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.adminProduct.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -46,5 +47,10 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	@Override
 	public void updateProduct(ProductVO productVO) throws DataAccessException {
 		sqlSession.update("mapper.adminProduct.updateProduct", productVO);
+	}
+	
+	// 날짜를 기준으로 한 상품 조회
+	public void search_date(Map<String, String> option) throws DataAccessException {
+		List<ProductVO> productList = sqlSession.selectList("mapper.adminProduct.selectProductForDate", option);
 	}
 }

@@ -19,4 +19,7 @@ public interface AdminProductService {
 	
 	// 상품 수정 서비스
 	public void updateProduct(ProductVO productVO) throws Exception;
+	
+	// 날짜를 기준으로 한 상품 조회 서비스
+	public void search_date( Map<String, String> option) throws Exception;
 }

@@ -45,9 +45,17 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 	
 	// 상품 수정 서비스
+	@Override
 	public void updateProduct(ProductVO productVO) throws Exception {
 		
 		adminProductDAO.updateProduct(productVO);
 		
+	}
+	
+	// 날짜를 기준으로 한 상품 조회 서비스
+	@Override
+	public void search_date( Map<String, String> option) throws Exception {
+		
+
 	}
 }
