@@ -614,12 +614,12 @@
 }
 
 .adminUser_01-button-top, .adminUser_01-select-box-lookup, 
-#adminProduct_01-productUpDate-text, #adminProduct_01-productName-text {
+#adminProduct_01-productUpDate-begin, #adminProduct_01-productUpDate-end, #adminProduct_01-productName-text {
 	border: 1px solid #d9d9d9;
 	text-align: center;
 }
 
-.adminUser_01-select-box-lookup, #adminProduct_01-productUpDate-text, 
+.adminUser_01-select-box-lookup, #adminProduct_01-productUpDate-begin, #adminProduct_01-productUpDate-end,
 #adminProduct_01-productName-text {
 	margin-left: 20px;
 	margin-right: 20px;

@@ -40,8 +40,8 @@
 		</div>
 		<div class="col-lg-6 text-center adminUser_01-content-header">
 			
-			<input id="adminProduct_01-productUpDate-text" type="date">    부터
-			<input id="adminProduct_01-productUpDate-text" type="date">  까지
+			<input id="adminProduct_01-productUpDate-text" type="date">부터
+			<input id="adminProduct_01-productUpDate-text" type="date">까지
 			<input id="adminProduct_01-productName-text" type="text">
 		</div>
 		<div class="col-lg-3 text-center adminUser_01-content-header">
