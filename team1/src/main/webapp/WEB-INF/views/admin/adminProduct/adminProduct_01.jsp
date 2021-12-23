@@ -39,10 +39,14 @@
 			</select>
 		</div>
 		<div class="col-lg-6 text-center adminUser_01-content-header">
-			
-			<input id="adminProduct_01-productUpDate-text" type="date">부터
-			<input id="adminProduct_01-productUpDate-text" type="date">까지
-			<input id="adminProduct_01-productName-text" type="text">
+			<div id="adminProduct_01-productUpDate">
+				<input id="adminProduct_01-productUpDate-begin" type="date"> 부터
+				<input id="adminProduct_01-productUpDate-end" type="date"> 까지
+			</div>
+			<div id="adminProduct_01-productUpDate_search">
+						검색할 상품명 : <input id="adminProduct_01-productName-text" type="text">
+			</div>
+
 		</div>
 		<div class="col-lg-3 text-center adminUser_01-content-header">
 			<input class="adminProduct_01-header-button" type="button"
@@ -126,17 +130,14 @@
 
 <script type="text/javascript">
 	function Productchange(selectValue) {
-		let adminProduct_01_Date = '#adminProduct_01-productUpDate-text';
-		let adminUser_01_name = '#adminProduct_01-productName-text';
 
-		let adminProduct_01 = '#adminProduct_01-'.concat(selectValue, '-text');
-
-		if (adminProduct_01 == adminProduct_01_Date) {
-			document.querySelector(adminProduct_01_Date).style.display = 'inline';
-			document.querySelector(adminUser_01_name).style.display = 'none';
-		} else if (adminProduct_01 == adminUser_01_name) {
-			document.querySelector(adminUser_01_name).style.display = 'inline';
-			document.querySelector(adminProduct_01_Date).style.display = 'none';
+		if (selectValue == "productUpDate") {
+			
+			document.getElementById("adminProduct_01-productUpDate").style.display = 'inline';
+			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
+		} else if (selectValue == "productName") {
+			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'inline';
 		}
 	}
 	/*---------- 수량 증감 input 박스 설정 ----------*/
