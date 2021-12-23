@@ -1,4 +1,4 @@
-<!-- 2021.12.02 한건희 -->
+	<!-- 2021.12.02 한건희 -->
 <!-- 2021.12.08 윤상현 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -25,7 +25,7 @@
 	<div class="row">
 		<div class="col-lg-12 text-left myPage_03_01-content-body">
 			<h6 class="order_01-sub-title-page">
-				<span class="order_01-sub-title">상품 등록</span>
+				<span class="order_01-sub-title">임시 상품 관리</span>
 			</h6>
 		</div>
 	</div>
