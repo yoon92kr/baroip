@@ -51,6 +51,11 @@ public class ImageDAOImpl implements ImageDAO {
 		return imageName;
 	}
 	
+	@Override
+	public void clearBodyImage(String match_id) throws DataAccessException {
+		sqlSession.delete("mapper.image.clearBodyImage", match_id);
+	}
+	
 	
 	
 

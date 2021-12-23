@@ -14,8 +14,9 @@
 		<result property="image_file" column="image_file" />
 	</resultMap>
 
-	
+	<!-- 상품 입력 쿼리 -->
 	<insert id="insertImage" parameterType="imageVO">
+
 		<![CDATA[
 			insert into image (
 			image_match_id, 
@@ -30,10 +31,12 @@
 			#{image_file}
 			)
 		]]>
+
 	</insert>
-	
-		<!-- 상품 이미지 조회 -->
+
+	<!-- 상품 이미지 조회 -->
 	<select id="selectProductImage" resultType="ImageVO" parameterType="java.util.Map">
+
 		<![CDATA[
 			SELECT * FROM image 
 			where 
@@ -41,27 +44,42 @@
 			and 
 			image_category =#{image_category}
 		]]>
+
 	</select>
-	
+
+	<!-- image_match_id에 연관된 image_category 추출 쿼리 -->
 	<select id="selectImageCategory" resultType="java.lang.String" parameterType="java.lang.String">
+
 		<![CDATA[
 			select image_category from image where image_match_id=#{match_id}
 		]]>
+
 	</select>
-	
-		<!-- 상품  이미지 수정 쿼리 -->
+
+	<!-- 상품  이미지 수정 쿼리 -->
 	<update id="updateImage" parameterType="imageVO">
 
 		<![CDATA[
 		update image set  
 			image_file_name = #{image_file_name},
 			image_file = #{image_file}
-		where image_match_id = #{image_match_id} and image_category = #{image_category}
+		where image_match_id = #{image_match_id} and image_category = #{image_category}	
 		]]>
+
 	</update>
-	
 
+	<!--상품 업데이트시, body 초기화를 위한 삭제 쿼리 -->
+	<delete id="clearBodyImage" parameterType="java.lang.String">
 
+		<![CDATA[
+	 	delete from image
+		where 
+		image_match_id =#{match_id}
+		and
+		image_category like concat('body', '%')
+		]]>
+
+	</delete>
 
 
 </mapper>

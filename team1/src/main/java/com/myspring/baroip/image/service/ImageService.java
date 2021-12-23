@@ -12,5 +12,10 @@ public interface ImageService {
 	public String addImageFile(ImageVO imageVO) throws Exception;
 	public ImageVO selectProductImage(Map<String, String> option) throws Exception;
 	public List<String> selectImageCategory(String match_id) throws Exception;
+	
+	// 이미지 수정 서비스
 	public String updateImageFile(ImageVO imageVO) throws Exception;
+	
+	// 상품 수정시, body에 입력되어 있던 이미지 삭제 서비스
+	public void clearBodyImage(String match_id) throws Exception;
 }

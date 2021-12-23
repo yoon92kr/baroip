@@ -23,4 +23,7 @@ public interface ImageDAO {
 	// 이미지 수정 DAO
 	public String updateImageFile(ImageVO imageVO) throws DataAccessException;
 	
+	// body 이미지 삭제
+	public void clearBodyImage(String match_id) throws DataAccessException;
+	
 }

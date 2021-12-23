@@ -55,8 +55,9 @@
 	</div>
 
 	<form action="${contextPath}/admin/product/update_product.do" method="post"
-		enctype="multipart/form-data">
+		enctype="multipart/form-data" id="admin_product_update">
 		<input type="hidden" name="user_id" value="${userInfo.user_id}">
+		<input type="hidden" name="product_id" value="${VO.product_id}">
 
 		<div class="row">
 			<div class="col-lg-2 text-center join_02-main-left">메인 상품명</div>
@@ -143,7 +144,7 @@
 			<div class="col-lg-2 text-center join_02-main-left">메인 이미지</div>
 			<div class="col-lg-10 join_02-main-right">
 				<input class="adminProduct_02-main-img-add-btn" type="file"
-					name="main" accept="image/*"> <span
+					name="main" accept="image/*" id="메인 이미지"><span
 					class="admin_product_Form_notice">※ 새로운 이미지를 업로드하면, 기존 등록된
 					이미지는 모두 삭제됩니다.</span>
 			</div>
@@ -154,11 +155,11 @@
 				추가 이미지</div>
 			<div class="col-lg-10 adminProduct_02-img-add-right">
 
-				<input class="adminProduct_02-sub-img-add-btn" type="file"
+				<input class="adminProduct_02-sub-img-add-btn image_upload_check" id="추가 이미지 1" type="file"
 					name="sub1" accept="image/*"> <input
-					class="adminProduct_02-sub-img-add-btn" type="file" name="sub2"
+					class="adminProduct_02-sub-img-add-btn image_upload_check" id="추가 이미지 2" type="file" name="sub2"
 					accept="image/*"> <input
-					class="adminProduct_02-sub-img-add-btn" type="file" name="sub3"
+					class="adminProduct_02-sub-img-add-btn image_upload_check" id="추가 이미지 3" type="file" name="sub3"
 					accept="image/*">
 			</div>
 		</div>
@@ -174,12 +175,14 @@
 
 			</div>
 			<div class="col-lg-4 join_02-bottom-btn">
-				<div class="join_01-btn">
-					<input class="bottom_btn_size join_01-btn-img" type="image"
+				<!-- <div class="join_01-btn"> -->
+<%-- 					<input class="bottom_btn_size join_01-btn-img" type="image"
 						src="${contextPath}/resources/img/common/product_up_date_btn.png"
-						alt="상품 수정 버튼 이미지">
-
-				</div>
+						alt="상품 수정 버튼 이미지"> --%>
+						<a href="#" onclick="submit_admin_product_update()">
+						<img class="bottom_btn_size admin_product_list_btn" src="${contextPath}/resources/img/common/product_up_date_btn.png" alt="상품 수정 버튼 이미지" >
+						</a>
+				<!-- </div> -->
 			</div>
 		</div>
 		<input type="hidden" name="product_states" value="0">
@@ -298,11 +301,38 @@ function selectedOption(id, value) {
 	   }
 	}
 
-	function update_product(frm) {
-	//   frm.action = '${contextPath}/admin/product/update_product.do';
-	   frm.action = '${contextPath}/admin/product/list.do';
-	   frm.submit;
-	   
+	// 상품수정 전 서브이미지 추가시, 확인 스크립트
+	function submit_admin_product_update() {
+		var elements = document.getElementsByClassName('image_upload_check'); // body 이미치 파일 select
+		var checkFlag = 0;
+		var incompleteTag = "";
+		for(var i = 0; i < elements.length; i++){
+			
+			let uploadItem = elements[i].value;
+			
+			// 비어있는 파일이 하나라도 있다면 flag를 false로 대입.
+
+			if(!uploadItem) {
+				incompleteTag += "▶ "
+				incompleteTag += elements[i].id;
+				incompleteTag += "\n"
+			}
+			// 서브이미지가 등록될때마다 checkFlag를 1씩 증가
+			else {
+				checkFlag++;
+			}
+			
+		}
+		
+		
+		if (checkFlag == 3 || checkFlag == 0) {
+			document.getElementById('admin_product_update').submit();	   
+		}
+		// 서브이미지가 한개이상 등록되있을때, 3개가 등록지되 않을경우 경고메세지 발생
+		else {
+			alert("서브 이미지를 수정할 경우, 세 이미지를 모두 입력해주세요.\n\n[ 미입력 항복 ]\n\n"+incompleteTag)
+		}
+		
 	}
 
 

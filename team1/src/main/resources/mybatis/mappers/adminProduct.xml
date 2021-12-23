@@ -73,7 +73,7 @@
 		]]>
 	</update>
 	<!-- 상품 삭제 쿼리 -->
-	<delete id="deleteProduct" parameterType="String">
+	<delete id="deleteProduct" parameterType="java.lang.String">
 
 		<![CDATA[
 	  delete from product
@@ -81,7 +81,7 @@
 		]]>
 	</delete>
 
-	<delete id="deleteImage" parameterType="String">
+	<delete id="deleteImage" parameterType="java.lang.String">
 
 		<![CDATA[
 	  delete from image

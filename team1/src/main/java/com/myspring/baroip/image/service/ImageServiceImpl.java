@@ -53,5 +53,11 @@ public class ImageServiceImpl implements ImageService {
 		return imageName;
 	}
 	
+	@Override
+	public void clearBodyImage(String match_id) throws Exception {
+		imageDAO.clearBodyImage(match_id);
+		System.out.printf("baroip : [%s] 상품의 [body] 이미지가 삭제 되었습니다.%n", match_id);
+	}
+	
 
 }

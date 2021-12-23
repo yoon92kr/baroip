@@ -6,7 +6,28 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:if test='${not empty userInfo}'>
+	<script>
+   if(${userInfo.user_rank > 1}) {
 
+   }
+   
+   else {
+         alert("잘못된 접근입니다.");
+         location.replace('${contextPath}/main.do');
+      }
+   </script>
+
+</c:if>
+<c:if test='${empty userInfo }'>
+	<script>
+
+      alert("잘못된 접근입니다.");
+      location.replace('${contextPath}/main.do')
+
+   </script>
+
+</c:if>
 <div class="container">
 
 	<div class="row">
@@ -16,51 +37,58 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-12 text-left myPage_03_01-content-body">
+		<div class="col-lg-6 text-left myPage_03_01-content-body">
 			<h6 class="order_01-sub-title-page">
 				<span class="order_01-sub-title">상품 등록</span>
 			</h6>
 		</div>
+		
+		<div class="col-lg-6 text-right myPage_03_01-content-body">
+			<h6 class="order_01-sub-title-page">
+				<span class="admin_product_Form_main_notice">[ * ] 표시는 필수 입력 사항입니다.</span>
+			</h6>
+		</div>
+
 	</div>
 
 	<form action="${contextPath}/admin/product/addProduct.do" method="post"
-		enctype="multipart/form-data">
+		enctype="multipart/form-data" id="admin_product_add">
 		<input type="hidden" name="user_id" value="${userInfo.user_id}">
 
 		<div class="row">
-			<div class="col-lg-2 text-center join_02-main-left">메인 상품명</div>
+			<div class="col-lg-2 text-center join_02-main-left">* 메인 상품명</div>
 			<div class="col-lg-10 join_02-main-right">
-				<input class="join_02-text-box" type="text"
-					name="product_main_title">
+				<input class="join_02-text-box product_upload_check" type="text"
+					name="product_main_title" id="메인 상품명">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-2 text-center join_02-main-left">상품 부제목</div>
+			<div class="col-lg-2 text-center join_02-main-left">* 상품 부제목</div>
 			<div class="col-lg-10 join_02-main-right">
-				<input class="join_02-text-box" type="text" name="product_sub_title">
+				<input class="join_02-text-box product_upload_check" type="text" name="product_sub_title" id="상품 부제목">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-2 text-center join_02-main-left">메인 정보</div>
+			<div class="col-lg-2 text-center join_02-main-left">* 메인 정보</div>
 
 			<div class="col-lg-10 join_02-main-right">
 				<span class="adminProduct_02-content-body-left-text">상품금액 : </span>
 				<input class="adminProduct_02-content-body-mainInfo" type="number"
-					name="product_price" id="input_price" onchange="cost()">
+					name="product_price" id="input_price" onchange="cost()" value="0">
 				할인금액 : <input class="adminProduct_02-content-body-mainInfo"
 					type="number" name="product_discount" id="input_discount"
 					onchange="cost()" value="0"> 최종금액 : <input
 					class="adminProduct_02-content-body-mainInfo" type="number"
 					disabled id="sumcost"> 재고수량 : <input
-					class="adminProduct_02-content-body-mainInfo" type="number"
-					name="product_amount">
+					class="adminProduct_02-content-body-mainInfo product_upload_check" type="number"
+					name="product_amount" id="재고 수량">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-2 text-center join_02-main-left">상품 분류</div>
+			<div class="col-lg-2 text-center join_02-main-left">* 상품 분류</div>
 			<div class="col-lg-10 join_02-main-right">
 				<span class="adminProduct_02-content-body-left-text">대분류</span> <select
 					class="adminProduct_02-category"
@@ -95,32 +123,32 @@
 
 		<div class="row">
 			<div class="col-lg-2 text-center adminProduct_02-main-content-left">
-				내용</div>
+				* 내용</div>
 			<div class="col-lg-10 adminProduct_02-main-right">
-				<input class="adminProduct_02-main-img-add-btn" type="file"
-					name="body" multiple="multiple" accept="image/*">
-				<textarea class="adminProduct_02-main-content-text"
-					name="product_body"></textarea>
+				<input class="adminProduct_02-main-img-add-btn product_upload_check" type="file"
+					name="body" multiple="multiple" accept="image/*" id="내용 이미지">
+				<textarea class="adminProduct_02-main-content-text product_upload_check"
+					name="product_body" id="내용 텍스트"></textarea>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-2 text-center join_02-main-left">메인 이미지</div>
+			<div class="col-lg-2 text-center join_02-main-left">* 메인 이미지</div>
 			<div class="col-lg-10 join_02-main-right">
-				<input class="adminProduct_02-main-img-add-btn" type="file"
-					name="main" accept="image/*">
+				<input class="adminProduct_02-main-img-add-btn product_upload_check" type="file"
+					name="main" accept="image/*" id="메인 이미지">
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-2 text-center adminProduct_02-img-add-left">
-				추가 이미지</div>
+				* 추가 이미지</div>
 			<div class="col-lg-10 adminProduct_02-img-add-right">
-				<input class="adminProduct_02-sub-img-add-btn" type="file"
+				<input class="adminProduct_02-sub-img-add-btn product_upload_check" id="추가 이미지 1" type="file"
 					name="sub1" accept="image/*"> <input
-					class="adminProduct_02-sub-img-add-btn" type="file" name="sub2"
+					class="adminProduct_02-sub-img-add-btn product_upload_check" id="추가 이미지 2"  type="file" name="sub2"
 					accept="image/*"> <input
-					class="adminProduct_02-sub-img-add-btn" type="file" name="sub3"
+					class="adminProduct_02-sub-img-add-btn product_upload_check" id="추가 이미지 3"  type="file" name="sub3"
 					accept="image/*">
 			</div>
 		</div>
@@ -136,12 +164,9 @@
 
 			</div>
 			<div class="col-lg-4 join_02-bottom-btn">
-				<div class="join_01-btn">
-					<input class="bottom_btn_size join_01-btn-img" type="image"
-						src="${contextPath}/resources/img/common/product_up_load_btn.png"
-						alt="상품 등록 버튼 이미지">
-
-				</div>
+					<a href="#" onclick="submit_admin_product()">
+					<img class="bottom_btn_size admin_product_list_btn" src="${contextPath}/resources/img/common/product_up_load_btn.png" alt="상품 등록 버튼 이미지" >
+						</a>			
 			</div>
 		</div>
 		<input type="hidden" name="product_states" value="0">
@@ -220,6 +245,32 @@
 		else {
 
 			document.getElementById('sumcost').value = sumcost;
+		}
+
+	}
+
+	// 상품등록 전 필수입력 확인
+	function submit_admin_product() {
+		// 전체 input 태그 value를 체크하기위한 클래스 select
+		var elements = document.getElementsByClassName('product_upload_check');
+		var checkFlag = true;
+		var incompleteTag = "";
+		for (var i = 0; i < elements.length; i++) {
+
+			let uploadItem = elements[i].value;
+			// 비어있는 파일이 하나라도 있다면 flag를 false로 대입.
+			if (!uploadItem) {
+				checkFlag = false;
+				incompleteTag += "▶ "
+				incompleteTag += elements[i].id;
+				incompleteTag += "\n"
+			}
+
+		}
+		if (checkFlag) {
+			document.getElementById('admin_product_add').submit();
+		} else {
+			alert("[ * ] 이 표시된 항목은 반드시 입력해주셔야 합니다.\n\n[ 미입력 항목 ]\n\n"+incompleteTag)
 		}
 
 	}
