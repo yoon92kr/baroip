@@ -1,6 +1,8 @@
 package com.myspring.baroip.cart.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,20 +33,32 @@ public class CartControllerImpl implements CartController{
 	@RequestMapping(value= "/cartList.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView mycartList(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
-		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute("userInfo");
 		String user_id = userVO.getUser_id();
 		cartVO.setUser_id(user_id);
-		List userCartList = cartService.myCartList(cartVO);
-		System.out.println(userCartList.size());
-		System.out.println("userCartList : " + ((CartVO) userCartList.get(1)).getProduct_id());
-		System.out.println("userCartList : " + userCartList.get(1).getClass());
-		mav.addObject("userCartList", userCartList);
+		Map<String, Map<String, Map<String, Object>>> userCartListInfo = cartService.myCartList(cartVO);
+		System.out.println("cartcontroller(userCartListInfo) : " + userCartListInfo.size());
+//		System.out.println("cartcontroller(userCartListInfo.user_id : " + userCartListInfo.);
+		mav.addObject("myCartList", userCartListInfo);
 		mav.setViewName(viewName);
 		return mav;
+		
+//		// HttpSession session;
+//		ModelAndView mav = new ModelAndView();
+//		String viewName = (String)request.getAttribute("viewName");
+//		HttpSession session=request.getSession();
+//		UserVO userVO = (UserVO)session.getAttribute("userInfo");
+//		String user_id = userVO.getUser_id();
+//		cartVO.setUser_id(user_id);
+//		Map<String, Object> userCartList = cartService.myCartList(cartVO);
+////		System.out.println(userCartList.size());
+////		System.out.println("userCartList : " + ((CartVO) userCartList.get(2)).getProduct_id());
+//		mav.addObject("userCartList", userCartList);
+//		mav.setViewName(viewName);
+//		return mav;
 	}
 	
 	

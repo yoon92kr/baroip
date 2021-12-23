@@ -5,7 +5,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+<c:set var="myCartList" value="${myCartList.cartNum}" />
 
 
 <div class="container-fluid">
@@ -29,27 +29,25 @@
 		</div>
 	</div>
 	<c:choose>
-		<c:when test="${userCartList == null }">
+		<c:when test="${myCartList == null }">
 			<div class="row">
 				<div class="offset-lg-2 col-lg-8 text-center cs_01_listsection">
 					<span>장바구니에 상품이 없습니다.</span>
 				</div>
 			</div>
 		</c:when>
-		<c:when test="${userCartList != null }">
-			<c:forEach var="myCart" items="${userCartList}" begin="0" step="1"
+		<c:when test="${myCartList != null }">
+			<c:forEach items="${myCartList}" begin="0" step="1"
 				varStatus="ListNum">
 				<div class="cart_list_body">
 					<div class="row">
-						<div
-							class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
+						<div class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
 							<input type="checkbox" class="join_01-check-01" name="checkRow">
 						</div>
 						<div class="col-lg-2 text-center cart_body">
-							<a href="${contextPath}/product_02.do"><img
-								class="cart_image_clip"
-								src="${contextPath}/resources/img/common/img-box.jpg"
-								alt="장바구니 상품 이미지"></a>
+							<a href="${contextPath}/product_02.do">
+								<img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지">
+							</a>
 						</div>
 						<div class="col-lg-3 text-center cart_body">
 							<a href="${contextPath}/product_02.do">[상품 명]</a>

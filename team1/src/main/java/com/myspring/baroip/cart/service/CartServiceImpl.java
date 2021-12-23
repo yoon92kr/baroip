@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.baroip.cart.dao.CartDAO;
 import com.myspring.baroip.cart.vo.CartVO;
-import com.myspring.baroip.image.service.ImageService;
-import com.myspring.baroip.image.vo.ImageVO;
+import com.myspring.baroip.product.service.ProductService;
+import com.myspring.baroip.product.vo.ProductVO;
 
 @Service("cartService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -20,27 +20,37 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	private CartDAO cartDAO;
 	@Autowired
-	private ImageService imageService;
-
+	private ProductService productService;
 	
-	public List myCartList(CartVO cartVO) throws Exception{
-		List cartList = cartDAO.selectCartList(cartVO);
-		String productId = new String();
-		for(int i=0; cartList.size() > i; i++) {
-			productId = ((CartVO) cartList.get(i)).getProduct_id();
+	@Override
+	public Map<String, Map<String, Map<String, Object>>> myCartList(CartVO cartVO) throws Exception{
+		
+		Map<String, Map<String, Map<String, Object>>> userCartList = new HashMap<String, Map<String, Map<String, Object>>>();
+		Map<String, Map<String, Object>> productList = new HashMap<String, Map<String, Object>>();
+		List<CartVO> cartList = cartDAO.selectCartList(cartVO);
+
+		for(int i=0; i<cartList.size(); i++) {
+			String cartNum=Integer.toString(cartList.get(i).getCart_id());
+			String productId=cartList.get(i).getProduct_id();
+			productList = productService.productDetail(productId);
+			System.out.println("cartService : " + productId);
+			userCartList.put(cartNum, productList);
 		}
-		Map<String, String> imageProduct = new HashMap<String, String>();
-		imageProduct.put("match_id", productId);
-		imageProduct.put("image_category", "main");
-		ImageVO cartImage = imageService.selectProductImage(imageProduct);
-		String match_id = cartImage.getImage_match_id();
-		String imageCategory = cartImage.getImage_category();
-		if(match_id.equals(productId)) {
-			match_id = productId;
-		}
-		cartList.add(match_id);
-		cartList.add(imageCategory);
-		return cartList;
+		
+		return userCartList;
+//		List<CartVO> cartList = cartDAO.selectCartList(cartVO);
+//		String productId = new String();
+//		for(int i=0; cartList.size() > i; i++) {
+//			productId = ((CartVO) cartList.get(i)).getProduct_id();
+////			System.out.println("cartService(cartList) : " + productId);
+//		}
+//		Map<String, Object> cartInfo = new HashMap<String, Object>();
+//		cartInfo.put("cartVO", cartList);
+//		Map<String, Map<String, Object>> cartProductInfo = productService.productDetail(productId);
+//		cartProductInfo.put("cartInfo", cartInfo);
+//		ProductVO product = (ProductVO)cartProductInfo.get("product");
+//		System.out.println("cartService(cartList) : " + cartList);
+//		return (Map<String, Object>) product;
 	}
 
 }

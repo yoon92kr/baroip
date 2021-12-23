@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<!-- 장바구니 리스트 -->
-	<select id="selectCartList" resultMap="cartResult" parameterType="cartVO">
+	<select id="selectCartList" resultMap="cartResult" parameterType="CartVO">
 		<![CDATA[
 			select * from cart where user_id = #{user_id}
 		]]>
