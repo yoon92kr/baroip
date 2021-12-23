@@ -98,7 +98,7 @@ public class CsControllerImpl implements CsController {
 			csService.addNewQuest(csVO);
 			System.out.println(user_id);
 			System.out.println(csVO.getNotice_title());
-			mav.addObject("pageInfo", csVO);
+			mav.addObject("questInfo", csVO);
 			mav.setViewName("viewName");
 			try {
 				mav.setViewName("/cs/cs_02_02");
@@ -122,8 +122,8 @@ public class CsControllerImpl implements CsController {
 		ModelAndView mav = new ModelAndView();
 //		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(csVO.getNotice_id());
-//		session.setAttribute("pageInfo", csVO);
-		mav.addObject("pageInfo", csVO);
+//		session.setAttribute("questInfo", csVO);
+		mav.addObject("questInfo", csVO);
 		mav.setViewName("/cs/cs_02_02");
 		return mav;
 	}
@@ -139,7 +139,7 @@ public class CsControllerImpl implements CsController {
 //		System.out.println(csVO.getNotice_id());
 		System.out.println(csVO.getNotice_id());
 		System.out.println(csVO.getNotice_title());
-		mav.addObject("pageInfo", csVO);
+		mav.addObject("questInfo", csVO);
 		mav.setViewName("/cs/cs_02_03");
 		return mav;
 	}
@@ -154,7 +154,7 @@ public class CsControllerImpl implements CsController {
 		String user_id = user.getUser_id();
 //		Map<String, Object> csMap = new HashMap<String, Object>();
 //		csMap.put("user_id", user_id);
-//		mav.addObject("pageInfo");
+//		mav.addObject("questInfo");
 //		Enumeration enu = request.getParameterNames();
 //		while(enu.hasMoreElements()) {
 //			String name = (String) enu.nextElement();

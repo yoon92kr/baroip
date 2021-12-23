@@ -34,11 +34,11 @@
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 			<span>제목</span> <input type="hidden" name="notice_id"
-				value="${pageInfo.notice_id}">
+				value="${questInfo.notice_id}">
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
 			<input class="cs_02_02_text_box1" type="text" name="notice_title"
-				value="${pageInfo.notice_title}" readonly>
+				value="${questInfo.notice_title}" readonly>
 		</div>
 	</div>
 
@@ -48,7 +48,7 @@
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
 			<input class="cs_02_02_text_box1" type="text" name="notice_type"
-				value="${pageInfo.notice_type}" readonly>
+				value="${questInfo.notice_type}" readonly>
 		</div>
 	</div>
 
@@ -58,7 +58,7 @@
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box02">
 			<input class="cs_02_02_text_box1" type="text" name="user_id"
-				value="${pageInfo.user_id}" readonly>
+				value="${questInfo.user_id}" readonly>
 		</div>
 	</div>
 
@@ -67,7 +67,7 @@
 			<span>내용</span>
 		</div>
 		<div class="col-lg-4 text-center cs_02_02_box04">
-			<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${pageInfo.notice_body}</textarea>
+			<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${questInfo.notice_body}</textarea>
 		</div>
 	</div>
 
@@ -88,7 +88,7 @@
 	</div>
 	<form id="infoForm" action="${contextPath}/cs/questUpdate" method="get">
 		<input type="hidden" id="cs_02_02_NI" name="notice_id"
-			value="${pageInfo.notice_id}">
+			value="${questInfo.notice_id}">
 	</form>
 </div>
 
