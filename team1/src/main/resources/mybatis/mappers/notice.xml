@@ -24,4 +24,10 @@
 		]]>
 	</select>
 	
+	<select id="NoticeDetail" resultType="NoticeVO" parameterType="String">
+		<![CDATA[
+			select * from notice where notice_id=#{notice_id}
+		]]>
+	</select>
+	
 </mapper>

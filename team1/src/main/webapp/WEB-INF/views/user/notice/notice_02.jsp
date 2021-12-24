@@ -18,17 +18,31 @@
         <hr>
         </div>
         </div>
+        
  
     
      <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>제목</span></div>
-        <div class="col-lg-4 text-center notice_02_box02"><span>[공지 제목]</span></div>
+        <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>제목</span>
+        	<input type="hidden" name="notice_id" value="${NTList.notice_id}">
         </div>
         
-        <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성자</span></div>
-        <div class="col-lg-4 text-center notice_02_box02"><span>[공지 작성자]</span></div>
+        <div class="col-lg-4 text-center notice_02_box02">
+        	<input class="cs_02_02_text_box1" type="text" name="notice_title"
+        		value="${NTList.notice_title}" readonly>
         </div>
+	</div>
+        
+	<div class="row">
+        <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성자</span>
+        	
+        </div>
+        
+        <div class="col-lg-4 text-center notice_02_box02"><span>[공지 작성자]</span></div>
+	
+	
+	</div>
+        
+        
         
         <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성 일자</span></div>
