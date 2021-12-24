@@ -5,7 +5,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="myCartList" value="${myCartList.cartNum}" />
+<%-- <c:set var="myCartProductInfo" value="${myCartList.cartList.product.productVO}" />
+<c:set var="myCartImageInfo" value="${myCartList.cartList.image}" /> --%>
 
 
 <div class="container-fluid">
@@ -29,16 +30,17 @@
 		</div>
 	</div>
 	<c:choose>
-		<c:when test="${myCartList == null }">
+		<c:when test="${empty userCartListInfo}">
 			<div class="row">
 				<div class="offset-lg-2 col-lg-8 text-center cs_01_listsection">
 					<span>장바구니에 상품이 없습니다.</span>
 				</div>
 			</div>
 		</c:when>
-		<c:when test="${myCartList != null }">
-			<c:forEach items="${myCartList}" begin="0" step="1"
-				varStatus="ListNum">
+		<c:when test="${not empty userCartListInfo}">
+			<c:forEach var="i" begin="1" end="${userCartListInfo.size()}" varStatus="ListNum">
+				<c:set var="cart" value="myCartList${i}" />
+				
 				<div class="cart_list_body">
 					<div class="row">
 						<div class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
@@ -46,24 +48,24 @@
 						</div>
 						<div class="col-lg-2 text-center cart_body">
 							<a href="${contextPath}/product_02.do">
-								<img class="cart_image_clip" src="${contextPath}/resources/img/common/img-box.jpg" alt="장바구니 상품 이미지">
+								<img class="cart_image_clip" src="data:image/jpeg;base64,${userCartListInfo[cart].image.main}" alt="장바구니 상품 이미지">
 							</a>
 						</div>
 						<div class="col-lg-3 text-center cart_body">
-							<a href="${contextPath}/product_02.do">[상품 명]</a>
+							<a href="${contextPath}/product_02.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">${userCartListInfo[cart].product.productVO.product_main_title}</a>
 						</div>
 						<div class="col-lg-1 text-center itemCount_row">
 							<form name="itemCountBox" id="cart_itemCountBox_form">
 								<div class="value-button cart_decrease" id="cart_decrease1"
 									onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
 								<input type="number" class="cart_item_count"
-									id="cart_item_count1" value="1"
+									id="cart_item_count1" value="${userCartListInfo[cart].cart_count}"
 									onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 								<div class="value-button cart_increase" id="cart_increase1"
 									onclick="increaseValue(this.id)" value="Increase Value">+</div>
 							</form>
 						</div>
-						<div class="col-lg-1 text-center cart_body">[상품 가격]</div>
+						<div class="col-lg-1 text-center cart_body">${userCartListInfo[cart].product.productVO.product_price}</div>
 					</div>
 				</div>
 			</c:forEach>

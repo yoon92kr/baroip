@@ -1,3 +1,5 @@
+// 2021.12.24 임석희
+
 package com.myspring.baroip.notice.dao;
 
 import java.util.List;
@@ -19,6 +21,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public List<NoticeVO> NTList() throws DataAccessException{
 		List<NoticeVO> NTList = sqlSession.selectList("mapper.notice.NTList");
 		return NTList;
+	}
+	
+//	공지사항 상세
+	public NoticeVO NoticeDetail(String noticeId) throws DataAccessException {
+		return sqlSession.selectOne("mapper.notice.NoticeDetail", noticeId);
 	}
 
 }
