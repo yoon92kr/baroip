@@ -1,11 +1,11 @@
-	<!-- 2021.12.02 한건희 -->
+
+<!-- 2021.12.02 한건희 -->
 <!-- 2021.12.08 윤상현 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
 <c:if test='${not empty message }'>
 	<script>
 		alert("${message}");
@@ -40,11 +40,12 @@
 		</div>
 		<div class="col-lg-6 text-center adminUser_01-content-header">
 			<div id="adminProduct_01-productUpDate">
-				<input id="adminProduct_01-productUpDate-begin" type="date"> 부터
-				<input id="adminProduct_01-productUpDate-end" type="date"> 까지
+				<input id="adminProduct_01-productUpDate-begin" type="date">
+				부터 <input id="adminProduct_01-productUpDate-end" type="date">
+				까지
 			</div>
 			<div id="adminProduct_01-productUpDate_search">
-						검색할 상품명 : <input id="adminProduct_01-productName-text" type="text">
+				검색할 상품명 : <input id="adminProduct_01-productName-text" type="text">
 			</div>
 
 		</div>
@@ -59,11 +60,15 @@
 
 	<div class="row">
 		<div
+			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+			<h6 class="order_01-content-hedaer-text">번호</h6>
+		</div>
+		<div
 			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">상품 등록일</h6>
 		</div>
 		<div
-			class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">상품 이미지</h6>
 		</div>
 		<div
@@ -84,44 +89,77 @@
 		<div class="col-lg-12 text-center">임시 등록된 상품이 없습니다.</div>
 	</c:if>
 	<c:if test="${not empty extraList}">
-		<c:forEach var="i" begin="1" end="${extraList.size()}">
-			<c:set var="key" value="product${i}" />
+		<c:forEach var="i" begin="1" end="${extraList.size() + 1}">
+			<c:set var="j" value="${(pageNo*5 -5) + i}" />
+			<c:set var="key" value="product${j}" />
+			<c:if test="${not empty extraList[key].product_id && i<6}">
 
-			<div class="row">
-				<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}  ${extraList[key].user_id}</div>
-				<div class="col-lg-3 text-center order_01-content-item-img">
-					<a
-						href="${contextPath}/product/productDetail.do?product_id=${extraList[key].product_id}">
-						<img class="cart_image_clip"
-						src="data:image/jpeg;base64,${extraList[key].image_file}"
-						alt="상품 관리 페이지 상품 이미지">
-					</a>
+
+				<div class="row">
+					<div class="col-lg-1 text-center order_01-content-item">${j}</div>
+					<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}
+						${extraList[key].user_id}</div>
+					<div class="col-lg-2 text-center order_01-content-item-img">
+						<a
+							href="${contextPath}/product/productDetail.do?product_id=${extraList[key].product_id}">
+							<img class="cart_image_clip"
+							src="data:image/jpeg;base64,${extraList[key].image_file}"
+							alt="상품 관리 페이지 상품 이미지">
+						</a>
+					</div>
+					<div id="admin_product_title${j}"
+						class="col-lg-3 text-center order_01-content-item">${extraList[key].product_main_title}
+					</div>
+					<div class="col-lg-2 order_01-content-item">
+						<form name="itemCountBox" id="adminProduct_01-itemCountBox-detail">
+							<div
+								class="adminProduct_01-value-button adminProduct_01-decrease"
+								id="amount_decrease${j}" onclick="decreaseValue(this.id)">-</div>
+							<input type="number" class="adminProduct_product_amount_count"
+								id="product_item_count${j}"
+								value="${extraList[key].product_amount}"
+								onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+							<div
+								class="adminProduct_01-value-button adminProduct_01-increase"
+								id="amount_increase${j}" onclick="increaseValue(this.id)">+</div>
+							<input type="hidden" id="product_${j}"
+								value="${extraList[key].product_id}"> <input
+								type="hidden" id="user_id_${j}"
+								value="${extraList[key].user_id}">
+						</form>
+						<input class="admin_01-itemCountBox-btn" id="${j}" type="button"
+							value="변경" onclick="update_amount(this.id)">
+					</div>
+					<div class="col-lg-2 text-center adminProduct_01-content-item">
+						<input class="adminProduct_01-product adminProduct_01-product-top"
+							type="button" value="상품 수정" id="${j}"
+							onclick="update_product_form(this.id)"> <input
+							class="adminProduct_01-product" id="${j}" type="button"
+							value="상품 삭제" onclick="delete_product(this.id)">
+					</div>
 				</div>
-				<div id="admin_product_title${i}" class="col-lg-3 text-center order_01-content-item">${extraList[key].product_main_title}
+			</c:if>
+			<c:if
+				test="${empty extraList[key].product_id && i==extraList.size()+1 && extraList.size() > 5}">
+				<div class="row">
+
+					<div class="col-lg-12 text-center admin_product_page_index">
+						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
+						
+						<c:if test="${extraList.size() > 5}">
+							<c:set var="maxNo" value="${extraList.size()+5}" />
+							<c:forEach var="x" begin="1" end="${maxNo /5}">
+								<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
+							</c:forEach>
+							
+						</c:if>
+
+						<a href="#" onclick="pageMove(this.id)" id="다음">다음</a>
+					</div>
+
 				</div>
-				<div class="col-lg-2 order_01-content-item">
-					<form name="itemCountBox" id="adminProduct_01-itemCountBox-detail">
-						<div class="adminProduct_01-value-button adminProduct_01-decrease"
-							id="amount_decrease${i}" onclick="decreaseValue(this.id)">-</div>
-						<input type="number" class="adminProduct_product_amount_count"
-							id="product_item_count${i}" value="${extraList[key].product_amount}"
-							onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
-						<div class="adminProduct_01-value-button adminProduct_01-increase"
-							id="amount_increase${i}" onclick="increaseValue(this.id)">+</div>
-						<input type="hidden" id="product_${i}"
-							value="${extraList[key].product_id}">
-						<input type="hidden" id="user_id_${i}" value="${extraList[key].user_id}">
-					</form>
-					<input class="admin_01-itemCountBox-btn" id="${i}" type="button"
-						value="변경" onclick="update_amount(this.id)">
-				</div>
-				<div class="col-lg-2 text-center adminProduct_01-content-item">
-					<input class="adminProduct_01-product adminProduct_01-product-top"
-						type="button" value="상품 수정" id="${i}"
-						onclick="update_product_form(this.id)">
-					<input class="adminProduct_01-product" id="${i}" type="button" value="상품 삭제" onclick="delete_product(this.id)">
-				</div>
-			</div>
+
+			</c:if>
 		</c:forEach>
 	</c:if>
 
@@ -323,6 +361,30 @@
 		}
 		else {
 			alert();
+		}
+	}
+	
+	function pageMove(no) {
+		var getValue = 0;
+		
+		if(no == "이전" || no == "다음") {
+			var uriValue = window.location.search;
+			var array = uriValue.split("=");
+			if(array[1] == "" || array[1] == null) {
+				array[1] = 1;
+			}
+			getValue = array[1];
+		}
+
+		
+		if(no == "이전") {
+			location.href='${contextPath}/admin/product/list.do?pageNo='+(--getValue);
+		}
+		else if (no == "다음") {
+			location.href='${contextPath}/admin/product/list.do?pageNo='+(++getValue);	
+		}
+		else {
+			location.href='${contextPath}/admin/product/list.do?pageNo='+no;
 		}
 	}
 	
