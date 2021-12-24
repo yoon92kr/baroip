@@ -1,7 +1,5 @@
 package com.myspring.baroip.cart.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +36,15 @@ public class CartControllerImpl implements CartController{
 		HttpSession session=request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute("userInfo");
 		String user_id = userVO.getUser_id();
-		cartVO.setUser_id(user_id);
+		cartVO.setUser_id(user_id);		
 		Map<String, Map<String, Map<String, Object>>> userCartListInfo = cartService.myCartList(cartVO);
-		System.out.println("cartcontroller(userCartListInfo) : " + userCartListInfo.size());
-//		System.out.println("cartcontroller(userCartListInfo.user_id : " + userCartListInfo.);
-		mav.addObject("myCartList", userCartListInfo);
+//		System.out.println("cartcontroller(userCartListInfo.user_id : " + userCartListInfo);
+//		System.out.println("cartcontroller(userCartListInfo) : " + userCartListInfo.size());
+//		System.out.println("cartController : " + userCartListInfo.get("myCartList0").get("product").get("productVO"));
+		if(userCartListInfo.equals(null)) {
+			
+		}
+		mav.addObject("userCartListInfo", userCartListInfo);
 		mav.setViewName(viewName);
 		return mav;
 		
