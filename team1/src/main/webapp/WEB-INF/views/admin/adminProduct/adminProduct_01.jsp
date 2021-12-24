@@ -18,7 +18,7 @@
 
 	<div class="row">
 		<div class="col-lg-8 offset-lg-2 text-center">
-			<h1 class="page_title">관리자 페이지</h1>
+			<h1 class="page_title" id="test">관리자 페이지</h1>
 		</div>
 	</div>
 
@@ -340,16 +340,15 @@
 				$.ajax({
 					type : "post",
 					async : false,
-					url : "${contextPath}/admin/product/search_date.do",
-					contentType : "application/json; charset=UTF-8",
-					dataType : "json",
+					url : "${contextPath}/admin/product/list.do",
+					dataType : "text",
 					data : {
 						"beginDate" : beginDate,
 						"endDate" : endDate
 					},
 					success : function(message) {
 						alert("조회 성공!");
-				 		location.reload();
+						document.getElementById('test').html == "test";
 					},
 					error : function() {
 						alert("상품 조회에 문제가 발생하였습니다.");

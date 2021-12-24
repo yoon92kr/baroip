@@ -69,12 +69,12 @@ public class AdminProductControllerImpl implements AdminProductController {
 	
 	@Override
 	@RequestMapping(value = "/list.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView selectExtraList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView selectExtraList(@RequestParam Map<String, String> option, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// product_states가 0인 Product을 호출
 		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
 		ModelAndView mav = new ModelAndView();
-
+		System.out.println(option.isEmpty());
 		String viewName = (String) request.getAttribute("viewName");
 		mav.addObject("extraList", extraList);
 		String pageNo = (String)request.getParameter("pageNo");
