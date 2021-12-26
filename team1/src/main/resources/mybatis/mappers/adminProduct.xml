@@ -113,14 +113,14 @@
 			
 			select * from product
 			where 
-			<if test='option == "productCreDate"'>
+			<if test='search_option == "productCreDate"'>
 				product_cre_date between #{begin} and date_add(#{end}, interval 1 day) order by product_cre_date desc
 			</if>
-			<if test='option == "productTitle"'>
-				product_main_title like concat('%', #{value}, '%') order by product_cre_date desc
+			<if test='search_option == "productTitle"'>
+				product_main_title like concat('%', #{search_value}, '%') order by product_cre_date desc
 			</if>
-			<if test='option == "all"'>
-				product_states = #{value} order by product_cre_date desc
+			<if test='search_option == "all"'>
+				product_states = #{search_value} order by product_cre_date desc
 			</if>
 		
 

@@ -343,7 +343,7 @@
 				alert("조회 기준일이 종료일보다 클 수 없습니다.")
 			}
 			else {
-				location.href='${contextPath}/admin/product/extra_list.do?option='+searchOption+'&value='+searchDate;
+				location.href='${contextPath}/admin/product/extra_list.do?search_option='+searchOption+'&search_value='+searchDate;
 
 			}
 			
@@ -353,7 +353,7 @@
 				alert("검색어에 공백은 포함될 수 없습니다.")
 			}
 			else {
-				location.href='${contextPath}/admin/product/extra_list.do?option='+searchOption+'&value='+searchText;
+				location.href='${contextPath}/admin/product/extra_list.do?search_option='+searchOption+'&search_value='+searchText;
 			}
 		}
 	}
@@ -388,26 +388,25 @@
 	
 	// 검색조건 기존값 할당 스크립트
 	window.addEventListener('load', function() {
-	   if(${option != null && option != ""}) {
-	    selectedOption("search_option_category", "${option}");
+	   if(${search_option != null && search_option != ""}) {
+	    selectedOption("search_option_category", "${search_option}");
 
-	    var option = document.getElementById("search_option_category");
-	    var main_option = option.options[option.selectedIndex].id;
+	    var main_option = document.getElementById("search_option_category").value;
 	    Productchange(main_option);
 	    
 	    var begin = "";
 	    var end = "";
-	    if("${option}" == "productCreDate") {
-	    	var splitDate = "${value}".split(",");
+	    if("${search_option}" == "productCreDate") {
+	    	var splitDate = "${search_value}".split(",");
 	    }
-	    switch("${option}") {
+	    switch("${search_option}") {
 	    case "productCreDate" :
 	    	document.getElementById("adminProduct_01-productUpDate-begin").value = splitDate[0];
 	    	document.getElementById("adminProduct_01-productUpDate-end").value = splitDate[1];
 	       break;
 	       
 	    case "productTitle" :
-	    	document.getElementById("adminProduct_01-productName-text").value = "${value}";
+	    	document.getElementById("adminProduct_01-productName-text").value = "${search_value}";
 	       break;
 	    }
 	    

@@ -75,8 +75,8 @@ public class AdminProductControllerImpl implements AdminProductController {
 		HttpSession session = request.getSession();
 		// get 요청이 없을경우, 기존의 session을 제거
 		if (info.isEmpty()) {
-			session.removeAttribute("option");
-			session.removeAttribute("value");
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
 		}
 		Map<String, Map<String, Object>> extraFullList = getFullList(info, request);
 
@@ -167,13 +167,13 @@ public class AdminProductControllerImpl implements AdminProductController {
 		// Map options에는 조회하고자 하는 조건유형 option, 조건에 해당하는 value 가 반드시 포함되어야한다.
 
 		HttpSession session = request.getSession();
-		// key "option" = value [productCreDate / productTitle / all]
-		// key "value" = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1(product_states) ]
+		// key "search_option" = value [productCreDate / productTitle / all]
+		// key "search_value" = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1(product_states) ]
 		Map<String, String> options = new HashMap<String, String>();
-		String paramOption = info.get("option");
-		String paramValue = info.get("value");
-		String sessionOption = (String) session.getAttribute("option");
-		String sessionValue = (String) session.getAttribute("value");
+		String paramOption = info.get("search_option");
+		String paramValue = info.get("search_value");
+		String sessionOption = (String) session.getAttribute("search_option");
+		String sessionValue = (String) session.getAttribute("search_value");
 		String viewName = (String) request.getAttribute("viewName");
 
 		// param, session 모두 option이 바인딩 되어있는 경우
@@ -181,40 +181,40 @@ public class AdminProductControllerImpl implements AdminProductController {
 
 				// 두 옵션이 일치할 경우, options에 기존 session의 값을 대입한다.
 				if (paramOption.equals(sessionOption)) {
-					options.put("option", sessionOption);
-					options.put("value", sessionValue);
+					options.put("search_option", sessionOption);
+					options.put("search_value", sessionValue);
 				}
 
 				// 두 옵션이 일치하지 않을 경우, options에 paramOption을 대입하고, 기존 세션을 Override 한다.
 				else {
-					options.put("option", paramOption);
-					options.put("value", paramValue);
+					options.put("search_option", paramOption);
+					options.put("search_value", paramValue);
 
-					session.setAttribute("option", paramOption);
-					session.setAttribute("value", paramValue);
+					session.setAttribute("search_option", paramOption);
+					session.setAttribute("search_value", paramValue);
 				}
 			}
 
 			// 세션에 바인딩된 option이 없을경우, options에 paramOption을 대입하고, 세션에 set 한다.
 			else if (paramOption != null && sessionOption == null) {
-				options.put("option", paramOption);
-				options.put("value", paramValue);
+				options.put("search_option", paramOption);
+				options.put("search_value", paramValue);
 
-				session.setAttribute("option", paramOption);
-				session.setAttribute("value", paramValue);
+				session.setAttribute("search_option", paramOption);
+				session.setAttribute("search_value", paramValue);
 			}
 		
 		// param에 바인딩된 option이 없을경우, session의 option을 대입한다.
 		else if (paramOption == null && sessionOption != null) {
-			options.put("option", sessionOption);
-			options.put("value", sessionValue);
+			options.put("search_option", sessionOption);
+			options.put("search_value", sessionValue);
 		}
 		
 		// param과 session에 바인딩된 정보가 없을경우, viewName에 따른 전체 list를 보여준다.
 		else {
 			if (viewName.contains("extra")) {
-				options.put("option", "all");
-				options.put("value", "0");
+				options.put("search_option", "all");
+				options.put("search_value", "0");
 			}
 		}
 		
