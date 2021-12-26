@@ -72,16 +72,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@RequestMapping(value = "/extra_list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView extraList(@RequestParam Map<String, String> info, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
 
-		String paramOption = info.get("option");
-		String sessionOption = (String) session.getAttribute("option");
-		
-		if (paramOption == null && sessionOption == null) {
-			info.put("option", "all");
-			info.put("value", "0");
-		}
-		
 		Map<String, Map<String, Object>> extraFullList = getFullList(info, request);
 		
 
@@ -177,6 +168,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		String paramValue = info.get("value");
 		String sessionOption = (String) session.getAttribute("option");
 		String sessionValue = (String) session.getAttribute("value");
+		String viewName = (String) request.getAttribute("viewName");
 
 		// param, session 모두 option이 바인딩 되어있는 경우
 		if (paramOption != null && sessionOption != null) {
@@ -210,6 +202,14 @@ public class AdminProductControllerImpl implements AdminProductController {
 		else if (paramOption == null && sessionOption != null) {
 			options.put("option", sessionOption);
 			options.put("value", sessionValue);
+		}
+		
+		// param과 session에 바인딩된 정보가 없을경우, viewName에 따른 전체 list를 보여준다.
+		else {
+			if (viewName.contains("extra")) {
+				options.put("option", "all");
+				options.put("value", "0");
+			}
 		}
 		
 		Map<String, Map<String, Object>> fullList = adminProductService.productListToOption(options);
