@@ -338,7 +338,7 @@
 				alert("정확한 조회 기간을 입력해주세요.");
 			}
 			else {
-				location.href='${contextPath}/admin/product/list.do?option=productCreDate&value='+searchDate;
+				location.href='${contextPath}/admin/product/extra_list?option=productCreDate&value='+searchDate;
 
 			}
 			
@@ -365,13 +365,13 @@
 
 		
 		if(no == "이전") {
-			document.location='${contextPath}/admin/product/list.do?pageNo='+(--getValue);
+			document.location='${contextPath}/admin/product/extra_list?pageNo='+(--getValue);
 		}
 		else if (no == "다음") {
-			document.location='${contextPath}/admin/product/list.do?pageNo='+(++getValue);	
+			document.location='${contextPath}/admin/product/extra_list?pageNo='+(++getValue);	
 		}
 		else {
-			document.location='${contextPath}/admin/product/list.do?pageNo='+no;
+			document.location='${contextPath}/admin/product/extra_list?pageNo='+no;
 		}
 	}
 	

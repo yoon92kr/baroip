@@ -23,7 +23,7 @@ public interface AdminProductController {
 	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	
 	
-	public ModelAndView selectExtraList(@RequestParam Map<String, String> option, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView extraList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//  관리자 페이지 상품 수량 변경
 	public String update_amount(@RequestParam Map<String, String> info) throws Exception;
