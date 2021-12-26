@@ -145,13 +145,14 @@
 
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-						
+
 						<c:if test="${extraList.size() > 5}">
-							<c:set var="maxNo" value="${extraList.size()+5}" />
+							<c:set var="maxNo" value="${extraList.size()+4}" />
 							<c:forEach var="x" begin="1" end="${maxNo /5}">
 								<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
+
 							</c:forEach>
-							
+
 						</c:if>
 
 						<a href="#" onclick="pageMove(this.id)" id="다음">다음</a>
