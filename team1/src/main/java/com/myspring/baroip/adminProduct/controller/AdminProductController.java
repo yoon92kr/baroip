@@ -37,6 +37,4 @@ public interface AdminProductController {
 	// 관리자 페이지 상품 수정
 	public ModelAndView update_product(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	
-	// 날짜를 기준으로 상품 조회
-	public void search_date(@RequestParam Map<String, String> option) throws Exception;
 }

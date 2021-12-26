@@ -154,13 +154,5 @@ public class AdminProductControllerImpl implements AdminProductController {
 		return mav;
 	}
 	
-	@Override
-	@ResponseBody
-	@RequestMapping(value = "/search_date.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8" )
-	public void search_date(@RequestParam Map<String, String> option) throws Exception {
-		
-			
-
-	}
 	
 }
