@@ -74,45 +74,52 @@ public class AdminProductControllerImpl implements AdminProductController {
 		
 		HttpSession session=request.getSession();
 		ModelAndView mav = new ModelAndView();
+		// Map options에는 조회하고자 하는 조건유형 option, 조건에 해당하는 value 가 반드시 포함되어야한다.
+		// key "option" = value [productCreDate / productTitle / all]
+		// key "value"  = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1(product_states) ]
 		Map<String, String> options = new HashMap<String, String>();
-		// get방식으로 조회방식(option) 값이 없을경우, 기존의 session을 초기화한다.
-		if(info.isEmpty()) {
-			session.removeAttribute("option");
-			session.removeAttribute("value");
-			// product_states가 0인 Product을 호출
-			Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
-			mav.addObject("extraList", extraList);
+		String paramOption = info.get("option");
+		String paramValue = info.get("value");
+		String sessionOption = (String)session.getAttribute("option");
+		String sessionValue = (String)session.getAttribute("value");
+	
+		// get 방식으로 option이 입력되었을 경우
+		if (paramOption != null) {
+			
+			// 세션에 바인딩되어있는 option이 있는지 확인한다.
+			if(sessionOption != null) {
+				
+				// 두 옵션이 일치할 경우, options에 기존 session의 값을 대입한다.
+				if (paramOption.equals(sessionOption)) {					
+					options.put("option", sessionOption);
+					options.put("value", sessionValue);
+				}
+				
+				// 두 옵션이 일치하지 않을 경우, options에 paramOption을 대입하고, 기존 세션을 Override 한다.
+				else {				
+					options.put("option", paramOption);
+					options.put("value", paramValue);
+					
+					session.setAttribute("option", paramOption);
+					session.setAttribute("value", paramValue);							
+				}
+			}
+			
+			// 세션에 바인딩된 option이 없을경우, options에 paramOption을 대입하고, 세션에 set 한다.
+			else {
+				options.put("option", paramOption);
+				options.put("value", paramValue);
+				
+				session.setAttribute("option", paramOption);
+				session.setAttribute("value", paramValue);	
+			}
 		}
 		
+		// get과 세션 모두 option이 없을경우
 		else {
-			String option = info.get("option");
-			String value = info.get("value");
-			
-			System.out.println(option);
-			System.out.println(session.getAttribute("option"));
-			// 조회 조건이 변경될 경우, 기존의 session 정보를 삭제한다.
-			if(!option.equals((String)session.getAttribute("option"))) {
-				session.removeAttribute("option");
-				session.removeAttribute("value");
-				
-				options.put("option", option);
-				options.put("value", value);
-			}
-			// 변경된 조건이 없을경우, 기존 session의 조회조건을 가지고온다.
-			else {
-				options.put("option", (String)session.getAttribute("option"));
-				options.put("value", (String)session.getAttribute("value"));
-			}
-			
-
-			
-			Map<String, Map<String, Object>> extraList = adminProductService.productListToOption(options);
-					
-			mav.addObject("extraList", extraList);
-			session.setAttribute("option", option);
-			session.setAttribute("value", value);
 			
 		}
+		
 
 		String viewName = (String) request.getAttribute("viewName");
 		String pageNo = info.get("pageNo");
@@ -125,8 +132,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		}
 		
 		mav.setViewName(viewName);
-		
-
+	
 		return mav;
 	}
 	

@@ -59,12 +59,11 @@ public class AdminProductServiceImpl implements AdminProductService {
 		
 	}
 	
-	// 날짜를 기준으로 한 상품 조회 서비스
-	// 파라미터 option에는 key "option" / value [date, title, all]가 들어가며, date 선택시 begin, end 이하 옵션에는 value 키를 설정해주어야한다.
+	
 	@Override
 	public Map<String, Map<String, Object>> productListToOption( Map<String, String> option) throws Exception {
 		
-		// option이 date일 경우, value로 전달된 yyyy-mm-dd,yyyy-mm-dd를 begin, end로 변형하여 다시 대입한다.
+		// option이 productCreDate일 경우, value로 전달된 yyyy-mm-dd,yyyy-mm-dd를 begin, end로 변형하여 다시 대입한다.
 		if(option.get("option").equals("productCreDate")) {
 			String[] date = option.get("value").split(",");
 			

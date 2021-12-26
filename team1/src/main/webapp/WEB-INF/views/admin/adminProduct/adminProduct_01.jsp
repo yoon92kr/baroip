@@ -365,13 +365,13 @@
 
 		
 		if(no == "이전") {
-			location.href='${contextPath}/admin/product/list.do?pageNo='+(--getValue);
+			document.location='${contextPath}/admin/product/list.do?pageNo='+(--getValue);
 		}
 		else if (no == "다음") {
-			location.href='${contextPath}/admin/product/list.do?pageNo='+(++getValue);	
+			document.location='${contextPath}/admin/product/list.do?pageNo='+(++getValue);	
 		}
 		else {
-			location.href='${contextPath}/admin/product/list.do?pageNo='+no;
+			document.location='${contextPath}/admin/product/list.do?pageNo='+no;
 		}
 	}
 	
