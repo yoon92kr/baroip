@@ -328,23 +328,32 @@
 	}
 	
 	function test() {
+		let searchOption = document.getElementById('search_option_category').value;
 		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
 		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
 		let searchDate = beginDate.concat(',', endDate);
 		let searchText = document.getElementById('adminProduct_01-productName-text').value;
 		
-		if (document.getElementById('search_option_category').value == "productCreDate") {
+		if (searchOption == "productCreDate") {
 			if(endDate == "" || beginDate == "") {
 				alert("정확한 조회 기간을 입력해주세요.");
 			}
+			else if(beginDate > endDate) {
+				alert("조회 기준일이 종료일보다 클 수 없습니다.")
+			}
 			else {
-				location.href='${contextPath}/admin/product/extra_list?option=productCreDate&value='+searchDate;
+				location.href='${contextPath}/admin/product/extra_list.do?option='+searchOption+'&value='+searchDate;
 
 			}
 			
 		}
-		else {
-			alert();
+		else if (searchOption == "productTitle") {
+			if (searchText.match(/\s/g)) {
+				alert("검색어에 공백은 포함될 수 없습니다.")
+			}
+			else {
+				location.href='${contextPath}/admin/product/extra_list.do?option='+searchOption+'&value='+searchText;
+			}
 		}
 	}
 	
@@ -365,13 +374,13 @@
 
 		
 		if(no == "이전") {
-			document.location='${contextPath}/admin/product/extra_list?pageNo='+(--getValue);
+			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+(--getValue);
 		}
 		else if (no == "다음") {
-			document.location='${contextPath}/admin/product/extra_list?pageNo='+(++getValue);	
+			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+(++getValue);	
 		}
 		else {
-			document.location='${contextPath}/admin/product/extra_list?pageNo='+no;
+			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+no;
 		}
 	}
 	
@@ -396,6 +405,7 @@
 	       break;
 	       
 	    case "productTitle" :
+	    	alert();
 	    	document.getElementById("adminProduct_01-productName-text").value = "${value}";
 	       break;
 	    }
