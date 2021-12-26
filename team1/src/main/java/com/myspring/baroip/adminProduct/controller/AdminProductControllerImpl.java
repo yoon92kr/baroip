@@ -50,8 +50,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 	// 상품 임시 등록
 	@Override
 	@RequestMapping(value = "/addProduct.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO,
-			MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -70,8 +69,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 
 	@Override
 	@RequestMapping(value = "/extra_list.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView extraList(@RequestParam Map<String, String> info, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView extraList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		// get 요청이 없을경우, 기존의 session을 제거
 		if (info.isEmpty()) {
@@ -100,8 +98,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "/update_amount.do", method = { RequestMethod.POST,
-			RequestMethod.GET }, produces = "application/text; charset=UTF-8")
+	@RequestMapping(value = "/update_amount.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
 	public String update_amount(@RequestParam Map<String, String> info) throws Exception {
 
 		adminProductService.updateAmount(info);
