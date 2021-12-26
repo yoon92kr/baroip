@@ -59,7 +59,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		HttpSession session = multipartRequest.getSession();
 		session.setAttribute("message", message);
 
-		mav.setViewName("redirect:/admin/product/list.do");
+		mav.setViewName("redirect:/admin/product/extra_list.do");
 		System.out.println("baroip : " + message);
 		imageController.ImageSetImageVO(multipartRequest, product_id);
 
@@ -120,7 +120,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		adminProductService.deleteProduct(product_id);
 
 		System.out.printf("baroip : [%s]상품이 정삭적으로 삭제되었습니다.%n", product_id);
-		mav.setViewName("redirect:/admin/product/list.do");
+		mav.setViewName("redirect:/admin/product/extra_list.do");
 
 		return mav;
 	}
@@ -153,7 +153,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		HttpSession session = multipartRequest.getSession();
 		session.setAttribute("message", message);
 		imageController.updateImage(multipartRequest, productVO.getProduct_id());
-		mav.setViewName("redirect:/admin/product/list.do");
+		mav.setViewName("redirect:/admin/product/extra_list.do");
 		System.out.println("baroip : " + message);
 
 		return mav;
@@ -180,7 +180,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		if (paramOption != null && sessionOption != null) {
 
 				// 두 옵션이 일치할 경우, options에 기존 session의 값을 대입한다.
-				if (paramOption.equals(sessionOption)) {
+				if (paramOption.equals(sessionOption) && paramValue.equals(sessionValue)) {
 					options.put("search_option", sessionOption);
 					options.put("search_value", sessionValue);
 				}
