@@ -18,7 +18,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 상품 임시등록
+	// 상품 등록 DAO, 반환값 == 등록된 product_id
 	@Override
 	public String insertProduct(ProductVO productVO) throws DataAccessException {
 		
@@ -29,14 +29,14 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		return product_id;
 	}
 	
-	// 상품 수량 변경
+	// 상품 수량 변경 DAO
 	@Override
 	public void updateAmount(Map<String, String> option) throws DataAccessException {
 		sqlSession.update("mapper.adminProduct.updateAmount", option);
 		
 	}
 	
-	// 상품 삭제
+	// 상품 삭제 DAO
 	@Override
 	public void deleteProduct(String product_id) throws DataAccessException {
 		sqlSession.delete("mapper.adminProduct.deleteProduct", product_id);
@@ -44,12 +44,13 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		
 	}
 	
+	// 상품 수정 DAO
 	@Override
 	public void updateProduct(ProductVO productVO) throws DataAccessException {
 		sqlSession.update("mapper.adminProduct.updateProduct", productVO);
 	}
 	
-	// 선택 옵션에 따른 조회 필터
+	// 조회 조건에 따른 상품 리스트 조회 DAO
 	@Override
 	public List<ProductVO> productListToOption( Map<String, String> option) throws DataAccessException {
 		List<ProductVO> productList = sqlSession.selectList("mapper.adminProduct.selectAllProduct", option);

@@ -59,7 +59,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 		
 	}
 	
-	
+	// 조회 조건에 따른 상품 리스트 조회 서비스
 	@Override
 	public Map<String, Map<String, Object>> productListToOption( Map<String, String> option) throws Exception {
 		
