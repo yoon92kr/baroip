@@ -74,7 +74,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		
 		HttpSession session=request.getSession();
 		ModelAndView mav = new ModelAndView();
-		
+		Map<String, String> options = new HashMap<String, String>();
 		// get방식으로 조회방식(option) 값이 없을경우, 기존의 session을 초기화한다.
 		if(info.isEmpty()) {
 			session.removeAttribute("option");
@@ -88,14 +88,23 @@ public class AdminProductControllerImpl implements AdminProductController {
 			String option = info.get("option");
 			String value = info.get("value");
 			
+			System.out.println(option);
+			System.out.println(session.getAttribute("option"));
 			// 조회 조건이 변경될 경우, 기존의 session 정보를 삭제한다.
-			if(option != null && option != "") {
+			if(!option.equals((String)session.getAttribute("option"))) {
 				session.removeAttribute("option");
 				session.removeAttribute("value");
+				
+				options.put("option", option);
+				options.put("value", value);
 			}
-			Map<String, String> options = new HashMap<String, String>();
-			options.put("option", option);
-			options.put("value", value);
+			// 변경된 조건이 없을경우, 기존 session의 조회조건을 가지고온다.
+			else {
+				options.put("option", (String)session.getAttribute("option"));
+				options.put("value", (String)session.getAttribute("value"));
+			}
+			
+
 			
 			Map<String, Map<String, Object>> extraList = adminProductService.productListToOption(options);
 					

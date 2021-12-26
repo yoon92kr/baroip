@@ -65,7 +65,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 	public Map<String, Map<String, Object>> productListToOption( Map<String, String> option) throws Exception {
 		
 		// option이 date일 경우, value로 전달된 yyyy-mm-dd,yyyy-mm-dd를 begin, end로 변형하여 다시 대입한다.
-		if(option.get("option").equals("date")) {
+		if(option.get("option").equals("productCreDate")) {
 			String[] date = option.get("value").split(",");
 			
 			option.remove("value");

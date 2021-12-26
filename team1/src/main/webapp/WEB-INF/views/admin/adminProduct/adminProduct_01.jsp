@@ -34,8 +34,8 @@
 		<div class="col-lg-3 text-center adminUser_01-content-header">
 			조회 유형 <select class="adminUser_01-select-box-lookup"
 				onchange="Productchange(this.value)" id="search_option_category">
-				<option value="productUpDate">상품 등록일</option>
-				<option value="productName">상품 명</option>
+				<option value="productCreDate">상품 등록일</option>
+				<option value="productTitle">상품 명</option>
 			</select>
 		</div>
 		<div class="col-lg-6 text-center adminUser_01-content-header">
@@ -170,11 +170,11 @@
 <script type="text/javascript">
 	function Productchange(selectValue) {
 
-		if (selectValue == "productUpDate") {
+		if (selectValue == "productCreDate") {
 			
 			document.getElementById("adminProduct_01-productUpDate").style.display = 'inline';
 			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
-		} else if (selectValue == "productName") {
+		} else if (selectValue == "productTitle") {
 			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
 			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'inline';
 		}
@@ -333,12 +333,12 @@
 		let searchDate = beginDate.concat(',', endDate);
 		let searchText = document.getElementById('adminProduct_01-productName-text').value;
 		
-		if (document.getElementById('search_option_category').value == "productUpDate") {
+		if (document.getElementById('search_option_category').value == "productCreDate") {
 			if(endDate == "" || beginDate == "") {
 				alert("정확한 조회 기간을 입력해주세요.");
 			}
 			else {
-				location.href='${contextPath}/admin/product/list.do?option=date&value='+searchDate;
+				location.href='${contextPath}/admin/product/list.do?option=productCreDate&value='+searchDate;
 
 			}
 			
@@ -375,4 +375,42 @@
 		}
 	}
 	
+	// 검색조건 기존값 할당 스크립트
+	window.addEventListener('load', function() {
+	   if(${option != null && option != ""}) {
+	    selectedOption("search_option_category", "${option}");
+
+	    var option = document.getElementById("search_option_category");
+	    var main_option = option.options[option.selectedIndex].id;
+	    Productchange(main_option);
+	    
+	    var begin = "";
+	    var end = "";
+	    if("${option}" == "productCreDate") {
+	    	var splitDate = "${value}".split(",");
+	    }
+	    switch("${option}") {
+	    case "productCreDate" :
+	    	document.getElementById("adminProduct_01-productUpDate-begin").value = splitDate[0];
+	    	document.getElementById("adminProduct_01-productUpDate-end").value = splitDate[1];
+	       break;
+	       
+	    case "productTitle" :
+	    	document.getElementById("adminProduct_01-productName-text").value = "${value}";
+	       break;
+	    }
+	    
+	   }
+	});
+	
+	// id에는 select의 id값, value에는 선택하고자 하는 option의 value 값을 파라미터로 입력한다.
+	function selectedOption(id, value) {
+		var obj = document.getElementById(id);
+
+		for (i=0 ; i<obj.length ; i++) {
+		if(obj[i].value == value) {
+		obj[i].selected = true;
+		      }
+		   }
+		}
 </script>

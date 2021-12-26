@@ -54,8 +54,8 @@
 		</div>
 	</div>
 
-	<form action="${contextPath}/admin/product/update_product.do" method="post"
-		enctype="multipart/form-data" id="admin_product_update">
+	<form action="${contextPath}/admin/product/update_product.do"
+		method="post" enctype="multipart/form-data" id="admin_product_update">
 		<input type="hidden" name="user_id" value="${userInfo.user_id}">
 		<input type="hidden" name="product_id" value="${VO.product_id}">
 
@@ -155,12 +155,12 @@
 				추가 이미지</div>
 			<div class="col-lg-10 adminProduct_02-img-add-right">
 
-				<input class="adminProduct_02-sub-img-add-btn image_upload_check" id="추가 이미지 1" type="file"
-					name="sub1" accept="image/*"> <input
-					class="adminProduct_02-sub-img-add-btn image_upload_check" id="추가 이미지 2" type="file" name="sub2"
-					accept="image/*"> <input
-					class="adminProduct_02-sub-img-add-btn image_upload_check" id="추가 이미지 3" type="file" name="sub3"
-					accept="image/*">
+				<input class="adminProduct_02-sub-img-add-btn image_upload_check"
+					id="추가 이미지 1" type="file" name="sub1" accept="image/*"> <input
+					class="adminProduct_02-sub-img-add-btn image_upload_check"
+					id="추가 이미지 2" type="file" name="sub2" accept="image/*"> <input
+					class="adminProduct_02-sub-img-add-btn image_upload_check"
+					id="추가 이미지 3" type="file" name="sub3" accept="image/*">
 			</div>
 		</div>
 
@@ -176,12 +176,14 @@
 			</div>
 			<div class="col-lg-4 join_02-bottom-btn">
 				<!-- <div class="join_01-btn"> -->
-<%-- 					<input class="bottom_btn_size join_01-btn-img" type="image"
+				<%-- 					<input class="bottom_btn_size join_01-btn-img" type="image"
 						src="${contextPath}/resources/img/common/product_up_date_btn.png"
 						alt="상품 수정 버튼 이미지"> --%>
-						<a href="#" onclick="submit_admin_product_update()">
-						<img class="bottom_btn_size admin_product_list_btn" src="${contextPath}/resources/img/common/product_up_date_btn.png" alt="상품 수정 버튼 이미지" >
-						</a>
+				<a href="#" onclick="submit_admin_product_update()"> <img
+					class="bottom_btn_size admin_product_list_btn"
+					src="${contextPath}/resources/img/common/product_up_date_btn.png"
+					alt="상품 수정 버튼 이미지">
+				</a>
 				<!-- </div> -->
 			</div>
 		</div>
