@@ -148,8 +148,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		ModelAndView mav = new ModelAndView();
 
 		adminProductService.updateProduct(productVO);
-		String message = "관리자 " + productVO.getUser_id() + " 님이 [" + productVO.getProduct_main_title()
-				+ "]의 수정을 완료되었습니다.";
+		String message = "관리자 " + productVO.getUser_id() + " 님이 [" + productVO.getProduct_main_title() + "]의 수정을 완료되었습니다.";
 
 		HttpSession session = multipartRequest.getSession();
 		session.setAttribute("message", message);
@@ -161,16 +160,20 @@ public class AdminProductControllerImpl implements AdminProductController {
 	}
 
 	public Map<String, Map<String, Object>> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
-		// Map options에는 조회하고자 하는 조건유형 option, 조건에 해당하는 value 가 반드시 포함되어야한다.
-
+		
 		HttpSession session = request.getSession();
+		
+		// Map options에는 조회하고자 하는 조건유형 option, 조건에 해당하는 value 가 반드시 포함되어야한다.
 		// key "search_option" = value [productCreDate / productTitle / all]
 		// key "search_value" = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1(product_states) ]
 		Map<String, String> options = new HashMap<String, String>();
+		
 		String paramOption = info.get("search_option");
 		String paramValue = info.get("search_value");
+		
 		String sessionOption = (String) session.getAttribute("search_option");
 		String sessionValue = (String) session.getAttribute("search_value");
+		
 		String viewName = (String) request.getAttribute("viewName");
 
 		// param, session 모두 option이 바인딩 되어있는 경우
