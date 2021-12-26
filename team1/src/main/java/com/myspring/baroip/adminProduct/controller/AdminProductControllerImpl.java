@@ -87,6 +87,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		else {
 			String option = info.get("option");
 			String value = info.get("value");
+			
 			// 조회 조건이 변경될 경우, 기존의 session 정보를 삭제한다.
 			if(option != null && option != "") {
 				session.removeAttribute("option");

@@ -330,7 +330,7 @@
 	function test() {
 		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
 		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
-		
+		let searchDate = beginDate.concat(',', endDate);
 		let searchText = document.getElementById('adminProduct_01-productName-text').value;
 		
 		if (document.getElementById('search_option_category').value == "productUpDate") {
@@ -338,25 +338,8 @@
 				alert("정확한 조회 기간을 입력해주세요.");
 			}
 			else {
-				
-				$.ajax({
-					type : "post",
-					async : false,
-					url : "${contextPath}/admin/product/list.do",
-					dataType : "text",
-					data : {
-						"beginDate" : beginDate,
-						"endDate" : endDate
-					},
-					success : function(message) {
-						alert("조회 성공!");
-						document.getElementById('test').html == "test";
-					},
-					error : function() {
-						alert("상품 조회에 문제가 발생하였습니다.");
-					}
+				location.href='${contextPath}/admin/product/list.do?option=date&value='+searchDate;
 
-				});
 			}
 			
 		}
