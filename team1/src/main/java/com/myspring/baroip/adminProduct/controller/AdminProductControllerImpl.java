@@ -72,8 +72,14 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@RequestMapping(value = "/extra_list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView extraList(@RequestParam Map<String, String> info, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+		HttpSession session = request.getSession();
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("option");
+			session.removeAttribute("value");
+		}
 		Map<String, Map<String, Object>> extraFullList = getFullList(info, request);
+
 		
 
 		

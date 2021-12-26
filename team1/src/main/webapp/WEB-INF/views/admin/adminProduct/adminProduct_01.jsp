@@ -51,7 +51,7 @@
 		</div>
 		<div class="col-lg-3 text-center adminUser_01-content-header">
 			<input class="adminProduct_01-header-button" type="button"
-				value="조회하기" onclick="test()"> <input
+				value="조회하기" onclick="search_product_to_option()"> <input
 				class="adminProduct_01-header-button adminProduct_01-button-top"
 				type="button" value="상품 임시 등록"
 				onclick="location.href='${contextPath}/admin/product/addProductForm.do'">
@@ -327,7 +327,8 @@
 		}
 	}
 	
-	function test() {
+	// 조회 필터 스크립트
+	function search_product_to_option() {
 		let searchOption = document.getElementById('search_option_category').value;
 		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
 		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
@@ -357,6 +358,7 @@
 		}
 	}
 	
+	// 페이지 이동 스크립트
 	function pageMove(no) {
 		var getValue = 0;
 		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
@@ -405,7 +407,6 @@
 	       break;
 	       
 	    case "productTitle" :
-	    	alert();
 	    	document.getElementById("adminProduct_01-productName-text").value = "${value}";
 	       break;
 	    }
