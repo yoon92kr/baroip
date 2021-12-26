@@ -74,7 +74,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		// product_states가 0인 Product을 호출
 		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
 		ModelAndView mav = new ModelAndView();
-		System.out.println(option.isEmpty());
+		System.out.println(request.getParameter("option"));
 		String viewName = (String) request.getAttribute("viewName");
 		mav.addObject("extraList", extraList);
 		String pageNo = (String)request.getParameter("pageNo");

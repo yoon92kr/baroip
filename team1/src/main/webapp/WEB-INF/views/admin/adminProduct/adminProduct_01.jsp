@@ -381,7 +381,7 @@
 			location.href='${contextPath}/admin/product/list.do?pageNo='+(--getValue);
 		}
 		else if (no == "다음") {
-			location.href='${contextPath}/admin/product/list.do?pageNo='+(++getValue);	
+			location.href='${contextPath}/admin/product/list.do?pageNo='+(++getValue)+'&option=test';	
 		}
 		else {
 			location.href='${contextPath}/admin/product/list.do?pageNo='+no;
