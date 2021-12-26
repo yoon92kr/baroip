@@ -21,5 +21,5 @@ public interface AdminProductService {
 	public void updateProduct(ProductVO productVO) throws Exception;
 	
 	// 날짜를 기준으로 한 상품 조회 서비스
-	public void search_date( Map<String, String> option) throws Exception;
+	public Map<String, Map<String, Object>> productListToOption( Map<String, String> option) throws Exception;
 }

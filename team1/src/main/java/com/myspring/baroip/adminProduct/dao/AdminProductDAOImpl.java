@@ -49,8 +49,11 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		sqlSession.update("mapper.adminProduct.updateProduct", productVO);
 	}
 	
-	// 날짜를 기준으로 한 상품 조회
-	public void search_date(Map<String, String> option) throws DataAccessException {
+	// 선택 옵션에 따른 조회 필터
+	@Override
+	public List<ProductVO> productListToOption( Map<String, String> option) throws DataAccessException {
 		List<ProductVO> productList = sqlSession.selectList("mapper.adminProduct.selectProductForDate", option);
+		
+		return productList;
 	}
 }

@@ -330,6 +330,7 @@
 	function test() {
 		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
 		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
+		
 		let searchText = document.getElementById('adminProduct_01-productName-text').value;
 		
 		if (document.getElementById('search_option_category').value == "productUpDate") {
@@ -366,7 +367,10 @@
 	
 	function pageMove(no) {
 		var getValue = 0;
+		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
+		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
 		
+		test = beginDate.concat(",", endDate);
 		if(no == "이전" || no == "다음") {
 			var uriValue = window.location.search;
 			var array = uriValue.split("=");
@@ -381,7 +385,7 @@
 			location.href='${contextPath}/admin/product/list.do?pageNo='+(--getValue);
 		}
 		else if (no == "다음") {
-			location.href='${contextPath}/admin/product/list.do?pageNo='+(++getValue)+'&option=test';	
+			location.href='${contextPath}/admin/product/list.do?pageNo='+(++getValue);	
 		}
 		else {
 			location.href='${contextPath}/admin/product/list.do?pageNo='+no;

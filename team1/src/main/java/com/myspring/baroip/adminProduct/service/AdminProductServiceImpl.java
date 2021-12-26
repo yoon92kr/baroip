@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.adminProduct.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,8 @@ public class AdminProductServiceImpl implements AdminProductService {
 	
 	// 날짜를 기준으로 한 상품 조회 서비스
 	@Override
-	public void search_date( Map<String, String> option) throws Exception {
+	public Map<String, Map<String, Object>> productListToOption( Map<String, String> option) throws Exception {
 		
-
+		List<ProductVO> productList = adminProductDAO.productListToOption(option);
 	}
 }

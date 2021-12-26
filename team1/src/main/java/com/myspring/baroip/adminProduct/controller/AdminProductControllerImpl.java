@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.adminProduct.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,15 +70,42 @@ public class AdminProductControllerImpl implements AdminProductController {
 	
 	@Override
 	@RequestMapping(value = "/list.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView selectExtraList(@RequestParam Map<String, String> option, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView selectExtraList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		// product_states가 0인 Product을 호출
-		Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
+		HttpSession session=request.getSession();
 		ModelAndView mav = new ModelAndView();
-		System.out.println(request.getParameter("option"));
+		
+		// get방식으로 조회방식(option) 값이 없을경우, 기존의 session을 초기화한다.
+		if(info.isEmpty()) {
+			session.removeAttribute("option");
+			session.removeAttribute("value");
+			// product_states가 0인 Product을 호출
+			Map<String, Map<String, Object>> extraList = productService.selectProductList("0");
+			mav.addObject("extraList", extraList);
+		}
+		
+		else {
+			String option = info.get("option");
+			String value = info.get("value");
+			// 조회 조건이 변경될 경우, 기존의 session 정보를 삭제한다.
+			if(option != null && option != "") {
+				session.removeAttribute("option");
+				session.removeAttribute("value");
+			}
+			Map<String, String> options = new HashMap<String, String>();
+			options.put("option", option);
+			options.put("value", value);
+			
+			Map<String, Map<String, Object>> extraList = adminProductService.productListToOption(options);
+					
+			mav.addObject("extraList", extraList);
+			session.setAttribute("option", option);
+			session.setAttribute("value", value);
+			
+		}
+
 		String viewName = (String) request.getAttribute("viewName");
-		mav.addObject("extraList", extraList);
-		String pageNo = (String)request.getParameter("pageNo");
+		String pageNo = info.get("pageNo");
 
 		if(pageNo != null && pageNo != "") {
 			mav.addObject("pageNo", pageNo);

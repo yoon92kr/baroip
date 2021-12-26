@@ -5,8 +5,9 @@
 
 <mapper namespace="mapper.adminProduct">
 	<!-- 리절트 맵 정의 -->
-	<resultMap id="productResult" type="ProductVO">
+<!-- 	<resultMap id="productListResult" type="ProductVO">
 		<result property="product_id" column="product_id" />
+		<result property="user_id" column="user_id" />
 		<result property="product_cre_date" column="product_cre_date" />
 		<result property="product_main_title" column="product_main_title" />
 		<result property="product_sub_title" column="product_sub_title" />
@@ -18,6 +19,7 @@
 		<result property="product_sub_category" column="product_sub_category" />
 		<result property="product_states" column="product_states" />
 	</resultMap>
+	-->
 
 
 	<!-- 상품 등록 쿼리 -->
@@ -106,5 +108,22 @@
 		where product_id = #{product_id}
 		]]>
 	</update>
+	
+		<select id="selectAllProduct" resultType="ProductVO" parameterType="java.util.Map">
+			
+			select * from product
+			where 
+			<if test='option == "date"'>
+				product_cre_date between #{begin} and #{end} order by product_cre_date desc
+			</if>
+			<if test='option == "title"'>
+				product_main_title like concat('%', #{value}, '%') order by product_cre_date desc
+			</if>
+			<if test='option == "all"'>
+				product_states = #{value} order by product_cre_date desc
+			</if>
+		
+
+	</select>
 
 </mapper>

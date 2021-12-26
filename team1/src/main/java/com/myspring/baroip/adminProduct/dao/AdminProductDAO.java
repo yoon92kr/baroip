@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.adminProduct.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
@@ -16,4 +17,6 @@ public interface AdminProductDAO {
 	public void deleteProduct(String product_id) throws DataAccessException;
 	
 	public void updateProduct(ProductVO productVO) throws DataAccessException;
+	
+	public List<ProductVO> productListToOption( Map<String, String> option) throws DataAccessException;
 }
