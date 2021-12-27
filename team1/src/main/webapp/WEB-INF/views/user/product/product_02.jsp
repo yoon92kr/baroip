@@ -45,22 +45,21 @@
 			<div class="product_02_form product_02_option_area">
 				<span class="product_02_option">수량</span>
 
-				<form name="itemCountBox" id="itemCountBox_form_detail">
+				<form class="buyForm" name="itemCountBox" id="itemCountBox_form_detail" action="${contextPath}/cart/addProductInCart.do" method="get">
 					<div class="value-button cart_decrease" id="cart_decrease"	onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
-					<input type="number" class="cart_item_count" id="cart_item_count" value="1"	onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+					<input type="number" class="cart_item_count" id="cart_item_count" name="cart_count" value="1"	onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 					<div class="value-button cart_increase" id="cart_increase"	onclick="increaseValue(this.id)" value="Increase Value">+</div>
+					<input type="hidden" name="product_id" value="${VO.product_id}">
 				</form>
 
 			</div>
 
 			<hr>
 			
-			<a href="${contextPath}/order_01.do">
-			<img src="${contextPath}/resources/img/common/product_buy_now.png" class="product_02_cart_btn" alt="상품상세페이지_바로구매 버튼 이미지"> 
-			</a> 
-			<a href="${contextPath}/cart/cartLst.do">
-				<img class="product_02_cart_btn" src="${contextPath}/resources/img/common/product_get_cart.png" alt="상품상세페이지_장바구니 담기 버튼 이미지">
-			</a>
+			<form name="buyForm" action="${contextPath}/cart/addProductInCart.do" method="get">
+				<input class="product_02_cart_btn" id="product_02_buy" type="button" value="바로구매">
+				<input class="product_02_cart_btn" id="product_02_cartIn" type="button" value="장바구니 담기">
+			</form>
 
 		</div>
 
@@ -115,8 +114,7 @@
 				document.getElementById('cart_item_count').value, 10);
 		if (countValue <= 1) {
 			alert("수량은 1보다 작을 수 없습니다.")
-		}
-		;
+		};
 		countValue = isNaN(countValue) ? 0 : countValue;
 		countValue < 2 ? countValue = 2 : '';
 		countValue--;
@@ -148,5 +146,13 @@
 		}
 
 	}
+	
+	/* 장바구니 담기 버튼 클릭 이벤트 */
+	let form = $(".buyForm");
+	
+	$("#product_02_cartIn").on("click", function(e) {
+		form.attr("action", "${contextPath}/cart/addProductInCart.do");
+		form.submit();
+	});
 
 </script>

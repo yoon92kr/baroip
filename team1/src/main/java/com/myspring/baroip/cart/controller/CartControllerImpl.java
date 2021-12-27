@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.cart.service.CartService;
@@ -36,32 +38,35 @@ public class CartControllerImpl implements CartController{
 		HttpSession session=request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute("userInfo");
 		String user_id = userVO.getUser_id();
-		cartVO.setUser_id(user_id);		
+		cartVO.setUser_id(user_id);
 		Map<String, Map<String, Map<String, Object>>> userCartListInfo = cartService.myCartList(cartVO);
 //		System.out.println("cartcontroller(userCartListInfo.user_id : " + userCartListInfo);
 //		System.out.println("cartcontroller(userCartListInfo) : " + userCartListInfo.size());
 //		System.out.println("cartController : " + userCartListInfo.get("myCartList0").get("product").get("productVO"));
-		if(userCartListInfo.equals(null)) {
-			
-		}
+//		System.out.println("cartController(cart_count) : " + userCartListInfo.get("myCartList1").get(cartVO.getCart_count()));
 		mav.addObject("userCartListInfo", userCartListInfo);
 		mav.setViewName(viewName);
 		return mav;
 		
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		HttpSession session=request.getSession();
-//		UserVO userVO = (UserVO)session.getAttribute("userInfo");
-//		String user_id = userVO.getUser_id();
-//		cartVO.setUser_id(user_id);
-//		Map<String, Object> userCartList = cartService.myCartList(cartVO);
-////		System.out.println(userCartList.size());
-////		System.out.println("userCartList : " + ((CartVO) userCartList.get(2)).getProduct_id());
-//		mav.addObject("userCartList", userCartList);
-//		mav.setViewName(viewName);
-//		return mav;
 	}
 	
+//	상품 상세 페이지 > 장바구니 담기 기능
+	@Override
+	@RequestMapping(value= "/addProductInCart.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView addProductInCart(@RequestParam("cartVO") CartVO cartVO, 
+			HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		HttpSession session=request.getSession();
+		UserVO userVO = (UserVO)session.getAttribute("userInfo");
+		String user_id = userVO.getUser_id();
+		cartVO.setUser_id(user_id);
+		cartService.addProductInCart(cartVO);
+		System.out.println("cartController(addProductInCart) : " + cartVO.getProduct_id());
+		mav.addObject(cartVO);
+		mav.setViewName("/product/productDetail.do");
+		return mav;
+	}
 	
 }

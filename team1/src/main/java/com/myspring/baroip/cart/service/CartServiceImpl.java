@@ -22,38 +22,34 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	private ProductService productService;
 	
+//	장바구니 페이지
 	@Override
 	public Map<String, Map<String, Map<String, Object>>> myCartList(CartVO cartVO) throws Exception{
 		
 		Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
 		Map<String, Map<String, Object>> productList = new HashMap<String, Map<String, Object>>();
 		List<CartVO> cartList = cartDAO.selectCartList(cartVO);
-		
+		Map<String, Object> cartItem = new HashMap<String, Object>();
 //		System.out.println("(CartService)cartVO.getUser_id : " + cartVO.getUser_id());
 
 		for(int i=0; i<cartList.size(); i++) {
 			String productId=cartList.get(i).getProduct_id();
 //			System.out.println("cartService : " + productId);
 			productList = productService.productDetail(productId);
-//			System.out.println("(CartService)cartVO.getCart_count : " + cartVO.getCart_count());
+			cartItem.put("cartVO", cartList.get(i));
+			productList.put("cart", cartItem);
+//			System.out.println("(CartService)cartVO.getCart_count : " + cartList.get(i).getCart_count());
 //			System.out.println("(CartService)cartNum : " + cartNum);
 			userCartListInfo.put("myCartList" + i, productList);
 		}
 		
 		return userCartListInfo;
-//		List<CartVO> cartList = cartDAO.selectCartList(cartVO);
-//		String productId = new String();
-//		for(int i=0; cartList.size() > i; i++) {
-//			productId = ((CartVO) cartList.get(i)).getProduct_id();
-////			System.out.println("cartService(cartList) : " + productId);
-//		}
-//		Map<String, Object> cartInfo = new HashMap<String, Object>();
-//		cartInfo.put("cartVO", cartList);
-//		Map<String, Map<String, Object>> cartProductInfo = productService.productDetail(productId);
-//		cartProductInfo.put("cartInfo", cartInfo);
-//		ProductVO product = (ProductVO)cartProductInfo.get("product");
-//		System.out.println("cartService(cartList) : " + cartList);
-//		return (Map<String, Object>) product;
+	}
+	
+//	장바구니 담기
+	@Override
+	public void addProductInCart(CartVO cartVO) throws Exception {
+		cartDAO.insertProductInCart(cartVO);
 	}
 
 }
