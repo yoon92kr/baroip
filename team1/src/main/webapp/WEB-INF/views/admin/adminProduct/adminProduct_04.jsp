@@ -12,6 +12,29 @@
 	session.removeAttribute("message");
 	%>
 </c:if>
+
+<c:if test='${not empty userInfo}'>
+	<script>
+   if(${userInfo.user_rank > 2}) {
+
+   }
+   
+   else {
+         alert("잘못된 접근입니다.");
+         location.replace('${contextPath}/main.do');
+      }
+   </script>
+
+</c:if>
+<c:if test='${empty userInfo }'>
+	<script>
+
+      alert("잘못된 접근입니다.");
+      location.replace('${contextPath}/main.do')
+
+   </script>
+
+</c:if>
 <div class="container">
 
 	<div class="row">

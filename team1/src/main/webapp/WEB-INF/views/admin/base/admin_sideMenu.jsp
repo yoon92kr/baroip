@@ -27,7 +27,7 @@
 			<a href="${contextPath}/adminNotice_01.do" class="no-underline">공지 관리</a>
 			<a href="${contextPath}/adminCS_01.do"  class="no-underline">Q&A 관리</a>
 		<c:if test="${userInfo.user_rank > 2}">
-			<a href="${contextPath}/admin/product/list.do"  class="no-underline">전체 상품 관리</a>
+			<a href="${contextPath}/admin/product/general_list.do"  class="no-underline">전체 상품 관리</a>
 		</c:if>
 
 			</div>

@@ -36,7 +36,7 @@
 				0
 				)
 		]]>
-		
+
 	</insert>
 
 	<!-- image와 매칭할 id 조회 쿼리 -->
@@ -46,7 +46,7 @@
 			select count_no from sequences 
 			where sequence_name='product'	 
 		]]>
-		
+
 	</select>
 
 	<!-- 상품 수량 수정 쿼리 -->
@@ -58,7 +58,7 @@
 		where	 
 		product_id=#{product_id}
 		]]>
-		
+
 	</update>
 	<!-- 상품 삭제 쿼리 -->
 	<delete id="deleteProduct" parameterType="java.lang.String">
@@ -67,7 +67,7 @@
 	  delete from product
 	  where product_id=#{product_id}
 		]]>
-		
+
 	</delete>
 
 	<delete id="deleteImage" parameterType="java.lang.String">
@@ -94,23 +94,42 @@
 			product_sub_category = #{product_sub_category}
 		where product_id = #{product_id}
 		]]>
-		
+
 	</update>
-	
-		<select id="selectAllProduct" resultType="ProductVO" parameterType="java.util.Map">
+
+	<select id="selectAllProduct" resultType="ProductVO" parameterType="java.util.Map">
+		
+
+		
+		<if test='view_name == "extra_list"'>
+			select * from product where product_states = 0 and 
+		</if>
+		
+		<if test='user_rank gt 2 and view_name == "general_list"'>
+			select * from product where 
+		</if>
 			
-			select * from product
-			where 
-			<if test='search_option == "productCreDate"'>
+		<if test='search_option == "productCreDate"'>
+			<if test='view_name == "extra_list"'>
 				product_cre_date between #{begin} and date_add(#{end}, interval 1 day) order by product_cre_date desc
 			</if>
-			<if test='search_option == "productTitle"'>
+		</if>
+		
+		<if test='search_option == "productTitle"'>
 				product_main_title like concat('%', #{search_value}, '%') order by product_cre_date desc
+		</if>
+		
+		<if test='search_option == "productStates"'>
+			<if test='search_value == "all"'>
+					<![CDATA[
+				product_states <= 1 order by product_cre_date desc
+						]]>
 			</if>
-			<if test='search_option == "all"'>
+			<if test='search_value == "0" or search_value == "1"'>
 				product_states = #{search_value} order by product_cre_date desc
 			</if>
-		
+		</if>
+
 	</select>
 
 </mapper>

@@ -23,6 +23,7 @@ import com.myspring.baroip.adminProduct.service.AdminProductService;
 import com.myspring.baroip.image.controller.ImageController;
 import com.myspring.baroip.product.service.ProductService;
 import com.myspring.baroip.product.vo.ProductVO;
+import com.myspring.baroip.user.vo.UserVO;
 
 @Controller("adminProductController")
 @RequestMapping(value = "/admin/product")
@@ -67,6 +68,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		return mav;
 	}
 
+	// rank 2 관리자의 임시상품관리 메뉴 컨트롤러
 	@Override
 	@RequestMapping(value = "/extra_list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView extraList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -96,7 +98,39 @@ public class AdminProductControllerImpl implements AdminProductController {
 
 		return mav;
 	}
+	
+	// rank 3 이상의 관리자의 쇼핑몰 전체상품관리 메뉴 컨트롤러
+	@Override
+	@RequestMapping(value = "/general_list.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView generalList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
+		}
+		Map<String, Map<String, Object>> extraFullList = getFullList(info, request);
 
+		
+
+		
+		String pageNo = info.get("pageNo");
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		if (pageNo != null && pageNo != "") {
+			mav.addObject("pageNo", pageNo);
+		} else {
+			mav.addObject("pageNo", 1);
+		}
+		mav.addObject("extraList", extraFullList);
+		mav.setViewName(viewName);
+
+		return mav;
+	}
+
+	// 상품 수량 변경 컨트롤러
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/update_amount.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
@@ -177,7 +211,9 @@ public class AdminProductControllerImpl implements AdminProductController {
 		String sessionValue = (String) session.getAttribute("search_value");
 		
 		String viewName = (String) request.getAttribute("viewName");
-
+		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
+		String[] viewSplit = viewName.split("/");
+		
 		// param, session 모두 option이 바인딩 되어있는 경우
 		if (paramOption != null && sessionOption != null) {
 
@@ -215,10 +251,18 @@ public class AdminProductControllerImpl implements AdminProductController {
 		// param과 session에 바인딩된 정보가 없을경우, viewName에 따른 전체 list를 보여준다.
 		else {
 			if (viewName.contains("extra")) {
-				options.put("search_option", "all");
+				options.put("search_option", "productStates");
 				options.put("search_value", "0");
 			}
+			
+			else if (viewName.contains("general")) {
+				options.put("search_option", "productStates");
+				options.put("search_value", "all");
+			}
 		}
+		
+		options.put("user_rank", userInfo.getUser_rank());
+		options.put("view_name", viewSplit[3]);
 		
 		Map<String, Map<String, Object>> fullList = adminProductService.productListToOption(options);
 		
