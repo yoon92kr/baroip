@@ -20,8 +20,15 @@ public class ProductVO {
 	private String product_main_category;
 	private String product_sub_category;
 	private String product_states;
+	private String product_count;
 	
 	
+	public String getProduct_count() {
+		return product_count;
+	}
+	public void setProduct_count(String product_count) {
+		this.product_count = product_count;
+	}
 	public String getProduct_id() {
 		return product_id;
 	}
