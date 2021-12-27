@@ -71,6 +71,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 	@RequestMapping(value = "/extra_list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView extraList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		
 		// get 요청이 없을경우, 기존의 session을 제거
 		if (info.isEmpty()) {
 			session.removeAttribute("search_option");
@@ -159,6 +160,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		return mav;
 	}
 
+	// 상품 조회 필터 사용시, 세션에 있는 상품정보를 확인 후 서비스로 처리하는 메소드
 	public Map<String, Map<String, Object>> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
 		
 		HttpSession session = request.getSession();

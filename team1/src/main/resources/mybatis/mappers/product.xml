@@ -4,44 +4,24 @@
 <!-- 2021.12.12 윤상현 -->
 
 <mapper namespace="mapper.product">
-	<!-- 리절트 맵 정의 -->
-	<resultMap id="productResult" type="ProductVO">
-		<result property="product_id" column="product_id" />
-		<result property="product_cre_date" column="product_cre_date" />
-		<result property="product_main_title" column="product_main_title" />
-		<result property="product_sub_title" column="product_sub_title" />
-		<result property="product_body" column="product_body" />
-		<result property="product_price" column="product_price" />
-		<result property="product_discount" column="product_discount" />
-		<result property="product_amount" column="product_amount" />
-		<result property="product_main_category" column="product_main_category" />
-		<result property="product_sub_category" column="product_sub_category" />
-		<result property="product_states" column="product_states" />
-	</resultMap>
-
 
 	<!-- 베스트 상품 조회(3개의 상품 조회) -->
 	<select id="selectBestItem" resultType="ProductVO">
+	
 		<![CDATA[
 			select * from product where product_states = 1 order by product_count desc limit 3 
 					 
 		]]>
+		
 	</select>
 	
 	<!-- 단일 상품 조회 쿼리  -->
 	<select id="selectProduct" resultType="ProductVO" parameterType="java.lang.String" >
+	
 		<![CDATA[
 		select * from product where product_id =#{product_id}					 
 		]]>
+		
 	</select>
 	
-	<!-- 전체 상품 조회 쿼리  -->
-	<select id="selectAllProduct" resultType="ProductVO" parameterType="java.lang.String">
-		<![CDATA[
-			select * from product 
-			 where product_states <= #{product_states} order by product_cre_date desc
-		]]>
-	</select>
-
-
 </mapper>

@@ -4,23 +4,6 @@
 <!-- 2021.12.09 윤상현 -->
 
 <mapper namespace="mapper.adminProduct">
-	<!-- 리절트 맵 정의 -->
-<!-- 	<resultMap id="productListResult" type="ProductVO">
-		<result property="product_id" column="product_id" />
-		<result property="user_id" column="user_id" />
-		<result property="product_cre_date" column="product_cre_date" />
-		<result property="product_main_title" column="product_main_title" />
-		<result property="product_sub_title" column="product_sub_title" />
-		<result property="product_body" column="product_body" />
-		<result property="product_price" column="product_price" />
-		<result property="product_discount" column="product_discount" />
-		<result property="product_amount" column="product_amount" />
-		<result property="product_main_category" column="product_main_category" />
-		<result property="product_sub_category" column="product_sub_category" />
-		<result property="product_states" column="product_states" />
-	</resultMap>
-	-->
-
 
 	<!-- 상품 등록 쿼리 -->
 	<insert id="insertProduct" parameterType="ProductVO">
@@ -53,6 +36,7 @@
 				0
 				)
 		]]>
+		
 	</insert>
 
 	<!-- image와 매칭할 id 조회 쿼리 -->
@@ -60,8 +44,9 @@
 
 		<![CDATA[
 			select count_no from sequences 
-			 where sequence_name='product'	 
+			where sequence_name='product'	 
 		]]>
+		
 	</select>
 
 	<!-- 상품 수량 수정 쿼리 -->
@@ -73,6 +58,7 @@
 		where	 
 		product_id=#{product_id}
 		]]>
+		
 	</update>
 	<!-- 상품 삭제 쿼리 -->
 	<delete id="deleteProduct" parameterType="java.lang.String">
@@ -81,6 +67,7 @@
 	  delete from product
 	  where product_id=#{product_id}
 		]]>
+		
 	</delete>
 
 	<delete id="deleteImage" parameterType="java.lang.String">
@@ -107,6 +94,7 @@
 			product_sub_category = #{product_sub_category}
 		where product_id = #{product_id}
 		]]>
+		
 	</update>
 	
 		<select id="selectAllProduct" resultType="ProductVO" parameterType="java.util.Map">
@@ -123,7 +111,6 @@
 				product_states = #{search_value} order by product_cre_date desc
 			</if>
 		
-
 	</select>
 
 </mapper>
