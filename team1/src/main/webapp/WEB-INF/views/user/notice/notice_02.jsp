@@ -34,23 +34,29 @@
         
 	<div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성자</span>
-        	
         </div>
-        
-        <div class="col-lg-4 text-center notice_02_box02"><span>[공지 작성자]</span></div>
-	
-	
+        <div class="col-lg-4 text-center notice_02_box02">
+        <input class="cs_02_02_text_box1" type="text" name="user_id"
+        	value="${NTList.user_id}" readonly>
+        </div>
 	</div>
         
-        
-        
         <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성 일자</span></div>
-        <div class="col-lg-4 text-center notice_02_box02"><span>[공지 작성일자]</span></div>
+        	<div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>작성 일자</span>
+        </div>
+        <div class="col-lg-4 text-center notice_02_box02">
+        <input class="cs_02_02_text_box1" type="text" name="notice_cre_date"
+        	value="${NTList.notice_cre_date}" readonly>
+    	</div>
     </div>
+    
+    
     <div class="row">
-        <div class="offset-lg-3 col-lg-2 text-center notice_02_box03" ><span>내용</span></div>
-        <div class="col-lg-4 text-center notice_02_box04"><span>[공지 내용]</span></div>
+        <div class="offset-lg-3 col-lg-2 text-center notice_02_box03" ><span>내용</span>
+        </div>
+        <div class="col-lg-4 text-center notice_02_box04">
+        <textarea class="notice_02_content_02" name="notice_body" readonly>${NTList.notice_body}</textarea>
+        </div>
     </div>
     
     <div class="offset-lg-5 col-lg-2 text-right">

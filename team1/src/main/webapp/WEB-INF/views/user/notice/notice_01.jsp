@@ -60,7 +60,7 @@
 					</div>
 					<div class="col-lg-4 text-center notice_01_section">
 						<p class="notice">
-							<a id="notice_02_move" href="${contextPath}/notice/notice_02.do?notice_id=${NTitem.notice_id}">
+							<a id="notice_02_move" href="${contextPath}/notice/notice_detail.do?notice_id=${NTitem.notice_id}">
 								${NTitem.notice_title}
 							</a>
 						</p>

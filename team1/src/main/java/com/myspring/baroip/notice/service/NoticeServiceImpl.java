@@ -22,6 +22,15 @@ public class NoticeServiceImpl implements NoticeService {
 		List<NoticeVO> NTList = noticeDAO.NTList();
 		return NTList;
 	}
+	
+//	공지사항 상세
+	@Override
+	public NoticeVO NoticeDetail(String noticeNO) throws Exception {
+		NoticeVO noticeID = noticeDAO.NoticeDetail(noticeNO);
+		return noticeID;
+	}
+	
+	
 
 	@Override
 	public List<NoticeVO> listArticles() throws Exception {
