@@ -22,9 +22,9 @@
 	<!-- 장바구니 담기 -->
 	<insert id="insertProductInCart" parameterType="CartVO">
 		<![CDATA[
-			insert into cart (cart_id, product_id,
+			insert into cart (product_id,
 							user_id, cart_count)
-						values (null, #{product_id}, 
+						values (#{product_id}, 
 							${user_id}, ${cart_count})
 		]]>
 	</insert>
