@@ -443,3 +443,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	border-bottom: 1px solid;
 	height: 90px;
 }
+
+#adminProduct_01-productAmount-text {
+	border: 1px solid #d9d9d9;
+	text-align: center;
+	margin-left: 20px;
+	margin-right: 5px;
+	width: 140px;
+	height: 30px;
+}
