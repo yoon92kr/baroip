@@ -85,8 +85,12 @@
 			<h6 class="order_01-content-hedaer-text">번호</h6>
 		</div>
 		<div
-			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-			<h6 class="order_01-content-hedaer-text">상품 등록일</h6>
+			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+			<h6 class="order_01-content-hedaer-text">등록일</h6>
+		</div>
+		<div
+			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+			<h6 class="order_01-content-hedaer-text">담당자</h6>
 		</div>
 		<div
 			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
@@ -105,31 +109,34 @@
 			<h6 class="order_01-content-hedaer-text">상태 변경</h6>
 		</div>
 	</div>
-	<c:if test="${empty extraList}">
+	<c:if test="${empty generalList}">
 		<br>
 		<div class="col-lg-12 text-center">임시 등록된 상품이 없습니다.</div>
 	</c:if>
-	<c:if test="${not empty extraList}">
-		<c:forEach var="i" begin="1" end="${extraList.size() + 1}">
+	<c:if test="${not empty generalList}">
+		<c:forEach var="i" begin="1" end="${generalList.size() + 1}">
 			<c:set var="j" value="${(pageNo*5 -5) + i}" />
 			<c:set var="key" value="product${j}" />
-			<c:if test="${not empty extraList[key].product_id && i<6}">
+			<c:if test="${not empty generalList[key].product_id && i<6}">
 
 
 				<div class="row">
 					<div class="col-lg-1 text-center order_01-content-item">${j}</div>
-					<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}
-						${extraList[key].user_id}</div>
+					<div class="col-lg-1 text-center order_01-content-item"
+						style="padding: 33px 0px 0px 0px">${generalList[key].product_cre_date}
+					</div>
+					<div class="col-lg-1 text-center order_01-content-item">
+						${generalList[key].user_id}</div>
 					<div class="col-lg-2 text-center order_01-content-item-img">
 						<a
-							href="${contextPath}/product/productDetail.do?product_id=${extraList[key].product_id}">
+							href="${contextPath}/product/productDetail.do?product_id=${generalList[key].product_id}">
 							<img class="cart_image_clip"
-							src="data:image/jpeg;base64,${extraList[key].image_file}"
+							src="data:image/jpeg;base64,${generalList[key].image_file}"
 							alt="상품 관리 페이지 상품 이미지">
 						</a>
 					</div>
 					<div id="admin_product_title${j}"
-						class="col-lg-3 text-center order_01-content-item">${extraList[key].product_main_title}
+						class="col-lg-3 text-center order_01-content-item">${generalList[key].product_main_title}
 					</div>
 					<div class="col-lg-2 order_01-content-item">
 						<form name="itemCountBox" id="adminProduct_01-itemCountBox-detail">
@@ -138,15 +145,15 @@
 								id="amount_decrease${j}" onclick="decreaseValue(this.id)">-</div>
 							<input type="number" class="adminProduct_product_amount_count"
 								id="product_item_count${j}"
-								value="${extraList[key].product_amount}"
+								value="${generalList[key].product_amount}"
 								onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 							<div
 								class="adminProduct_01-value-button adminProduct_01-increase"
 								id="amount_increase${j}" onclick="increaseValue(this.id)">+</div>
 							<input type="hidden" id="product_${j}"
-								value="${extraList[key].product_id}"> <input
+								value="${generalList[key].product_id}"> <input
 								type="hidden" id="user_id_${j}"
-								value="${extraList[key].user_id}">
+								value="${generalList[key].user_id}">
 						</form>
 						<input class="admin_01-itemCountBox-btn" id="${j}" type="button"
 							value="변경" onclick="update_amount(this.id)">
@@ -157,18 +164,20 @@
 							onclick="update_product_form(this.id)"> <input
 							class="adminProduct_01-product" id="${j}" type="button"
 							value="상품 삭제" onclick="delete_product(this.id)">
+
+
 					</div>
 				</div>
 			</c:if>
 			<c:if
-				test="${empty extraList[key].product_id && i==extraList.size()+1 && extraList.size() > 5}">
+				test="${empty generalList[key].product_id && i==generalList.size()+1 && generalList.size() > 5}">
 				<div class="row">
 
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
 
-						<c:if test="${extraList.size() > 5}">
-							<c:set var="maxNo" value="${extraList.size()+4}" />
+						<c:if test="${generalList.size() > 5}">
+							<c:set var="maxNo" value="${generalList.size()+4}" />
 							<c:forEach var="x" begin="1" end="${maxNo /5}">
 								<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
 
@@ -364,7 +373,7 @@
 				alert("조회 기준일이 종료일보다 클 수 없습니다.")
 			}
 			else {
-				location.href='${contextPath}/admin/product/extra_list.do?search_option='+searchOption+'&search_value='+searchDate;
+				location.href='${contextPath}/admin/product/general_list.do?search_option='+searchOption+'&search_value='+searchDate;
 
 			}
 			
@@ -374,7 +383,7 @@
 				alert("검색어에 공백은 포함될 수 없습니다.")
 			}
 			else {
-				location.href='${contextPath}/admin/product/extra_list.do?search_option='+searchOption+'&search_value='+searchText;
+				location.href='${contextPath}/admin/product/general_list.do?search_option='+searchOption+'&search_value='+searchText;
 			}
 		}
 	}
@@ -397,13 +406,13 @@
 
 		
 		if(no == "이전") {
-			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+(--getValue);
+			document.location='${contextPath}/admin/product/general_list.do?pageNo='+(--getValue);
 		}
 		else if (no == "다음") {
-			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+(++getValue);	
+			document.location='${contextPath}/admin/product/general_list.do?pageNo='+(++getValue);	
 		}
 		else {
-			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+no;
+			document.location='${contextPath}/admin/product/general_list.do?pageNo='+no;
 		}
 	}
 	

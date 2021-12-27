@@ -110,7 +110,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 			session.removeAttribute("search_option");
 			session.removeAttribute("search_value");
 		}
-		Map<String, Map<String, Object>> extraFullList = getFullList(info, request);
+		Map<String, Map<String, Object>> generalFullList = getFullList(info, request);
 
 		
 
@@ -124,7 +124,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		} else {
 			mav.addObject("pageNo", 1);
 		}
-		mav.addObject("extraList", extraFullList);
+		mav.addObject("generalList", generalFullList);
 		mav.setViewName(viewName);
 
 		return mav;

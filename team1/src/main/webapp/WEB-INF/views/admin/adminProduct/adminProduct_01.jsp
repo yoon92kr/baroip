@@ -89,8 +89,12 @@
 			<h6 class="order_01-content-hedaer-text">번호</h6>
 		</div>
 		<div
-			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-			<h6 class="order_01-content-hedaer-text">상품 등록일</h6>
+			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+			<h6 class="order_01-content-hedaer-text">등록일</h6>
+		</div>
+		<div
+			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+			<h6 class="order_01-content-hedaer-text">담당자</h6>
 		</div>
 		<div
 			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
@@ -122,7 +126,10 @@
 
 				<div class="row">
 					<div class="col-lg-1 text-center order_01-content-item">${j}</div>
-					<div class="col-lg-2 text-center order_01-content-item">${extraList[key].product_cre_date}
+					<div class="col-lg-1 text-center order_01-content-item"
+						style="padding: 33px 0px 0px 0px">${extraList[key].product_cre_date}
+					</div>
+					<div class="col-lg-1 text-center order_01-content-item">
 						${extraList[key].user_id}</div>
 					<div class="col-lg-2 text-center order_01-content-item-img">
 						<a
