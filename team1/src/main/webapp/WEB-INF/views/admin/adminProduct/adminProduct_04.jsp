@@ -4,6 +4,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <c:if test='${not empty message }'>
 	<script>
 		alert("${message}");
@@ -16,7 +17,6 @@
 <c:if test='${not empty userInfo}'>
 	<script>
    if(${userInfo.user_rank > 2}) {
-
    }
    
    else {
@@ -26,15 +26,14 @@
    </script>
 
 </c:if>
+
 <c:if test='${empty userInfo }'>
 	<script>
-
       alert("잘못된 접근입니다.");
       location.replace('${contextPath}/main.do')
-
    </script>
-
 </c:if>
+
 <div class="container">
 
 	<div class="row">
@@ -46,143 +45,134 @@
 	<div class="row">
 		<div class="col-lg-12 text-left myPage_03_01-content-body">
 			<h6 class="order_01-sub-title-page">
-				<span class="order_01-sub-title">임시 상품 관리</span>
+				<span class="order_01-sub-title">전체 상품 관리</span>
 			</h6>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-3 text-center adminUser_01-content-header">
-			조회 유형 <select class="adminUser_01-select-box-lookup"
-				onchange="Productchange(this.value)" id="search_option_category">
+	조회 유형 <select class="adminUser_01-select-box-lookup" onchange="Productchange(this.value)" id="search_option_category">
 				<option value="productCreDate">상품 등록일</option>
 				<option value="productTitle">상품 명</option>
+				<option value="productStateExtra">임시 등록 상품</option>
+				<option value="productStateGeneral">메인 게시 상품</option>
+				<option value="productAmount">상품 재고</option>
 			</select>
 		</div>
 		<div class="col-lg-6 text-center adminUser_01-content-header">
 			<div id="adminProduct_01-productUpDate">
-				<input id="adminProduct_01-productUpDate-begin" type="date">
-				부터 <input id="adminProduct_01-productUpDate-end" type="date">
-				까지
+				<input id="adminProduct_01-productUpDate-begin" type="date"> 부터 
+				<input id="adminProduct_01-productUpDate-end" type="date"> 까지
 			</div>
 			<div id="adminProduct_01-productUpDate_search">
 				검색할 상품명 : <input id="adminProduct_01-productName-text" type="text">
 			</div>
-
+			<div id="adminProduct_01-productUpDate_count">
+				<input id="adminProduct_01-productAmount-text" type="number">개 이하 상품 조회
+			</div>
 		</div>
 		<div class="col-lg-3 text-center adminUser_01-content-header">
-			<input class="adminProduct_01-header-button" type="button"
-				value="조회하기" onclick="search_product_to_option()"> <input
-				class="adminProduct_01-header-button adminProduct_01-button-top"
-				type="button" value="상품 임시 등록"
-				onclick="location.href='${contextPath}/admin/product/addProductForm.do'">
+			<input class="adminProduct_01-header-button" type="button" value="조회하기" onclick="search_product_to_option()"> 
+			<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="상품 임시 등록" onclick="location.href='${contextPath}/admin/product/addProductForm.do'">
 		</div>
 	</div>
 
 	<div class="row">
-		<div
-			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+		<div class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">번호</h6>
 		</div>
-		<div
-			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+		<div class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">등록일</h6>
 		</div>
-		<div
-			class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+		<div class="col-lg-1 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">담당자</h6>
 		</div>
-		<div
-			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">상품 이미지</h6>
 		</div>
-		<div
-			class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+		<div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">상품 명</h6>
 		</div>
-		<div
-			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-			<h6 class="order_01-content-hedaer-text">상품 재고</h6>
+		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+			<h6 class="order_01-content-hedaer-text">상품 현황</h6>
 		</div>
-		<div
-			class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 			<h6 class="order_01-content-hedaer-text">상태 변경</h6>
 		</div>
 	</div>
+	
 	<c:if test="${empty generalList}">
 		<br>
 		<div class="col-lg-12 text-center">임시 등록된 상품이 없습니다.</div>
 	</c:if>
+	
 	<c:if test="${not empty generalList}">
 		<c:forEach var="i" begin="1" end="${generalList.size() + 1}">
 			<c:set var="j" value="${(pageNo*5 -5) + i}" />
 			<c:set var="key" value="product${j}" />
+			
 			<c:if test="${not empty generalList[key].product_id && i<6}">
 
-
 				<div class="row">
-					<div class="col-lg-1 text-center order_01-content-item">${j}</div>
-					<div class="col-lg-1 text-center order_01-content-item"
-						style="padding: 33px 0px 0px 0px">${generalList[key].product_cre_date}
+					<div class="col-lg-1 text-center order_01-content-item">
+						${j}
+					</div>
+					<div class="col-lg-1 text-center order_01-content-item"	style="padding: 33px 0px 0px 0px">
+						${generalList[key].product_cre_date}	
 					</div>
 					<div class="col-lg-1 text-center order_01-content-item">
-						${generalList[key].user_id}</div>
+						${generalList[key].user_id}
+					</div>
 					<div class="col-lg-2 text-center order_01-content-item-img">
-						<a
-							href="${contextPath}/product/productDetail.do?product_id=${generalList[key].product_id}">
-							<img class="cart_image_clip"
-							src="data:image/jpeg;base64,${generalList[key].image_file}"
-							alt="상품 관리 페이지 상품 이미지">
+						<a href="${contextPath}/product/productDetail.do?product_id=${generalList[key].product_id}">
+							<img class="cart_image_clip" src="data:image/jpeg;base64,${generalList[key].image_file}" alt="상품 관리 페이지 상품 이미지">
 						</a>
 					</div>
-					<div id="admin_product_title${j}"
-						class="col-lg-3 text-center order_01-content-item">${generalList[key].product_main_title}
+					<div id="admin_product_title${j}" class="col-lg-3 text-center order_01-content-item">
+						${generalList[key].product_main_title} [${generalList[key].product_count}] 
 					</div>
-					<div class="col-lg-2 order_01-content-item">
+					<div class="col-lg-2 admin_product_states_detail">
+					
 						<form name="itemCountBox" id="adminProduct_01-itemCountBox-detail">
-							<div
-								class="adminProduct_01-value-button adminProduct_01-decrease"
-								id="amount_decrease${j}" onclick="decreaseValue(this.id)">-</div>
-							<input type="number" class="adminProduct_product_amount_count"
-								id="product_item_count${j}"
-								value="${generalList[key].product_amount}"
-								onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
-							<div
-								class="adminProduct_01-value-button adminProduct_01-increase"
-								id="amount_increase${j}" onclick="increaseValue(this.id)">+</div>
-							<input type="hidden" id="product_${j}"
-								value="${generalList[key].product_id}"> <input
-								type="hidden" id="user_id_${j}"
-								value="${generalList[key].user_id}">
+							<div class="adminProduct_01-value-button adminProduct_01-decrease" id="amount_decrease${j}" onclick="decreaseValue(this.id)">-</div>
+							<input type="number" class="adminProduct_product_amount_count" id="product_item_count${j}" value="${generalList[key].product_amount}" onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+							<div class="adminProduct_01-value-button adminProduct_01-increase" id="amount_increase${j}" onclick="increaseValue(this.id)">+</div>
+							<input type="hidden" id="product_${j}" value="${generalList[key].product_id}"> 
+							<input type="hidden" id="user_id_${j}" value="${generalList[key].user_id}">
+							<input type="hidden" id="states_${j}" value="${generalList[key].product_states}">
 						</form>
-						<input class="admin_01-itemCountBox-btn" id="${j}" type="button"
-							value="변경" onclick="update_amount(this.id)">
+					
+						<input class="admin_01-itemCountBox-btn" id="${j}" type="button" value="변경" onclick="update_amount(this.id)"> 
+						<select	class="product_states_select" id="product_state_${j}">
+							<option value="0" <c:if test='${generalList[key].product_states == "0"}'>selected</c:if>>임시 등록</option>
+							<option value="1" <c:if test='${generalList[key].product_states == "1"}'>selected</c:if>>게시 상품</option>
+						</select> 
+
+						<input class="admin_01-itemCountBox-btn" id="${j}" type="button" value="변경" onclick="update_states(this.id)">
 					</div>
 					<div class="col-lg-2 text-center adminProduct_01-content-item">
-						<input class="adminProduct_01-product adminProduct_01-product-top"
-							type="button" value="상품 수정" id="${j}"
-							onclick="update_product_form(this.id)"> <input
-							class="adminProduct_01-product" id="${j}" type="button"
-							value="상품 삭제" onclick="delete_product(this.id)">
-
-
+						<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="상품 수정" id="${j}" onclick="update_product_form(this.id)"> 
+						<input class="adminProduct_01-product" id="${j}" type="button" value="상품 삭제" onclick="delete_product(this.id)">
 					</div>
 				</div>
+				
 			</c:if>
-			<c:if
-				test="${empty generalList[key].product_id && i==generalList.size()+1 && generalList.size() > 5}">
+			
+			<c:if test="${empty generalList[key].product_id && i==generalList.size()+1 && generalList.size() > 5}">
+				
 				<div class="row">
-
+				
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-
 						<c:if test="${generalList.size() > 5}">
+						
 							<c:set var="maxNo" value="${generalList.size()+4}" />
+							
 							<c:forEach var="x" begin="1" end="${maxNo /5}">
 								<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
-
 							</c:forEach>
-
+							
 						</c:if>
 
 						<a href="#" onclick="pageMove(this.id)" id="다음">다음</a>
@@ -201,13 +191,31 @@
 	function Productchange(selectValue) {
 
 		if (selectValue == "productCreDate") {
-			
 			document.getElementById("adminProduct_01-productUpDate").style.display = 'inline';
 			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
-		} else if (selectValue == "productTitle") {
+			document.getElementById("adminProduct_01-productUpDate_count").style.display = 'none';
+		} 
+		else if (selectValue == "productTitle") {
 			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
 			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'inline';
+			document.getElementById("adminProduct_01-productUpDate_count").style.display = 'none';
 		}
+		else if (selectValue == "productAmount") {
+			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_count").style.display = 'inline';
+		}
+		else if (selectValue == "productStateExtra") {
+			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_count").style.display = 'none';
+		}
+		else if (selectValue == "productStateGeneral") {
+			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_count").style.display = 'none';
+		}
+		
 	}
 	/*---------- 수량 증감 input 박스 설정 ----------*/
 
@@ -314,7 +322,7 @@
 		
 		let product_title = document.getElementById('admin_product_title'.concat(target)).innerText;
 		let product_id = document.getElementById('product_'.concat(target)).value;
-		var confirmFlag = confirm(product_title+"을 정말 삭제하시겠습니까?")
+		var confirmFlag = confirm(product_title+"을(를) 정말 삭제하시겠습니까?");
 		if(confirmFlag){
 			
 			$.ajax({
@@ -364,7 +372,8 @@
 		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
 		let searchDate = beginDate.concat(',', endDate);
 		let searchText = document.getElementById('adminProduct_01-productName-text').value;
-		
+		let searchCount = document.getElementById('adminProduct_01-productAmount-text').value;
+		// 날짜 기준 조회
 		if (searchOption == "productCreDate") {
 			if(endDate == "" || beginDate == "") {
 				alert("정확한 조회 기간을 입력해주세요.");
@@ -378,6 +387,7 @@
 			}
 			
 		}
+		// 포함된 상품명 기준 조회
 		else if (searchOption == "productTitle") {
 			if (searchText.match(/\s/g)) {
 				alert("검색어에 공백은 포함될 수 없습니다.")
@@ -386,6 +396,22 @@
 				location.href='${contextPath}/admin/product/general_list.do?search_option='+searchOption+'&search_value='+searchText;
 			}
 		}
+		
+		// 임시 등록 상품 조회
+		else if (searchOption == "productStateExtra") {
+				location.href='${contextPath}/admin/product/general_list.do?search_option=productStates&search_value=0';
+		}
+		
+		// 메인 게시 상품 조회
+		else if (searchOption == "productStateGeneral") {
+				location.href='${contextPath}/admin/product/general_list.do?search_option=productStates&search_value=1';
+		}
+		
+		// 재고 기준 조회
+		else if (searchOption == "productAmount") {
+			location.href='${contextPath}/admin/product/general_list.do?search_option='+searchOption+'&search_value='+searchCount;
+		}
+		
 	}
 	
 	// 페이지 이동 스크립트
@@ -438,9 +464,14 @@
 	    case "productTitle" :
 	    	document.getElementById("adminProduct_01-productName-text").value = "${search_value}";
 	       break;
+	       
+	    case "productAmount" :
+	    	document.getElementById("adminProduct_01-productAmount-text").value = "${search_value}";
+		   break;
 	    }
 	    
 	   }
+
 	});
 	
 	// id에는 select의 id값, value에는 선택하고자 하는 option의 value 값을 파라미터로 입력한다.
@@ -453,4 +484,42 @@
 		      }
 		   }
 		}
+
+	/* 상품 상태 수정 ajax */
+	function update_states(target) {
+		let target_id = document.getElementById('product_'.concat(target)).value;
+		let new_state = document.getElementById('product_state_'.concat(target)).value;
+		let old_state = document.getElementById('states_'.concat(target)).value;
+		let product_title = document.getElementById('admin_product_title'.concat(target)).innerText;
+		
+		if(new_state == old_state) {
+			alert("기존의 상품 상태와 변경하고자 하는 상품 상태가 동일합니다.");
+		}
+		
+		else {
+			var confirmFlag = confirm(product_title+"의 상품 상태를 수정하시겠습니까?");
+			
+			if(confirmFlag){
+				
+				$.ajax({
+					async : false,
+					url : "${contextPath}/admin/product/update_state.do",
+					dataType : "text",
+					data : {
+						"product_id" : target_id,
+						"product_states" : new_state,
+						"product_title" : product_title
+					},
+					success : function(message) {
+						alert(product_title+"의 상품 상태가 정상적으로 변경되었습니다.");
+				 		location.reload();
+					},
+					error : function() {
+						alert("해당 상품 수정에 문제가 발생하였습니다.");
+					}
+
+				});
+			}
+		}
+	}
 </script>

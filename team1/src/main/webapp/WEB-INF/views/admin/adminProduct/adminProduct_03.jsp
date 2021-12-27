@@ -58,6 +58,7 @@
 		method="post" enctype="multipart/form-data" id="admin_product_update">
 		<input type="hidden" name="user_id" value="${userInfo.user_id}">
 		<input type="hidden" name="product_id" value="${VO.product_id}">
+		<input type="hidden" name="last_view_name" value="${lastViewName}" >
 
 		<div class="row">
 			<div class="col-lg-2 text-center join_02-main-left">메인 상품명</div>
@@ -167,7 +168,7 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-2 join_02-bottom-btn text-right">
 
-				<a href="${contextPath}/admin/product/extra_list.do"> <img
+				<a href="${contextPath}${lastViewName}.do"> <img
 					class="bottom_btn_size admin_product_list_btn"
 					src="${contextPath}/resources/img/common/product_list_btn.png"
 					alt="상품 목록 이동 버튼 이미지">
