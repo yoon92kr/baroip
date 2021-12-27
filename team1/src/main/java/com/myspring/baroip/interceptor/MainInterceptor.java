@@ -19,35 +19,38 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 
 			HttpSession session = request.getSession();
 
-			// 요청 view 이름 설정
+			// 요청 view 설정
 			String viewName = getViewName(request);
+			// 이전 요청 view 설정
 			String lastViewName = getLastViewName(request);
 			// 헤더 색상 변경
 			setHeader(request, viewName);
+			
 			// admin 접근시 관리자 rank 유효성 검사
+			if (viewName.contains("admin")) {
 
-//			if (viewName.contains("admin")) {
-//
-//				if (session.getAttribute("userInfo") != null) {
-//					UserVO userVO = (UserVO) session.getAttribute("userInfo");
-//
-//					if (Integer.parseInt(userVO.getUser_rank()) > 1) {
-//						request.setAttribute("viewName", viewName);
-//					}
-//
-//					else {
-//						request.setAttribute("viewName", "redirect:/main.do");
-//					}
-//				} else {
-//					request.setAttribute("viewName", "redirect:/main.do");
-//				}
-//			} else {
-//
-//				request.setAttribute("viewName", viewName);
-//
-//			}
-			request.setAttribute("viewName", viewName);	
+				if (session.getAttribute("userInfo") != null) {
+					UserVO userVO = (UserVO) session.getAttribute("userInfo");
+
+					if (Integer.parseInt(userVO.getUser_rank()) > 1) {
+						request.setAttribute("viewName", viewName);
+					}
+					else {
+						request.setAttribute("viewName", "redirect:/main.do");
+					}
+				} 
+				
+				else {
+					request.setAttribute("viewName", "redirect:/main.do");
+				}
+			}
+			
+			else {
+				request.setAttribute("viewName", viewName);
+			}
+
 			request.setAttribute("lastViewName", lastViewName);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -128,6 +131,7 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 			int begin = uri.indexOf(contextPath)+contextPath.length();
 			int end = 0;
 			if (uri.indexOf("?") != -1 && uri.indexOf(".do") != -1) {
+				
 				end = uri.indexOf("?")-3; 
 			}
 			else {
