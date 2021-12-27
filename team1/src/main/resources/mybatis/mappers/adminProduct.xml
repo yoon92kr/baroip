@@ -141,6 +141,12 @@
 				product_states = #{search_value} order by product_cre_date desc
 			</if>
 		</if>
+		
+		<if test='search_option == "productAmount"'>
+				<![CDATA[
+				product_amount <= #{search_value} order by product_amount asc
+						]]>
+		</if>
 
 	</select>
 

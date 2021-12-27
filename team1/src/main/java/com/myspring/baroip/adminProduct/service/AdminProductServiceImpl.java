@@ -124,7 +124,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 				productInfo.put("product_sub_category", product.getProduct_sub_category());
 				productInfo.put("product_states", product.getProduct_states());
 				productInfo.put("image_file", encodeImageFile);
-				
+				productInfo.put("product_count", product.getProduct_count());
 				
 
 				fullProductList.put("product" + (i+1), productInfo);
