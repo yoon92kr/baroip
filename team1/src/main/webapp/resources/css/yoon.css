@@ -429,3 +429,17 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	cursor: pointer;
 	font-family: "kopub_bold";
 }
+
+.product_states_select {
+	border: 1px solid #d9d9d9;
+	text-align: center;
+	width: 100px;
+	height: 25px;
+	margin-top: 5px;
+}
+
+.admin_product_states_detail {
+	padding-top: 18px;
+	border-bottom: 1px solid;
+	height: 90px;
+}
