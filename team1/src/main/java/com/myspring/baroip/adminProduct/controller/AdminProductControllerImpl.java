@@ -54,13 +54,13 @@ public class AdminProductControllerImpl implements AdminProductController {
 	public ModelAndView addProduct(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-
+		String lastViewName = (String)multipartRequest.getParameter("last_view_name");
 		String product_id = adminProductService.addProduct(productVO);
 		String message = "[" + product_id + "]의 임시등록이 완료되었습니다.";
 		HttpSession session = multipartRequest.getSession();
 		session.setAttribute("message", message);
 
-		mav.setViewName("redirect:/admin/product/extra_list.do");
+		mav.setViewName("redirect:"+lastViewName+".do");
 		System.out.println("baroip : " + message);
 		imageController.ImageSetImageVO(multipartRequest, product_id);
 
@@ -181,16 +181,29 @@ public class AdminProductControllerImpl implements AdminProductController {
 			MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-
+		String lastViewName = (String)multipartRequest.getParameter("last_view_name");
 		adminProductService.updateProduct(productVO);
 		String message = "관리자 " + productVO.getUser_id() + " 님이 [" + productVO.getProduct_main_title() + "]의 수정을 완료되었습니다.";
 
 		HttpSession session = multipartRequest.getSession();
 		session.setAttribute("message", message);
 		imageController.updateImage(multipartRequest, productVO.getProduct_id());
-		mav.setViewName("redirect:/admin/product/extra_list.do");
+		mav.setViewName("redirect:"+lastViewName+".do");
 		System.out.println("baroip : " + message);
 
+		return mav;
+	}
+	
+	// 상품 상태 수정 컨트롤러
+	@Override
+	@RequestMapping(value = "/update_state.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
+	public ModelAndView update_state(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		String lastViewName = (String)request.getAttribute("lastViewName");
+		adminProductService.updateState(info);
+		mav.setViewName("redirect:"+lastViewName+".do");
+		System.out.printf("baroip : [%s] 상품의 상태가 정삭적으로 변경되었습니다.%n", info.get("product_title"));
 		return mav;
 	}
 

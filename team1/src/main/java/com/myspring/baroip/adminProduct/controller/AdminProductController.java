@@ -40,4 +40,6 @@ public interface AdminProductController {
 	// 관리자 페이지 상품 수정
 	public ModelAndView update_product(@ModelAttribute("productVO") ProductVO productVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	
+	// 상품 상태 수정 컨트롤러
+	public ModelAndView update_state(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception;
 }

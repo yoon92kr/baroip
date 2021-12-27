@@ -36,6 +36,13 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		
 	}
 	
+	// 상품 상태 변경 DAO
+	@Override
+	public void updateState(Map<String, String> option) throws DataAccessException {
+		sqlSession.update("mapper.adminProduct.updateState", option);
+		
+	}
+	
 	// 상품 삭제 DAO
 	@Override
 	public void deleteProduct(String product_id) throws DataAccessException {

@@ -60,6 +60,19 @@
 		]]>
 
 	</update>
+
+	<!-- 상품 상태 수정 쿼리 -->
+	<update id="updateState" parameterType="java.util.Map">
+
+		<![CDATA[
+		update product
+		set product_states=#{product_states}
+		where	 
+		product_id=#{product_id}
+		]]>
+
+	</update>
+
 	<!-- 상품 삭제 쿼리 -->
 	<delete id="deleteProduct" parameterType="java.lang.String">
 
@@ -98,30 +111,29 @@
 	</update>
 
 	<select id="selectAllProduct" resultType="ProductVO" parameterType="java.util.Map">
-		
 
-		
+
 		<if test='view_name == "extra_list"'>
 			select * from product where product_states = 0 and 
 		</if>
-		
+
 		<if test='user_rank gt 2 and view_name == "general_list"'>
 			select * from product where 
 		</if>
-			
+
 		<if test='search_option == "productCreDate"'>
 			<if test='view_name == "extra_list"'>
 				product_cre_date between #{begin} and date_add(#{end}, interval 1 day) order by product_cre_date desc
 			</if>
 		</if>
-		
+
 		<if test='search_option == "productTitle"'>
 				product_main_title like concat('%', #{search_value}, '%') order by product_cre_date desc
 		</if>
-		
+
 		<if test='search_option == "productStates"'>
 			<if test='search_value == "all"'>
-					<![CDATA[
+				<![CDATA[
 				product_states <= 1 order by product_cre_date desc
 						]]>
 			</if>

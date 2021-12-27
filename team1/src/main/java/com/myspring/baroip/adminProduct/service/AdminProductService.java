@@ -14,6 +14,9 @@ public interface AdminProductService {
 	// 상품 수량 변경 서비스
 	public void updateAmount(Map<String, String> option) throws Exception;
 	
+	// 상품 상태 변경 서비스
+	public void updateState(Map<String, String> option) throws Exception;
+	
 	// 상품 삭제 서비스
 	public void deleteProduct(String product_id) throws Exception;
 	

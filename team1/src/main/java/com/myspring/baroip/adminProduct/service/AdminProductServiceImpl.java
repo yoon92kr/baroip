@@ -43,6 +43,14 @@ public class AdminProductServiceImpl implements AdminProductService {
 		
 	}
 	
+	// 상품 상태 변경 서비스
+	@Override
+	public void updateState(Map<String, String> option) throws Exception {
+		
+		adminProductDAO.updateState(option);
+		
+	}
+	
 	// 상품 삭제 서비스
 	@Override
 	public void deleteProduct(String product_id) throws Exception {

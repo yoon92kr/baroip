@@ -17,6 +17,9 @@ public interface AdminProductDAO {
 	// 상품 수량 변경 DAO
 	public void updateAmount(Map<String, String> option) throws DataAccessException;
 	
+	// 상품 상태 변경 DAO
+	public void updateState(Map<String, String> option) throws DataAccessException;
+	
 	// 상품 삭제 DAO
 	public void deleteProduct(String product_id) throws DataAccessException;
 	
