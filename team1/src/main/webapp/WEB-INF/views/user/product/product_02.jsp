@@ -148,11 +148,11 @@
 	}
 	
 	/* 장바구니 담기 버튼 클릭 이벤트 */
-	let form = $("#itemCountBox_form_detail");
+	let cartInProduct = $("#itemCountBox_form_detail");
 	
 	$("#product_02_cartIn").on("click", function(e) {
-		form.attr("action", "${contextPath}/cart/addProductInCart.do");
-		form.submit();
+		cartInProduct.attr("action", "${contextPath}/cart/addProductInCart.do");
+		cartInProduct.submit();
 	});
 
 </script>

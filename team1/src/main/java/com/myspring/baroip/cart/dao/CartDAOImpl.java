@@ -24,7 +24,7 @@ public class CartDAOImpl implements CartDAO{
 //	상품 상세 페이지 > 장바구니 담기 기능
 	@Override
 	public void insertProductInCart(CartVO cartVO) throws DataAccessException {
-		sqlSession.insert("mepper.cart.insertProductInCart", cartVO);
+		sqlSession.insert("mapper.cart.insertProductInCart", cartVO);
 	}
 
 }

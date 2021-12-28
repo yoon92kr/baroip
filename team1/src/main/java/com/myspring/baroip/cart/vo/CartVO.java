@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component("cartVO")
 public class CartVO {
+	
 	private int cart_id;
 	private String product_id;
 	private String user_id;

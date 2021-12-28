@@ -53,7 +53,6 @@
 						</div>
 						<div class="col-lg-3 text-center cart_body">
 							<a href="${contextPath}/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">${userCartListInfo[cart].product.productVO.product_main_title}</a>
-							${userCartListInfo[cart].cart.cartVO.cart_count}
 						</div>
 						<div class="col-lg-1 text-center itemCount_row">
 							<form name="itemCountBox" id="cart_itemCountBox_form">
@@ -66,7 +65,7 @@
 									onclick="increaseValue(this.id)">+</div>
 							</form>
 						</div>
-						<div class="col-lg-1 text-center cart_body">${userCartListInfo[cart].product.productVO.product_price}</div>
+						<div class="col-lg-1 text-center cart_body">${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}</div>
 					</div>
 				</div>
 			</c:forEach>
@@ -83,16 +82,20 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-1 offset-lg-2 text-center cart_total cart_total_1">
-			총 상품금액</div>
-		<div class="col-lg-1 text-center cart_total">[총 상품금액]</div>
-		<div class="col-lg-1 text-center cart_total">총 배송비</div>
-		<div class="col-lg-1 text-right cart_total">[배송비]</div>
-		<div class="col-lg-1 text-center cart_total">총 할인액</div>
-		<div class="col-lg-1 text-right cart_total">[상품 할인 금액]</div>
-		<div class="col-lg-2 text-right cart_total">
-			<span class="maybe_cost_text">예상 결제 금액</span> <span
-				class="maybe_cost">[최종결제금액]원</span>
+		<div class="col-lg-2 offset-lg-2 text-center cart_total cart_total_1">총 상품금액</div>
+		<div class="col-lg-2 text-center cart_total">총 배송비</div>
+		<div class="col-lg-2 text-center cart_total">총 할인액</div>
+		<div class="col-lg-2 text-center cart_total">
+			<span class="maybe_cost_text">예상 결제 금액</span>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-lg-2 offset-lg-2 text-center cart_total_price">[총 상품금액]</div>
+		<div class="col-lg-2 text-center cart_total_price">[배송비]</div>
+		<div class="col-lg-2 text-center cart_total_price">[상품 할인 금액]</div>
+		<div class="col-lg-2 text-center cart_total_price">
+			<span class="maybe_cost">[최종결제금액]원</span>
 		</div>
 	</div>
 

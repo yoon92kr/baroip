@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.baroip.cart.dao.CartDAO;
 import com.myspring.baroip.cart.vo.CartVO;
 import com.myspring.baroip.product.service.ProductService;
-import com.myspring.baroip.product.vo.ProductVO;
 
 @Service("cartService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -27,19 +26,21 @@ public class CartServiceImpl implements CartService{
 	public Map<String, Map<String, Map<String, Object>>> myCartList(CartVO cartVO) throws Exception{
 		
 		Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
-		Map<String, Map<String, Object>> productList = new HashMap<String, Map<String, Object>>();
 		List<CartVO> cartList = cartDAO.selectCartList(cartVO);
-		Map<String, Object> cartItem = new HashMap<String, Object>();
 //		System.out.println("(CartService)cartVO.getUser_id : " + cartVO.getUser_id());
 
 		for(int i=0; i<cartList.size(); i++) {
+			
+			Map<String, Map<String, Object>> productList = new HashMap<String, Map<String, Object>>();
+			Map<String, Object> cartItem = new HashMap<String, Object>();
+
 			String productId=cartList.get(i).getProduct_id();
+
 //			System.out.println("cartService : " + productId);
 			productList = productService.productDetail(productId);
 			cartItem.put("cartVO", cartList.get(i));
 			productList.put("cart", cartItem);
 			System.out.println("(CartService)cartVO.getCart_count : " + cartList.get(i).getCart_count());
-//			System.out.println("(CartService)cartNum : " + cartNum);
 			userCartListInfo.put("myCartList" + (i+1), productList);
 		}
 		
