@@ -452,3 +452,18 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	width: 140px;
 	height: 30px;
 }
+
+.adminUser_user_list_form {
+	border-bottom: 1px solid;
+	padding-top: 20px;
+}
+
+.adminUser_user_list_form_rank {
+	border-bottom: 1px solid;
+}
+
+.adminUser_user_list_form_edit {
+	border-bottom: 1px solid;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}

@@ -264,6 +264,13 @@ hr {
 	margin-top: 7px;
 }
 
+.item-dc {
+	text-decoration: none;
+	color: #ff0000;
+	font-size: 6px;
+	margin-left: 1px;
+}
+
 .main_item_bottom_text {
 	padding: 0px 0px 0px 5px;
 }
@@ -296,13 +303,6 @@ hr {
 	text-decoration: none;
 	color: #000000;
 	font-size: 8px;
-}
-
-.item-dc {
-	text-decoration: none;
-	color: #ff0000;
-	font-size: 6px;
-	margin-left: 1px;
 }
 
 .cart-put-icon {
