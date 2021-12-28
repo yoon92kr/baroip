@@ -417,10 +417,7 @@
 	// 페이지 이동 스크립트
 	function pageMove(no) {
 		var getValue = 0;
-		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
-		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
-		
-		test = beginDate.concat(",", endDate);
+		var lastPage = parseInt(${generalList.size()+4} / 5);
 		if(no == "이전" || no == "다음") {
 			var uriValue = window.location.search;
 			var array = uriValue.split("=");
@@ -432,10 +429,20 @@
 
 		
 		if(no == "이전") {
+			if(getValue == 1) {
+				alert("마지막 페이지 입니다.");
+			}
+			else {
 			document.location='${contextPath}/admin/product/general_list.do?pageNo='+(--getValue);
+			}
 		}
 		else if (no == "다음") {
-			document.location='${contextPath}/admin/product/general_list.do?pageNo='+(++getValue);	
+			if(getValue == lastPage) {
+				alert("마지막 페이지 입니다.");
+			}
+			else {
+			document.location='${contextPath}/admin/product/general_list.do?pageNo='+(++getValue);
+			}
 		}
 		else {
 			document.location='${contextPath}/admin/product/general_list.do?pageNo='+no;

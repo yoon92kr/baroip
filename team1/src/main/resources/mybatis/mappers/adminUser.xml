@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 2021.12.28 윤상현 -->
+<mapper namespace="mapper.adminUser">
+
+	<select id="userList" resultType="UserVO" parameterType="java.util.Map">
+	
+		select * from user where
+		
+		<if test='search_option == "joinDate"'>
+				user_join_date between #{begin} and date_add(#{end}, interval 1 day) order by user_join_date desc
+		</if>
+
+		<if test='search_option == "userId"'>
+				user_id = #{search_value} order by user_join_date desc
+		</if>
+		
+		<if test='search_option == "rank"'>
+		
+				<if test='search_value == 4 '>
+					user_rank between 0 and 4 order by user_join_date desc
+				</if>
+		
+				<if test='search_value == 2 '>
+					user_rank between 2 and 3 order by user_join_date desc
+				</if>
+				
+				<if test='search_value lte 1 '>
+					user_rank = #{search_value} order by user_join_date desc
+				</if>
+
+		</if>
+
+
+	</select>
+
+</mapper>

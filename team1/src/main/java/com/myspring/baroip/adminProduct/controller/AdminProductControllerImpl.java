@@ -111,16 +111,23 @@ public class AdminProductControllerImpl implements AdminProductController {
 			session.removeAttribute("search_value");
 		}
 		Map<String, Map<String, Object>> generalFullList = getFullList(info, request);
-
-		
-
 		
 		String pageNo = info.get("pageNo");
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
 		
 		if (pageNo != null && pageNo != "") {
-			mav.addObject("pageNo", pageNo);
+			int lastNo = (generalFullList.size()+4)/5;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				
+				mav.addObject("pageNo", 1);
+				mav.addObject("message", "잘못된 요청입니다.");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+			}
+			
 		} else {
 			mav.addObject("pageNo", 1);
 		}
@@ -213,8 +220,8 @@ public class AdminProductControllerImpl implements AdminProductController {
 		HttpSession session = request.getSession();
 		
 		// Map options에는 조회하고자 하는 조건유형 option, 조건에 해당하는 value 가 반드시 포함되어야한다.
-		// key "search_option" = value [productCreDate / productTitle / all]
-		// key "search_value" = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1(product_states) ]
+		// key "search_option" = value [productCreDate / productTitle / productStates / productAmount]
+		// key "search_value" = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1 or all) / int]
 		Map<String, String> options = new HashMap<String, String>();
 		
 		String paramOption = info.get("search_option");

@@ -464,10 +464,24 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .adminUser_user_list_form_rank {
 	border-bottom: 1px solid;
+	padding-top: 15px;
 }
 
 .adminUser_user_list_form_edit {
 	border-bottom: 1px solid;
 	padding-top: 6px;
 	padding-bottom: 6px;
+}
+
+.test {
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 140px;
+	height: 30px;
+	border: 1px solid #d9d9d9;
+	text-align: center;
+
+}
+#search_option_rank #search_option_date #search_option_text_box{
+	display:none;
 }

@@ -105,7 +105,6 @@ public class ProductServiceImpl implements ProductService {
 
 			} else {
 				item.put(categoryList.get(i), encodeImage);
-				productInfo.put("image", item);
 			}
 
 		}
