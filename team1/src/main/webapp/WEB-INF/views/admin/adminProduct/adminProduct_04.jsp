@@ -56,7 +56,7 @@
 				<option value="productCreDate">상품 등록일</option>
 				<option value="productTitle">상품 명</option>
 				<option value="productStateExtra">임시 등록 상품</option>
-				<option value="productStateGeneral">메인 게시 상품</option>
+				<option value="productStateGeneral">게시 상품</option>
 				<option value="productAmount">상품 재고</option>
 			</select>
 		</div>

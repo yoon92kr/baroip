@@ -17,8 +17,8 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 text-center">
 
-			<a href="${contextPath}/admin.do" class="no-underline">사이트 정보</a>
-			<a href="${contextPath}/adminUser_01.do" class="no-underline">회원 관리</a>
+			<a href="${contextPath}/admin/main.do" class="no-underline">사이트 정보</a>
+			<a href="${contextPath}/admin/user/user_list.do" class="no-underline">회원 관리</a>
 			<a href="${contextPath}/admin/product/extra_list.do"  class="no-underline">임시 상품 관리</a>
 			<a href="${contextPath}/adminOrder.do"  class="no-underline">주문 관리</a>
 			<a href="${contextPath}/adminCS_02.do"  class="no-underline">문의 관리</a>
