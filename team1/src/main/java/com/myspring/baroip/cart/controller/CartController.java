@@ -3,7 +3,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.cart.vo.CartVO;
@@ -17,7 +16,7 @@ public interface CartController {
 			HttpServletResponse response) throws Exception;
 	
 //	장바구니 담기
-	public ModelAndView addProductInCart(@RequestParam("cartVO") CartVO cartVO, 
+	public CartVO addProductInCart(@RequestParam("cartVO") CartVO cartVO, 
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
 }

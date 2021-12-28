@@ -45,10 +45,10 @@
 			<div class="product_02_form product_02_option_area">
 				<span class="product_02_option">수량</span>
 
-				<form class="buyForm" name="itemCountBox" id="itemCountBox_form_detail" action="${contextPath}/cart/addProductInCart.do" method="get">
-					<div class="value-button cart_decrease" id="cart_decrease"	onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
+				<form name="itemCountBox" id="itemCountBox_form_detail" action="${contextPath}/cart/addProductInCart.do" method="get">
+					<div class="value-button cart_decrease" id="cart_decrease"	onclick="decreaseValue(this.id)">-</div>
 					<input type="number" class="cart_item_count" id="cart_item_count" name="cart_count" value="1"	onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
-					<div class="value-button cart_increase" id="cart_increase"	onclick="increaseValue(this.id)" value="Increase Value">+</div>
+					<div class="value-button cart_increase" id="cart_increase"	onclick="increaseValue(this.id)">+</div>
 					<input type="hidden" name="product_id" value="${VO.product_id}">
 				</form>
 
@@ -148,7 +148,7 @@
 	}
 	
 	/* 장바구니 담기 버튼 클릭 이벤트 */
-	let form = $(".buyForm");
+	let form = $("#itemCountBox_form_detail");
 	
 	$("#product_02_cartIn").on("click", function(e) {
 		form.attr("action", "${contextPath}/cart/addProductInCart.do");

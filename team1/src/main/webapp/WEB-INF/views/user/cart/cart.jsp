@@ -38,7 +38,7 @@
 			</div>
 		</c:when>
 		<c:when test="${not empty userCartListInfo}">
-			<c:forEach var="i" begin="0" end="${userCartListInfo.size()}" varStatus="ListNum">
+			<c:forEach var="i" begin="1" end="${userCartListInfo.size()}">
 				<c:set var="cart" value="myCartList${i}" />
 				
 				<div class="cart_list_body">
@@ -53,16 +53,17 @@
 						</div>
 						<div class="col-lg-3 text-center cart_body">
 							<a href="${contextPath}/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">${userCartListInfo[cart].product.productVO.product_main_title}</a>
+							${userCartListInfo[cart].cart.cartVO.cart_count}
 						</div>
 						<div class="col-lg-1 text-center itemCount_row">
 							<form name="itemCountBox" id="cart_itemCountBox_form">
 								<div class="value-button cart_decrease" id="cart_decrease${i}"
-									onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
+									onclick="decreaseValue(this.id)">-</div>
 								<input type="number" class="cart_item_count"
 									id="cart_item_count${i}" name="cart_count" value="${userCartListInfo[cart].cart.cartVO.cart_count}"
 									onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 								<div class="value-button cart_increase" id="cart_increase${i}"
-									onclick="increaseValue(this.id)" value="Increase Value">+</div>
+									onclick="increaseValue(this.id)">+</div>
 							</form>
 						</div>
 						<div class="col-lg-1 text-center cart_body">${userCartListInfo[cart].product.productVO.product_price}</div>
