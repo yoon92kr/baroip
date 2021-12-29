@@ -29,4 +29,12 @@
 		]]>
 	</insert>
 	
+	<!-- 해당 회원의 장바구니에 상품이 있는지 확인 -->
+	<select id="findProductInCart" resultType="String" parameterType="CartVO">
+		<![CDATA[
+			select if(count(*)=0, 'false', 'true') from cart
+			where product_id = #{product_id} and user_id = #{user_id}
+		]]>
+	</select>
+	
 </mapper>

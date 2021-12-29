@@ -40,6 +40,7 @@
 		<c:when test="${not empty userCartListInfo}">
 			<c:forEach var="i" begin="1" end="${userCartListInfo.size()}">
 				<c:set var="cart" value="myCartList${i}" />
+
 				
 				<div class="cart_list_body">
 					<div class="row">
@@ -89,9 +90,10 @@
 			<span class="maybe_cost_text">예상 결제 금액</span>
 		</div>
 	</div>
+
 	
 	<div class="row">
-		<div class="col-lg-2 offset-lg-2 text-center cart_total_price">[총 상품금액]</div>
+		<div class="col-lg-2 offset-lg-2 text-center cart_total_price">[상품금액]</div>
 		<div class="col-lg-2 text-center cart_total_price">[배송비]</div>
 		<div class="col-lg-2 text-center cart_total_price">[상품 할인 금액]</div>
 		<div class="col-lg-2 text-center cart_total_price">

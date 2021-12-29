@@ -12,4 +12,7 @@ public interface CartService {
 //	장바구니 담기
 	public void addProductInCart(CartVO cartVO) throws Exception;
 	
+//	해당 회원의 장바구니에 상품이 있는지 확인
+	public boolean selectProductInCart(CartVO cartVO) throws Exception;
+	
 }

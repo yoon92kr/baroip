@@ -49,7 +49,7 @@
 					<div class="value-button cart_decrease" id="cart_decrease"	onclick="decreaseValue(this.id)">-</div>
 					<input type="number" class="cart_item_count" id="cart_item_count" name="cart_count" value="1"	onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 					<div class="value-button cart_increase" id="cart_increase"	onclick="increaseValue(this.id)">+</div>
-					<input type="hidden" name="product_id" value="${VO.product_id}">
+					<input id="cart_productId" type="hidden" name="product_id" value="${VO.product_id}">
 				</form>
 
 			</div>
@@ -147,12 +147,33 @@
 
 	}
 	
+	
+	
 	/* 장바구니 담기 버튼 클릭 이벤트 */
-	let cartInProduct = $("#itemCountBox_form_detail");
 	
 	$("#product_02_cartIn").on("click", function(e) {
-		cartInProduct.attr("action", "${contextPath}/cart/addProductInCart.do");
-		cartInProduct.submit();
+ 	let cartInProduct = $("#itemCountBox_form_detail");
+	let product_id = document.getElementById("cart_productId").value;
+	let cart_count = document.getElementById("cart_item_count").value;
+		 $.ajax({
+			url:'${contextPath}/cart/addProductInCart.do', 
+			type:'GET', 
+			data: {
+				"product_id": product_id, 
+				"cart_count": cart_count
+			}, 
+			success: function() {
+				let cartGo;
+				cartGo = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+				if(cartGo == true) {
+					location='${contextPath}/cart/cartList.do';
+				}
+			}
+		}).error(function() {
+			alert('장바구니에 추가 실패 잠시후 다시 시도해 주세요');
+		});
+		/* cartInProduct.attr("action", "${contextPath}/cart/addProductInCart.do");
+		cartInProduct.submit(); */
 	});
 
 </script>

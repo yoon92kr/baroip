@@ -40,7 +40,7 @@ public class CartServiceImpl implements CartService{
 			productList = productService.productDetail(productId);
 			cartItem.put("cartVO", cartList.get(i));
 			productList.put("cart", cartItem);
-			System.out.println("(CartService)cartVO.getCart_count : " + cartList.get(i).getCart_count());
+//			System.out.println("(CartService)cartVO.getCart_count : " + cartList.get(i).getCart_count());
 			userCartListInfo.put("myCartList" + (i+1), productList);
 		}
 		
@@ -51,6 +51,10 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void addProductInCart(CartVO cartVO) throws Exception {
 		cartDAO.insertProductInCart(cartVO);
+	}
+	
+	public boolean selectProductInCart(CartVO cartVO) throws Exception {
+		return cartDAO.selectProductInCart(cartVO);
 	}
 
 }

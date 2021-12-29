@@ -26,5 +26,12 @@ public class CartDAOImpl implements CartDAO{
 	public void insertProductInCart(CartVO cartVO) throws DataAccessException {
 		sqlSession.insert("mapper.cart.insertProductInCart", cartVO);
 	}
+	
+//	해당 회원의 장바구니에 상품이 있는지 확인
+	@Override
+	public boolean selectProductInCart(CartVO cartVO) throws DataAccessException {
+		String result = sqlSession.selectOne("mapper.cart.findProductInCart", cartVO);
+		return Boolean.parseBoolean(result);
+	}
 
 }
