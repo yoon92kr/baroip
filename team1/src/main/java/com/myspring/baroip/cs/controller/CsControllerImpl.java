@@ -41,7 +41,7 @@ public class CsControllerImpl implements CsController {
 	
 //	자주 묻는 질문
 	@Override
-	@RequestMapping(value= "/cs_01.do" , method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value= "/FAQ_list.do" , method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView cs_01(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		// HttpSession session;
@@ -58,7 +58,7 @@ public class CsControllerImpl implements CsController {
 	
 	// 1:1문의 리스트
 	@Override
-	@RequestMapping(value= "/cs_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value= "/inquiry_list.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView cs_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;		
 		String viewName = (String)request.getAttribute("viewName");

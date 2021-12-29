@@ -30,7 +30,7 @@ public class NoticeControllerImpl implements NoticeController {
 
 
 	// 공지사항 리스트페이지
-	@RequestMapping(value= "/notice_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value= "/notice_list.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView notice_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
@@ -52,7 +52,7 @@ public class NoticeControllerImpl implements NoticeController {
 		String viewName = (String)request.getAttribute("viewName");
 //		System.out.println(noticeVO.getNotice_id());
 		mav.addObject("NTList", noticeVO);
-		mav.setViewName("/notice/notice_02");
+		mav.setViewName("/notice/notice_detail");
 		return mav;
 	}
 

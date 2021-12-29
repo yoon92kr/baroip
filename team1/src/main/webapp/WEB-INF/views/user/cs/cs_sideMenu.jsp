@@ -14,8 +14,8 @@
 		<div class="row">
 			<div class="offset-lg-4 col-lg-4 text-center">
 
-			<a href="${contextPath}/cs/cs_01.do"  class="no-underline">자주 묻는 질문</a>
-			<a href="${contextPath}/cs/cs_02.do"  class="no-underline">1:1 문의</a>
+			<a href="${contextPath}/cs/FAQ_list.do"  class="no-underline">자주 묻는 질문</a>
+			<a href="${contextPath}/cs/inquiry_list.do"  class="no-underline">1:1 문의</a>
 			
 	
 			</div>

@@ -70,9 +70,7 @@ public class AdminUserControllerImpl implements AdminUserController{
 			
 			String sessionOption = (String) session.getAttribute("search_option");
 			String sessionValue = (String) session.getAttribute("search_value");
-			
-			String viewName = (String) request.getAttribute("viewName");
-	
+				
 			// param, session 모두 option이 바인딩 되어있는 경우
 			if (paramOption != null && sessionOption != null) {
 

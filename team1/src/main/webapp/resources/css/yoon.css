@@ -482,6 +482,4 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	text-align: center;
 
 }
-#search_option_rank #search_option_date #search_option_text_box{
-	display:none;
-}
+

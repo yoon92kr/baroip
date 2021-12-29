@@ -61,7 +61,7 @@
     
     <div class="offset-lg-5 col-lg-2 text-right">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/notice/notice_01.do"><img
+					<a href="${contextPath}/notice/notice_list.do"><img
 						src="${contextPath}/resources/img/common/notice_return.png" alt="공지사항 상세페이지 목록이동 버튼 이미지"></a>
 				</div>
 			</div>
