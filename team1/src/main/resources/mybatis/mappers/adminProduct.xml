@@ -34,7 +34,7 @@
 				#{product_main_category},
 				#{product_sub_category},
 				0
-				)
+				)	
 		]]>
 
 	</insert>
@@ -122,9 +122,7 @@
 		</if>
 
 		<if test='search_option == "productCreDate"'>
-			<if test='view_name == "extra_list"'>
 				product_cre_date between #{begin} and date_add(#{end}, interval 1 day) order by product_cre_date desc
-			</if>
 		</if>
 
 		<if test='search_option == "productTitle"'>

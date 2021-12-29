@@ -53,6 +53,7 @@
 	<div class="row">
 		<div class="col-lg-3 text-center adminUser_01-content-header">
 	조회 유형 <select class="adminUser_01-select-box-lookup" onchange="Productchange(this.value)" id="search_option_category">
+					<option value="all_product">전체 상품</option>
 				<option value="productCreDate">상품 등록일</option>
 				<option value="productTitle">상품 명</option>
 				<option value="productStateExtra">임시 등록 상품</option>
@@ -198,6 +199,11 @@
 		else if (selectValue == "productTitle") {
 			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
 			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'inline';
+			document.getElementById("adminProduct_01-productUpDate_count").style.display = 'none';
+		}
+		else if (selectValue == "all_product") {
+			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
 			document.getElementById("adminProduct_01-productUpDate_count").style.display = 'none';
 		}
 		else if (selectValue == "productAmount") {
@@ -411,6 +417,10 @@
 		else if (searchOption == "productAmount") {
 			location.href='${contextPath}/admin/product/general_list.do?search_option='+searchOption+'&search_value='+searchCount;
 		}
+		// 전체 상품 조회
+		else if (searchOption == "all_product") {
+			location.href='${contextPath}/admin/product/general_list.do';
+		}
 		
 	}
 	
@@ -519,7 +529,6 @@
 					},
 					success : function(message) {
 						alert(product_title+"의 상품 상태가 정상적으로 변경되었습니다.");
-				 		location.reload();
 					},
 					error : function() {
 						alert("해당 상품 수정에 문제가 발생하였습니다.");

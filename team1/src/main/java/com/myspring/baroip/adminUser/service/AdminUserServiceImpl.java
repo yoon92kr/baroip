@@ -23,6 +23,31 @@ public class AdminUserServiceImpl implements AdminUserService{
 	@Override
 	public List<UserVO> userList (Map<String, String> option) throws Exception {
 		
+		if(option.get("search_option").equals("joinDate") || option.get("search_option").equals("lastAccess")) {
+			String[] date = option.get("search_value").split(",");
+		
+			option.remove("search_value");
+			option.put("begin", date[0]);
+			option.put("end", date[1]);
+ 
+		}
+		else if (option.get("search_option").equals("rank")) {
+			
+			String target = option.get("search_value");
+			
+			if (target.equals("guest")) {
+				option.put("search_value", "0");
+			}
+			else if (target.equals("user")) {
+				option.put("search_value", "1");	
+			}			
+			else if (target.equals("admin")) {
+				option.put("search_value", "2");
+			}
+			
+			
+			}
+
 		List<UserVO> allUserList = adminUserDAO.userList(option);
 		
 		return allUserList;

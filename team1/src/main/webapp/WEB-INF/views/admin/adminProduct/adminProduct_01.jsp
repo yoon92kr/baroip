@@ -59,7 +59,9 @@
 		<div class="col-lg-3 text-center adminUser_01-content-header">
 			조회 유형 <select class="adminUser_01-select-box-lookup"
 				onchange="Productchange(this.value)" id="search_option_category">
+									<option value="all_product">전체 상품</option>
 				<option value="productCreDate">상품 등록일</option>
+
 				<option value="productTitle">상품 명</option>
 			</select>
 		</div>
@@ -209,6 +211,10 @@
 		} else if (selectValue == "productTitle") {
 			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
 			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'inline';
+		}
+		else if (selectValue == "all_product") {
+			document.getElementById("adminProduct_01-productUpDate").style.display = 'none';
+			document.getElementById("adminProduct_01-productUpDate_search").style.display = 'none';
 		}
 	}
 	/*---------- 수량 증감 input 박스 설정 ----------*/
@@ -388,6 +394,11 @@
 			else {
 				location.href='${contextPath}/admin/product/extra_list.do?search_option='+searchOption+'&search_value='+searchText;
 			}
+		}
+		
+		// 전체 상품 조회
+		else if (searchOption == "all_product") {
+			location.href='${contextPath}/admin/product/extra_list.do';
 		}
 	}
 	

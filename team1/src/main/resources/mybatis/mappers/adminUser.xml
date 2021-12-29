@@ -8,7 +8,7 @@
 	
 		select * from user where
 		
-		<if test='search_option == "joinDate"'>
+		<if test='search_option == "joinDate" or search_option == "lastAccess"'>
 				user_join_date between #{begin} and date_add(#{end}, interval 1 day) order by user_join_date desc
 		</if>
 
@@ -23,7 +23,7 @@
 				</if>
 		
 				<if test='search_value == 2 '>
-					user_rank between 2 and 3 order by user_join_date desc
+					user_rank between 2 and 4 order by user_join_date desc
 				</if>
 				
 				<if test='search_value lte 1 '>
