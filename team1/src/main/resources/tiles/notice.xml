@@ -4,11 +4,11 @@
 
 <tiles-definitions>
 
-	<definition name="/notice/notice_01" extends="MainLayout">
+	<definition name="/notice/notice_list" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_01.jsp" />
 	</definition>
 
-	<definition name="/notice/notice_02" extends="MainLayout">
+	<definition name="/notice/notice_detail" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_02.jsp" />
 	</definition>
 	

@@ -98,7 +98,7 @@
 			</div>
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs_02.do">
+					<a href="${contextPath}/cs/inquiry_list.do">
 						<img src="${contextPath}/resources/img/common/cs_return.png"
 						alt="1:1문의 이전페이지 버튼 이미지">
 					</a>

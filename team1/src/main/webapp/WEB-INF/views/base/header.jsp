@@ -40,8 +40,8 @@ window.addEventListener('load', function() {
 
 				<div class="col-lg-2 text-right offset-lg-2">
 					<div class="notice_navi">
-						<a href="${contextPath}/notice/notice_01.do" class="header-navi" id="set_notice">공지사항</a>
-						<a href="${contextPath}/cs/cs_01.do" class="header-navi navi-button" id="set_cs">고객센터</a>
+						<a href="${contextPath}/notice/notice_list.do" class="header-navi" id="set_notice">공지사항</a>
+						<a href="${contextPath}/cs/FAQ_list.do" class="header-navi navi-button" id="set_cs">고객센터</a>
 					</div>
 				</div>
 		
