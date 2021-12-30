@@ -53,8 +53,16 @@ public class CartServiceImpl implements CartService{
 		cartDAO.insertProductInCart(cartVO);
 	}
 	
+//	해당 회원의 장바구니에 상품이 있는지 확인
+	@Override
 	public boolean selectProductInCart(CartVO cartVO) throws Exception {
 		return cartDAO.selectProductInCart(cartVO);
+	}
+	
+//	상세페이지 동일 상품 추가
+	@Override
+	public void ProductOverLap(CartVO cartVO) throws Exception {
+		cartDAO.overLapCartList(cartVO);
 	}
 
 }

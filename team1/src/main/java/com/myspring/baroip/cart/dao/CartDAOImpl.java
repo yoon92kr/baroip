@@ -33,5 +33,11 @@ public class CartDAOImpl implements CartDAO{
 		String result = sqlSession.selectOne("mapper.cart.findProductInCart", cartVO);
 		return Boolean.parseBoolean(result);
 	}
+	
+//	상세페이지 동일 상품 추가
+	@Override
+	public void overLapCartList(CartVO cartVO) throws DataAccessException {
+		sqlSession.update("mapper.cart.overLapProductAdd", cartVO);
+	}
 
 }

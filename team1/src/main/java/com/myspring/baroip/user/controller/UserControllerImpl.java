@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.user.service.UserService;
@@ -52,20 +51,6 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-	
-//	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
-//	public ModelAndView login(@RequestParam Map<String, String> loginMap,
-//			HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		ModelAndView mav = new ModelAndView();
-//		UserVO user = userService.login(loginMap);
-//		System.out.println("login");
-//		System.out.println(user);
-//		
-//		HttpSession session = request.getSession();
-//		
-//		return mav;
-//	}
-	
 //	로그인
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
@@ -83,7 +68,7 @@ public class UserControllerImpl implements UserController{
 			// 회원정보 세션 set
 			session.setAttribute("userInfo",userVO);
 
-			mav.setViewName("redirect:/main.do");	
+			mav.setViewName("redirect:/main.do");
 			System.out.printf("baroip : 권한[%s]레벨의 [%s]님이 로그인 하셨습니다.%n", userVO.getUser_rank(), userVO.getUser_id());
 		}
 		else {
@@ -93,8 +78,6 @@ public class UserControllerImpl implements UserController{
 		}
 		return mav;
 	}
-	
-
 	
 //	로그아웃
 	@Override
@@ -113,6 +96,26 @@ public class UserControllerImpl implements UserController{
 	@Override
 	@RequestMapping(value="/addUser.do" ,method = RequestMethod.POST)
 	public ModelAndView addUser(@ModelAttribute("userVO") UserVO userVO,
+            HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String user_name = userService.addUser(userVO);
+		ModelAndView mav = new ModelAndView();
+		try {
+			mav.addObject("user_name", user_name);
+//			System.out.println(user_name);
+			mav.setViewName("/user/join_03");
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+//	회원가입
+//	@Override
+	@RequestMapping(value="/guestLogin.do" ,method = RequestMethod.POST)
+	public ModelAndView guestLogin(@ModelAttribute("userVO") UserVO userVO,
             HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
@@ -151,17 +154,6 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-	/*
-	 * // 아이디 찾기 결과
-	 * 
-	 * @RequestMapping(value= "/login_03.do"
-	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
-	 * login_03(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * mav.setViewName(viewName); return mav; }
-	 */
-	
 	// 비밀번호 찾기
 	@RequestMapping(value= "/login_04.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView login_04(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -171,17 +163,6 @@ public class UserControllerImpl implements UserController{
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
-	/*
-	 * // 비밀번호 찾기 완료
-	 * 
-	 * @RequestMapping(value= "/login_05.do"
-	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
-	 * login_05(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * mav.setViewName(viewName); return mav; }
-	 */
 	
 	// 약관동의
 	@RequestMapping(value= "/join_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -193,27 +174,5 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-	/*
-	 * // 회원가입 정보 입력
-	 * 
-	 * @RequestMapping(value= "/join_02.do"
-	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
-	 * join_02(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * mav.setViewName(viewName); return mav; }
-	 */
-	
-	/*
-	 * // 회원가입 완료
-	 * 
-	 * @RequestMapping(value= "/join_03.do"
-	 * ,method={RequestMethod.POST,RequestMethod.GET}) public ModelAndView
-	 * join_03(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception{ // HttpSession session; ModelAndView mav = new ModelAndView();
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * mav.setViewName(viewName); return mav; }
-	 */
-
 	
 }

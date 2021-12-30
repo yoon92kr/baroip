@@ -37,4 +37,12 @@
 		]]>
 	</select>
 	
+	<!-- 해당 상품 수량 추기(상품 상세 페이지) -->
+	<update id="overLapProductAdd" parameterType="CartVO">
+		<![CDATA[
+			update cart set cart_count = cart_count + #{cart_count}
+			where product_id = #{product_id} and user_id = #{user_id}
+		]]>
+	</update>
+	
 </mapper>

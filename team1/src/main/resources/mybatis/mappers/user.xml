@@ -55,13 +55,26 @@
 	</insert>
 
 	<!-- 아이디 유일성 체크 쿼리문 -->
-	<select id="selectIdOverlap" parameterType="userVO" resultType="String">
+	<select id="selectIdOverlap" parameterType="UserVO" resultType="String">
 		<![CDATA[
 			select if(count(*) > 0, 'true', 'false') from user
 			where user_id = #{id}
 		]]>
 	</select>
 	
-	<!--  -->
+	<!-- 비회원 주문시 -->
+	<insert id="guestUser" parameterType="UserVO">
+		<selectKey resultType="String" keyProperty="user_id" order="BEFORE">
+			<![CDATA[
+				select concat('guest_', nextval('guest'))
+			]]>
+		</selectKey>
+		<![CDATA[
+		insert into user(user_id,
+						user_name, user_last_date)
+					values(#{user_id}, 
+						'비회원', now())
+		]]>
+	</insert>
 	
 </mapper>

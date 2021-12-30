@@ -16,4 +16,7 @@ public interface CartDAO {
 	
 //	해당 회원의 장바구니에 상품이 있는지 확인
 	public boolean selectProductInCart(CartVO cartVO) throws DataAccessException;
+	
+//	상세페이지 동일 상품 추가
+	public void overLapCartList(CartVO cartVO) throws DataAccessException;
 }

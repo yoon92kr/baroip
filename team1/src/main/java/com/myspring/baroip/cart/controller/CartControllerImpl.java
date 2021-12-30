@@ -53,12 +53,12 @@ public class CartControllerImpl implements CartController{
 	@Override
 	@ResponseBody
 	@RequestMapping(value= "/addProductInCart.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView addProductInCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
+	public String addProductInCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+//		ModelAndView mav = new ModelAndView();
 //		String viewName = (String)request.getAttribute("viewName");
-		String lastViewName = (String)request.getAttribute("lastViewName");
+//		String lastViewName = (String)request.getAttribute("lastViewName");
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
 		String user_id = userVO.getUser_id();
@@ -66,18 +66,36 @@ public class CartControllerImpl implements CartController{
 		cartVO.setProduct_id(product_id);
 		cartVO.setCart_count(cart_count);
 		boolean productInCart = cartService.selectProductInCart(cartVO);
+//		System.out.println(productInCart);
+//		장바구니에 해당 상품이 있는지 확인
 		if(productInCart == true) {
-			mav.addObject("cartIn", "cartIn");
+			return "overLapProduct";
 		}
 		else {
-			mav.addObject("cartIn", "cartOut");
+			cartService.addProductInCart(cartVO);
+			return "addProduct";
 		}
-		String lastView = "redirect:"+lastViewName+".do?product_id=" + product_id;
-		cartService.addProductInCart(cartVO);
+//		String lastView = "redirect:"+lastViewName+".do?product_id=" + product_id;
 //		mav.setViewName("redirect:"+lastViewName+".do?product_id=" + product_id);
-		mav.addObject("cartVO", cartVO);
-		mav.setViewName(lastView);
-		return mav;
+//		mav.setViewName(lastView);
+//		return mav;
+	}
+	
+//	상세페이지 동일 상품 추가
+	@Override
+	@ResponseBody
+	@RequestMapping(value= "/cartInProductOverLap.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public String cartInProductOverLap(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
+			HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		HttpSession session=request.getSession();
+		userVO = (UserVO)session.getAttribute("userInfo");
+		String user_id = userVO.getUser_id();
+		cartVO.setUser_id(user_id);
+		cartVO.setProduct_id(product_id);
+		cartVO.setCart_count(cart_count);
+		cartService.ProductOverLap(cartVO);
+		return "cart_count : " + cartVO.getCart_count();
 	}
 	
 }

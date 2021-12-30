@@ -14,7 +14,12 @@ public interface CartController {
 			HttpServletResponse response) throws Exception;
 	
 //	장바구니 담기
-	public ModelAndView addProductInCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
+	public String addProductInCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
+			HttpServletRequest request, 
+			HttpServletResponse response) throws Exception;
+	
+//	상세페이지 동일 상품 추가
+	public String cartInProductOverLap(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
 }

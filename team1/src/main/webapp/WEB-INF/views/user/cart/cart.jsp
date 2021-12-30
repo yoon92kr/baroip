@@ -56,7 +56,7 @@
 							<a href="${contextPath}/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">${userCartListInfo[cart].product.productVO.product_main_title}</a>
 						</div>
 						<div class="col-lg-1 text-center itemCount_row">
-							<form name="itemCountBox" id="cart_itemCountBox_form">
+							<div id="cart_itemCountBox_form">
 								<div class="value-button cart_decrease" id="cart_decrease${i}"
 									onclick="decreaseValue(this.id)">-</div>
 								<input type="number" class="cart_item_count"
@@ -64,7 +64,7 @@
 									onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
 								<div class="value-button cart_increase" id="cart_increase${i}"
 									onclick="increaseValue(this.id)">+</div>
-							</form>
+							</div>
 						</div>
 						<div class="col-lg-1 text-center cart_body">${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}</div>
 					</div>
@@ -140,7 +140,7 @@
 
 	/*---------- 수량 증감 input 박스 설정 ----------*/
 
-	/* 수량 증감 */
+	/* 수량 증가 */
 	function increaseValue(tagId) {
 		let targetValue = '';
 		for (i = 0; i < 10; i++) {
@@ -156,7 +156,8 @@
 		countValue++;
 		document.getElementById(targetValue).value = countValue;
 	};
-
+	
+	/* 수량 감소 */
 	function decreaseValue(tagId) {
 		let targetValue = '';
 		for (i = 0; i < 10; i++) {
@@ -176,8 +177,8 @@
 		countValue--;
 		document.getElementById(targetValue).value = countValue;
 	};
+	
 	/* 수량입력 후 엔터 입력시 이벤트 */
-
 	function searchEvt(targetValue, targetId) {
 
 		if (targetValue == "" || targetValue < 1) {
@@ -200,6 +201,7 @@
 		}
 
 	}
+	
 	function eventGo() {
 		if (this.value == "" || this.value < 1) {
 			alert('수량은 1보다 작을 수 없습니다.');
