@@ -24,17 +24,17 @@
 
 	</definition>
 
-	<definition name="/cs/cs_02_01" extends="CsLayout">
+	<definition name="/cs/NewQuestForm" extends="CsLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_01.jsp" />
 
 	</definition>
 
-	<definition name="/cs/cs_02_02" extends="CsLayout">
+	<definition name="/cs/quest_datail" extends="CsLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_02.jsp" />
 
 	</definition>
 	
-	<definition name="/cs/cs_02_03" extends="CsLayout">
+	<definition name="/cs/questUpdate" extends="CsLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_03.jsp" />
 
 	</definition>
