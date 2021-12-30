@@ -297,8 +297,7 @@
 	/* 상품 수량 수정 ajax */
 	function update_amount(target) {
 		let target_id = document.getElementById('product_'.concat(target)).value;
-		let change_count_value = document.getElementById('product_item_count'
-				.concat(target)).value;
+		let change_count_value = document.getElementById('product_item_count'.concat(target)).value;
 		let target_title = document.getElementById('admin_product_title'.concat(target)).innerText;
 
 		$.ajax({
@@ -358,7 +357,7 @@
 	function update_product_form(target) {
 		let user_id = document.getElementById('user_id_'.concat(target)).value;
 		let target_id = document.getElementById('product_'.concat(target)).value;
-		window.sStorage = window.sessionStorage;
+	
 		
 		if(${userInfo.user_rank > 2} || "${userInfo.user_id}" == user_id) {
 

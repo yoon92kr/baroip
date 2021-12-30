@@ -20,6 +20,7 @@ public class AdminUserServiceImpl implements AdminUserService{
 	@Autowired
 	private AdminUserDAO adminUserDAO;
 	
+	// 회원 전체 리스트 조회	
 	@Override
 	public List<UserVO> userList (Map<String, String> option) throws Exception {
 		
@@ -51,6 +52,33 @@ public class AdminUserServiceImpl implements AdminUserService{
 		List<UserVO> allUserList = adminUserDAO.userList(option);
 		
 		return allUserList;
+		
+	}
+	
+	// 회원 권한 변경 서비스
+	@Override
+	public String updateRank(Map<String, String> option) throws Exception {
+		
+		String message = adminUserDAO.updateRank(option);
+		
+		return message;
+	}
+	
+	// 회원 삭제 서비스
+	@Override
+	public String deleteUser(Map<String, String> info) throws Exception {
+		
+		String message = adminUserDAO.deleteUser(info);
+		
+		return message;
+		
+	}
+	
+	// 회원 수정 서비스
+	@Override
+	public void updateUser(UserVO userVO) throws Exception {
+		
+		adminUserDAO.updateUser(userVO);
 		
 	}
 }

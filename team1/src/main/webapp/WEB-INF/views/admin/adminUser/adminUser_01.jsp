@@ -128,21 +128,20 @@
 	</c:if>
 
 	<c:if test="${not empty userList}">
-		<c:forEach var="i"  begin="1" end="${userList.size()}">
+		<c:forEach var="i" begin="1" end="${userList.size()}">
 			<c:set var="j" value="${(pageNo*7 - 7) + i -1}" />
 			<c:if test="${not empty userList[j] && i <8}">
-
+				<input type="hidden" name="" value="${j+1}">
 				<div class="row">
 					<div class="col-lg-2 text-center adminUser_user_list_form">
-						<div>${userList[j].user_id}</div>
+						<div id="user_id_${j+1}">${userList[j].user_id}</div>
 
 					</div>
 
 					<c:if test="${userInfo.user_rank == 4 }">
 
 						<div class="col-lg-2 text-center adminUser_user_list_form_rank">
-							<select class="product_states_select"
-								id="product_state_${j+1}">
+							<select class="product_states_select" id="user_rank_${j+1}">
 
 								<option value="0"
 									<c:if test='${userList[j].user_rank == "0"}'>selected</c:if>>비회원</option>
@@ -158,7 +157,7 @@
 									<c:if test='${userList[j].user_rank == "4"}'>selected</c:if>>총
 									책임자</option>
 							</select> <input class="admin_01-itemCountBox-btn" id="${j+1}"
-								type="button" value="변경" onclick="update_states(this.id)">
+								type="button" value="변경" onclick="update_rank(this.id)">
 						</div>
 					</c:if>
 					<c:if test="${userInfo.user_rank < 4 }">
@@ -184,15 +183,14 @@
 						<input
 							class="adminProduct_01-product adminProduct_01-product-top "
 							type="button" value="회원 수정" id="${j+1}"
-							onclick="update_product_form(this.id)"> <input
-							class="adminProduct_01-product" id="${j+1}"
-							type="button" value="회원 삭제" onclick="delete_product(this.id)">
-
+							onclick="update_user_form(this.id)"> <input
+							class="adminProduct_01-product" id="${j+1}" type="button"
+							value="회원 삭제" onclick="delete_user(this.id)">
+							<input type="hidden" id="rank_${j+1}" value="${userList[j].user_rank}">
 					</div>
 				</div>
 			</c:if>
-			<c:if
-				test="${j > 6 && j+1 == userList.size()}">
+			<c:if test="${j > 6 && j+1 == userList.size()}">
 
 				<div class="row">
 
@@ -250,79 +248,116 @@ function selectLookup(selectValue) {
 /* 회원 삭제 ajax */
 function delete_user(target) {
 	
-	let product_title = document.getElementById('admin_product_title'.concat(target)).innerText;
-	let product_id = document.getElementById('product_'.concat(target)).value;
-	var confirmFlag = confirm(product_title+"을(를) 정말 삭제하시겠습니까?");
-	if(confirmFlag){
+	let user_id = document.getElementById('user_id_'.concat(target)).innerText;
+	let user_rank = document.getElementById('rank_'.concat(target)).value;
+
+	if(${userInfo.user_rank} >= user_rank) {
+		var confirmFlag = false;
 		
-		$.ajax({
-			type : "post",
-			async : false,
-			url : "${contextPath}/admin/product/delete_product.do",
-			dataType : "text",
-			data : {
-				"product_id" : product_id			
-			},
-			success : function(message) {
-				alert(product_title+" 상품이 정상적으로 삭제되었습니다.");
-		 		location.reload();
-			},
-			error : function() {
-				alert("해당 상품 삭제에 문제가 발생하였습니다.");
-			}
-
-		});
-	}
+		if("${userInfo.user_id}" == user_id) {
+			confirmFlag = confirm("본인의 계정을 선택하셨습니다. 정말 탈퇴하시겠습니까?");
+		} 
+		else if (user_rank == 4 && "${userInfo.user_id}" != user_id) {
+			alert("다른 총 책임자의 아이디를 삭제할 수 없습니다.");
+		}
+		else {
+			confirmFlag = confirm(user_id+"를 정말 삭제하시겠습니까?");
+		}
 		
+		if(confirmFlag){
+			
+			$.ajax({
+				type : "post",
+				async : false,
+				url : "${contextPath}/admin/user/delete_user.do",
+				dataType : "text",
+				data : {
+					"user_id" : user_id,
+					"user_rank"	: user_rank
+				},
+				success : function(message) {
+					alert(message);
+			 		location.reload();
+				},
+				error : function() {
+					alert("해당 회원 삭제에 문제가 발생하였습니다.");
+				}
 
-
-}
-
-/* 상품 수정 ajax */
-function update_user_form(target) {
-	let user_id = document.getElementById('user_id_'.concat(target)).value;
-	let target_id = document.getElementById('product_'.concat(target)).value;
-	window.sStorage = window.sessionStorage;
-	
-	if(${userInfo.user_rank > 2} || "${userInfo.user_id}" == user_id) {
-
-		location.href='${contextPath}/admin/product/update_product_form.do?product_id='+target_id;
+			});
+		}
 		
 	}
 	
 	else {
-		alert("해당 상품을 수정할 권한이 없습니다.");
+		alert("해당 회원의 정보를 삭제할 권한이 없습니다.");
+	}
+
+		
+
+
+}
+
+/* 회원 수정 */
+function update_user_form(target) {
+	let user_id = document.getElementById('user_id_'.concat(target)).value;
+	let user_rank = document.getElementById('rank_'.concat(target)).value;
+	
+	if(${userInfo.user_rank} >= user_rank) {
+		
+		if(user_rank == "4" && "${userInfo.user_id}" != user_id) {
+			alert("다른 총 책임자의 정보를 수정할 수 없습니다.");
+			location.reload();
+		}
+		else {
+			location.href='${contextPath}/admin/user/update_user_form.do?user_id='+user_id;
+		}
+		
+	}
+	
+	else {
+		alert("해당 회원의 정보를 수정할 권한이 없습니다.");
 	}
 }
 /* 회원 권한 수정 ajax */
-function update_states(target) {
+function update_rank(target) {
 
-	if(${userInfo.user_rank == "4"}) {
-		let target_id = document.getElementById('product_'.concat(target)).value;
-		let new_state = document.getElementById('product_state_'.concat(target)).value;
-		let old_state = document.getElementById('states_'.concat(target)).value;
-		let product_title = document.getElementById('admin_product_title'.concat(target)).innerText;
+	if(${userInfo.user_rank == "4" }) {
+		let target_id = document.getElementById('user_id_'.concat(target)).innerText;
+		let new_rank = document.getElementById('user_rank_'.concat(target)).value;
+		let old_rank = document.getElementById('rank_'.concat(target)).value;
 		
-		if(new_state == old_state) {
-			alert("기존의 상품 상태와 변경하고자 하는 상품 상태가 동일합니다.");
+		if(new_rank == old_rank) {
+			alert("기존의 권한과 변경하고자 하는 권한이 동일합니다.");
 		}
 		
 		else {
-			var confirmFlag = confirm(product_title+"의 상품 상태를 수정하시겠습니까?");
+			var confirmFlag = false;
 			
+			if(new_rank == "4") {
+				confirmFlag = confirm("총 책임자의 권한을 부여하면 다시 되돌릴 수 없습니다.\n진행하시겠습니까?");
+			}
+			else if(old_rank == "4" && target_id != "${userInfo.user_id}") {
+				alert("다른 총 책임자의 권한을 수정할 수 없습니다.");
+				location.reload();
+			}
+			else {
+				confirmFlag = confirm(target_id+"의 권한을 수정하시겠습니까?");
+			}
+
 			if(confirmFlag){
 				
 				$.ajax({
+					type : "post",
 					async : false,
-					url : "${contextPath}/admin/product/update_state.do",
+					url : "${contextPath}/admin/user/update_rank.do",
 					dataType : "text",
 					data : {
-						"product_id" : target_id,
-						"product_states" : new_state,
-						"product_title" : product_title
+						"user_id" : target_id,
+						"user_rank" : new_rank
 					},
 					success : function(message) {
 						alert(message);
+						location.reload();
 					},
 					error : function() {
 						alert("권한 수정에 문제가 발생하였습니다.");

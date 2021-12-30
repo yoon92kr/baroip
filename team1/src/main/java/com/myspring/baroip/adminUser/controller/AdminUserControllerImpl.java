@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminUser.service.AdminUserService;
@@ -53,6 +54,31 @@ public class AdminUserControllerImpl implements AdminUserController{
 			mav.setViewName(viewName);
 
 			return mav;
+		}
+		
+		// 회원 권한 수정 컨트롤러
+		@Override
+		@ResponseBody
+		@RequestMapping(value = "/update_rank.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+		public String updateRank(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+			
+			String message = adminUserService.updateRank(info);
+			
+			return message;
+
+		}
+		
+		// 회원 삭제 컨트롤러
+		@Override
+		@ResponseBody
+		@RequestMapping(value = "/delete_user.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+		public String delete_user(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+			
+			String message = adminUserService.deleteUser(info);
+			
+			return message;
+			
+
 		}
 		
 		// 회원 조회 필터 사용시, 세션에 있는 회원정보를 확인 후 서비스로 처리하는 메소드

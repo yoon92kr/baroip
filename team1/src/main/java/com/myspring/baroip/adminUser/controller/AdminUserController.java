@@ -14,5 +14,10 @@ public interface AdminUserController {
 	
 	// 전체 회원 목록 리스트
 	public ModelAndView userList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	
+	// 회원 권한 수정 컨트롤러
+	public String updateRank(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception;
+	
+	// 회원 삭제 컨트롤러
+	public String delete_user(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception;
 }

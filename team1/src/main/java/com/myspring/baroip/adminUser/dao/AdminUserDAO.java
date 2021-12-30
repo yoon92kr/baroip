@@ -11,7 +11,17 @@ import com.myspring.baroip.user.vo.UserVO;
 
 public interface AdminUserDAO {
 	
-	// 전체 회원 리스트 DAO
+	// option에 따른 회원 목록 조회 DAO
 	public List<UserVO> userList (Map<String, String> option) throws DataAccessException;
+	
+	// 회원 권한 수정 DAO
+	public String updateRank (Map<String, String> option) throws DataAccessException;
+	
+	// 회원 삭제 DAO
+	public String deleteUser(Map<String, String> info) throws DataAccessException;
+	
+	// 회원 수정 DAO
+	public void updateUser(UserVO userVO) throws DataAccessException;
+	
 
 }

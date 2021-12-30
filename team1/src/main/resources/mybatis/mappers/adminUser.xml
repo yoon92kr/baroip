@@ -5,9 +5,7 @@
 <mapper namespace="mapper.adminUser">
 
 	<select id="userList" resultType="UserVO" parameterType="java.util.Map">
-	
 		select * from user where
-		
 		<if test='search_option == "joinDate" or search_option == "lastAccess"'>
 				user_join_date between #{begin} and date_add(#{end}, interval 1 day) order by user_join_date desc
 		</if>
@@ -15,18 +13,18 @@
 		<if test='search_option == "userId"'>
 				user_id = #{search_value} order by user_join_date desc
 		</if>
-		
+
 		<if test='search_option == "rank"'>
-		
-				<if test='search_value == 4 '>
+
+			<if test='search_value == 4 '>
 					user_rank between 0 and 4 order by user_join_date desc
 				</if>
-		
-				<if test='search_value == 2 '>
+
+			<if test='search_value == 2 '>
 					user_rank between 2 and 4 order by user_join_date desc
 				</if>
-				
-				<if test='search_value lte 1 '>
+
+			<if test='search_value lte 1 '>
 					user_rank = #{search_value} order by user_join_date desc
 				</if>
 
@@ -34,5 +32,57 @@
 
 
 	</select>
+
+	<!-- 회원 권한 쿼리 -->
+	<update id="updateRank" parameterType="java.util.Map">
+
+		<![CDATA[
+		update user
+			set user_rank = #{user_rank}
+		where	 
+			user_id = #{user_id}
+		]]>
+
+	</update>
+
+	<!-- 회원 4 rank 권한 설정 전 flag 쿼리 -->
+	<select id="searchRank4" resultType="java.lang.Boolean" parameterType="java.util.Map">
+
+		select if (
+		(select count(*) from user where user_rank = '4')=1, 
+			if(
+				(select user_rank from user where user_id = #{user_id}) = '4', 0, 1)
+		, 1) as result;
+
+
+	</select>
+
+	<!-- 회원 수정 쿼리 -->
+	<update id="updateUser" parameterType="java.util.Map">
+
+		<![CDATA[
+		update user
+			product_main_title = #{product_main_title}, 
+			product_sub_title = #{product_sub_title},
+			product_body = #{product_body},
+			product_price = #{product_price},
+			product_discount = #{product_discount},
+			product_amount = #{product_amount},
+			product_main_category = #{product_main_category},
+			product_sub_category = #{product_sub_category}
+		where user_id = #{user_id}
+		]]>
+
+	</update>
+
+	<!-- 상품 삭제 쿼리 -->
+	<delete id="deleteUser" parameterType="java.lang.String">
+
+		<![CDATA[
+	  delete from user
+		  where user_id = #{user_id}
+		]]>
+
+	</delete>
 
 </mapper>
