@@ -121,7 +121,7 @@ public class CsControllerImpl implements CsController {
 		System.out.println(csVO.getNotice_id());
 //		session.setAttribute("questInfo", csVO);
 		mav.addObject("questInfo", csVO);
-		mav.setViewName("/cs/cs_02_02");
+		mav.setViewName("/cs/quest_datail");
 		return mav;
 	}
 	
@@ -146,6 +146,7 @@ public class CsControllerImpl implements CsController {
 	public ModelAndView questUpdatePOST(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
+		String lastViewName = (String)request.getAttribute("lastViewName");
 		HttpSession session=request.getSession();
 		UserVO user = (UserVO) session.getAttribute("userInfo");
 		String user_id = user.getUser_id();
@@ -166,7 +167,7 @@ public class CsControllerImpl implements CsController {
 		csVO.setUser_id(user_id);
 		csService.updateQuest(csVO);
 		mav.addObject(csVO);
-		mav.setViewName("/cs/cs_02_02");
+		mav.setViewName(lastViewName);
 		
 		return mav;
 	}

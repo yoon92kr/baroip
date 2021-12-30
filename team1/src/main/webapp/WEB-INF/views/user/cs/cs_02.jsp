@@ -21,7 +21,7 @@
 			<h3>1:1 문의</h3>
 		</div>
 		<div class="col-lg-4 text-right cs_02_writebtn">
-			<a href="${contextPath}/cs/cs_02_01.do">
+			<a href="${contextPath}/cs/NewQuestForm.do">
 				<img src="${contextPath}/resources/img/common/cs_write.png"
 					alt="1:1문의 글쓰기 버튼 이미지">
 			</a>

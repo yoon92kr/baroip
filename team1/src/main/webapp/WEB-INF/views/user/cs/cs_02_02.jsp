@@ -105,7 +105,7 @@
 	// 목록 이동 버튼
 	$("#cs_02_02_list_btn").on("click", function(e) {
 		form.find("#cs_02_02_NI").remove();
-		form.attr("action", "${contextPath}/cs/cs_02.do");
+		form.attr("action", "${contextPath}/cs/inquiry_list.do");
 		form.submit();
 	});
 </script>
