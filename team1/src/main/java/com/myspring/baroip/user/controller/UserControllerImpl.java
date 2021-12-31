@@ -39,18 +39,6 @@ public class UserControllerImpl implements UserController{
 			return mav;
 		}
 	
-	
-// 로그인 페이지
-	@RequestMapping(value= "/login_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView login_01(HttpServletRequest request, 
-			HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
-	
 //	로그인
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
@@ -112,25 +100,20 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
-//	회원가입
-//	@Override
-	@RequestMapping(value="/guestLogin.do" ,method = RequestMethod.POST)
-	public ModelAndView guestLogin(@ModelAttribute("userVO") UserVO userVO,
-            HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html; charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
-		String user_name = userService.addUser(userVO);
-		ModelAndView mav = new ModelAndView();
-		try {
-			mav.addObject("user_name", user_name);
-//			System.out.println(user_name);
-			mav.setViewName("/user/join_03");
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return mav;
-	}
+////	비회원 주문시 아이디 생성
+////	@Override
+//	@RequestMapping(value="/guestLogin.do" ,method = RequestMethod.POST)
+//	public String guestLogin (HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		response.setContentType("text/html; charset=UTF-8");
+//		request.setCharacterEncoding("utf-8");
+////		ModelAndView mav = new ModelAndView();
+//		HttpSession session=request.getSession();
+////		String lastViewName = (String)request.getAttribute("lastViewName");
+//		userService.createGuestId();
+//		session.setAttribute("loginOn", true);
+//		session.setAttribute("userInfo",userVO);
+//		return "guest";
+//	}
 	
 //	아이디 중복 검사
 	@Override

@@ -159,7 +159,17 @@
 		
 		notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
 		if(notUser == true) {
-			location='${contextPath}/user/guestLogin.do';
+			$.ajax({
+				url:'${contextPath}/cart/guestCart.do', 
+				type:'GET', 
+				dataType:'text', 
+				data: {
+					"product_id": product_id, 
+					"cart_count": cart_count
+				},  success: function(add) {
+					alert(add);
+				}
+			});
 		} else {
 			location='${contextPath}/user/login_01.do';
 		}

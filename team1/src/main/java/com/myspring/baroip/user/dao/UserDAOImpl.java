@@ -32,5 +32,11 @@ public class UserDAOImpl implements UserDAO {
 		String result = sqlSession.selectOne("mapper.user.selectIdOverlap",id);
 		return result;
 	}
+	
+////	비회원 주문시 아이디 생성
+//	@Override
+//	public void insertGuestId() throws DataAccessException {
+//		sqlSession.insert("mapper.user.guestUser");
+//	}
 
 }

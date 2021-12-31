@@ -30,6 +30,9 @@ public interface UserController {
 	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+////	비회원 주문시 아이디 생성
+//	public String guestLogin(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }
 
 	

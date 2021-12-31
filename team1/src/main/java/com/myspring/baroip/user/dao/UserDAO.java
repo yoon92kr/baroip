@@ -12,4 +12,7 @@ public interface UserDAO {
 	public String insertNewUser(UserVO userVO) throws DataAccessException;
 	
 	public String selectIdOverlap(String id) throws DataAccessException;
+	
+////	비회원 주문시 아이디 생성
+//	public void insertGuestId() throws DataAccessException;
 }

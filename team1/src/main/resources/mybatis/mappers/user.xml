@@ -34,7 +34,7 @@
 	</select>
 	
 	
-	
+	<!-- 회원가입 -->
 	<insert id="insertNewUser" parameterType="UserVO">
 		<![CDATA[
 			insert into user (user_id, user_pw, user_name, 
@@ -62,19 +62,13 @@
 		]]>
 	</select>
 	
-	<!-- 비회원 주문시 -->
-	<insert id="guestUser" parameterType="UserVO">
-		<selectKey resultType="String" keyProperty="user_id" order="BEFORE">
-			<![CDATA[
-				select concat('guest_', nextval('guest'))
-			]]>
-		</selectKey>
+	<!-- 비회원 주문시 아이디 생성 -->
+<!-- 	<insert id="guestUser" parameterType="UserVO">
 		<![CDATA[
 		insert into user(user_id,
 						user_name, user_last_date)
-					values(#{user_id}, 
+					values(concat('guest_', nextval('guest')), 
 						'비회원', now())
 		]]>
-	</insert>
-	
+	</insert>-->
 </mapper>

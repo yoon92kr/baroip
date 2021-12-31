@@ -32,5 +32,11 @@ public class UserServiceImpl implements UserService {
 	public String userIdOverlap(String id) throws Exception{
 		return userDAO.selectIdOverlap(id);
 	}
+	
+//	@Override
+////	비회원 주문시 아이디 생성
+//	public void createGuestId() throws Exception {
+//		userDAO.insertGuestId();
+//	}
 
 }

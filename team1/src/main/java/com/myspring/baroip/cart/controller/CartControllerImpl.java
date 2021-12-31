@@ -1,5 +1,8 @@
 package com.myspring.baroip.cart.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,17 +59,14 @@ public class CartControllerImpl implements CartController{
 	public String addProductInCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		String lastViewName = (String)request.getAttribute("lastViewName");
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
 		String user_id = userVO.getUser_id();
+		boolean productInCart = cartService.selectProductInCart(cartVO);
+//		System.out.println(productInCart);
 		cartVO.setUser_id(user_id);
 		cartVO.setProduct_id(product_id);
 		cartVO.setCart_count(cart_count);
-		boolean productInCart = cartService.selectProductInCart(cartVO);
-//		System.out.println(productInCart);
 //		장바구니에 해당 상품이 있는지 확인
 		if(productInCart == true) {
 			return "overLapProduct";
@@ -75,10 +75,6 @@ public class CartControllerImpl implements CartController{
 			cartService.addProductInCart(cartVO);
 			return "addProduct";
 		}
-//		String lastView = "redirect:"+lastViewName+".do?product_id=" + product_id;
-//		mav.setViewName("redirect:"+lastViewName+".do?product_id=" + product_id);
-//		mav.setViewName(lastView);
-//		return mav;
 	}
 	
 //	상세페이지 동일 상품 추가
@@ -96,6 +92,33 @@ public class CartControllerImpl implements CartController{
 		cartVO.setCart_count(cart_count);
 		cartService.ProductOverLap(cartVO);
 		return "cart_count : " + cartVO.getCart_count();
+	}
+	
+//	서터레스 받아요
+//	비회원 담기 시 세션에 값 저장
+	@ResponseBody
+	@RequestMapping(value= "/guestCart.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public String guestCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
+			HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		HttpSession session=request.getSession();
+		List<CartVO> guestCartList = new ArrayList<CartVO>();
+		List<CartVO> sessionCart = (List<CartVO>)session.getAttribute("guestCartAdd");
+		
+		if (sessionCart != null) {
+			guestCartList = sessionCart;
+		}
+		CartVO cartVO = new CartVO();
+		cartVO.setCart_count(cart_count);
+		cartVO.setProduct_id(product_id);
+		guestCartList.add(cartVO);
+		for(int i = 0; i < guestCartList.size(); i++) {
+			Map<String, String> guestIn = new HashMap<String, String>();
+			guestIn.put("product_id", product_id);
+			guestIn.put("cart_count", cart_count);
+			session.setAttribute("guestCartAdd", guestIn);
+		}
+		return "product_id : " + product_id + "      cart_count : " + cart_count;
 	}
 	
 }
