@@ -61,15 +61,15 @@
 	<update id="updateUser" parameterType="java.util.Map">
 
 		<![CDATA[
-		update user
-			product_main_title = #{product_main_title}, 
-			product_sub_title = #{product_sub_title},
-			product_body = #{product_body},
-			product_price = #{product_price},
-			product_discount = #{product_discount},
-			product_amount = #{product_amount},
-			product_main_category = #{product_main_category},
-			product_sub_category = #{product_sub_category}
+		update user set
+			user_pw = #{user_pw}, 
+			user_name = #{user_name},
+			user_membership = #{user_membership},
+			user_mobile_1 = #{user_mobile_1},
+			user_mobile_2 = #{user_mobile_2},
+			user_mobile_3 = #{user_mobile_3},
+			user_new_address = #{user_new_address},
+			user_detail_address = #{user_detail_address}
 		where user_id = #{user_id}
 		]]>
 
@@ -84,5 +84,14 @@
 		]]>
 
 	</delete>
+	
+
+	<!-- 회원수정을 위한 회원정보 조회 쿼리 -->
+	<select id="selectOneUser" resultType="UserVO" parameterType="java.util.Map">
+
+		<![CDATA[
+			select * from user where user_id = #{user_id}
+				]]>
+	</select>
 
 </mapper>

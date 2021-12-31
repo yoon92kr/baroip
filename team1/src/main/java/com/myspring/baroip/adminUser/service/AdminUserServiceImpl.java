@@ -76,9 +76,18 @@ public class AdminUserServiceImpl implements AdminUserService{
 	
 	// 회원 수정 서비스
 	@Override
-	public void updateUser(UserVO userVO) throws Exception {
+	public int updateUser(UserVO userVO) throws Exception {
 		
-		adminUserDAO.updateUser(userVO);
+		int flag = adminUserDAO.updateUser(userVO);
 		
+		return flag;
+	}
+	
+	// 회원 수정을 위한 정보 조회 DAO
+	@Override
+	public UserVO selectOneUser(String user_id) throws Exception {
+		UserVO user_info = adminUserDAO.selectOneUser(user_id);
+		
+		return user_info;
 	}
 }

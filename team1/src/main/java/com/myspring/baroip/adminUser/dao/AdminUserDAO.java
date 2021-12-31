@@ -21,7 +21,10 @@ public interface AdminUserDAO {
 	public String deleteUser(Map<String, String> info) throws DataAccessException;
 	
 	// 회원 수정 DAO
-	public void updateUser(UserVO userVO) throws DataAccessException;
+	public int updateUser(UserVO userVO) throws DataAccessException;
+	
+	// 회원 한명 조회 DAO
+	public UserVO selectOneUser(String user_id) throws DataAccessException;
 	
 
 }

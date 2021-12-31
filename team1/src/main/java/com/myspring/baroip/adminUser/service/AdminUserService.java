@@ -19,6 +19,8 @@ public interface AdminUserService {
 	public String deleteUser(Map<String, String> info) throws Exception;
 		
 	// 회원 수정 서비스
-	public void updateUser(UserVO userVO) throws Exception;
-		
+	public int updateUser(UserVO userVO) throws Exception;
+	
+	// 회원 수정을 위한 정보 조회 DAO	
+	public UserVO selectOneUser(String user_id) throws Exception;
 }

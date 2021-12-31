@@ -92,8 +92,21 @@ public class AdminUserDAOImpl implements AdminUserDAO {
 	
 	// 회원 수정 DAO
 	@Override
-	public void updateUser(UserVO userVO) throws DataAccessException {
-		sqlSession.update("mapper.adminUser.updateUser", userVO);
+	public int updateUser(UserVO userVO) throws DataAccessException {
+
+		int flag = sqlSession.update("mapper.adminUser.updateUser", userVO);
+		
+		return flag;
 	}
+	
+	// 회원 수정을 위한 정보 조회 DAO
+	@Override
+	public UserVO selectOneUser(String user_id) throws DataAccessException {
+		UserVO user_info = sqlSession.selectOne("mapper.adminUser.selectOneUser", user_id);
+		
+		return user_info;
+	}
+	
+	
 	
 }

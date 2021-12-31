@@ -251,14 +251,20 @@ function delete_user(target) {
 	let user_id = document.getElementById('user_id_'.concat(target)).innerText;
 	let user_rank = document.getElementById('rank_'.concat(target)).value;
 
-	if(${userInfo.user_rank} >= user_rank) {
+	if(${userInfo.user_rank} >= 3) {
 		var confirmFlag = false;
 		
 		if("${userInfo.user_id}" == user_id) {
 			confirmFlag = confirm("본인의 계정을 선택하셨습니다. 정말 탈퇴하시겠습니까?");
 		} 
-		else if (user_rank == 4 && "${userInfo.user_id}" != user_id) {
+		else if (user_rank == 4 && "${userInfo.user_id}" != user_id && "${userInfo.user_rank}" == 4) {
 			alert("다른 총 책임자의 아이디를 삭제할 수 없습니다.");
+		}
+		else if (user_rank == 3 && "${userInfo.user_id}" != user_id && "${userInfo.user_rank}" == 3) {
+			alert("동일 등급 관리자의 아이디를 삭제할 수 없습니다.");
+		}
+		else if (user_rank == 4 && "${userInfo.user_rank}" == 3) {
+			alert("해당 회원의 정보를 삭제할 권한이 없습니다.");
 		}
 		else {
 			confirmFlag = confirm(user_id+"를 정말 삭제하시겠습니까?");
@@ -299,7 +305,7 @@ function delete_user(target) {
 
 /* 회원 수정 */
 function update_user_form(target) {
-	let user_id = document.getElementById('user_id_'.concat(target)).value;
+	let user_id = document.getElementById('user_id_'.concat(target)).innerText;
 	let user_rank = document.getElementById('rank_'.concat(target)).value;
 	
 	if(${userInfo.user_rank} >= user_rank) {
