@@ -54,7 +54,7 @@ window.addEventListener('load', function() {
 								<a href="${contextPath}/admin/main.do" class="header-navi" id="set_admin">관리자 페이지</a>
 						</c:when>
 							
-						<c:when test="${loginOn==true and not empty userInfo }">
+						<c:when test="${loginOn==true and not empty userInfo and userInfo.user_rank == 1}">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
 								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi" id="set_myPage">마이 페이지</a>
 						</c:when>
