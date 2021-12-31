@@ -83,6 +83,7 @@ public class CsControllerImpl implements CsController {
 	}
 	
 	// 1:1 문의 작성
+	@Override
 		@RequestMapping(value= "/addQuest.do" ,method={RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView addQuest(@ModelAttribute("csVO") CsVO csVO, 
 				HttpServletRequest request, 
@@ -98,7 +99,7 @@ public class CsControllerImpl implements CsController {
 			mav.addObject("questInfo", csVO);
 			mav.setViewName("viewName");
 			try {
-				mav.setViewName("/cs/cs_02_02");
+				mav.setViewName("/cs/inquiry_list");
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
