@@ -55,11 +55,8 @@ public class ImageControllerImpl implements ImageController {
 								&& imageFiles.get(i).getOriginalFilename() != "") {
 							imageVO.setImage_match_id(match_id);
 							imageVO.setImage_category(imageCategory + (i + 1));
-							imageVO.setImage_file_name(imageFiles.get(i).getOriginalFilename());
-							BufferedImage bi = toBufferedImage(imageFiles.get(i).getBytes());
-							bi = resize(bi, 1200, 900);
-							imageVO.setImage_file(toByteArray(bi, "jpg"));
-							// imageVO.setImage_file(imageFiles.get(i).getBytes());
+							imageVO.setImage_file_name(imageFiles.get(i).getOriginalFilename());			
+							imageVO.setImage_file(resizeBlob(imageFiles.get(i).getBytes()));
 
 							// 대입된 자료를 mapper.image.insertImage 로 전송
 							String imageName = imageService.addImageFile(imageVO);
@@ -79,7 +76,7 @@ public class ImageControllerImpl implements ImageController {
 						imageVO.setImage_match_id(match_id);
 						imageVO.setImage_category(imageCategory);
 						imageVO.setImage_file_name(imageFile.getOriginalFilename());
-						imageVO.setImage_file(imageFile.getBytes());
+						imageVO.setImage_file(resizeBlob(imageFile.getBytes()));
 
 						// 대입된 자료를 mapper.image.insertImage 로 전송
 						String imageName = imageService.addImageFile(imageVO);
@@ -198,5 +195,17 @@ public class ImageControllerImpl implements ImageController {
         BufferedImage bi = ImageIO.read(is);
         return bi;
 
+    }
+    
+    // 이미지 리사이징 원스톱
+    public byte[] resizeBlob(byte[] bytes) throws IOException {
+    	
+    	BufferedImage bi = toBufferedImage(bytes);
+		bi = resize(bi, 1280, 800);
+		
+		byte[] blob = toByteArray(bi, "jpg");
+		
+		return blob;
+    	
     }
 }
