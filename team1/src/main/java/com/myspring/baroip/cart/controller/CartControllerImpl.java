@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.cart.service.CartService;
 import com.myspring.baroip.cart.vo.CartVO;
+import com.myspring.baroip.product.service.ProductService;
 import com.myspring.baroip.user.vo.UserVO;
 
 
@@ -29,9 +30,10 @@ public class CartControllerImpl implements CartController{
 	private CartService cartService;
 	@Autowired
 	private CartVO cartVO;
-	
 	@Autowired
 	private UserVO userVO;
+	@Autowired
+	private ProductService productService;
 	
 	
 	// 장바구니 페이지
@@ -43,10 +45,30 @@ public class CartControllerImpl implements CartController{
 		String viewName = (String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-		String user_id = userVO.getUser_id();
-		cartVO.setUser_id(user_id);
-		Map<String, Map<String, Map<String, Object>>> userCartListInfo = cartService.myCartList(cartVO);
-		mav.addObject("userCartListInfo", userCartListInfo);
+		if(userVO != null) {
+			String user_id = userVO.getUser_id();
+			cartVO.setUser_id(user_id);
+			Map<String, Map<String, Map<String, Object>>> userCartListInfo = cartService.myCartList(cartVO);
+			mav.addObject("userCartListInfo", userCartListInfo);
+			
+		} 
+//		비회원 장바구니 리스트
+		else {
+			List<CartVO> notUserCart = (List<CartVO>) session.getAttribute("guestCartAdd");
+			Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
+			for(int i = 0; i < notUserCart.size(); i++) {
+				Map<String, Object> cartItem = new HashMap<String, Object>();
+				Map<String, Map<String, Object>> guestCart = new HashMap<String, Map<String, Object>>();
+				
+				String ProductId=notUserCart.get(i).getProduct_id();
+				
+				guestCart=productService.productDetail(ProductId);
+				cartItem.put("cartVO", notUserCart.get(i));
+				guestCart.put("cart", cartItem);
+				userCartListInfo.put("myCartList" + (i+1), guestCart);
+			}
+			session.setAttribute("userCartListInfo", userCartListInfo);
+		}
 		mav.setViewName(viewName);
 		return mav;
 		
@@ -113,10 +135,7 @@ public class CartControllerImpl implements CartController{
 		cartVO.setProduct_id(product_id);
 		guestCartList.add(cartVO);
 		for(int i = 0; i < guestCartList.size(); i++) {
-			Map<String, String> guestIn = new HashMap<String, String>();
-			guestIn.put("product_id", product_id);
-			guestIn.put("cart_count", cart_count);
-			session.setAttribute("guestCartAdd", guestIn);
+			session.setAttribute("guestCartAdd", guestCartList);
 		}
 		return "product_id : " + product_id + "      cart_count : " + cart_count;
 	}

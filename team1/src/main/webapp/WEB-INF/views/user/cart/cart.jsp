@@ -11,11 +11,23 @@
 
 <div class="container-fluid">
 
-	<div class="row">
-		<div class="col-lg-4 offset-lg-4 text-center">
-			<h1 class="page_title">장바구니</h1>
-		</div>
-	</div>
+	<c:choose>
+		<c:when test="${not empty userInfo.user_id}">
+			<div class="row">
+				<div class="col-lg-4 offset-lg-4 text-center">
+					<h1 class="page_title">장바구니</h1>
+				</div>
+			</div>
+		</c:when>
+		<c:when test="${empty userInfo.user_id}">
+			<div class="row">
+				<div class="col-lg-4 offset-lg-4 text-center">
+					<h1 class="page_title">장바구니</h1>
+					<span class="cart_notUser">현재 비회원 상태 입니다.</span>
+				</div>
+			</div>
+		</c:when>
+	</c:choose>
 
 	<div class="cart_list_header">
 		<div class="row">
@@ -71,6 +83,42 @@
 				</div>
 			</c:forEach>
 		</c:when>
+		
+		<c:when test="${not empty userCartListInfo}">
+			<c:forEach var="i" begin="1" end="${userCartListInfo.size()}">
+				<c:set var="cart" value="myCartList${i}" />
+
+				
+				<div class="cart_list_body">
+					<div class="row">
+						<div class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
+							<input type="checkbox" class="join_01-check-01" name="checkRow">
+						</div>
+						<div class="col-lg-2 text-center cart_body">
+							<a href="${contextPath}/product_02.do">
+								<img class="cart_image_clip" src="data:image/jpeg;base64,${userCartListInfo[cart].image.main}" alt="장바구니 상품 이미지">
+							</a>
+						</div>
+						<div class="col-lg-3 text-center cart_body">
+							<a href="${contextPath}/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">${userCartListInfo[cart].product.productVO.product_main_title}</a>
+						</div>
+						<div class="col-lg-1 text-center itemCount_row">
+							<div id="cart_itemCountBox_form">
+								<div class="value-button cart_decrease" id="cart_decrease${i}"
+									onclick="decreaseValue(this.id)">-</div>
+								<input type="number" class="cart_item_count"
+									id="cart_item_count${i}" name="cart_count" value="${userCartListInfo[cart].cart.cartVO.cart_count}"
+									onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+								<div class="value-button cart_increase" id="cart_increase${i}"
+									onclick="increaseValue(this.id)">+</div>
+							</div>
+						</div>
+						<div class="col-lg-1 text-center cart_body">${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:when>
+		
 	</c:choose>
 
 	<div class="cart_list_bt">

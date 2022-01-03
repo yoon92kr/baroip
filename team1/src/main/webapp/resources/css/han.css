@@ -35,6 +35,12 @@
 	margin-bottom: 50px;
 }
 
+.cart_notUser {
+	margin-top: 20px;
+	color: #dc3545;
+	font-size: 18px;
+}
+
 /* ================================================================ */
 /* img_btn_size */
 .bottom_btn_size {
