@@ -50,22 +50,26 @@ public class CartControllerImpl implements CartController{
 			cartVO.setUser_id(user_id);
 			Map<String, Map<String, Map<String, Object>>> userCartListInfo = cartService.myCartList(cartVO);
 			mav.addObject("userCartListInfo", userCartListInfo);
-			
-		} 
+		}
 //		비회원 장바구니 리스트
 		else {
 			List<CartVO> notUserCart = (List<CartVO>) session.getAttribute("guestCartAdd");
 			Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
-			for(int i = 0; i < notUserCart.size(); i++) {
-				Map<String, Object> cartItem = new HashMap<String, Object>();
-				Map<String, Map<String, Object>> guestCart = new HashMap<String, Map<String, Object>>();
-				
-				String ProductId=notUserCart.get(i).getProduct_id();
-				
-				guestCart=productService.productDetail(ProductId);
-				cartItem.put("cartVO", notUserCart.get(i));
-				guestCart.put("cart", cartItem);
-				userCartListInfo.put("myCartList" + (i+1), guestCart);
+			if(notUserCart != null) {
+				for(int i = 0; i < notUserCart.size(); i++) {
+					Map<String, Object> cartItem = new HashMap<String, Object>();
+					Map<String, Map<String, Object>> guestCart = new HashMap<String, Map<String, Object>>();
+					
+					String ProductId=notUserCart.get(i).getProduct_id();
+					
+					guestCart=productService.productDetail(ProductId);
+					cartItem.put("cartVO", notUserCart.get(i));
+					guestCart.put("cart", cartItem);
+					userCartListInfo.put("myCartList" + (i+1), guestCart);
+				}
+			}
+			else {
+				userCartListInfo = null;
 			}
 			session.setAttribute("userCartListInfo", userCartListInfo);
 		}

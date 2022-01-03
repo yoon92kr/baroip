@@ -78,7 +78,7 @@
 		<div class="col-lg-10 offset-lg-1 product_02_item_detail text-center">
 		<c:if test="${not empty Img.body}">
 			<c:forEach var="bodyImg" items="${Img.body}" >
-			<img src="data:image/jpeg;base64,${bodyImg}" alt="상품상세페이지 상품상세정보 이미지">
+			<img src="data:image/jpeg;base64,${bodyImg}" alt="상품상세페이지 상품상세정보 이미지"><br>
 			</c:forEach>
 			
 		</c:if>
@@ -148,70 +148,77 @@
 	}
 	
 	/* 장바구니 담기 버튼 클릭 이벤트 */
+	/* 2021.12.28 한건희 */
 	$("#product_02_cartIn").on("click", function(e) {
  	let cartInProduct = $("#itemCountBox_form_detail");
 	let product_id = document.getElementById("cart_productId").value;
 	let cart_count = document.getElementById("cart_item_count").value;
 	let userFind = "${userInfo.user_id}";
-	
-	if(userFind == null || userFind == "") {
-		let notUser;
-		
-		notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
-		if(notUser == true) {
+	let product_amount = "${VO.product_amount}";
+	if(product_amount == 0) {
+		alert("죄송합니다 상품이 품절되었습니다.");
+	}else if(product_amount < cart_count) {
+		alert("죄송합니다 현재 상품 재고는" + product_amount + "개 남았습니다.");
+	}else {
+		if(userFind == null || userFind == "") {
+			let notUser;
+			
+			notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
+			if(notUser == true) {
+				$.ajax({
+					url:'${contextPath}/cart/guestCart.do', 
+					type:'GET', 
+					dataType:'text', 
+					data: {
+						"product_id": product_id, 
+						"cart_count": cart_count
+					},  success: function(add) {
+						alert(add);
+					}
+				});
+			} else {
+				location='${contextPath}/user/login_01.do';
+			}
+		} else {
 			$.ajax({
-				url:'${contextPath}/cart/guestCart.do', 
-				type:'GET', 
-				dataType:'text', 
+				url:'${contextPath}/cart/addProductInCart.do', 
+				type:'GET',
+				dataType: 'text', 
 				data: {
 					"product_id": product_id, 
 					"cart_count": cart_count
-				},  success: function(add) {
-					alert(add);
+				}, success: function(find) {
+					let cartGo;
+					let cartIn;
+					if(find == "overLapProduct") {
+						cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
+						if(cartIn == true) {
+							$.ajax({
+								url:'${contextPath}/cart/cartInProductOverLap.do', 
+								type:'GET',
+								dataType: 'text', 
+								data: {
+									"product_id": product_id, 
+									"cart_count": cart_count
+								}, success: function(test) {
+									alert(test);
+									}
+								}).error(function() {
+									alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
+								});
+						}
+					}
+					else {
+						cartGo = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+						if(cartGo == true) {
+							location='${contextPath}/cart/cartList.do';
+						}
+					}
 				}
+			}).error(function() {
+				alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
 			});
-		} else {
-			location='${contextPath}/user/login_01.do';
-		}
-	} else {
-		$.ajax({
-			url:'${contextPath}/cart/addProductInCart.do', 
-			type:'GET',
-			dataType: 'text', 
-			data: {
-				"product_id": product_id, 
-				"cart_count": cart_count
-			}, success: function(find) {
-				let cartGo;
-				let cartIn;
-				if(find == "overLapProduct") {
-					cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
-					if(cartIn == true) {
-						$.ajax({
-							url:'${contextPath}/cart/cartInProductOverLap.do', 
-							type:'GET',
-							dataType: 'text', 
-							data: {
-								"product_id": product_id, 
-								"cart_count": cart_count
-							}, success: function(test) {
-								alert(test);
-								}
-							}).error(function() {
-								alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
-							});
-					}
-				}
-				else {
-					cartGo = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
-					if(cartGo == true) {
-						location='${contextPath}/cart/cartList.do';
-					}
-				}
 			}
-		}).error(function() {
-			alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
-		});
 		}
 	});
 
