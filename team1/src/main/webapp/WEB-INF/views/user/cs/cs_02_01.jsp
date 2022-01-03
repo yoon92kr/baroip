@@ -94,6 +94,7 @@
 						<input type="image"
 							src="${contextPath}/resources/img/common/cs_register.png"
 							alt="1:1문의 등록 버튼 이미지">
+							
 				</div>
 			</div>
 			<div class="col-lg-2 text-center">

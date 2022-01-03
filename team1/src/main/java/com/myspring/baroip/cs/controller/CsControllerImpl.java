@@ -97,9 +97,8 @@ public class CsControllerImpl implements CsController {
 			System.out.println(user_id);
 			System.out.println(csVO.getNotice_title());
 			mav.addObject("questInfo", csVO);
-			mav.setViewName("viewName");
 			try {
-				mav.setViewName("/cs/inquiry_list");
+				mav.setViewName("redirect:/cs/inquiry_list.do");
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
