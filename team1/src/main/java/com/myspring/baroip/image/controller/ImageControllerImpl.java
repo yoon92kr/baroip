@@ -2,7 +2,6 @@
 
 package com.myspring.baroip.image.controller;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.mortennobel.imagescaling.AdvancedResizeOp;
+import com.mortennobel.imagescaling.MultiStepRescaleOp;
 import com.myspring.baroip.image.service.ImageService;
 import com.myspring.baroip.image.vo.ImageVO;
 
@@ -56,7 +57,7 @@ public class ImageControllerImpl implements ImageController {
 							imageVO.setImage_match_id(match_id);
 							imageVO.setImage_category(imageCategory + (i + 1));
 							imageVO.setImage_file_name(imageFiles.get(i).getOriginalFilename());			
-							imageVO.setImage_file(resizeBlob(imageFiles.get(i).getBytes()));
+							imageVO.setImage_file(resizing(imageFiles.get(i).getBytes(), 600));
 
 							// 대입된 자료를 mapper.image.insertImage 로 전송
 							String imageName = imageService.addImageFile(imageVO);
@@ -76,7 +77,7 @@ public class ImageControllerImpl implements ImageController {
 						imageVO.setImage_match_id(match_id);
 						imageVO.setImage_category(imageCategory);
 						imageVO.setImage_file_name(imageFile.getOriginalFilename());
-						imageVO.setImage_file(resizeBlob(imageFile.getBytes()));
+						imageVO.setImage_file(resizing(imageFile.getBytes(), 600));
 
 						// 대입된 자료를 mapper.image.insertImage 로 전송
 						String imageName = imageService.addImageFile(imageVO);
@@ -119,7 +120,7 @@ public class ImageControllerImpl implements ImageController {
 							imageVO.setImage_match_id(match_id);
 							imageVO.setImage_category(imageCategory + (i + 1));
 							imageVO.setImage_file_name(imageFiles.get(i).getOriginalFilename());
-							imageVO.setImage_file(imageFiles.get(i).getBytes());
+							imageVO.setImage_file(resizing(imageFiles.get(i).getBytes(), 600));
 
 							// 대입된 자료를 mapper.image.insertImage 로 전송
 							String imageName = imageService.addImageFile(imageVO);
@@ -147,8 +148,7 @@ public class ImageControllerImpl implements ImageController {
 						imageVO.setImage_match_id(match_id);
 						imageVO.setImage_category(imageCategory);
 						imageVO.setImage_file_name(imageFile.getOriginalFilename());
-						imageVO.setImage_file(imageFile.getBytes());
-
+						imageVO.setImage_file(resizing(imageFile.getBytes(), 600));
 						String imageName = imageService.updateImageFile(imageVO);
 
 						System.out.printf("baroip : [%s] 상품의 [%s] 이미지 파일이 [%s] 이미지로 수정되었습니다.%n", match_id,
@@ -165,17 +165,23 @@ public class ImageControllerImpl implements ImageController {
 		}
 	}
 
-	public static BufferedImage resize(BufferedImage inputImage, int width, int height) throws IOException {
-
-		BufferedImage outputImage = new BufferedImage(width, height, inputImage.getType());
-
-		Graphics2D graphics2D = outputImage.createGraphics();
-		graphics2D.drawImage(inputImage, 0, 0, width, height, null);
-		graphics2D.dispose();
-
-		return outputImage;
-	}
 	
+
+    public static byte[] resizing(byte[] bytes, int width) throws IOException {
+    	
+    	
+    	BufferedImage bi = toBufferedImage(bytes);
+    	int height = width * bi.getHeight() / bi.getWidth();
+    	MultiStepRescaleOp rescale = new MultiStepRescaleOp(width, height);
+    	rescale.setUnsharpenMask(AdvancedResizeOp.UnsharpenMask.Soft);
+    	
+    	bi = rescale.filter(bi, null);
+    	byte[] blob = toByteArray(bi, "jpg");
+    
+    	return blob;
+    	
+    }
+    
     // convert BufferedImage to byte[]
     public static byte[] toByteArray(BufferedImage bi, String format)
         throws IOException {
@@ -183,6 +189,7 @@ public class ImageControllerImpl implements ImageController {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bi, format, baos);
         byte[] bytes = baos.toByteArray();
+        baos.close();
         return bytes;
 
     }
@@ -193,19 +200,8 @@ public class ImageControllerImpl implements ImageController {
 
         InputStream is = new ByteArrayInputStream(bytes);
         BufferedImage bi = ImageIO.read(is);
+        is.close();
         return bi;
 
-    }
-    
-    // 이미지 리사이징 원스톱
-    public byte[] resizeBlob(byte[] bytes) throws IOException {
-    	
-    	BufferedImage bi = toBufferedImage(bytes);
-		bi = resize(bi, 1280, 800);
-		
-		byte[] blob = toByteArray(bi, "jpg");
-		
-		return blob;
-    	
     }
 }
