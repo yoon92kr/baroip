@@ -51,42 +51,42 @@
 			</div>
 		</c:when>
 		<c:when test="${not empty userCartListInfo}">
-			<c:set var="totalPrice" value="${null}" />
 			<c:forEach var="i" begin="1" end="${userCartListInfo.size()}" varStatus="price">
 			<c:set var="cart" value="myCartList${i}" />
 
-				<div class="cart_list_body">
-					<div class="row">
-						<div class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
-							<input type="checkbox" class="join_01-check-01" name="checkRow">
-						</div>
-						<div class="col-lg-2 text-center cart_body">
-							<a href="${contextPath}/product/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">
-								<img class="cart_image_clip" src="data:image/jpeg;base64,${userCartListInfo[cart].image.main}" alt="장바구니 상품 이미지">
-							</a>
-						</div>
-						<div class="col-lg-3 text-center cart_body">
-							<a href="${contextPath}/product/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">
-								${userCartListInfo[cart].product.productVO.product_main_title}
-							</a>
-						</div>
-						<div class="col-lg-1 text-center itemCount_row">
-							<div id="cart_itemCountBox_form">
-								<div class="value-button cart_decrease" id="cart_decrease${i}"
-									onclick="decreaseValue(this.id)">-</div>
-								<input type="number" class="cart_item_count"
-									id="cart_item_count${i}" name="cart_count" value="${userCartListInfo[cart].cart.cartVO.cart_count}"
-									onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
-								<div class="value-button cart_increase" id="cart_increase${i}"
-									onclick="increaseValue(this.id)">+</div>
+				<form id="ListCeckBoxForm${i}" action="${contextPath}/cart/cartListDelete.do">
+					<div class="cart_list_body">
+						<div class="row">
+							<div class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
+								<input id="ListCeckBox${i}" value="${userCartListInfo[cart].product.productVO.product_id}" type="checkbox" class="join_01-check-01" name="checkRow">
+							</div>
+							<div class="col-lg-2 text-center cart_body">
+								<a href="${contextPath}/product/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">
+									<img class="cart_image_clip" src="data:image/jpeg;base64,${userCartListInfo[cart].image.main}" alt="장바구니 상품 이미지">
+								</a>
+							</div>
+							<div class="col-lg-3 text-center cart_body">
+								<a href="${contextPath}/product/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">
+									${userCartListInfo[cart].product.productVO.product_main_title}
+								</a>
+							</div>
+							<div class="col-lg-1 text-center itemCount_row">
+								<div id="cart_itemCountBox_form">
+									<div class="value-button cart_decrease" id="cart_decrease${i}"
+										onclick="decreaseValue(this.id)">-</div>
+									<input type="number" class="cart_item_count"
+										id="cart_item_count${i}" name="cart_count" value="${userCartListInfo[cart].cart.cartVO.cart_count}"
+										onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+									<div class="value-button cart_increase" id="cart_increase${i}"
+										onclick="increaseValue(this.id)">+</div>
+								</div>
+							</div>
+							<div class="col-lg-1 text-center cart_body">
+								<fmt:formatNumber value="${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}" />
 							</div>
 						</div>
-						<div class="col-lg-1 text-center cart_body">
-							<c:set var="price" value="${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}" />
-							<fmt:formatNumber value="${price}" />
-						</div>
 					</div>
-				</div>
+				</form>
 			</c:forEach>
 		</c:when>
 	</c:choose>
@@ -94,8 +94,10 @@
 	<div class="cart_list_bt">
 		<div class="row">
 			<div class="col-lg-2 offset-lg-8 text-right cart_check_delete_btn">
-				<input type="button" value="전체 삭제">
-				<input type="button" value="선택 삭제">
+				<form id="ListCeckBoxForm" action="${contextPath}/cart/cartListDelete.do">
+					<input type="button" value="전체 삭제">
+					<input id="selectPriceDelete" type="button" value="선택 삭제">
+				</form>
 			</div>
 		</div>
 	</div>
@@ -240,4 +242,29 @@
 		}
 
 	}
+	
+	/* 장바구니 상품 삭제 */
+	$("#selectPriceDelete").on("click", function(e) {
+		let userFind = "${userInfo.user_id}";
+		let poroduct_id;
+		for(let i=1; i<=${userCartListInfo.size()}; i++) {
+			product_id = document.getElementById("ListCeckBox"+i).value;
+		}
+		$.ajax({
+			type:"post", 
+			url:"${contextPath}/cart/cartListDelete.do", 
+			dataType:"text", 
+			data: {
+				"product_id" : product_id
+			}, 
+			success:function(test) {
+				alert(test + "상품이 장바구니에서 삭제되었습니다.");
+				location.reload();
+			}, 
+			error:function() {
+				alert("해당 상품 삭제가 실패했습니다.");
+			}
+		});	
+	});
+	
 </script>

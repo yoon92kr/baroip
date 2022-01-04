@@ -144,4 +144,31 @@ public class CartControllerImpl implements CartController{
 		return "product_id : " + product_id + "      cart_count : " + cart_count;
 	}
 	
+//	장바구니 제거
+	@Override
+	@ResponseBody
+	@RequestMapping(value= "/cartListDelete.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public String cartListDelete(@RequestParam("product_id") String product_id, HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		HttpSession session=request.getSession();
+		userVO = (UserVO)session.getAttribute("userInfo");
+		if(userVO != null) {
+			Map<String, String> deleteList = new HashMap<String, String>();
+			String user_id = userVO.getUser_id();
+			deleteList.put("user_id", user_id);
+			deleteList.put("product_id", product_id);
+			cartService.deleteCartItem(deleteList);
+			return product_id;
+		} 
+//		비회원 장바구니 상품 삭제
+		else {
+			List<CartVO> guestCartList = new ArrayList<CartVO>();
+			guestCartList = (List<CartVO>) session.getAttribute("guestCartAdd");
+//			for(int i=0; guestCartList.size()>i; i++) {
+//				if()
+//			}
+			return product_id;
+		}
+	}
+	
 }

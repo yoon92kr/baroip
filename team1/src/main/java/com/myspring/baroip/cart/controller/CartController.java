@@ -22,4 +22,8 @@ public interface CartController {
 	public String cartInProductOverLap(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
+	
+//	장바구니 제거
+	public String cartListDelete(@RequestParam("product_id") String product_id, HttpServletRequest request, 
+			HttpServletResponse response) throws Exception;
 }

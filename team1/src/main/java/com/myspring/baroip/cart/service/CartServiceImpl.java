@@ -64,5 +64,11 @@ public class CartServiceImpl implements CartService{
 	public void ProductOverLap(CartVO cartVO) throws Exception {
 		cartDAO.overLapCartList(cartVO);
 	}
+	
+//	장바구니 제거
+	@Override
+	public void deleteCartItem(Map<String, String> deleteList) throws Exception {
+		cartDAO.deleteCartList(deleteList);
+	}
 
 }

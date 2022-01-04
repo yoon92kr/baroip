@@ -45,4 +45,11 @@
 		]]>
 	</update>
 	
+	<!-- 장바구니 상품 삭제 -->
+	<delete id="ListDelete" parameterType="java.util.Map">
+		<![CDATA[
+			delete from cart where user_id = #{user_id} and product_id = #{product_id}
+		]]>
+	</delete>
+	
 </mapper>

@@ -1,5 +1,6 @@
 package com.myspring.baroip.cart.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.myspring.baroip.cart.vo.CartVO;
@@ -18,5 +19,8 @@ public interface CartService {
 	
 //	상세페이지 동일 상품 추가
 	public void ProductOverLap(CartVO cartVO) throws Exception;
+	
+//	장바구니 제거
+	public void deleteCartItem(Map<String, String> deleteList) throws Exception;
 	
 }
