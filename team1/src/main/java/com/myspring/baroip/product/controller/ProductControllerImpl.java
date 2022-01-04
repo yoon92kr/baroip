@@ -35,13 +35,13 @@ public class ProductControllerImpl implements ProductController {
 	}
 	
 	@Override
-	@RequestMapping(value = "/product_01", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView productTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/product_list", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView productList(@RequestParam("pageInfo") String pageInfo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
 		mav.setViewName(viewName);
-		mav.addObject("pageInfo", "set_farm");
+		mav.addObject("pageInfo", pageInfo);
 		return mav;
 	}
 	

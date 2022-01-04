@@ -461,8 +461,18 @@
 	// 검색조건 기존값 할당 스크립트
 	window.addEventListener('load', function() {
 	   if(${search_option != null && search_option != ""}) {
-	    selectedOption("search_option_category", "${search_option}");
-
+		   if("${search_option}" == "productStates") {
+			   if("${search_value}" == "0") {
+				   selectedOption("search_option_category", "productStateExtra");
+			   }
+			   else {
+				   selectedOption("search_option_category", "productStateGeneral");
+			   }
+		   }
+		   else {
+			   selectedOption("search_option_category", "${search_option}");
+		   }
+	   
 	    var main_option = document.getElementById("search_option_category").value;
 	    Productchange(main_option);
 	    
@@ -484,6 +494,7 @@
 	    case "productAmount" :
 	    	document.getElementById("adminProduct_01-productAmount-text").value = "${search_value}";
 		   break;
+
 	    }
 	    
 	   }

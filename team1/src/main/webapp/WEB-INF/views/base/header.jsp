@@ -32,9 +32,9 @@ window.addEventListener('load', function() {
 				
 				<div class="col-lg-3 text-center">
 					<div class="category">
-						<a href="${contextPath}/product/product_01.do" class="header-navi" id="set_farm">농산물</a>
-						<a href="${contextPath}/product/product_01.do" class="header-navi" id="set_marine">수산물</a>
-						<a href="${contextPath}/product/product_01.do" class="header-navi" id="set_meat">축산물</a>
+						<a href="${contextPath}/product/product_list.do?pageInfo=set_farm" class="header-navi" id="set_farm">농산물</a>
+						<a href="${contextPath}/product/product_list.do?pageInfo=set_marine" class="header-navi" id="set_marine">수산물</a>
+						<a href="${contextPath}/product/product_list.do?pageInfo=set_meat" class="header-navi" id="set_meat">축산물</a>
 					</div>
 				</div>
 

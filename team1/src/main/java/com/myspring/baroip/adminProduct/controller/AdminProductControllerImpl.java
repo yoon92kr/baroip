@@ -283,7 +283,7 @@ public class AdminProductControllerImpl implements AdminProductController {
 		
 		options.put("user_rank", userInfo.getUser_rank());
 		options.put("view_name", viewSplit[3]);
-		
+		System.out.println(viewSplit[3]);
 		Map<String, Map<String, Object>> fullList = adminProductService.productListToOption(options);
 		
 		return fullList;

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public interface ProductController {
 	public ModelAndView product(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView productTest(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView productList(@RequestParam("pageInfo") String pageInfo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView productDetail(@RequestParam("product_id") String product_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 

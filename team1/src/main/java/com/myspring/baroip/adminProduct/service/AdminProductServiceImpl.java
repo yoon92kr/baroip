@@ -80,8 +80,6 @@ public class AdminProductServiceImpl implements AdminProductService {
 			option.put("end", date[1]);
 
 		}
-
-			
 		
 		List<ProductVO> productList = adminProductDAO.productListToOption(option);
 		String encodeImageFile = "";
@@ -128,8 +126,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 				productInfo.put("product_states", product.getProduct_states());
 				productInfo.put("image_file", encodeImageFile);
 				productInfo.put("product_count", product.getProduct_count());
-				
-
+	
 				fullProductList.put("product" + (i+1), productInfo);
 				
 			}

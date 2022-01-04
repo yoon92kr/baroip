@@ -4,7 +4,7 @@
 
 <tiles-definitions>
 
-<definition name="/product/product_01" extends="MainLayout">
+<definition name="/product/product_list" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01.jsp" />
 	</definition>
 
