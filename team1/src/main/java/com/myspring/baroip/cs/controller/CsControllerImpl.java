@@ -137,7 +137,7 @@ public class CsControllerImpl implements CsController {
 		System.out.println(csVO.getNotice_id());
 		System.out.println(csVO.getNotice_title());
 		mav.addObject("questInfo", csVO);
-		mav.setViewName("/cs/cs_02_03");
+		mav.setViewName("/cs/questUpdate");
 		return mav;
 	}
 	
