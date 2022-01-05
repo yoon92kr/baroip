@@ -160,6 +160,7 @@
 	}else if(product_amount < cart_count) {
 		alert("죄송합니다 현재 상품 재고는" + product_amount + "개 남았습니다.");
 	}else {
+		/* 비로그인 시 팝업창 */
 		if(userFind == null || userFind == "") {
 			let notUser;
 			
@@ -178,6 +179,7 @@
 			}, success: function(find) {
 				let cartGo;
 				let cartIn;
+				/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
 				if(find == "overLapProduct") {
 					cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
 					if(cartIn == true) {
