@@ -109,6 +109,10 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 			request.setAttribute("pageInfo", "set_cs");
 		} else if (viewName.contains("myPage")) {
 			request.setAttribute("pageInfo", "set_myPage");
+			
+		} else if (viewName.contains("admin")) {
+			request.setAttribute("pageInfo", "set_admin");
+			
 		} else if (viewName.contains("login")) {
 			request.setAttribute("pageInfo", "set_login");
 		} else if (viewName.contains("join")) {

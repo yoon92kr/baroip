@@ -13,15 +13,34 @@
 			src="${contextPath }/resources/img/common/top.png" alt="퀵메뉴 상단 이동 버튼 이미지"></a>
 	</div>
 	<p>최근 본 상품</p>
+	
+		<c:if test="${not empty lastProduct[0]}">
+			<div class="quick-item past-image">
+				<a href="${contextPath}/product/productDetail.do?product_id=${lastProduct[0]}"><img
+					class= "quickImg" src="data:image/jpeg;base64,${lastImage[0]}" alt="퀵메뉴 상품 이미지"></a>
+			</div>
+		</c:if>
+		
+		<c:if test="${empty lastProduct[0]}">
+			<div class="quick-item past-image">
+				<img class= "quickImg" src="${contextPath}/resources/img/common/img-box.jpg" alt="퀵메뉴 상품 이미지">
+			</div>
+		</c:if>	
+		
+		<c:if test="${not empty lastProduct[1]}">
+			<div class="quick-item past-image">
+				<a href="${contextPath}/product/productDetail.do?product_id=${lastProduct[1]}"><img
+					class= "quickImg" src="data:image/jpeg;base64,${lastImage[1]}" alt="퀵메뉴 상품 이미지"></a>
+			</div>
+		</c:if>
+		
+		<c:if test="${empty lastProduct[1]}">
+			<div class="quick-item past-image">
+				<img class= "quickImg" src="${contextPath}/resources/img/common/img-box.jpg" alt="퀵메뉴 상품 이미지">
+			</div>
+		</c:if>		
+		
 
-	<div class="quick-item past-image">
-		<a href="${contextPath}/product_02.do"><img
-			src="${contextPath }/resources/img/common/img-box.jpg" alt="퀵메뉴 상품 이미지"></a>
-	</div>
-	<div class="quick-item past-image">
-		<a href="${contextPath}/product_02.do"><img
-			src="${contextPath }/resources/img/common/img-box.jpg" alt="퀵메뉴 상품 이미지"></a>
-	</div>
 </div>
 
 <script>

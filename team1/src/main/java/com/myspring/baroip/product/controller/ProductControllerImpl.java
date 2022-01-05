@@ -1,9 +1,12 @@
 package com.myspring.baroip.product.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +48,8 @@ public class ProductControllerImpl implements ProductController {
 		return mav;
 	}
 	
+
+	
 	@Override
 	@RequestMapping(value = "/productDetail.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView productDetail(@RequestParam("product_id") String product_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -65,6 +70,59 @@ public class ProductControllerImpl implements ProductController {
 		else if (product.getProduct_main_category().equals("축산물")) {
 			pageInfo = "set_meat";
 		}
+		
+		HttpSession session = request.getSession();
+		String mainImg = (String) productInfo.get("image").get("main");
+		List<String> lastImage = new ArrayList<String>();
+		List<String> lastProduct = new ArrayList<String>();
+		
+		
+		if(session.getAttribute("lastProduct") != null) {
+			
+			for(Object item : (ArrayList<?>)session.getAttribute("lastImage")) {
+				lastImage.add((String) item);
+			}
+			
+			for(Object item : (ArrayList<?>)session.getAttribute("lastProduct")) {
+				lastProduct.add((String) item);
+			}
+			
+			// 기존에 봤던 상품이 lastProduct에 포함되어있지 않은 경우에만 처리
+			if(!lastProduct.contains(product_id)) {
+
+				if(lastProduct.size() == 1) {
+					lastProduct.add(product_id);
+					lastImage.add(mainImg);
+					
+					session.setAttribute("lastProduct", lastProduct);
+					session.setAttribute("lastImage", lastImage);
+				}
+				else if(lastProduct.size() == 2) {
+					lastProduct.set(1, lastProduct.get(0));
+					lastProduct.set(0, product_id);
+					
+					lastImage.set(1, lastImage.get(0));
+					lastImage.set(0, mainImg);
+					
+					session.setAttribute("lastProduct", lastProduct);
+					session.setAttribute("lastImage", lastImage);
+					
+				}
+			}
+
+			
+
+		}
+		
+		// 기존 값이 없을경우 할당.
+		else {
+			lastProduct.add(product_id);
+			lastImage.add(mainImg);
+			
+			session.setAttribute("lastProduct", lastProduct);
+			session.setAttribute("lastImage", lastImage);
+		}
+
 		
 		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("productInfo", productInfo);
