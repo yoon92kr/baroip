@@ -1,4 +1,6 @@
 package com.myspring.baroip.cart.controller;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +26,6 @@ public interface CartController {
 			HttpServletResponse response) throws Exception;
 	
 //	장바구니 상품 삭제
-	public String cartListDelete(@RequestParam("product_id") String product_id, HttpServletRequest request, 
+	public String cartListDelete(@RequestParam("deleteList") List<String> deleteList, HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
 }

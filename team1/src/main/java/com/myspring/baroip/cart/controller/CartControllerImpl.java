@@ -89,9 +89,10 @@ public class CartControllerImpl implements CartController{
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		
+		String message = "";
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-		String message = "";
+		
 //		로그인 상태 장바구니 담기
 		if(userVO != null) {
 			String user_id = userVO.getUser_id();
@@ -152,6 +153,7 @@ public class CartControllerImpl implements CartController{
 		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+		
 //		로그인 동일 상품 수량 추가
 		if(userVO != null) {
 			String user_id = userVO.getUser_id();
@@ -192,35 +194,40 @@ public class CartControllerImpl implements CartController{
 	@Override
 	@ResponseBody
 	@RequestMapping(value= "/cartListDelete.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public String cartListDelete(@RequestParam("product_id") String product_id, HttpServletRequest request, 
+	public String cartListDelete(@RequestParam("deleteList") List<String> deleteList, HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
+		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-//		로그인 회원 장바구니 상품 삭제
-		if(userVO != null) {
-			Map<String, String> deleteList = new HashMap<String, String>();
-			System.out.println("deleteList : " + product_id);
-			String user_id = userVO.getUser_id();
-			deleteList.put("user_id", user_id);
-			deleteList.put("product_id", product_id);
-			cartService.deleteCartItem(deleteList);
-			return product_id;
-		} 
-//		비로그인 장바구니 상품 삭제
-		else {
-			@SuppressWarnings("unchecked")
-			List<CartVO> guestCartList = (List<CartVO>)session.getAttribute("guestCartAdd");
-			cartVO.setProduct_id(product_id);
-//			System.out.println(guestCartList.size());
-			for(int i=0; guestCartList.size()>i; i++) {
-				if(guestCartList.get(i).equals(cartVO)) {
-//					System.out.println(guestCartList.get(i).getProduct_id());
-					guestCartList.remove(i);
+		
+		for(int i = 0; deleteList.size() > i; i++) {
+//			System.out.println("deleteList(toString) : " + deleteList.toString());
+			System.out.println("deleteList(get) : " + deleteList.get(i));
+			Map<String, String> deleteItem = new HashMap<String, String>();
+			deleteItem.put("Product_id",deleteList.get(i));
+	//		로그인 회원 장바구니 상품 삭제
+			if(userVO != null) {
+//				System.out.println("deleteList : " + deleteItem);
+				String user_id = userVO.getUser_id();
+				deleteItem.put("user_id", user_id);
+				cartService.deleteCartItem(deleteItem);
+			}
+	//		비로그인 장바구니 상품 삭제
+			else {
+				@SuppressWarnings("unchecked")
+				List<CartVO> guestCartList = (List<CartVO>)session.getAttribute("guestCartAdd");
+//				cartVO.setProduct_id(deleteItem.get(product_id));
+	//			System.out.println(guestCartList.size());
+				for(int s=0; guestCartList.size()>s; s++) {
+					if(guestCartList.get(s).equals(deleteList.get((s)))) {
+	//					System.out.println(guestCartList.get(i).getProduct_id());
+						guestCartList.remove(s);
+					}
 				}
 			}
-			session.setAttribute("guestCartAdd", guestCartList);
-			return product_id;
 		}
+//		session.setAttribute("guestCartAdd", guestCartList);
+		return "test";
 	}
 	
 }

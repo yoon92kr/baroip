@@ -250,10 +250,13 @@
 		let poroduct_id;
 		let deleteProduct;
 		let deleteItem;
+		let deleteList = [];
 		for(let i=1; i<=${userCartListInfo.size()}; i++) {
 			product_id = document.getElementById("ListCeckBox"+i).value;
 			deleteItem = document.getElementById("cartListProductTitle"+i).value;
+			deleteList.push(product_id);
 		}
+		alert(deleteList);
 		deleteProduct = confirm(deleteItem + "을(를) 장바구니에서 제거 하시겠습니까?");
 		if(deleteProduct == true) {
 			$.ajax({
@@ -261,7 +264,7 @@
 				url:"${contextPath}/cart/cartListDelete.do", 
 				dataType:"text", 
 				data: {
-					"product_id" : product_id
+					"deleteList" : JSON.stringify(deleteList)
 				}, 
 				success:function(test) {
 					alert(test + "상품이 장바구니에서 삭제되었습니다.");
