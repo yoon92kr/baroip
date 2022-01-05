@@ -164,61 +164,48 @@
 			let notUser;
 			
 			notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
-			if(notUser == true) {
-				$.ajax({
-					url:'${contextPath}/cart/guestCart.do', 
-					type:'GET', 
-					dataType:'text', 
-					data: {
-						"product_id": product_id, 
-						"cart_count": cart_count
-					},  success: function(add) {
-						alert(add);
-					}
-				});
-			} else {
+			if(notUser == false) {
 				location='${contextPath}/user/login_01.do';
 			}
-		} else {
-			$.ajax({
-				url:'${contextPath}/cart/addProductInCart.do', 
-				type:'GET',
-				dataType: 'text', 
-				data: {
-					"product_id": product_id, 
-					"cart_count": cart_count
-				}, success: function(find) {
-					let cartGo;
-					let cartIn;
-					if(find == "overLapProduct") {
-						cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
-						if(cartIn == true) {
-							$.ajax({
-								url:'${contextPath}/cart/cartInProductOverLap.do', 
-								type:'GET',
-								dataType: 'text', 
-								data: {
-									"product_id": product_id, 
-									"cart_count": cart_count
-								}, success: function(test) {
-									alert(test);
-									}
-								}).error(function() {
-									alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
-								});
-						}
-					}
-					else {
-						cartGo = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
-						if(cartGo == true) {
-							location='${contextPath}/cart/cartList.do';
-						}
+		}
+		$.ajax({
+			url:'${contextPath}/cart/addProductInCart.do', 
+			type:'GET',
+			dataType: 'text', 
+			data: {
+				"product_id": product_id, 
+				"cart_count": cart_count
+			}, success: function(find) {
+				let cartGo;
+				let cartIn;
+				if(find == "overLapProduct") {
+					cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
+					if(cartIn == true) {
+						$.ajax({
+							url:'${contextPath}/cart/cartInProductOverLap.do', 
+							type:'GET',
+							dataType: 'text', 
+							data: {
+								"product_id": product_id, 
+								"cart_count": cart_count
+							}, success: function(test) {
+								alert(test);
+								}
+							}).error(function() {
+								alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
+							});
 					}
 				}
+				else {
+					cartGo = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+					if(cartGo == true) {
+						location='${contextPath}/cart/cartList.do';
+					}
+				}
+			}
 			}).error(function() {
 				alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
 			});
-			}
 		}
 	});
 

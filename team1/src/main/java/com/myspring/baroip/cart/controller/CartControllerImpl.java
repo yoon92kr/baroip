@@ -87,20 +87,40 @@ public class CartControllerImpl implements CartController{
 			HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-		String user_id = userVO.getUser_id();
-		boolean productInCart = cartService.selectProductInCart(cartVO);
-//		System.out.println(productInCart);
-		cartVO.setUser_id(user_id);
-		cartVO.setProduct_id(product_id);
-		cartVO.setCart_count(cart_count);
+//		로그인 상태 장바구니 담기
+		if(userVO != null) {
+			String user_id = userVO.getUser_id();
+			cartVO.setUser_id(user_id);
+			cartVO.setProduct_id(product_id);
+			cartVO.setCart_count(cart_count);
+			boolean productInCart = cartService.selectProductInCart(cartVO);
 //		장바구니에 해당 상품이 있는지 확인
-		if(productInCart == true) {
-			return "overLapProduct";
+			if(productInCart == true) {
+				return "overLapProduct";
+			}
+			else {
+				cartService.addProductInCart(cartVO);
+				return "addProduct";
+			}
 		}
+//		비로그인 장바구니 담기
 		else {
-			cartService.addProductInCart(cartVO);
-			return "addProduct";
+			List<CartVO> guestCartList = new ArrayList<CartVO>();
+			@SuppressWarnings("unchecked")
+			List<CartVO> sessionCart = (List<CartVO>)session.getAttribute("guestCartAdd");
+			if (sessionCart != null) {
+				guestCartList = sessionCart;
+			}
+			cartVO = new CartVO();
+			cartVO.setCart_count(cart_count);
+			cartVO.setProduct_id(product_id);
+			guestCartList.add(cartVO);
+			for(int i = 0; i < guestCartList.size(); i++) {
+				session.setAttribute("guestCartAdd", guestCartList);
+			}
+			return "null";
 		}
+		
 	}
 	
 //	상세페이지 동일 상품 추가
@@ -112,39 +132,15 @@ public class CartControllerImpl implements CartController{
 			HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-		String user_id = userVO.getUser_id();
-		cartVO.setUser_id(user_id);
-		cartVO.setProduct_id(product_id);
-		cartVO.setCart_count(cart_count);
-		cartService.ProductOverLap(cartVO);
-		return "cart_count : " + cartVO.getCart_count();
+			String user_id = userVO.getUser_id();
+			cartVO.setUser_id(user_id);
+			cartVO.setProduct_id(product_id);
+			cartVO.setCart_count(cart_count);
+			cartService.ProductOverLap(cartVO);
+			return "cart_count : " + cartVO.getCart_count();
 	}
 	
-//	서터레스 받아요
-//	비회원 담기 시 세션에 값 저장
-	@ResponseBody
-	@RequestMapping(value= "/guestCart.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public String guestCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
-			HttpServletRequest request, 
-			HttpServletResponse response) throws Exception {
-		HttpSession session=request.getSession();
-		List<CartVO> guestCartList = new ArrayList<CartVO>();
-		List<CartVO> sessionCart = (List<CartVO>)session.getAttribute("guestCartAdd");
-		
-		if (sessionCart != null) {
-			guestCartList = sessionCart;
-		}
-		CartVO cartVO = new CartVO();
-		cartVO.setCart_count(cart_count);
-		cartVO.setProduct_id(product_id);
-		guestCartList.add(cartVO);
-		for(int i = 0; i < guestCartList.size(); i++) {
-			session.setAttribute("guestCartAdd", guestCartList);
-		}
-		return "product_id : " + product_id + "      cart_count : " + cart_count;
-	}
-	
-//	장바구니 제거
+//	장바구니 상품 삭제
 	@Override
 	@ResponseBody
 	@RequestMapping(value= "/cartListDelete.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -164,9 +160,15 @@ public class CartControllerImpl implements CartController{
 		else {
 			List<CartVO> guestCartList = new ArrayList<CartVO>();
 			guestCartList = (List<CartVO>) session.getAttribute("guestCartAdd");
-//			for(int i=0; guestCartList.size()>i; i++) {
-//				if()
-//			}
+			cartVO.setProduct_id(product_id);
+			System.out.println(guestCartList.size());
+			for(int i=0; guestCartList.size()>i; i++) {
+				if(guestCartList.get(i).equals(cartVO)) {
+					System.out.println(guestCartList.get(i).getProduct_id());
+					guestCartList.remove(i);
+				}
+			}
+			session.setAttribute("guestCartAdd", guestCartList);
 			return product_id;
 		}
 	}
