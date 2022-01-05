@@ -6,15 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.baroip.cart.dao.CartDAO;
 import com.myspring.baroip.cart.vo.CartVO;
 import com.myspring.baroip.product.service.ProductService;
 
 @Service("cartService")
-@Transactional(propagation=Propagation.REQUIRED)
 public class CartServiceImpl implements CartService{
 	@Autowired
 	private CartDAO cartDAO;
@@ -65,7 +62,7 @@ public class CartServiceImpl implements CartService{
 		cartDAO.overLapCartList(cartVO);
 	}
 	
-//	장바구니 제거
+//	장바구니 상품 삭제
 	@Override
 	public void deleteCartItem(Map<String, String> deleteList) throws Exception {
 		cartDAO.deleteCartList(deleteList);

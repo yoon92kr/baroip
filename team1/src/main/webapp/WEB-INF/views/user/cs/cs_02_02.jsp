@@ -31,6 +31,10 @@
 		</div>
 	</div>
 
+
+	<form id="questUpdate" action="${contextPath}/cs/questUpdate.do"
+	name="questContent" method="get">
+
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 			<span>제목</span> <input type="hidden" name="notice_id"
@@ -70,6 +74,8 @@
 			<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${questInfo.notice_body}</textarea>
 		</div>
 	</div>
+	
+
 
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center">
@@ -86,6 +92,9 @@
 			<div class="notice_back_btn">삭제버튼</div>
 		</div>
 	</div>
+
+	</form>
+
 	<form id="infoForm" action="${contextPath}/cs/questUpdate" method="get">
 		<input type="hidden" id="cs_02_02_NI" name="notice_id"
 			value="${questInfo.notice_id}">
@@ -94,12 +103,13 @@
 
 <script>
 
+	let uform = $("#questUpdate");
 	let form = $("#infoForm");
 	
 	// 수정하기 버튼
 	$("#cs_02_02_update_btn").on("click", function(e) {
-		form.attr("action", "${contextPath}/cs/questUpdate.do");
-		form.submit();
+		uform.attr("action", "${contextPath}/cs/questUpdate.do");
+		uform.submit();
 	});
 	
 	// 목록 이동 버튼

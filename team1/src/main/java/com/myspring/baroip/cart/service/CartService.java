@@ -20,7 +20,7 @@ public interface CartService {
 //	상세페이지 동일 상품 추가
 	public void ProductOverLap(CartVO cartVO) throws Exception;
 	
-//	장바구니 제거
+//	장바구니 상품 삭제
 	public void deleteCartItem(Map<String, String> deleteList) throws Exception;
 	
 }

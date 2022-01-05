@@ -41,10 +41,12 @@ public class CartControllerImpl implements CartController{
 	@RequestMapping(value= "/cartList.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView mycartList(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
+		
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+//		회원 장바구니 리스트
 		if(userVO != null) {
 			String user_id = userVO.getUser_id();
 			cartVO.setUser_id(user_id);
@@ -53,6 +55,7 @@ public class CartControllerImpl implements CartController{
 		}
 //		비회원 장바구니 리스트
 		else {
+			@SuppressWarnings("unchecked")
 			List<CartVO> notUserCart = (List<CartVO>) session.getAttribute("guestCartAdd");
 			Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
 			if(notUserCart != null) {
@@ -85,8 +88,10 @@ public class CartControllerImpl implements CartController{
 	public String addProductInCart(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
+		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+		String message = "";
 //		로그인 상태 장바구니 담기
 		if(userVO != null) {
 			String user_id = userVO.getUser_id();
@@ -96,11 +101,11 @@ public class CartControllerImpl implements CartController{
 			boolean productInCart = cartService.selectProductInCart(cartVO);
 //		장바구니에 해당 상품이 있는지 확인
 			if(productInCart == true) {
-				return "overLapProduct";
+				message = "overLapProduct";
 			}
 			else {
 				cartService.addProductInCart(cartVO);
-				return "addProduct";
+				message = "addProduct";
 			}
 		}
 //		비로그인 장바구니 담기
@@ -108,19 +113,33 @@ public class CartControllerImpl implements CartController{
 			List<CartVO> guestCartList = new ArrayList<CartVO>();
 			@SuppressWarnings("unchecked")
 			List<CartVO> sessionCart = (List<CartVO>)session.getAttribute("guestCartAdd");
+			
 			if (sessionCart != null) {
 				guestCartList = sessionCart;
+				for(int i = 0; sessionCart.size() > i; i++) {
+					if(sessionCart.get(i).getProduct_id().equals(product_id)) {
+						message = "overLapProduct";
+					}
+					else {
+						cartVO = new CartVO();
+						cartVO.setCart_count(cart_count);
+						cartVO.setProduct_id(product_id);
+						guestCartList.add(cartVO);
+						session.setAttribute("guestCartAdd", guestCartList);
+						message = "addProduct";
+					}
+				}
 			}
-			cartVO = new CartVO();
-			cartVO.setCart_count(cart_count);
-			cartVO.setProduct_id(product_id);
-			guestCartList.add(cartVO);
-			for(int i = 0; i < guestCartList.size(); i++) {
+			else {
+				cartVO = new CartVO();
+				cartVO.setCart_count(cart_count);
+				cartVO.setProduct_id(product_id);
+				guestCartList.add(cartVO);
 				session.setAttribute("guestCartAdd", guestCartList);
+				message = "addProduct";
 			}
-			return "null";
 		}
-		
+		return message;
 	}
 	
 //	상세페이지 동일 상품 추가
@@ -130,14 +149,43 @@ public class CartControllerImpl implements CartController{
 	public String cartInProductOverLap(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
+		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+//		로그인 동일 상품 수량 추가
+		if(userVO != null) {
 			String user_id = userVO.getUser_id();
 			cartVO.setUser_id(user_id);
 			cartVO.setProduct_id(product_id);
 			cartVO.setCart_count(cart_count);
 			cartService.ProductOverLap(cartVO);
-			return "cart_count : " + cartVO.getCart_count();
+		}
+//		비로그인 동일 상품 수량 추가
+		else {
+			List<CartVO> guestCartList = new ArrayList<CartVO>();
+			int cartCount = cartVO.getCart_count();
+
+			@SuppressWarnings("unchecked")
+			List<CartVO> sessionCart = (List<CartVO>)session.getAttribute("guestCartAdd");
+			cartVO.setProduct_id(product_id);
+			cartVO.setCart_count(cart_count);
+			
+			if(sessionCart != null) {
+				guestCartList = sessionCart;
+			}
+			
+			for(int i=0; guestCartList.size()>i; i++) {
+				if(guestCartList.get(i).equals(cartVO)) {
+					int productCount = guestCartList.get(i).getCart_count();
+					int newCount = productCount + cartCount;
+					
+//					System.out.println(guestCartList.get(i).getCart_count());
+					guestCartList.get(i).setCart_count(newCount);
+				}
+			}
+			session.setAttribute("guestCartAdd", guestCartList);
+		}
+		return "cart_count : " + cartVO.getCart_count();	
 	}
 	
 //	장바구니 상품 삭제
@@ -148,23 +196,25 @@ public class CartControllerImpl implements CartController{
 			HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+//		로그인 회원 장바구니 상품 삭제
 		if(userVO != null) {
 			Map<String, String> deleteList = new HashMap<String, String>();
+			System.out.println("deleteList : " + product_id);
 			String user_id = userVO.getUser_id();
 			deleteList.put("user_id", user_id);
 			deleteList.put("product_id", product_id);
 			cartService.deleteCartItem(deleteList);
 			return product_id;
 		} 
-//		비회원 장바구니 상품 삭제
+//		비로그인 장바구니 상품 삭제
 		else {
-			List<CartVO> guestCartList = new ArrayList<CartVO>();
-			guestCartList = (List<CartVO>) session.getAttribute("guestCartAdd");
+			@SuppressWarnings("unchecked")
+			List<CartVO> guestCartList = (List<CartVO>)session.getAttribute("guestCartAdd");
 			cartVO.setProduct_id(product_id);
-			System.out.println(guestCartList.size());
+//			System.out.println(guestCartList.size());
 			for(int i=0; guestCartList.size()>i; i++) {
 				if(guestCartList.get(i).equals(cartVO)) {
-					System.out.println(guestCartList.get(i).getProduct_id());
+//					System.out.println(guestCartList.get(i).getProduct_id());
 					guestCartList.remove(i);
 				}
 			}
