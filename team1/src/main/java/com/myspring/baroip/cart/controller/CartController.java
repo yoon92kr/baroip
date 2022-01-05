@@ -23,7 +23,7 @@ public interface CartController {
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
 	
-//	장바구니 제거
+//	장바구니 상품 삭제
 	public String cartListDelete(@RequestParam("product_id") String product_id, HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
 }

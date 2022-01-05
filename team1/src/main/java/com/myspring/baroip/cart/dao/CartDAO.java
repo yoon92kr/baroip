@@ -21,6 +21,6 @@ public interface CartDAO {
 //	상세페이지 동일 상품 추가
 	public void overLapCartList(CartVO cartVO) throws DataAccessException;
 	
-//	장바구니 제거
+//	장바구니 상품 삭제
 	public void deleteCartList(Map<String, String> deleteList) throws DataAccessException;
 }
