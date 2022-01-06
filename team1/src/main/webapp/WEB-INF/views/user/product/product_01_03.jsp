@@ -20,7 +20,7 @@
 
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3 text-center product_01_sub_title">
-			<a href="#">돼지고기</a> <a href="#">소고기</a> <a href="#">기타육</a>
+			<a href="#">돼지고기</a> <a href="#">소고기</a> <a href="#">기타</a>
 		</div>
 	</div>
 

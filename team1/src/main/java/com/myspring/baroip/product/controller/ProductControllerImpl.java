@@ -1,6 +1,7 @@
 package com.myspring.baroip.product.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,21 +40,44 @@ public class ProductControllerImpl implements ProductController {
 	
 	@Override
 	@RequestMapping(value = "/product_list/*", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView productList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+	public ModelAndView productList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
-		mav.setViewName(viewName);
+		
+		
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("main_option");
+			session.removeAttribute("sub_option");
+			session.removeAttribute("title_option");
+			session.removeAttribute("order_option");
+		}
+		
 		
 		if(viewName.contains("farm")) {
+			info.put("main_option", "farm");
 			mav.addObject("pageInfo", "set_farm");
 		}
 		else if(viewName.contains("marine")) {
+			info.put("main_option", "marine");
 			mav.addObject("pageInfo", "set_marine");
 		}
 		else if(viewName.contains("meat")) {
+			info.put("main_option", "meat");
 			mav.addObject("pageInfo", "set_meat");
 		}
+		Map<String, Map<String, Object>> productFullList = getFullList(info, request);
+		
+		String pageNo = info.get("pageNo");
+		
+		if (pageNo != null && pageNo != "") {
+			mav.addObject("pageNo", pageNo);
+		} else {
+			mav.addObject("pageNo", 1);
+		}
+		mav.addObject("productFullList", productFullList);
+		mav.setViewName(viewName);
 		return mav;
 	}
 	
@@ -139,65 +163,110 @@ public class ProductControllerImpl implements ProductController {
 		return mav;
 	}
 
+	// 상품 조회 필터 사용시, 세션에 있는 상품정보를 확인 후 서비스로 처리하는 메소드
+		public Map<String, Map<String, Object>> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+			
+			HttpSession session = request.getSession();
+			
+			// Map options에는 조회하고자 하는 조건명 main_option / sub_option / title_option / order_option 이 있으며, main_option은 반드시 포함되어야한다.
+			// * main_option(main_category 설정) = value [farm / marine / meat]
+			// sub_option(sub_category 설정) = value [채소/곡물/과일, 생선류/갑각류/해조류, 돼지고기/소고기/기타]
+			// title_option(main_category 설정) = value [farm / marine / meat]
+			// order_option(main_category 설정) = value [farm / marine / meat]
+			
+			Map<String, String> options = new HashMap<String, String>();
+			
+			String paramSub = info.get("sub_option");
+			String paramTitle = info.get("title_option");
+			String paramOrder = info.get("order_option");
+			
+			String sessionSub = (String) session.getAttribute("sub_option");
+			String sessionTitle = (String) session.getAttribute("title_option");
+			String sessionOrder = (String) session.getAttribute("order_option");
 
+			// paramSub 검색조건이 session 혹은 param에 존재할 경우 처리
+			if (paramSub != null || sessionSub != null) {
+				
+				// param에 조건이 있을경우
+				if(paramSub != null && sessionSub == null) {
+					options.put("sub_option", paramSub);
+					session.setAttribute("sub_option", paramSub);
+				}
+				// session에 조건이 있을경우
+				else if(paramSub == null && sessionSub != null) {
+					options.put("sub_option", sessionSub);
+				}
+				// param과 session 모두에 조건이 있을경우
+				else {
+					// param과 session의 조건이 동일할 경우, 기존 session의 조건 전달
+					if(paramSub.equals(sessionSub)) {
+						options.put("sub_option", sessionSub);
+					}
+					// param과 session의 조건이 다를 경우, session에 set후, param 조건 전달
+					else {
+						options.put("sub_option", paramSub);
+						session.setAttribute("sub_option", paramSub);
+					}
+				} 
+			
+			}
+			// paramSub 검색조건이 session 혹은 param에 존재할 경우 처리			
+			if (paramTitle != null || sessionTitle != null) {
+				
+				// param에 조건이 있을경우	
+				if(paramTitle != null && sessionTitle == null) {
+					options.put("title_option", paramTitle);
+					session.setAttribute("title_option", paramTitle);
+				}
+				// session에 조건이 있을경우
+				else if(paramTitle == null && sessionTitle != null) {
+					options.put("title_option", sessionTitle);
+				}
+				// param과 session 모두에 조건이 있을경우
+				else {
+					// param과 session의 조건이 동일할 경우, 기존 session의 조건 전달
+					if(paramTitle.equals(sessionTitle)) {
+						options.put("title_option", sessionTitle);
+					}
+					// param과 session의 조건이 다를 경우, session에 set후, param 조건 전달
+					else {
+						options.put("title_option", paramTitle);
+						session.setAttribute("title_option", paramTitle);
+					}
+				} 
+			
+			} 
+			// paramSub 검색조건이 session 혹은 param에 존재할 경우 처리			
+			if (paramOrder != null || sessionOrder != null) {
+				
+				// param에 조건이 있을경우
+				if(paramOrder != null && sessionOrder == null) {
+					options.put("order_option", paramOrder);
+					session.setAttribute("order_option", paramOrder);
+				}
+				// session에 조건이 있을경우
+				else if(paramOrder == null && sessionOrder != null) {
+					options.put("order_option", sessionOrder);
+				}
+				// param과 session 모두에 조건이 있을경우
+				else {
+					// param과 session의 조건이 동일할 경우, 기존 session의 조건 전달
+					if(paramOrder.equals(sessionOrder)) {
+						options.put("order_option", sessionOrder);
+					}
+					// param과 session의 조건이 다를 경우, session에 set후, param 조건 전달
+					else {
+						options.put("order_option", paramOrder);
+						session.setAttribute("order_option", paramOrder);
+					}
+				} 
+			
+			} 			
+			options.put("main_option", info.get("main_option"));
+			Map<String, Map<String, Object>> fullList = productService.productListToOption(options);
+			
+			return fullList;
+		}
 	
-
-//	// 상품 목록
-//	@RequestMapping(value= "/product_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView product_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	
-//	// 상품 상세
-//	@RequestMapping(value= "/product_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView product_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 상품 상세_고객후기
-//	@RequestMapping(value= "/product_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView product_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	// 상품 상세_배송안내
-//	@RequestMapping(value= "/product_04.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView product_04(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	// 상품 상세_상품 문의
-//	@RequestMapping(value= "/product_05.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView product_05(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	// 상품 문의 작성
-//	@RequestMapping(value= "/product_06.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView product_06(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
 
 }

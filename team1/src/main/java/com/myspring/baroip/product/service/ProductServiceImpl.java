@@ -124,4 +124,56 @@ public class ProductServiceImpl implements ProductService {
 			
 	}
 	
+	@Override
+	public Map<String, Map<String, Object>> productListToOption(Map<String, String> option) throws Exception {
+
+		// 옵션에 따른 상품리스트 선택
+		List<ProductVO> productList = productDAO.productListToOption(option);
+		
+		
+		// 페이지에 호출할 상품정보 + 이미지를 담을 객체 생성
+		Map<String, Map<String, Object>> fullProductList = new HashMap<String, Map<String, Object>>();
+		// 이미지 호출을 위한 option Map 객체 생성
+		Map<String, String> imageOption = new HashMap<String, String>();
+			
+		if(productList != null && !productList.isEmpty() ) {
+		for (int i = 0; i < productList.size(); i++) {
+
+			ProductVO product = productList.get(i);
+			
+			if (product != null) {
+				
+				String match_id = product.getProduct_id();
+				
+				imageOption.put("match_id", match_id);
+				imageOption.put("image_category", "main");
+
+				// 해당 상품과 연관된 메인 이미지 호출
+				ImageVO productImage = imageService.selectProductImage(imageOption);
+				// byte를 img로 변환하기 위한 encode
+				
+				// 상품 내용과 이미지를 담을 객체 생성
+				Map<String, Object> productInfo = new HashMap<String, Object>();
+				
+				// byte[] 자료를 img 태그에 사용가능하도록 encode
+				String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
+				
+				productInfo.put("product_main_title", product.getProduct_main_title());
+				productInfo.put("product_sub_title", product.getProduct_sub_title());
+				productInfo.put("product_price", product.getProduct_price());
+				productInfo.put("product_discount", product.getProduct_discount());
+				productInfo.put("image_file", encodeImage);
+				productInfo.put("product_id", product.getProduct_id());
+
+				fullProductList.put("product" + (i+1), productInfo);
+				
+			}
+
+		}
+		}
+
+		return fullProductList;
+
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.myspring.baroip.product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,16 @@ public class ProductDAOImpl implements ProductDAO{
 		ProductVO productInfo = sqlSession.selectOne("mapper.product.selectProduct", product_id);
 				
 		return productInfo;
+	}
+	
+	// 옵션에 따른 상품조회 DAO
+	@Override
+	public List<ProductVO> productListToOption(Map<String, String> option) throws DataAccessException {
+		
+		List<ProductVO> productList = sqlSession.selectList("mapper.product.productListToOption", option);
+				
+		return productList;
+     
 	}
 
 }
