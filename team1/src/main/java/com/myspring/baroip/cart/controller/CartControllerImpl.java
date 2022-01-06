@@ -199,18 +199,22 @@ public class CartControllerImpl implements CartController{
 		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+		List<CartVO> cartDeleteList = new ArrayList<CartVO>();
 		
-		for(int i = 0; deleteList.size() > i; i++) {
-//			System.out.println("deleteList(toString) : " + deleteList.toString());
-			System.out.println("deleteList(get) : " + deleteList.get(i));
-			Map<String, String> deleteItem = new HashMap<String, String>();
-			deleteItem.put("Product_id",deleteList.get(i));
 	//		로그인 회원 장바구니 상품 삭제
 			if(userVO != null) {
 //				System.out.println("deleteList : " + deleteItem);
 				String user_id = userVO.getUser_id();
-				deleteItem.put("user_id", user_id);
-				cartService.deleteCartItem(deleteItem);
+				for(int i = 0; deleteList.size() > i; i++) {
+					CartVO deleteItem = new CartVO();
+					deleteItem.setUser_id(user_id);
+					deleteItem.setProduct_id(deleteList.get(i).replace("\"", "").replace("[", "").replace("]", ""));
+					cartDeleteList.add(deleteItem);
+				}
+//				System.out.println("controller(cartDeleteList.size)0 : " + cartDeleteList.get(0).getProduct_id());
+//				System.out.println("controller(cartDeleteList.size)1 : " + cartDeleteList.get(1).getProduct_id());
+//				System.out.println("controller(cartDeleteList.size)2 : " + cartDeleteList.get(2).getProduct_id());
+				cartService.deleteCartItem(cartDeleteList);
 			}
 	//		비로그인 장바구니 상품 삭제
 			else {
@@ -218,15 +222,13 @@ public class CartControllerImpl implements CartController{
 				List<CartVO> guestCartList = (List<CartVO>)session.getAttribute("guestCartAdd");
 //				cartVO.setProduct_id(deleteItem.get(product_id));
 	//			System.out.println(guestCartList.size());
-				for(int s=0; guestCartList.size()>s; s++) {
-					if(guestCartList.get(s).equals(deleteList.get((s)))) {
-	//					System.out.println(guestCartList.get(i).getProduct_id());
-						guestCartList.remove(s);
+				for(int i = 0; guestCartList.size() > i; i++) {
+					if(guestCartList.get(i).equals(deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", ""))) {
+						guestCartList.remove(i);
 					}
 				}
+				session.setAttribute("guestCartAdd", guestCartList);
 			}
-		}
-//		session.setAttribute("guestCartAdd", guestCartList);
 		return "test";
 	}
 	

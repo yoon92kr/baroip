@@ -1,7 +1,6 @@
 package com.myspring.baroip.cart.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class CartDAOImpl implements CartDAO{
 	
 //	장바구니 상품 삭제
 	@Override
-	public void deleteCartList(Map<String, String> deleteList) throws DataAccessException {
+	public void deleteCartList(List<CartVO> deleteList) throws DataAccessException {
 		sqlSession.delete("mapper.cart.ListDelete", deleteList);
 	}
 

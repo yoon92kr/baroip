@@ -21,6 +21,6 @@ public interface CartService {
 	public void ProductOverLap(CartVO cartVO) throws Exception;
 	
 //	장바구니 상품 삭제
-	public void deleteCartItem(Map<String, String> deleteList) throws Exception;
+	public void deleteCartItem(List<CartVO> deleteList) throws Exception;
 	
 }

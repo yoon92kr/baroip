@@ -35,7 +35,7 @@
 
 			<div class="col-lg-1 offset-lg-2 text-center cart_title">
 				<input type="checkbox" id="cart_checkAll" onclick="checkAll();"
-					class="join_01-check-01">
+					class="join_01-check-01"> 전체선택 버튼
 			</div>
 			<div class="col-lg-5 text-center cart_title">상품정보</div>
 			<div class="col-lg-1 text-center cart_title">수량</div>
@@ -58,7 +58,7 @@
 					<div class="cart_list_body">
 						<div class="row">
 							<div class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
-								<input id="ListCeckBox${i}" value="${userCartListInfo[cart].product.productVO.product_id}" type="checkbox" class="join_01-check-01" name="checkRow">
+								<input id="ListCheckBox${i}" value="${userCartListInfo[cart].product.productVO.product_id}" type="checkbox" class="join_01-check-01" name="checkRow">
 							</div>
 							<div class="col-lg-2 text-center cart_body">
 								<a href="${contextPath}/product/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">
@@ -247,33 +247,44 @@
 	/* 장바구니 상품 삭제 */
 	$("#selectPriceDelete").on("click", function(e) {
 		let userFind = "${userInfo.user_id}";
-		let poroduct_id;
 		let deleteProduct;
 		let deleteItem;
-		let deleteList = [];
-		for(let i=1; i<=${userCartListInfo.size()}; i++) {
-			product_id = document.getElementById("ListCeckBox"+i).value;
-			deleteItem = document.getElementById("cartListProductTitle"+i).value;
-			deleteList.push(product_id);
+		let deleteList = new Array();
+		/* 체크박스 선택시 */
+		if($("input[name=checkRow]").is(":checked")) {
+			/* 선택된 체크박스의 길이(갯수) */
+			let productCheck = $("input[name=checkRow]:checked").length;
+			if(productCheck > 0) {
+				let poroduct_id;
+				/* 선택된 체크박스의 value를 each함수를 통해 각각 받아옴 */
+				$("input[name=checkRow]:checked").each(function(e) {
+					product_id = $(this).val();
+					deleteList.push(product_id);
+				})
+			}
+			deleteItem = document.getElementById("cartListProductTitle"+(i)).value;
+			alert(" deleteList : " + deleteList);
+			deleteProduct = confirm(deleteItem + "을(를) 장바구니에서 제거 하시겠습니까?");
+			if(deleteProduct == true) {
+				$.ajax({
+					type:"post", 
+					url:"${contextPath}/cart/cartListDelete.do", 
+					dataType:"text", 
+					data: {
+						"deleteList": JSON.stringify(deleteList)
+					}, 
+					success:function(test) {
+						alert(test + "상품이 장바구니에서 삭제되었습니다.");
+						location.reload();
+					}, 
+					error:function() {
+						alert("해당 상품 삭제가 실패했습니다.");
+					}
+				});
+			}
 		}
-		alert(deleteList);
-		deleteProduct = confirm(deleteItem + "을(를) 장바구니에서 제거 하시겠습니까?");
-		if(deleteProduct == true) {
-			$.ajax({
-				type:"post", 
-				url:"${contextPath}/cart/cartListDelete.do", 
-				dataType:"text", 
-				data: {
-					"deleteList" : JSON.stringify(deleteList)
-				}, 
-				success:function(test) {
-					alert(test + "상품이 장바구니에서 삭제되었습니다.");
-					location.reload();
-				}, 
-				error:function() {
-					alert("해당 상품 삭제가 실패했습니다.");
-				}
-			});	
+		else{
+			alert("선택된 상품이 없습니다.");
 		}
 	});
 	
