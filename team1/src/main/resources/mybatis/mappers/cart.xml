@@ -46,10 +46,10 @@
 	</update>
 	
 	<!-- 장바구니 상품 삭제 -->
-	<delete id="ListDelete" parameterType="java.util.Map">
-		<![CDATA[
-			delete from cart where user_id = #{user_id} and product_id = #{product_id}
-		]]>
+	<delete id="ListDelete" parameterType="java.util.List">
+		<foreach collection="List"  item="item">
+			delete from cart where product_id = #{item.product_id} and user_id = #{item.user_id}
+		</foreach>
 	</delete>
 	
 </mapper>

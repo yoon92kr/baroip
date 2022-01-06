@@ -1,7 +1,6 @@
 package com.myspring.baroip.cart.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -22,5 +21,5 @@ public interface CartDAO {
 	public void overLapCartList(CartVO cartVO) throws DataAccessException;
 	
 //	장바구니 상품 삭제
-	public void deleteCartList(Map<String, String> deleteList) throws DataAccessException;
+	public void deleteCartList(List<CartVO> deleteList) throws DataAccessException;
 }
