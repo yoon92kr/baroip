@@ -38,13 +38,22 @@ public class ProductControllerImpl implements ProductController {
 	}
 	
 	@Override
-	@RequestMapping(value = "/product_list", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView productList(@RequestParam("pageInfo") String pageInfo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/product_list/*", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView productList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
 		mav.setViewName(viewName);
-		mav.addObject("pageInfo", pageInfo);
+		
+		if(viewName.contains("farm")) {
+			mav.addObject("pageInfo", "set_farm");
+		}
+		else if(viewName.contains("marine")) {
+			mav.addObject("pageInfo", "set_marine");
+		}
+		else if(viewName.contains("meat")) {
+			mav.addObject("pageInfo", "set_meat");
+		}
 		return mav;
 	}
 	
@@ -56,7 +65,6 @@ public class ProductControllerImpl implements ProductController {
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");		
 		Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);
-		
 		
 		ProductVO product = (ProductVO)productInfo.get("product").get("productVO");
 		// 선택된 상품의 카테고리를 식별하여 헤더 style 설정을 위한 세팅
@@ -127,6 +135,7 @@ public class ProductControllerImpl implements ProductController {
 		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("productInfo", productInfo);
 		mav.setViewName(viewName);
+
 		return mav;
 	}
 

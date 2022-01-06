@@ -6,6 +6,14 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:if test='${not empty pageNo }'>
+<script>
+window.addEventListener('load', function() {
+				 document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
+				 document.getElementById("${pageNo}").style.fontSize = "15px";
+});
+</script>
+</c:if>
 <c:if test='${not empty message }'>
 
 	<script>
@@ -161,14 +169,14 @@
 								type="hidden" id="user_id_${j}"
 								value="${extraList[key].user_id}">
 						</form>
-						<input class="admin_01-itemCountBox-btn" id="${j}" type="button"
+						<input class="admin_01-itemCountBox-btn" id="updateA_${j}" type="button"
 							value="변경" onclick="update_amount(this.id)">
 					</div>
 					<div class="col-lg-2 text-center adminProduct_01-content-item">
 						<input class="adminProduct_01-product adminProduct_01-product-top"
-							type="button" value="상품 수정" id="${j}"
+							type="button" value="상품 수정" id="updateP_${j}"
 							onclick="update_product_form(this.id)"> <input
-							class="adminProduct_01-product" id="${j}" type="button"
+							class="adminProduct_01-product" id="deleteP_${j}" type="button"
 							value="상품 삭제" onclick="delete_product(this.id)">
 					</div>
 				</div>
@@ -290,10 +298,13 @@
 	}
 	/* 상품 수량 수정 ajax */
 	function update_amount(target) {
-		let target_id = document.getElementById('product_'.concat(target)).value;
+		var strArray = target.split('_');
+		var target_no = strArray[1];
+		
+		let target_id = document.getElementById('product_'.concat(target_no)).value;
 		let change_count_value = document.getElementById('product_item_count'
-				.concat(target)).value;
-		let target_title = document.getElementById('admin_product_title'.concat(target)).innerText;
+				.concat(target_no)).value;
+		let target_title = document.getElementById('admin_product_title'.concat(target_no)).innerText;
 
 		$.ajax({
 			type : "post",
@@ -319,9 +330,11 @@
 	
 	/* 상품 삭제 ajax */
 	function delete_product(target) {
+		var strArray = target.split('_');
+		var target_no = strArray[1];
 		
-		let product_title = document.getElementById('admin_product_title'.concat(target)).innerText;
-		let product_id = document.getElementById('product_'.concat(target)).value;
+		let product_title = document.getElementById('admin_product_title'.concat(target_no)).innerText;
+		let product_id = document.getElementById('product_'.concat(target_no)).value;
 		var confirmFlag = confirm(product_title+"을(를) 정말 삭제하시겠습니까?")
 		if(confirmFlag){
 			
@@ -350,8 +363,11 @@
 	
 	/* 상품 수정 ajax */
 	function update_product_form(target) {
-		let user_id = document.getElementById('user_id_'.concat(target)).value;
-		let target_id = document.getElementById('product_'.concat(target)).value;
+		var strArray = target.split('_');
+		var target_no = strArray[1];
+		
+		let user_id = document.getElementById('user_id_'.concat(target_no)).value;
+		let target_id = document.getElementById('product_'.concat(target_no)).value;
 		window.sStorage = window.sessionStorage;
 		
 		if(${userInfo.user_rank > 2} || "${userInfo.user_id}" == user_id) {

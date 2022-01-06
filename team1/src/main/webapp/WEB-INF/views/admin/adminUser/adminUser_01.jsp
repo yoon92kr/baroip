@@ -6,6 +6,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:if test='${not empty pageNo }'>
+<script>
+window.addEventListener('load', function() {
+				 document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
+				 document.getElementById("${pageNo}").style.fontSize = "15px";
+});
+</script>
+</c:if>
 <c:if test='${not empty message }'>
 
 	<script>
@@ -25,7 +33,7 @@
    else {
          alert("잘못된 접근입니다.");
          location.replace('${contextPath}/main.do');
-      }
+      } 
    </script>
 
 </c:if>
@@ -156,7 +164,7 @@
 								<option value="4"
 									<c:if test='${userList[j].user_rank == "4"}'>selected</c:if>>총
 									책임자</option>
-							</select> <input class="admin_01-itemCountBox-btn" id="${j+1}"
+							</select> <input class="admin_01-itemCountBox-btn" id="updateR_${j+1}"
 								type="button" value="변경" onclick="update_rank(this.id)">
 						</div>
 					</c:if>
@@ -182,9 +190,9 @@
 					<div class="col-lg-2 text-center adminUser_user_list_form_edit">
 						<input
 							class="adminProduct_01-product adminProduct_01-product-top "
-							type="button" value="회원 수정" id="${j+1}"
+							type="button" value="회원 수정" id="updateU_${j+1}"
 							onclick="update_user_form(this.id)"> <input
-							class="adminProduct_01-product" id="${j+1}" type="button"
+							class="adminProduct_01-product" id="deleteU_${j+1}" type="button"
 							value="회원 삭제" onclick="delete_user(this.id)">
 							<input type="hidden" id="rank_${j+1}" value="${userList[j].user_rank}">
 					</div>
@@ -247,9 +255,10 @@ function selectLookup(selectValue) {
  }
 /* 회원 삭제 ajax */
 function delete_user(target) {
-	
-	let user_id = document.getElementById('user_id_'.concat(target)).innerText;
-	let user_rank = document.getElementById('rank_'.concat(target)).value;
+	var strArray = target.split('_');
+	var target_no = strArray[1];
+	let user_id = document.getElementById('user_id_'.concat(target_no)).innerText;
+	let user_rank = document.getElementById('rank_'.concat(target_no)).value;
 
 	if(${userInfo.user_rank} >= 3) {
 		var confirmFlag = false;
@@ -305,8 +314,11 @@ function delete_user(target) {
 
 /* 회원 수정 */
 function update_user_form(target) {
-	let user_id = document.getElementById('user_id_'.concat(target)).innerText;
-	let user_rank = document.getElementById('rank_'.concat(target)).value;
+	var strArray = target.split('_');
+	var target_no = strArray[1];
+	
+	let user_id = document.getElementById('user_id_'.concat(target_no)).innerText;
+	let user_rank = document.getElementById('rank_'.concat(target_no)).value;
 	
 	if(${userInfo.user_rank} >= user_rank) {
 		
@@ -326,11 +338,13 @@ function update_user_form(target) {
 }
 /* 회원 권한 수정 ajax */
 function update_rank(target) {
-
+	var strArray = target.split('_');
+	var target_no = strArray[1];
+	
 	if(${userInfo.user_rank == "4" }) {
-		let target_id = document.getElementById('user_id_'.concat(target)).innerText;
-		let new_rank = document.getElementById('user_rank_'.concat(target)).value;
-		let old_rank = document.getElementById('rank_'.concat(target)).value;
+		let target_id = document.getElementById('user_id_'.concat(target_no)).innerText;
+		let new_rank = document.getElementById('user_rank_'.concat(target_no)).value;
+		let old_rank = document.getElementById('rank_'.concat(target_no)).value;
 		
 		if(new_rank == old_rank) {
 			alert("기존의 권한과 변경하고자 하는 권한이 동일합니다.");

@@ -10,17 +10,17 @@
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-center product_01_banner">
 			<img id="product_01_main_img"
-				src="${contextPath}/resources/img/common/vegi_main_banner.jpg" alt="상품리스트 배너 이미지">
+				src="${contextPath}/resources/img/common/marine_main_banner.jpg" alt="상품리스트 배너 이미지">
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-lg-8 offset-lg-2 text-center product_01_main_title">[카테고리명]</div>
+		<div class="col-lg-8 offset-lg-2 text-center product_01_main_title">수산물</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3 text-center product_01_sub_title">
-			<a href="#">[소분류]</a> <a href="#">[소분류]</a> <a href="#">[소분류]</a>
+			<a href="#">생선류</a> <a href="#">갑각류</a> <a href="#">해조류</a>
 		</div>
 	</div>
 

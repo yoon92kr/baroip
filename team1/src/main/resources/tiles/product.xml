@@ -4,13 +4,22 @@
 
 <tiles-definitions>
 
-<definition name="/product/product_list" extends="MainLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01.jsp" />
+<definition name="/product/product_list/farm" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01_01.jsp" />
+	</definition>
+	
+	<definition name="/product/product_list/marine" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01_02.jsp" />
+	</definition>
+	
+	<definition name="/product/product_list/meat" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01_03.jsp" />
 	</definition>
 
 	<definition name="/product/productDetail" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_02.jsp" />
 	</definition>
+
 
 	<definition name="/product/product_03" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_03.jsp" />
