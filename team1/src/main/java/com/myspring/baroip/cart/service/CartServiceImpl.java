@@ -62,13 +62,9 @@ public class CartServiceImpl implements CartService{
 		cartDAO.overLapCartList(cartVO);
 	}
 	
-//	장바구니 상품 삭제
+//	장바구니 상품 삭제 테스트
 	@Override
-	public void deleteCartItem(List<CartVO> deleteList) throws Exception {
-		for(int i = 0; deleteList.size() > i; i++) {
-			System.out.println("service(product_id)" + (i) + " : " + deleteList.get(i).getProduct_id());
-			System.out.println("service(user_id)" + (i) + " : " + deleteList.get(i).getUser_id());
-		}
+	public void deleteCartItem(Map<String, Object> deleteList) throws Exception {
 		cartDAO.deleteCartList(deleteList);
 	}
 

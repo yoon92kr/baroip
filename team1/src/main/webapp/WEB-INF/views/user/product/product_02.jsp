@@ -190,8 +190,8 @@
 							data: {
 								"product_id": product_id, 
 								"cart_count": cart_count
-							}, success: function(test) {
-								alert(test);
+							}, success: function(addcount) {
+								alert(addcount);
 								}
 							}).error(function() {
 								alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');

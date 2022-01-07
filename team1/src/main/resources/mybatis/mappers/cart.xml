@@ -46,10 +46,13 @@
 	</update>
 	
 	<!-- 장바구니 상품 삭제 -->
-	<delete id="ListDelete" parameterType="java.util.List">
-		<foreach collection="List"  item="item">
-			delete from cart where product_id = #{item.product_id} and user_id = #{item.user_id}
+	<delete id="ListDelete" parameterType="hashMap">
+			delete from cart where product_id in
+			<!-- product_id 맵에 설정한 key -->
+		<foreach collection="product_id"  item="item" open="(" close=")" separator=",">
+			#{item} 
 		</foreach>
+			and user_id = #{user_id}
 	</delete>
 	
 </mapper>

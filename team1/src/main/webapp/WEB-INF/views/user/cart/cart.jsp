@@ -96,7 +96,6 @@
 		<div class="row">
 			<div class="col-lg-2 offset-lg-8 text-right cart_check_delete_btn">
 				<form id="ListCeckBoxForm" action="${contextPath}/cart/cartListDelete.do">
-					<input type="button" value="전체 삭제">
 					<input id="selectPriceDelete" type="button" value="선택 삭제">
 				</form>
 			</div>

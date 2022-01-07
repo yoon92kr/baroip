@@ -98,7 +98,7 @@ public class CartControllerImpl implements CartController{
 			String user_id = userVO.getUser_id();
 			cartVO.setUser_id(user_id);
 			cartVO.setProduct_id(product_id);
-			cartVO.setCart_count(cart_count);
+			cartVO.setCart_count(cart_count);				
 			boolean productInCart = cartService.selectProductInCart(cartVO);
 //		장바구니에 해당 상품이 있는지 확인
 			if(productInCart == true) {
@@ -115,26 +115,36 @@ public class CartControllerImpl implements CartController{
 			@SuppressWarnings("unchecked")
 			List<CartVO> sessionCart = (List<CartVO>)session.getAttribute("guestCartAdd");
 			
-			if (sessionCart != null) {
+//			세션에 값이 있었다면 기존 값을 저장
+			if(sessionCart != null) {
 				guestCartList = sessionCart;
-				for(int i = 0; sessionCart.size() > i; i++) {
-					if(sessionCart.get(i).getProduct_id().equals(product_id)) {
-						message = "overLapProduct";
-					}
-					else {
-						cartVO = new CartVO();
-						cartVO.setCart_count(cart_count);
-						cartVO.setProduct_id(product_id);
-						guestCartList.add(cartVO);
-						session.setAttribute("guestCartAdd", guestCartList);
-						message = "addProduct";
+				boolean test = false;
+//				기존 값 중 현재 값과 같은 값이 있는지 확인
+				for(int i = 0; guestCartList.size() > i; i++) {
+					if(guestCartList.get(i).getProduct_id().contains(product_id)) {
+						test = true;
+						break;
 					}
 				}
+//				같은 값이 존재 할 경우
+				if(test) {
+					message = "overLapProduct";
+				}
+//				같은 값이 없으면 해당 값을 기존 값에 추가 후 세션에 저장
+				else {
+					cartVO = new CartVO();
+					cartVO.setProduct_id(product_id);
+					cartVO.setCart_count(cart_count);
+					guestCartList.add(cartVO);
+					session.setAttribute("guestCartAdd", guestCartList);
+					message = "addProduct";
+				}
 			}
+//			세션에 값이 없다면 값을 추가해 세션에 저장
 			else {
 				cartVO = new CartVO();
-				cartVO.setCart_count(cart_count);
 				cartVO.setProduct_id(product_id);
+				cartVO.setCart_count(cart_count);
 				guestCartList.add(cartVO);
 				session.setAttribute("guestCartAdd", guestCartList);
 				message = "addProduct";
@@ -187,7 +197,7 @@ public class CartControllerImpl implements CartController{
 			}
 			session.setAttribute("guestCartAdd", guestCartList);
 		}
-		return "cart_count : " + cartVO.getCart_count();	
+		return "count : " + cartVO.getCart_count();
 	}
 	
 //	장바구니 상품 삭제
@@ -199,34 +209,47 @@ public class CartControllerImpl implements CartController{
 		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-		List<CartVO> cartDeleteList = new ArrayList<CartVO>();
+//		List<CartVO> cartDeleteList = new ArrayList<CartVO>();
+		List<String> productList = new ArrayList<String>();
 		
-	//		로그인 회원 장바구니 상품 삭제
-			if(userVO != null) {
-//				System.out.println("deleteList : " + deleteItem);
-				String user_id = userVO.getUser_id();
-				for(int i = 0; deleteList.size() > i; i++) {
-					CartVO deleteItem = new CartVO();
-					deleteItem.setUser_id(user_id);
-					deleteItem.setProduct_id(deleteList.get(i).replace("\"", "").replace("[", "").replace("]", ""));
-					cartDeleteList.add(deleteItem);
-				}
-//				System.out.println("controller(cartDeleteList.size)0 : " + cartDeleteList.get(0).getProduct_id());
-//				System.out.println("controller(cartDeleteList.size)1 : " + cartDeleteList.get(1).getProduct_id());
-//				System.out.println("controller(cartDeleteList.size)2 : " + cartDeleteList.get(2).getProduct_id());
-				cartService.deleteCartItem(cartDeleteList);
+//		로그인 회원 선택 상품 삭제
+		if(userVO != null) {
+			Map<String, Object> item = new HashMap<String, Object>();
+//			체크된 product_id 담아주기 위해 생성
+			String user_id = userVO.getUser_id();
+			item.put("user_id", user_id);
+			for(int i = 0; deleteList.size() > i; i++) {
+				productList.add(deleteList.get(i).replace("\"", "").replace("[", "").replace("]", ""));
+//				cartTest.put("product_id", deleteList.get(i).replace("\"", "").replace("[", "").replace("]", ""));
 			}
+			item.put("product_id", productList);
+			cartService.deleteCartItem(item);
+		}
 	//		비로그인 장바구니 상품 삭제
 			else {
+				System.out.println("deleteNoneUser");
+				System.out.println("deleteList : " +deleteList.toString());
+				System.out.println("deleteList.size : " + deleteList.size());
 				@SuppressWarnings("unchecked")
 				List<CartVO> guestCartList = (List<CartVO>)session.getAttribute("guestCartAdd");
-//				cartVO.setProduct_id(deleteItem.get(product_id));
-	//			System.out.println(guestCartList.size());
+				
 				for(int i = 0; guestCartList.size() > i; i++) {
-					if(guestCartList.get(i).equals(deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", ""))) {
+					String product = new String();
+					product = deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", "");
+					if(guestCartList.get(i).getProduct_id().contains(product)) {
 						guestCartList.remove(i);
 					}
 				}
+//					productList.add(product);
+				
+//				guestCartList.remove(productList);
+				
+//				for(int i = 0; guestCartList.size() > i; i++) {
+//					System.out.println("deleteList(for) : " + deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", ""));
+//					if(guestCartList.get(i).equals(deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", ""))) {
+//						guestCartList.remove(i);
+//					}
+//				}
 				session.setAttribute("guestCartAdd", guestCartList);
 			}
 		return "test";
