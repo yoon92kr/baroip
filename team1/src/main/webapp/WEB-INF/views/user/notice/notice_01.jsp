@@ -12,13 +12,18 @@
 <c:set var="pageNoMax" value="9" />
 <!-- itemList에는 표시할 item의 size를 대입한다. -->
 <c:set var="itemList" value="${NTList.size()}" />
-<c:if test='${not empty pageNo }'>
-<script>
-window.addEventListener('load', function() {
-				 document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
-				 document.getElementById("${pageNo}").style.fontSize = "15px";
-});
-</script>
+<c:if test='${not empty pageNo}'>
+	<script>
+	
+		window.addEventListener('load',function() {
+			if(document.getElementById("${pageNo}")) {
+			document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
+			document.getElementById("${pageNo}").style.fontSize = "15px";
+			}
+		});
+
+
+	</script>
 </c:if>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
