@@ -2,6 +2,7 @@ package com.myspring.baroip.cs.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +44,7 @@ public class CsControllerImpl implements CsController {
 //	자주 묻는 질문
 	@Override
 	@RequestMapping(value= "/FAQ_list.do" , method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView cs_01(HttpServletRequest request, 
+	public ModelAndView cs_01(@RequestParam Map<String, String> info, HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		String viewName = (String)request.getAttribute("viewName");
@@ -52,6 +53,15 @@ public class CsControllerImpl implements CsController {
 //		System.out.println(QAList.get(0).getNotice_title());
 		mav.addObject("QAList", QAList);
 		mav.addObject("QAListSize", QAList.size());
+		
+		String pageNo = info.get("pageNo");
+		
+		if (pageNo != null && pageNo != "") {
+			mav.addObject("pageNo", pageNo);
+		} else {
+			mav.addObject("pageNo", 1);
+		}
+		
 //		System.out.println(QAList.size());
 		mav.setViewName(viewName);
 		return mav;
@@ -60,7 +70,7 @@ public class CsControllerImpl implements CsController {
 	// 1:1문의 리스트
 	@Override
 	@RequestMapping(value= "/inquiry_list.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView cs_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView cs_02(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -75,7 +85,13 @@ public class CsControllerImpl implements CsController {
 				questList.get(i).setNotice_private("비공개");
 			}
 		}
+		String pageNo = info.get("pageNo");
 		
+		if (pageNo != null && pageNo != "") {
+			mav.addObject("pageNo", pageNo);
+		} else {
+			mav.addObject("pageNo", 1);
+		}
 //		System.out.println(questList.get(0).getNotice_title());
 		mav.addObject("questList", questList);
 //		System.out.println(QAList.size());

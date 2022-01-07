@@ -4,6 +4,7 @@ package com.myspring.baroip.notice.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,13 +32,21 @@ public class NoticeControllerImpl implements NoticeController {
 
 	// 공지사항 리스트페이지
 	@RequestMapping(value= "/notice_list.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView notice_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView notice_01(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		List<NoticeVO> NTList = noticeService.NTList();
 		mav.addObject("NTList", NTList);
 		mav.setViewName(viewName);
+		
+		String pageNo = info.get("pageNo");
+		
+		if (pageNo != null && pageNo != "") {
+			mav.addObject("pageNo", pageNo);
+		} else {
+			mav.addObject("pageNo", 1);
+		}
 		return mav;
 	}
 	
