@@ -48,4 +48,10 @@ public class CsDAOImpl implements CsDAO {
 		sqlSession.update("mapper.cs.updateQuest", csVO);
 		System.out.println("문의 수정 DAO[csVO] : " + csVO.getNotice_title());
 	}
+	
+//	1:1 문의 삭제
+	@Override
+	public void questDelete(String noticeId) throws DataAccessException {
+		sqlSession.delete("mapper.board.questDelete", noticeId);
+	}
 }

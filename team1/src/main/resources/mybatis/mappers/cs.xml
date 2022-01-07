@@ -68,5 +68,11 @@
 			notice_cre_date=now() where notice_id=#{notice_id} and user_id=#{user_id}
 		]]>
 	</update>
+	
+	<delete id="questDelete" parameterType="String">
+		<![CDATA[
+			delete * from notice where notice_id=#{notice_id}
+		]]>
+	</delete>
 
 </mapper>

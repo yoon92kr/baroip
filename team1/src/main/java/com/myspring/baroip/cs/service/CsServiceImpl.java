@@ -48,5 +48,11 @@ public class CsServiceImpl implements CsService {
 		csDAO.updateQuest(csVO);
 		System.out.println("문의 수정 service[csVO] : " + csVO.getNotice_title());
 	}
+	
+//	1:1 문의 삭제
+	@Override
+	public void questDelete(String noticeId) throws Exception {
+		csDAO.questDelete(noticeId);
+	}
 
 }

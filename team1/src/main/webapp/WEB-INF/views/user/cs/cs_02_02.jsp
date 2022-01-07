@@ -89,7 +89,8 @@
 			</div>
 		</div>
 		<div class="col-lg-2 text-center">
-			<div class="notice_back_btn">삭제버튼</div>
+			<div class="notice_back_btn">
+			<input type="button" id="co_02_02_update_btn" value="삭제">
 		</div>
 	</div>
 
@@ -105,6 +106,7 @@
 
 	let uform = $("#questUpdate");
 	let form = $("#infoForm");
+	let dform = $("#deleteForm");
 	
 	// 수정하기 버튼
 	$("#cs_02_02_update_btn").on("click", function(e) {
@@ -118,4 +120,12 @@
 		form.attr("action", "${contextPath}/cs/inquiry_list.do");
 		form.submit();
 	});
+	
+	// 삭제 버튼
+	$("#cs_02_02_delete_btn").on("click", function(e) {
+		dform.find("#cs_02_02_NI").remove();
+		dform.attr("action", "${contextPath}/cs/inquiry_list.do");
+		form.submit();
+	})
+	
 </script>

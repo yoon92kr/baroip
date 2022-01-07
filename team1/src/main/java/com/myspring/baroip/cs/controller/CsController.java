@@ -3,6 +3,7 @@ package com.myspring.baroip.cs.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,4 +30,8 @@ public interface CsController {
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception;
 	
+//	1:1 문의 삭제
+	public String quest_Delete(@RequestParam("noticeId") String noticeId,
+			HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 }

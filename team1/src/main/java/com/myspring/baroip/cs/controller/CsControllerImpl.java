@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -171,5 +172,16 @@ public class CsControllerImpl implements CsController {
 		
 		return mav;
 	}
+	
+//	1:1 문의 삭제
+	@Override
+	@RequestMapping(value= "/questDelete.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public String quest_Delete(@RequestParam("noticeId") String noticeId,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+				
+		return "redirect:/cs/inquiry_list.do";
+	}
+	
 
 }

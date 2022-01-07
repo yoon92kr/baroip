@@ -18,4 +18,6 @@ public interface CsDAO {
 	public CsVO questDetail(String noticeId) throws DataAccessException;
 //	1:1 문의 수정
 	public void updateQuest(CsVO csVO) throws  DataAccessException;
+//	1:1 문의 삭제
+	public void questDelete(String noticeId) throws DataAccessException;
 }
