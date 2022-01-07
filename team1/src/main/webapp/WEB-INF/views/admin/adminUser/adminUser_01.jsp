@@ -204,7 +204,7 @@ window.addEventListener('load', function() {
 
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-						<c:if test="${userList.size() > 7}">
+						<c:if test="${userList.size() > 7 && userList.size() < 71}">
 
 							<c:set var="maxNo" value="${userList.size()+6}" />
 

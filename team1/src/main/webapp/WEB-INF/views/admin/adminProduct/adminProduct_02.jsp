@@ -250,7 +250,7 @@
 	}
 
 	// 상품등록 전 필수입력 확인
-	function submit_admin_product() {
+	   function submit_admin_product() {
 		// 전체 input 태그 value를 체크하기위한 클래스 select
 		var elements = document.getElementsByClassName('product_upload_check');
 		var checkFlag = true;
@@ -273,6 +273,6 @@
 			alert("[ * ] 이 표시된 항목은 반드시 입력해주셔야 합니다.\n\n[ 미입력 항목 ]\n\n"+incompleteTag)
 		}
 
-	}
+	} 
 
 </script>

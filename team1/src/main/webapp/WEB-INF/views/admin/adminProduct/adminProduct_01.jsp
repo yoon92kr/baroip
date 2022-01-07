@@ -188,7 +188,7 @@ window.addEventListener('load', function() {
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
 
-						<c:if test="${extraList.size() > 5}">
+						<c:if test="${extraList.size() > 5 && extraList.size() < 51}">
 							<c:set var="maxNo" value="${extraList.size()+4}" />
 							<c:forEach var="x" begin="1" end="${maxNo /5}">
 								<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
@@ -421,10 +421,7 @@ window.addEventListener('load', function() {
 	// 페이지 이동 스크립트
 	function pageMove(no) {
 		var getValue = 0;
-		let beginDate = document.getElementById('adminProduct_01-productUpDate-begin').value;
-		let endDate = document.getElementById('adminProduct_01-productUpDate-end').value;
-		
-		test = beginDate.concat(",", endDate);
+		var lastPage = parseInt(${extra_list.size()+4} / 5);
 		if(no == "이전" || no == "다음") {
 			var uriValue = window.location.search;
 			var array = uriValue.split("=");
@@ -436,10 +433,20 @@ window.addEventListener('load', function() {
 
 		
 		if(no == "이전") {
+			if(getValue == 1) {
+				alert("마지막 페이지 입니다.");
+			}
+			else {
 			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+(--getValue);
+			}
 		}
 		else if (no == "다음") {
-			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+(++getValue);	
+			if(getValue == lastPage) {
+				alert("마지막 페이지 입니다.");
+			}
+			else {
+			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+(++getValue);
+			}
 		}
 		else {
 			document.location='${contextPath}/admin/product/extra_list.do?pageNo='+no;

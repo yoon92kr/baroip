@@ -179,7 +179,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	color: #000000;
 }
 
-.product_01_hr {
+.product_01_filter {
+	padding-bottom: 10px;
 	border-bottom: 1px solid #d9d9d9;
 }
 
