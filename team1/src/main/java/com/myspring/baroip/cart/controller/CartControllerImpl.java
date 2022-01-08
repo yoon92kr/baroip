@@ -185,7 +185,7 @@ public class CartControllerImpl implements CartController{
 			if(sessionCart != null) {
 				guestCartList = sessionCart;
 			}
-			
+
 			for(int i=0; guestCartList.size()>i; i++) {
 				if(guestCartList.get(i).equals(cartVO)) {
 					int productCount = guestCartList.get(i).getCart_count();
@@ -227,29 +227,20 @@ public class CartControllerImpl implements CartController{
 		}
 	//		비로그인 장바구니 상품 삭제
 			else {
-				System.out.println("deleteNoneUser");
-				System.out.println("deleteList : " +deleteList.toString());
-				System.out.println("deleteList.size : " + deleteList.size());
 				@SuppressWarnings("unchecked")
 				List<CartVO> guestCartList = (List<CartVO>)session.getAttribute("guestCartAdd");
-				
-				for(int i = 0; guestCartList.size() > i; i++) {
-					String product = new String();
-					product = deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", "");
-					if(guestCartList.get(i).getProduct_id().contains(product)) {
-						guestCartList.remove(i);
+				String deleteItem;
+				for(int i = 0; deleteList.size() > i; i++) {
+					deleteItem = deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", "");
+					for(int s = 0; guestCartList.size() > s; s++) {
+						if(guestCartList.get(s).getProduct_id().contains(deleteItem)) {
+							guestCartList.remove(s);
+						}
+						else {
+							continue;
+						}
 					}
 				}
-//					productList.add(product);
-				
-//				guestCartList.remove(productList);
-				
-//				for(int i = 0; guestCartList.size() > i; i++) {
-//					System.out.println("deleteList(for) : " + deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", ""));
-//					if(guestCartList.get(i).equals(deleteList.get((i)).replace("\"", "").replace("[", "").replace("]", ""))) {
-//						guestCartList.remove(i);
-//					}
-//				}
 				session.setAttribute("guestCartAdd", guestCartList);
 			}
 		return "test";
