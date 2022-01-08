@@ -132,6 +132,10 @@ hr {
 	color: #ffffff;
 }
 
+.header-siteMap-icon {
+	cursor: pointer;
+}
+
 .category>a {
 	padding-left: 50px;
 }
@@ -146,14 +150,6 @@ hr {
 
 .notice_navi>a {
 	padding-right: 70px;
-}
-
-.search-box {
-	width: 120px;
-	height: 30px;
-	background-image: url("../img/common/search-icon.png");
-	background-position: right;
-	background-repeat: no-repeat;
 }
 
 .logo-text:hover {
@@ -408,7 +404,6 @@ hr {
 .quick-menu p {
 	margin-bottom: 0px;
 	font-size: 14px;
-
 }
 
 .past-image {

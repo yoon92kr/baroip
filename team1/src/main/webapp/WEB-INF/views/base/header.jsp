@@ -69,9 +69,7 @@ window.addEventListener('load', function() {
 				</div>
 
 				<div class="col-lg-1 text-center">
-					<form>
-						<input class="search-box" type="text">
-					</form>
+
 				</div>
 				
 				<!-- SiteMap 내용 -->
@@ -80,29 +78,45 @@ window.addEventListener('load', function() {
   					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   					<h3> 쇼핑하기 </h3>
   					<div class="navImg" >
-  					<a href="${contextPath}/product/product_01.do"><img src="${contextPath}/resources/img/common/vegi_icon.png" alt="농산물 아이콘 이미지"></a>
-  					<a href="${contextPath}/product/product_01.do"><img src="${contextPath}/resources/img/common/fish_icon.png" alt="수산물 아이콘 이미지"></a>
-  					<a href="${contextPath}/product/product_01.do"><img src="${contextPath}/resources/img/common/meat_icon.png" alt="축산물 아이콘 이미지"></a>
+  					<a href="${contextPath}/product/product_list/farm.do"><img src="${contextPath}/resources/img/common/vegi_icon.png" alt="농산물 아이콘 이미지"></a>
+  					<a href="${contextPath}/product/product_list/marine.do"><img src="${contextPath}/resources/img/common/fish_icon.png" alt="수산물 아이콘 이미지"></a>
+  					<a href="${contextPath}/product/product_list/meat.do"><img src="${contextPath}/resources/img/common/meat_icon.png" alt="축산물 아이콘 이미지"></a>
   					</div>
   					<div class="shopingNav">
-  					<a href="${contextPath}/product/product_01.do">농산물</a>
-  					<a href="${contextPath}/product/product_01.do">수산물</a>
-  					<a href="${contextPath}/product/product_01.do">축산물</a>
+  					<a href="${contextPath}/product/product_list/farm.do">농산물</a>
+  					<a href="${contextPath}/product/product_list/marine.do">수산물</a>
+  					<a href="${contextPath}/product/product_list/meat.do">축산물</a>
   					</div>
   					<hr>
   					<h3>메뉴</h3>
   					<span class="myPageNav">
-  					<a href="${contextPath}/myPage/myPage_01.do">마이페이지</a><br>
+  					
+  					<c:choose>
+					
+						<c:when test="${loginOn==true and userInfo.user_rank > 1}">
+								<a href="${contextPath}/admin/main.do">관리자 페이지</a><br>
+						</c:when>
+							
+						<c:when test="${loginOn==true and not empty userInfo and userInfo.user_rank == 1}">
+								<a href="${contextPath}/myPage/myPage_01.do">마이 페이지</a><br>
+						</c:when>
+						
+						<c:otherwise>
+						<a href="${contextPath}/user/login_01.do">로그인</a><br>
+						</c:otherwise>
+						
+					</c:choose>
+
   					<a href="${contextPath}/cart/cartList.do">장바구니</a><br>
-  					<a href="${contextPath}/notice/notice_01.do">공지사항</a><br>
-  					<a href="${contextPath}/cs/cs_01.do">고객센터</a>
+  					<a href="${contextPath}/notice/notice_list.do">공지사항</a><br>
+  					<a href="${contextPath}/cs/FAQ_list.do">고객센터</a>
   					</span>
 				</div>
 				
 				<div class="col-lg-1 text-left" >
 					<div class="menu_navi">
 						<a href="${contextPath}/cart/cartList.do" class="header-cart"><img src="${contextPath}/resources/img/common/cart-icon.png" alt="장바구니 아이콘 이미지"></a>
-						<span onclick="openNav()" class="header-navi"><img src="${contextPath}/resources/img/common/site-map-icon.png" alt="사이트맵 아이콘 이미지"></span>
+						<span onclick="openNav()" class="header-navi header-siteMap-icon"><img src="${contextPath}/resources/img/common/site-map-icon.png" alt="사이트맵 아이콘 이미지"></span>
 					</div>
 				</div>
 			</div>

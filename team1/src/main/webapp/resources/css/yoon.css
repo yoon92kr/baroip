@@ -149,12 +149,17 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .product_01_main_title {
+	padding-top : 8px;
 	font-family: "kopub_bold";
 	background: #f2f2f2;
 	font-size: 16px;
 	height: 40px;
 	vertical-align: middle;
 	width: 1300px;
+}
+
+.product_01_main_title a{
+	color : #000;
 }
 
 .product_01_image img {
@@ -481,10 +486,34 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	height: 30px;
 	border: 1px solid #d9d9d9;
 	text-align: center;
-
 }
 
-.adminUser_readonly{
-	background-color : #d9d9d9;
+.adminUser_readonly {
+	background-color: #d9d9d9;
 }
 
+.search_box {
+	display: inline-block;
+	padding: 5px;
+	border: solid 1px #000;
+	background-color: #fff;
+	font-size: 9pt;
+	height: 32px;
+}
+
+.search_box_text {
+	background-color: transparent;
+	width: 120px;
+	height: 20px;
+	padding: 3px;
+	border: 0;
+	font-size: 9pt;
+}
+
+.search_box_btn {
+	cursor: pointer;
+}
+
+#text_bold {
+	font-family: "kopub_bold";
+}
