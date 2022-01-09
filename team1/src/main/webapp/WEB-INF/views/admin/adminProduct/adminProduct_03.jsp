@@ -17,7 +17,7 @@
    else if (${userInfo.user_rank < 3}) {
       if("${userInfo.user_id}" != "${VO.user_id}") {
          alert("잘못된 접근입니다.");
-         location.replace('${contextPath}/admin/product/list.do');
+         location.replace('${contextPath}/admin/product/extra_list.do');
       }
       else {
 

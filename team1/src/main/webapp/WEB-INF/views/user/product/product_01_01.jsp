@@ -6,13 +6,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
-<c:if test='${not empty pageNo }'>
+<!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
+<c:set var="pageNoMax" value="12" />
+<!-- itemList에는 표시할 item의 size를 대입한다. -->
+<c:set var="itemList" value="${productFullList.size()}" />
+<c:if test='${not empty pageNo}'>
 	<script>
+	
 		window.addEventListener('load',function() {
-							document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
-							document.getElementById("${pageNo}").style.fontSize = "15px";
-						});
+			if(document.getElementById("${pageNo}")) {
+			document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
+			document.getElementById("${pageNo}").style.fontSize = "15px";
+			}
+		});
+
+
 	</script>
 </c:if>
 
@@ -33,11 +41,15 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-8 offset-lg-2 text-center product_01_main_title">농산물</div>
+		<div class="col-lg-8 offset-lg-2 text-center product_01_main_title">
+		<a href="${contextPath}/product/product_list/farm.do?sub_option=전체">
+		농산물 전체
+		</a>
+		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-lg-6 offset-lg-3 text-center product_01_sub_title">
+		<div class="col-lg-6 offset-lg-3 text-center product_01_sub_title">	
 			<a href="${contextPath}/product/product_list/farm.do?sub_option=채소">채소</a> 
 			<a href="${contextPath}/product/product_list/farm.do?sub_option=곡물">곡물</a> 
 			<a href="${contextPath}/product/product_list/farm.do?sub_option=과일">과일</a>
@@ -54,7 +66,7 @@
 <!-- 아이템 필드  -->
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4 text-left">총 [ ${productFullList.size()} 건 ] 의 상품이 있습니다.</div>
+		<div class="col-lg-4 text-left">총 [ <span id="text_bold">${productFullList.size()} 건</span> ] 의 상품이 있습니다.</div>
 	</div>
 
 	<div class="row product_01_filter">
@@ -66,24 +78,25 @@
 		</div>
 
 		<div class="col-lg-2 offset-lg-3 text-center">
-			<form class="product_01_search-box">
-				<input class="search-box" type="text">
-			</form>
+   			<div class="search_box">
+    			<input type="text" class="search_box_text" id="search_title" maxlength="9" onkeypress="if(event.keyCode=='13'){event.preventDefault(); serach_title();}">
+    			<img src="${contextPath}/resources/img/common/search-icon.png" onclick="serach_title()" class="search_box_btn" >
+    		</div>
 		</div>
 
 	</div>
 	
 	<c:if test="${empty productFullList}">
-		<br><div class="col-lg-12 text-center">임시 등록된 상품이 없습니다.</div>
+		<br><div class="col-lg-12 text-center">등록된 상품이 없습니다.</div>
 	</c:if>
 
 	<div class="row">
 	
 	<c:if test="${not empty productFullList}">
-	<c:forEach var="i" begin="1" end="${productFullList.size() + 1}">
-		<c:set var="j" value="${(pageNo*12 -12) + i}" />
-		<c:set var="key" value="product${j}" />
-		<c:if test="${not empty productFullList[key].product_id && i<13}">
+		<c:forEach var="i" begin="1" end="${itemList}">
+			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
+			<c:set var="key" value="product${j}" />
+			<c:if test="${not empty productFullList[key].product_id && i< pageNoMax+1}">
 	
 		<div class="col-lg-4">
 		
@@ -111,7 +124,7 @@
 				</div>
 				
 				<div class="col-lg-3 text-right">
-					<a href="${contextPath}/cart/addProductInCart.do?product_id=${productFullList[key].product_id}">
+					<a href="${contextPath}/cart/addProductInCart.do?cart_count=1&product_id=${productFullList[key].product_id}">
 						<img src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
 					</a>
 				</div>
@@ -121,28 +134,32 @@
 		</div>
 		</c:if>
 		
-			<c:if test="${empty productFullList[key].product_id && i==productFullList.size()+1 && productFullList.size() > 12}">
-
+		
+		</c:forEach>
+		
+			<c:if test="${itemList > pageNoMax}">
 
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-
-						<c:if test="${productFullList.size() > 12}">
-							<c:set var="maxNo" value="${productFullList.size()+11}" />
-							<c:forEach var="x" begin="1" end="${maxNo /12}">
-								<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
+						<c:if test="${itemList > pageNoMax}">
+						
+							<c:set var="maxNo" value="${itemList+pageNoMax-1}" />
+							
+							<c:forEach var="x" begin="1" end="${maxNo / pageNoMax}">
+								<fmt:parseNumber type="number" integerOnly="true" var="noFlag" value="${(pageNo+pageNoMax-1) / pageNoMax}" />
+							
+								<c:if test="${(noFlag * pageNoMax) - (pageNoMax-1) <= x and x <= (noFlag * pageNoMax)}">
+									<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
+								</c:if>
 							</c:forEach>
+							
 						</c:if>
 
 						<a href="#" onclick="pageMove(this.id)" id="다음">다음</a>
 					</div>
 
-
-
-			</c:if>
-			
-		</c:forEach>
-		
+			</c:if>	
+				
 	</c:if>
 		
 		
@@ -192,5 +209,14 @@
 			document.location='${contextPath}/product/product_list/farm.do?pageNo='+no;
 		}
 	}
+
+function serach_title() {
+	let title = document.getElementById("search_title").value;
+	
+	if(title != null && title != "") {
+		document.location='${contextPath}/product/product_list/farm.do?title_option='+title;
+	}
+	
+}
 
 </script>

@@ -175,7 +175,6 @@ public class ProductControllerImpl implements ProductController {
 			// order_option(main_category ¼³Á¤) = value [farm / marine / meat]
 			
 			Map<String, String> options = new HashMap<String, String>();
-			
 			String paramSub = info.get("sub_option");
 			String paramTitle = info.get("title_option");
 			String paramOrder = info.get("order_option");
@@ -261,7 +260,7 @@ public class ProductControllerImpl implements ProductController {
 					}
 				} 
 			
-			} 			
+			} 		
 			options.put("main_option", info.get("main_option"));
 			Map<String, Map<String, Object>> fullList = productService.productListToOption(options);
 			

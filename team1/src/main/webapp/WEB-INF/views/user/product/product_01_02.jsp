@@ -1,26 +1,58 @@
-<!-- 2021.11.25 윤상현 -->
+<!-- 2022.01.06 윤상현 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
+<c:set var="pageNoMax" value="12" />
+<!-- itemList에는 표시할 item의 size를 대입한다. -->
+<c:set var="itemList" value="${productFullList.size()}" />
+<c:if test='${not empty pageNo}'>
+	<script>
+	
+		window.addEventListener('load',function() {
+			if(document.getElementById("${pageNo}")) {
+			document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
+			document.getElementById("${pageNo}").style.fontSize = "15px";
+			}
+		});
 
+
+	</script>
+</c:if>
+
+<c:if test='${not empty order_option }'>
+	<script>
+	window.addEventListener('load',function() {
+						document.getElementById("${order_option}").style.fontFamily = "kopub_bold";
+					});
+	</script>
+</c:if>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-center product_01_banner">
 			<img id="product_01_main_img"
-				src="${contextPath}/resources/img/common/marine_main_banner.jpg" alt="상품리스트 배너 이미지">
+				src="${contextPath}/resources/img/common/marine_main_banner.jpg"
+				alt="상품리스트 배너 이미지">
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-lg-8 offset-lg-2 text-center product_01_main_title">수산물</div>
+		<div class="col-lg-8 offset-lg-2 text-center product_01_main_title">
+		<a href="${contextPath}/product/product_list/marine.do?sub_option=전체">
+		수산물 전체
+		</a>
+		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-lg-6 offset-lg-3 text-center product_01_sub_title">
-			<a href="#">생선류</a> <a href="#">갑각류</a> <a href="#">해조류</a>
+		<div class="col-lg-6 offset-lg-3 text-center product_01_sub_title">	
+			<a href="${contextPath}/product/product_list/marine.do?sub_option=생선류">생선류</a> 
+			<a href="${contextPath}/product/product_list/marine.do?sub_option=갑각류">갑각류</a> 
+			<a href="${contextPath}/product/product_list/marine.do?sub_option=해조류">해조류</a>
 		</div>
 	</div>
 
@@ -34,121 +66,157 @@
 <!-- 아이템 필드  -->
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4 text-left">총 [상품개수] 의 상품이 있습니다.</div>
+		<div class="col-lg-4 text-left">총 [ <span id="text_bold">${productFullList.size()} 건</span> ] 의 상품이 있습니다.</div>
 	</div>
 
-	<div class="row">
-		<div class="col-lg-6 text-left product_01_filter">
-			<a href="#">판매 인기순</a> <a href="#">등록일순</a> <a href="#">높은 가격순</a> <a
-				href="#">낮은 가격순</a>
-		</div>
-		
-		<div class="col-lg-2 offset-lg-4 text-center">
-					<form class="product_01_search-box">
-						<input class="search-box" type="text">
-					</form>
-				</div>
-
-	</div>
-
-	<div class="row">
-		<div class="col-lg-12 product_01_hr"></div>
-
-	</div>
-
-	<div class="row">
-		<div class="col-lg-4 text-center">
-			<div class="product_01_image">
-				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
-			</div>
+	<div class="row product_01_filter">
+		<div class="col-lg-7 text-left">
+			<a id="count" href="${contextPath}/product/product_list/marine.do?order_option=count">판매 인기순</a> 
+			<a id="cre_date" href="${contextPath}/product/product_list/marine.do?order_option=cre_date">등록일순</a> 
+			<a id="high_price" href="${contextPath}/product/product_list/marine.do?order_option=high_price">높은 가격순</a> 
+			<a id="low_price" href="${contextPath}/product/product_list/marine.do?order_option=low_price">낮은 가격순</a>
 		</div>
 
-		<div class="col-lg-4  text-center">
-			<div class="product_01_image">
-				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
-			</div>
+		<div class="col-lg-2 offset-lg-3 text-center">
+   			<div class="search_box">
+    			<input type="text" class="search_box_text" id="search_title" maxlength="9" onkeypress="if(event.keyCode=='13'){event.preventDefault(); serach_title();}">
+    			<img src="${contextPath}/resources/img/common/search-icon.png" onclick="serach_title()" class="search_box_btn" >
+    		</div>
 		</div>
 
-		<div class="col-lg-4 text-center">
-			<div class="product_01_image">
-				<a href="${contextPath}/product_02.do"><img
-					src="${contextPath}/resources/img/common/img-box.jpg" alt="상품 리스트 상품 이미지"></a>
-			</div>
-		</div>
-	</div>
-	<div class="item-format">
-		<div class="row">
-			<div class="col-lg-3">
-				<a href="${contextPath}/product_02.do" class="">
-						<span class="item-title item-location-left-top">[상품명]</span>
-						<span class="item-price">[상품원가]</span>
-						<span class="item-dc">[할인]</span>
-						<br>
-						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
-						<span class="item-real-price">[판매가]</span>
-					</a>
-				</div>
-				
-				<div class="col-lg-1 text-center main_item_bottom_text">
-					<form action="${contextPath}/cart/cartLst.do">
-						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
-					</form>
-				</div>
-
-			<div class="col-lg-3">
-				<a href="${contextPath}/product_02.do" class="">
-						<span class="item-title item-location-left-top">[상품명]</span>
-						<span class="item-price">[상품원가]</span>
-						<span class="item-dc">[할인]</span>
-						<br>
-						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
-						<span class="item-real-price">[판매가]</span>
-					</a>
-				</div>
-				
-				<div class="col-lg-1 text-center main_item_bottom_text">
-					<form>
-						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
-					</form>
-				</div>
-
-			<div class="col-lg-3">
-				<a href="${contextPath}/product_02.do" class="">
-						<span class="item-title item-location-left-top">[상품명]</span>
-						<span class="item-price">[상품원가]</span>
-						<span class="item-dc">[할인]</span>
-						<br>
-						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
-						<span class="item-real-price">[판매가]</span>
-					</a>
-				</div>
-				
-				<div class="col-lg-1 text-center main_item_bottom_text">
-					<form>
-						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
-					</form>
-				</div>
-		</div>
 	</div>
 	
-
-
-	<!-- 필드 이동 -->
+	<c:if test="${empty productFullList}">
+		<br><div class="col-lg-12 text-center">등록된 상품이 없습니다.</div>
+	</c:if>
 
 	<div class="row">
-		<div class="offset-lg-5 col-lg-1 text-center notice_01_line ">
-			<p class="notice_01_next">
-				<a href="#"> < 이전 </a>
-		</div>
-		<div class="col-lg-1 text-center notice_01_line">
-			<p class="notice_01_next">
-				<a href="#"> 다음 > </a>
+	
+	<c:if test="${not empty productFullList}">
+		<c:forEach var="i" begin="1" end="${itemList}">
+			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
+			<c:set var="key" value="product${j}" />
+			<c:if test="${not empty productFullList[key].product_id && i< pageNoMax+1}">
+	
+		<div class="col-lg-4">
+		
 
-			</p>
+		
+			<div class="product_01_image">	
+				<a href="${contextPath}/product/productDetail.do?product_id=${productFullList[key].product_id}">
+					<img src="data:image/jpeg;base64,${productFullList[key].image_file}" alt="상품 이미지">
+				</a>		
+			</div>
+			
+			<div class="row item-format">
+			
+				<div class="col-lg-6">
+					<a href="${contextPath}/product/productDetail.do?product_id=${productFullList[key].product_id}"> 
+					<span class="item-title">${productFullList[key].product_main_title}</span>		<br>
+					<span class="item-comment">${productFullList[key].product_sub_title}</span>
+					</a> 
+				</div>
+				
+				<div class="col-lg-3 main_item_bottom_text">
+					<span class="item-price"><fmt:formatNumber value="${productFullList[key].product_price}" />원</span> 
+					<span class="item-dc"><fmt:formatNumber value="${productFullList[key].product_discount}" />원</span> <br>
+					<span class="item-real-price"><fmt:formatNumber value="${productFullList[key].product_price-productFullList[key].product_discount}" />원</span>
+				</div>
+				
+				<div class="col-lg-3 text-right">
+					<a href="${contextPath}/cart/addProductInCart.do?cart_count=1&product_id=${productFullList[key].product_id}">
+						<img src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</a>
+				</div>
+				
+			</div>
+			
 		</div>
+		</c:if>
+		
+		
+		</c:forEach>
+		
+			<c:if test="${itemList > pageNoMax}">
+
+					<div class="col-lg-12 text-center admin_product_page_index">
+						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
+						<c:if test="${itemList > pageNoMax}">
+						
+							<c:set var="maxNo" value="${itemList+pageNoMax-1}" />
+							
+							<c:forEach var="x" begin="1" end="${maxNo / pageNoMax}">
+								<fmt:parseNumber type="number" integerOnly="true" var="noFlag" value="${(pageNo+pageNoMax-1) / pageNoMax}" />
+							
+								<c:if test="${(noFlag * pageNoMax) - (pageNoMax-1) <= x and x <= (noFlag * pageNoMax)}">
+									<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
+								</c:if>
+							</c:forEach>
+							
+						</c:if>
+
+						<a href="#" onclick="pageMove(this.id)" id="다음">다음</a>
+					</div>
+
+			</c:if>	
+				
+	</c:if>
+		
+		
 	</div>
+
+
+
+
+
 
 
 </div>
+
+<script>
+// 페이지 이동 스크립트
+	function pageMove(no) {
+		var getValue = 0;
+		var lastPage = parseInt(${productFullList.size()+11} / 12);
+		if(no == "이전" || no == "다음") {
+			var uriValue = window.location.search;
+			var array = uriValue.split("=");
+			if(array[1] == "" || array[1] == null) {
+				array[1] = 1;
+			}
+			getValue = array[1];
+
+		}
+
+		
+		if(no == "이전") {
+			if(getValue == 1) {
+				alert("마지막 페이지 입니다.");
+			}
+			else {
+			document.location='${contextPath}/product/product_list/marine.do?pageNo='+(--getValue);
+			}
+		}
+		else if (no == "다음") {
+			if(getValue == lastPage) {
+				alert("마지막 페이지 입니다.");
+			}
+			else {
+			document.location='${contextPath}/product/product_list/marine.do?pageNo='+(++getValue);
+			}
+		}
+		else {
+			document.location='${contextPath}/product/product_list/marine.do?pageNo='+no;
+		}
+	}
+
+function serach_title() {
+	let title = document.getElementById("search_title").value;
+	
+	if(title != null && title != "") {
+		document.location='${contextPath}/product/product_list/marine.do?title_option='+title;
+	}
+	
+}
+
+</script>

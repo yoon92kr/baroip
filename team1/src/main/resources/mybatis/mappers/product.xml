@@ -39,13 +39,13 @@
 		</if>
 		and product_states = 1
 		<!-- 서브카테고리 지정시 where 조건 추가 -->
-		<if test='sub_option != null'>
+		<if test='sub_option != null and sub_option != "전체"'>
 				and product_sub_category = #{sub_option}	
 		</if>	
 		
 		<!-- title 지정시 where 조건 추가 -->
 		<if test='title_option != null'>
-				and product_main_title like concat('%', #{search_value}, '%')
+				and product_main_title like concat('%', #{title_option}, '%')
 		</if>			
 
 		<!-- 정렬 필터-->
