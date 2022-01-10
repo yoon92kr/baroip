@@ -131,6 +131,7 @@
       });
    });
 </script>
+<!-- 2022.01.10 한건희 -->
 <c:if test="${not empty bestProducts}">
 	<c:forEach var="i" begin="1" end="${itemList}">
 	<c:set var="key" value="product${i}" />
@@ -146,6 +147,7 @@
 					notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
 					if(notUser == false) {
 						location='${contextPath}/user/login_01.do';
+					}
 				}
 				$.ajax({
 					url:"${contextPath}/cart/addProductInCart.do", 
@@ -186,7 +188,6 @@
 					}).error(function() {
 						alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
 					});
-				}
 			});
 		</script>
 	</c:forEach>

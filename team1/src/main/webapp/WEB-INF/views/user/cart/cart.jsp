@@ -241,7 +241,7 @@
 
 	}
 	
-	function() {
+	function cartTotal() {
 		
 	}
 	

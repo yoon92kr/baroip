@@ -16,6 +16,7 @@
 		}
 	</script>
 </c:if>
+<!-- 2022.01.10 한건희 -->
 <c:if test="${not empty guestCartAdd}" >
 	<script>
 		if(${userInfo != null}) {

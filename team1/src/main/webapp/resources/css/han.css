@@ -3,6 +3,7 @@
 /* ==================== 중간중간 수정 ================================= */
 /* main 장바구니 이미지 */
 .main_cartImage {
+	outline: none;
 	border: none;
 	background: #fff;
 }
