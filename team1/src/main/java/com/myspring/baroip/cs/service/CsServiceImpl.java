@@ -51,8 +51,8 @@ public class CsServiceImpl implements CsService {
 	
 //	1:1 문의 삭제
 	@Override
-	public void questDelete(String noticeId) throws Exception {
-		csDAO.questDelete(noticeId);
+	public void questDelete(String notice_id) throws Exception {
+		csDAO.questDelete(notice_id);
 	}
 
 }

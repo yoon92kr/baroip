@@ -25,6 +25,6 @@ public interface CsService {
 	public void updateQuest(CsVO csVO) throws  Exception;
 	
 //	1:1 문의 삭제
-	public void questDelete(String noticeId) throws Exception;
+	public void questDelete(String notice_id) throws Exception;
 	
 }

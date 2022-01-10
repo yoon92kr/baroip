@@ -191,11 +191,11 @@ public class CsControllerImpl implements CsController {
 	
 //	1:1 문의 삭제
 	@Override
-	@RequestMapping(value= "/questDelete.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public String quest_Delete(@RequestParam("noticeId") String noticeId,
+	@RequestMapping(value= "/questDelete.do" , method = RequestMethod.GET)
+	public String quest_Delete(@RequestParam("notice_id") String notice_id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-				
+			csService.questDelete(notice_id);
+		
 		return "redirect:/cs/inquiry_list.do";
 	}
 	

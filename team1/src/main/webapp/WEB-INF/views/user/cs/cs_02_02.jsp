@@ -90,7 +90,7 @@
 		</div>
 		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
-			<input type="button" id="co_02_02_update_btn" value="삭제">
+			<input type="button" id="cs_02_02_delete_btn" value="삭제">
 		</div>
 	</div>
 
@@ -123,9 +123,9 @@
 	
 	// 삭제 버튼
 	$("#cs_02_02_delete_btn").on("click", function(e) {
-		dform.find("#cs_02_02_NI").remove();
-		dform.attr("action", "${contextPath}/cs/inquiry_list.do");
-		form.submit();
-	})
+		dform.attr("action", "${contextPath}/cs/questDelete.do");
+		dform.submit();
+	});
+	
 	
 </script>

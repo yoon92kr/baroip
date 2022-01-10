@@ -71,7 +71,7 @@
 	
 	<delete id="questDelete" parameterType="String">
 		<![CDATA[
-			delete * from notice where notice_id=#{notice_id}
+			delete from notice where user_id = '#{user_id}';
 		]]>
 	</delete>
 

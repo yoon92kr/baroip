@@ -51,7 +51,7 @@ public class CsDAOImpl implements CsDAO {
 	
 //	1:1 문의 삭제
 	@Override
-	public void questDelete(String noticeId) throws DataAccessException {
-		sqlSession.delete("mapper.board.questDelete", noticeId);
+	public void questDelete(String notice_id) throws DataAccessException {
+		sqlSession.delete("mapper.board.questDelete", notice_id);
 	}
 }

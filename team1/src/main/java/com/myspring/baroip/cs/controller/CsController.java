@@ -31,7 +31,7 @@ public interface CsController {
 			HttpServletResponse response) throws Exception;
 	
 //	1:1 문의 삭제
-	public String quest_Delete(@RequestParam("noticeId") String noticeId,
+	public String quest_Delete(@RequestParam("notice_id") String notice_id,
 			HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 }
