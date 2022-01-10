@@ -102,17 +102,15 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 	}
 
 	private void setHeader(HttpServletRequest request, String viewName) {
-
-		if (viewName.contains("notice")) {
+		
+		if (viewName.contains("admin")) {
+			request.setAttribute("pageInfo", "set_admin");
+		} else if (viewName.contains("notice")) {
 			request.setAttribute("pageInfo", "set_notice");
 		} else if (viewName.contains("cs")) {
 			request.setAttribute("pageInfo", "set_cs");
 		} else if (viewName.contains("myPage")) {
 			request.setAttribute("pageInfo", "set_myPage");
-			
-		} else if (viewName.contains("admin")) {
-			request.setAttribute("pageInfo", "set_admin");
-			
 		} else if (viewName.contains("login")) {
 			request.setAttribute("pageInfo", "set_login");
 		} else if (viewName.contains("join")) {

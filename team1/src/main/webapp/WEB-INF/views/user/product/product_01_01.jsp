@@ -8,8 +8,10 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
 <c:set var="pageNoMax" value="12" />
-<!-- itemList에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemList" value="${productFullList.size()}" />
+<!-- itemSize에는 표시할 item의 size를 대입한다. -->
+<c:set var="itemSize" value="${productFullList.size()}" />
+<!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
+<c:set var="itemList" value="${productFullList}" />
 <c:if test='${not empty pageNo}'>
 	<script>
 	
@@ -66,7 +68,7 @@
 <!-- 아이템 필드  -->
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4 text-left">총 [ <span id="text_bold">${productFullList.size()} 건</span> ] 의 상품이 있습니다.</div>
+		<div class="col-lg-4 text-left">총 [ <span id="text_bold">${itemSize} 건</span> ] 의 상품이 있습니다.</div>
 	</div>
 
 	<div class="row product_01_filter">
@@ -86,45 +88,45 @@
 
 	</div>
 	
-	<c:if test="${empty productFullList}">
+	<c:if test="${empty itemList}">
 		<br><div class="col-lg-12 text-center">등록된 상품이 없습니다.</div>
 	</c:if>
 
 	<div class="row">
 	
-	<c:if test="${not empty productFullList}">
-		<c:forEach var="i" begin="1" end="${itemList}">
+	<c:if test="${not empty itemList}">
+		<c:forEach var="i" begin="1" end="${itemSize}">
 			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
 			<c:set var="key" value="product${j}" />
-			<c:if test="${not empty productFullList[key].product_id && i< pageNoMax+1}">
+			<c:if test="${not empty itemList[key].product_id && i< pageNoMax+1}">
 	
 		<div class="col-lg-4">
 		
 
 		
 			<div class="product_01_image">	
-				<a href="${contextPath}/product/productDetail.do?product_id=${productFullList[key].product_id}">
-					<img src="data:image/jpeg;base64,${productFullList[key].image_file}" alt="상품 이미지">
+				<a href="${contextPath}/product/productDetail.do?product_id=${itemList[key].product_id}">
+					<img src="data:image/jpeg;base64,${itemList[key].image_file}" alt="상품 이미지">
 				</a>		
 			</div>
 			
 			<div class="row item-format">
 			
 				<div class="col-lg-6">
-					<a href="${contextPath}/product/productDetail.do?product_id=${productFullList[key].product_id}"> 
-					<span class="item-title">${productFullList[key].product_main_title}</span>		<br>
-					<span class="item-comment">${productFullList[key].product_sub_title}</span>
+					<a href="${contextPath}/product/productDetail.do?product_id=${itemList[key].product_id}"> 
+					<span class="item-title">${itemList[key].product_main_title}</span>		<br>
+					<span class="item-comment">${itemList[key].product_sub_title}</span>
 					</a> 
 				</div>
 				
 				<div class="col-lg-3 main_item_bottom_text">
-					<span class="item-price"><fmt:formatNumber value="${productFullList[key].product_price}" />원</span> 
-					<span class="item-dc"><fmt:formatNumber value="${productFullList[key].product_discount}" />원</span> <br>
-					<span class="item-real-price"><fmt:formatNumber value="${productFullList[key].product_price-productFullList[key].product_discount}" />원</span>
+					<span class="item-price"><fmt:formatNumber value="${itemList[key].product_price}" />원</span> 
+					<span class="item-dc"><fmt:formatNumber value="${itemList[key].product_discount}" />원</span> <br>
+					<span class="item-real-price"><fmt:formatNumber value="${itemList[key].product_price - itemList[key].product_discount}" />원</span>
 				</div>
 				
 				<div class="col-lg-3 text-right">
-					<a href="${contextPath}/cart/addProductInCart.do?cart_count=1&product_id=${productFullList[key].product_id}">
+					<a href="${contextPath}/cart/addProductInCart.do?cart_count=1&product_id=${itemList[key].product_id}">
 						<img src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
 					</a>
 				</div>
@@ -137,13 +139,13 @@
 		
 		</c:forEach>
 		
-			<c:if test="${itemList > pageNoMax}">
+			<c:if test="${itemSize > pageNoMax}">
 
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-						<c:if test="${itemList > pageNoMax}">
+						<c:if test="${itemSize > pageNoMax}">
 						
-							<c:set var="maxNo" value="${itemList+pageNoMax-1}" />
+							<c:set var="maxNo" value="${itemSize+pageNoMax-1}" />
 							
 							<c:forEach var="x" begin="1" end="${maxNo / pageNoMax}">
 								<fmt:parseNumber type="number" integerOnly="true" var="noFlag" value="${(pageNo+pageNoMax-1) / pageNoMax}" />
@@ -177,7 +179,7 @@
 // 페이지 이동 스크립트
 	function pageMove(no) {
 		var getValue = 0;
-		var lastPage = parseInt(${productFullList.size()+11} / 12);
+		var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
 		if(no == "이전" || no == "다음") {
 			var uriValue = window.location.search;
 			var array = uriValue.split("=");
@@ -185,7 +187,6 @@
 				array[1] = 1;
 			}
 			getValue = array[1];
-
 		}
 
 		

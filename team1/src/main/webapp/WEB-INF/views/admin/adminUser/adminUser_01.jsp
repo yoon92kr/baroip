@@ -8,8 +8,10 @@
 
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
 <c:set var="pageNoMax" value="7" />
-<!-- itemList에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemList" value="${userList.size()}" />
+<!-- itemSize에는 표시할 item의 size를 대입한다. -->
+<c:set var="itemSize" value="${userList.size()}" />
+<!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
+<c:set var="itemList" value="${userList}" />
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -142,19 +144,19 @@
 		</div>
 	</div>
 
-	<c:if test="${empty userList}">
+	<c:if test="${empty itemList}">
 		<br>
 		<div class="col-lg-12 text-center">조회된 회원이 없습니다.</div>
 	</c:if>
 
-	<c:if test="${not empty userList}">
-		<c:forEach var="i" begin="1" end="${userList.size()}">
-			<c:set var="j" value="${(pageNo*7 - 7) + i -1}" />
-			<c:if test="${not empty userList[j] && i <8}">
+	<c:if test="${not empty itemList}">
+		<c:forEach var="i" begin="1" end="${itemSize}">
+			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
+			<c:if test="${not empty itemList[j] && i <8}">
 				<input type="hidden" name="" value="${j+1}">
 				<div class="row">
 					<div class="col-lg-2 text-center adminUser_user_list_form">
-						<div id="user_id_${j+1}">${userList[j].user_id}</div>
+						<div id="user_id_${j+1}">${itemList[j].user_id}</div>
 
 					</div>
 
@@ -164,17 +166,17 @@
 							<select class="product_states_select" id="user_rank_${j+1}">
 
 								<option value="0"
-									<c:if test='${userList[j].user_rank == "0"}'>selected</c:if>>비회원</option>
+									<c:if test='${itemList[j].user_rank == "0"}'>selected</c:if>>비회원</option>
 								<option value="1"
-									<c:if test='${userList[j].user_rank == "1"}'>selected</c:if>>회원</option>
+									<c:if test='${itemList[j].user_rank == "1"}'>selected</c:if>>회원</option>
 								<option value="2"
-									<c:if test='${userList[j].user_rank == "2"}'>selected</c:if>>일반
+									<c:if test='${itemList[j].user_rank == "2"}'>selected</c:if>>일반
 									관리자</option>
 								<option value="3"
-									<c:if test='${userList[j].user_rank == "3"}'>selected</c:if>>상품
+									<c:if test='${itemList[j].user_rank == "3"}'>selected</c:if>>상품
 									관리자</option>
 								<option value="4"
-									<c:if test='${userList[j].user_rank == "4"}'>selected</c:if>>총
+									<c:if test='${itemList[j].user_rank == "4"}'>selected</c:if>>총
 									책임자</option>
 							</select> <input class="admin_01-itemCountBox-btn" id="updateR_${j+1}"
 								type="button" value="변경" onclick="update_rank(this.id)">
@@ -182,11 +184,11 @@
 					</c:if>
 					<c:if test="${userInfo.user_rank < 4 }">
 						<div class="col-lg-2 text-center adminUser_user_list_form">
-							<c:if test='${userList[j].user_rank == "0"}'>비회원</c:if>
-							<c:if test='${userList[j].user_rank == "1"}'>회원</c:if>
-							<c:if test='${userList[j].user_rank == "2"}'>일반 관리자</c:if>
-							<c:if test='${userList[j].user_rank == "3"}'>전체 관리자</c:if>
-							<c:if test='${userList[j].user_rank == "4"}'>총 책임자</c:if>
+							<c:if test='${itemList[j].user_rank == "0"}'>비회원</c:if>
+							<c:if test='${itemList[j].user_rank == "1"}'>회원</c:if>
+							<c:if test='${itemList[j].user_rank == "2"}'>일반 관리자</c:if>
+							<c:if test='${itemList[j].user_rank == "3"}'>전체 관리자</c:if>
+							<c:if test='${itemList[j].user_rank == "4"}'>총 책임자</c:if>
 
 						</div>
 					</c:if>
@@ -194,11 +196,11 @@
 
 
 					<div class="col-lg-2 text-center adminUser_user_list_form">
-						<fmt:formatNumber value="${userList[j].user_total_amount}" />
+						<fmt:formatNumber value="${itemList[j].user_total_amount}" />
 						원
 					</div>
-					<div class="col-lg-2 text-center adminUser_user_list_form">${userList[j].user_join_date}</div>
-					<div class="col-lg-2 text-center adminUser_user_list_form">${userList[j].user_last_date}</div>
+					<div class="col-lg-2 text-center adminUser_user_list_form">${itemList[j].user_join_date}</div>
+					<div class="col-lg-2 text-center adminUser_user_list_form">${itemList[j].user_last_date}</div>
 					<div class="col-lg-2 text-center adminUser_user_list_form_edit">
 						<input
 							class="adminProduct_01-product adminProduct_01-product-top "
@@ -206,7 +208,7 @@
 							onclick="update_user_form(this.id)"> <input
 							class="adminProduct_01-product" id="deleteU_${j+1}" type="button"
 							value="회원 삭제" onclick="delete_user(this.id)">
-							<input type="hidden" id="rank_${j+1}" value="${userList[j].user_rank}">
+							<input type="hidden" id="rank_${j+1}" value="${itemList[j].user_rank}">
 					</div>
 				</div>
 			</c:if>
@@ -214,15 +216,15 @@
 
 		</c:forEach>
 		
-			<c:if test="${itemList > pageNoMax}">
+			<c:if test="${itemSize > pageNoMax}">
 
 				<div class="row">
 
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-						<c:if test="${itemList > pageNoMax}">
+						<c:if test="${itemSize > pageNoMax}">
 						
-							<c:set var="maxNo" value="${itemList+pageNoMax-1}" />
+							<c:set var="maxNo" value="${itemSize+pageNoMax-1}" />
 							
 							<c:forEach var="x" begin="1" end="${maxNo / pageNoMax}">
 								<fmt:parseNumber type="number" integerOnly="true" var="noFlag" value="${(pageNo+pageNoMax-1) / pageNoMax}" />
@@ -460,7 +462,7 @@ function search_user_to_option() {
 // 페이지 이동 스크립트
 function pageMove(no) {
 	var getValue = 0;
-	var lastPage = parseInt(${itemList+pageNoMax-1} / ${pageNoMax});
+	var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
 	if(no == "이전" || no == "다음") {
 		var uriValue = window.location.search;
 		var array = uriValue.split("=");

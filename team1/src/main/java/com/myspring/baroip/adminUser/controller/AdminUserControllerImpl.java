@@ -47,7 +47,17 @@ public class AdminUserControllerImpl implements AdminUserController {
 		String viewName = (String) request.getAttribute("viewName");
 
 		if (pageNo != null && pageNo != "") {
-			mav.addObject("pageNo", pageNo);
+			int lastNo = (userList.size()+6)/7;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				
+				mav.addObject("pageNo", 1);
+				mav.addObject("message", "잘못된 요청입니다.");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+			}
+			
 		} else {
 			mav.addObject("pageNo", 1);
 		}
@@ -154,9 +164,8 @@ public class AdminUserControllerImpl implements AdminUserController {
 		HttpSession session = request.getSession();
 
 		// Map options에는 조회하고자 하는 조건유형 option, 조건에 해당하는 value 가 반드시 포함되어야한다.
-		// key "search_option" = value [userJoinDate / userId / all]
-		// key "search_value" = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or
-		// 1(product_states) ]
+		// search_option(검색 조건) = value [userJoinDate / userId / all]
+		// search_value(검색 값) = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1(product_states) ]
 		Map<String, String> options = new HashMap<String, String>();
 
 		String paramOption = info.get("search_option");

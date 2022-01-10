@@ -24,7 +24,7 @@
 			<a href="${contextPath}/adminCS_02.do"  class="no-underline">문의 관리</a>
 			<a href="${contextPath}/adminReview_01.do"  class="no-underline">후기 관리</a>
 			<a href="https://channel.io/ko?utm_source=powered_by&utm_medium=localhost%3A8080&utm_channel_id=67859&utm_content=%EB%B0%94%EB%A1%9C%EC%9E%85" target="_blank" class="no-underline">실시간 채팅</a>
-			<a href="${contextPath}/adminNotice_01.do" class="no-underline">공지 관리</a>
+			<a href="${contextPath}/admin/notice/notice_list.do" class="no-underline">공지 관리</a>
 			<a href="${contextPath}/adminCS_01.do"  class="no-underline">Q&A 관리</a>
 		<c:if test="${userInfo.user_rank > 2}">
 			<a href="${contextPath}/admin/product/general_list.do"  class="no-underline">전체 상품 관리</a>

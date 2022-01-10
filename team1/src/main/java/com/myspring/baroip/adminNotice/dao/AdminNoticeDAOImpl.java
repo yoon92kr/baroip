@@ -1,6 +1,9 @@
+// 2022.01.10 윤상현
+
 package com.myspring.baroip.adminNotice.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +17,11 @@ public class AdminNoticeDAOImpl implements AdminNoticeDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-//	관리자페이지 공지관리페이지
+	// 옵션에 따른 notice select DAO
 	@Override
-	public List<NoticeVO> AdminNTList() throws DataAccessException {
-		List<NoticeVO> AdminNTList = sqlSession.selectList("mapper.notice.NTList");
-		return AdminNTList;
-	}
+	public List<NoticeVO> noticeListToOption( Map<String, String> option) throws DataAccessException {
+		List<NoticeVO> noticeList = sqlSession.selectList("mapper.adminNotice.noticeListToOption", option);
 
+		return noticeList;
+	}
 }

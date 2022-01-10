@@ -1,14 +1,12 @@
+// 2022.01.10 윤상현
+
 package com.myspring.baroip.adminNotice.service;
 
-import java.util.List;
-
-import org.springframework.dao.DataAccessException;
-
-import com.myspring.baroip.notice.vo.NoticeVO;
+import java.util.Map;
 
 public interface AdminNoticeService {
 	
-//	관리자페이지 공지관리페이지
-	public List<NoticeVO> AdminNTList() throws Exception;
+//	옵션에 따른 게시글 리스트 조회 Service
+	public Map<String, Map<String, Object>> noticeListToOption( Map<String, String> option) throws Exception;
 
 }

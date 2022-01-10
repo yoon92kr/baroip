@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 2022.01.10 윤상현 -->
+
+<mapper namespace="mapper.adminNotice">
+
+	<!-- image와 매칭할 id 조회 쿼리 -->
+	<select id="noticeListToOption" resultType="NoticeVO" parameterType="java.util.Map">
+	
+		select * from notice where notice_category = #{notice_category} order by notice_id * 1
+	</select>
+
+
+</mapper>
