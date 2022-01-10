@@ -30,7 +30,6 @@
 
 	<div class="cart_list_header">
 		<div class="row">
-
 			<div class="col-lg-1 offset-lg-2 text-center cart_title">
 				<input type="checkbox" id="cart_checkAll" onclick="checkAll();"
 					class="join_01-check-01"> 전체선택 버튼
@@ -85,6 +84,10 @@
 							</div>
 						</div>
 					</div>
+					<div class="cart_hiddenProductInfo">
+						<input class="itemPrice" value="${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}" type="hidden">
+						<input class="itemDiscount" value="${userCartListInfo[cart].product.productVO.product_discount * userCartListInfo[cart].cart.cartVO.cart_count}" type="hidden">
+					</div>
 				</form>
 			</c:forEach>
 		</c:when>
@@ -94,7 +97,7 @@
 		<div class="row">
 			<div class="col-lg-2 offset-lg-8 text-right cart_check_delete_btn">
 				<form id="ListCeckBoxForm" action="${contextPath}/cart/cartListDelete.do">
-					<input id="selectPriceDelete" type="button" value="선택 삭제">
+					<input id="selectCheckDelete" type="button" value="선택 삭제" onclick="selectBTN();">
 				</form>
 			</div>
 		</div>
@@ -111,21 +114,17 @@
 		
 	<div class="row">
 		<div class="col-lg-2 offset-lg-2 text-center cart_total_price">
-			<fmt:formatNumber value="${totalPrice}" />원
-		</div>
-		<c:if test="${1 > 0}">
-			<div class="col-lg-2 text-center cart_total_price">0원</div>
-		</c:if>
-		<c:if test="${1 < 0}">
-			<div class="col-lg-2 text-center cart_total_price">3,000원</div>
-		</c:if>
-		<div class="col-lg-2 text-center cart_total_price">
-			<fmt:formatNumber value="" />원
+			<span id="cart_totalPrice"></span> 원
 		</div>
 		<div class="col-lg-2 text-center cart_total_price">
-			<span class="maybe_cost">
-				<fmt:formatNumber value="" />원
-			</span>
+			<span id="cart_delivery"></span> 원
+		</div>
+		<div class="col-lg-2 text-center cart_total_price">
+			<span id="cart_totalDiscount"></span> 원
+		</div>
+		<div class="col-lg-2 text-center cart_total_price">
+			<span id="cart_finalTotalPrice" class="maybe_cost"></span>
+			<span class="maybe_cost">원</span>
 		</div>
 	</div>
 			
@@ -157,7 +156,6 @@
 	</div>
 	
 </div>
-
 
 <script>
 	/* 체크박스 전체선택, 전체해제 */
@@ -241,52 +239,81 @@
 
 	}
 	
-	function cartTotal() {
+	/* 2022.01.10 한건희 */
+
+	/* 합계 금액 */
+	$(document).ready(function() {
+		let totalPrice = 0;
+		let totalDiscount = 0;
+		let delivery = 0;
+		let finalTotalPrice = 0;
 		
-	}
+		/* each문으로 돌리며 값을 저장시킴 */
+		$(".cart_hiddenProductInfo").each(function(index, element) {
+			totalPrice += parseInt($(element).find(".itemPrice").val());
+			totalDiscount += parseInt($(element).find(".itemDiscount").val());
+		});
+		
+		if(totalPrice >= 30000 || totalPrice == 0) {
+			delivery = 0;
+		}
+		else {
+			delivery = 5000;
+		}
+		
+		finalTotalPrice = totalPrice - totalDiscount + delivery;
+		
+		$("#cart_totalPrice").text(totalPrice.toLocaleString());
+		$("#cart_delivery").text(delivery);
+		$("#cart_totalDiscount").text(totalDiscount.toLocaleString());
+		$("#cart_finalTotalPrice").text(finalTotalPrice);
+	});
 	
-	/* 장바구니 상품 삭제 */
-	$("#selectPriceDelete").on("click", function(e) {
-		let userFind = "${userInfo.user_id}";
-		let deleteProduct;
-		let deleteItem;
-		let deleteList = new Array();
-		/* 체크박스 선택시 */
+	/* 삭제 및 주문 클릭시 이벤트 */
+	function selectBTN() {
+		/* 선택된 체크박싀의 값을 넣어줄 리스트 선언 */
+		let checkList = new Array();
 		if($("input[name=checkRow]").is(":checked")) {
 			/* 선택된 체크박스의 길이(갯수) */
-			let productCheck = $("input[name=checkRow]:checked").length;
-			if(productCheck > 0) {
-				let poroduct_id;
-				/* 선택된 체크박스의 value를 each함수를 통해 각각 받아옴 */
+			let checkItem = $("input[name=checkRow]:checked").length;
+			if(checkItem > 0) {
+				let product_id;
 				$("input[name=checkRow]:checked").each(function(e) {
+				/* 선택된 체크박스의 value를 each함수를 통해 각각 받아옴 */
 					product_id = $(this).val();
-					deleteList.push(product_id);
+				/* 받아온 value를 checkList에 담아줌 */
+					checkList.push(product_id);
 				})
 			}
-			deleteItem = document.getElementById("cartListProductTitle"+(i)).value;
-			alert(" deleteList : " + deleteList);
-			deleteProduct = confirm(deleteItem + "을(를) 장바구니에서 제거 하시겠습니까?");
-			if(deleteProduct == true) {
-				$.ajax({
-					type:"post", 
-					url:"${contextPath}/cart/cartListDelete.do", 
-					dataType:"text", 
-					data: {
-						"deleteList": JSON.stringify(deleteList)
-					}, 
-					success:function(test) {
-						alert(test + "상품이 장바구니에서 삭제되었습니다.");
-						location.reload();
-					}, 
-					error:function() {
-						alert("해당 상품 삭제가 실패했습니다.");
-					}
-				});
+			if($("#selectCheckDelete").on("click")) {
+			/* 삭제버튼 클릭 이벤트 */
+				let deleteItem;
+				let deleteProduct;
+				
+				deleteItem = document.getElementById("cartListProductTitle"+(i)).value;
+				deleteProduct = confirm(deleteItem + "을(를) 장바구니에서 제거 하시겠습니까?");
+				
+				if(deleteProduct == true) {
+					$.ajax({
+						type:"post", 
+						url:"${contextPath}/cart/cartListDelete.do", 
+						dataType:"text", 
+						data: {
+							"deleteList": JSON.stringify(checkList)
+						}, 
+						success:function(test) {
+							alert(test + "상품이 장바구니에서 삭제되었습니다.");
+							location.reload();
+						}, 
+						error:function() {
+							alert("해당 상품 삭제가 실패했습니다.");
+						}
+					});
+				}
 			}
 		}
 		else{
 			alert("선택된 상품이 없습니다.");
 		}
-	});
-	
+	}
 </script>

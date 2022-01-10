@@ -24,7 +24,6 @@ public class CartServiceImpl implements CartService{
 		
 		Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
 		List<CartVO> cartList = cartDAO.selectCartList(cartVO);
-//		System.out.println("(CartService)cartVO.getUser_id : " + cartVO.getUser_id());
 
 		for(int i=0; i<cartList.size(); i++) {
 			
@@ -33,11 +32,9 @@ public class CartServiceImpl implements CartService{
 
 			String productId=cartList.get(i).getProduct_id();
 
-//			System.out.println("cartService : " + productId);
 			productList = productService.productDetail(productId);
 			cartItem.put("cartVO", cartList.get(i));
 			productList.put("cart", cartItem);
-//			System.out.println("(CartService)cartVO.getCart_count : " + cartList.get(i).getCart_count());
 			userCartListInfo.put("myCartList" + (i+1), productList);
 		}
 		
