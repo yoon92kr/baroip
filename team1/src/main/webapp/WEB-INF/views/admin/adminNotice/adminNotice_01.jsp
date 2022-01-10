@@ -6,8 +6,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
 <c:set var="pageNoMax" value="7" />
-<!-- itemList에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemList" value="${noticeList.size()}" />
+<!-- itemSize에는 표시할 item의 size를 대입한다. -->
+<c:set var="itemSize" value="${noticeList.size()}" />
+<!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
+<c:set var="itemList" value="${noticeList}" />
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:if test='${not empty pageNo}'>
 	<script>
@@ -33,7 +36,7 @@
 
 <c:if test='${not empty userInfo}'>
 	<script>
-   if(${userInfo.user_rank > 2}) {
+   if(${userInfo.user_rank > 1}) {
    }
    
    else {
@@ -70,7 +73,7 @@
 	<div class="row">
 
 		<div class="col-lg-2 offset-10 text-center adminUser_01-content-header">
-			<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="공지 등록" onclick="location.href='${contextPath}/admin/product/addProductForm.do'">
+			<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="공지 등록" onclick="location.href='${contextPath}/admin/notice/add_notice_form.do'">
 		</div>
 	</div>
 
@@ -92,30 +95,30 @@
 		</div>
 	</div>
 	
-	<c:if test="${empty noticeList}">
+	<c:if test="${empty itemList}">
 		<br>
 		<div class="col-lg-12 text-center">등록된 공지사항이 없습니다.</div>
 	</c:if>
 	
-	<c:if test="${not empty noticeList}">
-		<c:forEach var="i" begin="1" end="${itemList + 1}">
+	<c:if test="${not empty itemList}">
+		<c:forEach var="i" begin="1" end="${itemSize}">
 			<c:set var="j" value="${(pageNo*pageNoMax -pageNoMax) + i}" />
 			<c:set var="key" value="notice${j}" />
 			
-			<c:if test="${not empty noticeList[key].notice.notice_id && i<8}">
+			<c:if test="${not empty itemList[key].notice.notice_id && i<8}">
 
 				<div class="row">
 					<div class="col-lg-1 text-center admin_notice_01_list">
 						${j}
 					</div>
 					<div class="col-lg-1 text-center admin_notice_01_list"	style="padding: 20px 0px 0px 0px">
-						${noticeList[key].notice.notice_cre_date}	
+						${itemList[key].notice.notice_cre_date}	
 					</div>
 					<div class="col-lg-1 text-center admin_notice_01_list">
-						${noticeList[key].notice.user_id}
+						${itemList[key].notice.user_id}
 					</div>
 					<div id="admin_product_title${j}" class="col-lg-7 text-center admin_notice_01_list">
-						${noticeList[key].notice.notice_title}
+						${itemList[key].notice.notice_title}
 					</div>
 					<div class="col-lg-2 text-center admin_notice_01_list_btn_section">
 						<input class="admin_notice_01_list_btn adminProduct_01-product-top" type="button" value="공지 수정" id="updateP_${j}" onclick="update_product_form(this.id)"> 
@@ -127,15 +130,15 @@
 			
 		</c:forEach>
 		
-			<c:if test="${itemList > pageNoMax}">
+			<c:if test="${itemSize > pageNoMax}">
 
 				<div class="row">
 
 					<div class="col-lg-12 text-center admin_product_page_index">
 						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-						<c:if test="${itemList > pageNoMax}">
+						<c:if test="${itemSize > pageNoMax}">
 						
-							<c:set var="maxNo" value="${itemList+pageNoMax-1}" />
+							<c:set var="maxNo" value="${itemSize+pageNoMax-1}" />
 							
 							<c:forEach var="x" begin="1" end="${maxNo / pageNoMax}">
 								<fmt:parseNumber type="number" integerOnly="true" var="noFlag" value="${(pageNo+pageNoMax-1) / pageNoMax}" />
@@ -218,7 +221,7 @@
 	// 페이지 이동 스크립트
 	function pageMove(no) {
 		var getValue = 0;
-		var lastPage = parseInt(${itemList+pageNoMax-1} / ${pageNoMax});
+		var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
 		if(no == "이전" || no == "다음") {
 			var uriValue = window.location.search;
 			var array = uriValue.split("=");
@@ -234,7 +237,7 @@
 				alert("마지막 페이지 입니다.");
 			}
 			else {
-			document.location='${contextPath}/admin/product/general_list.do?pageNo='+(--getValue);
+			document.location='${contextPath}/admin/notice/notice_list.do?pageNo='+(--getValue);
 			}
 		}
 		else if (no == "다음") {
@@ -242,11 +245,11 @@
 				alert("마지막 페이지 입니다.");
 			}
 			else {
-			document.location='${contextPath}/admin/product/general_list.do?pageNo='+(++getValue);
+			document.location='${contextPath}/admin/notice/notice_list.do?pageNo='+(++getValue);
 			}
 		}
 		else {
-			document.location='${contextPath}/admin/product/general_list.do?pageNo='+no;
+			document.location='${contextPath}/admin/notice/notice_list.do?pageNo='+no;
 		}
 	}
 	

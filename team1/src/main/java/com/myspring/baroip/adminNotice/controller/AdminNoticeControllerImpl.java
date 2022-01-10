@@ -11,12 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminNotice.service.AdminNoticeService;
+import com.myspring.baroip.notice.vo.NoticeVO;
 
 @Controller("adminNoticeController")
 @RequestMapping(value="/admin/notice")
@@ -24,9 +26,21 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 	@Autowired
 	AdminNoticeService adminNoticeService;
 	
+	// 공지관리 페이지 전체 mapping
+	@Override
+	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView adminNotice(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		mav.setViewName(viewName);
+
+		return mav;
+	}
+	
 //	관리자페이지 공지관리 컨트롤러
 	@RequestMapping(value= "/notice_list.do", method= {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView adminNotice(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView adminNoticeList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession();
 		
@@ -60,6 +74,70 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 		}
 		mav.addObject("noticeList", noticeList);
 		mav.setViewName(viewName);
+
+		return mav;
+	}
+	
+	// 공지 등록 컨트롤러
+	@Override
+	@RequestMapping(value = "/add_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView addNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		String message = "[" + "]의 임시등록이 완료되었습니다.";
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("message", message);
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+	
+	// 공지 삭제 컨트롤러
+	@Override
+	@RequestMapping(value = "/delete_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView deleteNotice(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		// System.out.printf("baroip : [%s]상품이 정삭적으로 삭제되었습니다.%n", product_id);
+		mav.setViewName("redirect:/admin/product/extra_list.do");
+
+		return mav;
+	}
+
+	// 공지 수정 양식 컨트롤러
+	@Override
+	@RequestMapping(value = "/update_notice_form.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView updateNoticeForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+
+		// Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);
+
+		// mav.addObject("productInfo", productInfo);
+		mav.setViewName(viewName);
+		return mav;
+
+	}
+
+	// 공지 수정 컨트롤러
+	@Override
+	@RequestMapping(value = "/update_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView updateNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest Request, HttpServletResponse response) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		// String lastViewName = (String)multipartRequest.getParameter("last_view_name");
+		// adminProductService.updateProduct(productVO);
+		// String message = "관리자 " + productVO.getUser_id() + " 님이 [" + productVO.getProduct_main_title() + "]의 수정을 완료되었습니다.";
+
+		// HttpSession session = multipartRequest.getSession();
+		// session.setAttribute("message", message);
+		// imageController.updateImage(multipartRequest, productVO.getProduct_id());
+		// mav.setViewName("redirect:"+lastViewName+".do");
+		// System.out.println("baroip : " + message);
 
 		return mav;
 	}
