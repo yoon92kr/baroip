@@ -6,7 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+<!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
+<c:set var="pageNoMax" value="3" />
+<!-- itemList에는 표시할 item의 size를 대입한다. -->
+<c:set var="itemList" value="${bestProducts.size()}" />
 
 <div class="main-section">
    <div class="container-fluid">
@@ -65,120 +68,56 @@
 	<c:if test="${empty bestProducts}">
 		<br><div class="col-lg-12 text-center"> 등록된 상품이 없습니다.</div>
 	</c:if>
-	<c:if test="${not empty bestProducts}">
+
 	
 
 <div class="container">
    <div class="row">
-      <div class="col-lg-4 text-center">
-         <div class="product-image">
-            <a
-               href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product1.product_id}"><img
-               src="data:image/jpeg;base64,${bestProducts.product1.image_file }"
-               alt="베스트 상품 이미지"></a>
-         </div>
-      </div>
+	<c:if test="${not empty bestProducts}">   
+ 	  	<c:forEach var="i" begin="1" end="${itemList}">
+			<c:set var="key" value="product${i}" />
+			
+		<div class="col-lg-4">
+		
 
-      <div class="col-lg-4  text-center">
-         <div class="product-image">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product2.product_id}"><img
-               src="data:image/jpeg;base64,${bestProducts.product2.image_file }"
-               alt="베스트 상품 이미지"></a>
-         </div>
-      </div>
-
-      <div class="col-lg-4 text-center">
-         <div class="product-image">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product3.product_id}"><img
-               src="data:image/jpeg;base64,${bestProducts.product3.image_file }"
-               alt="베스트 상품 이미지"></a>
-         </div>
-      </div>
-   </div>
-   <div class="item-format">
-      <div class="row">
-         <div class="col-lg-2">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product1.product_id}" class=""> <span
-               class="item-title">${bestProducts.product1.product_main_title}
-            </span> <br> <span class="item-comment">${bestProducts.product1.product_sub_title}</span>
-
-            </a>
-         </div>
-         <div class="col-lg-1 main_item_bottom_text ">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product1.product_id}" class=""> <span
-               class="item-price"><fmt:formatNumber value="${bestProducts.product1.product_price}" />원</span> <span
-               class="item-dc"><fmt:formatNumber
-                     value="${bestProducts.product1.product_discount}" />원</span> <br>
-               <span class="item-real-price"><fmt:formatNumber
-                     value="${bestProducts.product1.product_price-bestProducts.product1.product_discount}" />원</span>
-            </a>
-         </div>
-
-         <div class="col-lg-1 text-right">
-            <form action="${contextPath}/cart/cartLst.do">
-               <input type="image"
-                  src="${contextPath}/resources/img/common/cart-put-icon.png"
-                  alt="카트 담기 버튼 이미지">
-            </form>
-         </div>
-
-
-         <div class="col-lg-2">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product2.product_id}" class=""> <span
-               class="item-title">${bestProducts.product2.product_main_title}
-            </span> <br> <span class="item-comment">${bestProducts.product2.product_sub_title}</span>
-
-            </a>
-         </div>
-         <div class="col-lg-1 main_item_bottom_text">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product2.product_id}" class=""> <span
-               class="item-price"><fmt:formatNumber
-                     value="${bestProducts.product2.product_price}" />원</span> <span
-               class="item-dc"><fmt:formatNumber
-                     value="${bestProducts.product2.product_discount}" />원</span> <br>
-               <span class="item-real-price"><fmt:formatNumber
-                     value="${bestProducts.product2.product_price-bestProducts.product2.product_discount}" />원</span>
-            </a>
-         </div>
-
-         <div class="col-lg-1 text-right">
-            <form action="${contextPath}/cart/cartLst.do">
-               <input type="image"
-                  src="${contextPath}/resources/img/common/cart-put-icon.png"
-                  alt="카트 담기 버튼 이미지">
-            </form>
-         </div>
-
-         <div class="col-lg-2">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product3.product_id}" class=""> <span
-               class="item-title">${bestProducts.product3.product_main_title}
-            </span> <br> <span class="item-comment">${bestProducts.product3.product_sub_title}</span>
-
-            </a>
-         </div>
-         <div class="col-lg-1 main_item_bottom_text">
-            <a href="${contextPath}/product/productDetail.do?product_id=${bestProducts.product3.product_id}" class=""> <span
-               class="item-price"><fmt:formatNumber
-                     value="${bestProducts.product3.product_price}" />원</span> <span
-               class="item-dc"><fmt:formatNumber
-                     value="${bestProducts.product3.product_discount}" />원</span> <br>
-               <span class="item-real-price"><fmt:formatNumber
-                     value="${bestProducts.product3.product_price-bestProducts.product3.product_discount}" />원</span>
-            </a>
-         </div>
-
-         <div class="col-lg-1 text-right">
-            <form action="${contextPath}/cart/cartLst.do">
-               <input type="image"
-                  src="${contextPath}/resources/img/common/cart-put-icon.png"
-                  alt="카트 담기 버튼 이미지">
-            </form>
-         </div>
-
-      </div>
-   </div>
-</div>
+		
+			<div class="product_01_image">	
+				<a href="${contextPath}/product/productDetail.do?product_id=${bestProducts[key].product_id}">
+					<img src="data:image/jpeg;base64,${bestProducts[key].image_file}" alt="상품 이미지">
+				</a>		
+			</div>
+			
+			<div class="row item-format">
+			
+				<div class="col-lg-6">
+					<a href="${contextPath}/product/productDetail.do?product_id=${bestProducts[key].product_id}"> 
+					<span class="item-title">${bestProducts[key].product_main_title}</span>		<br>
+					<span class="item-comment">${bestProducts[key].product_sub_title}</span>
+					</a> 
+				</div>
+				
+				<div class="col-lg-3 main_item_bottom_text">
+					<span class="item-price"><fmt:formatNumber value="${bestProducts[key].product_price}" />원</span> 
+					<span class="item-dc"><fmt:formatNumber value="${bestProducts[key].product_discount}" />원</span> <br>
+					<span class="item-real-price"><fmt:formatNumber value="${bestProducts[key].product_price-bestProducts[key].product_discount}" />원</span>
+				</div>
+				
+				<div class="col-lg-3 text-right">
+					<a href="${contextPath}/cart/addProductInCart.do?cart_count=1&product_id=${bestProducts[key].product_id}">
+						<img src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</a>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		</c:forEach>
 	</c:if>
+	</div>
+</div>
+
 <script type="text/javascript">
    $(document).ready(function() {
       $('.post-wrapper').slick({
