@@ -1,6 +1,12 @@
 @charset "UTF-8";
 
 /* ==================== 중간중간 수정 ================================= */
+/* main 장바구니 이미지 */
+.main_cartImage {
+	border: none;
+	background: #fff;
+}
+
 /* product_01 검색창 추가 */
 .product_01_search-box {
 	padding-left: 55px;

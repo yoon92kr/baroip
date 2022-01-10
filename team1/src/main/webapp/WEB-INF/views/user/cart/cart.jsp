@@ -6,8 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<%-- <c:set var="myCartProductInfo" value="${myCartList.cartList.product.productVO}" />
-<c:set var="myCartImageInfo" value="${myCartList.cartList.image}" /> --%>
 
 
 <div class="container-fluid">
@@ -241,6 +239,10 @@
 			document.getElementById(this.id).value = 1;
 		}
 
+	}
+	
+	function() {
+		
 	}
 	
 	/* 장바구니 상품 삭제 */

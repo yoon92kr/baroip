@@ -6,16 +6,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:if test='${not empty message }'>
-<script>
-window.onload=function()
-{
-  result();
-}
-
-function result(){
-	alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
-}
-</script>
+	<script>
+		window.onload=function() {
+			result();
+		}
+	
+		function result(){
+			alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
+		}
+	</script>
+</c:if>
+<c:if test="${not empty guestCartAdd}" >
+	<script>
+		if(${userInfo != null}) {
+			<% 
+				session.removeAttribute("guestCartAdd");
+			%>
+		}
+	</script>
 </c:if>
 
 <div class="container">
