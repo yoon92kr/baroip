@@ -46,18 +46,19 @@ public class CartControllerImpl implements CartController{
 		String viewName = (String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+		Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
 //		회원 장바구니 리스트
 		if(userVO != null) {
 			String user_id = userVO.getUser_id();
 			cartVO.setUser_id(user_id);
-			Map<String, Map<String, Map<String, Object>>> userCartListInfo = cartService.myCartList(cartVO);
+			userCartListInfo = cartService.myCartList(cartVO);
 			mav.addObject("userCartListInfo", userCartListInfo);
+			
 		}
 //		비회원 장바구니 리스트
 		else {
 			@SuppressWarnings("unchecked")
 			List<CartVO> notUserCart = (List<CartVO>) session.getAttribute("guestCartAdd");
-			Map<String, Map<String, Map<String, Object>>> userCartListInfo = new HashMap<String, Map<String, Map<String, Object>>>();
 			if(notUserCart != null) {
 				for(int i = 0; i < notUserCart.size(); i++) {
 					Map<String, Object> cartItem = new HashMap<String, Object>();
@@ -190,8 +191,6 @@ public class CartControllerImpl implements CartController{
 				if(guestCartList.get(i).equals(cartVO)) {
 					int productCount = guestCartList.get(i).getCart_count();
 					int newCount = productCount + cartCount;
-					
-//					System.out.println(guestCartList.get(i).getCart_count());
 					guestCartList.get(i).setCart_count(newCount);
 				}
 			}
@@ -209,7 +208,6 @@ public class CartControllerImpl implements CartController{
 		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-//		List<CartVO> cartDeleteList = new ArrayList<CartVO>();
 		List<String> productList = new ArrayList<String>();
 		
 //		로그인 회원 선택 상품 삭제
@@ -220,7 +218,6 @@ public class CartControllerImpl implements CartController{
 			item.put("user_id", user_id);
 			for(int i = 0; deleteList.size() > i; i++) {
 				productList.add(deleteList.get(i).replace("\"", "").replace("[", "").replace("]", ""));
-//				cartTest.put("product_id", deleteList.get(i).replace("\"", "").replace("[", "").replace("]", ""));
 			}
 			item.put("product_id", productList);
 			cartService.deleteCartItem(item);

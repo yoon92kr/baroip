@@ -32,7 +32,7 @@
 		<div class="row">
 			<div class="col-lg-1 offset-lg-2 text-center cart_title">
 				<input type="checkbox" id="cart_checkAll" onclick="checkAll();"
-					class="join_01-check-01"> 전체선택 버튼
+					class="join_01-check-01" checked> 전체선택 버튼
 			</div>
 			<div class="col-lg-5 text-center cart_title">상품정보</div>
 			<div class="col-lg-1 text-center cart_title">수량</div>
@@ -51,11 +51,11 @@
 			<c:forEach var="i" begin="1" end="${userCartListInfo.size()}" varStatus="price">
 			<c:set var="cart" value="myCartList${i}" />
 
-				<form id="ListCeckBoxForm${i}" action="${contextPath}/cart/cartListDelete.do">
+				<form id="ListCeckBoxForm${i}" class="cartListForm" action="${contextPath}/cart/cartListDelete.do">
 					<div class="cart_list_body">
 						<div class="row">
 							<div class="col-lg-1 offset-lg-2 text-center cart_body cart_checkbox">
-								<input id="ListCheckBox${i}" value="${userCartListInfo[cart].product.productVO.product_id}" type="checkbox" class="join_01-check-01" name="checkRow">
+								<input id="ListCheckBox${i}" value="${userCartListInfo[cart].product.productVO.product_id}" type="checkbox" class="join_01-check-01" name="checkRow" checked>
 							</div>
 							<div class="col-lg-2 text-center cart_body">
 								<a href="${contextPath}/product/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">
@@ -74,21 +74,22 @@
 										onclick="decreaseValue(this.id)">-</div>
 									<input type="number" class="cart_item_count"
 										id="cart_item_count${i}" name="cart_count" value="${userCartListInfo[cart].cart.cartVO.cart_count}"
-										onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+										onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" onchange="countChange(this)" />
 									<div class="value-button cart_increase" id="cart_increase${i}"
-										onclick="increaseValue(this.id)">+</div>
+										onclick="increaseValue(this.id)" >+</div>
 								</div>
 							</div>
 							<div class="col-lg-1 text-center cart_body">
-								<fmt:formatNumber value="${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}" />
+								<span class="cart_priceAddCount"></span>
 							</div>
+							<input type="hidden" id="productPrice${i}" value="${userCartListInfo[cart].product.productVO.product_price}" />
 						</div>
 					</div>
-					<div class="cart_hiddenProductInfo">
-						<input class="itemPrice" value="${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}" type="hidden">
-						<input class="itemDiscount" value="${userCartListInfo[cart].product.productVO.product_discount * userCartListInfo[cart].cart.cartVO.cart_count}" type="hidden">
-					</div>
 				</form>
+				<div class="cart_hiddenProductInfo">
+					<input class="itemPrice" value="${userCartListInfo[cart].product.productVO.product_price * userCartListInfo[cart].cart.cartVO.cart_count}" type="hidden">
+					<input class="itemDiscount" value="${userCartListInfo[cart].product.productVO.product_discount * userCartListInfo[cart].cart.cartVO.cart_count}" type="hidden">
+				</div>
 			</c:forEach>
 		</c:when>
 	</c:choose>
@@ -240,7 +241,7 @@
 	}
 	
 	/* 2022.01.10 한건희 */
-
+	
 	/* 합계 금액 */
 	$(document).ready(function() {
 		let totalPrice = 0;
@@ -264,35 +265,38 @@
 		finalTotalPrice = totalPrice - totalDiscount + delivery;
 		
 		$("#cart_totalPrice").text(totalPrice.toLocaleString());
-		$("#cart_delivery").text(delivery);
+		$("#cart_delivery").text(delivery.toLocaleString());
 		$("#cart_totalDiscount").text(totalDiscount.toLocaleString());
-		$("#cart_finalTotalPrice").text(finalTotalPrice);
+		$("#cart_finalTotalPrice").text(finalTotalPrice.toLocaleString());
 	});
 	
-	/* 삭제 및 주문 클릭시 이벤트 */
+	/* 체크박스 선택 후 이벤트 */
 	function selectBTN() {
-		/* 선택된 체크박싀의 값을 넣어줄 리스트 선언 */
-		let checkList = new Array();
+		/* 선택된 체크박스가 있을 시 */
 		if($("input[name=checkRow]").is(":checked")) {
+			/* 선택된 체크박스의 값을 넣어줄 리스트 선언 */
+			let checkList = new Array();
 			/* 선택된 체크박스의 길이(갯수) */
 			let checkItem = $("input[name=checkRow]:checked").length;
 			if(checkItem > 0) {
 				let product_id;
 				$("input[name=checkRow]:checked").each(function(e) {
-				/* 선택된 체크박스의 value를 each함수를 통해 각각 받아옴 */
+					/* 선택된 체크박스의 value를 each함수를 통해 각각 받아옴 */
 					product_id = $(this).val();
-				/* 받아온 value를 checkList에 담아줌 */
+					/* 받아온 value를 checkList에 담아줌 */
 					checkList.push(product_id);
 				})
 			}
+			
 			if($("#selectCheckDelete").on("click")) {
-			/* 삭제버튼 클릭 이벤트 */
-				let deleteItem;
 				let deleteProduct;
-				
-				deleteItem = document.getElementById("cartListProductTitle"+(i)).value;
-				deleteProduct = confirm(deleteItem + "을(를) 장바구니에서 제거 하시겠습니까?");
-				
+			/* 삭제버튼 클릭 이벤트 */
+				if(checkItem > 1) {
+					deleteProduct = confirm("선택한 상품들을 장바구니에서 제거 하시겠습니까?");
+				}
+				else if(checkItem == 1){
+					deleteProduct = confirm("선택한 상품을 장바구니에서 제거 하시겠습니까?");
+				}
 				if(deleteProduct == true) {
 					$.ajax({
 						type:"post", 
@@ -316,4 +320,9 @@
 			alert("선택된 상품이 없습니다.");
 		}
 	}
+	
+	function countChange(count) {
+		alert($(count).val());
+	}
+	
 </script>

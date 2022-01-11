@@ -155,6 +155,7 @@
 	let cart_count = document.getElementById("cart_item_count").value;
 	let userFind = "${userInfo.user_id}";
 	let product_amount = "${VO.product_amount}";
+	
 	if(product_amount == 0) {
 		alert("죄송합니다 상품이 품절되었습니다.");
 	}else if(product_amount < cart_count) {
@@ -162,9 +163,7 @@
 	}else {
 		/* 비로그인 시 팝업창 */
 		if(userFind == null || userFind == "") {
-			let notUser;
-			
-			notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
+			let notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
 			if(notUser == false) {
 				location='${contextPath}/user/login_01.do';
 			}
