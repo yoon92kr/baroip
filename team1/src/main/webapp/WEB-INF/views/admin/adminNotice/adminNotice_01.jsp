@@ -73,7 +73,7 @@
 	<div class="row">
 
 		<div class="col-lg-2 offset-10 text-center adminUser_01-content-header">
-			<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="공지 등록" onclick="location.href='${contextPath}/admin/notice/add_notice_form.do'">
+			<input class="adminProduct_01-header-button adminProduct_01-button-top" type="button" value="공지 등록" onclick="add_notice()">
 		</div>
 	</div>
 
@@ -105,7 +105,7 @@
 			<c:set var="j" value="${(pageNo*pageNoMax -pageNoMax) + i}" />
 			<c:set var="key" value="notice${j}" />
 			
-			<c:if test="${not empty itemList[key].notice.notice_id && i<8}">
+			<c:if test="${not empty itemList[key].notice.notice_id && i< pageNoMax+1}">
 
 				<div class="row">
 					<div class="col-lg-1 text-center admin_notice_01_list">
@@ -118,7 +118,9 @@
 						${itemList[key].notice.user_id}
 					</div>
 					<div id="admin_notice_title${j}" class="col-lg-7 text-center admin_notice_01_list">
+						<a href ="${contextPath}/admin/notice/notice_detail.do?notice_id=${itemList[key].notice.notice_id}" class="admin_notice_black">
 						${itemList[key].notice.notice_title}
+						</a>
 					</div>
 					<input type="hidden" id="notice_id${j}" value="${itemList[key].notice.notice_id}">
 					<div class="col-lg-2 text-center admin_notice_01_list_btn_section">
@@ -166,7 +168,6 @@
 <script type="text/javascript">
 	
 	/* 공지 삭제 ajax */
-	// deleteN_3
 	function delete_notice(target) {
 		var strArray = target.split('_');
 		var target_no = strArray[1];
@@ -235,7 +236,8 @@
 		var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
 		if(no == "이전" || no == "다음") {
 			var uriValue = window.location.search;
-			var array = uriValue.split("=");
+			
+			var array = uriValue.split("pageNo=");
 			if(array[1] == "" || array[1] == null) {
 				array[1] = 1;
 			}
@@ -264,4 +266,15 @@
 		}
 	}
 	
+	function add_notice() {
+		var user_rank = '${userInfo.user_rank}';
+		
+		if(user_rank >= 3) {
+			document.location='${contextPath}/admin/notice/add_notice_form.do';
+		}
+		 else {
+				alert("게시물을 등록할 권한이 없습니다.");
+			}
+		
+	}
 </script>

@@ -62,36 +62,42 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 			int lastNo = (noticeList.size()+6)/7;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
-				
 				mav.addObject("pageNo", 1);
-				mav.addObject("message", "잘못된 요청입니다.");
+				mav.setViewName("redirect:"+viewName +".do");
 			}
 			else {
 				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
 			}
 			
 		} else {
 			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
 		}
 		mav.addObject("noticeList", noticeList);
-		mav.setViewName(viewName);
-
 		return mav;
 	}
 	
+	// 관리자페이지 공지 상세페이지 컨트롤러
+		public ModelAndView adminNoticeDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			
+			return mav;
+		}
+		
 	// 공지 등록 컨트롤러
 	@Override
 	@RequestMapping(value = "/add_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView addNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-		String viewName = (String) request.getAttribute("viewName");
-		String message = "[" + "]의 임시등록이 완료되었습니다.";
+		String notice_title = noticeVO.getNotice_title();
+		String message = "공지사항 [" +notice_title+ "] 의 등록이 완료되었습니다.";
 		
 		HttpSession session = request.getSession();
 		
 		session.setAttribute("message", message);
-		mav.setViewName(viewName);
+		mav.setViewName("redirect:/admin/notice/notice_list.do");
 		
 		return mav;
 	}

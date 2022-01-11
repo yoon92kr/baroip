@@ -34,7 +34,8 @@ public class AdminUserControllerImpl implements AdminUserController {
 	@RequestMapping(value = "/user_list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView userList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
 		// get 요청이 없을경우, 기존의 session을 제거
 		if (info.isEmpty()) {
 			session.removeAttribute("search_option");
@@ -43,27 +44,25 @@ public class AdminUserControllerImpl implements AdminUserController {
 		List<UserVO> userList = getFullList(info, request);
 
 		String pageNo = info.get("pageNo");
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String) request.getAttribute("viewName");
 
 		if (pageNo != null && pageNo != "") {
 			int lastNo = (userList.size()+6)/7;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
-				
 				mav.addObject("pageNo", 1);
-				mav.addObject("message", "잘못된 요청입니다.");
+				mav.setViewName("redirect:"+viewName +".do");
 			}
 			else {
 				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
 			}
 			
 		} else {
 			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
 		}
+		
 		mav.addObject("userList", userList);
-		mav.setViewName(viewName);
-
 		return mav;
 	}
 

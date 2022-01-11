@@ -92,20 +92,19 @@ public class AdminProductControllerImpl implements AdminProductController {
 			int lastNo = (extraFullList.size()+4)/5;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
-				
 				mav.addObject("pageNo", 1);
-				mav.addObject("message", "잘못된 요청입니다.");
+				mav.setViewName("redirect:"+viewName +".do");
 			}
 			else {
 				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
 			}
 			
 		} else {
 			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
 		}
 		mav.addObject("extraList", extraFullList);
-		mav.setViewName(viewName);
-
 		return mav;
 	}
 	
@@ -130,19 +129,19 @@ public class AdminProductControllerImpl implements AdminProductController {
 			int lastNo = (generalFullList.size()+4)/5;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
-				
 				mav.addObject("pageNo", 1);
-				mav.addObject("message", "잘못된 요청입니다.");
+				mav.setViewName("redirect:"+viewName +".do");
 			}
 			else {
 				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
 			}
 			
 		} else {
 			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
 		}
 		mav.addObject("generalList", generalFullList);
-		mav.setViewName(viewName);
 
 		return mav;
 	}

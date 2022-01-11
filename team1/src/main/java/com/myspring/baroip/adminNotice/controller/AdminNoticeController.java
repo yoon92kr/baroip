@@ -18,9 +18,12 @@ public interface AdminNoticeController {
 	// 공지관리 페이지 전체 mapping	
 	public ModelAndView adminNotice(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	//	관리자페이지 공지관리 컨트롤러
+	//	관리자페이지 공지관리 리스트 컨트롤러
 	public ModelAndView adminNoticeList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	// 관리자페이지 공지 상세페이지 컨트롤러
+	public ModelAndView adminNoticeDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 	// 공지 등록 컨트롤러
 	public ModelAndView addNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 

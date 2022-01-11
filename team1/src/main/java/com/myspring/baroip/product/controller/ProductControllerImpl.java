@@ -74,12 +74,22 @@ public class ProductControllerImpl implements ProductController {
 		String pageNo = info.get("pageNo");
 		
 		if (pageNo != null && pageNo != "") {
-			mav.addObject("pageNo", pageNo);
+			int lastNo = (productFullList.size()+11)/12;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
 		} else {
 			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
 		}
 		mav.addObject("productFullList", productFullList);
-		mav.setViewName(viewName);
 		return mav;
 	}
 	

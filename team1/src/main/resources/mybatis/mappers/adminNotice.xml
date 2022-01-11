@@ -4,15 +4,20 @@
 
 <mapper namespace="mapper.adminNotice">
 
-	<!-- image와 매칭할 id 조회 쿼리 -->
+	<!-- 옵션에 따른 noticeVO 리스트 조회 쿼리 -->
 	<select id="noticeListToOption" resultType="NoticeVO" parameterType="java.util.Map">
 	
 		select * from notice where notice_category = #{notice_category} order by notice_id * 1
 	</select>
 	
+	<!-- notice 삭제 쿼리  -->
 	<delete id="noticeDelete" parameterType="java.lang.String">
 		delete from notice where notice_id = #{notice_id}
 	</delete>
 
+	<!-- notice 단일객체 조회 쿼리 -->
+	<select id="noticeDetail" resultType="NoticeVO" parameterType="java.util.Map">
+		select * from notice where notice_id = #{notice_id}
+	</select>
 
 </mapper>

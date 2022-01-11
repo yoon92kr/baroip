@@ -182,7 +182,8 @@
 		var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
 		if(no == "이전" || no == "다음") {
 			var uriValue = window.location.search;
-			var array = uriValue.split("=");
+			
+			var array = uriValue.split("pageNo=");
 			if(array[1] == "" || array[1] == null) {
 				array[1] = 1;
 			}
