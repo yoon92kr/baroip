@@ -24,4 +24,11 @@ public class AdminNoticeDAOImpl implements AdminNoticeDAO {
 
 		return noticeList;
 	}
+	
+	// 게시물 삭제
+	@Override
+	public int deleteNotice(String notice_id) throws DataAccessException {
+		int result=sqlSession.delete("mapper.adminNotice.noticeDelete", notice_id);
+		return result;
+	}
 }

@@ -9,6 +9,10 @@
 	
 		select * from notice where notice_category = #{notice_category} order by notice_id * 1
 	</select>
+	
+	<delete id="noticeDelete" parameterType="java.lang.String">
+		delete from notice where notice_id = #{notice_id}
+	</delete>
 
 
 </mapper>

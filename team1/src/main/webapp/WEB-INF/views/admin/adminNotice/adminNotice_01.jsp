@@ -117,12 +117,13 @@
 					<div class="col-lg-1 text-center admin_notice_01_list">
 						${itemList[key].notice.user_id}
 					</div>
-					<div id="admin_product_title${j}" class="col-lg-7 text-center admin_notice_01_list">
+					<div id="admin_notice_title${j}" class="col-lg-7 text-center admin_notice_01_list">
 						${itemList[key].notice.notice_title}
 					</div>
+					<input type="hidden" id="notice_id${j}" value="${itemList[key].notice.notice_id}">
 					<div class="col-lg-2 text-center admin_notice_01_list_btn_section">
 						<input class="admin_notice_01_list_btn adminProduct_01-product-top" type="button" value="공지 수정" id="updateP_${j}" onclick="update_product_form(this.id)"> 
-						<input class="admin_notice_01_list_btn" id="deleteP_${j}" type="button" value="공지 삭제" onclick="delete_product(this.id)">
+						<input class="admin_notice_01_list_btn" id="deleteN_${j}" type="button" value="공지 삭제" onclick="delete_notice(this.id)">
 					</div>
 				</div>
 				
@@ -165,33 +166,43 @@
 <script type="text/javascript">
 	
 	/* 공지 삭제 ajax */
-	function delete_product(target) {
+	// deleteN_3
+	function delete_notice(target) {
 		var strArray = target.split('_');
 		var target_no = strArray[1];
-		
-		let product_title = document.getElementById('admin_product_title'.concat(target_no)).innerText;
-		let product_id = document.getElementById('product_'.concat(target_no)).value;
-		var confirmFlag = confirm(product_title+"을(를) 정말 삭제하시겠습니까?");
-		if(confirmFlag){
-			
-			$.ajax({
-				type : "post",
-				async : false,
-				url : "${contextPath}/admin/product/delete_product.do",
-				dataType : "text",
-				data : {
-					"product_id" : product_id			
-				},
-				success : function(message) {
-					alert(product_title+" 상품이 정상적으로 삭제되었습니다.");
-			 		location.reload();
-				},
-				error : function() {
-					alert("해당 상품 삭제에 문제가 발생하였습니다.");
-				}
+		var user_rank = '${userInfo.user_rank}';
 
-			});
+		let notice_title = document.getElementById('admin_notice_title'.concat(target_no)).innerText;
+		let notice_id = document.getElementById('notice_id'.concat(target_no)).value;
+		
+		if(user_rank >= 3) {
+			var confirmFlag = confirm(notice_title+"을(를) 정말 삭제하시겠습니까?");
+			
+			if(confirmFlag){
+				
+				$.ajax({
+					type : "post",
+					async : false,
+					url : "${contextPath}/admin/notice/delete_notice.do",
+					dataType : "text",
+					data : {
+						"notice_id" : notice_id			
+					},
+					success : function(message) {
+						alert(notice_title+" 게시물이 정상적으로 삭제되었습니다.");
+				 		location.reload();
+					},
+					error : function() {
+						alert("해당 게시물 삭제에 문제가 발생하였습니다.");
+					}
+
+				});
+			}
+		} else {
+			alert("해당 게시물을 삭제할 권한이 없습니다.");
 		}
+		
+
 			
 
 	

@@ -104,5 +104,16 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 
 			return fullNoticeList;
 		}
+		
+//	게시물 삭제
+	@Override
+	public String deleteNotice(String notice_id) throws Exception { 
+		int result=adminNoticeDAO.deleteNotice(notice_id);
+		String message = "baroip : 삭제할 게시물이 존재하지 않습니다.";
+		if (result > 0) {
+			message = "baroip : "+notice_id+" 게시글이 삭제되었습니다.";
+		}
+		return message; 
+	}
 
 }

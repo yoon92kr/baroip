@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminNotice.service.AdminNoticeService;
@@ -97,17 +98,16 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 	
 	// 공지 삭제 컨트롤러
 	@Override
+	@ResponseBody
 	@RequestMapping(value = "/delete_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView deleteNotice(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String deleteNotice(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		ModelAndView mav = new ModelAndView();
-
-		// System.out.printf("baroip : [%s]상품이 정삭적으로 삭제되었습니다.%n", product_id);
-		mav.setViewName("redirect:/admin/product/extra_list.do");
-
-		return mav;
+		String message = adminNoticeService.deleteNotice(notice_id);
+		System.out.println(message);
+		return message;
 	}
 
+	
 	// 공지 수정 양식 컨트롤러
 	@Override
 	@RequestMapping(value = "/update_notice_form.do", method = { RequestMethod.POST, RequestMethod.GET })

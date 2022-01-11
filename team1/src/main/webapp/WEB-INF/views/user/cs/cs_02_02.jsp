@@ -108,18 +108,22 @@
 	let form = $("#infoForm");
 	let dform = $("#deleteForm");
 	
-	// 수정하기 버튼
-	$("#cs_02_02_update_btn").on("click", function(e) {
-		uform.attr("action", "${contextPath}/cs/questUpdate.do");
-		uform.submit();
-	});
-	
 	// 목록 이동 버튼
 	$("#cs_02_02_list_btn").on("click", function(e) {
 		form.find("#cs_02_02_NI").remove();
 		form.attr("action", "${contextPath}/cs/inquiry_list.do");
 		form.submit();
 	});
+	
+	
+	
+	// 수정하기 버튼
+	$("#cs_02_02_update_btn").on("click", function(e) {
+		uform.attr("action", "${contextPath}/cs/questUpdate.do");
+		uform.submit();
+	});
+	
+	
 	
 	// 삭제 버튼
 	$("#cs_02_02_delete_btn").on("click", function(e) {

@@ -71,7 +71,7 @@
 		
 		  <div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/adminNotice_01.do"><img
+					<a href="${contextPath}/admin/notice/notice_list.do"><img
 						src="${contextPath}/resources/img/common/cs_return.png" alt="관리자페이지 공지작성 돌아가기 버튼 이미지"></a>
 				</div>
 			</div>
