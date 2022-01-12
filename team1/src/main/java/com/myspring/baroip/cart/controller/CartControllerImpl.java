@@ -164,7 +164,6 @@ public class CartControllerImpl implements CartController{
 		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
-		System.out.println("product_id : " + product_id);
 		
 //		로그인 동일 상품 수량 추가
 		if(userVO != null) {
@@ -229,9 +228,6 @@ public class CartControllerImpl implements CartController{
 					for(int s = 0; guestCartList.size() > s; s++) {
 						if(guestCartList.get(s).getProduct_id().contains(deleteItem)) {
 							guestCartList.remove(s);
-						}
-						else {
-							continue;
 						}
 					}
 				}

@@ -204,6 +204,48 @@
 				"cart_count": 1
 			}
 		});
+		
+		let checkTotalPrice = 0;
+		let checkTotalDisCount = 0;
+		let deliveryPrice = 0;
+		let checkFinalPrice = 0;
+		
+		if($("input[name=checkRow]").is(":checked")) {
+			
+			$(".cartListForm").each(function(index, element) {
+				
+				checkTotalPrice += parseInt($(element).find(".listItemPrice").val() * $(element).find(".cart_item_count").val());
+				checkTotalDisCount += parseInt($(element).find(".listItemDiscount").val() * $(element).find(".cart_item_count").val());
+				
+			});
+			
+			checkFinalPrice = checkTotalPrice - checkTotalDisCount;
+			
+			if(checkFinalPrice >= 30000 || checkFinalPrice == 0) {
+				
+				deliveryPrice = 0;
+				
+			} else {
+				
+				deliveryPrice = 5000;
+			}
+			
+			checkFinalPrice = checkTotalPrice - checkTotalDisCount + deliveryPrice;
+			
+			document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById("cart_delivery").innerHTML = deliveryPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			
+		} else {
+			
+			document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice;
+			document.getElementById("cart_delivery").innerHTML = deliveryPrice;
+			document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount;
+			document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice;
+			
+		}
+		
 	};
 	
 	/* 수량 감소 */
@@ -246,6 +288,47 @@
 				"cart_count": -1
 			}
 		});
+		
+		let checkTotalPrice = 0;
+		let checkTotalDisCount = 0;
+		let deliveryPrice = 0;
+		let checkFinalPrice = 0;
+		
+		if($("input[name=checkRow]").is(":checked")) {
+			
+			$(".cartListForm").each(function(index, element) {
+				
+				checkTotalPrice += parseInt($(element).find(".listItemPrice").val() * $(element).find(".cart_item_count").val());
+				checkTotalDisCount += parseInt($(element).find(".listItemDiscount").val() * $(element).find(".cart_item_count").val());
+				
+			});
+			
+			checkFinalPrice = checkTotalPrice - checkTotalDisCount;
+			
+			if(checkFinalPrice >= 30000 || checkFinalPrice == 0) {
+				
+				deliveryPrice = 0;
+				
+			} else {
+				
+				deliveryPrice = 5000;
+			}
+			
+			checkFinalPrice = checkTotalPrice - checkTotalDisCount + deliveryPrice;
+			
+			document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById("cart_delivery").innerHTML = deliveryPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			
+		} else {
+			
+			document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice;
+			document.getElementById("cart_delivery").innerHTML = deliveryPrice;
+			document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount;
+			document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice;
+			
+		}
 
 	};
 	
@@ -283,14 +366,14 @@
 	
 	/* 2022.01.10 한건희 */
 	
-	/* 합계금액 */
+	/* 처음 장바구니 들어왔을 때 보여지는 합계금액 */
 	window.onload = function() {
-		
+
 		let checkTotalPrice = 0;
 		let checkTotalDisCount = 0;
 		let deliveryPrice = 0;
 		let checkFinalPrice = 0;
-		
+			
 		if($("input[name=checkRow]").is(":checked")) {
 			
 			$(".cartListForm").each(function(index, element) {
@@ -303,8 +386,11 @@
 			checkFinalPrice = checkTotalPrice - checkTotalDisCount;
 			
 			if(checkFinalPrice >= 30000 || checkFinalPrice == 0) {
+				
 				deliveryPrice = 0;
+				
 			} else {
+				
 				deliveryPrice = 5000;
 			}
 			
@@ -316,15 +402,16 @@
 			document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			
 		} else {
+			
 			document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice;
 			document.getElementById("cart_delivery").innerHTML = deliveryPrice;
 			document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount;
 			document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice;
+			
 		}
 		
-		
 	};
-	
+		
 	/* 체크박스 선택 후 이벤트 */
 	function selectBTN() {
 		/* 선택된 체크박스가 있을 시 */
