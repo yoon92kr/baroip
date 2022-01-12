@@ -20,7 +20,6 @@ import com.myspring.baroip.notice.service.NoticeService;
 import com.myspring.baroip.notice.vo.NoticeVO;
 
 
-
 @Controller("noticeController")
 @RequestMapping(value="/notice")
 public class NoticeControllerImpl implements NoticeController {
@@ -29,24 +28,35 @@ public class NoticeControllerImpl implements NoticeController {
 	@Autowired
 	NoticeVO noticeVO;
 
-
+	// 2022.01.12 윤상현 수정
 	// 공지사항 리스트페이지
 	@RequestMapping(value= "/notice_list.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView notice_01(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView notice_list(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		List<NoticeVO> NTList = noticeService.NTList();
-		mav.addObject("NTList", NTList);
-		mav.setViewName(viewName);
 		
 		String pageNo = info.get("pageNo");
 		
 		if (pageNo != null && pageNo != "") {
-			mav.addObject("pageNo", pageNo);
+			int lastNo = (NTList.size()+4)/5;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
 		} else {
 			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
 		}
+		
+		mav.addObject("NTList", NTList);
 		return mav;
 	}
 	
@@ -55,30 +65,14 @@ public class NoticeControllerImpl implements NoticeController {
 	@RequestMapping(value= "/notice_detail.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView notice_detail(@RequestParam("notice_id") String notice_id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
+
 		noticeVO = noticeService.NoticeDetail(notice_id);
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
-//		System.out.println(noticeVO.getNotice_id());
-		mav.addObject("NTList", noticeVO);
-		mav.setViewName("/notice/notice_detail");
+		mav.addObject("noticeVO", noticeVO);
+		mav.setViewName(viewName);
 		return mav;
 	}
 
-	
-	
-	
-//	// 공지사항 상세페이지
-//		@RequestMapping(value= "/notice_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//		public ModelAndView notice_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//			// HttpSession session;
-//			ModelAndView mav = new ModelAndView();
-//			String viewName = (String)request.getAttribute("viewName");
-//			mav.setViewName(viewName);
-//			return mav;
-//		}
-
-
-
-	
+		
 }

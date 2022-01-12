@@ -3,7 +3,6 @@
 package com.myspring.baroip.notice.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,30 +24,10 @@ public class NoticeServiceImpl implements NoticeService {
 	
 //	공지사항 상세
 	@Override
-	public NoticeVO NoticeDetail(String noticeNO) throws Exception {
-		NoticeVO noticeID = noticeDAO.NoticeDetail(noticeNO);
-		return noticeID;
+	public NoticeVO NoticeDetail(String notice_id) throws Exception {
+		NoticeVO noticeVO = noticeDAO.NoticeDetail(notice_id);
+		return noticeVO;
 	}
 	
-	
-
-	@Override
-	public List<NoticeVO> listArticles() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public NoticeVO viewArticle(String notice_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void modArticle(Map articleMap) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

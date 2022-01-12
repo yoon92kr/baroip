@@ -14,6 +14,6 @@ public interface NoticeDAO {
 	public List<NoticeVO> NTList() throws DataAccessException;
 	
 //	공지사항 상세
-	public NoticeVO NoticeDetail(String noticeId) throws DataAccessException;
+	public NoticeVO NoticeDetail(String notice_id) throws DataAccessException;
 
 }

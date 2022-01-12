@@ -20,7 +20,7 @@
 	
 	<select id="NTList" resultMap="noticeResult" parameterType="NoticeVO">
 		<![CDATA[
-		select * from notice where notice_category = 'notice'
+		select * from notice where notice_category = 'notice' order by notice_id * 1
 		]]>
 	</select>
 	

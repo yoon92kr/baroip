@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminNotice.service.AdminNoticeService;
+import com.myspring.baroip.notice.service.NoticeService;
 import com.myspring.baroip.notice.vo.NoticeVO;
 
 @Controller("adminNoticeController")
@@ -26,7 +27,8 @@ import com.myspring.baroip.notice.vo.NoticeVO;
 public class AdminNoticeControllerImpl implements AdminNoticeController {
 	@Autowired
 	AdminNoticeService adminNoticeService;
-	
+	@Autowired
+	NoticeService noticeService;
 	// 공지관리 페이지 전체 mapping
 	@Override
 	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
@@ -78,25 +80,17 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 		return mav;
 	}
 	
-	// 관리자페이지 공지 상세페이지 컨트롤러
-		public ModelAndView adminNoticeDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-			ModelAndView mav = new ModelAndView();
-			
-			return mav;
-		}
-		
 	// 공지 등록 컨트롤러
 	@Override
 	@RequestMapping(value = "/add_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView addNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-		String notice_title = noticeVO.getNotice_title();
-		String message = "공지사항 [" +notice_title+ "] 의 등록이 완료되었습니다.";
-		
 		HttpSession session = request.getSession();
 		
+		String message = adminNoticeService.addNotice(noticeVO);
 		session.setAttribute("message", message);
+		
 		mav.setViewName("redirect:/admin/notice/notice_list.do");
 		
 		return mav;
@@ -118,12 +112,13 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 	@Override
 	@RequestMapping(value = "/update_notice_form.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView updateNoticeForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ModelAndView mav = new ModelAndView();
+		
 		String viewName = (String) request.getAttribute("viewName");
-
-		// Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);
-
-		// mav.addObject("productInfo", productInfo);
+		NoticeVO noticeVO = noticeService.NoticeDetail(notice_id);
+		
+		mav.addObject("noticeVO", noticeVO);
 		mav.setViewName(viewName);
 		return mav;
 
@@ -132,19 +127,16 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 	// 공지 수정 컨트롤러
 	@Override
 	@RequestMapping(value = "/update_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView updateNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest Request, HttpServletResponse response) throws Exception {
+	public ModelAndView updateNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-		// String lastViewName = (String)multipartRequest.getParameter("last_view_name");
-		// adminProductService.updateProduct(productVO);
-		// String message = "관리자 " + productVO.getUser_id() + " 님이 [" + productVO.getProduct_main_title() + "]의 수정을 완료되었습니다.";
-
-		// HttpSession session = multipartRequest.getSession();
-		// session.setAttribute("message", message);
-		// imageController.updateImage(multipartRequest, productVO.getProduct_id());
-		// mav.setViewName("redirect:"+lastViewName+".do");
-		// System.out.println("baroip : " + message);
-
+		HttpSession session = request.getSession();
+		
+		String message = adminNoticeService.updateNotice(noticeVO);
+		session.setAttribute("message", message);
+		
+		mav.setViewName("redirect:/admin/notice/notice_list.do");
+		
 		return mav;
 	}
 	

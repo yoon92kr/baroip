@@ -157,20 +157,16 @@
 		<div class="col-lg-4 offset-lg-2 join_02-bottom-btn">
 			<div class="col-lg-4 offset-lg-2 text-right">
 
-				<a href="${contextPath}${lastViewName}.do"> <img
-					class="bottom_btn_size admin_product_list_btn"
-					src="${contextPath}/resources/img/common/user_list_btn.png"
-					alt="회원 목록 이동 버튼 이미지">
+				<a href="${contextPath}${lastViewName}.do"> 
+					<input type="button" class="admin_btn_gray" value="회원 목록">
 				</a>
 
 			</div>
 		</div>
 		<div class="col-lg-4 join_02-bottom-btn">
 
-			<a href="#" onclick="submit_admin_product_update()"> <img
-				class="bottom_btn_size admin_product_list_btn"
-				src="${contextPath}/resources/img/common/user_info_change_btn.png"
-				alt="회원 수정 버튼 이미지">
+			<a href="#" onclick="submit_admin_product_update()">
+				<input type="button" class="admin_btn_blue" value="회원 수정">
 			</a>
 
 		</div>

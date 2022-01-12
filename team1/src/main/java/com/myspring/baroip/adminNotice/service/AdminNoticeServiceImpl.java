@@ -22,7 +22,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	@Autowired
 	private ImageService imageService;
 	
-	// 조회 조건에 따른 게시글 리스트 조회 서비스
+	// 조회 조건에 따른 notice 리스트 조회 서비스
 		@Override
 		public Map<String, Map<String, Object>> noticeListToOption( Map<String, String> option) throws Exception {
 
@@ -105,7 +105,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 			return fullNoticeList;
 		}
 		
-//	게시물 삭제
+	//	notice 삭제 Service
 	@Override
 	public String deleteNotice(String notice_id) throws Exception { 
 		int result=adminNoticeDAO.deleteNotice(notice_id);
@@ -114,6 +114,34 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 			message = "baroip : "+notice_id+" 게시글이 삭제되었습니다.";
 		}
 		return message; 
+	}
+	
+	// notice 등록 Service
+	@Override
+	public String addNotice(NoticeVO noticeVO) throws Exception {
+		int result = adminNoticeDAO.addNotice(noticeVO);
+		String notice_title = noticeVO.getNotice_title();
+		String message = "baroip : 게시글 등록에 문제가 발생하였습니다.";
+		
+		if(result > 0) {
+			message = "baroip : "+notice_title+"게시글이 등록되었습니다.";
+		}
+		
+		return message;
+	}
+	
+	// notice 수정 Service
+	@Override
+	public String updateNotice(NoticeVO noticeVO) throws Exception {
+		int result = adminNoticeDAO.updateNotice(noticeVO);
+		String notice_title = noticeVO.getNotice_title();
+		String message = "baroip : 게시글 등록에 문제가 발생하였습니다.";
+		
+		if(result > 0) {
+			message = "baroip : "+notice_title+"게시글이 수정되었습니다.";
+		}
+		
+		return message;
 	}
 
 }

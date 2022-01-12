@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-center">
 			<a href="${contextPath}/main.do">
-				<img class="error_move_main" src="${contextPath}/resources/img/common/error_main.png" alt="메인페이지 이동 이미지">
+				<input type="button" class="user_btn_Bgreen" value="메인페이지로 이동">	
 			</a>
 		</div>
 	</div>

@@ -25,10 +25,24 @@ public class AdminNoticeDAOImpl implements AdminNoticeDAO {
 		return noticeList;
 	}
 	
-	// 게시물 삭제
+	// notice 삭제 DAO
 	@Override
 	public int deleteNotice(String notice_id) throws DataAccessException {
 		int result=sqlSession.delete("mapper.adminNotice.noticeDelete", notice_id);
+		return result;
+	}
+	
+	// notice 등록 DAO
+	@Override
+	public int addNotice(NoticeVO noticeVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.adminNotice.addNotice", noticeVO);
+		return result;
+	}
+	
+	// notice 수정 DAO
+	@Override
+	public int updateNotice(NoticeVO noticeVO) throws DataAccessException {
+		int result = sqlSession.update("mapper.adminNotice.updateNotice", noticeVO);
 		return result;
 	}
 }

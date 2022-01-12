@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public interface NoticeController {
 	
 //	공지사항 리스트 페이지
-	public ModelAndView notice_01(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView notice_list(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 //	공지사항 상세
 	public ModelAndView notice_detail(@RequestParam("NoticeVO") String notice_id,

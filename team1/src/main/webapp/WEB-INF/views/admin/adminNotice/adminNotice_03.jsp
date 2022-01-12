@@ -27,7 +27,15 @@
    </script>
 
 </c:if>
+<c:if test='${empty noticeVO }'>
+	<script>
 
+      alert("잘못된 접근입니다.");
+      location.replace('${contextPath}/main.do')
+
+   </script>
+
+</c:if>
 
 <div class="container-fluid">
 
@@ -40,7 +48,7 @@
 
 	<div class="row">
 		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
-			<h3>공지 등록</h3>
+			<h3>공지 수정</h3>
 		</div>
 	</div>
 
@@ -51,14 +59,14 @@
 		</div>
 	</div>
 
-<form action="${contextPath}/admin/notice/add_notice.do" method="post"
-		id="admin_add_notice">
+<form action="${contextPath}/admin/notice/update_notice.do" method="post"
+		id="admin_update_notice">
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 			<span>제목</span>
 		</div>
 		<div class="col-lg-4 text-left cs_02_02_box02">
-			<input type="text" class="form-control notice_upload_check" name="notice_title" id="제목" placeholder="제목을 입력하세요.">
+			<input type="text" class="form-control notice_upload_check" name="notice_title" id="제목" value="${noticeVO.notice_title}">
 		</div>
 
 	</div>
@@ -71,11 +79,14 @@
 			<span>내용</span>
 		</div>
 		<div class="col-lg-4 text-left admincs_02_02_box04">
-			<textarea class="form-control notice_upload_check" id="내용" name="notice_body" rows="15" placeholder="내용을 입력하세요."></textarea>
+			<textarea class="form-control notice_upload_check" id="내용" name="notice_body" rows="15" >${noticeVO.notice_body}</textarea>
 		</div>
 
 
 	</div>
+	<input type="hidden" name="user_id" value="${userInfo.user_id }" >
+	<input type="hidden" name="notice_id" value="${noticeVO.notice_id}" >
+	<input type="hidden" name="notice_category" value="Notice" >
 </form>
 
 </div>
@@ -86,9 +97,8 @@
 	<div class="row">
 		<div class="offset-lg-4 col-lg-2 text-right join_02-bottom-btn">
 			<div class="bottom_btn_size admin_product_list_btn">
-				<a href="#" onclick="submit_add_notice()"> <img class="bottom_btn_size admin_product_list_btn"
-					src="${contextPath}/resources/img/common/notice_enroll_01.png"
-					alt="관리자페이지공지작성 등록하기 이미지">
+				<a href="#" onclick="submit_update_notice()">
+					<input type="button" class="admin_btn_blue" value="공지 수정">
 				</a>
 
 
@@ -97,10 +107,9 @@
 
 		<div class="col-lg-2 text-center join_02-bottom-btn">
 			<div class="bottom_btn_size admin_product_list_btn">
-				<a href="${contextPath}/admin/notice/notice_list.do"><img
-					class="bottom_btn_size admin_product_list_btn"
-					src="${contextPath}/resources/img/common/cs_return.png"
-					alt="관리자페이지 공지작성 돌아가기 버튼 이미지"></a>
+				<a href="${contextPath}/admin/notice/notice_list.do">
+					<input type="button" class="admin_btn_gray" value="돌아가기">
+				</a>
 			</div>
 		</div>
 
@@ -112,8 +121,8 @@
 
 <script type="text/javascript">
 
-	// 공지 등록 전 rank 및 null 확인 스크립트
-function submit_add_notice() {
+	// 공지 수정 전 rank 및 null 확인 스크립트
+function submit_update_notice() {
 	// 전체 input 태그 value를 체크하기위한 클래스 select
 	var elements = document.getElementsByClassName('notice_upload_check');
 	var checkFlag = true;
@@ -127,7 +136,7 @@ function submit_add_notice() {
 
 	}
 	if (checkFlag) {
-		document.getElementById('admin_add_notice').submit();
+		document.getElementById('admin_update_notice').submit();
 	} else {
 		alert("제목과 내용은 반드시 입력해주셔야 합니다.")
 	}

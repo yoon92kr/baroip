@@ -102,7 +102,8 @@
 	
 	<c:if test="${not empty itemList}">
 		<c:forEach var="i" begin="1" end="${itemSize}">
-			<c:set var="j" value="${(pageNo*pageNoMax -pageNoMax) + i}" />
+			<c:set var="desc" value="${itemSize - i + 1}" />		
+			<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
 			<c:set var="key" value="notice${j}" />
 			
 			<c:if test="${not empty itemList[key].notice.notice_id && i< pageNoMax+1}">
@@ -118,13 +119,13 @@
 						${itemList[key].notice.user_id}
 					</div>
 					<div id="admin_notice_title${j}" class="col-lg-7 text-center admin_notice_01_list">
-						<a href ="${contextPath}/admin/notice/notice_detail.do?notice_id=${itemList[key].notice.notice_id}" class="admin_notice_black">
+						<a href ="${contextPath}/notice/notice_detail.do?notice_id=${itemList[key].notice.notice_id}" class="admin_notice_black">
 						${itemList[key].notice.notice_title}
 						</a>
 					</div>
 					<input type="hidden" id="notice_id${j}" value="${itemList[key].notice.notice_id}">
 					<div class="col-lg-2 text-center admin_notice_01_list_btn_section">
-						<input class="admin_notice_01_list_btn adminProduct_01-product-top" type="button" value="공지 수정" id="updateP_${j}" onclick="update_product_form(this.id)"> 
+						<input class="admin_notice_01_list_btn adminProduct_01-product-top" type="button" value="공지 수정" id="updateN_${j}" onclick="update_notice_form(this.id)"> 
 						<input class="admin_notice_01_list_btn" id="deleteN_${j}" type="button" value="공지 삭제" onclick="delete_notice(this.id)">
 					</div>
 				</div>
@@ -210,22 +211,21 @@
 	}
 	
 	/* 공지 수정 ajax */
-	function update_product_form(target) {
+	function update_notice_form(target) {
 		var strArray = target.split('_');
 		var target_no = strArray[1];
 		
-		let user_id = document.getElementById('user_id_'.concat(target_no)).value;
-		let target_id = document.getElementById('product_'.concat(target_no)).value;
+		let notice_id = document.getElementById('notice_id'.concat(target_no)).value;
 	
 		
-		if(${userInfo.user_rank > 2} || "${userInfo.user_id}" == user_id) {
+		if(${userInfo.user_rank > 2}) {
 
-			location.href='${contextPath}/admin/product/update_product_form.do?product_id='+target_id;
+			location.href='${contextPath}/admin/notice/update_notice_form.do?notice_id='+notice_id;
 			
 		}
 		
 		else {
-			alert("해당 상품을 수정할 권한이 없습니다.");
+			alert("해당 게시물을 수정할 권한이 없습니다.");
 		}
 	}
 

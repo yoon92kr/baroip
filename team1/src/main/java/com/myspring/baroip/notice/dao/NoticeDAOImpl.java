@@ -25,8 +25,9 @@ public class NoticeDAOImpl implements NoticeDAO {
 	
 //	공지사항 상세
 	@Override
-	public NoticeVO NoticeDetail(String noticeId) throws DataAccessException {
-		return sqlSession.selectOne("mapper.notice.NoticeDetail", noticeId);
+	public NoticeVO NoticeDetail(String notice_id) throws DataAccessException {
+		NoticeVO noticeVO = sqlSession.selectOne("mapper.notice.NoticeDetail", notice_id);
+		return noticeVO;
 	}
 
 }

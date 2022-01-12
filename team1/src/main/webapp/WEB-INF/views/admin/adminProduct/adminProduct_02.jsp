@@ -156,17 +156,15 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-2 join_02-bottom-btn text-right">
 
-				<a href="${contextPath}${lastViewName}.do"> <img
-					class="bottom_btn_size admin_product_list_btn"
-					src="${contextPath}/resources/img/common/product_list_btn.png"
-					alt="상품 목록 이동 버튼 이미지">
+				<a href="${contextPath}${lastViewName}.do"> 
+					<input type="button" class="admin_btn_gray" value="상품 목록">		
 				</a>
 
 			</div>
 			<div class="col-lg-4 join_02-bottom-btn">
 					<a href="#" onclick="submit_admin_product()">
-					<img class="bottom_btn_size admin_product_list_btn" src="${contextPath}/resources/img/common/product_up_load_btn.png" alt="상품 등록 버튼 이미지" >
-						</a>			
+						<input type="button" class="admin_btn_blue" value="상품 등록">
+					</a>			
 			</div>
 		</div>
 		<input type="hidden" name="product_states" value="0">

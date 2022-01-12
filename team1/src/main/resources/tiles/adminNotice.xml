@@ -7,16 +7,12 @@
 	<definition name="/admin/notice/notice_list" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_01.jsp" />
 	</definition>
-	
-	<definition name="/admin/notice/notice_detail" extends="AdminLayout">
+
+	<definition name="/admin/notice/add_notice_form" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_02.jsp" />
 	</definition>
 	
-	<definition name="/admin/notice/add_notice_form" extends="AdminLayout">
-		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_03.jsp" />
-	</definition>
-	
 	<definition name="/admin/notice/update_notice_form" extends="AdminLayout">
-		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_04.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_03.jsp" />
 	</definition>
 </tiles-definitions>

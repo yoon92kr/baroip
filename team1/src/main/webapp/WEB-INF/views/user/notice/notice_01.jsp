@@ -81,9 +81,9 @@
 		<c:when test="${NTList != null }">
 	<!--  2022.01.07 윤상현   -->		
 		<c:forEach var="i" begin="1" end="${itemList}">
-		
-			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
-			<c:if test="${not empty NTList[j-1].user_id && i< pageNoMax+1}">
+			<c:set var="desc" value="${itemList - i + 1}" />
+			<c:set var="j" value="${( pageNoMax - pageNo * pageNoMax) + desc}" />
+			<c:if test="${not empty NTList[j-1].user_id && i < pageNoMax+1}">
 				<div class="row">
 					<div class="offset-lg-1 col-lg-2 text-center notice_01_section">
 						<span>${j}</span>

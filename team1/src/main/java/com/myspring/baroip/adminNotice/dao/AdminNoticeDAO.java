@@ -14,7 +14,12 @@ public interface AdminNoticeDAO {
 	// 옵션에 따른 notice select DAO
 	public List<NoticeVO> noticeListToOption( Map<String, String> option) throws DataAccessException;
 	
-	// 게시물 삭제
+	// notice 삭제 DAO
 	public int deleteNotice(String notice_id) throws DataAccessException;
 
+	// notice 등록 DAO
+	public int addNotice(NoticeVO noticeVO) throws DataAccessException;
+	
+	// notice 수정 DAO
+	public int updateNotice(NoticeVO noticeVO) throws DataAccessException;
 }

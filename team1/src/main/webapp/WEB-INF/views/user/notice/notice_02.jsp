@@ -1,4 +1,4 @@
-<!--  2021.11.24 강보석 -->
+<!--  2022.01.12 윤상현 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -23,12 +23,12 @@
     
      <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box01" ><span>제목</span>
-        	<input type="hidden" name="notice_id" value="${NTList.notice_id}">
+        	<input type="hidden" name="notice_id" value="${noticeVO.notice_id}">
         </div>
         
         <div class="col-lg-4 text-center notice_02_box02">
         	<input class="cs_02_02_text_box1" type="text" name="notice_title"
-        		value="${NTList.notice_title}" readonly>
+        		value="${noticeVO.notice_title}" readonly>
         </div>
 	</div>
         
@@ -37,7 +37,7 @@
         </div>
         <div class="col-lg-4 text-center notice_02_box02">
         <input class="cs_02_02_text_box1" type="text" name="user_id"
-        	value="${NTList.user_id}" readonly>
+        	value="${noticeVO.user_id}" readonly>
         </div>
 	</div>
         
@@ -46,7 +46,7 @@
         </div>
         <div class="col-lg-4 text-center notice_02_box02">
         <input class="cs_02_02_text_box1" type="text" name="notice_cre_date"
-        	value="${NTList.notice_cre_date}" readonly>
+        	value="${noticeVO.notice_cre_date}" readonly>
     	</div>
     </div>
     
@@ -54,15 +54,17 @@
     <div class="row">
         <div class="offset-lg-3 col-lg-2 text-center notice_02_box03" ><span>내용</span>
         </div>
-        <div class="col-lg-4 text-center notice_02_box04">
-        <textarea class="notice_02_content_02" name="notice_body" readonly>${NTList.notice_body}</textarea>
+        <div class="col-lg-4  notice_02_box04 text-center">
+        <textarea class="notice_02_content_02" readonly>${noticeVO.notice_body}</textarea>
         </div>
     </div>
     
     <div class="offset-lg-5 col-lg-2 text-right">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/notice/notice_list.do"><img
-						src="${contextPath}/resources/img/common/notice_return.png" alt="공지사항 상세페이지 목록이동 버튼 이미지"></a>
+					
+					<a href="${contextPath}${lastViewName}.do">
+						<input type="button" class="admin_btn_gray" value="돌아가기">	
+					</a>
 				</div>
 			</div>
    
