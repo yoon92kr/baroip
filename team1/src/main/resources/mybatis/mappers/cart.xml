@@ -54,5 +54,5 @@
 		</foreach>
 			and user_id = #{user_id}
 	</delete>
-	
+
 </mapper>

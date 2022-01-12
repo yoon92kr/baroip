@@ -164,6 +164,7 @@ public class CartControllerImpl implements CartController{
 		
 		HttpSession session=request.getSession();
 		userVO = (UserVO)session.getAttribute("userInfo");
+		System.out.println("product_id : " + product_id);
 		
 //		로그인 동일 상품 수량 추가
 		if(userVO != null) {
@@ -176,22 +177,18 @@ public class CartControllerImpl implements CartController{
 //		비로그인 동일 상품 수량 추가
 		else {
 			List<CartVO> guestCartList = new ArrayList<CartVO>();
-			int cartCount = cartVO.getCart_count();
-
 			@SuppressWarnings("unchecked")
 			List<CartVO> sessionCart = (List<CartVO>)session.getAttribute("guestCartAdd");
-			cartVO.setProduct_id(product_id);
-			cartVO.setCart_count(cart_count);
 			
 			if(sessionCart != null) {
 				guestCartList = sessionCart;
 			}
 
 			for(int i=0; guestCartList.size()>i; i++) {
-				if(guestCartList.get(i).equals(cartVO)) {
-					int productCount = guestCartList.get(i).getCart_count();
-					int newCount = productCount + cartCount;
+				if(guestCartList.get(i).getProduct_id().equals(product_id)) {
+					int newCount = guestCartList.get(i).getCart_count() + cart_count;
 					guestCartList.get(i).setCart_count(newCount);
+					guestCartList.get(i).setProduct_id(product_id);
 				}
 			}
 			session.setAttribute("guestCartAdd", guestCartList);
