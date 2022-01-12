@@ -94,7 +94,6 @@
 
 
 </div>
-
 <script>
 	/*---------- 수량 증감 input 박스 설정 ----------*/
 
@@ -150,11 +149,10 @@
 	/* 장바구니 담기 버튼 클릭 이벤트 */
 	/* 2021.12.28 한건희 */
 	$("#product_02_cartIn").on("click", function(e) {
- 	let cartInProduct = $("#itemCountBox_form_detail");
 	let product_id = document.getElementById("cart_productId").value;
 	let cart_count = document.getElementById("cart_item_count").value;
 	let userFind = "${userInfo.user_id}";
-	let product_amount = "${VO.product_amount}";
+	let product_amount = ${VO.product_amount};
 	
 	if(product_amount == 0) {
 		alert("죄송합니다 상품이 품절되었습니다.");
