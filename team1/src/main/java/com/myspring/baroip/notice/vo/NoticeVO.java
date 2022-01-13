@@ -15,14 +15,13 @@ public class NoticeVO {
 	private String notice_title;
 	private String notice_body;
 	private Date notice_cre_date;
-	private String notice_grade;
+	private int notice_grade;
 	private String notice_private;
 	private String notice_type;
-	private String order_id;
+	private int order_id;
 	private String product_id;
-	
-	
-	
+	private String notice_match_no;
+	private String notice_parent_no;
 	public String getNotice_id() {
 		return notice_id;
 	}
@@ -65,10 +64,10 @@ public class NoticeVO {
 	public void setNotice_cre_date(Date notice_cre_date) {
 		this.notice_cre_date = notice_cre_date;
 	}
-	public String getNotice_grade() {
+	public int getNotice_grade() {
 		return notice_grade;
 	}
-	public void setNotice_grade(String notice_grade) {
+	public void setNotice_grade(int notice_grade) {
 		this.notice_grade = notice_grade;
 	}
 	public String getNotice_private() {
@@ -83,10 +82,10 @@ public class NoticeVO {
 	public void setNotice_type(String notice_type) {
 		this.notice_type = notice_type;
 	}
-	public String getOrder_id() {
+	public int getOrder_id() {
 		return order_id;
 	}
-	public void setOrder_id(String order_id) {
+	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
 	public String getProduct_id() {
@@ -95,6 +94,18 @@ public class NoticeVO {
 	public void setProduct_id(String product_id) {
 		this.product_id = product_id;
 	}
+	public String getNotice_match_no() {
+		return notice_match_no;
+	}
+	public void setNotice_match_no(String notice_match_no) {
+		this.notice_match_no = notice_match_no;
+	}
+	public String getNotice_parent_no() {
+		return notice_parent_no;
+	}
+	public void setNotice_parent_no(String notice_parent_no) {
+		this.notice_parent_no = notice_parent_no;
+	}
 	
-	
+		
 }

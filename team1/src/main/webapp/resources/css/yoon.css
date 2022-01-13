@@ -583,3 +583,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	background: #7f7f7f;
 	color: #fff;
 }
+
+.main_cartImage:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.UQA_add_btn {
+	border: 1px solid;
+	margin: 3px 0px 10px 20px;
+	width: 100px;
+	height: 25px;
+}

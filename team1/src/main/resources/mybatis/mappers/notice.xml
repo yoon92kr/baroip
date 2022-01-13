@@ -18,13 +18,13 @@
 		<result property="product_id" column="product_id" />
 	</resultMap>
 	
-	<select id="NTList" resultMap="noticeResult" parameterType="NoticeVO">
+	<select id="noticeList" resultMap="noticeResult" parameterType="NoticeVO">
 		<![CDATA[
 		select * from notice where notice_category = 'notice' order by notice_id * 1
 		]]>
 	</select>
 	
-	<select id="NoticeDetail" resultType="NoticeVO" parameterType="String">
+	<select id="noticeDetail" resultType="NoticeVO" parameterType="String">
 		<![CDATA[
 			select * from notice where notice_id=#{notice_id}
 		]]>

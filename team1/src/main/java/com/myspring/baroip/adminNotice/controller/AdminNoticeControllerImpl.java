@@ -116,7 +116,7 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 		ModelAndView mav = new ModelAndView();
 		
 		String viewName = (String) request.getAttribute("viewName");
-		NoticeVO noticeVO = noticeService.NoticeDetail(notice_id);
+		NoticeVO noticeVO = noticeService.noticeDetail(notice_id);
 		
 		mav.addObject("noticeVO", noticeVO);
 		mav.setViewName(viewName);
@@ -146,9 +146,9 @@ public class AdminNoticeControllerImpl implements AdminNoticeController {
 			HttpSession session = request.getSession();
 			
 			// Map options에는 조회하고자 하는 조건명 notice_category / search_option / search_value / search_state 이 있으며, notice_category은 반드시 포함되어야한다.
-			// * notice_category(notice_category 설정) = value [comment / refund / product_quest / user_quest / notice / QA]
-			// search_option(검색 조건) = value [productCreDate / productTitle / productStates / productAmount]
-			// search_value(검색 값) = value [yyyy-mm-dd,yyyy-mm-dd / product_main_title / 0 or 1 or all) / int]
+			// * notice_category(notice_category 설정) = value [comment / refund / PQA / UQA / notice / FAQ]
+			// search_option(검색 조건) = value [notice_cre_date / notice_title /]
+			// search_value(검색 값) = value [yyyy-mm-dd,yyyy-mm-dd / notice_title]
 			// search_state(답변 상태) = value [all / y / n]
 			
 			Map<String, String> options = new HashMap<String, String>();

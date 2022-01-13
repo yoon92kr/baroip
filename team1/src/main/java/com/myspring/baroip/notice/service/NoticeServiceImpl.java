@@ -17,15 +17,15 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeDAO noticeDAO;
 	
 //	공지사항 리스트페이지
-	public List<NoticeVO> NTList() throws Exception {
-		List<NoticeVO> NTList = noticeDAO.NTList();
+	public List<NoticeVO> noticeList() throws Exception {
+		List<NoticeVO> NTList = noticeDAO.noticeList();
 		return NTList;
 	}
 	
 //	공지사항 상세
 	@Override
-	public NoticeVO NoticeDetail(String notice_id) throws Exception {
-		NoticeVO noticeVO = noticeDAO.NoticeDetail(notice_id);
+	public NoticeVO noticeDetail(String notice_id) throws Exception {
+		NoticeVO noticeVO = noticeDAO.noticeDetail(notice_id);
 		return noticeVO;
 	}
 	

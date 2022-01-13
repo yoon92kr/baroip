@@ -11,7 +11,7 @@
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
 <c:set var="pageNoMax" value="9" />
 <!-- itemList에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemList" value="${NTList.size()}" />
+<c:set var="itemList" value="${noticeList.size()}" />
 <c:if test='${not empty pageNo}'>
 	<script>
 	
@@ -71,35 +71,35 @@
 
 
 	<c:choose>
-		<c:when test="${NTList == null }">
+		<c:when test="${noticeList == null }">
 			<div class="row">
 				<div class="offset-lg-2 col-lg-8 text-center cs_01_listsection">
 					<span>등록된 글이 없습니다.</span>
 				</div>
 			</div>
 		</c:when>
-		<c:when test="${NTList != null }">
+		<c:when test="${noticeList != null }">
 	<!--  2022.01.07 윤상현   -->		
 		<c:forEach var="i" begin="1" end="${itemList}">
 			<c:set var="desc" value="${itemList - i + 1}" />
 			<c:set var="j" value="${( pageNoMax - pageNo * pageNoMax) + desc}" />
-			<c:if test="${not empty NTList[j-1].user_id && i < pageNoMax+1}">
+			<c:if test="${not empty noticeList[j-1].user_id && i < pageNoMax+1}">
 				<div class="row">
 					<div class="offset-lg-1 col-lg-2 text-center notice_01_section">
 						<span>${j}</span>
 					</div>
 					<div class="col-lg-1 text-left notice_01_section">
-						<span>${NTList[j-1].user_id }</span>
+						<span>${noticeList[j-1].user_id }</span>
 					</div>
 					<div class="col-lg-4 text-center notice_01_section">
 						<p class="notice">
 							<a id="notice_02_move"
-								href="${contextPath}/notice/notice_detail.do?notice_id=${NTList[j-1].notice_id}">
-								${NTList[j-1].notice_title} </a>
+								href="${contextPath}/notice/notice_detail.do?notice_id=${noticeList[j-1].notice_id}">
+								${noticeList[j-1].notice_title} </a>
 						</p>
 					</div>
 					<div class="col-lg-3 text-center notice_01_section ">
-						<span>${NTList[j-1].notice_cre_date}</span>
+						<span>${noticeList[j-1].notice_cre_date}</span>
 					</div>
 				</div>
 				</c:if>
@@ -150,7 +150,8 @@ function pageMove(no) {
 	var lastPage = parseInt(${itemList+pageNoMax-1} / ${pageNoMax});
 	if(no == "이전" || no == "다음") {
 		var uriValue = window.location.search;
-		var array = uriValue.split("=");
+		
+		var array = uriValue.split("pageNo=");
 		if(array[1] == "" || array[1] == null) {
 			array[1] = 1;
 		}

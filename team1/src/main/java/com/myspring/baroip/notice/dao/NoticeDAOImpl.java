@@ -18,15 +18,15 @@ public class NoticeDAOImpl implements NoticeDAO {
 	
 //	공지사항 리스트
 	@Override
-	public List<NoticeVO> NTList() throws DataAccessException{
-		List<NoticeVO> NTList = sqlSession.selectList("mapper.notice.NTList");
+	public List<NoticeVO> noticeList() throws DataAccessException{
+		List<NoticeVO> NTList = sqlSession.selectList("mapper.notice.noticeList");
 		return NTList;
 	}
 	
 //	공지사항 상세
 	@Override
-	public NoticeVO NoticeDetail(String notice_id) throws DataAccessException {
-		NoticeVO noticeVO = sqlSession.selectOne("mapper.notice.NoticeDetail", notice_id);
+	public NoticeVO noticeDetail(String notice_id) throws DataAccessException {
+		NoticeVO noticeVO = sqlSession.selectOne("mapper.notice.noticeDetail", notice_id);
 		return noticeVO;
 	}
 

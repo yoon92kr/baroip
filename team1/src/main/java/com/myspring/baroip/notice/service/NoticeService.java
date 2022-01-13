@@ -9,10 +9,10 @@ import com.myspring.baroip.notice.vo.NoticeVO;
 public interface NoticeService {
 	
 //	공지사항 리스트페이지
-	public List<NoticeVO> NTList() throws Exception;
+	public List<NoticeVO> noticeList() throws Exception;
 	
 //	공지사항 상세
-	public NoticeVO NoticeDetail(String notice_id) throws Exception;
+	public NoticeVO noticeDetail(String notice_id) throws Exception;
 	
 
 }

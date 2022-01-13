@@ -15,27 +15,26 @@
 	</definition>
 
 	<definition name="/cs/FAQ_list" extends="CsLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_01.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/FAQ_01.jsp" />
 
 	</definition>
 
-	<definition name="/cs/inquiry_list" extends="CsLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02.jsp" />
+	<definition name="/cs/UQA_list" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_01.jsp" />
 
 	</definition>
 
-	<definition name="/cs/NewQuestForm" extends="CsLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_01.jsp" />
-
+	<definition name="/cs/UQA_datail" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_02.jsp" />
 	</definition>
-
-	<definition name="/cs/quest_datail" extends="CsLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_02.jsp" />
+	
+	<definition name="/cs/add_UQA_form" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_03.jsp" />
 
 	</definition>
 	
-	<definition name="/cs/questUpdate" extends="CsLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/cs/cs_02_03.jsp" />
+	<definition name="/cs/UQA_update_form" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_04.jsp" />
 
 	</definition>
 

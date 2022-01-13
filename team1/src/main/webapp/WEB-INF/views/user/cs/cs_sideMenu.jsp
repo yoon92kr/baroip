@@ -14,11 +14,22 @@
 		<div class="row">
 			<div class="offset-lg-4 col-lg-4 text-center">
 
-			<a href="${contextPath}/cs/FAQ_list.do"  class="no-underline">자주 묻는 질문</a>
-			<a href="${contextPath}/cs/inquiry_list.do"  class="no-underline">1:1 문의</a>
+			<a id="FAQ" href="${contextPath}/cs/FAQ_list.do"  class="no-underline">자주 묻는 질문</a>
+			<a id="UQA" href="${contextPath}/cs/UQA_list.do"  class="no-underline">1:1 문의</a>
 			
 	
 			</div>
 		</div>
 	</div>
 	</div>
+<script>
+	window.addEventListener('load',function() {
+		if('${viewName}'.indexOf('FAQ') != -1) {
+			document.getElementById("FAQ").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('UQA') != -1) {
+			document.getElementById("UQA").style.fontFamily = "kopub_bold";
+		}
+						
+	});
+</script>

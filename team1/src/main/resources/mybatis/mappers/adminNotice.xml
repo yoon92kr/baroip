@@ -7,7 +7,16 @@
 	<!-- 옵션에 따른 noticeVO 리스트 조회 쿼리 -->
 	<select id="noticeListToOption" resultType="NoticeVO" parameterType="java.util.Map">
 	
-			select * from notice where notice_category = #{notice_category} order by notice_id * 1
+			select * from notice where notice_category = #{notice_category}
+		
+		<if test='search_option != null and search_value != null'>
+			<if test='search_option == "notice_title"'>
+				and notice_title like concat('%', #{search_value}, '%')
+			</if>
+				
+		</if>
+			
+			 order by notice_id * 1
 			
 	</select>
 
@@ -46,7 +55,7 @@
 			notice_match_no,
 			notice_parent_no
 			)
-		<if test='notice_category == "Notice"'>
+		<if test='notice_category == "Notice" or notice_category == "FAQ"'>
 			values (
 			#{notice_id},
 			#{user_id},
@@ -64,12 +73,13 @@
 			)
 		</if>
 
+		
 	</insert>
 
 	<!-- 게시글 수정 쿼리 -->
 	<update id="updateNotice" parameterType="NoticeVO">
 
-		<if test='notice_category == "Notice"'>
+		<if test='notice_category == "Notice" or notice_category == "FAQ"'>
 		update notice set  
 			user_id = #{user_id},
 			notice_title = #{notice_title},

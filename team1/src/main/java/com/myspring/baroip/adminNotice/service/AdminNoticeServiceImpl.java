@@ -88,7 +88,6 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 														
 							// 게시글 내용을 담을 객체 생성
 							Map<String, Object> noticeInfo = new HashMap<String, Object>();
-							
 							noticeInfo.put("notice", noticeVO);				
 							fullNoticeList.put("notice" + (i+1), noticeInfo);
 							

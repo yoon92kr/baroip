@@ -1,7 +1,5 @@
 package com.myspring.baroip.cs.controller;
 
-
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,187 +14,180 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspring.baroip.cs.service.CsService;
-import com.myspring.baroip.cs.vo.CsVO;
-import com.myspring.baroip.user.vo.UserVO;
-
-
+import com.myspring.baroip.adminNotice.controller.AdminNoticeController;
+import com.myspring.baroip.adminNotice.service.AdminNoticeService;
+import com.myspring.baroip.notice.service.NoticeService;
+import com.myspring.baroip.notice.vo.NoticeVO;
 
 @Controller("csController")
-@RequestMapping(value="/cs")
+@RequestMapping(value = "/cs")
 public class CsControllerImpl implements CsController {
+
 	@Autowired
-	CsService csService;
+	AdminNoticeService adminNoticeService;
 	@Autowired
-	CsVO csVO;
+	NoticeService noticeService;
+	@Autowired
+	NoticeVO noticeVO;
+	@Autowired
+	AdminNoticeController adminNoticeController;
 	
-	
-		@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
-		public ModelAndView cs(HttpServletRequest request, HttpServletResponse response) throws Exception{
-			// HttpSession session;
-			ModelAndView mav = new ModelAndView();
-			String viewName = (String)request.getAttribute("viewName");
-			mav.setViewName(viewName);
-			return mav;
-		}
-	
-//	자주 묻는 질문
-	@Override
-	@RequestMapping(value= "/FAQ_list.do" , method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView cs_01(@RequestParam Map<String, String> info, HttpServletRequest request, 
-			HttpServletResponse response) throws Exception{
+	// cs 전체 매핑 컨트롤러
+	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView cs(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// HttpSession session;
-		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
-		List<CsVO> QAList = csService.QAList();
-//		System.out.println(QAList.get(0).getNotice_title());
-		mav.addObject("QAList", QAList);
-		mav.addObject("QAListSize", QAList.size());
-		
-		String pageNo = info.get("pageNo");
-		
-		if (pageNo != null && pageNo != "") {
-			mav.addObject("pageNo", pageNo);
-		} else {
-			mav.addObject("pageNo", 1);
-		}
-		
-//		System.out.println(QAList.size());
+		String viewName = (String) request.getAttribute("viewName");
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
-	// 1:1문의 리스트
-	@Override
-	@RequestMapping(value= "/inquiry_list.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView cs_02(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;		
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		List<CsVO> questList = csService.questList();
 
-		for (int i = 0 ; i < questList.size() ; i++) {
-//			System.out.println(questList.get(i).getNotice_private());
-			if (questList.get(i).getNotice_private().equals("1")) {
-				questList.get(i).setNotice_private("공개");
+	//	FAQ 리스트 컨트롤러
+	@Override
+	@RequestMapping(value = "/FAQ_list.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView FAQList(@RequestParam Map<String, String> info, HttpServletRequest request,	HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
+		}
+		
+		info.put("notice_category", "FAQ");
+		Map<String, Map<String, Object>> noticeList = adminNoticeController.getFullList(info, request);
+		
+		String pageNo = info.get("pageNo");
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (noticeList.size()+6)/7;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
 			}
 			else {
-				questList.get(i).setNotice_private("비공개");
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
 			}
-		}
-		String pageNo = info.get("pageNo");
-		
-		if (pageNo != null && pageNo != "") {
-			mav.addObject("pageNo", pageNo);
+			
 		} else {
 			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
 		}
-//		System.out.println(questList.get(0).getNotice_title());
-		mav.addObject("questList", questList);
-//		System.out.println(QAList.size());
+		mav.addObject("noticeList", noticeList);
+		return mav;
+	}
+
+	//	UQA 리스트 컨트롤러
+	@Override
+	@RequestMapping(value = "/UQA_list.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView UQAList(@RequestParam Map<String, String> info, HttpServletRequest request,	HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
+		}
+		
+		info.put("notice_category", "UQA");
+		Map<String, Map<String, Object>> noticeList = adminNoticeController.getFullList(info, request);
+		
+		String pageNo = info.get("pageNo");
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (noticeList.size()+6)/7;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
+		} else {
+			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
+		}
+		mav.addObject("noticeList", noticeList);
+		return mav;
+	}
+
+	//	UQA 등록 컨트롤러
+	@Override
+	@RequestMapping(value = "/add_UQA.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView addUQA(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		String message = adminNoticeService.addNotice(noticeVO);
+		session.setAttribute("message", message);
+		
+		mav.setViewName("redirect:/cs/UQA_list.do");
+		
+		return mav;
+		
+	}
+
+	// UQA 상세 컨트롤러
+	@Override
+	@RequestMapping(value = "/UQA_datail.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView UQADetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		noticeVO = noticeService.noticeDetail(notice_id);
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.addObject("noticeVO", noticeVO);
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
-	// 1:1 문의 작성
+
+	//	UQA 수정 폼 컨트롤러
 	@Override
-		@RequestMapping(value= "/addQuest.do" ,method={RequestMethod.POST,RequestMethod.GET})
-		public ModelAndView addQuest(@ModelAttribute("csVO") CsVO csVO, 
-				HttpServletRequest request, 
-				HttpServletResponse response) throws Exception {
-			ModelAndView mav = new ModelAndView();
-			HttpSession session=request.getSession();
-			UserVO user = (UserVO) session.getAttribute("userInfo");
-			String user_id = user.getUser_id();
-			csVO.setUser_id(user_id);
-			csService.addNewQuest(csVO);
-			System.out.println(user_id);
-			System.out.println(csVO.getNotice_title());
-			mav.addObject("questInfo", csVO);
-			try {
-				mav.setViewName("redirect:/cs/inquiry_list.do");
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-			return mav;
-		}
-	
-	
-	// 1:1 문의 상세보기
-	@Override
-	@RequestMapping(value= "/quest_datail.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView quest_datail(@RequestParam("notice_id") String notice_id, 
-			HttpServletRequest request, 
-			HttpServletResponse response) throws Exception{
-//		HttpSession session;
-//		HttpSession session=request.getSession();
-		csVO = csService.questDetail(notice_id);
+	@RequestMapping(value = "/UQA_update_form.do", method = { RequestMethod.GET })
+	public ModelAndView UQAUpdateForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-		System.out.println(csVO.getNotice_id());
-//		session.setAttribute("questInfo", csVO);
-		mav.addObject("questInfo", csVO);
-		mav.setViewName("/cs/quest_datail");
+		
+		String viewName = (String) request.getAttribute("viewName");
+		NoticeVO noticeVO = noticeService.noticeDetail(notice_id);
+		
+		mav.addObject("noticeVO", noticeVO);
+		mav.setViewName(viewName);
 		return mav;
 	}
-	
-// 1:1 문의 수정 페이지 이동
-	@RequestMapping(value= "/questUpdate.do" ,method={RequestMethod.GET})
-	public ModelAndView questUpdateGET(@RequestParam("notice_id") String notice_id, 
-			HttpServletRequest request, 
-			HttpServletResponse response) throws Exception{
-//		HttpSession session;
-		csVO = csService.questDetail(notice_id);
+
+	// UQA 수정 컨트롤러
+	@Override
+	@RequestMapping(value = "/UQA_update.do", method = { RequestMethod.POST })
+	public ModelAndView UQAUpdate(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-//		System.out.println(csVO.getNotice_id());
-		System.out.println(csVO.getNotice_id());
-		System.out.println(csVO.getNotice_title());
-		mav.addObject("questInfo", csVO);
-		mav.setViewName("/cs/questUpdate");
-		return mav;
-	}
-	
-//	1:1 문의 수정 페이지
-	@RequestMapping(value= "/questUpdate.do" ,method={RequestMethod.POST})
-	public ModelAndView questUpdatePOST(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String lastViewName = (String)request.getAttribute("lastViewName");
-		HttpSession session=request.getSession();
-		UserVO user = (UserVO) session.getAttribute("userInfo");
-		String user_id = user.getUser_id();
-//		Map<String, Object> csMap = new HashMap<String, Object>();
-//		csMap.put("user_id", user_id);
-//		mav.addObject("questInfo");
-//		Enumeration enu = request.getParameterNames();
-//		while(enu.hasMoreElements()) {
-//			String name = (String) enu.nextElement();
-//			String value = request.getParameter(name);
-//			csMap.put(name, value);
-//			System.out.println(csMap);
-//		}
-		System.out.println("---------------update-----------------");
-		System.out.println(csVO.getNotice_id());
-		System.out.println(csVO.getUser_id());
-		System.out.println(csVO.getNotice_title());
-		csVO.setUser_id(user_id);
-		csService.updateQuest(csVO);
-		mav.addObject(csVO);
-		mav.setViewName(lastViewName);
+		HttpSession session = request.getSession();
+		
+		String message = adminNoticeService.updateNotice(noticeVO);
+		session.setAttribute("message", message);
+		
+		mav.setViewName("redirect:/cs/UQA_list.do");
 		
 		return mav;
 	}
-	
-//	1:1 문의 삭제
+
+	//	UQA 삭제 컨트롤러
 	@Override
-	@RequestMapping(value= "/questDelete.do" , method = RequestMethod.GET)
-	public String quest_Delete(@RequestParam("notice_id") String notice_id,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-			csService.questDelete(notice_id);
+	@RequestMapping(value = "/delete_UQA.do", method = RequestMethod.GET)
+	public String deleteUQA(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		return "redirect:/cs/inquiry_list.do";
+		String message = adminNoticeService.deleteNotice(notice_id);
+		System.out.println(message);
+		return message;
 	}
-	
 
 }

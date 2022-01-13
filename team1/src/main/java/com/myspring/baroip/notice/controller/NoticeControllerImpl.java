@@ -35,12 +35,12 @@ public class NoticeControllerImpl implements NoticeController {
 		// HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
-		List<NoticeVO> NTList = noticeService.NTList();
+		List<NoticeVO> noticeList = noticeService.noticeList();
 		
 		String pageNo = info.get("pageNo");
 		
 		if (pageNo != null && pageNo != "") {
-			int lastNo = (NTList.size()+4)/5;
+			int lastNo = (noticeList.size()+4)/5;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
 				mav.addObject("pageNo", 1);
@@ -56,7 +56,7 @@ public class NoticeControllerImpl implements NoticeController {
 			mav.setViewName(viewName);
 		}
 		
-		mav.addObject("NTList", NTList);
+		mav.addObject("noticeList", noticeList);
 		return mav;
 	}
 	
@@ -66,7 +66,7 @@ public class NoticeControllerImpl implements NoticeController {
 	public ModelAndView notice_detail(@RequestParam("notice_id") String notice_id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 
-		noticeVO = noticeService.NoticeDetail(notice_id);
+		noticeVO = noticeService.noticeDetail(notice_id);
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.addObject("noticeVO", noticeVO);

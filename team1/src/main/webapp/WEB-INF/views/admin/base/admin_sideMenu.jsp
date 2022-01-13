@@ -8,8 +8,6 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
-
 <!-- side section -->
 
 <div class="container">
@@ -17,20 +15,53 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 text-center">
 
-			<a href="${contextPath}/admin/main.do" class="no-underline">사이트 정보</a>
-			<a href="${contextPath}/admin/user/user_list.do" class="no-underline">회원 관리</a>
-			<a href="${contextPath}/admin/product/extra_list.do"  class="no-underline">임시 상품 관리</a>
-			<a href="${contextPath}/adminOrder.do"  class="no-underline">주문 관리</a>
-			<a href="${contextPath}/adminCS_02.do"  class="no-underline">문의 관리</a>
-			<a href="${contextPath}/adminReview_01.do"  class="no-underline">후기 관리</a>
+			<a id="adminMain" href="${contextPath}/admin/main.do" class="no-underline">사이트 정보</a>
+			<a id="user" href="${contextPath}/admin/user/user_list.do" class="no-underline">회원 관리</a>
+			<a id="extra" href="${contextPath}/admin/product/extra_list.do"  class="no-underline">임시 상품 관리</a>
+			<a id="order" href="${contextPath}/adminOrder.do"  class="no-underline">주문 관리</a>
+			<a id="CS" href="${contextPath}/adminCS_02.do"  class="no-underline">문의 관리</a>
+			<a id="reivew" href="${contextPath}/adminReview_01.do"  class="no-underline">후기 관리</a>
 			<a href="https://channel.io/ko?utm_source=powered_by&utm_medium=localhost%3A8080&utm_channel_id=67859&utm_content=%EB%B0%94%EB%A1%9C%EC%9E%85" target="_blank" class="no-underline">실시간 채팅</a>
-			<a href="${contextPath}/admin/notice/notice_list.do" class="no-underline">공지 관리</a>
-			<a href="${contextPath}/adminCS_01.do"  class="no-underline">Q&A 관리</a>
+			<a id="notice" href="${contextPath}/admin/notice/notice_list.do" class="no-underline">공지 관리</a>
+			<a id="FAQ" href="${contextPath}/admin/FAQ/FAQ_list.do"  class="no-underline">FAQ 관리</a>
 		<c:if test="${userInfo.user_rank > 2}">
-			<a href="${contextPath}/admin/product/general_list.do"  class="no-underline">전체 상품 관리</a>
+			<a id="general" href="${contextPath}/admin/product/general_list.do"  class="no-underline">전체 상품 관리</a>
 		</c:if>
 
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	window.addEventListener('load',function() {
+		if('${viewName}'.indexOf('main') != -1) {
+			document.getElementById("adminMain").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('user') != -1) {
+			document.getElementById("user").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('extra') != -1) {
+			document.getElementById("extra").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('order') != -1) {
+			document.getElementById("order").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('CS') != -1) {
+			document.getElementById("CS").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('reivew') != -1) {
+			document.getElementById("reivew").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('notice') != -1) {
+			document.getElementById("notice").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('FAQ') != -1) {
+			document.getElementById("FAQ").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('general') != -1) {
+			document.getElementById("general").style.fontFamily = "kopub_bold";
+		}
+						
+	});
+</script>
