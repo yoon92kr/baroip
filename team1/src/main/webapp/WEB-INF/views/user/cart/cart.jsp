@@ -74,7 +74,7 @@
 										onclick="upDownValue(this.id)">-</div>
 									<input type="number" class="cart_item_count"
 										id="cart_item_count${i}" name="cart_count" value="${userCartListInfo[cart].cart.cartVO.cart_count}"
-										onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+										onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" readonly />
 									<div class="value-button cart_increase" id="cart_increase${i}"
 										onclick="upDownValue(this.id)" >+</div>
 								</div>
@@ -158,79 +158,78 @@
 </div>
 
 <script>
-
-/* list 페이지 최초 금액 */
-function checkPrice() {
-
-	let checkTotalPrice = 0;
-	let checkTotalDisCount = 0;
-	let deliveryPrice = 0;
-	let checkFinalPrice = 0;
-		
-	if($("input[name=checkRow]").is(":checked")) {
-		
-		$(".cartListForm").each(function(index, element) {
-			
-			checkTotalPrice += parseInt($(element).find(".listItemPrice").val() * $(element).find(".cart_item_count").val());
-			checkTotalDisCount += parseInt($(element).find(".listItemDiscount").val() * $(element).find(".cart_item_count").val());
-			
-		});
-		
-		checkFinalPrice = checkTotalPrice - checkTotalDisCount;
-		
-		if(checkFinalPrice >= 30000 || checkFinalPrice == 0) {
-			
-			deliveryPrice = 0;
-			
-		} else {
-			
-			deliveryPrice = 5000;
-		}
-		
-		checkFinalPrice = checkTotalPrice - checkTotalDisCount + deliveryPrice;
-		
-		document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById("cart_delivery").innerHTML = deliveryPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-		document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-		
-	} else {
-		
-		document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice;
-		document.getElementById("cart_delivery").innerHTML = deliveryPrice;
-		document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount;
-		document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice;
-		
-	}
-	
-};
-	/* 위 함수를 실행해줌 */
-	$(document).ready(checkPrice);
-
-	/* 체크박스 전체 선택 해제 버튼 */
 	$(document).ready(function() {
-		$("#cart_checkAll").click(function() {
+		
+		/* 체크박스 전체 선택 해제 버튼 */
+		$("#cart_checkAll").on("click", function() {
 			if ($("#cart_checkAll").is(':checked')) {
 				$("input[name=checkRow]").prop("checked", true);
 			} else {
 				$("input[name=checkRow]").prop("checked", false);
 			}
 		});
-		
-		$("input[name=checkRow]").click(function() {
+		/* 체크박스 하나라도 체크 안 되었을 시 전체 선택 버튼 해제 */
+		$("input[name=checkRow]").on("click", function() {
 			let total = $("input[name=checkRow]").length;
-			checked = $("input[name=checkRow]:checked").length;
+			let checked = $("input[name=checkRow]:checked").length;
 			
 			if(total != checked) $("#cart_checkAll").prop("checked", false);
 			else $("#cart_checkAll").prop("checked", true);
-		
+			
 		});
-	
+		
+		$("input[name=checkRow]").change(function() {
+			
+			let checkTotalPrice = 0;
+			let checkTotalDisCount = 0;
+			let deliveryPrice = 0;
+			let checkFinalPrice = 0;
+				
+			if($("input[name=checkRow]:checked").length >= 1) {
+				let checkItem;
+				
+				for(let i = 1; $("input[name=checkRow]:checked").length >= i; i++) {
+				checkItem = $("input[name=checkRow]:checked").parents("form").attr("id");
+				alert(checkItem);
+				
+				checkTotalPrice += parseInt($("#".concat(checkItem)).find(".listItemPrice").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
+				checkTotalDisCount += parseInt($("#".concat(checkItem)).find(".listItemDiscount").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
+				}
+				
+				checkFinalPrice = checkTotalPrice - checkTotalDisCount;
+				
+				if(checkFinalPrice >= 30000 || checkFinalPrice == 0) {
+					
+					deliveryPrice = 0;
+					
+				} else {
+					
+					deliveryPrice = 5000;
+				}
+				
+				checkFinalPrice += deliveryPrice;
+				
+				document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+				document.getElementById("cart_delivery").innerHTML = deliveryPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+				document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+				document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+				
+			} else {
+				
+				document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice;
+				document.getElementById("cart_delivery").innerHTML = deliveryPrice;
+				document.getElementById("cart_totalDiscount").innerHTML = checkTotalDisCount;
+				document.getElementById("cart_finalTotalPrice").innerHTML = checkFinalPrice;
+				
+			}
+			
+		});
+		
 	});
 
-	/*---------- 수량 증감 input 박스 설정 ----------*/
+	/*---------- 수량 증감 input 박스 설정 ----------*/ 
 
-	/* 수량 증가 감소 */
+	/* 수량 증감 */
 	function upDownValue(tagId) {
 		let targetValue = '';
 		let itemPrice;
@@ -238,7 +237,7 @@ function checkPrice() {
 		let itemTotalPrice;
 		let product_id;
 		let cart_count;
-		
+		/* 증가 */
 		if(tagId.indexOf("cart_increase") != -1) {
 			for (i = 0; i < 10; i++) {
 				if (String('cart_increase').concat(i) == String(tagId)) {
@@ -259,6 +258,7 @@ function checkPrice() {
 			document.getElementById(itemTotalPrice).innerHTML = totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",").concat(" 원");
 			cart_count = 1;
 		}
+		/* 감소 */
 		else {
 			for (i = 0; i < 10; i++) {
 				if (String('cart_decrease').concat(i) == String(tagId)) {
@@ -274,9 +274,8 @@ function checkPrice() {
 			let countValue = parseInt(document.getElementById(targetValue).value,
 					10);
 			if (countValue <= 1) {
-				alert("수량은 1보다 작을 수 없습니다.")
+				alert("수량은 1보다 작을 수 없습니다.");
 			}
-			;
 			countValue = isNaN(countValue) ? 0 : countValue;
 			countValue < 2 ? countValue = 2 : '';
 			countValue--;
@@ -322,7 +321,7 @@ function checkPrice() {
 				deliveryPrice = 5000;
 			}
 			
-			checkFinalPrice = checkTotalPrice - checkTotalDisCount + deliveryPrice;
+			checkFinalPrice += deliveryPrice;
 			
 			document.getElementById("cart_totalPrice").innerHTML = checkTotalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			document.getElementById("cart_delivery").innerHTML = deliveryPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
