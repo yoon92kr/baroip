@@ -57,8 +57,8 @@
 			<hr>
 			
 			<form name="buyForm" action="${contextPath}/cart/addProductInCart.do" method="get">
-				<input class="product_02_cart_btn" id="product_02_buy" type="button" value="바로구매">
-				<input class="product_02_cart_btn" id="product_02_cartIn" type="button" value="장바구니 담기">
+				<input class="product_02_cart_btn user_btn_Bgreen" id="product_02_buy" type="button" value="바로구매">
+				<input class="product_02_cart_btn user_btn_gray" id="product_02_cartIn" type="button" value="장바구니 담기">
 			</form>
 
 		</div>
