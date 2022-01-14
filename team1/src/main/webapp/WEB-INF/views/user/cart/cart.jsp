@@ -184,17 +184,21 @@
 			let checkTotalDisCount = 0;
 			let deliveryPrice = 0;
 			let checkFinalPrice = 0;
-				
-			if($("input[name=checkRow]:checked").length >= 1) {
-				let checkItem;
-				
-				for(let i = 1; $("input[name=checkRow]:checked").length >= i; i++) {
-				checkItem = $("input[name=checkRow]:checked").parents("form").attr("id");
-				alert(checkItem);
-				
-				checkTotalPrice += parseInt($("#".concat(checkItem)).find(".listItemPrice").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
-				checkTotalDisCount += parseInt($("#".concat(checkItem)).find(".listItemDiscount").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
-				}
+			let checkBoxCheck = $("input[name=checkRow]:checked");
+		
+			if(checkBoxCheck.length >= 1) {
+				checkBoxCheck.each(function(i) {
+					
+					let checkItem = $("input[name=checkRow]:checked").parents("form").eq(i).attr("id");
+					
+					let itemPrice = parseInt($("#".concat(checkItem)).find(".listItemPrice").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
+					let itemDisCount = parseInt($("#".concat(checkItem)).find(".listItemDiscount").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
+					
+					
+					checkTotalPrice += itemPrice;
+					checkTotalDisCount += itemDisCount;
+					
+				});
 				
 				checkFinalPrice = checkTotalPrice - checkTotalDisCount;
 				
