@@ -33,10 +33,18 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 	
-////	비회원 주문시 아이디 생성
-//	@Override
-//	public void insertGuestId() throws DataAccessException {
-//		sqlSession.insert("mapper.user.guestUser");
-//	}
+//	비회원 주문시 아이디 생성
+	@Override
+	public String insertGuestId() throws DataAccessException {
+		String guestId;
+		int result = sqlSession.insert("mapper.user.guestUser");
+		if(result == 1) {
+			guestId = sqlSession.selectOne("mapper.user.selectGuestId");
+		}
+		else {
+			guestId = "";
+		}
+		return guestId;
+	}
 
 }

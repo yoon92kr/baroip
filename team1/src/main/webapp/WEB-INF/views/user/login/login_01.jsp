@@ -41,9 +41,10 @@
 			<form id="login_01_loginForm" <%--action="${contextPath}/user/login.do"--%> name="Login_01_LoginForm" method="post">
 				<input class="login_01-id-box" name="user_id" type="text"
 					placeholder="아이디(이메일)를 입력해주세요."> 
-				<input class="login_01-pwd-box" name="user_pw" type="password"
+				<input class="login_01-pwd-box" name="user_pw" type="password" onkeypress="if(event.keyCode == 13)loginBtn();"
 					placeholder="비밀번호를 입력해주세요."><br> 
-				<input class="login_01-btn" type="button" value="로그인"  <%--onClick="checkLogin()"--%>>
+				<input class="login_01-btn" type="button" value="로그인" onclick="loginBtn();">
+				
 			</form>
 			<p class="login_01-id-pwd-find">
 				<a href="${contextPath}/user/login_02.do">아이디 / 비밀번호 찾기</a>
@@ -104,31 +105,14 @@
 </div>
 
 <script type="text/javascript">
-
-	/* 로그인 버튼 */
-	$(".login_01-btn").click(function() {
-		/* alert("로그인 버튼"); */
-		$("#login_01_loginForm").attr("action", "${contextPath}/user/login.do");
-		$("#login_01_loginForm").submit();
 		
-	});
-	
-
-	/* function checkLogin() {
-		var form = document.Login_01_LoginForm;
+	function loginBtn() {
+		let loginForm = document.Login_01_LoginForm;
+		let user_id = loginForm.user_id.value;
+		let user_pw = loginForm.user_pw.value;
 		
-		if(form.user_id.value == "" || form.user_id.length == 0) {
-			alert("아이디를 입력해주세요.");
-			form.user_id.focus();
-			return false;
-		}
-		else if(form.user_pw.value == "" || form.user_pw.length == 0) {
-			alert("비밀번호를 입력해주세요.");
-			form.user_pw.focus();
-			return false;
-		}
-		form.submit();
-			
-	} */
+		loginForm.action="${contextPath}/user/login.do";
+		loginForm.submit();
+	}
 
 </script>

@@ -420,11 +420,7 @@ E - M A I L　: admin@baroip.com
 		<div class="row">
 			<div class="col-lg-3 offset-lg-2">
 				<div class="join_01-btn">
-					<a class="join_01-back" href="${contextPath}/user/login_01.do">
-						<img class="bottom_btn_size"
-						src="${contextPath}/resources/img/common/back_page_btn.png"
-						alt="회원가입 약관동의 이전페이지 버튼 이미지">
-					</a>
+					<input class="user_btn_gray" type="button" value="이전 페이지" onclick="history.back();">
 				</div>
 			</div>
 			<div class="col-lg-3 offset-lg-2">
@@ -432,6 +428,7 @@ E - M A I L　: admin@baroip.com
 					<input class="bottom_btn_size" type="image"
 						src="${contextPath}/resources/img/common/join_next_btn.png"
 						alt="회원가입 약관동의 동의하기 버튼 이미지">
+						<input class="user_btn_gray" type="button" value="동의하기">
 				</div>
 			</div>
 		</div>
@@ -440,21 +437,22 @@ E - M A I L　: admin@baroip.com
 </div>
 
 <script type="text/javascript">
-function CheckForm(Join){
-	
-	var chk1=document.checkForm.join_01_checkbox_01.checked;
-    var chk2=document.checkForm.join_01_checkbox_02.checked;
-    
-    if(!chk1){
-        alert('바로입 서비스 약관에 동의해 주세요');
-        return false;
-    } 
-    else if(!chk2) {
-        alert('개인정보 이용 방침에 동의해 주세요');
-        return false;
-    }
-    
-}
+
+	function CheckForm(Join){
+		
+		var chk1=document.checkForm.join_01_checkbox_01.checked;
+	    var chk2=document.checkForm.join_01_checkbox_02.checked;
+	    
+	    if(!chk1){
+	        alert('바로입 서비스 약관에 동의해 주세요');
+	        return false;
+	    } 
+	    else if(!chk2) {
+	        alert('개인정보 이용 방침에 동의해 주세요');
+	        return false;
+	    }
+	    
+	}
 
 
 </script>

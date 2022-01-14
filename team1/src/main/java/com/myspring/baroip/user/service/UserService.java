@@ -11,6 +11,6 @@ public interface UserService {
 	
 	public String userIdOverlap(String id) throws Exception;
 
-////	비회원 주문시 아이디 생성
-//	public void createGuestId() throws Exception;
+//	비회원 주문시 아이디 생성
+	public String guestJoin() throws Exception;
 }

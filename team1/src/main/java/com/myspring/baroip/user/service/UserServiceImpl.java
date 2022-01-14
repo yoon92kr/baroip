@@ -33,10 +33,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.selectIdOverlap(id);
 	}
 	
-//	@Override
-////	비회원 주문시 아이디 생성
-//	public void createGuestId() throws Exception {
-//		userDAO.insertGuestId();
-//	}
+	@Override
+//	비회원 주문시 아이디 생성
+	public String guestJoin() throws Exception {
+		return userDAO.insertGuestId();
+	}
 
 }

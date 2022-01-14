@@ -39,7 +39,7 @@
 					name="user_id">
 				<input id="join_02_user_id" type="hidden" name="user_id">
 				<input id="join_02_user_id_overlap_btn" class="join_02-submit-box" 
-					type="button" value="중복 확인" onClick="idOverlap()">
+					type="button" name="idOverLapCheck" value="중복 확인" onClick="idOverlap();">
 			</div>
 		</div>
 
@@ -81,19 +81,6 @@
 			</div>
 			<div class="col-lg-7 join_02-main-right">
 				<input class="join_02-text-box" type="email" name="user_email">
-				<!-- <input class="join_02-mobile" type='text' name="email1" onfocus="this.value='';">@
-				<input class="join_02-mobile-02" type='text' name="email2" value="" disabled> 
-				<select class="join_02-mobile-02 join_02_email_domain" name="email" onchange="email_domain()">
-					<option value="선택하세요">선택하세요</option>
-					<option value="9" >직접입력</option>
-					<option value="daum.net">daum.net</option>
-					<option value="empal.com">empal.com</option>
-					<option value="gmail.com">gmail.com</option>
-					<option value="hanmail.net">hanmail.net</option>
-					<option value="msn.com">msn.com</option>
-					<option value="naver.com">naver.com</option>
-					<option value="nate.com">nate.com</option>
-				</select> -->
 			</div>
 		</div>
 		
@@ -120,10 +107,10 @@
 					<c:forEach var="year" begin="1" end="50">
 						<c:choose>
 							<c:when test="${year==50}">
-								<option value="${ 1971+year}" selected>${ 1971+year}</option>
+								<option value="${1971+year}" selected>${1971+year}</option>
 							</c:when>
 							<c:otherwise>
-								<option value="${ 1971+year}">${ 1971+year}</option>
+								<option value="${1971+year}">${1971+year}</option>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -138,11 +125,11 @@
 					name="user_birth_month">
 					<c:forEach var="month" begin="1" end="12">
 						<c:choose>
-							<c:when test="${month== 1 }">
-								<option value="${month }" selected>${month }</option>
+							<c:when test="${month== 1}">
+								<option value="${month}" selected>${month}</option>
 							</c:when>
 							<c:otherwise>
-								<option value="${month }">${month}</option>
+								<option value="${month}">${month}</option>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -153,7 +140,7 @@
 					name="user_birth_day">
 					<c:forEach var="day" begin="1" end="31">
 						<c:choose>
-							<c:when test="${day== 1 }">
+							<c:when test="${day== 1}">
 								<option value="${day}" selected>${day}</option>
 							</c:when>
 							<c:otherwise>
@@ -189,7 +176,7 @@
 					oninput="join_02_mobile_number(this, 4)">
 				<!-- 인증번호 전송 버튼 -->
 				<input class="join_02-submit-box-02" type="button" value="인증번호 전송"
-					onclick="numberCheck(this)">
+					onclick="numberCheck(this);">
 			</div>
 		</div>
 
@@ -272,77 +259,74 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 
-function idOverlap() {
-    var _id=$("#join_02_user_new_id").val();
-    if(_id==''){
-   	 alert("ID를 입력하세요");
-   	 return;
-    }
-    $.ajax({
-       type:"post",
-       async:false,  
-       url:"${contextPath}/user/userIdOverlap.do",
-       dataType:"text",
-       data: {id:_id},
-       success:function (data,textStatus){
-          if(data=='false'){
-       	    alert("사용 가능한 아이디 입니다.");
-       	    $('#join_02_user_id_overlap_btn').prop("disabled", true);
-       	    $('#join_02_user_new_id').prop("disabled", true);
-       	    $('#join_02_user_id').val(_id);
-          }else{
-        	  alert("사용할 수 없는 ID입니다.");
-          }
-       },
-       error:function(data,textStatus){
-          alert("페이지 에러.");
-       },
-       complete:function(data,textStatus){
-          //alert("작업을완료 했습니다");
-       }
-    });  //end ajax	 
- }
-
-<!-- 생년월일 selectbox 이벤트 -->
-	/* var start_year = "1970"; //시작 년도
-	var today = new Date();
-	var today_year = today.getFullYear();
-	var index = 0;
-	// start_year ~ 현재 년도
-	for (var y = start_year; y <= today_year; y++) {
-	document.getElementById('select_year').options[index] = new Option(y, y);
-	index++;
+	/* 각 값들을 확인하는 함수 */
+	function checkAll() {
 	}
-	index = 0;
-	for (var m = 1; m <= 12; m++) {
-	document.getElementById('select_month').options[index] = new Option(m,
-	m);
-	index++;
+	
+	/* 각 입력란에 공백 확인 하는 함수 */
+	function checkSpace(value, dataName) {
+		if(value == "") {
+			alert(dataName + " 입력해주세요.");
+			return false;
+		}
+		return true;
+	}
+	
+	function checkUserId() {
+		/* id 입력 확인 */
+		if(!checkSpace(id, "아이디를"))
+			return false;
+		
+		/* 아이디 유효성 검사 */
+		let idRegExp = /^[a-zA-z0-9]{4,12}$/; 
+		if(!idRegExp.test(id)) {
+			alert("아이디는 영문 대소문자와 숫자 4 ~ 12 자리로 입력해야합니다.");
+			document.joinNewUser.user_id.value = "";
+			document.joinNewUser.user_id.focus();
+			return false;
+		}
+		/* 확인 완료 시 */
+		return true;
 	}
 
-	lastday();
-
-	//년과 월에 따라 마지막 일 구하기
-	function lastday() {
-	var Year = document.getElementById('select_year').value;
-	var Month = document.getElementById('select_month').value;
-	var day = new Date(new Date(Year, Month, 1) - 86400000).getDate();
-
-	var dayIndex_len = document.getElementById('select_day').length;
-	if (day > dayIndex_len) {
-	for (var i = (dayIndex_len + 1); i <= day; i++) {
-	document.getElementById('select_day').options[i - 1] = new Option(
-		i, i);
-	}
-	} else if (day < dayIndex_len) {
-	for (var i = dayIndex_len; i >= day; i--) {
-	document.getElementById('select_day').options[i] = null;
-	}
-	}
-	year.options[target.selectedIndex].text;
-	Month.options[target.selectedIndex].text;
-	day.options[target.selectedIndex].text;
-	} */
+	function idOverlap() {
+	    let _id=$("#join_02_user_new_id").val();
+	    /* 특수문자 확인 */
+	    let spe = _id.search(/[`~!@@#$%^&*|\\\'\";:\/?]/gi);
+	    if(_id==''){
+	   	 alert("ID를 입력하세요");
+	    } else if((_id.length < 6) || (_id.length > 20)) {
+	    	alert("아이디를 6자리 ~ 20자리 이내로 입력해주세요.");
+	    	return false;
+	    } else if(_id.search(/\s/) != -1) {
+	    	alert("아이디는 공백없이 입력해주세요.");
+	        return false;
+	    } else if (spe > 0 || korean > 0) {
+	        alert("아이디는 영문,숫자만 입력해주세요.");
+	        return false;
+	    } else {
+	    	
+			$.ajax({
+			type:"post",
+			async:false,  
+			url:"${contextPath}/user/userIdOverlap.do",
+			dataType:"text",
+			data: {id:_id},
+			success:function (data,textStatus){
+				if(data=='false'){
+					alert("사용 가능한 아이디 입니다.");
+					$('#join_02_user_id_overlap_btn').prop("disabled", true);
+					$('#join_02_user_new_id').prop("disabled", true);
+					$('#join_02_user_id').val(_id);
+				}else{
+					alert("사용할 수 없는 ID입니다.");
+				}
+	       },
+			error:function(data,textStatus){
+				alert("페이지 에러.");
+			});  //end ajax	 
+	    }
+	 }
 
 	/* 핸드폰 중간 및 마지막 번호 text 4자리로 제한 */
 	function join_02_mobile_number(el, maxlength) {
@@ -369,31 +353,6 @@ function idOverlap() {
 			alert('핸드폰 번호를 확인해 주세요');
 		}
 	}
-
-	/* // 이메일 도메인 선택창(직접입력 기능)
-	  function email_domain() {
-	    if(document.joinUser.email.options[document.joinUser.email.selectedIndex].value == '선택하세요'){
-	        document.joinUser.email2.disabled = true;
-	        document.joinUser.email2.value = "";
-
-	    }
-
-	    if(document.joinUser.email.options[document.joinUser.email.selectedIndex].value == '9'){
-
-	        document.joinUser.email2.disabled = false;
-
-	        document.joinUser.email2.value = "";
-
-	        document.joinUser.email2.focus();
-
-	    } else{
-
-	        document.joinUser.email2.disabled = true;
-
-	        document.joinUser.email2.value = document.joinUser.email.options[document.joinUser.email.selectedIndex].value;
-
-	    }
-	  } */
 
 	function execDaumPostcode() {
 		new daum.Postcode(
