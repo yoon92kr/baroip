@@ -1,4 +1,5 @@
 <!--  2021.11.26 강보석 -->
+<!--2022.01.14 윤상현 수정 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -25,6 +26,15 @@
 
 	</script>
 </c:if>
+<c:if test='${not empty message }'>
+
+	<script>
+		alert("${message}");
+	</script>
+	<%
+	session.removeAttribute("message");
+	%>
+</c:if>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 
@@ -42,7 +52,7 @@
 			<h3>1:1 문의</h3>
 		</div>
 		<div class="col-lg-4 text-right cs_02_writebtn">
-					<input class="border" value="1:1문의 글쓰기" type="button" onclick="location.href='${contextPath}/cs/add_UQA_form.do'">
+					<input class="UQA_add_btn" value="1:1문의 글쓰기" type="button" onclick="location.href='${contextPath}/cs/add_UQA_form.do'">
 		</div>
 	</div>
 	
@@ -91,6 +101,7 @@
 					</div>
 					<div class="col-lg-1 text-center cs_02_listsection ">
 					<c:if test="${itemList[key].notice.notice_private == 0}">
+					<input type="hidden" id="noticePW_${j}" value="${itemList[key].notice.notice_pw}">
 						<span>비공개</span>
 					</c:if>
 					<c:if test="${itemList[key].notice.notice_private == 1}">
@@ -99,7 +110,7 @@
 					</div>
 					<div class="col-lg-3 text-center cs_02_listsection ">
 						<p class="cs">
-							<a id="cs_02_move" href="${contextPath}/cs/UQA_datail.do?notice_id=${itemList[key].notice.notice_id}">
+							<a id="detail_${j}" onclick="UQA_detail(this.id)" >
 								${itemList[key].notice.notice_title}
 							</a>
 						</p>
@@ -108,6 +119,9 @@
 						<span>${itemList[key].notice.notice_cre_date}</span>
 					</div>
 				</div>
+				<input type="hidden" id="private_${j}" value="${itemList[key].notice.notice_private}">
+				<input type="hidden" id="noticeID_${j}" value="${itemList[key].notice.notice_id}">
+				<input type="hidden" id="userID_${j}" value="${itemList[key].notice.user_id}">
 				</c:if>
 			</c:forEach>
 			
@@ -147,16 +161,6 @@
 <script>
 
 
-/* 	let moveForm=$("#cs_02_moveForm");
-	
-	$("#cs_02_move").on("click", function(e) {
-		e.preventDefault();
-		
-		moveForm.append("<input type='hidden' name='cs_02_notice_id' value='" + $(this).attr("href") + "'>'");
-		moveForm.attr("action", "${contextPath}/cs/cs_02_02.do");
-		moveForm.submit();
-	}); */
-	
 	// 2022.01.07 윤상현  
 	// 페이지 이동 스크립트
 	function pageMove(no) {
@@ -194,4 +198,37 @@
 		}
 	}
 	
+	// 게시글 상세보기시, 비밀글에 대한 유효성 스크립트
+	function UQA_detail(no) {
+		let strArray = no.split('_');
+		let target = document.getElementById('private_'.concat(strArray[1])).value;
+		let notice_id = document.getElementById('noticeID_'.concat(strArray[1])).value;
+		let user_id = document.getElementById('userID_'.concat(strArray[1])).value;
+		
+		if(target == 1) {
+			document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+		}
+		else if(target == 0) {
+			
+			let notice_pw = document.getElementById('noticePW_'.concat(strArray[1])).value;
+			
+			if ("${userInfo.user_id}" == user_id || "${userInfo.user_rank}" > 1) {
+				document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+			}
+			else {
+				let pwFlag = prompt("비밀글입니다. 비밀번호를 입력해주세요.");
+				if (notice_pw == pwFlag) {
+					document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+				}
+				else if(pwFlag == null) {
+					
+				}
+				else if(notice_pw != pwFlag){
+					alert("비밀번호가 올바르지 않습니다. 다시 확인해주세요.")
+				}
+			}
+		}
+
+	
+	}
 </script>

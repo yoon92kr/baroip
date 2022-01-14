@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminNotice.controller.AdminNoticeController;
@@ -124,9 +125,15 @@ public class CsControllerImpl implements CsController {
 	@Override
 	@RequestMapping(value = "/add_UQA.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView addUQA(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		String user_id = noticeVO.getUser_id();
+		
+		if(user_id == null || user_id == "") {
+			// 비회원 생성 서비스 호출
+			// String guest_id = userService.guestJoin();
+			// noticeVO.setUser_id(guest_id);
+		}
 		
 		String message = adminNoticeService.addNotice(noticeVO);
 		session.setAttribute("message", message);
@@ -152,22 +159,22 @@ public class CsControllerImpl implements CsController {
 
 	//	UQA 수정 폼 컨트롤러
 	@Override
-	@RequestMapping(value = "/UQA_update_form.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/UQA_update_form.do", method = { RequestMethod.POST })
 	public ModelAndView UQAUpdateForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		ModelAndView mav = new ModelAndView();
-		
 		String viewName = (String) request.getAttribute("viewName");
 		NoticeVO noticeVO = noticeService.noticeDetail(notice_id);
-		
-		mav.addObject("noticeVO", noticeVO);
-		mav.setViewName(viewName);
+
+			mav.addObject("noticeVO", noticeVO);
+			mav.setViewName(viewName);
+
 		return mav;
 	}
 
 	// UQA 수정 컨트롤러
 	@Override
-	@RequestMapping(value = "/UQA_update.do", method = { RequestMethod.POST })
+	@RequestMapping(value = "/UQA_update.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView UQAUpdate(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -182,7 +189,8 @@ public class CsControllerImpl implements CsController {
 
 	//	UQA 삭제 컨트롤러
 	@Override
-	@RequestMapping(value = "/delete_UQA.do", method = RequestMethod.GET)
+	@ResponseBody
+	@RequestMapping(value = "/delete_UQA.do", method = {RequestMethod.POST})
 	public String deleteUQA(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String message = adminNoticeService.deleteNotice(notice_id);

@@ -35,7 +35,7 @@
 	</select>
 
 	<!-- 게시글 등록 쿼리 -->
-	<insert id="addNotice" parameterType="NoticeVO">
+	<insert id="addNotice" parameterType="java.util.Map">
 	
 	<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
 		select concat('notice_', (select nextval('notice')))
@@ -57,23 +57,58 @@
 			)
 		<if test='notice_category == "Notice" or notice_category == "FAQ"'>
 			values (
-			#{notice_id},
-			#{user_id},
-			#{notice_category},
-			null,
-			#{notice_title},
-			#{notice_body},
-			null,
-			null,
-			null,
-			null,
-			null,
-			#{notice_id},
-			0
-			)
+				#{notice_id},
+				#{user_id},
+				#{notice_category},
+				null,
+				#{notice_title},
+				#{notice_body},
+				null,
+				null,
+				null,
+				null,
+				null,
+				#{notice_id},
+				0
+				)
 		</if>
 
-		
+		<if test='notice_category == "UQA"'>
+			<if test='notice_parent_no == 0'>
+				values (
+					#{notice_id},
+					#{user_id},
+					#{notice_category},
+					#{notice_pw},
+					#{notice_title},
+					#{notice_body},
+					null,
+					#{notice_private},
+					#{notice_type},
+					null,
+					null,
+					#{notice_id},
+					#{notice_parent_no}
+					)
+			</if>
+			<if test='notice_parent_no == 1'>
+				values (
+					#{notice_id},
+					#{user_id},
+					#{notice_category},
+					#{notice_pw},
+					#{notice_title},
+					#{notice_body},
+					null,
+					#{notice_private},
+					#{notice_type},
+					null,
+					null,
+					#{base_notice_id},
+					#{notice_parent_no}
+					)
+			</if>
+		</if>
 	</insert>
 
 	<!-- 게시글 수정 쿼리 -->
@@ -87,5 +122,25 @@
 		where notice_id = #{notice_id}
 		</if>
 
+		<if test='notice_category == "UQA"'>
+		
+			<if test='notice_private == 0'>
+				update notice set  
+					notice_private = #{notice_private},
+					notice_pw = #{notice_pw},
+					notice_type = #{notice_type},
+					notice_title = #{notice_title},
+					notice_body = #{notice_body}
+				where notice_id = #{notice_id}			
+			</if>		
+			<if test='notice_private == 1'>
+				update notice set  
+					notice_type = #{notice_type},
+					notice_title = #{notice_title},
+					notice_body = #{notice_body}
+				where notice_id = #{notice_id}
+			</if>
+
+		</if>
 	</update>
 </mapper>

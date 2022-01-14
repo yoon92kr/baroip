@@ -10,6 +10,7 @@
 	<typeAlias type="com.myspring.baroip.notice.vo.NoticeVO" alias="noticeVO" />	
 	<typeAlias type="com.myspring.baroip.product.vo.ProductVO" alias="productVO" />
 	<typeAlias type="com.myspring.baroip.image.vo.ImageVO" alias="imageVO" />
+	<typeAlias type="com.myspring.baroip.order.vo.OrderVO" alias="orderVO" />
   </typeAliases>
 
 </configuration>

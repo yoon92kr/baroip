@@ -574,6 +574,16 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	color: #fff;
 }
 
+.user_btn_Dgray {
+	font-family: "kopub_bold";
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+	border: none;
+	background: #404040;
+	color: #fff;
+}
+
 .user_btn_gray {
 	font-family: "kopub_bold";
 	width: 200px;
@@ -590,8 +600,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .UQA_add_btn {
-	border: 1px solid;
+	border: 1px solid #000000;
 	margin: 3px 0px 10px 20px;
-	width: 100px;
-	height: 25px;
+	width: 120px;
+	height: 35px;
 }
