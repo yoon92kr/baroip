@@ -11,4 +11,6 @@ public interface OrderController {
 
 	// Order ÀüÃ¼ mapping
 	public ModelAndView order(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView orderForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

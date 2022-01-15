@@ -8,6 +8,7 @@
 <div class="container-fluid">
 
     <div class="row">
+    
         <div class="col-lg-4 offset-lg-4 text-center">
         	<h1 class="page_title">주문 / 결제 페이지</h1>
         </div>

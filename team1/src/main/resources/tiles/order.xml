@@ -5,11 +5,11 @@
 <tiles-definitions>
 
 
-	<definition name="/order/order_01" extends="MainLayout">
+	<definition name="/order/order_form" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/order/order_01.jsp" />
 	</definition>
 
-	<definition name="/order/order_02" extends="MainLayout">
+	<definition name="/order/order_complete" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/order/order_02.jsp" />
 	</definition>
 	

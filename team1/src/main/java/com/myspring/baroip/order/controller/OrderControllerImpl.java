@@ -17,7 +17,7 @@ public class OrderControllerImpl implements OrderController{
 
 	// Order 전체 mapping
 	@Override
-	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/*.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView order(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
@@ -26,6 +26,26 @@ public class OrderControllerImpl implements OrderController{
 
 		return mav;
 	}
+	
+	// 주문 페이지 이동 컨트롤러
+	// post 형식의 배열형태의 product_id를 전송해야 한다.
+	@Override
+	@RequestMapping(value = "/order_form.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView orderForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String[] arrayProductID = request.getParameterValues("product_id");
+
+
+		for( String product_id : arrayProductID) {
+			System.out.println(product_id);
+		}
+
+		return mav;
+	}
+	
+	
 
 	
 }
