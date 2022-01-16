@@ -633,3 +633,21 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
    background: #7f7f7f;
    color: #fff;
 }
+
+.order_img_to_title{
+	margin-left : 30px;
+	
+}
+
+.order_red_font{
+	color:red;
+}
+
+.order_red_font_small{
+	font-size:15px;
+	color:red;
+}
+
+.order_total_price_margin {
+	margin-top : 30px;
+}

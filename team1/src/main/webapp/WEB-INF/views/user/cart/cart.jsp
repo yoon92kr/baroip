@@ -529,7 +529,9 @@ function orderProduct(TO) {
          for(i=0 ; i<checkList.length ; i++) {
                productList.push(checkList[i].value);            
            }
-         alert(productList);
+         
+         submitOrder(productList);
+       
          }
       
       else {
@@ -552,22 +554,7 @@ function orderProduct(TO) {
             alert("선택된 상품이 없습니다.");
          }
          else if(checkFlag > 0) {
-            
-              var form = document.createElement("form");
-              form.setAttribute("charset", "UTF-8");
-              form.setAttribute("method", "Post");
-              form.setAttribute("action", "${contextPath}/order/order_form.do");
-              
-              var hiddenField = document.createElement("input");
-              hiddenField.setAttribute("type", "hidden");
-              hiddenField.setAttribute("name", "product_id");
-              hiddenField.setAttribute("value", productList);
-
-              form.appendChild(hiddenField);
-              
-              document.body.appendChild(form);
-              form.submit();
-
+        	 submitOrder(productList);
             }
          }
       
@@ -576,5 +563,25 @@ function orderProduct(TO) {
       }
          
       }
+   }
+   
+   function submitOrder(productList) {
+	   
+       var form = document.createElement("form");
+       form.setAttribute("charset", "UTF-8");
+       form.setAttribute("method", "Post");
+       form.setAttribute("action", "${contextPath}/order/order_form.do");
+       
+       for(var key in productList) {
+     	  
+           var hiddenField = document.createElement("input");
+           hiddenField.setAttribute("type", "hidden");
+           hiddenField.setAttribute("name", "product_id");
+           hiddenField.setAttribute("value", productList[key]);
+           form.appendChild(hiddenField);
+       }
+     
+       document.body.appendChild(form);
+       form.submit();
    }
 </script>

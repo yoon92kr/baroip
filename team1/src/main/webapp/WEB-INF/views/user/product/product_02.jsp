@@ -57,7 +57,7 @@
 			<hr>
 			
 			<form name="buyForm" action="${contextPath}/cart/addProductInCart.do" method="get">
-				<input class="product_02_cart_btn user_btn_Bgreen" id="product_02_buy" type="button" value="바로구매">
+				<input class="product_02_cart_btn user_btn_Bgreen" id="product_02_buy" type="button" value="바로구매" onclick="submitOrder('${VO.product_id}')">
 				<input class="product_02_cart_btn user_btn_gray" id="product_02_cartIn" type="button" value="장바구니 담기">
 			</form>
 
@@ -207,5 +207,21 @@
 			});
 		}
 	});
+	
+	// 바로구매 스크립트
+	function submitOrder(product_id) {
+		var form = document.createElement("form");
+		form.setAttribute("charset", "UTF-8");
+	    form.setAttribute("method", "Post");
+	    form.setAttribute("action", "${contextPath}/order/order_form.do");
 
+	    var hiddenField = document.createElement("input");
+	    hiddenField.setAttribute("type", "hidden");
+	    hiddenField.setAttribute("name", "product_id");
+	    hiddenField.setAttribute("value", product_id);
+	    form.appendChild(hiddenField);
+ 
+	    document.body.appendChild(form);
+	    form.submit();
+	   }
 </script>
