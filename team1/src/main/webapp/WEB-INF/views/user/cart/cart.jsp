@@ -135,21 +135,18 @@
    <div class="cart_list_order_bt">
       <div class="row">
          <div class="col-lg-3 offset-lg-2">
-            <a href="${contextPath}/order_01.do">
-               <img src="${contextPath}/resources/img/common/all_item_order.png"
-               alt="장바구니 전체 주문 버튼 이미지">
+            <a href="#" onclick="orderProduct('all')">
+                 <input class="cart_btn_Bgreen" type="button" id="cs_02_02_list_btn" value="전체 상품 주문">
             </a>
          </div>
          <div class="col-lg-3">
-            <a href="${contextPath}/order_01.do">
-               <img src="${contextPath}/resources/img/common/select_item_order.png"
-               alt="장바구니 선택 주문 버튼 이미지">
+            <a href="#" onclick="orderProduct('select')">
+              <input class="cart_btn_green" type="button" id="cs_02_02_list_btn" value="선택 상품 주문">
             </a>
          </div>
          <div class="col-lg-2">
             <a href="${contextPath}/main.do">
-               <img src="${contextPath}/resources/img/common/continue_shopping.png"
-               alt="장바구니 쇼핑 계속하기 버튼 이미지">
+               <input class="cart_btn_gray" type="button" id="cs_02_02_list_btn" value="쇼핑 계속하기">
             </a>
          </div>
       </div>
@@ -162,16 +159,16 @@
       
       /* 체크박스 전체 선택 해제 버튼 */
       $("#cart_checkAll").on("click", function() {
-    	  
-    	  let checkTotalPrice = 0;
+         
+         let checkTotalPrice = 0;
           let checkTotalDisCount = 0;
           let deliveryPrice = 0;
           let checkFinalPrice = 0;
-    	  
+         
          if ($("#cart_checkAll").is(':checked')) {
             $("input[name=checkRow]").prop("checked", true);
             $("input[name=checkRow]").each(function(i) {
-    			let checkItem = $("input[name=checkRow]").parents("form").eq(i).attr("id");
+             let checkItem = $("input[name=checkRow]").parents("form").eq(i).attr("id");
                 
                 let itemPrice = parseInt($("#".concat(checkItem)).find(".listItemPrice").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
                 let itemDisCount = parseInt($("#".concat(checkItem)).find(".listItemDiscount").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
@@ -179,7 +176,7 @@
                 
                 checkTotalPrice += itemPrice;
                 checkTotalDisCount += itemDisCount;
-    		});
+          });
             
             checkFinalPrice = checkTotalPrice - checkTotalDisCount;
             
@@ -221,15 +218,15 @@
       });
       
       /* 첫 화면 금액 */
-	if($("input[name=checkRow]").is(":checked")) {
-		
-		let checkTotalPrice = 0;
+   if($("input[name=checkRow]").is(":checked")) {
+      
+      let checkTotalPrice = 0;
         let checkTotalDisCount = 0;
         let deliveryPrice = 0;
         let checkFinalPrice = 0;
-		
-		$("input[name=checkRow]:checked").each(function(i) {
-			let checkItem = $("input[name=checkRow]:checked").parents("form").eq(i).attr("id");
+      
+      $("input[name=checkRow]:checked").each(function(i) {
+         let checkItem = $("input[name=checkRow]:checked").parents("form").eq(i).attr("id");
             
             let itemPrice = parseInt($("#".concat(checkItem)).find(".listItemPrice").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
             let itemDisCount = parseInt($("#".concat(checkItem)).find(".listItemDiscount").val() * $("#".concat(checkItem)).find(".cart_item_count").val());
@@ -237,9 +234,9 @@
             
             checkTotalPrice += itemPrice;
             checkTotalDisCount += itemDisCount;
-		});
-		
-		checkFinalPrice = checkTotalPrice - checkTotalDisCount;
+      });
+      
+      checkFinalPrice = checkTotalPrice - checkTotalDisCount;
         
         if(checkFinalPrice >= 30000 || checkFinalPrice == 0) {
            
@@ -274,10 +271,10 @@
          let deliveryPrice = 0;
          let checkFinalPrice = 0;
          let checkBoxCheck = $("input[name=checkRow]:checked");
-        	 
+            
          if(checkBoxCheck.length >= 1) {
             
-        	 checkBoxCheck.each(function(i) {
+            checkBoxCheck.each(function(i) {
                
                let checkItem = $("input[name=checkRow]:checked").parents("form").eq(i).attr("id");
                
@@ -515,6 +512,69 @@
       }
       else{
          alert("선택된 상품이 없습니다.");
+      }
+   }
+   
+//   2022.01.16 윤상현
+// 파라미터option에는 
+function orderProduct(TO) {
+   
+   let checkList = document.getElementsByName("checkRow");
+   let productList = [];
+   
+   // 전체 상품 주문 선택시
+   if(TO == 'all'){   
+      if(checkList.length > 0) {
+         
+         for(i=0 ; i<checkList.length ; i++) {
+               productList.push(checkList[i].value);            
+           }
+         alert(productList);
+         }
+      
+      else {
+         alert("장바구니에 담긴 상품이 없습니다.");
+      }
+   }
+   // 선택 상품 주문 선택시
+   else if(TO == 'select') {
+      let checkFlag = 0;
+      if(checkList.length > 0) {
+         
+         for(i=0 ; i<checkList.length ; i++) {
+            if(checkList[i].checked == true) {
+               productList.push(checkList[i].value);   
+               checkFlag++;
+            }         
+           }
+         
+         if(checkFlag == 0) {
+            alert("선택된 상품이 없습니다.");
+         }
+         else if(checkFlag > 0) {
+            
+              var form = document.createElement("form");
+              form.setAttribute("charset", "UTF-8");
+              form.setAttribute("method", "Post");
+              form.setAttribute("action", "${contextPath}/order/order_form.do");
+              
+              var hiddenField = document.createElement("input");
+              hiddenField.setAttribute("type", "hidden");
+              hiddenField.setAttribute("name", "product_id");
+              hiddenField.setAttribute("value", productList);
+
+              form.appendChild(hiddenField);
+              
+              document.body.appendChild(form);
+              form.submit();
+
+            }
+         }
+      
+      else {
+         alert("장바구니에 담긴 상품이 없습니다.");
+      }
+         
       }
    }
 </script>
