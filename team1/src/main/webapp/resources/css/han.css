@@ -284,24 +284,17 @@
 	margin-top: 20px;
 }
 
-.join_01-btn {
-	width: 30%;
-}
-
-.join_01-btn > a {
-	/* width: 90%; */
-	height: 50px;
-	text-align: center;
- 	display: inline-block;
-	margin-top: 20px;
-}
-
 .join_01-next {
 	text-align: center;
     margin-left: 61px;
     height: 50px;
     margin-top: 20px;
 }
+
+.join_01_btn {
+	margin-top: 40px;
+}
+
 /* join_01 end */
 
 /* join_02 start */
@@ -357,8 +350,15 @@
 	border: 1px solid #d9d9d9;
 }
 
-.join_02-mobile {
+.join_02-mobile_first {
 	margin-left: 60px;
+}
+
+.join_02-mobilejoin_02-mobile-02 {
+	margin-left: 40px;
+}
+
+.join_02-mobile {
 	margin-right: 40px;
 	height: 35px;
 	width: 115px;

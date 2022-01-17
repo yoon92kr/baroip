@@ -20,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
+import net.nurigo.sdk.message.service.DefaultMessageService;
+
+
 @Controller("userController")
 @RequestMapping(value="/user")
 public class UserControllerImpl implements UserController{
@@ -27,6 +30,7 @@ public class UserControllerImpl implements UserController{
 	private UserService userService;
 	@Autowired
 	private UserVO userVO;
+
 	
 	
 //		user 전체적인 접근
@@ -100,6 +104,14 @@ public class UserControllerImpl implements UserController{
 		return mav;
 	}
 	
+//	핸드폰번호 인증
+	@RequestMapping(value= "/userMobileCheck.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public int userMobileCheck(@RequestParam("mobile") String mobile, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
+		userService.userPhoneCheck(mobile, randomNumber);
+		return randomNumber;
+	}
+	
 ////	비회원 주문시 아이디 생성
 ////	@Override
 //	@RequestMapping(value="/guestLogin.do" ,method = RequestMethod.POST)
@@ -123,39 +135,7 @@ public class UserControllerImpl implements UserController{
 		ResponseEntity resEntity = null;
 		String result = userService.userIdOverlap(id);
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
-		System.out.println(result);
 		return resEntity;
 	}
-	
-	// 아이디 비밀번호 찾기
-	@RequestMapping(value= "/login_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView login_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
-	
-	// 비밀번호 찾기
-	@RequestMapping(value= "/login_04.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView login_04(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
-	
-	// 약관동의
-	@RequestMapping(value= "/join_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView join_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
-	}
-	
 	
 }

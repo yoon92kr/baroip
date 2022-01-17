@@ -16,16 +16,6 @@
 		}
 	</script>
 </c:if>
-<!-- 2022.01.10 한건희 -->
-<c:if test="${not empty guestCartAdd}" >
-	<script>
-		if(${userInfo != null}) {
-			<% 
-				session.removeAttribute("guestCartAdd");
-			%>
-		}
-	</script>
-</c:if>
 
 <div class="container">
 

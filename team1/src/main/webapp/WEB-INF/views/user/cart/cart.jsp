@@ -156,14 +156,12 @@
 
 <script>
    $(document).ready(function() {
-      
+	   let checkTotalPrice = 0;
+       let checkTotalDisCount = 0;
+       let deliveryPrice = 0;
+       let checkFinalPrice = 0;
       /* 체크박스 전체 선택 해제 버튼 */
       $("#cart_checkAll").on("click", function() {
-         
-         let checkTotalPrice = 0;
-          let checkTotalDisCount = 0;
-          let deliveryPrice = 0;
-          let checkFinalPrice = 0;
          
          if ($("#cart_checkAll").is(':checked')) {
             $("input[name=checkRow]").prop("checked", true);
@@ -220,11 +218,6 @@
       /* 첫 화면 금액 */
    if($("input[name=checkRow]").is(":checked")) {
       
-      let checkTotalPrice = 0;
-        let checkTotalDisCount = 0;
-        let deliveryPrice = 0;
-        let checkFinalPrice = 0;
-      
       $("input[name=checkRow]:checked").each(function(i) {
          let checkItem = $("input[name=checkRow]:checked").parents("form").eq(i).attr("id");
             
@@ -265,11 +258,6 @@
          
       
       $("input[name=checkRow]").change(function() {
-         
-         let checkTotalPrice = 0;
-         let checkTotalDisCount = 0;
-         let deliveryPrice = 0;
-         let checkFinalPrice = 0;
          let checkBoxCheck = $("input[name=checkRow]:checked");
             
          if(checkBoxCheck.length >= 1) {
@@ -486,10 +474,10 @@
             let deleteProduct;
          /* 삭제버튼 클릭 이벤트 */
             if(checkItem > 1) {
-               deleteProduct = confirm("선택한 상품들을 장바구니에서 제거 하시겠습니까?");
+               deleteProduct = confirm("해당 상품들을 장바구니에서 제거 하시겠습니까?");
             }
             else if(checkItem == 1){
-               deleteProduct = confirm("선택한 상품을 장바구니에서 제거 하시겠습니까?");
+               deleteProduct = confirm("해당 상품을 장바구니에서 제거 하시겠습니까?");
             }
             if(deleteProduct == true) {
                $.ajax({
@@ -499,8 +487,8 @@
                   data: {
                      "deleteList": JSON.stringify(checkList)
                   }, 
-                  success:function(test) {
-                     alert(test + "상품이 장바구니에서 삭제되었습니다.");
+                  success:function() {
+                     alert("해당 상품이 장바구니에서 삭제되었습니다.");
                      location.reload();
                   }, 
                   error:function() {
@@ -516,7 +504,7 @@
    }
    
 //   2022.01.16 윤상현
-// 파라미터option에는 String 타입의 전체 선택시 all, 선택주문시 select가 대입되어야한다.
+// 파라미터option에는 
 function orderProduct(TO) {
    
    let checkList = document.getElementsByName("checkRow");

@@ -158,7 +158,7 @@ public class CartControllerImpl implements CartController{
 	@Override
 	@ResponseBody
 	@RequestMapping(value= "/cartInProductOverLap.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public String cartInProductOverLap(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
+	public void cartInProductOverLap(@RequestParam("product_id") String product_id, @RequestParam("cart_count") int cart_count,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		
@@ -192,7 +192,6 @@ public class CartControllerImpl implements CartController{
 			}
 			session.setAttribute("guestCartAdd", guestCartList);
 		}
-		return "count : " + cartVO.getCart_count();
 	}
 	
 //	장바구니 상품 삭제
@@ -233,7 +232,7 @@ public class CartControllerImpl implements CartController{
 				}
 				session.setAttribute("guestCartAdd", guestCartList);
 			}
-		return "test";
+		return "success";
 	}
 	
 }

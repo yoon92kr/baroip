@@ -420,16 +420,11 @@ E - M A I L　: admin@baroip.com
 		<div class="row">
 			<div class="col-lg-3 offset-lg-2">
 				<div class="join_01-btn">
-					<input class="user_btn_gray" type="button" value="이전 페이지" onclick="history.back();">
+					<input class="user_btn_gray join_01_btn" type="button" value="이전 페이지" onclick="history.back();">
 				</div>
 			</div>
 			<div class="col-lg-3 offset-lg-2">
-				<div class="join_01-btn join_01-next">
-					<input class="bottom_btn_size" type="image"
-						src="${contextPath}/resources/img/common/join_next_btn.png"
-						alt="회원가입 약관동의 동의하기 버튼 이미지">
-						<input class="user_btn_gray" type="button" value="동의하기">
-				</div>
+					<input class="user_btn_gray join_01_btn" type="submit" value="동의하기">
 			</div>
 		</div>
 	</form>
@@ -438,7 +433,7 @@ E - M A I L　: admin@baroip.com
 
 <script type="text/javascript">
 
-	function CheckForm(Join){
+	function CheckForm(){
 		
 		var chk1=document.checkForm.join_01_checkbox_01.checked;
 	    var chk2=document.checkForm.join_01_checkbox_02.checked;

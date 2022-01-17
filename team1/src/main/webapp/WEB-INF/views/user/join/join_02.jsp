@@ -71,7 +71,7 @@
 				이 름
 			</div>
 			<div class="col-lg-7 join_02-main-right">
-				<input class="join_02-text-box" type="text" name="user_name">
+				<input id="join_02_userName" class="join_02-text-box" type="text" name="user_name">
 			</div>
 		</div>
 
@@ -80,7 +80,7 @@
 				이메일
 			</div>
 			<div class="col-lg-7 join_02-main-right">
-				<input class="join_02-text-box" type="email" name="user_email">
+				<input id="join_02_email" class="join_02-text-box" type="email" name="user_email">
 			</div>
 		</div>
 		
@@ -121,7 +121,7 @@
 				name="user_birth_month" onchange="javascript:lastday();">
 				</select> -->
 
-				<select id="select_month" class="join_02-year-month-day"
+				<select id="select_month" class="join_02-year-month-day join_02_birth"
 					name="user_birth_month">
 					<c:forEach var="month" begin="1" end="12">
 						<c:choose>
@@ -136,7 +136,7 @@
 				</select> 
 				<span class="join_02-year-month-day-text">월</span>
 				 
-				<select id="select_day" class="join_02-year-month-day"
+				<select id="select_day" class="join_02-year-month-day join_02_birth"
 					name="user_birth_day">
 					<c:forEach var="day" begin="1" end="31">
 						<c:choose>
@@ -159,7 +159,7 @@
 			</div>
 			<div class="col-lg-7 join_02-main-right">
 				<!-- 핸드폰 앞 번호 -->
-				<select class="join_02-mobile" name="user_mobile_1">
+				<select id="join_02_mobile1" class="join_02-mobile join_02-mobile_first" name="user_mobile_1">
 					<option value="010">010</option>
 					<option value="011">011</option>
 					<option value="016">016</option>
@@ -167,16 +167,16 @@
 					<option value="019">019</option>
 				</select> -
 				<!-- 핸드폰 중간 번호 -->
-				<input id="join_02_mobile_center" class="join_02-mobile-02"
+				<input id="join_02_mobile2" class=" join_02-mobilejoin_02-mobile-02 join_02-mobile"
 					type="number" name="user_mobile_2"
 					oninput="join_02_mobile_number(this, 4)"> -
 				<!-- 핸드폰 끝 번호 -->
-				<input id="join_02_mobile_last" class="join_02-mobile-02"
+				<input id="join_02_mobile3" class=" join_02-mobilejoin_02-mobile-02 join_02-mobile"
 					type="number" name="user_mobile_3"
 					oninput="join_02_mobile_number(this, 4)">
 				<!-- 인증번호 전송 버튼 -->
 				<input class="join_02-submit-box-02" type="button" value="인증번호 전송"
-					onclick="numberCheck(this);">
+					onclick="mobileNumberCheck();">
 			</div>
 		</div>
 
@@ -185,8 +185,9 @@
 				인증 번호
 			</div>
 			<div class="col-lg-7 join_02-main-right">
-				<input class="join_02-text-box" type="text"> 
-				<input class="join_02-submit-box" type="button" value="인증번호 확인">
+				<input id="mobileNumber" class="join_02-text-box" type="number"> 
+				<input id="mobileCheckNumber" type="hidden">
+				<input id="randomNumberCheck" class="join_02-submit-box" type="button" value="인증번호 확인" onclick="checkNumber();">
 			</div>
 		</div>
 
@@ -233,21 +234,11 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4 offset-lg-2 join_02-bottom-btn">
-				<div class="join_01-btn">
-					<a class="join_01-back" href="${contextPath}/user/join_01.do">
-						<img class="bottom_btn_size"
-						src="${contextPath}/resources/img/common/back_page_btn.png"
-						alt="회원가입 정보입력 이전페이지 버튼 이미지">
-					</a>
-				</div>
+			<div class="col-lg-4 offset-lg-2 join_02-bottom-btn text-center">
+				<input class="user_btn_gray" type="button" value="이전 페이지" onclick="history.back();">
 			</div>
-			<div class="col-lg-4 join_02-bottom-btn">
-				<div class="join_01-btn">
-					<input class="bottom_btn_size" type="image"
-						src="${contextPath}/resources/img/common/join_btn.png"
-						alt="회원가입 정보입력 가입하기 버튼 이미지">
-				</div>
+			<div class="col-lg-4 join_02-bottom-btn text-center">
+				<input class="user_btn_Dgray" type="button" value="가입하기" onclick="joinFormCheck();">
 			</div>
 		</div>
 	</form>
@@ -259,74 +250,132 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 
-	/* 각 값들을 확인하는 함수 */
-	function checkAll() {
-	}
-	
-	/* 각 입력란에 공백 확인 하는 함수 */
-	function checkSpace(value, dataName) {
-		if(value == "") {
-			alert(dataName + " 입력해주세요.");
-			return false;
-		}
-		return true;
-	}
-	
-	function checkUserId() {
-		/* id 입력 확인 */
-		if(!checkSpace(id, "아이디를"))
-			return false;
+	function joinFormCheck() {
+		let user_id = document.getElementById("join_02_user_new_id");
+		let user_pwd = document.getElementById("join_02_password");
+		let check_pwd = document.getElementById("join_02_passowrd_check");
+		let user_name = document.getElementById("join_02_userName");
+		let email = document.getElementById("join_02_email");
+		let year = document.getElementById("select_year");
+		let month = document.getElementById("select_month");
+		let day = document.getElementById("select_day");
+		let postCode = document.getElementById("user_post_code");
 		
-		/* 아이디 유효성 검사 */
-		let idRegExp = /^[a-zA-z0-9]{4,12}$/; 
-		if(!idRegExp.test(id)) {
-			alert("아이디는 영문 대소문자와 숫자 4 ~ 12 자리로 입력해야합니다.");
-			document.joinNewUser.user_id.value = "";
-			document.joinNewUser.user_id.focus();
+		let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+		
+		if(user_id.value == "") {
+			alert("사용할 아이디를 입력해주세요.");
+			user_id.focus();
+			return false;
+		} else if(document.getElementById("join_02_user_id_overlap_btn").click != true) {
+			alert("아이디 중복 검사를 해주세요.");
+		} else if(user_pwd.value == "") {
+			alert("비밀번호를 입력해주세요.");
+			user_pwd.focus();
+			return false;
+		} else if(!pwdCheck.test(user_pwd.value)) {
+			alert("비밀번호는 영문+숫자 조합으로 8~25자리 사이를 입력해 주세요.");
+			user_pwd.focus();
+			return false;
+		} else if(user_pwd.value !== check_pwd.value) {
+			alert("비밀번호를 다시 확인해 주세요.");
+			check_pwd.focus();
+			return false;
+		} else if(user_name.value == "") {
+			alert("이름을 입력해주세요.");
+			user_name.focus();
+			return false;
+		} else if(email.value == "") {
+			alert("이메일 주소를 입력해주세요.");
+			email.focus();
+			return false;
+		} else if (year.value == "" || month.value == "" || day.value == "") {
+			alert("생년월일을 입력해주세요.");
+			year.focus();
+			return false;
+		} else if(postCode.value == "") {
+			alert("주소를 입력해주세요.");
+			postCode.focus();
 			return false;
 		}
-		/* 확인 완료 시 */
-		return true;
+		
+		document.joinNewUser.submit();
+		
 	}
-
+	
 	function idOverlap() {
-	    let _id=$("#join_02_user_new_id").val();
-	    /* 특수문자 확인 */
-	    let spe = _id.search(/[`~!@@#$%^&*|\\\'\";:\/?]/gi);
-	    if(_id==''){
-	   	 alert("ID를 입력하세요");
-	    } else if((_id.length < 6) || (_id.length > 20)) {
-	    	alert("아이디를 6자리 ~ 20자리 이내로 입력해주세요.");
-	    	return false;
-	    } else if(_id.search(/\s/) != -1) {
-	    	alert("아이디는 공백없이 입력해주세요.");
-	        return false;
-	    } else if (spe > 0 || korean > 0) {
-	        alert("아이디는 영문,숫자만 입력해주세요.");
-	        return false;
-	    } else {
-	    	
-			$.ajax({
-			type:"post",
-			async:false,  
-			url:"${contextPath}/user/userIdOverlap.do",
-			dataType:"text",
-			data: {id:_id},
+		let user_id = document.getElementById("join_02_user_new_id");
+		
+		let idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
+		
+		if(!idCheck.test(user_id.value)) {
+			alert("아이디는 영문+숫자 조합으로 6~20 자리 사이로 만들어 주세요.");
+			user_id.focus();
+			return false;
+		}
+		
+		$.ajax({
+			type:"POST", 
+			async: false,
+			url:"${contextPath}/user/userIdOverlap.do", 
+			dataType:"text", 
+			data: {
+				id: user_id.value
+			}, 
 			success:function (data,textStatus){
 				if(data=='false'){
 					alert("사용 가능한 아이디 입니다.");
-					$('#join_02_user_id_overlap_btn').prop("disabled", true);
-					$('#join_02_user_new_id').prop("disabled", true);
-					$('#join_02_user_id').val(_id);
 				}else{
 					alert("사용할 수 없는 ID입니다.");
 				}
-	       },
-			error:function(data,textStatus){
-				alert("페이지 에러.");
-			});  //end ajax	 
-	    }
-	 }
+			}
+		}).error(function() {
+			alert("페이지 에러.");
+		});
+	}
+	
+	function mobileNumberCheck() {
+		let mobile1 = document.getElementById("join_02_mobile1").value;
+		let mobile2 = document.getElementById("join_02_mobile2").value;
+		let mobile3 = document.getElementById("join_02_mobile3").value;
+		
+		if(mobile2.length < 3) {
+			alert("핸드폰 번호를 확인해 주세요.");
+			mobile2.focus();
+			return false;
+		} else if(mobile3.length < 4) {
+			alert("핸드폰 번호를 확인해 주세요.");
+			mobile3.focus();
+			return false;
+		}
+		
+		let mobile = mobile1 + mobile2 + mobile3;
+		
+		$.ajax({
+			url:"${contextPath}/user/userMobileCheck.do", 
+			type:"POST", 
+			dataType:"text",
+			data: {
+				"mobile": mobile
+			}, success: function(randomNumber) {
+				alert("인증번호가 발송되었습니다.");
+				document.ElementById("mobileCheckNumber").value = randomNumber.toString();
+			}
+		}).error(function() {
+			alert("번호전송 실패");
+		});
+	}
+	
+	function checkNumber() {
+		let user_number = document.getElementById("mobileNumber").value;
+		let randomNumber = document.getElementById("mobileCheckNumber").value;
+		
+		if(user_number.value != randomNumber.value) {
+			alert("인증번호가 맞지 않습니다.");
+		} else {
+			alert("인증이 완료되었습니다.");
+		}
+	}
 
 	/* 핸드폰 중간 및 마지막 번호 text 4자리로 제한 */
 	function join_02_mobile_number(el, maxlength) {
@@ -334,26 +383,7 @@
 			el.value = el.value.substr(0, maxlength);
 		}
 	}
-
-	function mobileFirst() {
-		var mobileFirstNumber = document.getElementByName("user_mobile_1");
-		mobileFirstNumber.options[target.selectedIndex].value;
-	}
-
-	/* 핸드폰 번호 확인 이벤트 */
-	function numberCheck(center, last) {
-		let join_02_mobile_center = document
-				.getElementById('join_02_mobile_center').value
-		let join_02_mobile_last = document
-				.getElementById('join_02_mobile_last').value
-
-		if (join_02_mobile_center.length < 3) {
-			alert('핸드폰 번호를 확인해 주세요');
-		} else if (join_02_mobile_last.length != 4) {
-			alert('핸드폰 번호를 확인해 주세요');
-		}
-	}
-
+	
 	function execDaumPostcode() {
 		new daum.Postcode(
 				{
