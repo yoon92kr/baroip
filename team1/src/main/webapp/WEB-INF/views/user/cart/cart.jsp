@@ -516,7 +516,7 @@
    }
    
 //   2022.01.16 윤상현
-// 파라미터option에는 
+// 파라미터option에는 String 타입의 전체 선택시 all, 선택주문시 select가 대입되어야한다.
 function orderProduct(TO) {
    
    let checkList = document.getElementsByName("checkRow");
