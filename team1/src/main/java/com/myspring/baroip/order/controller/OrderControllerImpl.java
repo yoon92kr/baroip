@@ -2,6 +2,10 @@
 
 package com.myspring.baroip.order.controller;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.cart.vo.CartVO;
@@ -120,5 +125,24 @@ public class OrderControllerImpl implements OrderController {
 
 		return mav;
 	}
-
+	
+	// 결제 컨트롤러
+	@Override
+	@RequestMapping(value = "/order_product.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView orderProduct(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+				
+		HttpRequest payRequest = HttpRequest.newBuilder()
+			    .uri(URI.create("https://api.tosspayments.com/v1/payments/"+info.get("paymentKey")))
+			    .header("Authorization", "Basic dGVzdF9za196WExrS0V5cE5BcldtbzUwblgzbG1lYXhZRzVSOg==")
+			    .header("Content-Type", "application/json")
+			    .method("POST", HttpRequest.BodyPublishers.ofString("{\"amount\":"+info.get("amount")+",\"orderId\":\""+info.get("orderId")+"\"}"))
+			    .build();
+			HttpResponse<String> payResponse = HttpClient.newHttpClient().send(payRequest, HttpResponse.BodyHandlers.ofString());
+			System.out.println(payResponse.body());
+	
+		mav.setViewName("redirect:/order/order_complete.do");
+		return mav;
+	}
 }
