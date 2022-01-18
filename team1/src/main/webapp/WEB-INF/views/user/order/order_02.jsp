@@ -3,7 +3,10 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
+<c:set var="itemList" value="${order_return}" />
 
 <div class="container-fluid">
     
@@ -42,26 +45,56 @@
     
     <div class="row">
         <div class="col-lg-2 offset-lg-1 text-center order_01-content-item">
-        	[상품 주문 번호]
+        	${itemList.test_order_ID}
         </div>
+        <c:if test="${not empty test_order_payment}">
+	        <div class="col-lg-3 text-center order_01-content-item">
+	        	${itemList.test_order_payment} ( ${itemList.test_order_bank} )
+	        </div>
+        </c:if>
+        <c:if test="${empty test_order_payment}">
+	        <div class="col-lg-3 text-center order_01-content-item">
+	        	포인트 결제
+	        </div>
+        </c:if>        
         <div class="col-lg-3 text-center order_01-content-item">
-        	[상품 결제 수단]
-        </div>
-        <div class="col-lg-3 text-center order_01-content-item">
-        	[최종 결제 금액]
+        	<fmt:formatNumber value="${itemList.test_order_amount}" /> 원
         </div>
         <div class="col-lg-2 text-center order_01-content-item">
-        	[적립 예상 포인트]
+        <c:if test="${not empty userInfo}">
+	        <div class="col-lg-3 text-center order_01-content-item">
+	         	<c:if test="${userInfo.user_membership == 1 and test_order_amount > 0}">
+	         		<fmt:formatNumber value="${test_order_amount*0.01}" /> 원
+	         	</c:if>
+	         	<c:if test="${userInfo.user_membership == 2 and test_order_amount > 0}">
+	         		<fmt:formatNumber value="${test_order_amount*0.03}" /> 원
+	         	</c:if>	   
+	         	<c:if test="${userInfo.user_membership == 3 and test_order_amount > 0}">
+	         		<fmt:formatNumber value="${test_order_amount*0.05}" /> 원
+	         	</c:if>	   
+	         	<c:if test="${userInfo.user_membership == 4 and test_order_amount > 0}">
+	         		<fmt:formatNumber value="${test_order_amount*0.1}" /> 원
+	         	</c:if>	       
+	         	<c:if test="${test_order_amount == 0}">
+	         		0 원
+	         	</c:if>	         	  	      	     	
+	        </div>
+        </c:if>
+        <c:if test="${empty userInfo}">
+	        <div class="col-lg-3 text-center order_01-content-item">
+	        	비회원 결제
+	        </div>
+        </c:if>        
         </div>
     </div>
-    
+    <br><br>
     <div class="row">
-        <div class="col-lg-4 offset-lg-4">
+        <div class="col-lg-4 offset-lg-4 text-center">
         <!-- 메인 페이지 하단 버튼 -->
         	<div class="login_03-bottom-btn">
-	        	<a class="order_02-main-page-btn login_05-btn" href="${contextPath}/main.do">
-					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/main_page_btn.png" alt="메인 페이지 이동 버튼 이미지">
-			     </a>
+				<a href="${contextPath}/main.do">
+					<input type="button" class="user_btn_Bgreen" value="메인페이지로 이동">	
+				</a>
         	</div>
         </div>
     </div>

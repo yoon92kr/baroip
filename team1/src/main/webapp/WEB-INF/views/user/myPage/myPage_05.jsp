@@ -116,16 +116,16 @@
         	<p class="myPage_05-ranking-info-left myPage_05-ranking-info-all">혜택 내용</p>
         </div>
         <div class="col-lg-2 text-center border">
-        	<p class="myPage_05-ranking-info-all">주문 금액의 2% 적립</p>
+        	<p class="myPage_05-ranking-info-all">주문 금액의 1% 적립</p>
+        </div>
+        <div class="col-lg-3 text-center border">
+        	<p class="myPage_05-ranking-info-all">주문 금액의 3% 적립</p>
         </div>
         <div class="col-lg-3 text-center border">
         	<p class="myPage_05-ranking-info-all">주문 금액의 5% 적립</p>
         </div>
         <div class="col-lg-3 text-center border">
         	<p class="myPage_05-ranking-info-all">주문 금액의 10% 적립</p>
-        </div>
-        <div class="col-lg-3 text-center border">
-        	<p class="myPage_05-ranking-info-all">주문 금액의 20% 적립</p>
         </div>
     </div>
     
