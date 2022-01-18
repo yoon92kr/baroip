@@ -66,6 +66,7 @@
 			</div>
 			<c:set var="total_price" value="${total_price + (itemList[key].product.productVO.product_price - itemList[key].product.productVO.product_discount) * itemList[key].count.order_amount }" />
 		</div>
+		<input type="hidden" name="product_id" value="${itemList[key].product.productVO.product_id}=${itemList[key].count.order_amount}">
 
 	</c:forEach>
 	<c:if test="${total_price < 30000 }">
@@ -225,6 +226,7 @@
 			<span class="order_01-content-price"><fmt:formatNumber value="${total_price}" />원</span>
 		</div>
 		<c:if test="${empty userInfo}">
+		<input type="hidden" value="0" id="user_point">
 			<div class="col-lg-3 text-center order_01-content-item">-</div>
 			<div class="col-lg-3 text-center order_01-content-item-point">
 	
@@ -238,6 +240,7 @@
 
 		<c:if test="${not empty userInfo}">
 			<div class="col-lg-3 text-center order_01-content-item"><fmt:formatNumber value="${userInfo.user_point}" />원</div>
+			<input type="hidden" value="${userInfo.user_point}" id="user_point">
 			<div class="col-lg-3 text-center order_01-content-item-point">
 	
 				<input class="order_01-point-box text-center" type="number" name="order_payment_point" onchange="change_point()" onkeypress="if(event.keyCode=='13'){event.preventDefault(); change_point();}"> 
@@ -377,39 +380,41 @@
 	
 	function change_point() {
 		
-		var use_point = document.getElementsByName("order_payment_point")[0].value;
-		var user_point = document.getElementById('user_point').innerText;
-		
-		
+		var using_point = parseInt(document.getElementsByName("order_payment_point")[0].value);
+		var user_point = parseInt(document.getElementById('user_point').value);
+
 			// 사용 포인트가 보유 포인트보다 클 경우
-			if(use_point > user_point) {
-				
+			if(using_point > user_point) {
+
 				if(${total_price} < user_point) {
 					
 					document.getElementById('final_price').innerText = "${total_price - total_price}".toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+'원';
 					document.getElementsByName("order_payment_point")[0].value = "${total_price}";
-					
+
 				}
 				else {
 					
 					document.getElementById('final_price').innerText = ("${total_price}"-user_point).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+'원';
 					document.getElementsByName("order_payment_point")[0].value = user_point;
-					
+
 				}
 
 			}
 			
 			else {
-				
-				if(${total_price} < user_point) {
+
+				if(${total_price} < using_point) {
 					
 					document.getElementById('final_price').innerText = "${total_price - total_price}".toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+'원';
 					document.getElementsByName("order_payment_point")[0].value = "${total_price}";
+
 					
 				}
 					
 				else {
-					document.getElementById('final_price').innerText = ("${total_price}"- use_point).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+'원';
+
+					document.getElementById('final_price').innerText = ("${total_price}"- using_point).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+'원';
+					document.getElementsByName("order_payment_point")[0].value = using_point;
 				}
 
 				
@@ -505,7 +510,7 @@
 	 
 	 var payButton = document.getElementById('payment-button');
 	    
-	 // 결제하기 버튼
+	 // 토스 결제 api 연동 스크립트
 	 payButton.addEventListener('click', function () {
 		 
 		 var use_point = document.getElementsByName("order_payment_point")[0].value;
@@ -513,6 +518,8 @@
 		 var customer = document.getElementsByName("order_receiver_name")[0].value;
 		 var order_id_rand1 = Math.floor(Math.random() * (100000 - 100)) + 100;
 		 var order_id_rand2 = Math.floor(Math.random() * (100000 - 100)) + 100;
+		 var order_id = 'baroip_order_'+order_id_rand1+'_'+order_id_rand2;
+		 var order_amount = "${total_price}"- use_point
 		 let payMent = orderByPay();
 
 		 if(${itemSize > 1}) {
@@ -522,17 +529,17 @@
 		 var clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq';
 		 var tossPayments = TossPayments(clientKey);
 		 var orderDetail = {
-				 amount: "${total_price}"- use_point,
-		         orderId: 'baroip_order_'+order_id_rand1+'_'+order_id_rand2,
+				 amount: order_amount,
+		         orderId: order_id,
 		         orderName: order_product,
 		         customerName: customer,
-		         successUrl: 'http://localhost:8080${contextPath}/order/order_product.do',
-		         failUrl: 'http://localhost:8080${contextPath}/cart/cartList.do'				 
+		         successUrl: 'http://localhost:8080${contextPath}/order/order_complete.do',
+		         failUrl: 'http://localhost:8080${contextPath}/cart/cartList.do'
 		 };
 		 
 		 var elements = document.getElementsByClassName('order_form_check'); // body 이미치 파일 select
 			var checkFlag = true;
-			var incompleteTag = "";
+
 			for(var i = 0; i < elements.length; i++){
 				
 				let uploadItem = elements[i].value;
@@ -545,7 +552,15 @@
 			}
 			
 			if(checkFlag) {
-				 tossPayments.requestPayment(payMent, orderDetail);  
+				if("${total_price}"- use_point == 0) {
+					order_to_dbms(order_id, payMent);
+					document.location='${contextPath}/order/order_complete.do?order_id='+order_id+'&order_amount=order_amount';
+				}
+				else {
+					order_to_dbms(order_id, payMent);
+					tossPayments.requestPayment(payMent, orderDetail);  
+				}
+				
 			}
 			else {
 				alert("필수입력(*)란을 모두 작성해주세요.");
@@ -557,6 +572,58 @@
 		
 		  
 	 })
+	 
+	 	
+	/* 상품 주문 ajax */
+	function order_to_dbms(order_id, payMent) {
+
+		   let product_id = document.getElementsByName("product_id");
+		   let productList = new Array();
+		   let order_point = document.getElementsByName('order_payment_point')[0].value;
+		   for(i=0 ; i<product_id.length ; i++) {
+			   productList.push(product_id[i].value);  
+		   }
+		   
+		   if(order_point == null || order_point == "") {
+			   order_point = 0;
+		   }
+		   
+			$.ajax({
+				type : "post",
+				async : false,
+				url : "${contextPath}/order/order_product.do",
+				dataType : "text",
+				data : {
+					"order_payment" : payMent,
+					"user_id" : '${userInfo.user_id}',
+					"order_product_list" : JSON.stringify(productList),
+					"order_id" : order_id,
+					"order_receiver_name" : document.getElementsByName('order_receiver_name')[0].value,
+					"order_receiver_post_code" : document.getElementsByName('order_receiver_post_code')[0].value,
+					"order_receiver_new_address" : document.getElementsByName('order_receiver_new_address')[0].value,
+					"order_receiver_old_address" : document.getElementsByName('order_receiver_old_address')[0].value,
+					"order_receiver_detail_address" : document.getElementsByName('order_receiver_detail_address')[0].value,
+					"order_receiver_mobile_1" : document.getElementsByName('order_receiver_mobile_1')[0].value,
+					"order_receiver_mobile_2" : document.getElementsByName('order_receiver_mobile_2')[0].value,
+					"order_receiver_mobile_3" : document.getElementsByName('order_receiver_mobile_3')[0].value,
+					"order_message" : document.getElementsByName('order_message')[0].value,
+					"order_payment_point" : order_point,
+										
+				},
+				success : function() {
+
+				},
+				error : function() {
+					alert("주문에 문제가 발생하였습니다.");
+					document.location='${contextPath}/main.do';
+				}
+
+			});
+	
+			
+
+	
+	}
 
 	
 	      

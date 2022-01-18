@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.myspring.baroip.cart.vo.CartVO;
 import com.myspring.baroip.order.dao.OrderDAO;
+import com.myspring.baroip.order.vo.OrderVO;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService{
@@ -22,6 +23,14 @@ public class OrderServiceImpl implements OrderService{
 
 		return count;
 
+	}
+	
+	@Override
+	public void addOrder(OrderVO orderVO) throws Exception {
+		
+		orderDAO.addOrder(orderVO);
+		System.out.printf("baroip : [%s] 주문이 완료되었습니다.%n", orderVO.getOrder_id());
+		
 	}
 
 }

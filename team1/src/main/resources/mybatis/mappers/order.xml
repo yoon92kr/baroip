@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- 2022.01.18 윤상현 -->
+
 <mapper namespace="mapper.order">
 
 	<!-- 장바구니 수량 조회 쿼리 -->
@@ -10,5 +12,58 @@
 
 	</select>
 
+	<!-- 주문 등록 쿼리 -->
+	<insert id="addOrder" parameterType="OrderVO">
+	
+		insert into orders (
+			order_id,
+			user_id,
+			product_id,
+			order_amount,
+			order_receiver_name,
+			order_receiver_mobile_1,
+			order_receiver_mobile_2,
+			order_receiver_mobile_3,
+			order_receiver_post_code,
+			order_receiver_old_address,
+			order_receiver_new_address,
+			order_receiver_detail_address,
+			order_state,
+			order_payment,
+			order_payment_detail,
+		<if test='order_message != null'>
+			order_message,
+		</if>
+			order_payment_point
+			)
+		
+		values (
+			#{order_id},
+			#{user_id},
+			#{product_id},
+			#{order_amount},
+			#{order_receiver_name},
+			#{order_receiver_mobile_1},
+			#{order_receiver_mobile_2},
+			#{order_receiver_mobile_3},
+			#{order_receiver_post_code},
+			#{order_receiver_old_address},
+			#{order_receiver_new_address},
+			#{order_receiver_detail_address},
+			0,
+			#{order_payment},
+			#{order_receiver_name},
+		<if test='order_message != null'>
+			#{order_message},
+		</if>
+			#{order_payment_point}
+			)
+			
+	
+	</insert>
+	
+
+	
+	
 	
 </mapper>

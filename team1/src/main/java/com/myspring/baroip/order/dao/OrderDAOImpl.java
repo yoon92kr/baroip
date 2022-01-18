@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.baroip.cart.vo.CartVO;
+import com.myspring.baroip.order.vo.OrderVO;
 
 @Repository("orderDAO")
 public class OrderDAOImpl implements OrderDAO {
@@ -21,6 +22,14 @@ public class OrderDAOImpl implements OrderDAO {
 		int count = sqlSession.selectOne("mapper.order.cartCount", cartVO);
 				
 		return count;
+	}
+	
+	@Override
+	public void addOrder(OrderVO orderVO) throws DataAccessException {
+		
+		sqlSession.insert("mapper.order.addOrder", orderVO);
+		
+
 	}
 
 }

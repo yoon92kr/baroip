@@ -15,15 +15,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.cart.vo.CartVO;
 import com.myspring.baroip.order.service.OrderService;
+import com.myspring.baroip.order.vo.OrderVO;
 import com.myspring.baroip.product.service.ProductService;
 import com.myspring.baroip.user.vo.UserVO;
 
@@ -126,23 +131,81 @@ public class OrderControllerImpl implements OrderController {
 		return mav;
 	}
 	
-	// 결제 컨트롤러
+	// 결제 완료 컨트롤러
 	@Override
-	@RequestMapping(value = "/order_product.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView orderProduct(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	@RequestMapping(value = "/order_complete.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView orderComplete(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		session.removeAttribute("order_return");
+		Map<String, Object> returnObject = new HashMap<String, Object>();
+		
+		if(info.get("paymentKey") != null || info.get("paymentKey") != "") {
+			
+			HttpRequest payRequest = HttpRequest.newBuilder()
+				    .uri(URI.create("https://api.tosspayments.com/v1/payments/"+info.get("paymentKey")))
+				    .header("Authorization", "Basic dGVzdF9za196WExrS0V5cE5BcldtbzUwblgzbG1lYXhZRzVSOg==")
+				    .header("Content-Type", "application/json")
+				    .method("POST", HttpRequest.BodyPublishers.ofString("{\"amount\":"+info.get("amount")+",\"orderId\":\""+info.get("orderId")+"\"}"))
+				    .build();
+				HttpResponse<String> payResponse = HttpClient.newHttpClient().send(payRequest, HttpResponse.BodyHandlers.ofString());
 				
-		HttpRequest payRequest = HttpRequest.newBuilder()
-			    .uri(URI.create("https://api.tosspayments.com/v1/payments/"+info.get("paymentKey")))
-			    .header("Authorization", "Basic dGVzdF9za196WExrS0V5cE5BcldtbzUwblgzbG1lYXhZRzVSOg==")
-			    .header("Content-Type", "application/json")
-			    .method("POST", HttpRequest.BodyPublishers.ofString("{\"amount\":"+info.get("amount")+",\"orderId\":\""+info.get("orderId")+"\"}"))
-			    .build();
-			HttpResponse<String> payResponse = HttpClient.newHttpClient().send(payRequest, HttpResponse.BodyHandlers.ofString());
-			System.out.println(payResponse.body());
-	
-		mav.setViewName("redirect:/order/order_complete.do");
+				String json = payResponse.body();
+				JSONParser parser = new JSONParser();
+				JSONObject object = (JSONObject) parser.parse(json);
+				JSONObject objectVirtual = (JSONObject) object.get("virtualAccount");
+				Long test_order_amountL = (Long) object.get("totalAmount");
+
+				//주문번호
+				returnObject.put("test_order_ID", (String) object.get("orderId"));
+				//결제방법
+				returnObject.put("test_order_payment", (String) object.get("method"));
+				// 고객 이름
+				returnObject.put("test_order_name", (String) objectVirtual.get("customerName"));
+				// 입금 은행
+				returnObject.put("test_order_bank", (String) objectVirtual.get("bank"));
+				// 주문 금액
+				returnObject.put("test_order_amount", test_order_amountL.intValue());
+			
+		}
+		else {
+			UserVO userVO = (UserVO)session.getAttribute("userInfo");
+			//주문번호
+			returnObject.put("test_order_ID", info.get("order_id"));
+			// 고객 이름
+			returnObject.put("test_order_name", userVO.getUser_name());
+			// 주문 금액
+			returnObject.put("test_order_amount", info.get("order_amount"));
+		}
+		
+			
+			
+			session.setAttribute("order_return", returnObject);
+			mav.setViewName("redirect:/order/order_complete.do");
 		return mav;
 	}
+	
+	// 상품 수량 변경 컨트롤러
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/order_product.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
+	public void orderProduct(@ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception{
+		
+		for(int i = 0; order_product_list.size() > i; i++) {
+			String productToAmount = order_product_list.get(i).replace("\"", "").replace("[", "").replace("]", "");
+			String[] splitParam = productToAmount.split("=");
+			int amount = Integer.parseInt(splitParam[1]);
+			
+			orderVO.setOrder_id(orderVO.getOrder_id()+'_'+i);
+			orderVO.setProduct_id(splitParam[0]);
+			orderVO.setOrder_amount(amount);
+		
+
+			orderService.addOrder(orderVO);
+					
+		}
+				
+	}
+	
 }

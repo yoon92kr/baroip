@@ -26,6 +26,8 @@ public class OrderVO {
 	private String order_payment;
 	private Date order_payment_detail;
 	private String order_payment_card;
+	private String order_message;
+	private int order_payment_point;
 	public String getOrder_id() {
 		return order_id;
 	}
@@ -128,6 +130,20 @@ public class OrderVO {
 	public void setOrder_payment_card(String order_payment_card) {
 		this.order_payment_card = order_payment_card;
 	}
+	public String getOrder_message() {
+		return order_message;
+	}
+	public void setOrder_message(String order_message) {
+		this.order_message = order_message;
+	}
+	public int getOrder_payment_point() {
+		return order_payment_point;
+	}
+	public void setOrder_payment_point(int order_payment_point) {
+		this.order_payment_point = order_payment_point;
+	}
+	
+	
 
 	
 	
