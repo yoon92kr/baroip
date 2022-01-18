@@ -418,12 +418,12 @@ E - M A I L　: admin@baroip.com
 		</div>
 		
 		<div class="row">
-			<div class="col-lg-3 offset-lg-2">
+			<div class="col-lg-3 offset-lg-2 text-center">
 				<div class="join_01-btn">
-					<input class="user_btn_gray join_01_btn" type="button" value="이전 페이지" onclick="history.back();">
+					<input class="user_btn_Dgray join_01_btn" type="button" value="이전 페이지" onclick="history.back();">
 				</div>
 			</div>
-			<div class="col-lg-3 offset-lg-2">
+			<div class="col-lg-3 offset-lg-2 text-center">
 					<input class="user_btn_gray join_01_btn" type="submit" value="동의하기">
 			</div>
 		</div>

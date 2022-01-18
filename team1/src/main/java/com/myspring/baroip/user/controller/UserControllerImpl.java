@@ -20,8 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
-import net.nurigo.sdk.message.service.DefaultMessageService;
-
 
 @Controller("userController")
 @RequestMapping(value="/user")
@@ -30,8 +28,6 @@ public class UserControllerImpl implements UserController{
 	private UserService userService;
 	@Autowired
 	private UserVO userVO;
-
-	
 	
 //		user 전체적인 접근
 		@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})

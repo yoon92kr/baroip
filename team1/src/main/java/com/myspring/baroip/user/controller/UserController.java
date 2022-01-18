@@ -33,6 +33,10 @@ public interface UserController {
 ////	비회원 주문시 아이디 생성
 //	public String guestLogin(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+//	핸드폰 본인 인증
+	public int userMobileCheck(@RequestParam("mobile") String mobile, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	
+	
 }
 
 	

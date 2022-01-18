@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 		params.put("to", mobile);
 		params.put("from", "01075422294");
 		params.put("type", "SMS");
-		params.put("text", "인증번호는 " + "[" + randomNumber + "]" + " 입니다.");
+		params.put("text", "바로입 인증번호는 " + "[" + randomNumber + "]" + " 입니다.");
 		params.put("app_version", "test app 1.2");
 		
 		try {

@@ -37,7 +37,6 @@
 			<div class="col-lg-7 join_02-main-right">
 				<input id="join_02_user_new_id" class="join_02-text-box" type="text" 
 					name="user_id">
-				<input id="join_02_user_id" type="hidden" name="user_id">
 				<input id="join_02_user_id_overlap_btn" class="join_02-submit-box" 
 					type="button" name="idOverLapCheck" value="중복 확인" onClick="idOverlap();">
 			</div>
@@ -260,6 +259,9 @@
 		let month = document.getElementById("select_month");
 		let day = document.getElementById("select_day");
 		let postCode = document.getElementById("user_post_code");
+		let detailAddr = document.getElementById("user_detail_address");
+		let user_number = document.getElementById("mobileNumber");
+		let randomNumber = document.getElementById("mobileCheckNumber");
 		
 		let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
 		
@@ -267,9 +269,7 @@
 			alert("사용할 아이디를 입력해주세요.");
 			user_id.focus();
 			return false;
-		} else if(document.getElementById("join_02_user_id_overlap_btn").click != true) {
-			alert("아이디 중복 검사를 해주세요.");
-		} else if(user_pwd.value == "") {
+		}  else if(user_pwd.value == "") {
 			alert("비밀번호를 입력해주세요.");
 			user_pwd.focus();
 			return false;
@@ -293,9 +293,17 @@
 			alert("생년월일을 입력해주세요.");
 			year.focus();
 			return false;
+		} else if(user_number.value != randomNumber.value) {
+			alert("핸드폰 인증을 확인해주세요.");
+			user_number.focus();
+			return false;
 		} else if(postCode.value == "") {
 			alert("주소를 입력해주세요.");
 			postCode.focus();
+			return false;
+		} else if(detailAddr.value == "") {
+			alert("상세주소를 입력해 주세요.");
+			detailAddr.focus();
 			return false;
 		}
 		
@@ -325,8 +333,10 @@
 			success:function (data,textStatus){
 				if(data=='false'){
 					alert("사용 가능한 아이디 입니다.");
+					return true;
 				}else{
 					alert("사용할 수 없는 ID입니다.");
+					return false;
 				}
 			}
 		}).error(function() {
@@ -367,8 +377,8 @@
 	}
 	
 	function checkNumber() {
-		let user_number = document.getElementById("mobileNumber").value;
-		let randomNumber = document.getElementById("mobileCheckNumber").value;
+		let user_number = document.getElementById("mobileNumber");
+		let randomNumber = document.getElementById("mobileCheckNumber");
 		
 		if(user_number.value != randomNumber.value) {
 			alert("인증번호가 맞지 않습니다.");

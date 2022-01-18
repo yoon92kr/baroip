@@ -16,6 +16,17 @@
 		}
 	</script>
 </c:if>
+<%
+	String clientId = "metNeTJSOQeJYHhl4Gnd"; //애플리케이션 클라이언트 아이디값";
+	String redirectURI = URLEncoder.encode("http://localhost:8080/baroip/main.do", "UTF-8");
+	SecureRandom random = new SecureRandom();
+	String state = new BigInteger(130, random).toString();
+	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+	apiURL += "&client_id=" + clientId;
+	apiURL += "&redirect_uri=" + redirectURI;
+	apiURL += "&state=" + state;
+	session.setAttribute("state", state);
+%>
 
 <div class="container">
 
@@ -48,17 +59,6 @@
 			<br>
 			<h3 class="login-title">SNS 간편 로그인</h3>
 			<div class="login_01-sns-login-btn">
-			<%
-			    String clientId = "metNeTJSOQeJYHhl4Gnd"; //애플리케이션 클라이언트 아이디값";
-			    String redirectURI = URLEncoder.encode("http://localhost:8080/baroip/main.do", "UTF-8");
-			    SecureRandom random = new SecureRandom();
-			    String state = new BigInteger(130, random).toString();
-			    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-			    apiURL += "&client_id=" + clientId;
-			    apiURL += "&redirect_uri=" + redirectURI;
-			    apiURL += "&state=" + state;
-			    session.setAttribute("state", state);
-			 %>
 				<a class="login_01-naver-login" href="<%=apiURL%>"> 
 					<img class="login_01-naver-kakao-login"
 						src="${contextPath}/resources/img/common/naver_login_btn.png"
