@@ -47,12 +47,12 @@
         <div class="col-lg-2 offset-lg-1 text-center order_01-content-item">
         	${itemList.test_order_ID}
         </div>
-        <c:if test="${not empty test_order_payment}">
+        <c:if test="${not empty itemList.test_order_payment}">
 	        <div class="col-lg-3 text-center order_01-content-item">
 	        	${itemList.test_order_payment} ( ${itemList.test_order_bank} )
 	        </div>
         </c:if>
-        <c:if test="${empty test_order_payment}">
+        <c:if test="${empty itemList.test_order_payment}">
 	        <div class="col-lg-3 text-center order_01-content-item">
 	        	포인트 결제
 	        </div>
@@ -62,28 +62,28 @@
         </div>
         <div class="col-lg-2 text-center order_01-content-item">
         <c:if test="${not empty userInfo}">
-	        <div class="col-lg-3 text-center order_01-content-item">
-	         	<c:if test="${userInfo.user_membership == 1 and test_order_amount > 0}">
-	         		<fmt:formatNumber value="${test_order_amount*0.01}" /> 원
+	        
+	         	<c:if test="${userInfo.user_membership == 1 and itemList.test_order_amount > 0}">
+	         		<fmt:formatNumber value="${itemList.test_order_amount*0.01}" /> 원
 	         	</c:if>
-	         	<c:if test="${userInfo.user_membership == 2 and test_order_amount > 0}">
-	         		<fmt:formatNumber value="${test_order_amount*0.03}" /> 원
+	         	<c:if test="${userInfo.user_membership == 2 and itemList.test_order_amount > 0}">
+	         		<fmt:formatNumber value="${itemList.test_order_amount*0.03}" /> 원
 	         	</c:if>	   
-	         	<c:if test="${userInfo.user_membership == 3 and test_order_amount > 0}">
-	         		<fmt:formatNumber value="${test_order_amount*0.05}" /> 원
+	         	<c:if test="${userInfo.user_membership == 3 and itemList.test_order_amount > 0}">
+	         		<fmt:formatNumber value="${itemList.test_order_amount*0.05}" /> 원
 	         	</c:if>	   
-	         	<c:if test="${userInfo.user_membership == 4 and test_order_amount > 0}">
-	         		<fmt:formatNumber value="${test_order_amount*0.1}" /> 원
+	         	<c:if test="${userInfo.user_membership == 4 and itemList.test_order_amount > 0}">
+	         		<fmt:formatNumber value="${itemList.test_order_amount*0.1}" /> 원
 	         	</c:if>	       
-	         	<c:if test="${test_order_amount == 0}">
+	         	<c:if test="${itemList.test_order_amount == 0}">
 	         		0 원
 	         	</c:if>	         	  	      	     	
-	        </div>
+	       
         </c:if>
         <c:if test="${empty userInfo}">
-	        <div class="col-lg-3 text-center order_01-content-item">
+	        
 	        	비회원 결제
-	        </div>
+	        
         </c:if>        
         </div>
     </div>

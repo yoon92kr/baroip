@@ -139,10 +139,12 @@ public class OrderControllerImpl implements OrderController {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		session.removeAttribute("order_return");
+		String viewName = (String) request.getAttribute("viewName");
+		
 		Map<String, Object> returnObject = new HashMap<String, Object>();
 		
-		if(info.get("paymentKey") != null || info.get("paymentKey") != "") {
-			
+		if(info.get("paymentKey") != null) {
+						
 			HttpRequest payRequest = HttpRequest.newBuilder()
 				    .uri(URI.create("https://api.tosspayments.com/v1/payments/"+info.get("paymentKey")))
 				    .header("Authorization", "Basic dGVzdF9za196WExrS0V5cE5BcldtbzUwblgzbG1lYXhZRzVSOg==")
@@ -154,35 +156,35 @@ public class OrderControllerImpl implements OrderController {
 				String json = payResponse.body();
 				JSONParser parser = new JSONParser();
 				JSONObject object = (JSONObject) parser.parse(json);
-				JSONObject objectVirtual = (JSONObject) object.get("virtualAccount");
 				Long test_order_amountL = (Long) object.get("totalAmount");
-
+				JSONObject objectVirtual = (JSONObject)object.get("virtualAccount");
+				
 				//주문번호
 				returnObject.put("test_order_ID", (String) object.get("orderId"));
 				//결제방법
 				returnObject.put("test_order_payment", (String) object.get("method"));
-				// 고객 이름
-				returnObject.put("test_order_name", (String) objectVirtual.get("customerName"));
 				// 입금 은행
 				returnObject.put("test_order_bank", (String) objectVirtual.get("bank"));
 				// 주문 금액
 				returnObject.put("test_order_amount", test_order_amountL.intValue());
+
 			
-		}
-		else {
-			UserVO userVO = (UserVO)session.getAttribute("userInfo");
-			//주문번호
-			returnObject.put("test_order_ID", info.get("order_id"));
-			// 고객 이름
-			returnObject.put("test_order_name", userVO.getUser_name());
-			// 주문 금액
-			returnObject.put("test_order_amount", info.get("order_amount"));
 		}
 		
+		else {
 			
+			//주문번호
+			returnObject.put("test_order_ID", info.get("order_id"));
+
+			// 주문 금액
+			returnObject.put("test_order_amount", info.get("order_amount"));
+	
 			
-			session.setAttribute("order_return", returnObject);
-			mav.setViewName("redirect:/order/order_complete.do");
+		}
+
+
+		session.setAttribute("order_return", returnObject);
+		mav.setViewName(viewName);
 		return mav;
 	}
 	
@@ -191,13 +193,14 @@ public class OrderControllerImpl implements OrderController {
 	@ResponseBody
 	@RequestMapping(value = "/order_product.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
 	public void orderProduct(@ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception{
+		String order_id = orderVO.getOrder_id();
 		
 		for(int i = 0; order_product_list.size() > i; i++) {
 			String productToAmount = order_product_list.get(i).replace("\"", "").replace("[", "").replace("]", "");
 			String[] splitParam = productToAmount.split("=");
 			int amount = Integer.parseInt(splitParam[1]);
 			
-			orderVO.setOrder_id(orderVO.getOrder_id()+'_'+i);
+			orderVO.setOrder_id(order_id+'_'+i);
 			orderVO.setProduct_id(splitParam[0]);
 			orderVO.setOrder_amount(amount);
 		

@@ -69,24 +69,26 @@
 		<input type="hidden" name="product_id" value="${itemList[key].product.productVO.product_id}=${itemList[key].count.order_amount}">
 
 	</c:forEach>
-	<c:if test="${total_price < 30000 }">
-		<c:set var="total_price" value="${total_price + 5000 }" />
-	</c:if>
+
 	<div class="row">
 		<div class="col-lg-4 offset-lg-7 text-right">
 			<div class="order_01-content-item-price order_total_price_margin">
-				<span>최종 주문 금액 : </span> <span class="order_01-content-price"><fmt:formatNumber value="${total_price}" />원</span>
-				<c:if test="${total_price >= 30000 }">
+				
+				<c:if test='${total_price >= 30000 }'>
+					<span>최종 주문 금액 : </span> <span class="order_01-content-price"><fmt:formatNumber value="${total_price}" />원</span>
 					<span class="order_01-content-price order_red_font_small">(배송비 무료)</span>
 				</c:if>
-				<c:if test="${total_price < 30000 }">
+				<c:if test='${total_price < 30000 }'>
+					<span>최종 주문 금액 : </span> <span class="order_01-content-price"><fmt:formatNumber value="${total_price+5000}" />원</span>	
 					<span class="order_01-content-price order_red_font_small">(배송비 5,000원 포함)</span>
 				</c:if>
 
 			</div>
 		</div>
 	</div>
-
+	<c:if test="${total_price < 30000 }">
+		<c:set var="total_price" value="${total_price + 5000 }" />
+	</c:if>
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 order_01-content-header">
 			<h4 class="order_01-content-hedaer-text">주문자 정보</h4>
@@ -552,14 +554,21 @@
 			}
 			
 			if(checkFlag) {
-				if("${total_price}"- use_point == 0) {
-					order_to_dbms(order_id, payMent);
-					document.location='${contextPath}/order/order_complete.do?order_id='+order_id+'&order_amount=order_amount';
+				if(payMent == '가상계좌') {
+					
+					if("${total_price}"- use_point == 0) {
+						order_to_dbms(order_id, payMent);
+						document.location='${contextPath}/order/order_complete.do?order_id='+order_id+'&order_amount='+order_amount;
+					}
+					else {
+						order_to_dbms(order_id, payMent);
+						tossPayments.requestPayment(payMent, orderDetail);  
+					}
 				}
 				else {
-					order_to_dbms(order_id, payMent);
 					tossPayments.requestPayment(payMent, orderDetail);  
 				}
+				
 				
 			}
 			else {
