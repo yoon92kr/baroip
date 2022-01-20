@@ -106,6 +106,7 @@ public class UserControllerImpl implements UserController{
 	}
 	
 //	핸드폰번호 인증
+	@Override
 	@RequestMapping(value= "/userMobileCheck.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public int userMobileCheck(@RequestParam("mobile") String mobile, HttpServletRequest request, HttpServletResponse response)throws Exception {
 		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);

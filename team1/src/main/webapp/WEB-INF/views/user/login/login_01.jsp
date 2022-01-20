@@ -17,7 +17,7 @@
 	</script>
 </c:if>
 <%
-	String clientId = "metNeTJSOQeJYHhl4Gnd"; //애플리케이션 클라이언트 아이디값";
+	String clientId = "metNeTJSOQeJYHhl4Gnd";
 	String redirectURI = URLEncoder.encode("http://localhost:8080/baroip/user/naver/naverCallBack.do", "UTF-8");
 	SecureRandom random = new SecureRandom();
 	String state = new BigInteger(130, random).toString();
@@ -39,7 +39,7 @@
 	<div class="row">
 		<div class="col-lg-4 offset-lg-4">
 			<h3 class="sub-title">아이디 로그인</h3>
-			<form id="login_01_loginForm" <%--action="${contextPath}/user/login.do"--%> name="Login_01_LoginForm" method="post">
+			<form id="login_01_loginForm" name="Login_01_LoginForm" method="post">
 				<input class="login_01-id-box" name="user_id" type="text"
 					placeholder="아이디(이메일)를 입력해주세요."> 
 				<input class="login_01-pwd-box" name="user_pw" type="password" onkeypress="if(event.keyCode == 13)loginBtn();"

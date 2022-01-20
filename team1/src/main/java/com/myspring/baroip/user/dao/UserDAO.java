@@ -15,4 +15,7 @@ public interface UserDAO {
 	
 //	비회원 주문시 아이디 생성
 	public String insertGuestId() throws DataAccessException;
+
+//	naver로그인 아이디 생성
+	public void addNaverUser(UserVO userVO) throws DataAccessException;
 }

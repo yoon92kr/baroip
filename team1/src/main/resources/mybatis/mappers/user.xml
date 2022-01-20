@@ -52,6 +52,23 @@
 							#{user_mobile_1}, #{user_mobile_2}, #{user_mobile_3}, 
 							#{user_email}, 1, 1)
 		]]>
+		<if test="user_id == null">
+				insert into user (user_id, 
+								 user_name, 
+								 user_last_date, 
+								 user_mobile_1, 
+								 user_mobile_2, 
+								 user_mobile_3, 
+								 user_email)
+							values(#{user_email}, 
+									#{user_name}, 
+									now(), 
+									#{user_mobile_1}, 
+									#{user_mobile_2}, 
+									#{user_mobile_3}, 
+									#{user_email})
+								 
+		</if>
 	</insert>
 
 	<!-- 아이디 유일성 체크 쿼리문 -->
@@ -70,10 +87,12 @@
 					values(concat('guest_', nextval('guest')), 
 						'비회원', now())
 		]]>
-		<selectKey resultType="String" keyProperty="user_id" order="AFTER">
-		<![CDATA[
-			select max(user_id) from user where user_id like 'guest%' LIMIT 1
-		]]>
-		</selectKey>
 	</insert>
+	
+	<!-- 비회원 주문시 생성된 아이디 조회 -->
+	<select id="selectGuestId" parameterType="String">
+		<![CDATA[
+			select max(user_id) from user where user_id like 'guest%' limit 1
+		]]>
+	</select>
 </mapper>

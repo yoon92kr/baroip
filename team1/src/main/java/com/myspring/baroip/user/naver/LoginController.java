@@ -8,11 +8,16 @@ import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.myspring.baroip.user.vo.UserVO;
 
 @Controller("naverController")
 @RequestMapping(value="/user/naver")
@@ -21,8 +26,8 @@ public class LoginController {
 	public ModelAndView naverCallBack(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		String clientId = "metNeTJSOQeJYHhl4Gnd";//애플리케이션 클라이언트 아이디값";
-		String clientSecret = "3aIeVQlJZY";//애플리케이션 클라이언트 시크릿값";
+		String clientId = "metNeTJSOQeJYHhl4Gnd";
+		String clientSecret = "3aIeVQlJZY";
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
 		String redirectURI = URLEncoder.encode("http://localhost:8080/baroip/main.do", "UTF-8");
@@ -56,6 +61,13 @@ public class LoginController {
 			br.close();
 			if (responseCode == 200) {
 				System.out.println(res.toString());
+				JSONParser parsing = new JSONParser();
+				Object obj = parsing.parse(res.toString());
+				JSONObject jsonObj = (JSONObject)obj;
+					        
+				access_token = (String)jsonObj.get("access_token");
+				refresh_token = (String)jsonObj.get("refresh_token");
+				UserProfile.profile(access_token);
 				
 			}
 		} catch (Exception e) {

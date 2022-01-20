@@ -40,12 +40,20 @@ public class UserServiceImpl implements UserService {
 		return userDAO.selectIdOverlap(id);
 	}
 	
+//	비회원 주문시 아이디 생성 및 아이디 조회
 	@Override
-//	비회원 주문시 아이디 생성
 	public String guestJoin() throws Exception {
 		return userDAO.insertGuestId();
 	}
 	
+//	naver로그인 시 아이디 생성
+	@Override
+	public void naverLogin(UserVO userVO) throws Exception {
+		userDAO.addNaverUser(userVO);
+	}
+	
+//	핸드폰 인증
+	@Override
 	public void userPhoneCheck(String mobile, int randomNumber) {
 		String api_key = "NCSSVQWN3YKS1DCX";
 		String api_secret = "WTMKELCNIM41T5XSQYCAWFLV4ZLIA9RA";

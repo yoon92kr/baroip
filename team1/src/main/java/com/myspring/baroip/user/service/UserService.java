@@ -14,6 +14,9 @@ public interface UserService {
 //	비회원 주문시 아이디 생성
 	public String guestJoin() throws Exception;
 	
+//	naver로그인 시 아이디 생성
+	public void naverLogin(UserVO userVO) throws Exception;
+	
 //	핸드폰 인증
 	public void userPhoneCheck(String mobile, int randomNumber);
 }
