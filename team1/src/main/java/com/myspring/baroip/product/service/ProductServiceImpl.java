@@ -5,6 +5,7 @@ package com.myspring.baroip.product.service;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,12 +35,22 @@ public class ProductServiceImpl implements ProductService {
 		// 베스트 상품 리스트 대입
 		List<ProductVO> bestProducts = productDAO.selectBestProduct();
 		
+		List<Integer> product_id_list = new ArrayList<Integer>();
+		Map<String, String> imageArray = new HashMap<String, String>();
+		
+		for(ProductVO item : bestProducts) {
+			product_id_list.add(Integer.parseInt(item.getProduct_id().split("_")[1]));
+		}
+
+		imageArray.put("start", "product_"+Collections.min(product_id_list));
+		imageArray.put("end", "product_"+Collections.max(product_id_list));
+		
+		List<ImageVO> imageList = imageService.selectAllImage(imageArray);
+		
 		
 		// 메인화면에 호출할 세개의 상품정보 + 이미지를 담을 객체 생성 (mainProduct 1~3)
 		Map<String, Map<String, Object>> bestProductInfo = new HashMap<String, Map<String, Object>>();
-		// 이미지 호출을 위한 option Map 객체 생성
-		Map<String, String> option = new HashMap<String, String>();
-			
+
 		if(bestProducts != null && !bestProducts.isEmpty() ) {
 		for (int i = 0; i < bestProducts.size(); i++) {
 
@@ -48,21 +59,18 @@ public class ProductServiceImpl implements ProductService {
 			if (product != null) {
 				
 				String match_id = product.getProduct_id();
-				String image_category = "main";
+				String encodeImage = "";
 				
-				option.put("match_id", match_id);
-				option.put("image_category", image_category);
-
-				// 해당 상품과 연관된 메인 이미지 호출
-				ImageVO productImage = imageService.selectProductImage(option);
-				// byte를 img로 변환하기 위한 encode
+				for(int j=0 ; j<imageList.size(); j++) {
+					if(imageList.get(j).getImage_match_id().equals(match_id)) {
+						
+						encodeImage = Base64.getEncoder().encodeToString(imageList.get(j).getImage_file());
+					}
+				}
 				
 				// 상품 내용과 이미지를 담을 객체 생성
 				Map<String, Object> productInfo = new HashMap<String, Object>();
-				
-				// byte[] 자료를 img 태그에 사용가능하도록 encode
-				String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
-				
+			
 				productInfo.put("product_main_title", product.getProduct_main_title());
 				productInfo.put("product_sub_title", product.getProduct_sub_title());
 				productInfo.put("product_price", product.getProduct_price());
@@ -97,7 +105,17 @@ public class ProductServiceImpl implements ProductService {
 		List<String> categoryList = imageService.selectImageCategory(product_id);
 		Map<String, Object> item = new HashMap<String, Object>();
 		List<String> imageList = new ArrayList<String>();
+		
+		
+		Map<String, String> imageArray = new HashMap<String, String>();
+
+		imageArray.put("start", product_id);
+		imageArray.put("end", product_id);
+		
+		List<ImageVO> imageLists = imageService.selectAllImage(imageArray);	
+		
 		for (int i = 0 ; i<categoryList.size() ; i++) {
+			
 			option.put("image_category", categoryList.get(i));
 			ImageVO productImage = imageService.selectProductImage(option);
 			
@@ -126,6 +144,7 @@ public class ProductServiceImpl implements ProductService {
 			
 	}
 	
+	
 	@Override
 	public Map<String, Map<String, Object>> productListToOption(Map<String, String> option) throws Exception {
 
@@ -133,33 +152,43 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductVO> productList = productDAO.productListToOption(option);
 		
 		
+		
+		List<Integer> product_id_list = new ArrayList<Integer>();
+		Map<String, String> imageArray = new HashMap<String, String>();
+		
+		for(ProductVO item : productList) {
+			product_id_list.add(Integer.parseInt(item.getProduct_id().split("_")[1]));
+		}
+
+		imageArray.put("start", "product_"+Collections.min(product_id_list));
+		imageArray.put("end", "product_"+Collections.max(product_id_list));
+		
+		List<ImageVO> imageList = imageService.selectAllImage(imageArray);
+		
+		
 		// 페이지에 호출할 상품정보 + 이미지를 담을 객체 생성
 		Map<String, Map<String, Object>> fullProductList = new HashMap<String, Map<String, Object>>();
-		// 이미지 호출을 위한 option Map 객체 생성
-		Map<String, String> imageOption = new HashMap<String, String>();
 			
 		if(productList != null && !productList.isEmpty() ) {
 		for (int i = 0; i < productList.size(); i++) {
-
 			ProductVO product = productList.get(i);
-			
+			String encodeImage = "";
 			if (product != null) {
 				
 				String match_id = product.getProduct_id();
 				
-				imageOption.put("match_id", match_id);
-				imageOption.put("image_category", "main");
+				for(int j=0 ; j<imageList.size(); j++) {
+					if(imageList.get(j).getImage_match_id().equals(match_id)) {
+						
+						encodeImage = Base64.getEncoder().encodeToString(imageList.get(j).getImage_file());
+					}
+				}
 
-				// 해당 상품과 연관된 메인 이미지 호출
-				ImageVO productImage = imageService.selectProductImage(imageOption);
-				// byte를 img로 변환하기 위한 encode
-				
 				// 상품 내용과 이미지를 담을 객체 생성
 				Map<String, Object> productInfo = new HashMap<String, Object>();
 				
 				// byte[] 자료를 img 태그에 사용가능하도록 encode
-				String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
-				
+							
 				productInfo.put("product_main_title", product.getProduct_main_title());
 				productInfo.put("product_sub_title", product.getProduct_sub_title());
 				productInfo.put("product_price", product.getProduct_price());

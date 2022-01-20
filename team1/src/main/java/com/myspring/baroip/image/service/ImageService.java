@@ -18,4 +18,7 @@ public interface ImageService {
 	
 	// 상품 수정시, body에 입력되어 있던 이미지 삭제 서비스
 	public void clearBodyImage(String match_id) throws Exception;
+	
+	
+	public List<ImageVO> selectAllImage(Map<String, String> option) throws Exception;
 }

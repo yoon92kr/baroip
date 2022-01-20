@@ -26,4 +26,5 @@ public interface ImageDAO {
 	// body 이미지 삭제
 	public void clearBodyImage(String match_id) throws DataAccessException;
 	
+	public List<ImageVO> selectAllImage(Map<String, String> option) throws DataAccessException;
 }

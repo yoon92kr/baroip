@@ -2,7 +2,9 @@
 
 package com.myspring.baroip.adminProduct.service;
 
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,14 +84,24 @@ public class AdminProductServiceImpl implements AdminProductService {
 		}
 		
 		List<ProductVO> productList = adminProductDAO.productListToOption(option);
-		String encodeImageFile = "";
 		
 		Map<String, Map<String, Object>> fullProductList = new HashMap<String, Map<String, Object>>();
-		// 이미지 호출을 위한 option Map 객체 생성
-		Map<String, String> imageOption = new HashMap<String, String>();
+		
 			
 		if(productList != null && !productList.isEmpty() ) {
-						
+			
+			List<Integer> product_id_list = new ArrayList<Integer>();
+			Map<String, String> imageArray = new HashMap<String, String>();
+			
+			for(ProductVO item : productList) {
+				product_id_list.add(Integer.parseInt(item.getProduct_id().split("_")[1]));
+			}
+
+			imageArray.put("start", "product_"+Collections.min(product_id_list));
+			imageArray.put("end", "product_"+Collections.max(product_id_list));
+			
+			List<ImageVO> imageList = imageService.selectAllImage(imageArray);	
+			
 		for (int i = 0; i < productList.size(); i++) {
 
 			ProductVO product = productList.get(i);
@@ -97,22 +109,18 @@ public class AdminProductServiceImpl implements AdminProductService {
 			if (product != null) {
 				
 				String match_id = product.getProduct_id();
-				String image_category = "main";
+				String encodeImage = "";
 				
-				imageOption.put("match_id", match_id);
-				imageOption.put("image_category", image_category);
-
-				// 해당 상품과 연관된 메인 이미지 호출
-				ImageVO productImage = imageService.selectProductImage(imageOption);
-				// byte를 img로 변환하기 위한 encode
+				for(int j=0 ; j<imageList.size(); j++) {
+					if(imageList.get(j).getImage_match_id().equals(match_id)) {
+						
+						encodeImage = Base64.getEncoder().encodeToString(imageList.get(j).getImage_file());
+					}
+				}
 				
 				// 상품 내용과 이미지를 담을 객체 생성
 				Map<String, Object> productInfo = new HashMap<String, Object>();
-				
-				// byte[] 자료를 img 태그에 사용가능하도록 encode
-				if(productImage != null) {
-					encodeImageFile = Base64.getEncoder().encodeToString(productImage.getImage_file());
-				}
+
 				
 				productInfo.put("product_id", product.getProduct_id());
 				productInfo.put("user_id", product.getUser_id());
@@ -124,7 +132,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 				productInfo.put("product_main_category", product.getProduct_main_category());
 				productInfo.put("product_sub_category", product.getProduct_sub_category());
 				productInfo.put("product_states", product.getProduct_states());
-				productInfo.put("image_file", encodeImageFile);
+				productInfo.put("image_file", encodeImage);
 				productInfo.put("product_count", product.getProduct_count());
 	
 				fullProductList.put("product" + (i+1), productInfo);

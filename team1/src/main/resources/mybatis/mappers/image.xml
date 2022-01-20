@@ -43,6 +43,8 @@
 			image_match_id =#{match_id} 
 			and 
 			image_category =#{image_category}
+			
+			
 		]]>
 
 	</select>
@@ -80,6 +82,20 @@
 		]]>
 
 	</delete>
+	
+		<!-- image_match_id에 연관된 image_category 추출 쿼리 -->
+	<select id="selectAllImage" resultType="imageVO" parameterType="java.util.Map">
+
+		<![CDATA[
+			select image_match_id, image_file, image_category 
+			from image 
+			where image_match_id like concat('product', '%') 
+			and image_category = 'main'
+			and image_match_id between #{start} and #{end}
+		]]>
+
+	</select>
+	
 
 
 </mapper>

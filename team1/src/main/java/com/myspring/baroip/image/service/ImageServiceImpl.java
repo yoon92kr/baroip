@@ -59,5 +59,13 @@ public class ImageServiceImpl implements ImageService {
 		System.out.printf("baroip : [%s] 상품의 [body] 이미지가 삭제 되었습니다.%n", match_id);
 	}
 	
+	@Override
+	public List<ImageVO> selectAllImage(Map<String, String> option) throws Exception {
+
+		List<ImageVO> imageList = imageDAO.selectAllImage(option);
+
+		return imageList;
+	}
+	
 
 }

@@ -56,6 +56,15 @@ public class ImageDAOImpl implements ImageDAO {
 		sqlSession.delete("mapper.image.clearBodyImage", match_id);
 	}
 	
+	@Override
+	public List<ImageVO> selectAllImage(Map<String, String> option) throws DataAccessException {
+		
+		List<ImageVO> imageList = sqlSession.selectList("mapper.image.selectAllImage", option);
+		
+		return imageList;
+		
+	}
+	
 	
 	
 
