@@ -80,6 +80,7 @@
 			</div>
 			<div class="col-lg-7 join_02-main-right">
 				<input id="join_02_email" class="join_02-text-box" type="email" name="user_email">
+				<input class="join_02-submit-box" type="button" value="이메일 인증번호 전송" onclick="checkEmail();">
 			</div>
 		</div>
 		
@@ -88,8 +89,9 @@
 				이메일 인증
 			</div>
 			<div class="col-lg-7 join_02-main-right">
-				<input class="join_02-text-box" type="text"> 
-				<input class="join_02-submit-box" type="button" value="이메일 인증 번호">
+				<input id="join_02_emailCheck" class="join_02-text-box" type="text"> 
+				<input id="join_02_emailCheckNum" type="hidden">
+				<input class="join_02-submit-box" type="button" value="이메일 인증 확인" onclick="checkmail();">
 			</div>
 		</div>
 
@@ -311,6 +313,7 @@
 		
 	}
 	
+	/* 아이디 중복 확인 */
 	function idOverlap() {
 		let user_id = document.getElementById("join_02_user_new_id");
 		
@@ -344,6 +347,7 @@
 		});
 	}
 	
+	/* 핸드폰번호 인증 */
 	function mobileNumberCheck() {
 		let mobile1 = document.getElementById("join_02_mobile1").value;
 		let mobile2 = document.getElementById("join_02_mobile2").value;
@@ -376,6 +380,40 @@
 		});
 	}
 	
+	/* 이메일 인증 */
+	function checkEmail() {
+		
+		let user_email = document.getElementById("join_02_email");
+		
+		$.ajax({
+			url:"${contextPath}/user/emailCheck.do", 
+			type:"POST", 
+			dataType:"text",
+			data: {
+				"user_email": user_email.value
+			}, success: function(randomNumber) {
+				alert("인증번호가 발송되었습니다.");
+				document.ElementById("join_02_emailCheckNum").value = randomNumber.toString();
+			}
+		}).error(function(){
+			alert("이메일 인증 에러");
+		});
+	}
+	
+	/* 이메일 인증번호 확인 */
+	function checkmail() {
+		
+		let user_number = document.getElementById("join_02_emailCheck");
+		let randomNumber = document.ElementById("join_02_emailCheckNum");
+		
+		if(user_number.value != randomNumber.value) {
+			alert("인증번호가 맞지 않습니다.");
+		} else {
+			alert("인증이 완료되었습니다.");
+		}
+	}
+	
+	/* 인증번호 확인 */
 	function checkNumber() {
 		let user_number = document.getElementById("mobileNumber");
 		let randomNumber = document.getElementById("mobileCheckNumber");

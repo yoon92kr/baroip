@@ -3,6 +3,7 @@ package com.myspring.baroip.user.controller;
 
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +32,9 @@ public class UserControllerImpl implements UserController{
 	private UserService userService;
 	@Autowired
 	private UserVO userVO;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
@@ -132,6 +138,36 @@ public class UserControllerImpl implements UserController{
 	public int userMobileCheck(@RequestParam("mobile") String mobile, HttpServletRequest request, HttpServletResponse response)throws Exception {
 		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
 		userService.userPhoneCheck(mobile, randomNumber);
+		return randomNumber;
+	}
+	
+//	이메일 인증
+	@RequestMapping(value="/emailCheck.do",method={RequestMethod.POST,RequestMethod.GET})
+	public int emailCheck(@RequestParam("user_email") String user_email, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		String subject = "바로입 회원가입 이메일 인증";
+		String content = "";
+		String from = "baroipweb@gmail.com";
+		String to = user_email;
+		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
+		
+		try {
+			MimeMessage mail = mailSender.createMimeMessage();
+			MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");;
+			content = "바로입 회원가입을 감사드립니다. 이메일 인증 번호는 " + randomNumber + " 입니다.";
+            mailHelper.setFrom(from);
+            // 빈에 아이디 설정한 것은 단순히 smtp 인증을 받기 위해 사용 따라서 보내는이(setFrom())반드시 필요
+            // 보내는이와 메일주소를 수신하는이가 볼때 모두 표기 되게 원하신다면 아래의 코드를 사용하시면 됩니다.
+            //mailHelper.setFrom("보내는이 이름 <보내는이 아이디@도메인주소>");
+            mailHelper.setTo(to);
+            mailHelper.setSubject(subject);
+            mailHelper.setText(content, true);
+            // true는 html을 사용하겠다는 의미입니다.
+            
+            mailSender.send(mail);
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 		return randomNumber;
 	}
 	
