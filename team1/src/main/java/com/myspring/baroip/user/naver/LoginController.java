@@ -1,5 +1,7 @@
 package com.myspring.baroip.user.naver;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -26,6 +28,7 @@ public class LoginController {
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 	
+	@Autowired
 	private UserService userService;
 
 	@Autowired
@@ -38,7 +41,6 @@ public class LoginController {
 	public @ResponseBody ModelAndView naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		//1. 로그인 사용자 정보를 읽어온다.
@@ -63,18 +65,25 @@ public class LoginController {
 		String mobile_2 = mobile[1];
 		String mobile_3 = mobile[2];
 		
-		
-		
 		UserVO userVO = new UserVO();
+		userVO.setUser_id(email);
 		userVO.setUser_email(email);
 		userVO.setUser_name(userName);
 		userVO.setUser_mobile_1(mobile_1);
 		userVO.setUser_mobile_2(mobile_2);
 		userVO.setUser_mobile_3(mobile_3);
 		
-		userService.naverLogin(userVO);
-		System.out.println("apiResult" + apiResult);
-		System.out.println(email);
+		String naverUser = userService.userIdOverlap(email);
+		
+		if(naverUser.equals("true") != true) {
+			userService.naverLogin(userVO);
+		}
+		
+		userVO.setUser_rank("1");
+		session.setAttribute("loginOn", true);
+		// 회원정보 세션 set
+		session.setAttribute("userInfo",userVO);
+		
 		mav.addObject("result", apiResult);
 		mav.setViewName("redirect:/main.do");
 		return mav;

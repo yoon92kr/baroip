@@ -17,7 +17,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 
 
-@Service("UserService")
+@Service("userService")
 @Transactional(propagation=Propagation.REQUIRED)
 public class UserServiceImpl implements UserService {
 	
@@ -50,8 +50,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void naverLogin(UserVO userVO) throws Exception {
 		userDAO.addNaverUser(userVO);
-		System.out.println("userServiceNaver : " + userVO.getUser_id());
-		System.out.println("userServiceNaver : " + userVO.getUser_name());
 	}
 	
 //	핸드폰 인증

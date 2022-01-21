@@ -54,6 +54,7 @@
 		]]>
 	</insert>
 	
+	<!-- naver아이디 -->
 	<insert id="insertNaverUser" parameterType="UserVO">
 		<![CDATA[
 			insert into user (user_id, 
@@ -62,14 +63,18 @@
 								 user_mobile_1, 
 								 user_mobile_2, 
 								 user_mobile_3, 
-								 user_email)
-							values(#{user_email}, 
-									#{user_name}, 
-									now(), 
-									#{user_mobile_1}, 
-									#{user_mobile_2}, 
-									#{user_mobile_3}, 
-									#{user_email})
+								 user_email, 
+								 user_rank, 
+								 user_membership)
+						values (#{user_id}, 
+								#{user_name}, 
+								now(), 
+								#{user_mobile_1}, 
+								#{user_mobile_2}, 
+								#{user_mobile_3}, 
+								#{user_email}, 
+								1, 
+								1)
 		]]>
 	</insert>
 
@@ -92,7 +97,7 @@
 	</insert>
 	
 	<!-- 비회원 주문시 생성된 아이디 조회 -->
-	<select id="selectGuestId" parameterType="String">
+	<select id="selectGuestId" resultType="String">
 		<![CDATA[
 			select max(user_id) from user where user_id like 'guest%' limit 1
 		]]>

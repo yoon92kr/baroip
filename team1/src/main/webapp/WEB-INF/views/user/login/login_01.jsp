@@ -31,7 +31,7 @@
 			<form id="login_01_loginForm" name="Login_01_LoginForm" method="post">
 				<input class="login_01-id-box" name="user_id" type="text"
 					placeholder="아이디(이메일)를 입력해주세요."> 
-				<input class="login_01-pwd-box" name="user_pw" type="password" onkeypress="if(event.keyCode == 13)loginBtn();"
+				<input id="login_01_pwd" class="login_01-pwd-box" name="user_pw" type="password" onkeypress="if(event.keyCode == 13)loginBtn();"
 					placeholder="비밀번호를 입력해주세요."><br> 
 				<input class="login_01-btn" type="button" value="로그인" onclick="loginBtn();">
 				
@@ -86,12 +86,14 @@
 <script type="text/javascript">
 		
 	function loginBtn() {
+		
 		let loginForm = document.Login_01_LoginForm;
 		let user_id = loginForm.user_id.value;
 		let user_pw = loginForm.user_pw.value;
 		
 		loginForm.action="${contextPath}/user/login.do";
 		loginForm.submit();
+		
 	}
 
 </script>
