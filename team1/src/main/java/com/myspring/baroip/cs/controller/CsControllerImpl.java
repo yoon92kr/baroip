@@ -19,6 +19,7 @@ import com.myspring.baroip.adminNotice.controller.AdminNoticeController;
 import com.myspring.baroip.adminNotice.service.AdminNoticeService;
 import com.myspring.baroip.notice.service.NoticeService;
 import com.myspring.baroip.notice.vo.NoticeVO;
+import com.myspring.baroip.user.service.UserService;
 
 @Controller("csController")
 @RequestMapping(value = "/cs")
@@ -32,6 +33,8 @@ public class CsControllerImpl implements CsController {
 	NoticeVO noticeVO;
 	@Autowired
 	AdminNoticeController adminNoticeController;
+	@Autowired
+	private UserService userService;
 	
 	// cs 전체 매핑 컨트롤러
 	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
@@ -130,9 +133,9 @@ public class CsControllerImpl implements CsController {
 		String user_id = noticeVO.getUser_id();
 		
 		if(user_id == null || user_id == "") {
-			// 비회원 생성 서비스 호출
-			// String guest_id = userService.guestJoin();
-			// noticeVO.setUser_id(guest_id);
+			
+			user_id = userService.guestJoin();
+			noticeVO.setUser_id(user_id);
 		}
 		
 		String message = adminNoticeService.addNotice(noticeVO);

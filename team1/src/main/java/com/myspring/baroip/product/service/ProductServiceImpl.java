@@ -95,43 +95,30 @@ public class ProductServiceImpl implements ProductService {
 		
 		// 이미지정보 / 상품정보를 담을 객체 생성
 		Map<String, Map<String, Object>> productInfo= new HashMap<String, Map<String, Object>>();
-		// 이미지 정보를 불러올 option 객체 생성
-		Map<String, String> option = new HashMap<String, String>();
-			
-		option.put("match_id", product_id);
+
 		// jsp에서 sub이미지의 갯수만큼 반복문 사용을 위한 카운트 변수
 
-		// 카테고리 정보를 담을 객체 생성 및 상품에 해당하는 이미지 카테고리 대입
-		List<String> categoryList = imageService.selectImageCategory(product_id);
 		Map<String, Object> item = new HashMap<String, Object>();
 		List<String> imageList = new ArrayList<String>();
-		
-		
-		Map<String, String> imageArray = new HashMap<String, String>();
 
-		imageArray.put("start", product_id);
-		imageArray.put("end", product_id);
 		
-		List<ImageVO> imageLists = imageService.selectAllImage(imageArray);	
+		List<ImageVO> detailImage = imageService.selectImgOne(product_id);	
 		
-		for (int i = 0 ; i<categoryList.size() ; i++) {
+		for (int i = 0 ; i<detailImage.size() ; i++) {
 			
-			option.put("image_category", categoryList.get(i));
-			ImageVO productImage = imageService.selectProductImage(option);
+			String encodeImage = Base64.getEncoder().encodeToString(detailImage.get(i).getImage_file());
 			
-			String encodeImage = Base64.getEncoder().encodeToString(productImage.getImage_file());
-			if (categoryList.get(i).contains("body")) {
+			if (detailImage.get(i).getImage_category().contains("body")) {
 				imageList.add(encodeImage);
 
 			} else {
-				item.put(categoryList.get(i), encodeImage);
+				item.put(detailImage.get(i).getImage_category(), encodeImage);
 			}
 
 		}
 		
 		item.put("body", imageList);
-		productInfo.put("image", item);
-		
+				
 		ProductVO product = productDAO.selectProduct(product_id);
 		String body = product.getProduct_body().replaceAll("(\r\n|\r|\n|\n\r)", "&#10;");
 		product.setProduct_body(body);

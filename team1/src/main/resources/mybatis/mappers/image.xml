@@ -83,7 +83,7 @@
 
 	</delete>
 	
-		<!-- image_match_id에 연관된 image_category 추출 쿼리 -->
+	<!--main 관련 특정 범위 내 이미지 선택 쿼리 -->	
 	<select id="selectAllImage" resultType="imageVO" parameterType="java.util.Map">
 
 		<![CDATA[
@@ -92,6 +92,17 @@
 			where image_match_id like concat('product', '%') 
 			and image_category = 'main'
 			and image_match_id between #{start} and #{end}
+		]]>
+
+	</select>
+	
+	<!--단일 상품에 연관된 이미지 선택 쿼리 -->	
+	<select id="selectImgOne" resultType="imageVO" parameterType="java.lang.String">
+
+		<![CDATA[
+			select image_match_id, image_file, image_category 
+			from image 
+			where image_match_id = #{product_id}
 		]]>
 
 	</select>

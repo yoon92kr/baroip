@@ -47,7 +47,7 @@
 
 		<div class="row">
 			<div class="col-lg-3 offset-lg-1 order_01-content-item-img">
-				<img class="cart_image_clip" src="data:image/jpeg;base64,${itemList[key].image.main}" alt="상품 이미지"> 
+				<img class="cart_image_clip" src="data:image/jpeg;base64,${itemList[key].product.main}" alt="상품 이미지"> 
 				<span class="order_img_to_title">${itemList[key].product.productVO.product_main_title}</span>
 			</div>
 			<div class="col-lg-1 text-center order_01-content-item">
@@ -587,6 +587,7 @@
 	function order_to_dbms(order_id, payMent) {
 
 		   let product_id = document.getElementsByName("product_id");
+		   let user_id = "${userInfo.user_id}";
 		   let productList = new Array();
 		   let order_point = document.getElementsByName('order_payment_point')[0].value;
 		   for(i=0 ; i<product_id.length ; i++) {
@@ -597,6 +598,10 @@
 			   order_point = 0;
 		   }
 		   
+		   if(${userInfo.user_id == null}) {
+			   user_id = "guest";
+		   }
+		   
 			$.ajax({
 				type : "post",
 				async : false,
@@ -604,7 +609,7 @@
 				dataType : "text",
 				data : {
 					"order_payment" : payMent,
-					"user_id" : '${userInfo.user_id}',
+					"user_id" : user_id,
 					"order_product_list" : JSON.stringify(productList),
 					"order_id" : order_id,
 					"order_receiver_name" : document.getElementsByName('order_receiver_name')[0].value,

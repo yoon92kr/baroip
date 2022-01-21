@@ -30,6 +30,7 @@ import com.myspring.baroip.cart.vo.CartVO;
 import com.myspring.baroip.order.service.OrderService;
 import com.myspring.baroip.order.vo.OrderVO;
 import com.myspring.baroip.product.service.ProductService;
+import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
 @Controller("orderController")
@@ -40,6 +41,8 @@ public class OrderControllerImpl implements OrderController {
 	private ProductService productService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private UserService userService;
 
 	// Order ÀüÃ¼ mapping
 	@Override
@@ -113,8 +116,9 @@ public class OrderControllerImpl implements OrderController {
 
 				}
 				else {
+					int direct_amount = Integer.parseInt(request.getParameter("order_count_direct"));
 					Map<String, Object> order_amount = new HashMap<String, Object>();
-					order_amount.put("order_amount", 1);
+					order_amount.put("order_amount", direct_amount);
 					productInfo.put("count", order_amount);	
 				}
 				productList.put("product" + (i + 1), productInfo);
@@ -193,7 +197,13 @@ public class OrderControllerImpl implements OrderController {
 	@ResponseBody
 	@RequestMapping(value = "/order_product.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
 	public void orderProduct(@ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception{
+		
 		String order_id = orderVO.getOrder_id();
+		String user_id = orderVO.getUser_id();
+		
+		if(user_id.equals("guest")) {
+			user_id = userService.guestJoin();
+		}
 		
 		for(int i = 0; order_product_list.size() > i; i++) {
 			String productToAmount = order_product_list.get(i).replace("\"", "").replace("[", "").replace("]", "");
@@ -203,6 +213,7 @@ public class OrderControllerImpl implements OrderController {
 			orderVO.setOrder_id(order_id+'_'+i);
 			orderVO.setProduct_id(splitParam[0]);
 			orderVO.setOrder_amount(amount);
+			orderVO.setUser_id(user_id);
 		
 
 			orderService.addOrder(orderVO);

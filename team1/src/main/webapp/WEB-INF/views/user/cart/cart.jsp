@@ -59,7 +59,7 @@
                      </div>
                      <div class="col-lg-2 text-center cart_body">
                         <a href="${contextPath}/product/productDetail.do?product_id=${userCartListInfo[cart].product.productVO.product_id}">
-                           <img class="cart_image_clip" src="data:image/jpeg;base64,${userCartListInfo[cart].image.main}" alt="장바구니 상품 이미지">
+                           <img class="cart_image_clip" src="data:image/jpeg;base64,${userCartListInfo[cart].product.main}" alt="장바구니 상품 이미지">
                         </a>
                      </div>
                      <div class="col-lg-3 text-center cart_body">

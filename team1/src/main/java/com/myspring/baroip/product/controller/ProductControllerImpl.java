@@ -116,7 +116,7 @@ public class ProductControllerImpl implements ProductController {
 		}
 		
 		HttpSession session = request.getSession();
-		String mainImg = (String) productInfo.get("image").get("main");
+		String mainImg = (String) productInfo.get("product").get("main");
 		List<String> lastImage = new ArrayList<String>();
 		List<String> lastProduct = new ArrayList<String>();
 		

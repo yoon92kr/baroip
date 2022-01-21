@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="VO" value="${productInfo.product.productVO}" />
-<c:set var="Img" value="${productInfo.image}" />
+<c:set var="Img" value="${productInfo.product}" />
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-3 offset-lg-1 product_02_main_img">
@@ -251,15 +251,23 @@
 	
 	// 바로구매 스크립트
 	function submitOrder(product_id) {
+		var count = parseInt(document.getElementById('cart_item_count').value, 10);
 		var form = document.createElement("form");
+		
 		form.setAttribute("charset", "UTF-8");
 	    form.setAttribute("method", "Post");
 	    form.setAttribute("action", "${contextPath}/order/order_form.do");
-
+	    
 	    var hiddenField = document.createElement("input");
 	    hiddenField.setAttribute("type", "hidden");
 	    hiddenField.setAttribute("name", "product_id");
 	    hiddenField.setAttribute("value", product_id);
+	    form.appendChild(hiddenField);
+	    
+	    var hiddenField = document.createElement("input");
+	    hiddenField.setAttribute("type", "hidden");
+	    hiddenField.setAttribute("name", "order_count_direct");
+	    hiddenField.setAttribute("value", count);
 	    form.appendChild(hiddenField);
  
 	    document.body.appendChild(form);

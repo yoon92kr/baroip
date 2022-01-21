@@ -65,7 +65,13 @@ public class ImageDAOImpl implements ImageDAO {
 		
 	}
 	
-	
+	@Override
+	public List<ImageVO> selectImgOne (String product_id) throws DataAccessException {
+		
+		List<ImageVO> imageList = sqlSession.selectList("mapper.image.selectImgOne", product_id);
+		
+		return imageList;
+	}
 	
 
 }

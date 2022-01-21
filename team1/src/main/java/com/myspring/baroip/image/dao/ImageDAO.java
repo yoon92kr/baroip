@@ -27,4 +27,6 @@ public interface ImageDAO {
 	public void clearBodyImage(String match_id) throws DataAccessException;
 	
 	public List<ImageVO> selectAllImage(Map<String, String> option) throws DataAccessException;
+	
+	public List<ImageVO> selectImgOne (String product_id) throws DataAccessException;
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +64,14 @@ public class ImageServiceImpl implements ImageService {
 	public List<ImageVO> selectAllImage(Map<String, String> option) throws Exception {
 
 		List<ImageVO> imageList = imageDAO.selectAllImage(option);
+
+		return imageList;
+	}
+	
+	@Override
+	public List<ImageVO> selectImgOne (String product_id) throws DataAccessException {
+		
+		List<ImageVO> imageList = imageDAO.selectImgOne(product_id);
 
 		return imageList;
 	}

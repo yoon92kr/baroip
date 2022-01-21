@@ -5,6 +5,8 @@ package com.myspring.baroip.image.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.dao.DataAccessException;
+
 import com.myspring.baroip.image.vo.ImageVO;
 
 public interface ImageService {
@@ -21,4 +23,5 @@ public interface ImageService {
 	
 	
 	public List<ImageVO> selectAllImage(Map<String, String> option) throws Exception;
+	public List<ImageVO> selectImgOne (String product_id) throws DataAccessException;
 }
