@@ -52,8 +52,11 @@
 							#{user_mobile_1}, #{user_mobile_2}, #{user_mobile_3}, 
 							#{user_email}, 1, 1)
 		]]>
-		<if test="user_id == null">
-				insert into user (user_id, 
+	</insert>
+	
+	<insert id="insertNaverUser" parameterType="UserVO">
+		<![CDATA[
+			insert into user (user_id, 
 								 user_name, 
 								 user_last_date, 
 								 user_mobile_1, 
@@ -67,8 +70,7 @@
 									#{user_mobile_2}, 
 									#{user_mobile_3}, 
 									#{user_email})
-								 
-		</if>
+		]]>
 	</insert>
 
 	<!-- 아이디 유일성 체크 쿼리문 -->

@@ -1,78 +1,81 @@
 package com.myspring.baroip.user.naver;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
+/**
+ * Handles requests for the application home page.
+ */
 @Controller("naverController")
 @RequestMapping(value="/user/naver")
 public class LoginController {
-	@RequestMapping(value = "/naverCallBack.do", method=RequestMethod.GET)
-	public ModelAndView naverCallBack(HttpServletRequest request, 
-			HttpServletResponse response) throws Exception {
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+	
+	private UserService userService;
+
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+
+//네이버 로그인 성공시 callback호출 메소드
+	@RequestMapping(value = "/naverCallBack.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody ModelAndView naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
-		String clientId = "metNeTJSOQeJYHhl4Gnd";
-		String clientSecret = "3aIeVQlJZY";
-		String code = request.getParameter("code");
-		String state = request.getParameter("state");
-		String redirectURI = URLEncoder.encode("http://localhost:8080/baroip/main.do", "UTF-8");
-		String apiURL;
-		apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
-		apiURL += "client_id=" + clientId;
-		apiURL += "&client_secret=" + clientSecret;
-		apiURL += "&redirect_uri=" + redirectURI;
-		apiURL += "&code=" + code;
-		apiURL += "&state=" + state;
-		String access_token = "";
-		String refresh_token = "";
-		System.out.println("apiURL=" + apiURL);
-		try {
-			URL url = new URL(apiURL);
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("GET");
-			int responseCode = con.getResponseCode();
-			BufferedReader br;
-			System.out.println("responseCode=" + responseCode);
-			if (responseCode == 200) { // 정상 호출
-				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			} else { // 에러 발생
-				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-			}
-			String inputLine;
-			StringBuffer res = new StringBuffer();
-			while ((inputLine = br.readLine()) != null) {
-				res.append(inputLine);
-			}
-			br.close();
-			if (responseCode == 200) {
-				System.out.println(res.toString());
-				JSONParser parsing = new JSONParser();
-				Object obj = parsing.parse(res.toString());
-				JSONObject jsonObj = (JSONObject)obj;
-					        
-				access_token = (String)jsonObj.get("access_token");
-				refresh_token = (String)jsonObj.get("refresh_token");
-				UserProfile.profile(access_token);
-				
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		System.out.println("여기는 callback");
+		OAuth2AccessToken oauthToken;
+		oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		//1. 로그인 사용자 정보를 읽어온다.
+		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
+		/**
+		 * apiResult json 구조 {"resultcode":"00", "message":"success",
+		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+		 **/
+		//2. String형식인 apiResult를 json형태로 바꿈
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(apiResult);
+		JSONObject jsonObj = (JSONObject) obj;
+	//3. 데이터 파싱
+	//Top레벨 단계 _response 파싱
+		JSONObject response_obj = (JSONObject) jsonObj.get("response");
+
+		String email = (String) response_obj.get("email");
+		String mobileNumber = (String) response_obj.get("mobile");
+		String userName = (String) response_obj.get("name");
+		String mobile[] = mobileNumber.split("-");
+		String mobile_1 = mobile[0];
+		String mobile_2 = mobile[1];
+		String mobile_3 = mobile[2];
+		
+		
+		
+		UserVO userVO = new UserVO();
+		userVO.setUser_email(email);
+		userVO.setUser_name(userName);
+		userVO.setUser_mobile_1(mobile_1);
+		userVO.setUser_mobile_2(mobile_2);
+		userVO.setUser_mobile_3(mobile_3);
+		
+		userService.naverLogin(userVO);
+		System.out.println("apiResult" + apiResult);
+		System.out.println(email);
+		mav.addObject("result", apiResult);
 		mav.setViewName("redirect:/main.do");
 		return mav;
 	}

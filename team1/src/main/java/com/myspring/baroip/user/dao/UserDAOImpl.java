@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 //	naver로그인 아이디 생성
 	@Override
 	public void addNaverUser(UserVO userVO) throws DataAccessException {
-		sqlSession.insert("mapper.user.insertNewUser");
+		sqlSession.insert("mapper.user.insertNaverUser");
 	}
 	
 //	비회원 주문시 아이디 생성

@@ -1,11 +1,6 @@
 // 2021.12.04 한건희
 package com.myspring.baroip.user.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.baroip.user.naver.NaverLoginBO;
 import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
@@ -33,6 +29,15 @@ public class UserControllerImpl implements UserController{
 	private UserService userService;
 	@Autowired
 	private UserVO userVO;
+	
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
 	
 //		user 전체적인 접근
 		@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -69,6 +74,23 @@ public class UserControllerImpl implements UserController{
 			mav.addObject("message", message);
 			mav.setViewName("/user/login_01");
 		}
+		return mav;
+	}
+	
+//	네이버 로그인시 필요 값
+	@RequestMapping(value = "login_01.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView naverLogin(HttpSession session, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+	//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+	//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		System.out.println("네이버:" + naverAuthUrl);
+		//네이버
+		mav.addObject("url", naverAuthUrl);
+		mav.setViewName(viewName);
 		return mav;
 	}
 	
