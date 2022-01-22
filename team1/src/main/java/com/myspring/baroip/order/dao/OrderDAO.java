@@ -9,8 +9,10 @@ import com.myspring.baroip.order.vo.OrderVO;
 
 public interface OrderDAO {
 	
+	// 카트 product_id 에 해당하는 count select DAO
 	public int selectCount(CartVO cartVO) throws DataAccessException;
 	
+	// 주문 추가 DAO
 	public void addOrder(OrderVO orderVO) throws DataAccessException;
 
 }

@@ -56,14 +56,14 @@ public class ProductServiceImpl implements ProductService {
 
 			ProductVO product = bestProducts.get(i);
 			
-			if (product != null) {
+			if (product != null) {			
 				
 				String match_id = product.getProduct_id();
 				String encodeImage = "";
 				
 				for(int j=0 ; j<imageList.size(); j++) {
-					if(imageList.get(j).getImage_match_id().equals(match_id)) {
-						
+					
+					if(imageList.get(j).getImage_match_id().equals(match_id)) {						
 						encodeImage = Base64.getEncoder().encodeToString(imageList.get(j).getImage_file());
 					}
 				}
@@ -80,9 +80,8 @@ public class ProductServiceImpl implements ProductService {
 
 				bestProductInfo.put("product" + (i+1), productInfo);
 				
+				}
 			}
-
-		}
 		}
 
 		return bestProductInfo;

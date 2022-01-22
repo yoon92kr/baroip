@@ -17,6 +17,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	// 카트 product_id 에 해당하는 count select DAO
 	@Override
 	public int selectCount(CartVO cartVO) throws DataAccessException {
 		int count = sqlSession.selectOne("mapper.order.cartCount", cartVO);
@@ -24,6 +25,7 @@ public class OrderDAOImpl implements OrderDAO {
 		return count;
 	}
 	
+	// 주문 추가 DAO
 	@Override
 	public void addOrder(OrderVO orderVO) throws DataAccessException {
 		
