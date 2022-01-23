@@ -656,3 +656,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	color:#999;
 	display:none;
 }
+
+.admin_user_margin_left {
+	margin-left : 60px;
+}

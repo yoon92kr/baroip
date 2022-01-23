@@ -186,7 +186,7 @@
 			* 핸드폰 번호</div>
 		<div class="col-lg-9 join_02-main-right">
 
-			<select class="join_02-mobile" id="receiver_mobile_1" name="order_receiver_mobile_1">
+			<select class="join_02-mobile admin_user_margin_left" id="receiver_mobile_1" name="order_receiver_mobile_1">
 				<option value="010">010</option>
 				<option value="011">011</option>
 				<option value="016">016</option>

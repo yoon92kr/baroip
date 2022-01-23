@@ -150,10 +150,9 @@
 	</c:if>
 
 	<c:if test="${not empty itemList}">
-		<c:forEach var="i" begin="1" end="${itemSize}">
+		<c:forEach var="i" begin="0" end="${itemSize}">
 			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
-			<c:if test="${not empty itemList[j] && i <8}">
-				<input type="hidden" name="" value="${j+1}">
+			<c:if test="${not empty itemList[j] && i < pageNoMax}">
 				<div class="row">
 					<div class="col-lg-2 text-center adminUser_user_list_form">
 						<div id="user_id_${j+1}">${itemList[j].user_id}</div>
