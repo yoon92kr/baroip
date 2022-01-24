@@ -56,7 +56,7 @@ window.addEventListener('load', function() {
 							
 						<c:when test="${loginOn==true and not empty userInfo and userInfo.user_rank == 1}">
 								<a href="${contextPath}/user/logout.do" class="header-navi">로그아웃</a>
-								<a href="${contextPath}/myPage/myPage_01.do" class="header-navi" id="set_myPage">마이 페이지</a>
+								<a href="${contextPath}/myPage/myInfo.do" class="header-navi" id="set_myPage">마이 페이지</a>
 						</c:when>
 						
 						<c:otherwise>
@@ -98,7 +98,7 @@ window.addEventListener('load', function() {
 						</c:when>
 							
 						<c:when test="${loginOn==true and not empty userInfo and userInfo.user_rank == 1}">
-								<a href="${contextPath}/myPage/myPage_01.do">마이 페이지</a><br>
+								<a href="${contextPath}/myPage/myInfo.do">마이 페이지</a><br>
 						</c:when>
 						
 						<c:otherwise>

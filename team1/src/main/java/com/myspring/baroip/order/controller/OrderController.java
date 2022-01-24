@@ -22,7 +22,7 @@ public interface OrderController {
 	public ModelAndView orderForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	// 결제 컨트롤러
-	public void orderProduct(@ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception;
+	public void orderProduct(HttpServletRequest request, @ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception;
 	
 	public ModelAndView orderComplete(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 

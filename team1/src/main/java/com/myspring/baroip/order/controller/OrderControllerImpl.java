@@ -143,6 +143,12 @@ public class OrderControllerImpl implements OrderController {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		session.removeAttribute("order_return");
+		
+		if(session.getAttribute("resultOrder").equals("false")) {
+			mav.setViewName("redirect:/main.do");
+		}
+		
+		else {
 		String viewName = (String) request.getAttribute("viewName");
 		
 		Map<String, Object> returnObject = new HashMap<String, Object>();
@@ -189,35 +195,57 @@ public class OrderControllerImpl implements OrderController {
 
 		session.setAttribute("order_return", returnObject);
 		mav.setViewName(viewName);
+		}
 		return mav;
+		
 	}
 	
 	// 상품 수량 변경 컨트롤러
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/order_product.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
-	public void orderProduct(@ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception{
+	public void orderProduct(HttpServletRequest request, @ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception{
 		
+		HttpSession session = request.getSession();
+		
+		UserVO userVO = (UserVO)session.getAttribute("userInfo");
 		String order_id = orderVO.getOrder_id();
 		String user_id = orderVO.getUser_id();
+		int usePoint = orderVO.getOrder_payment_point();
 		
 		if(user_id.equals("guest")) {
 			user_id = userService.guestJoin();
 		}
 		
-		for(int i = 0; order_product_list.size() > i; i++) {
-			String productToAmount = order_product_list.get(i).replace("\"", "").replace("[", "").replace("]", "");
-			String[] splitParam = productToAmount.split("=");
-			int amount = Integer.parseInt(splitParam[1]);
+		if(userVO.getUser_point() < usePoint) {
 			
-			orderVO.setOrder_id(order_id+'_'+i);
-			orderVO.setProduct_id(splitParam[0]);
-			orderVO.setOrder_amount(amount);
-			orderVO.setUser_id(user_id);
+			session.setAttribute("resultOrder", "false");
+			
+		}
 		
+		else {
+			
+			orderService.updatePointToOrder(orderVO);
+			userVO.setUser_point(userVO.getUser_point() - usePoint);
+			session.setAttribute("userInfo", userVO);
+			
+			for(int i = 0; order_product_list.size() > i; i++) {
+				String productToAmount = order_product_list.get(i).replace("\"", "").replace("[", "").replace("]", "");
+				String[] splitParam = productToAmount.split("=");
+				int amount = Integer.parseInt(splitParam[1]);
+				
+				orderVO.setOrder_id(order_id+'_'+i);
+				orderVO.setProduct_id(splitParam[0]);
+				orderVO.setOrder_amount(amount);
+				orderVO.setUser_id(user_id);
+			
 
-			orderService.addOrder(orderVO);
-					
+				orderService.addOrder(orderVO);
+							
+		}
+		
+		
+		
 		}
 				
 	}

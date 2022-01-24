@@ -1,3 +1,5 @@
+// 2022.01.24 윤상현
+
 package com.myspring.baroip.myPage.controller;
 
 
@@ -5,31 +7,66 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.baroip.myPage.service.MyPageService;
 import com.myspring.baroip.user.vo.UserVO;
 
 
 
 @Controller("myPageController")
 @RequestMapping(value="/myPage")
-public class myPageControllerImpl{
+public class MyPageControllerImpl implements MyPageConroller{
+	
+	@Autowired
+	private MyPageService myPageService;
 
 	
 
 	// 전체 맵핑
-	@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value= "/*.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView myPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// HttpSession session;
+
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	
+	// 마이페이지 메인 컨트롤러
+	@RequestMapping(value= "/myInfo.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView myInfo(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView();
+		
+		if(session.getAttribute("userInfo") == null) {
+			mav.setViewName("redirect:/main.do");
+		}
+		
+		else {
+			
+			String viewName = (String)request.getAttribute("viewName");
+			UserVO userVO = (UserVO)session.getAttribute("userInfo");
+			
+			int orderCount = myPageService.myPageOrderCount(userVO);
+			int cartCount = myPageService.myPageCartCount(userVO);
+			
+			mav.addObject("orderCount", orderCount);
+			mav.addObject("cartCount", cartCount);
+			mav.setViewName(viewName);
+				
+		}
+		
+
+		return mav;
+	}
+	
 	
 	// 회원정보 수정
 	@RequestMapping(value= "/checkPassword.do" ,method={RequestMethod.POST,RequestMethod.GET})

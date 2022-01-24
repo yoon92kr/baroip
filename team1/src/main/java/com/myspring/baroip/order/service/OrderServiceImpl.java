@@ -3,6 +3,7 @@
 package com.myspring.baroip.order.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.myspring.baroip.cart.vo.CartVO;
@@ -31,6 +32,13 @@ public class OrderServiceImpl implements OrderService{
 		orderDAO.addOrder(orderVO);
 		System.out.printf("baroip : [%s] 주문이 완료되었습니다.%n", orderVO.getOrder_id());
 		
+	}
+	
+	// 주문시 기존 포인트 차감 Service
+	@Override
+	public void updatePointToOrder(OrderVO orderVO) throws DataAccessException {
+		
+		orderDAO.updatePointToOrder(orderVO);
 	}
 
 }

@@ -4,6 +4,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <div class="container">
@@ -14,7 +15,7 @@
     	
     	<div class="row">
     		<div class="col-lg-2 text-center"><img src="${contextPath}/resources/img/common/basic_member_icon.png" alt="마이페이지 회원등급 이미지"></div>
-    		<div class="col-lg-10 text-left MyPage_padding">환영합니다 [회원 이름] 님!</div>
+    		<div class="col-lg-10 text-left MyPage_padding">환영합니다 ${userInfo.user_name} 님!</div>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>
@@ -33,10 +34,21 @@
     		
     		<div class="MyPage_01_content MyPage_01_subtitle">
     		<div class="row">
-    			<a href="#" class="col-lg-3 text-center">[현재 회원등급]</a>
-        		<a href="#" class="col-lg-3 text-center">[회원 주문내역 건수]</a>
-        		<a href="#" class="col-lg-3 text-center">[회원 장바구니 건수]</a>
-        		<a href="#" class="col-lg-3 text-center">[회원 잔여 포인트]</a>
+    			<c:if test='${userInfo.user_membership == 1}'>
+    				<a href="#" class="col-lg-3 text-center">일반 회원</a>
+    			</c:if>
+    			<c:if test='${userInfo.user_membership == 2}'>
+    				<a href="#" class="col-lg-3 text-center">우수 회원</a>
+    			</c:if>  
+    			<c:if test='${userInfo.user_membership == 3}'>
+    				<a href="#" class="col-lg-3 text-center">단골 회원</a>
+    			</c:if>
+    			<c:if test='${userInfo.user_membership == 4}'>
+    				<a href="#" class="col-lg-3 text-center">FLEX 회원</a>
+    			</c:if>     			  			
+        		<a href="#" class="col-lg-3 text-center">${orderCount} 건</a>
+        		<a href="${contextPath}/cart/cartList.do" class="col-lg-3 text-center">${cartCount} 건</a>
+        		<a href="#" class="col-lg-3 text-center"><fmt:formatNumber value="${userInfo.user_point}" /> 원</a>
     		</div>
     		
     		

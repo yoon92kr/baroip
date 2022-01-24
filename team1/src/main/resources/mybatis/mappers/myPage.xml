@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 2022.01.24 윤상현 -->
+<mapper namespace="mapper.myPage">
+
+	<!-- 장바구니 수량 조회 쿼리 -->
+	<select id="myPageCartCount" resultType="java.lang.Integer" parameterType="userVO">
+
+		select if(sum(cart_count), sum(cart_count), 0) as 'cartCount' from cart where user_id = #{user_id}
+
+	</select>
+
+	<select id="myPageOrderCount" resultType="java.lang.Integer" parameterType="userVO">
+
+		select count(*) from orders where user_id = #{user_id} and order_state between 0 and 3
+
+	</select>
+
+</mapper>

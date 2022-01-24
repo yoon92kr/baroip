@@ -33,5 +33,12 @@ public class OrderDAOImpl implements OrderDAO {
 		
 
 	}
+	
+	// 주문시 기존 포인트 차감 DAO
+	@Override
+	public void updatePointToOrder(OrderVO orderVO) throws DataAccessException {
+		
+		sqlSession.update("mapper.order.updatePointToOrder", orderVO);
+	}
 
 }

@@ -11,6 +11,16 @@
 			select cart_count from cart where user_id = #{user_id} and product_id = #{product_id}
 
 	</select>
+	
+	<!-- 주문시 기존 포인트 차감 쿼리 -->
+	<update id="updatePointToOrder" parameterType="OrderVO">
+
+		update user
+		set user_point = user_point - #{order_payment_point}
+		where	 
+		user_id = #{user_id}
+
+	</update>
 
 	<!-- 주문 등록 쿼리 -->
 	<insert id="addOrder" parameterType="OrderVO">
