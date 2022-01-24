@@ -52,5 +52,12 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return guestId;
 	}
+	
+//	아이디 찾기
+	@Override
+	public String userIdFind(UserVO userVO) throws DataAccessException {
+		String result = sqlSession.selectOne("mapper.user.selectUserIdFind", userVO);
+		return result;
+	}
 
 }

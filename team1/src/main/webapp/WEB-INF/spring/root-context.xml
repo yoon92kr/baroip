@@ -40,7 +40,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
-	<!-- naver메일 설정 -->
+	<!-- gmail 설정 -->
 	<bean id="mailSender2"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />

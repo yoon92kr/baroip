@@ -8,10 +8,15 @@
 	background: #fff;
 }
 
+.login_02_btn {
+	margin-top: 40px;
+}
+
 /* product_01 검색창 추가 */
 .product_01_search-box {
 	padding-left: 55px;
 }
+
 /* join_02 비밀번호 옆 text 추가 */
 .join_02_pass_info {
 	color: #ff0000;
@@ -161,7 +166,7 @@
 .login_02-pwd-btn-01, .login_02-pwd-btn-02 {
 	width: 43%;
 	margin-bottom: 60px;
-    margin-top: 110px;
+    margin-top: 40px;
 }
 
 .login_02-pwd-btn-01 {

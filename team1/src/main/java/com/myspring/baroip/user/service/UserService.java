@@ -19,4 +19,7 @@ public interface UserService {
 	
 //	핸드폰 인증
 	public void userPhoneCheck(String mobile, int randomNumber);
+	
+//	아이디 찾기
+	public String userIdFind(UserVO userVO) throws Exception;
 }

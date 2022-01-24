@@ -1,6 +1,7 @@
 // 2021.12.04 한건희
 package com.myspring.baroip.user.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
@@ -38,22 +39,21 @@ public class UserControllerImpl implements UserController{
 	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
-	private String apiResult = null;
 
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
 	
-//		user 전체적인 접근
-		@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
-		public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws Exception{
-			
-			ModelAndView mav = new ModelAndView();
-			String viewName = (String)request.getAttribute("viewName");
-			mav.setViewName(viewName);
-			return mav;
-		}
+//	user 접근
+	@RequestMapping(value= "/*" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
 	
 //	로그인
 	@Override
@@ -142,6 +142,7 @@ public class UserControllerImpl implements UserController{
 	}
 	
 //	이메일 인증
+	@Override
 	@RequestMapping(value="/emailCheck.do",method={RequestMethod.POST,RequestMethod.GET})
 	public int emailCheck(@RequestParam("user_email") String user_email, HttpServletRequest request, HttpServletResponse response)throws Exception {
 		String subject = "바로입 회원가입 이메일 인증";
@@ -171,24 +172,9 @@ public class UserControllerImpl implements UserController{
 		return randomNumber;
 	}
 	
-////	비회원 주문시 아이디 생성
-////	@Override
-//	@RequestMapping(value="/guestLogin.do" ,method = RequestMethod.POST)
-//	public String guestLogin (HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		response.setContentType("text/html; charset=UTF-8");
-//		request.setCharacterEncoding("utf-8");
-////		ModelAndView mav = new ModelAndView();
-//		HttpSession session=request.getSession();
-////		String lastViewName = (String)request.getAttribute("lastViewName");
-//		userService.createGuestId();
-//		session.setAttribute("loginOn", true);
-//		session.setAttribute("userInfo",userVO);
-//		return "guest";
-//	}
-	
 //	아이디 중복 검사
 	@Override
-	@RequestMapping(value="/userIdOverlap.do" ,method = RequestMethod.POST)
+	@RequestMapping(value="/userIdOverlap.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ResponseEntity resEntity = null;
@@ -196,5 +182,99 @@ public class UserControllerImpl implements UserController{
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
+	
+//	아이디 찾기
+	@Override
+	@RequestMapping(value="/userIdFind.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView userIdFind(@RequestParam("user_name") String user_name, @RequestParam("user_mobile") String user_mobile, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = new ModelAndView();
+		
+		String mobile[] = user_mobile.split("-");
+		String mobile_1 = mobile[0];
+		String mobile_2 = mobile[1];
+		String mobile_3 = mobile[2];
+		
+		userVO.setUser_name(user_name);
+		userVO.setUser_mobile_1(mobile_1);
+		userVO.setUser_mobile_2(mobile_2);
+		userVO.setUser_mobile_3(mobile_3);
+		
+		String user_id = userService.userIdFind(userVO);
+		
+		if(user_id != "" && user_id != null) {
+			Map<String, String> findUser = new HashMap<String, String>();
+			findUser.put("user_name", user_name);
+			findUser.put("user_id", user_id);
+			mav.addObject("findUser", findUser);
+			mav.setViewName("/user/login_03");
+		} else {
+			String message = "입력하신 정보와 일치하는 아이디가 없습니다.";
+			mav.addObject("message", message);
+			mav.setViewName("/user/login_02");
+		}
+		return mav;
+	}
+	
+//	비밀번호 찾기
+	@RequestMapping(value= "/userPwdFind.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView userPwdFind(@RequestParam("user_id") String user_id, String pwdFindType, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		userVO.setUser_id(user_id);
+//		이메일 인증
+		if(pwdFindType.contains("@")) {
+			userVO.setUser_email(pwdFindType);
+			String subject = "바로입 비밀번호 찾기 이메일 인증";
+			String content = "";
+			String from = "baroipweb@gmail.com";
+			String to = pwdFindType;
+			int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
+			
+			try {
+				MimeMessage mail = mailSender.createMimeMessage();
+				MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");;
+				content = "바로입 비밀번호 찾기 이메일 인증 입니다. 이메일 인증 번호는 " + randomNumber + " 입니다.";
+	            mailHelper.setFrom(from);
+	            // 빈에 아이디 설정한 것은 단순히 smtp 인증을 받기 위해 사용 따라서 보내는이(setFrom())반드시 필요
+	            // 보내는이와 메일주소를 수신하는이가 볼때 모두 표기 되게 원하신다면 아래의 코드를 사용하시면 됩니다.
+	            //mailHelper.setFrom("보내는이 이름 <보내는이 아이디@도메인주소>");
+	            mailHelper.setTo(to);
+	            mailHelper.setSubject(subject);
+	            mailHelper.setText(content, true);
+	            // true는 html을 사용하겠다는 의미입니다.
+	            
+	            mailSender.send(mail);
+	            
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+			
+//		핸드폰 번호 인증
+		} else {
+			
+			String mobileNumber = pwdFindType.replace("-", "");
+			int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
+			userService.userPhoneCheck(mobileNumber, randomNumber);
+			
+			
+			String mobile[] = pwdFindType.split("-");
+			String mobile_1 = mobile[0];
+			String mobile_2 = mobile[1];
+			String mobile_3 = mobile[2];
+			
+			userVO.setUser_mobile_1(mobile_1);
+			userVO.setUser_mobile_2(mobile_2);
+			userVO.setUser_mobile_3(mobile_3);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	
 }

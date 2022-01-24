@@ -18,4 +18,7 @@ public interface UserDAO {
 
 //	naver로그인 아이디 생성
 	public void addNaverUser(UserVO userVO) throws DataAccessException;
+	
+//	아이디 찾기
+	public String userIdFind(UserVO userVO) throws DataAccessException;
 }

@@ -29,7 +29,6 @@
 			select * from user 
 			 where user_id=#{user_id}
 			 and user_pw=#{user_pw}
-			 
 		]]>
 	</select>
 	
@@ -100,6 +99,21 @@
 	<select id="selectGuestId" resultType="String">
 		<![CDATA[
 			select max(user_id) from user where user_id like 'guest%' limit 1
+		]]>
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="selectUserIdFind" resultType="String" parameterType="UserVO">
+		<![CDATA[
+			select user_id from user where user_name = #{user_name} and user_mobile_1 = #{user_mobile_1}
+											and user_mobile_2 = #{user_mobile_2} and user_mobile_3 = #{user_mobile_3}
+		]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectUserPwdFind" resultType="String" parameterType="UserVO">
+		<![CDATA[
+			select user_pwd from user where user_id = #{user_id} andin 
 		]]>
 	</select>
 </mapper>

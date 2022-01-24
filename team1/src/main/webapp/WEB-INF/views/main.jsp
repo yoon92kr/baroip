@@ -193,7 +193,7 @@
 											"product_id" : product_id,
 											"cart_count" : 1,
 										},success : function() {
-											alert("추가 완료");
+											
 										}
 									}).error(function() {
 											alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
@@ -233,7 +233,7 @@
 											"product_id" : product_id,
 											"cart_count" : 1,
 										},success : function() {
-											alert("추가 완료");
+											
 											}
 										}).error(function() {
 											alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');

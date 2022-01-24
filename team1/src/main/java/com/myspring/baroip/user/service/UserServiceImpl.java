@@ -74,5 +74,11 @@ public class UserServiceImpl implements UserService {
 			System.out.println(e.getCode());
 		}
 	}
+	
+//	아이디 찾기
+	@Override
+	public String userIdFind(UserVO userVO) throws Exception {
+		return userDAO.userIdFind(userVO);
+	}
 
 }
