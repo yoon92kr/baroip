@@ -41,7 +41,6 @@ public class MainController {
 	public ModelAndView popUp(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
 		ModelAndView mav = new ModelAndView();
-
 		String viewName = (String)request.getAttribute("viewName");
 
 		mav.setViewName(viewName);

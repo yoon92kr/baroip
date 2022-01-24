@@ -12,6 +12,19 @@
 <c:set var="pageNoMax" value="3" />
 <!-- itemList에는 표시할 item의 size를 대입한다. -->
 <c:set var="itemList" value="${bestProducts.size()}" />
+<c:if test='${cookie.mainPop.value ne "none"}'>
+	<script>
+		window.addEventListener('load', function() {
+		
+		var url = "${contextPath}/popUp.do";
+		var name = "바로입 프로젝트";
+		var option = "width = 500, height = 500, top = 200, left = 700, location = no, directories = no, resizable = no, menubar = no, scrollbars = no, toolbars = no, status = no";
+
+		window.open(url, name, option);
+		});
+	</script>
+</c:if>
+
 
 <div class="main-section">
 	<div class="container-fluid">
@@ -133,8 +146,6 @@
 </div>
 
 <script type="text/javascript">
-	window.addEventListener('load', popUp());
-
 	$(document).ready(function() {
 		$('.post-wrapper').slick({
 			slidesToShow : 1,
@@ -146,15 +157,7 @@
 		});
 	});
 
-	function popUp() {
 
-		var url = "${contextPath}/popUp.do";
-		var name = "바로입 프로젝트";
-		var option = "width = 500, height = 500, top = 200, left = 700, location = no, directories = no, resizable = no, menubar = no, scrollbars = no, toolbars = no, status = no";
-
-		window.open(url, name, option);
-
-	}
 </script>
 <!-- 2022.01.10 한건희 -->
 <c:if test="${not empty bestProducts}">
@@ -168,87 +171,101 @@
 				if (notUser == false) {
 					location = '${contextPath}/user/login_01.do';
 				} else {
-					$.ajax({
-						url : "${contextPath}/cart/addProductInCart.do",
-						type : "GET",
-						dataType : "text",
-						data : {
-							"product_id" : product_id,
-							"cart_count" : 1
-						},
-						success : function(find) {
-							let cartGo;
-							let cartIn;
-							/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
-							if (find == "overLapProduct") {
-								cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
-								if (cartIn == true) {
-									$.ajax({
-										url : '${contextPath}/cart/cartInProductOverLap.do',
-										type : 'GET',
-										dataType : 'text',
+					$
+							.ajax(
+									{
+										url : "${contextPath}/cart/addProductInCart.do",
+										type : "GET",
+										dataType : "text",
 										data : {
 											"product_id" : product_id,
-											"cart_count" : 1,
+											"cart_count" : 1
 										},
-										success : function() {
+										success : function(find) {
+											let cartGo;
+											let cartIn;
+											/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
+											if (find == "overLapProduct") {
+												cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
+												if (cartIn == true) {
+													$
+															.ajax(
+																	{
+																		url : '${contextPath}/cart/cartInProductOverLap.do',
+																		type : 'GET',
+																		dataType : 'text',
+																		data : {
+																			"product_id" : product_id,
+																			"cart_count" : 1,
+																		},
+																		success : function() {
+																		}
+																	})
+															.error(
+																	function() {
+																		alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
+																	});
+												}
+											} else {
+												cartGo = confirm(product_title
+														+ "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+												if (cartGo == true) {
+													location = '${contextPath}/cart/cartList.do';
+												}
 											}
-									}).error(function() {
-										alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
-									});
-								}
-							} else {
-								cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
-								if (cartGo == true) {
-									location = '${contextPath}/cart/cartList.do';
-								}
-							}
-						}
-					}).error(function() {
-				alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
-					});
-				}
-			} else {
-				$.ajax({
-					url : "${contextPath}/cart/addProductInCart.do",
-					type : "GET",
-					dataType : "text",
-					data : {
-						"product_id" : product_id,
-						"cart_count" : 1
-					},
-					success : function(find) {
-						let cartGo;
-						let cartIn;
-						/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
-						if (find == "overLapProduct") {
-							cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
-							if (cartIn == true) {
-								$.ajax({
-									url : '${contextPath}/cart/cartInProductOverLap.do',
-									type : 'GET',
-									dataType : 'text',
-									data : {
-										"product_id" : product_id,
-										"cart_count" : 1,
-									},
-									success : function() {
 										}
 									}).error(function() {
-										alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
-									});
-								}
-							} else {
-								cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
-								if (cartGo == true) {
-									location = '${contextPath}/cart/cartList.do';
-								}
-							}
-						}
-					}).error(function() {
-						alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
-					});
+								alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
+							});
 				}
+			} else {
+				$
+						.ajax(
+								{
+									url : "${contextPath}/cart/addProductInCart.do",
+									type : "GET",
+									dataType : "text",
+									data : {
+										"product_id" : product_id,
+										"cart_count" : 1
+									},
+									success : function(find) {
+										let cartGo;
+										let cartIn;
+										/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
+										if (find == "overLapProduct") {
+											cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
+											if (cartIn == true) {
+												$
+														.ajax(
+																{
+																	url : '${contextPath}/cart/cartInProductOverLap.do',
+																	type : 'GET',
+																	dataType : 'text',
+																	data : {
+																		"product_id" : product_id,
+																		"cart_count" : 1,
+																	},
+																	success : function() {
+																	}
+																})
+														.error(
+																function() {
+																	alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
+																});
+											}
+										} else {
+											cartGo = confirm(product_title
+													+ "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+											if (cartGo == true) {
+												location = '${contextPath}/cart/cartList.do';
+											}
+										}
+									}
+								}).error(function() {
+							alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
+						});
 			}
+		}
 	</script>
 </c:if>

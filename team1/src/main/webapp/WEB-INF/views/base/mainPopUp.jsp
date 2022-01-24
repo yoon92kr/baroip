@@ -31,10 +31,19 @@
 	<pre class="popUp_body text-left">
   ■ 마이페이지 : 주문 페이지
   ■ 상품 상세페이지 : 고객 후기, 상품 문의
-  
 </pre>
 
 	<p>2022.01.24 Team1</p>
 
+	<input type="checkbox" id="MainCheckBox" onclick="NoPopup()"> <a onclick="NoPopup()">오늘 하루동안 보지않기</a>
 </div>
 
+<script>
+	function NoPopup() {
+
+		var date = new Date();
+		date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+		document.cookie = 'mainPop=none;expires=' + date.toUTCString() + ';path=/';
+		window.close();
+	}
+</script>
