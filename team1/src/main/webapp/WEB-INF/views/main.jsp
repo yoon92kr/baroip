@@ -113,7 +113,8 @@
 
 						<div class="col-lg-3 text-right">
 							<button class="main_cartImage" id="main_cartImage${i}"
-								type="button" value="${bestProducts[key].product_id}">
+								type="button" value="${bestProducts[key].product_id}"
+								onclick="cartBTN(this);">
 								<img src="${contextPath}/resources/img/common/cart-put-icon.png"
 									alt="카트 담기 버튼 이미지">
 							</button>
@@ -132,7 +133,7 @@
 </div>
 
 <script type="text/javascript">
-	window.addEventListener('load',popUp());
+	window.addEventListener('load', popUp());
 
 	$(document).ready(function() {
 		$('.post-wrapper').slick({
@@ -144,72 +145,28 @@
 			prevArrow : $('.prev'),
 		});
 	});
-	
-    function popUp() {
-    	
-        var url = "${contextPath}/popUp.do";
-        var name = "바로입 프로젝트";
-        var option = "width = 500, height = 500, top = 200, left = 700, location = no, directories = no, resizable = no, menubar = no, scrollbars = no, toolbars = no, status = no";
-        
-        window.open(url, name, option);
-        
-    }
+
+	function popUp() {
+
+		var url = "${contextPath}/popUp.do";
+		var name = "바로입 프로젝트";
+		var option = "width = 500, height = 500, top = 200, left = 700, location = no, directories = no, resizable = no, menubar = no, scrollbars = no, toolbars = no, status = no";
+
+		window.open(url, name, option);
+
+	}
 </script>
 <!-- 2022.01.10 한건희 -->
 <c:if test="${not empty bestProducts}">
-	<c:forEach var="i" begin="1" end="${itemList}">
-		<c:set var="key" value="product${i}" />
-		<script>
-			$("#main_cartImage${i}").on("click", function(e) {
-				let product_id = $("#main_cartImage${i}").val();
-				let product_title = $("#main_bestItemTitle${i}").val();
-				let userFind = "${userInfo.user_id}";
-				/* 비로그인 시 팝업창 */
-				if (userFind == null || userFind == "") {
-					let notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
-					if (notUser == false) {
-						location = '${contextPath}/user/login_01.do';
-					} else {
-						$.ajax({
-							url : "${contextPath}/cart/addProductInCart.do",
-							type : "GET",
-							dataType : "text",
-							data : {
-								"product_id" : product_id,
-								"cart_count" : 1
-							},
-							success : function(find) {
-								let cartGo;
-								let cartIn;
-								/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
-								if (find == "overLapProduct") {
-								cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
-								if (cartIn == true) {
-									$.ajax({
-										url : '${contextPath}/cart/cartInProductOverLap.do',
-										type : 'GET',
-										dataType : 'text',
-										data : {
-											"product_id" : product_id,
-											"cart_count" : 1,
-										},success : function() {
-											
-										}
-									}).error(function() {
-											alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
-										});
-									}
-								} else {
-									cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
-									if (cartGo == true) {
-										location = '${contextPath}/cart/cartList.do';
-									}
-								}
-							}
-						}).error(function() {
-							alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
-						});
-					}
+	<script>
+		function cartBTN(item) {
+			let product_id = item.value;
+			let userFind = "${userInfo.user_id}";
+			/* 비로그인 시 팝업창 */
+			if (userFind == null || userFind == "") {
+				let notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
+				if (notUser == false) {
+					location = '${contextPath}/user/login_01.do';
 				} else {
 					$.ajax({
 						url : "${contextPath}/cart/addProductInCart.do",
@@ -218,7 +175,8 @@
 						data : {
 							"product_id" : product_id,
 							"cart_count" : 1
-						},success : function(find) {
+						},
+						success : function(find) {
 							let cartGo;
 							let cartIn;
 							/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
@@ -232,25 +190,65 @@
 										data : {
 											"product_id" : product_id,
 											"cart_count" : 1,
-										},success : function() {
-											
+										},
+										success : function() {
 											}
-										}).error(function() {
-											alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
-										});
-									}
-								} else {
-									cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
-									if (cartGo == true) {
-										location = '${contextPath}/cart/cartList.do';
-									}
+									}).error(function() {
+										alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
+									});
+								}
+							} else {
+								cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+								if (cartGo == true) {
+									location = '${contextPath}/cart/cartList.do';
 								}
 							}
-						}).error(function() {
-							alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
-						});
-					}
-				});
-		</script>
-	</c:forEach>
+						}
+					}).error(function() {
+				alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
+					});
+				}
+			} else {
+				$.ajax({
+					url : "${contextPath}/cart/addProductInCart.do",
+					type : "GET",
+					dataType : "text",
+					data : {
+						"product_id" : product_id,
+						"cart_count" : 1
+					},
+					success : function(find) {
+						let cartGo;
+						let cartIn;
+						/* 해당 상품이 장바구니에 있을 경우 수량 변경 여부 */
+						if (find == "overLapProduct") {
+							cartIn = confirm("장바구니에 해당 상품이 있습니다. 수량을 추가하시겠습니까?");
+							if (cartIn == true) {
+								$.ajax({
+									url : '${contextPath}/cart/cartInProductOverLap.do',
+									type : 'GET',
+									dataType : 'text',
+									data : {
+										"product_id" : product_id,
+										"cart_count" : 1,
+									},
+									success : function() {
+										}
+									}).error(function() {
+										alert('수량 변경이 실패했습니다. 잠시 후 다시 시도해 주세요.');
+									});
+								}
+							} else {
+								cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+								if (cartGo == true) {
+									location = '${contextPath}/cart/cartList.do';
+								}
+							}
+						}
+					}).error(function() {
+						alert('장바구니에 담기 실패했습니다. 잠시 후 다시 시도해 주세요.');
+					});
+				}
+			}
+	</script>
 </c:if>
