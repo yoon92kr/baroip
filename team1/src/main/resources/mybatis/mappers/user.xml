@@ -112,8 +112,17 @@
 	
 	<!-- 비밀번호 찾기 -->
 	<select id="selectUserPwdFind" resultType="String" parameterType="UserVO">
-		<![CDATA[
-			select user_pwd from user where user_id = #{user_id} andin 
-		]]>
+		select user_name from user where user_id = #{user_id}
+		<choose>
+			<when test='user_email != null and user_email != "" '>
+				and user_email = #{user_email}
+			</when>
+			
+			<when test='user_email == null and user_email == ""'>
+				and user_mobile_1 = #{user_mobile_1}
+				and user_mobile_2 = #{user_mobile_2}
+				and user_mobile_3 = #{user_mobile_3}
+			</when>
+		</choose>
 	</select>
 </mapper>

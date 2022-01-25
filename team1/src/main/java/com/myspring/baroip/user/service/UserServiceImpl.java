@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,6 +79,12 @@ public class UserServiceImpl implements UserService {
 //	아이디 찾기
 	@Override
 	public String userIdFind(UserVO userVO) throws Exception {
+		return userDAO.userIdFind(userVO);
+	}
+	
+//	비밀번호 찾기 전 회원 정보 일치 확인
+	@Override
+	public String inputUserCheck(UserVO userVO) throws Exception {
 		return userDAO.userIdFind(userVO);
 	}
 

@@ -59,5 +59,12 @@ public class UserDAOImpl implements UserDAO {
 		String result = sqlSession.selectOne("mapper.user.selectUserIdFind", userVO);
 		return result;
 	}
+	
+//	비밀번호 찾기 전 회원 정보 일치 확인
+	@Override
+	public String inputUserCheck(UserVO userVO) throws DataAccessException {
+		String result = sqlSession.selectOne("mapper.user.selectUserPwdFind", userVO);
+		return result;
+	}
 
 }

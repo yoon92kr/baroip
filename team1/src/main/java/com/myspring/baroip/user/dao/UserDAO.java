@@ -21,4 +21,8 @@ public interface UserDAO {
 	
 //	아이디 찾기
 	public String userIdFind(UserVO userVO) throws DataAccessException;
+	
+//	비밀번호 찾기 전 회원 정보 일치 확인
+	public String inputUserCheck(UserVO userVO) throws DataAccessException;
+	
 }

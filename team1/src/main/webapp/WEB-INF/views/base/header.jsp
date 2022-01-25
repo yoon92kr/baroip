@@ -61,7 +61,7 @@ window.addEventListener('load', function() {
 						
 						<c:otherwise>
 						<a href="${contextPath}/user/loginpage.do" class="header-navi" id="set_login">로그인</a>
-						<a href="${contextPath}/user/join_01.do" class="header-navi" id="set_join">회원가입</a>
+						<a href="${contextPath}/user/joinTerms.do" class="header-navi" id="set_join">회원가입</a>
 						</c:otherwise>
 						
 					</c:choose>

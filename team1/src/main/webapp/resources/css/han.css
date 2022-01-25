@@ -152,6 +152,11 @@
 	margin-bottom: 20px;
 }
 
+.login_02_pwd_find_check {
+	width: 45%;
+	height: 50px;
+}
+
 .login_02-btn {
 	border: none;
 	background-color: #404040;

@@ -84,7 +84,7 @@ public class UserControllerImpl implements UserController{
 	}
 	
 //	네이버 로그인시 필요 값
-	@RequestMapping(value = "loginpage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "naverLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView naverLogin(HttpSession session, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
@@ -135,16 +135,15 @@ public class UserControllerImpl implements UserController{
 //	핸드폰번호 인증
 	@Override
 	@RequestMapping(value= "/userMobileCheck.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public int userMobileCheck(@RequestParam("mobile") String mobile, HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public int userMobileCheck(@RequestParam("mobile") String mobile)throws Exception {
 		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
 		userService.userPhoneCheck(mobile, randomNumber);
 		return randomNumber;
 	}
 	
 //	이메일 인증
-	@Override
 	@RequestMapping(value="/emailCheck.do",method={RequestMethod.POST,RequestMethod.GET})
-	public int emailCheck(@RequestParam("user_email") String user_email, HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public int emailCheck(@RequestParam("user_email") String user_email)throws Exception {
 		String subject = "바로입 회원가입 이메일 인증";
 		String content = "";
 		String from = "baroipweb@gmail.com";
@@ -169,6 +168,8 @@ public class UserControllerImpl implements UserController{
         } catch(Exception e) {
             e.printStackTrace();
         }
+		
+		System.out.println("controller(email.randomNumber) : " + randomNumber);
 		return randomNumber;
 	}
 	
@@ -219,47 +220,30 @@ public class UserControllerImpl implements UserController{
 	}
 	
 //	비밀번호 찾기
+	@Override
 	@RequestMapping(value= "/userPwdFind.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView userPwdFind(@RequestParam("user_id") String user_id, String pwdFindType, 
-			HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public int userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType) throws Exception{
 		
 		userVO.setUser_id(user_id);
+		String userCheck;
+		int number;
+		System.out.println("controller : " + pwdFindType);
+		
 //		이메일 인증
 		if(pwdFindType.contains("@")) {
+			System.out.println("controller(email) : " + pwdFindType);
 			userVO.setUser_email(pwdFindType);
-			String subject = "바로입 비밀번호 찾기 이메일 인증";
-			String content = "";
-			String from = "baroipweb@gmail.com";
-			String to = pwdFindType;
-			int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
+			userCheck = userService.inputUserCheck(userVO);
 			
-			try {
-				MimeMessage mail = mailSender.createMimeMessage();
-				MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");;
-				content = "바로입 비밀번호 찾기 이메일 인증 입니다. 이메일 인증 번호는 " + randomNumber + " 입니다.";
-	            mailHelper.setFrom(from);
-	            // 빈에 아이디 설정한 것은 단순히 smtp 인증을 받기 위해 사용 따라서 보내는이(setFrom())반드시 필요
-	            // 보내는이와 메일주소를 수신하는이가 볼때 모두 표기 되게 원하신다면 아래의 코드를 사용하시면 됩니다.
-	            //mailHelper.setFrom("보내는이 이름 <보내는이 아이디@도메인주소>");
-	            mailHelper.setTo(to);
-	            mailHelper.setSubject(subject);
-	            mailHelper.setText(content, true);
-	            // true는 html을 사용하겠다는 의미입니다.
-	            
-	            mailSender.send(mail);
-	            
-	        } catch(Exception e) {
-	            e.printStackTrace();
-	        }
 			
+			if(userCheck != null && userCheck != "") {
+				number = emailCheck(pwdFindType);
+			} else {
+				number = 0;
+			}
 //		핸드폰 번호 인증
 		} else {
-			
-			String mobileNumber = pwdFindType.replace("-", "");
-			int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
-			userService.userPhoneCheck(mobileNumber, randomNumber);
-			
-			
+			System.out.println("controller(mobile) : " + pwdFindType);
 			String mobile[] = pwdFindType.split("-");
 			String mobile_1 = mobile[0];
 			String mobile_2 = mobile[1];
@@ -268,12 +252,16 @@ public class UserControllerImpl implements UserController{
 			userVO.setUser_mobile_1(mobile_1);
 			userVO.setUser_mobile_2(mobile_2);
 			userVO.setUser_mobile_3(mobile_3);
+			userCheck = userService.inputUserCheck(userVO);
+			
+			if(userCheck != null && userCheck != "") {
+				number = userMobileCheck(pwdFindType);
+			} else {
+				number = 0;
+			}
 		}
 		
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		return mav;
+		return number;
 	}
 	
 	

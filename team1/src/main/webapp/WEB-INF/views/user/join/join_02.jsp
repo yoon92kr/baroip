@@ -372,11 +372,11 @@
 			data: {
 				"mobile": mobile
 			}, success: function(randomNumber) {
-				alert("인증번호가 발송되었습니다.");
+				alert("인증번호가 전송되었습니다.");
 				document.ElementById("mobileCheckNumber").value = randomNumber.toString();
 			}
 		}).error(function() {
-			alert("번호전송 실패");
+			alert("모바일 인증 에러");
 		});
 	}
 	
@@ -392,7 +392,7 @@
 			data: {
 				"user_email": user_email.value
 			}, success: function(randomNumber) {
-				alert("인증번호가 발송되었습니다.");
+				alert("인증번호가 전송되었습니다.");
 				document.ElementById("join_02_emailCheckNum").value = randomNumber.toString();
 			}
 		}).error(function(){

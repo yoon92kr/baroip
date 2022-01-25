@@ -22,4 +22,7 @@ public interface UserService {
 	
 //	아이디 찾기
 	public String userIdFind(UserVO userVO) throws Exception;
+	
+//	비밀번호 찾기 전 회원 정보 일치 확인
+	public String inputUserCheck(UserVO userVO) throws Exception;
 }
