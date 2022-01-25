@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.user.naver.NaverLoginBO;
@@ -84,7 +85,7 @@ public class UserControllerImpl implements UserController{
 	}
 	
 //	네이버 로그인시 필요 값
-	@RequestMapping(value = "naverLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "loginpage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView naverLogin(HttpSession session, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
@@ -135,16 +136,16 @@ public class UserControllerImpl implements UserController{
 //	핸드폰번호 인증
 	@Override
 	@RequestMapping(value= "/userMobileCheck.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public int userMobileCheck(@RequestParam("mobile") String mobile)throws Exception {
+	public String userMobileCheck(@RequestParam("mobile") String mobile)throws Exception {
 		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
 		userService.userPhoneCheck(mobile, randomNumber);
-		return randomNumber;
+		return Integer.toString(randomNumber);
 	}
 	
 //	이메일 인증
 	@RequestMapping(value="/emailCheck.do",method={RequestMethod.POST,RequestMethod.GET})
-	public int emailCheck(@RequestParam("user_email") String user_email)throws Exception {
-		String subject = "바로입 회원가입 이메일 인증";
+	public String emailCheck(@RequestParam("user_email") String user_email)throws Exception {
+		String subject = "바로입 이메일 인증";
 		String content = "";
 		String from = "baroipweb@gmail.com";
 		String to = user_email;
@@ -153,7 +154,7 @@ public class UserControllerImpl implements UserController{
 		try {
 			MimeMessage mail = mailSender.createMimeMessage();
 			MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");;
-			content = "바로입 회원가입을 감사드립니다. 이메일 인증 번호는 " + randomNumber + " 입니다.";
+			content = "이메일 인증 번호는 " + randomNumber + " 입니다.";
             mailHelper.setFrom(from);
             // 빈에 아이디 설정한 것은 단순히 smtp 인증을 받기 위해 사용 따라서 보내는이(setFrom())반드시 필요
             // 보내는이와 메일주소를 수신하는이가 볼때 모두 표기 되게 원하신다면 아래의 코드를 사용하시면 됩니다.
@@ -170,7 +171,7 @@ public class UserControllerImpl implements UserController{
         }
 		
 		System.out.println("controller(email.randomNumber) : " + randomNumber);
-		return randomNumber;
+		return Integer.toString(randomNumber);
 	}
 	
 //	아이디 중복 검사
@@ -221,12 +222,13 @@ public class UserControllerImpl implements UserController{
 	
 //	비밀번호 찾기
 	@Override
+	@ResponseBody
 	@RequestMapping(value= "/userPwdFind.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public int userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType) throws Exception{
+	public String userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType) throws Exception{
 		
 		userVO.setUser_id(user_id);
 		String userCheck;
-		int number;
+		String number;
 		System.out.println("controller : " + pwdFindType);
 		
 //		이메일 인증
@@ -235,11 +237,11 @@ public class UserControllerImpl implements UserController{
 			userVO.setUser_email(pwdFindType);
 			userCheck = userService.inputUserCheck(userVO);
 			
-			
+			System.out.println("controller(email.userCheck) : " + userCheck);
 			if(userCheck != null && userCheck != "") {
 				number = emailCheck(pwdFindType);
 			} else {
-				number = 0;
+				number = "0";
 			}
 //		핸드폰 번호 인증
 		} else {
@@ -257,10 +259,10 @@ public class UserControllerImpl implements UserController{
 			if(userCheck != null && userCheck != "") {
 				number = userMobileCheck(pwdFindType);
 			} else {
-				number = 0;
+				number = "0";
 			}
 		}
-		
+		System.out.println("controller(randomNumber) : " + number);
 		return number;
 	}
 	

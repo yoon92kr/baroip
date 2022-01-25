@@ -392,6 +392,7 @@
 			data: {
 				"user_email": user_email.value
 			}, success: function(randomNumber) {
+				alert(randomNumber);
 				alert("인증번호가 전송되었습니다.");
 				document.ElementById("join_02_emailCheckNum").value = randomNumber.toString();
 			}

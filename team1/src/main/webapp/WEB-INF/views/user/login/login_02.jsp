@@ -38,7 +38,7 @@
 				<input id="pwd_randomNumber_btn" class="login_02_pwd_find_check cart_btn_green" type="button" value="인증번호 발송" onclick="userInfoCheck();">
 				<input id="pwd_randomNumInput" class="login_02-pwd-find login_02_pwd_find_check" type="hidden" placeholder="인증번호를 입력해 주세요.">
 				<input id="pwd_randomNumber" type="hidden" value=""><!-- 인증번호 확인을 위한 inputbox -->
-				<input id="pwd_randomcheck_btn" class="login_02_pwd_find_check cart_btn_green" type="hidden" value="인증번호 확인">
+				<input id="pwd_randomcheck_btn" class="login_02_pwd_find_check cart_btn_green" type="hidden" value="인증번호 확인" onclick="pwdFindNumberCheck();">
 				<input id="login_02_pwdFindMobile_btn" class="login_02-btn login_02-pwd-btn-01" type="button" value="휴대폰으로 인증하기" onclick="pwdCertification(this.id);"> 
 				<input id="login_02_pwdFindEmail_btn" class="login_02-btn login_02-pwd-btn-02" type="button" value="이메일로 인증하기" onclick="pwdCertification(this.id);">
 			</form>
@@ -67,7 +67,7 @@
 	function idFind() {
 		userName = document.getElementById("IdFindUserName");
 		userMobile = document.getElementById("idFundUserMobile");
-		findFrom = document.getElementById("userIdFindForm");
+		findIdFrom = document.getElementById("userIdFindForm");
 		
 		if(userName.value == "") {
 			alert("이름을 입력해 주세요.");
@@ -78,9 +78,9 @@
 			userMobile.focus();
 			return false;
 		} else {
-			findFrom.action = "${contextPath}/user/userIdFind.do";
-			findFrom.method = "post";
-			findFrom.submit();
+			findIdFrom.action = "${contextPath}/user/userIdFind.do";
+			findIdFrom.method = "post";
+			findIdFrom.submit();
 		}
 	} 
 
@@ -120,18 +120,30 @@
 			data: {
 				"user_id": userId.value, 
 				"pwdFindType": pwdFindType
-			}, success: function(randomNumber) {
-				alert(randomNumber);
-				if(randomNumber == 0) {
-					alert("입력하신 정보는 일치하지 않습니다.");
+			}, success: function(Num) {
+				if(Num == 0) {
+					alert("입력하신 아이디와 인증 수단이 일치하지 않습니다.");
 				} else {
 					alert("인증번호가 전송되었습니다.");
-					document.getElementById("pwd_randomNumber").value = randomNumber.toString();
+					let randoumNum = document.getElementById("pwd_randomNumber").value = Num.toString();
+					document.getElementById("pwd_randomNumInput").type="text";
+					document.getElementById("pwd_randomcheck_btn").type="button";
 				}
 			}
 		}).error(function() {
 			alert("페이지 에러");
 		});
+	}
+	
+	function pwdFindNumberCheck() {
+		let randoumNum = document.getElementById("pwd_randomNumber");
+		let randomNumInput = document.getElementById("pwd_randomNumInput");
+		
+		if(randoumNum.value == randomNumInput.value) {
+			location.href = "${contextPath}/user/login_04.do";
+		} else if(randoumNum.value != randomNumInput.value) {
+			alert("인증번호가 일치하지 않습니다.");
+		}
 		
 	}
 

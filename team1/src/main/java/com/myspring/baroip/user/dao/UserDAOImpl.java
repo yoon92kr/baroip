@@ -64,6 +64,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public String inputUserCheck(UserVO userVO) throws DataAccessException {
 		String result = sqlSession.selectOne("mapper.user.selectUserPwdFind", userVO);
+		System.out.println("userDAO : " + result);
 		return result;
 	}
 

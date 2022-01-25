@@ -85,7 +85,8 @@ public class UserServiceImpl implements UserService {
 //	비밀번호 찾기 전 회원 정보 일치 확인
 	@Override
 	public String inputUserCheck(UserVO userVO) throws Exception {
-		return userDAO.userIdFind(userVO);
+		System.out.println("service : " + userDAO.userIdFind(userVO));
+		return userDAO.inputUserCheck(userVO);
 	}
 
 }
