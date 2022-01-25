@@ -125,7 +125,7 @@ public class UserControllerImpl implements UserController{
 		try {
 			mav.addObject("user_name", user_name);
 //			System.out.println(user_name);
-			mav.setViewName("/user/join_03");
+			mav.setViewName("/user/welcomeUser");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -170,7 +170,6 @@ public class UserControllerImpl implements UserController{
             e.printStackTrace();
         }
 		
-		System.out.println("controller(email.randomNumber) : " + randomNumber);
 		return Integer.toString(randomNumber);
 	}
 	
@@ -211,11 +210,11 @@ public class UserControllerImpl implements UserController{
 			findUser.put("user_name", user_name);
 			findUser.put("user_id", user_id);
 			mav.addObject("findUser", findUser);
-			mav.setViewName("/user/login_03");
+			mav.setViewName("/user/findUserId");
 		} else {
 			String message = "입력하신 정보와 일치하는 아이디가 없습니다.";
 			mav.addObject("message", message);
-			mav.setViewName("/user/login_02");
+			mav.setViewName("/user/findUserInfoPage");
 		}
 		return mav;
 	}
@@ -224,28 +223,26 @@ public class UserControllerImpl implements UserController{
 	@Override
 	@ResponseBody
 	@RequestMapping(value= "/userPwdFind.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public String userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType) throws Exception{
+	public String userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType, HttpServletRequest request) throws Exception{
+		
+		HttpSession session=request.getSession();
 		
 		userVO.setUser_id(user_id);
 		String userCheck;
 		String number;
-		System.out.println("controller : " + pwdFindType);
 		
 //		이메일 인증
 		if(pwdFindType.contains("@")) {
-			System.out.println("controller(email) : " + pwdFindType);
 			userVO.setUser_email(pwdFindType);
 			userCheck = userService.inputUserCheck(userVO);
 			
-			System.out.println("controller(email.userCheck) : " + userCheck);
 			if(userCheck != null && userCheck != "") {
 				number = emailCheck(pwdFindType);
 			} else {
 				number = "0";
 			}
 //		핸드폰 번호 인증
-		} else {
-			System.out.println("controller(mobile) : " + pwdFindType);
+		} else if(pwdFindType.contains("-")) {
 			String mobile[] = pwdFindType.split("-");
 			String mobile_1 = mobile[0];
 			String mobile_2 = mobile[1];
@@ -261,10 +258,22 @@ public class UserControllerImpl implements UserController{
 			} else {
 				number = "0";
 			}
+		} else {
+			number = "0";
 		}
-		System.out.println("controller(randomNumber) : " + number);
+		if(number.equals("0") != true) {
+			session.setAttribute("user_id", user_id);
+		}
+		
 		return number;
 	}
 	
+//	비밀번호 찾기 후 비밀번호 변경
+	@Override
+	@RequestMapping(value= "/changeUserPwdInput.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public String changeUserPwd(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw) throws Exception {
+		
+		return "";
+	}
 	
 }

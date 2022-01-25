@@ -64,7 +64,13 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public String inputUserCheck(UserVO userVO) throws DataAccessException {
 		String result = sqlSession.selectOne("mapper.user.selectUserPwdFind", userVO);
-		System.out.println("userDAO : " + result);
+		return result;
+	}
+	
+//	비밀번호 찾기 후 비밀번호 변경
+	@Override
+	public int updateFindUserPwd(UserVO userVO) throws DataAccessException {
+		int result = sqlSession.update("mapper.user.updateUserPwd", userVO);
 		return result;
 	}
 

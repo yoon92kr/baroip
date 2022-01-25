@@ -44,7 +44,10 @@ public interface UserController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 //	비밀번호 찾기
-	public String userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType) throws Exception;
+	public String userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType, HttpServletRequest request) throws Exception;
+	
+//	비밀번호 찾기 후 비밀번호 변경
+	public String changeUserPwd(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw) throws Exception;
 	
 }
 

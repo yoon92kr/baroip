@@ -65,6 +65,7 @@
 
 	/* 아이디 찾기 */
 	function idFind() {
+		
 		userName = document.getElementById("IdFindUserName");
 		userMobile = document.getElementById("idFundUserMobile");
 		findIdFrom = document.getElementById("userIdFindForm");
@@ -82,6 +83,7 @@
 			findIdFrom.method = "post";
 			findIdFrom.submit();
 		}
+		
 	} 
 
 	/* 비밀번호 찾기 인증수단 일치 확인 */
@@ -133,14 +135,17 @@
 		}).error(function() {
 			alert("페이지 에러");
 		});
+		
 	}
 	
+	/* 인증번호 일치 확인 */
 	function pwdFindNumberCheck() {
+		
 		let randoumNum = document.getElementById("pwd_randomNumber");
 		let randomNumInput = document.getElementById("pwd_randomNumInput");
 		
 		if(randoumNum.value == randomNumInput.value) {
-			location.href = "${contextPath}/user/login_04.do";
+			location.href = "${contextPath}/user/changeUserPwd.do";
 		} else if(randoumNum.value != randomNumInput.value) {
 			alert("인증번호가 일치하지 않습니다.");
 		}
@@ -166,6 +171,7 @@
 			userMobile.style.disabled= true;
 			userEmail.style.disabled = false;
 		}
+		
 	}
 	
 </script>

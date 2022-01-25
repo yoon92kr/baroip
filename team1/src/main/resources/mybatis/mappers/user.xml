@@ -125,4 +125,12 @@
 			</when>
 		</choose>
 	</select>
+	
+	<!-- 비밀번호 찾기 인증 성공시 비밀번호 변경 -->
+	<update id="updateUserPwd" parameterType="UserVO">
+		<![CDATA[
+			update user set user_pw = #{user_pw} where user_id = #{user_id}
+		]]>
+	</update>
+	
 </mapper>

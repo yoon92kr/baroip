@@ -186,7 +186,7 @@
 				인증 번호
 			</div>
 			<div class="col-lg-7 join_02-main-right">
-				<input id="mobileNumber" class="join_02-text-box" type="number"> 
+				<input id="mobileNumber" class="join_02-text-box" type="text"> 
 				<input id="mobileCheckNumber" type="hidden">
 				<input id="randomNumberCheck" class="join_02-submit-box" type="button" value="인증번호 확인" onclick="checkMobile();">
 			</div>
@@ -252,6 +252,7 @@
 <script type="text/javascript">
 
 	function joinFormCheck() {
+		
 		let user_id = document.getElementById("join_02_user_new_id");
 		let user_pwd = document.getElementById("join_02_password");
 		let check_pwd = document.getElementById("join_02_passowrd_check");
@@ -306,6 +307,14 @@
 		} else if(detailAddr.value == "") {
 			alert("상세주소를 입력해 주세요.");
 			detailAddr.focus();
+			return false;
+		} else if(checkMobile() == false) {
+			alert("핸드폰 인증이 실패했습니다.");
+			document.ElementById("mobileNumber").focus();
+			return false;
+		} else if(checkmail() == false) {
+			alert("이메일 인증이 실패했습니다.");
+			document.ElementById("join_02_emailCheck").focus();
 			return false;
 		}
 		
@@ -407,10 +416,12 @@
 		let user_number = document.getElementById("join_02_emailCheck");
 		let randomNumber = document.ElementById("join_02_emailCheckNum");
 		
-		if(user_number.value != randomNumber.value) {
-			alert("인증번호가 맞지 않습니다.");
-		} else {
+		if(user_number.value == randomNumber.value) {
 			alert("인증이 완료되었습니다.");
+			return true;
+		} else {
+			alert("인증번호가 맞지 않습니다.");
+			return false;
 		}
 	}
 	
@@ -419,10 +430,12 @@
 		let user_number = document.getElementById("mobileNumber");
 		let randomNumber = document.getElementById("mobileCheckNumber");
 		
-		if(user_number.value != randomNumber.value) {
-			alert("인증번호가 맞지 않습니다.");
-		} else {
+		if(user_number.value == randomNumber.value) {
 			alert("인증이 완료되었습니다.");
+			return true;
+		} else {
+			alert("인증번호가 맞지 않습니다.");
+			return false;
 		}
 	}
 

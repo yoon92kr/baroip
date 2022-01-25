@@ -14,18 +14,41 @@
 		<div class="col-lg-4"></div>
 	</div>
 	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 offset-lg-4">
 			<h3 class="sub-title login_04-sub-title">신규 비밀번호 설정</h3>
-			<form action="${contextPath}/user/login_05.do">
-				<input class="login_01-pwd-box" type="password"
-					placeholder="새로운 비밀번호를 입력해주세요."> 
-				<input class="login_01-pwd-box" type="password"
-					placeholder="비밀번호를 다시 입력해주세요.">
+			<form id="changePwdForm">
+				<input id="login_inputPwd" class="login_01-pwd-box" type="password" placeholder="새로운 비밀번호를 입력해주세요."> 
+				<input id="login_inputCheck" class="login_01-pwd-box" type="password" placeholder="비밀번호를 다시 입력해주세요.">
 				<br> 
-				<input class="login_01-btn login_04-btn" type="submit" value="비밀번호 변경하기">
+				<input id="changePwdBtn" class="login_01-btn login_04-btn" type="button" value="비밀번호 변경하기" onclick="changeBtn();">
 			</form>
 		</div>
-		<div class="col-lg-4"></div>
 	</div>
 </div>
+
+<script>
+	function changeBtn() {
+		
+		let form = document.getElementByid("changePwdForm");
+		let user_id = "${user_id}";
+		let user_pw = document.getElementByid("login_inputPwd");
+		let check = document.getElementByid("login_inputCheck");
+		
+		if(user_pw == "") {
+			alert("비밀번호를 입력해 주세요.");
+			user_pw.focus();
+			false;
+		} else if(check == "") {
+			alert("비밀번호 확인란을 입력해 주세요.");
+			check.focus();
+			false;
+		} else if(user_pw.value != check.value) {
+			alert("입력하신 비밀번호가 동일하지 않습니다.");
+			false;
+		} else {
+			
+		}
+		
+		
+	}
+</script>

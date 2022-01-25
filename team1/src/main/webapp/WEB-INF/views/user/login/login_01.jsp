@@ -37,7 +37,7 @@
 				
 			</form>
 			<p class="login_01-id-pwd-find">
-				<a href="${contextPath}/user/login_02.do">아이디 / 비밀번호 찾기</a>
+				<a href="${contextPath}/user/findUserInfoPage.do">아이디 / 비밀번호 찾기</a>
 			</p>
 		</div>
 	</div>
