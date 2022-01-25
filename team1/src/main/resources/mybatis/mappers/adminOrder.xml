@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 2022.01.10 윤상현 -->
+
+<mapper namespace="mapper.adminOrder">
+
+	<resultMap id="orderResult" type="java.util.Map">
+	
+		<result property="order_id" column="order_id" />
+		<result property="user_id" column="user_id" />
+		<result property="product_id" column="product_id" />
+		<result property="order_amount" column="order_amount" />
+		<result property="order_date" column="order_date" />
+		<result property="order_state" column="order_state" />
+		<result property="product_main_title" column="product_main_title" />
+		<result property="product_price" column="product_price" />
+		<result property="product_discount" column="product_discount" />
+
+	</resultMap>
+
+	<select id="selectOrderToOption" resultMap="orderResult" parameterType="java.util.Map">
+
+		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id
+
+	</select>
+</mapper>

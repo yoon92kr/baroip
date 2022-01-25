@@ -27,6 +27,16 @@ public class UserVO {
 	private String user_email;
 	private int user_total_count;
 	private int user_total_amount;
+	private int user_total_point;
+
+	
+	public int getUser_total_point() {
+		return user_total_point;
+	}
+
+	public void setUser_total_point(int user_total_point) {
+		this.user_total_point = user_total_point;
+	}
 
 	public int getUser_total_count() {
 		return user_total_count;

@@ -16,9 +16,8 @@
 }
 
 .MyPage_padding { /* .order_01-sub-title-page 참고 <h6> 사용 */
-	padding-top: 30px;
-	height: 80px;
-	font-size: 22px;
+margin-top: 60px;
+	font-size: 17px;
 }
 
 .MyPage_side-section a {
@@ -319,7 +318,7 @@
 
 .MyPage_03_yeer {
 	border: 1px solid #d9d9d9;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .MyPage_03_month {

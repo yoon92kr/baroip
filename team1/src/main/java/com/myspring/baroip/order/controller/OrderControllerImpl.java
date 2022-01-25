@@ -143,11 +143,14 @@ public class OrderControllerImpl implements OrderController {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		session.removeAttribute("order_return");
-		
-		if(session.getAttribute("resultOrder").equals("false")) {
-			mav.setViewName("redirect:/main.do");
+		if(session.getAttribute("resultOrder") != null) {
+			
+			if(session.getAttribute("resultOrder").equals("false")) {
+				mav.setViewName("redirect:/main.do");
+			}
+						
 		}
-		
+
 		else {
 		String viewName = (String) request.getAttribute("viewName");
 		

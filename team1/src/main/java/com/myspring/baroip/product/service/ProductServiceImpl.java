@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
 				
 				// 상품 내용과 이미지를 담을 객체 생성
 				Map<String, Object> productInfo = new HashMap<String, Object>();
-			
+							
 				productInfo.put("product_main_title", product.getProduct_main_title());
 				productInfo.put("product_sub_title", product.getProduct_sub_title());
 				productInfo.put("product_price", product.getProduct_price());
@@ -136,26 +136,25 @@ public class ProductServiceImpl implements ProductService {
 
 		// 옵션에 따른 상품리스트 선택
 		List<ProductVO> productList = productDAO.productListToOption(option);
-		
-		
-		
-		List<Integer> product_id_list = new ArrayList<Integer>();
-		Map<String, String> imageArray = new HashMap<String, String>();
-		
-		for(ProductVO item : productList) {
-			product_id_list.add(Integer.parseInt(item.getProduct_id().split("_")[1]));
-		}
-
-		imageArray.put("start", "product_"+Collections.min(product_id_list));
-		imageArray.put("end", "product_"+Collections.max(product_id_list));
-		
-		List<ImageVO> imageList = imageService.selectAllImage(imageArray);
-		
-		
+						
 		// 페이지에 호출할 상품정보 + 이미지를 담을 객체 생성
 		Map<String, Map<String, Object>> fullProductList = new HashMap<String, Map<String, Object>>();
 			
 		if(productList != null && !productList.isEmpty() ) {
+			
+			
+			List<Integer> product_id_list = new ArrayList<Integer>();
+			Map<String, String> imageArray = new HashMap<String, String>();
+			
+			for(ProductVO item : productList) {
+				product_id_list.add(Integer.parseInt(item.getProduct_id().split("_")[1]));
+			}
+
+			imageArray.put("start", "product_"+Collections.min(product_id_list));
+			imageArray.put("end", "product_"+Collections.max(product_id_list));
+					
+			List<ImageVO> imageList = imageService.selectAllImage(imageArray);
+			
 		for (int i = 0; i < productList.size(); i++) {
 			ProductVO product = productList.get(i);
 			String encodeImage = "";
@@ -174,7 +173,6 @@ public class ProductServiceImpl implements ProductService {
 				Map<String, Object> productInfo = new HashMap<String, Object>();
 				
 				// byte[] 자료를 img 태그에 사용가능하도록 encode
-							
 				productInfo.put("product_main_title", product.getProduct_main_title());
 				productInfo.put("product_sub_title", product.getProduct_sub_title());
 				productInfo.put("product_price", product.getProduct_price());
