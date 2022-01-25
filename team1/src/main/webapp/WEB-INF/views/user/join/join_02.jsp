@@ -188,7 +188,7 @@
 			<div class="col-lg-7 join_02-main-right">
 				<input id="mobileNumber" class="join_02-text-box" type="number"> 
 				<input id="mobileCheckNumber" type="hidden">
-				<input id="randomNumberCheck" class="join_02-submit-box" type="button" value="인증번호 확인" onclick="checkNumber();">
+				<input id="randomNumberCheck" class="join_02-submit-box" type="button" value="인증번호 확인" onclick="checkMobile();">
 			</div>
 		</div>
 
@@ -413,8 +413,8 @@
 		}
 	}
 	
-	/* 인증번호 확인 */
-	function checkNumber() {
+	/* 모바일 인증번호 확인 */
+	function checkMobile() {
 		let user_number = document.getElementById("mobileNumber");
 		let randomNumber = document.getElementById("mobileCheckNumber");
 		

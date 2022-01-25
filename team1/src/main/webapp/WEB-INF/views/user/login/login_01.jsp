@@ -62,7 +62,7 @@
 			<br>
 			<p class="login_01-join-text">
 				바로입이 처음이신가요? 
-				<a href="${contextPath}/user/join_01.do">회원가입하기</a>
+				<a href="${contextPath}/user/joinTerms.do">회원가입하기</a>
 			</p>
 		</div>
 	</div>

@@ -32,7 +32,7 @@
         <div class="col-lg-6">
         <!-- 로그인 페이지 하단 버튼 -->
         	<div class="login_03-bottom-btn">
-	        	<a class="login_03-login-page-btn" href="${contextPath}/user/login_01.do">
+	        	<a class="login_03-login-page-btn" href="${contextPath}/user/loginpage.do">
 					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/login_page_btn.png" alt="아이디찾기 페이지_로그인페이지 이동 버튼 이미지">
 			     </a>
         	</div>

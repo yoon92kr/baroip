@@ -78,13 +78,13 @@ public class UserControllerImpl implements UserController{
 		else {
 			String message = "아이디나  비밀번호가 틀립니다. 다시 로그인해주세요.";
 			mav.addObject("message", message);
-			mav.setViewName("/user/login_01");
+			mav.setViewName("/user/loginpage");
 		}
 		return mav;
 	}
 	
 //	네이버 로그인시 필요 값
-	@RequestMapping(value = "login_01.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "loginpage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView naverLogin(HttpSession session, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */

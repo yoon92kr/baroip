@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	
-	<form action="${contextPath}/user/join_02.do" name="checkForm" method="post" 
+	<form action="${contextPath}/user/inputUserInfo.do" name="checkForm" method="post" 
 		onSubmit="return CheckForm(this)">
 		<div class="row">
 			<div class="col-lg-10 offset-lg-1">

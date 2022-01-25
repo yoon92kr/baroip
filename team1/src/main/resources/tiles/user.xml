@@ -14,7 +14,7 @@
 		<put-attribute name="chat" value="" />
 	</definition>
 
-	<definition name="/user/login_01" extends="UserLayout">
+	<definition name="/user/loginpage" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/login/login_01.jsp" />
 	</definition>
 
@@ -34,11 +34,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/login/login_05.jsp" />
 	</definition>
 
-	<definition name="/user/join_01" extends="UserLayout">
+	<definition name="/user/joinTerms" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/join/join_01.jsp" />
 	</definition>
 
-	<definition name="/user/join_02" extends="UserLayout">
+	<definition name="/user/inputUserInfo" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/join/join_02.jsp" />
 	</definition>
 

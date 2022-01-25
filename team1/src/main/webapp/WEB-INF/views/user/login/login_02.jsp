@@ -43,7 +43,7 @@
 
 	<div class="row">
 		<div class="col-lg-4 offset-lg-4 text-center">
-			<a href="${contextPath}/user/login_01.do"> 
+			<a href="${contextPath}/user/loginpage.do"> 
 				<input class="cart_btn_gray login_02_btn" type="button" value="로그인 페이지">
 			</a>
 		</div>
