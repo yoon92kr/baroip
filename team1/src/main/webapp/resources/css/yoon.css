@@ -660,3 +660,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .admin_user_margin_left {
 	margin-left : 60px;
 }
+
+.admin_order_content_info {
+	padding-top: 10px;
+	border-bottom: 1px solid;
+	height:50px;
+}

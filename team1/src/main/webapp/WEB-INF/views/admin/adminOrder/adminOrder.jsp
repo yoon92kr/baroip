@@ -115,7 +115,7 @@
 	        <h6 class="order_01-content-hedaer-text">회원아이디</h6>
 	    </div>
 	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-	        <h6 class="order_01-content-hedaer-text">주문 내역</h6>
+	        <h6 class="order_01-content-hedaer-text">주문 번호</h6>
 	    </div>
 	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">수량</h6>
@@ -142,28 +142,37 @@
 			<c:if test="${not empty itemList[j] && i < pageNoMax}">
 		
 	<div class="row">
-        <div class="col-lg-2 text-center adminProduct_01-content-item">
+	<input type="hidden" value="${itemList[j].order_id }" id="orderID_${j}">
+        <div class="col-lg-2 text-center admin_order_content_info">
         	<div>${itemList[j].user_id}</div>
         </div>
-        <div class="col-lg-2 text-center order_01-content-item">
-        	${itemList[j].product_main_title}
+        <div class="col-lg-2 text-center admin_order_content_info">
+        	${itemList[j].order_id}
         </div>
-        <div class="col-lg-2 text-center order_01-content-item">
+        <div class="col-lg-2 text-center admin_order_content_info">
         	<fmt:formatNumber value="${itemList[j].order_amount}" /> 개
         </div>
-        <div class="col-lg-2 text-center order_01-content-item">
+        <div class="col-lg-2 text-center admin_order_content_info">
         	<fmt:formatNumber value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" /> 원
         </div>
-        <div class="col-lg-2 text-center order_01-content-item">
+        <div class="col-lg-2 text-center admin_order_content_info">
         	${itemList[j].order_date}
         </div>
-        <div class="col-lg-2 text-center order_01-content-item">
-        		<select name="yeer" class="MyPage_03_yeer text-center">
-        			<option value="none">[배송 상태]</option>
-        			<option value="상품준비중">[상품 준비 중]</option>
-	        		<option value="상품배송중">[상품 배송 중]</option>
+      
+        <div class="col-lg-2 text-center admin_order_content_info">
+        	<c:if test='${itemList[j].order_state == 0}'>
+        		<select name="yeer" class="MyPage_03_yeer text-center" id="orderState_${j}">
+        			<option value="0">상품 준비중</option>
+	        		<option value="1">상품 배송중</option>
         		</select>
-        	<input class="AdminOrder_boxsize" type="button" value="변경">
+        		<input class="AdminOrder_boxsize" id="updateBtn_${j}" type="button" value="변경" onclick="update_state(this.id)">
+        	</c:if>
+        	<c:if test='${itemList[j].order_state == 1}'>
+        		<div class="text-center"> 상품 배송중 </div>
+        	</c:if>    
+        	<c:if test='${itemList[j].order_state == 2}'>
+        		<div class="text-center"> 배송 완료 </div>
+        	</c:if>         	    	
         </div>
     </div>
 			</c:if>
@@ -201,3 +210,79 @@
     
 </div>
 
+<script>
+
+/* 주문 상태 수정 ajax */
+
+function update_state(target) {
+		var strArray = target.split('_');
+		var target_no = strArray[1];
+		
+		let order_id = document.getElementById('orderID_'.concat(target_no)).value;
+		let orderState = document.getElementById('orderState_'.concat(target_no)).value;
+		
+		if(orderState == 0) {
+			alert("주문의 상태를 변경해주세요.")
+		}
+		
+		else {
+			let delivery_id = prompt("주문 번호 "+order_id+" 의 운송장 번호를 입력해주세요");
+			
+			$.ajax({
+				type : "post",
+				async : false,
+				url : "${contextPath}/admin/order/update_state.do",
+				dataType : "text",
+				data : {
+					"order_id" : order_id,
+					"delivery_id" : delivery_id
+				},
+				success : function(message) {
+					alert(message);
+			 		location.reload();
+				},
+				error : function() {
+					alert("주문상태 변경에 문제가 발생하였습니다.");
+				}
+
+			});			
+		}
+		
+	
+	}
+//페이지 이동 스크립트
+function pageMove(no) {
+	var getValue = 0;
+	var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
+	if(no == "이전" || no == "다음") {
+		var uriValue = window.location.search;
+		
+		var array = uriValue.split("pageNo=");
+		if(array[1] == "" || array[1] == null) {
+			array[1] = 1;
+		}
+		getValue = array[1];
+	}
+	
+	if(no == "이전") {
+		if(getValue == 1) {
+			alert("마지막 페이지 입니다.");
+		}
+		else {
+		document.location='${contextPath}/admin/order/order_list.do?pageNo='+(--getValue);
+		}
+	}
+	else if (no == "다음") {
+		if(getValue == lastPage) {
+			alert("마지막 페이지 입니다.");
+		}
+		else {
+		document.location='${contextPath}/admin/order/order_list.do?pageNo='+(++getValue);
+		}
+	}
+	else {
+		document.location='${contextPath}/admin/order/order_list.do?pageNo='+no;
+	}
+}
+
+</script>

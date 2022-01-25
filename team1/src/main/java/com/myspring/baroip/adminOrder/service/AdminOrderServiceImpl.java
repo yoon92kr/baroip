@@ -27,4 +27,12 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		
 		return orderList;
 	}
+	
+	// 주문 상태 변경서비스
+	@Override
+	public void updateState(Map<String, String> option) throws Exception {
+		
+		adminOrderDAO.updateState(option);
+		
+	}
 }

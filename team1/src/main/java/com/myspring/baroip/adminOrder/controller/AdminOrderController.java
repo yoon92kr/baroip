@@ -18,4 +18,7 @@ public interface AdminOrderController {
 	//  관리자 페이지 주문 관리 리스트
 	public ModelAndView orderList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	// 주문 상태 수정 컨트롤러
+	public String update_amount(@RequestParam Map<String, String> info) throws Exception;
+	
 }

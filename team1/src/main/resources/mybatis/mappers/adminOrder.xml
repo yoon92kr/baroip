@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 2022.01.10 윤상현 -->
+<!-- 2022.01.25 윤상현 -->
 
 <mapper namespace="mapper.adminOrder">
 
+	<!-- 주문정보와 상품정보를 담기 위한 ResultMap -->
 	<resultMap id="orderResult" type="java.util.Map">
 	
 		<result property="order_id" column="order_id" />
@@ -18,9 +19,22 @@
 
 	</resultMap>
 
+	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
 	<select id="selectOrderToOption" resultMap="orderResult" parameterType="java.util.Map">
 
 		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id
 
 	</select>
+	
+	<!-- 주문 상태 변경 쿼리 -->
+	<update id="updateState" parameterType="java.util.Map">
+
+		update orders
+		set order_state=1,
+		delivery_id = #{delivery_id}
+		where	 
+		order_id=#{order_id}
+
+	</update>
+
 </mapper>

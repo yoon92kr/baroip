@@ -25,4 +25,11 @@ public class AdminOrderDAOImpl implements AdminOrderDAO {
 
 		return orderList;
 	}
+	
+	// 주문 상태 변경 DAO
+	@Override
+	public void updateState(Map<String, String> option) throws DataAccessException {
+		sqlSession.update("mapper.adminOrder.updateState", option);
+		
+	}
 }

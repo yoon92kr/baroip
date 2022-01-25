@@ -28,6 +28,15 @@ public class OrderVO {
 	private String order_payment_card;
 	private String order_message;
 	private int order_payment_point;
+	private String order_delivery_id;
+	
+	
+	public String getOrder_delivery_id() {
+		return order_delivery_id;
+	}
+	public void setOrder_delivery_id(String order_delivery_id) {
+		this.order_delivery_id = order_delivery_id;
+	}
 	public String getOrder_id() {
 		return order_id;
 	}

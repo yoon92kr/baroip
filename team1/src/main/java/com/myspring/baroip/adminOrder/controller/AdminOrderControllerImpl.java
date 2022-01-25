@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminOrder.service.AdminOrderService;
@@ -67,6 +68,22 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 		mav.addObject("orderList", orderList);
 		return mav;
 
+	}
+	
+	// 주문 상태 수정 컨트롤러
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/update_state.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
+	public String update_amount(@RequestParam Map<String, String> info) throws Exception {
+
+		String order_id = info.get("order_id");
+		String delivery_id = info.get("delivery_id");
+		
+		String message = "주문 번호 ["+order_id+"] 의 상태가 배송중으로 변경 되었습니다.";
+
+		System.out.printf("baorip : [%s]의 배송 상태가 [배송중]으로 변경되었습니다.%n", order_id);
+
+		return message;
 	}
 
 
