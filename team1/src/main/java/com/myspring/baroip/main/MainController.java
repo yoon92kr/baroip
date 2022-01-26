@@ -48,10 +48,10 @@ public class MainController {
 		return mav;
 	}
 	
-	@RequestMapping("**/favicon.ico")
-	public String favicon() {
-		return "forward:/resources/img/common/favicon.png";
-	}
+	//@RequestMapping("**/favicon.ico")
+	//public String favicon() {
+	//	return "forward:/resources/img/common/favicon.png";
+	//}
 	
 		
 }
