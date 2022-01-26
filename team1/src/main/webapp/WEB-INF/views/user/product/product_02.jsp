@@ -108,7 +108,7 @@
 		input.setAttribute("name", "product_id");
 		input.setAttribute("value", "${VO.product_id}");
 		
-		form.action="${contextPath}/product/productComment.do";
+		form.action="${contextPath}/notice/productComment.do";
 		form.method="GET";
 		form.appendChild(input);
 		form.submit();

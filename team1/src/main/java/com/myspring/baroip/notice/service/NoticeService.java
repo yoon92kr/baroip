@@ -3,6 +3,7 @@
 package com.myspring.baroip.notice.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.myspring.baroip.notice.vo.NoticeVO;
 
@@ -14,5 +15,6 @@ public interface NoticeService {
 //	공지사항 상세
 	public NoticeVO noticeDetail(String notice_id) throws Exception;
 	
-
+//	상품후기
+	public Map<String, Object> productComment(String product_id) throws Exception;
 }

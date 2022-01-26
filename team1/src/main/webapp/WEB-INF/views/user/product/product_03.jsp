@@ -9,8 +9,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text product_03_mini_category_text">
-			<a href="${contextPath}/product/product_02.do">상품 상세정보</a> 
-			<a href="${contextPath}/product/productComment.do">고객 후기</a> 
+			<a href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품 상세정보</a> 
+			<a href="${contextPath}/notice/productComment.do">고객 후기</a> 
 			<a href="${contextPath}/product/product_04.do">배송 / 교환 /반품 안내</a> 
 			<a href="${contextPath}/product/product_05.do">상품 문의</a>
 		</div>
@@ -18,7 +18,7 @@
 	
 	<div class="row">
 	<div class="col-lg-2 offset-lg-1">
-	<img class="product_03_main_img" src="${contextPath}/resources/img/common/img-box.jpg" alt="고객후기 대표 이미지">
+	<img class="product_03_main_img" src="data:image/jpeg;base64,${commentList.productImg}" alt="고객후기 대표 이미지">
 	</div>
 	
 	<div class="col-lg-7 text-center">

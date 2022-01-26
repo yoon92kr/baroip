@@ -3,6 +3,7 @@
 package com.myspring.baroip.notice.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +71,21 @@ public class NoticeControllerImpl implements NoticeController {
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.addObject("noticeVO", noticeVO);
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value= "/productComment.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView productComment(@RequestParam("product_id") String product_id,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		
+		Map<String, Object> commentList = noticeService.productComment(product_id);
+		
+		mav.addObject("commentList", commentList);
+		mav.addObject("product_id", product_id);
 		mav.setViewName(viewName);
 		return mav;
 	}
