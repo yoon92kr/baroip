@@ -91,7 +91,7 @@
 			<div class="col-lg-7 join_02-main-right">
 				<input id="join_02_emailCheck" class="join_02-text-box" type="text"> 
 				<input id="join_02_emailCheckNum" type="hidden">
-				<input class="join_02-submit-box" type="button" value="이메일 인증 확인" onclick="checkmail();">
+				<input class="join_02-submit-box" type="button" value="이메일 인증 확인" onclick="checkEmailNum();">
 			</div>
 		</div>
 
@@ -263,8 +263,10 @@
 		let day = document.getElementById("select_day");
 		let postCode = document.getElementById("user_post_code");
 		let detailAddr = document.getElementById("user_detail_address");
-		let user_number = document.getElementById("mobileNumber");
-		let randomNumber = document.getElementById("mobileCheckNumber");
+		let user_MobileNumber = document.getElementById("mobileNumber");
+		let mobileRandomNumber = document.getElementById("mobileCheckNumber");
+		let user_emailNumber = document.getElementById("join_02_emailCheck");
+		let emailRandomNumber = document.getElementById("join_02_emailCheckNum");
 		
 		let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
 		
@@ -281,7 +283,7 @@
 			user_pwd.focus();
 			return false;
 		} else if(user_pwd.value !== check_pwd.value) {
-			alert("비밀번호를 다시 확인해 주세요.");
+			alert("비밀번호확인을 입력해주세요.");
 			check_pwd.focus();
 			return false;
 		} else if(user_name.value == "") {
@@ -296,9 +298,21 @@
 			alert("생년월일을 입력해주세요.");
 			year.focus();
 			return false;
-		} else if(user_number.value != randomNumber.value) {
+		} else if(user_MobileNumber.value != mobileRandomNumber.value) {
 			alert("핸드폰 인증을 확인해주세요.");
-			user_number.focus();
+			user_MobileNumber.focus();
+			return false;
+		} else if(mobileRandomNumber.value == "") {
+			alert("핸드폰 인증을 해주세요.");
+			user_MobileNumber.focus();
+			return false;
+		} else if(emailRandomNumber.value == "") {
+			alert("이메일 인증을 해주세요.");
+			user_emailNumber.focus();
+			return false;
+		} else if(user_emailNumber.value != emailRandomNumber.value) {
+			alert("이메일 인증을 확인해주세요.");
+			user_emailNumber.focus();
 			return false;
 		} else if(postCode.value == "") {
 			alert("주소를 입력해주세요.");
@@ -308,14 +322,6 @@
 			alert("상세주소를 입력해 주세요.");
 			detailAddr.focus();
 			return false;
-		} else if(checkMobile() == false) {
-			alert("핸드폰 인증이 실패했습니다.");
-			document.ElementById("mobileNumber").focus();
-			return false;
-		} else if(checkmail() == false) {
-			alert("이메일 인증이 실패했습니다.");
-			document.ElementById("join_02_emailCheck").focus();
-			return false;
 		}
 		
 		document.joinNewUser.submit();
@@ -324,6 +330,7 @@
 	
 	/* 아이디 중복 확인 */
 	function idOverlap() {
+		
 		let user_id = document.getElementById("join_02_user_new_id");
 		
 		let idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
@@ -336,17 +343,15 @@
 		
 		$.ajax({
 			type:"POST", 
-			async: false,
 			url:"${contextPath}/user/userIdOverlap.do", 
 			dataType:"text", 
 			data: {
 				id: user_id.value
 			}, 
-			success:function (data,textStatus){
-				if(data=='false'){
+			success:function (result){
+				if(result == "false"){
 					alert("사용 가능한 아이디 입니다.");
-					return true;
-				}else{
+				}else if (result == "true"){
 					alert("사용할 수 없는 ID입니다.");
 					return false;
 				}
@@ -358,18 +363,23 @@
 	
 	/* 핸드폰번호 인증 */
 	function mobileNumberCheck() {
+		
 		let mobile1 = document.getElementById("join_02_mobile1").value;
 		let mobile2 = document.getElementById("join_02_mobile2").value;
 		let mobile3 = document.getElementById("join_02_mobile3").value;
 		
 		if(mobile2.length < 3) {
+			
 			alert("핸드폰 번호를 확인해 주세요.");
 			mobile2.focus();
 			return false;
+			
 		} else if(mobile3.length < 4) {
+			
 			alert("핸드폰 번호를 확인해 주세요.");
 			mobile3.focus();
 			return false;
+			
 		}
 		
 		let mobile = mobile1 + mobile2 + mobile3;
@@ -382,7 +392,7 @@
 				"mobile": mobile
 			}, success: function(randomNumber) {
 				alert("인증번호가 전송되었습니다.");
-				document.ElementById("mobileCheckNumber").value = randomNumber.toString();
+				document.getElementById("mobileCheckNumber").value = randomNumber.toString();
 			}
 		}).error(function() {
 			alert("모바일 인증 에러");
@@ -394,6 +404,12 @@
 		
 		let user_email = document.getElementById("join_02_email");
 		
+		if(user_email.value == "") {
+			alert("이메일을 입력해 주세요.");
+			user_email.focus();
+			return false;
+		}
+		
 		$.ajax({
 			url:"${contextPath}/user/emailCheck.do", 
 			type:"POST", 
@@ -401,9 +417,8 @@
 			data: {
 				"user_email": user_email.value
 			}, success: function(randomNumber) {
-				alert(randomNumber);
 				alert("인증번호가 전송되었습니다.");
-				document.ElementById("join_02_emailCheckNum").value = randomNumber.toString();
+				document.getElementById("join_02_emailCheckNum").value = randomNumber.toString();
 			}
 		}).error(function(){
 			alert("이메일 인증 에러");
@@ -411,10 +426,10 @@
 	}
 	
 	/* 이메일 인증번호 확인 */
-	function checkmail() {
+	function checkEmailNum() {
 		
 		let user_number = document.getElementById("join_02_emailCheck");
-		let randomNumber = document.ElementById("join_02_emailCheckNum");
+		let randomNumber = document.getElementById("join_02_emailCheckNum");
 		
 		if(user_number.value == randomNumber.value) {
 			alert("인증이 완료되었습니다.");
@@ -427,15 +442,16 @@
 	
 	/* 모바일 인증번호 확인 */
 	function checkMobile() {
+		
 		let user_number = document.getElementById("mobileNumber");
 		let randomNumber = document.getElementById("mobileCheckNumber");
 		
 		if(user_number.value == randomNumber.value) {
 			alert("인증이 완료되었습니다.");
-			return true;
 		} else {
 			alert("인증번호가 맞지 않습니다.");
 			return false;
+			
 		}
 	}
 

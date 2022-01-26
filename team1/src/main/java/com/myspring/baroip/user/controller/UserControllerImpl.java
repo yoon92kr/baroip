@@ -136,6 +136,7 @@ public class UserControllerImpl implements UserController{
 	
 //	핸드폰번호 인증
 	@Override
+	@ResponseBody
 	@RequestMapping(value= "/userMobileCheck.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public String userMobileCheck(@RequestParam("mobile") String mobile)throws Exception {
 		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
@@ -144,6 +145,7 @@ public class UserControllerImpl implements UserController{
 	}
 	
 //	이메일 인증
+	@ResponseBody
 	@RequestMapping(value="/emailCheck.do",method={RequestMethod.POST,RequestMethod.GET})
 	public String emailCheck(@RequestParam("user_email") String user_email)throws Exception {
 		String subject = "바로입 이메일 인증";
@@ -176,13 +178,12 @@ public class UserControllerImpl implements UserController{
 	
 //	아이디 중복 검사
 	@Override
+	@ResponseBody
 	@RequestMapping(value="/userIdOverlap.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
+	public String userIdOverlap(@RequestParam("id") String id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
-		ResponseEntity resEntity = null;
 		String result = userService.userIdOverlap(id);
-		resEntity =new ResponseEntity(result, HttpStatus.OK);
-		return resEntity;
+		return result;
 	}
 	
 //	아이디 찾기

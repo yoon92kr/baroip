@@ -31,7 +31,7 @@ public interface UserController {
             HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 //	아이디 중복 검사
-	public ResponseEntity userIdOverlap(@RequestParam("id") String id,
+	public String userIdOverlap(@RequestParam("id") String id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 //	핸드폰 본인 인증
