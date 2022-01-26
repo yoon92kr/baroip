@@ -21,7 +21,7 @@
 	</definition>
 
 
-	<definition name="/product/product_03" extends="MainLayout">
+	<definition name="/product/productComment" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_03.jsp" />
 	</definition>
 

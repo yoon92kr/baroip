@@ -64,13 +64,16 @@
 		</div>
 
 	</div>
+	
+	<form id="NextPageInfo">
+	</form>
 
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text">
-			<a href="${contextPath}/product_02.do">상품 상세정보</a> 
-			<a href="${contextPath}/product_03.do">고객 후기</a> 
-			<a href="${contextPath}/product_04.do">배송 / 교환 /반품 안내</a> 
-			<a href="${contextPath}/product_05.do">상품 문의</a>
+			<a href="#">상품 상세정보</a> 
+			<a onclick="productReview();">고객 후기</a> 
+			<a href="${contextPath}/product/product_04.do">배송 / 교환 /반품 안내</a> 
+			<a href="${contextPath}/product/product_05.do">상품 문의</a>
 		</div>
 	</div>
 
@@ -95,6 +98,23 @@
 
 </div>
 <script>
+
+	function productReview() {
+		
+		let form = document.getElementById("NextPageInfo");
+		let input = document.createElement("input");
+		
+		input.setAttribute("type", "hidden");
+		input.setAttribute("name", "product_id");
+		input.setAttribute("value", "${VO.product_id}");
+		
+		form.action="${contextPath}/product/productComment.do";
+		form.method="GET";
+		form.appendChild(input);
+		form.submit();
+		
+	}
+
 	/*---------- 수량 증감 input 박스 설정 ----------*/
 
 	/* 수량 증감 */

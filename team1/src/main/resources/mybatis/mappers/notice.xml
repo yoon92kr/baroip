@@ -30,4 +30,10 @@
 		]]>
 	</select>
 	
+	<select id="selectProductComment" resultType="NoticeVO" parameterType="String">
+		<![CDATA[
+			select * from notice where product_id = #{product_id} and notice_category = 'comment'
+		]]>
+	</select>
+	
 </mapper>
