@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -228,15 +229,15 @@ public class UserControllerImpl implements UserController{
 		HttpSession session=request.getSession();
 		
 		userVO.setUser_id(user_id);
-		String userCheck;
+		UserVO userCheck;
 		String number;
+		userCheck = userService.inputUserCheck(userVO);
 		
 //		이메일 인증
 		if(pwdFindType.contains("@")) {
 			userVO.setUser_email(pwdFindType);
-			userCheck = userService.inputUserCheck(userVO);
 			
-			if(userCheck != null && userCheck != "") {
+			if(userCheck.getUser_name() != null && userCheck.getUser_name() != "") {
 				number = emailCheck(pwdFindType);
 			} else {
 				number = "0";
@@ -251,9 +252,8 @@ public class UserControllerImpl implements UserController{
 			userVO.setUser_mobile_1(mobile_1);
 			userVO.setUser_mobile_2(mobile_2);
 			userVO.setUser_mobile_3(mobile_3);
-			userCheck = userService.inputUserCheck(userVO);
 			
-			if(userCheck != null && userCheck != "") {
+			if(userCheck.getUser_name() != null && userCheck.getUser_name() != "") {
 				number = userMobileCheck(pwdFindType);
 			} else {
 				number = "0";
@@ -262,7 +262,7 @@ public class UserControllerImpl implements UserController{
 			number = "0";
 		}
 		if(number.equals("0") != true) {
-			session.setAttribute("user_id", user_id);
+			session.setAttribute("userPwdChange", userCheck);
 		}
 		
 		return number;
@@ -271,9 +271,12 @@ public class UserControllerImpl implements UserController{
 //	비밀번호 찾기 후 비밀번호 변경
 	@Override
 	@RequestMapping(value= "/changeUserPwdInput.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public String changeUserPwd(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw) throws Exception {
+	public String changeUserPwd(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw, ServletRequest request) throws Exception {
+		userVO.setUser_id(user_id);
+		userVO.setUser_pw(user_pw);
+		userService.updateUserPwd(userVO);
 		
-		return "";
+		return "/user/PwdUpdate";
 	}
 	
 }

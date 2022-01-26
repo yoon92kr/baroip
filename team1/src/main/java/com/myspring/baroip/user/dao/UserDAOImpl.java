@@ -62,16 +62,15 @@ public class UserDAOImpl implements UserDAO {
 	
 //	비밀번호 찾기 전 회원 정보 일치 확인
 	@Override
-	public String inputUserCheck(UserVO userVO) throws DataAccessException {
-		String result = sqlSession.selectOne("mapper.user.selectUserPwdFind", userVO);
+	public UserVO inputUserCheck(UserVO userVO) throws DataAccessException {
+		UserVO result = sqlSession.selectOne("mapper.user.selectUserPwdFind", userVO);
 		return result;
 	}
 	
-//	비밀번호 찾기 후 비밀번호 변경
+//	비밀번호 찾기 후 비밀번호 변경UserVO
 	@Override
-	public int updateFindUserPwd(UserVO userVO) throws DataAccessException {
-		int result = sqlSession.update("mapper.user.updateUserPwd", userVO);
-		return result;
+	public void updateFindUserPwd(UserVO userVO) throws DataAccessException {
+		sqlSession.update("mapper.user.updateUserPwd", userVO);
 	}
 
 }

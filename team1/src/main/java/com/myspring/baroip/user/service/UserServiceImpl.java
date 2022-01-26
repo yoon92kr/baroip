@@ -84,17 +84,14 @@ public class UserServiceImpl implements UserService {
 	
 //	비밀번호 찾기 전 회원 정보 일치 확인
 	@Override
-	public String inputUserCheck(UserVO userVO) throws Exception {
+	public UserVO inputUserCheck(UserVO userVO) throws Exception {
 		return userDAO.inputUserCheck(userVO);
 	}
 	
 //	비밀번호 찾기 후 비밀번호 변경
 	@Override
-	public String updateUserPwd(UserVO userVO) throws Exception {
-		int result = userDAO.updateFindUserPwd(userVO);
-		
-		String success = Integer.toString(result);
-		return success;
+	public void updateUserPwd(UserVO userVO) throws Exception {
+		userDAO.updateFindUserPwd(userVO);
 		
 	}
 

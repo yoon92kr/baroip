@@ -111,8 +111,8 @@
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
-	<select id="selectUserPwdFind" resultType="String" parameterType="UserVO">
-		select user_name from user where user_id = #{user_id}
+	<select id="selectUserPwdFind" resultType="userVO" parameterType="UserVO">
+		select * from user where user_id = #{user_id}
 		<choose>
 			<when test='user_email != null and user_email != "" '>
 				and user_email = #{user_email}

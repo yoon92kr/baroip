@@ -128,6 +128,15 @@
 				} else {
 					alert("인증번호가 전송되었습니다.");
 					let randoumNum = document.getElementById("pwd_randomNumber").value = Num.toString();
+					let userMobileBtn = document.getElementById("login_02_pwdFindMobile_btn");
+					let userEmailBtn = document.getElementById("login_02_pwdFindEmail_btn");
+					
+					if(pwdFindType == userEmail.value) {
+						userMobileBtn.disabled = true;
+					} else if(pwdFindType == userMobile.value) {
+						userEmailBtn.disabled = true;
+					}
+					
 					document.getElementById("pwd_randomNumInput").type="text";
 					document.getElementById("pwd_randomcheck_btn").type="button";
 				}
@@ -154,22 +163,22 @@
 
 	/* 비밀번호 찾기 전 인증 수단 선택 버튼 */
 	function pwdCertification(btnid) {
-		
+
 		let userMobile = document.getElementById("login_02_pwdFindMobile");
 		let userEmail = document.getElementById("login_02_pwdFindEmail");
 		
 		if(btnid == "login_02_pwdFindMobile_btn") {
 			userMobile.type="text";
 			userEmail.type="hidden";
-			userEmail.style.disabled= true;
-			userMobile.style.disabled = false;
+			userEmail.disabled= true;
+			userMobile.disabled = false;
 			userMobile.placeholder="핸드폰 번호를 입력해 주세요.";
 		} else if(btnid == "login_02_pwdFindEmail_btn") {
 			userMobile.type="hidden";
 			userEmail.type="email";
 			userEmail.placeholder="가입당시 이메일을 입력해 주세요.";
-			userMobile.style.disabled= true;
-			userEmail.style.disabled = false;
+			userMobile.disabled= true;
+			userEmail.disabled = false;
 		}
 		
 	}

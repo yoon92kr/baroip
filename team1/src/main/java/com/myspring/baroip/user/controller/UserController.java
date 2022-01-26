@@ -1,6 +1,7 @@
 package com.myspring.baroip.user.controller;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,7 +48,7 @@ public interface UserController {
 	public String userPwdFind(@RequestParam("user_id") String user_id, @RequestParam("pwdFindType") String pwdFindType, HttpServletRequest request) throws Exception;
 	
 //	비밀번호 찾기 후 비밀번호 변경
-	public String changeUserPwd(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw) throws Exception;
+	public String changeUserPwd(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw, ServletRequest request) throws Exception;
 	
 }
 

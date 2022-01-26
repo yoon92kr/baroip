@@ -216,7 +216,7 @@ function cartBTN(item) {
 							});
 						}
 					} else {
-						cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+						cartGo = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
 						if (cartGo == true) {
 							location = '${contextPath}/cart/cartList.do';
 						}
@@ -256,7 +256,7 @@ function cartBTN(item) {
 							});
 						}
 					} else {
-						cartGo = confirm(product_title + "(을)를 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
+						cartGo = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
 						if (cartGo == true) {
 							location = '${contextPath}/cart/cartList.do';
 						}

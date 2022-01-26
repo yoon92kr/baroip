@@ -17,6 +17,12 @@
 	</script>
 </c:if>
 
+<c:if test="${not empty userPwdChange}">
+	<%
+		session.removeAttribute("userPwdChange");
+	%>
+</c:if>
+
 <div class="container">
 
 	<div class="row">
