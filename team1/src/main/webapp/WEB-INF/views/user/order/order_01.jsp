@@ -535,8 +535,8 @@
 		         orderId: order_id,
 		         orderName: order_product,
 		         customerName: customer,
-		         successUrl: 'http://localhost:8080${contextPath}/order/order_complete.do',
-		         failUrl: 'http://localhost:8080${contextPath}/cart/cartList.do'
+		         successUrl: 'http://baroip.shop${contextPath}/order/order_complete.do',
+		         failUrl: 'http://baroip.shop{contextPath}/cart/cartList.do'
 		 };
 		 
 		 var elements = document.getElementsByClassName('order_form_check'); // body 이미치 파일 select
@@ -549,7 +549,7 @@
 				if(!uploadItem) {
 					checkFlag = false;
 				}
-
+				
 				
 			}
 			

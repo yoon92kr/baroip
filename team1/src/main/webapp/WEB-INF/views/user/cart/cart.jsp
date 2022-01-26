@@ -558,7 +558,7 @@ function orderProduct(TO) {
        var form = document.createElement("form");
        form.setAttribute("charset", "UTF-8");
        form.setAttribute("method", "Post");
-       form.setAttribute("action", "${contextPath}/order/order_form.do");
+       form.setAttribute("action", "${contextPath}/order/order_form.do?lastViewName=cart");
        
        for(var key in productList) {
      	  
@@ -568,6 +568,7 @@ function orderProduct(TO) {
            hiddenField.setAttribute("value", productList[key]);
            form.appendChild(hiddenField);
        }
+
      
        document.body.appendChild(form);
        form.submit();

@@ -157,7 +157,7 @@
 		<div class="col-lg-4 offset-lg-2 join_02-bottom-btn">
 			<div class="col-lg-4 offset-lg-2 text-right">
 
-				<a href="${contextPath}${lastViewName}.do"> 
+				<a href="${contextPath}/admin/user/user_list.do"> 
 					<input type="button" class="admin_btn_gray" value="회원 목록">
 				</a>
 

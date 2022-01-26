@@ -66,7 +66,11 @@ public class OrderControllerImpl implements OrderController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("userInfo");
 		String viewName = (String) request.getAttribute("viewName");
-		String lastViewName = (String) request.getAttribute("lastViewName");
+		String lastViewName = "";
+		if(request.getParameter("lastViewName") != null) {
+			lastViewName = (String) request.getParameter("lastViewName");
+		}
+	
 		String[] arrayProductID = request.getParameterValues("product_id");
 		Map<String, Map<String, Map<String, Object>>> productList = new HashMap<String, Map<String, Map<String, Object>>>();
 

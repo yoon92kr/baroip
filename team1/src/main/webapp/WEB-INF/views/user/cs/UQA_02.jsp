@@ -89,7 +89,7 @@
 
 		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
-				<a href="${contextPath}${lastViewName}.do">			
+				<a href="${contextPath}/cs/UQA_list.do">			
 					<input class="user_btn_gray" type="button" id="cs_02_02_list_btn" value="목록">
 				</a>
 			</div>

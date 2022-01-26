@@ -168,7 +168,7 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-2 join_02-bottom-btn text-right">
 
-				<a href="${contextPath}${lastViewName}.do">
+				<a href="${contextPath}/admin/product/extra_list.do">
 					<input type="button" class="admin_btn_gray" value="상품 목록">
 				</a>
 

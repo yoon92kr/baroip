@@ -29,11 +29,14 @@
 	</p>
 
 	<pre class="popUp_body text-left">
-  ■ 마이페이지 : 주문 페이지
+  ■ SNS 로그인 API(테스트 API로 사전에 인증된 네이버 계정만 로그인 가능합니다.)
+  ■ 마이페이지 전체
+  ■ 관리자페이지 후기 / 문의 관리
   ■ 상품 상세페이지 : 고객 후기, 상품 문의
+  
 </pre>
 
-	<p>2022.01.24 Team1</p>
+	<p>2022.01.26 Team1</p>
 
 	<input type="checkbox" id="MainCheckBox" onclick="NoPopup()"> <a onclick="NoPopup()">오늘 하루동안 보지않기</a>
 </div>
