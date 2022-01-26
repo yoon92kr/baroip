@@ -31,8 +31,7 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<input class="MyPage_02_01_text-box" type="text">
-        		<input class="MyPage_02_01-submit-box" type="submit" value="중복 확인">
+        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_id}" disabled>
         	</form>
         </div>
         </div>
@@ -66,7 +65,7 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<input class="MyPage_02_01_text-box" type="text">
+        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_name}" disabled>
         	</form>
         </div>
     </div>
@@ -76,17 +75,14 @@
         	생년월일
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<select class="MyPage_02_01-year-month-day"
-        		id="select_year" onchange="javascript:lastday();"></select> 
+        
+        		<input class="MyPage_02_01-year-month-day" type="text" value="${userInfo.user_birth_year}" disabled> 
         		<span class="MyPage_02_01-year-month-day-text">년</span>
-        		<select class="MyPage_02_01-year-month-day" 
-        		id="select_month" onchange="javascript:lastday();"></select> 
+        		<input class="MyPage_02_01-year-month-day" type="text" value="${userInfo.user_birth_month}" disabled> 
         		<span class="MyPage_02_01-year-month-day-text">월</span>
-        		<select class="MyPage_02_01-year-month-day" 
-        		id="select_day" onchange="javascript:lastday();"></select> 
+        		<input class="MyPage_02_01-year-month-day" type="text" value="${userInfo.user_birth_day}" disabled> 
         		<span class="MyPage_02_01-year-month-day-text">일</span>
-        	</form>
+        	
         </div>
     </div>
     
@@ -104,8 +100,8 @@
         			<option value="019">019</option>
         			<option value="070">070</option>
         		</select> - 
-        		<input class="MyPage_02_01-mobile-02" type="number"> - 
-        		<input class="MyPage_02_01-mobile-02" type="number">
+        		<input class="MyPage_02_01-mobile-02" type="number" value="${userInfo.user_mobile_2}"> - 
+        		<input class="MyPage_02_01-mobile-02" type="number" value="${userInfo.user_mobile_3}">
         		<input class="MyPage_02_01-submit-box-02" type="submit" value="인증번호 전송">
         	</form>
         </div>
@@ -128,7 +124,7 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<input class="MyPage_02_01_text-box" type="text">
+        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_new_address}">
         		<input class="join_02-submit-box" type="submit" value="우편번호 검색">
         	</form>
         </div>
@@ -140,7 +136,7 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         	<form>
-        		<input class="MyPage_02_01_text-box" type="text">
+        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_detail_address}">
         	</form>
         </div>
     </div>
@@ -166,7 +162,7 @@
 
 
 <!-- 생년월일 값 -->
-
+<!-- 
 <script>
 var start_year="1970"; //시작 년도
 var today = new Date();
@@ -204,3 +200,4 @@ function lastday() {
 	}
 }
 </script>
+ -->
