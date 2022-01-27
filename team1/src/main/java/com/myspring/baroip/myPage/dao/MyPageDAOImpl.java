@@ -30,5 +30,13 @@ public class MyPageDAOImpl implements MyPageDAO {
 				
 		return orderCount;
 	}
+	
+	@Override
+	public int updateMyInfo(UserVO userVO) throws DataAccessException{
+		
+		int flag = sqlSession.update("mapper.myPage.updateMyInfo", userVO);
+		
+		return flag;
+	}
 
 }

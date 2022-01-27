@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,6 +87,32 @@ public class MyPageControllerImpl implements MyPageConroller{
 
 				
 
+		return mav;
+	}
+	
+	// 회원정보 수정 컨트롤러
+	@Override
+	@RequestMapping(value = "/update_MyInfo.do", method = RequestMethod.POST)
+	public ModelAndView updateMyInfo(@ModelAttribute("userVO") UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView();
+		
+		// 회원정보 수정 성공시 1, 아닐경우 0 을 반환
+		int flag = myPageService.updateMyInfo(userVO);
+		String message = "";
+		if (flag == 1) {
+			
+			UserVO loginUser = (UserVO) session.getAttribute("userInfo");
+			message = "회원 " + loginUser.getUser_id() + " 님이 [" + userVO.getUser_id() + "]의 수정을 완료했습니다.";
+		}
+		else if (flag == 0) {
+			message = "회원정보 수정에 문제가 발생하였습니다.";
+		}
+		
+		session.setAttribute("message", message);
+		mav.setViewName("redirect:/myPage/myInfo.do");
+		System.out.println("baroip : " + message);
+		
 		return mav;
 	}
 

@@ -24,15 +24,14 @@
 </div>
 
 <div class="container">
+ <form action="${contextPath}/myPage/update_MyInfo.do" method="post" id="myPage_user_update">
 	<div class="MyPage_02_01_top">
     <div class="row">
         <div class="col-lg-2 text-center MyPage_02_01_menu-left">
         	아이디
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_id}" disabled>
-        	</form>
+        		<input class="MyPage_02_01_text-box check_update_form" type="text" value="${userInfo.user_id}" disabled name="user_id">
         </div>
         </div>
     </div>
@@ -42,9 +41,7 @@
         	비밀번호
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<input class="MyPage_02_01_text-box" type="password">
-        	</form>
+        		<input class="MyPage_02_01_text-box" type="password" name="user_pw">
         </div>
     </div>
     
@@ -53,9 +50,7 @@
         	비밀번호 확인
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<input class="MyPage_02_01_text-box" type="password">
-        	</form>
+        		<input class="MyPage_02_01_text-box" type="password" name="user_pw">
         </div>
     </div>
     
@@ -64,9 +59,7 @@
         	이 름
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_name}" disabled>
-        	</form>
+        		<input class="MyPage_02_01_text-box check_update_form" type="text" value="${userInfo.user_name}" disabled name="user_name">
         </div>
     </div>
     
@@ -76,13 +69,22 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         
-        		<input class="MyPage_02_01-year-month-day" type="text" value="${userInfo.user_birth_year}" disabled> 
+        		<input class="MyPage_02_01-year-month-day check_update_form" type="text" value="${userInfo.user_birth_year}" disabled name="user_birth_year"> 
         		<span class="MyPage_02_01-year-month-day-text">년</span>
-        		<input class="MyPage_02_01-year-month-day" type="text" value="${userInfo.user_birth_month}" disabled> 
+        		<input class="MyPage_02_01-year-month-day check_update_form" type="text" value="${userInfo.user_birth_month}" disabled name="user_birth_month"> 
         		<span class="MyPage_02_01-year-month-day-text">월</span>
-        		<input class="MyPage_02_01-year-month-day" type="text" value="${userInfo.user_birth_day}" disabled> 
+        		<input class="MyPage_02_01-year-month-day check_update_form" type="text" value="${userInfo.user_birth_day}" disabled name="user_birth_day"> 
         		<span class="MyPage_02_01-year-month-day-text">일</span>
         	
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-2 text-center MyPage_02_01_menu-left">
+        	이메일
+        </div>
+        <div class="col-lg-9 MyPage_02_01_menu-right">
+        		<input class="MyPage_02_01_text-box check_update_form" type="text" value="${userInfo.user_email}" name="user_email">
         </div>
     </div>
     
@@ -91,8 +93,7 @@
         	핸드폰 번호
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<select class="MyPage_02_01-mobile">
+        		<select id="myPage_02_01_mobile1" class="MyPage_02_01-mobile check_update_form" name="user_mobile_1">
         			<option value="010">010</option>
         			<option value="011">011</option>
         			<option value="016">016</option>
@@ -100,10 +101,10 @@
         			<option value="019">019</option>
         			<option value="070">070</option>
         		</select> - 
-        		<input class="MyPage_02_01-mobile-02" type="number" value="${userInfo.user_mobile_2}"> - 
-        		<input class="MyPage_02_01-mobile-02" type="number" value="${userInfo.user_mobile_3}">
-        		<input class="MyPage_02_01-submit-box-02" type="submit" value="인증번호 전송">
-        	</form>
+        		<input id="myPage_02_01_mobile2" class="MyPage_02_01-mobile-02 check_update_form" type="number" oninput="myPage_02_01_mobile_number(this, 4)" value="${userInfo.user_mobile_2}" name="user_mobile_2"> - 
+        		<input id="myPage_02_01_mobile3" class="MyPage_02_01-mobile-02 check_update_form" type="number" oninput="myPage_02_01_mobile_number(this, 4)" value="${userInfo.user_mobile_3}" name="user_mobile_3">
+        		<input class="MyPage_02_01-submit-box-02" type="button" value="인증번호 전송"
+        			onclick="mobileNumberCheck_02();">
         </div>
     </div>
     
@@ -112,9 +113,9 @@
         	인증 번호
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<input class="MyPage_02_01_text-box" type="text">
-        	</form>
+       		<input id="mobileNumber" class="MyPage_02_01_text-box" type="text">
+       		<input id="mobileCheckNumber" type="hidden">
+       		<input id="randomNumberCheck" class="join_02-submit-box" type="button" value="인증번호 확인" onclick="chckMobile_02();">
         </div>
     </div>
     
@@ -123,10 +124,8 @@
         	주 소
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_new_address}">
+        		<input class="MyPage_02_01_text-box check_update_form" type="text" value="${userInfo.user_new_address}" name="user_new_address">
         		<input class="join_02-submit-box" type="submit" value="우편번호 검색">
-        	</form>
         </div>
     </div>
     
@@ -135,11 +134,10 @@
         	상세 주소
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        	<form>
-        		<input class="MyPage_02_01_text-box" type="text" value="${userInfo.user_detail_address}">
-        	</form>
+        		<input class="MyPage_02_01_text-box check_update_form" type="text" value="${userInfo.user_detail_address}" name="user_detail_address">
         </div>
     </div>
+</form>
 
 	<div class="row">
     	<div class="col-lg"><hr>
@@ -148,7 +146,10 @@
     <div class="container">
     <div class="MyPage_02_01_button">
       <div class="row">
-    	<a href="myPage_01.do" class="col-lg-3 text-center MyPage_02_01_button_03">수정하기</a>
+    	<a href="#" onclick="submit_mypage_info_update()">
+    		<input type="button" class="MyPage_02_01_button_03" value="수정하기">
+    	</a>
+    	
     	<a href="myPage_01.do" class="col-lg-3 text-center MyPage_02_01_button_04">돌아가기</a>
     	<a href="dropOut_01.do" class="col-lg-3 text-center MyPage_02_01_button_05">탈퇴하기</a>
       </div>
@@ -157,6 +158,99 @@
     </div>
 </div>
 
+
+<script>
+
+/* 핸드폰 중간 및 마지막 번호 text 4자리로 제한 */
+function myPage_02_01_mobile_number(el, maxlength) {
+	if (el.value.length > maxlength) {
+		el.value = el.value.substr(0, maxlength);
+	}
+}
+
+/* 핸드폰번호 인증 */
+function mobileNumberCheck_02() {
+	
+	let mobile1 = document.getElementById("myPage_02_01_mobile1").value;
+	let mobile2 = document.getElementById("myPage_02_01_mobile2").value;
+	let mobile3 = document.getElementById("myPage_02_01_mobile3").value;
+	
+	if(mobile2.length < 3) {
+		
+		alert("핸드폰 번호를 확인해 주세요.");
+		mobile2.focus();
+		return false;
+		
+	} else if(mobile3.length < 4) {
+		
+		alert("핸드폰 번호를 확인해 주세요.");
+		mobile3.focus();
+		return false;
+		
+	}
+	
+	let mobile = mobile1 + mobile2 + mobile3;
+	
+	$.ajax({
+		url:"${contextPath}/user/userMobileCheck.do", 
+		type:"POST", 
+		dataType:"text",
+		data: {
+			"mobile": mobile
+		}, success: function(randomNumber) {
+			alert("인증번호가 전송되었습니다.");
+			document.getElementById("mobileCheckNumber").value = randomNumber.toString();
+		}
+	}).error(function() {
+		alert("모바일 인증 에러");
+	});
+}
+
+/* 모바일 인증번호 확인 */
+function chckMobile_02() {
+	
+	let user_number = document.getElementById("mobileNumber");
+	let randomNumber = document.getElementById("mobileCheckNumber");
+	
+	if(user_number.value == randomNumber.value) {
+		alert("인증이 완료되었습니다.");
+	} else {
+		alert("인증번호가 맞지 않습니다.");
+		return false;
+	} 
+}
+
+//회원정보수정 전, 비어있는 input 태그 확인 스크립트
+function submit_mypage_info_update() {
+	
+	var elements = document.getElementsByClassName(' check_update_form'); // 전체 양식 조회
+	var checkFlag = true;
+	for(var i = 0; i < elements.length; i++){
+		
+		let uploadItem = elements[i].value;
+		
+		// 비어있는 양식이 하나라도 있다면 flag를 false로 대입.
+
+		if(!uploadItem) {
+			checkFlag = false;
+		}
+
+		
+	}
+	
+	
+	if (checkFlag == true) {
+		document.getElementById('myPage_user_update').submit();	   
+	}
+
+	else {
+		alert("비어있는 항목이 존재합니다. 다시 확인해주세요");
+	}
+}
+
+
+
+</script>
 
 
 

@@ -14,4 +14,7 @@ public interface MyPageDAO {
 	// user_id 에 해당하는 order의 배송완료 상품의 전체 수량 select DAO
 
 	public int myPageOrderCount(UserVO userVO) throws DataAccessException;
+	
+	// 회원정보 수정 DAO
+	public int updateMyInfo(UserVO userVO) throws DataAccessException;
 }

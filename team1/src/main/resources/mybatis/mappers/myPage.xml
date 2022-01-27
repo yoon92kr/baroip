@@ -16,5 +16,22 @@
 		select count(*) from orders where user_id = #{user_id} and order_state between 0 and 3
 
 	</select>
+	
+	<!-- 회원정보 수정 쿼리 -->
+	<update id="updateMyInfo" parameterType="java.util.Map">
+		
+		<![CDATA[
+		update user set
+			user_pw = #{user_pw},
+			user_email = #{user_email},
+			user_mobile_1 = #{user_mobile_1},
+			user_mobile_2 = #{user_mobile_2},
+			user_mobile_3 = #{user_mobile_3},
+			user_new_address = #{user_new_address},
+			user_detail_address = #{user_detail_address}
+		where user_id = #{user_id}
+		]]>
+	
+	</update>
 
 </mapper>

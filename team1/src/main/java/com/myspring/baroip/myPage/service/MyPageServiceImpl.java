@@ -29,6 +29,15 @@ public class MyPageServiceImpl implements MyPageService {
 				
 		return orderCount;
 	}
+	
+	// 회원정보 수정 서비스
+	@Override
+	public int updateMyInfo(UserVO userVO) throws Exception {
+		
+		int flag = myPageDAO.updateMyInfo(userVO);
+		
+		return flag;
+	}
 
 
 }
