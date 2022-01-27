@@ -88,11 +88,11 @@
 			<div class="col-lg-2 text-center join_02-main-left">핸드폰 번호</div>
 			<div class="col-lg-10 join_02-main-right">
 
-				<input type="text" class="join_02-mobile update_form_check admin_user_margin_left" name="user_mobile_1"
+				<input type="number" class="join_02-mobile update_form_check admin_user_margin_left" name="user_mobile_1" oninput="join_02_mobile_number(this, 3)"
 					value="${userVO_update.user_mobile_1}"> - <input
-					class="join_02-mobile-02 update_form_check" type="text" name="user_mobile_2"
+					class="join_02-mobile-02 update_form_check" type="number" name="user_mobile_2" oninput="join_02_mobile_number(this, 4)"
 					value="${userVO_update.user_mobile_2}"> - <input
-					class="join_02-mobile-02 update_form_check" type="text" name="user_mobile_3"
+					class="join_02-mobile-02 update_form_check" type="number" name="user_mobile_3" oninput="join_02_mobile_number(this, 4)" 
 					value="${userVO_update.user_mobile_3}">
 
 			</div>
@@ -204,6 +204,13 @@ function submit_admin_product_update() {
 	}
 }
 
+
+
+function join_02_mobile_number(el, maxlength) {
+	if (el.value.length > maxlength) {
+		el.value = el.value.substr(0, maxlength);
+	}
+}
 
 
 

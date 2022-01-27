@@ -7,20 +7,19 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <div class="container">
-<div class="MyPage_title">
+
     <div class="row">
         <div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">관리자 페이지</h1></div>
     </div>
 		
     	<div class="row">
-    		<a href="${contextPath}/adminOrder.do" class="col-lg-2 text-center MyPage_padding MyPage_title_02 adminOrder_hov">주문 관리</a>
-    		<div class="col-lg-10 text-left MyPage_padding">반품 / 교환</div>
-    		
-    <div class="container">
-	    <div class="MyPage_top-underline"></div>
-    </div>
-    </div>
-    </div>
+    		<div class="col-lg-12 text-left myPage_03_01-content-body">
+    			<h6 class="order_01-sub-title-page">
+    				<a href="${contextPath}/admin/order/order_list.do" class="order_01-sub-title adminOrder_hov">주문 관리</a>
+    				<a href="${contextPath}/admin/order/return_list.do" class="order_01-sub-title adminOrder_hov" style="margin-left: 50px;">반품 / 교환</a>
+    			</h6>    			    		
+   			</div>
+	    </div>
    
     <div class="row">
         <div class="col-lg-4 text-center adminUser_01-content-header">

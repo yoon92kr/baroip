@@ -529,7 +529,7 @@
 #adminUser_01-member-date-text, #adminUser_01-member-id-text, 
 #adminProduct_01-productUpDate_search, #adminProduct_02_category_02-text, 
 #adminProduct_02_category_03-text, #adminProduct_03_category_02-text,  #adminProduct_01-productUpDate_count,
-#adminProduct_03_category_03-text, #search_option_rank, #search_option_date, #search_option_text_box, #adminProduct_01-productUpDate, #adminProduct_01-productUpDate {
+#adminProduct_03_category_03-text, #search_option_rank, #search_option_date, #search_option_text_box, #adminProduct_01-productUpDate, #adminProduct_01-productUpDate, #search_option_state, #search_option_id_box, #search_option_product_box {
 	display: none;
 }
 

@@ -93,7 +93,7 @@
 				까지
 			</div>
 			<div id="adminProduct_01-productUpDate_search">
-				검색할 상품명 : <input id="adminProduct_01-productName-text" type="text">
+				검색할 상품명 : <input id="adminProduct_01-productName-text" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_product_to_option();}">
 			</div>
 
 		</div>

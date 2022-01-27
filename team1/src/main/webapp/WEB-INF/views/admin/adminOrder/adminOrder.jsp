@@ -1,5 +1,5 @@
 <!-- 2021.12.03 임석희 adminOrder -->
-
+<!-- 2022.01.27 윤상현 구현 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -20,7 +20,7 @@
 			if(document.getElementById("${pageNo}")) {
 			document.getElementById("${pageNo}").style.fontFamily = "kopub_bold";
 			document.getElementById("${pageNo}").style.fontSize = "15px";
-			}
+			}			
 		});
 
 
@@ -79,34 +79,41 @@
     <div class="row">
         <div class="col-lg-3 text-center adminUser_01-content-header">
         	조회 유형
-        	<select class="adminUser_01-select-box-lookup" onchange="selectLookup(this.value)">
-        			<option value="all_order">전체 주문</option>
-        			<option value="date">주문 일자</option>
-        			<option value="id">회원 아이디</option>
-			        <option value="product">주문 상품</option>
-			        <option value="delivery">배송 상태</option>
+        	<select class="adminUser_01-select-box-lookup" onchange="selectLookup(this.value)" id="search_option_category">
+        			<option value="all">전체 주문</option>
+        			<option value="orderDate">주문 일자</option>
+        			<option value="userId">아이디</option>
+			        <option value="productId">주문 상품</option>
+			        <option value="state">배송 상태</option>
         		</select>
         </div>
 		<div class="col-lg-6 text-center adminUser_01-content-header">
 		
-			<select id="search_option_rank" class="adminUser_01-select-box-lookup">
-				<option value="guest">상품 준비중</option>
-				<option value="user">상품 배송중</option>
-				<option value="admin">배송 완료</option>
+			<select id="search_option_state" class="adminUser_01-select-box-lookup">
+				<option value="0">상품 준비중</option>
+				<option value="1">상품 배송중</option>
+				<option value="2">배송 완료</option>
 			</select>
 		
-			<div id="adminProduct_01-productUpDate">
-				<input id="adminProduct_01-productUpDate-begin" type="date"> 부터 
-				<input id="adminProduct_01-productUpDate-end" type="date"> 까지
+			<div id="search_option_date">
+				<input id="search_option_date_begin"
+					class="adminUser_01-select-box-lookup" type="date"> 부터 <input
+					id="search_option_date_end" class="adminUser_01-select-box-lookup"
+					type="date"> 까지
 			</div>
 			
-			<div id="adminProduct_01-productUpDate_search">
-				검색할 키워드 : <input id="adminProduct_01-productName-text" type="text">
+			<div id="search_option_id_box">
+				검색할 아이디 : <input id="search_option_id" class="adminUser_01-select-box-lookup" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_order_to_option();}">
 			</div>
+			
+			<div id="search_option_product_box">
+				검색할 상품 : <input id="search_option_product" class="adminUser_01-select-box-lookup" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_order_to_option();}">
+			</div>
+		
 
 		</div>
         <div class="col-lg-3 text-right adminUser_01-content-header">
-        	<input class="adminProduct_01-header-button" type="button" value="조회하기" onclick="search_product_to_option()">
+        	<input class="adminProduct_01-header-button" type="button" value="조회하기" onclick="search_order_to_option()">
         </div>
     </div>
     
@@ -212,6 +219,95 @@
 
 <script>
 
+//조회 필터 스크립트
+function selectLookup(selectValue) {
+
+    if (selectValue == "all") {
+    	document.getElementById("search_option_state").style.display = 'none';
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'none';
+    }
+    else if (selectValue == "orderDate") {
+    	document.getElementById("search_option_state").style.display = 'none';
+    	document.getElementById("search_option_date").style.display = 'inline';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'none';
+    }
+    else if (selectValue == "userId") {
+    	document.getElementById("search_option_state").style.display = 'none';
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'inline';
+    	document.getElementById("search_option_product_box").style.display = 'none';
+    }
+    else if (selectValue == "productId") {
+    	document.getElementById("search_option_state").style.display = 'none';
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'inline';
+    }
+    else if (selectValue == "state") {
+    	document.getElementById("search_option_state").style.display = 'inline';
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'none';
+    }
+    
+
+    
+ }
+ 
+function search_order_to_option() {
+	let searchOption = document.getElementById('search_option_category').value;
+	let beginDate = document.getElementById('search_option_date_begin').value;
+	let endDate = document.getElementById('search_option_date_end').value;
+	let searchDate = beginDate.concat(',', endDate);
+	let searchText = "";
+	let searchState = document.getElementById('search_option_state').value;
+	
+	// 날짜 기준 조회
+	if (searchOption == "orderDate") {
+		if(endDate == "" || beginDate == "") {
+			alert("정확한 조회 기간을 입력해주세요.");
+		}
+		else if(beginDate > endDate) {
+			alert("조회 기준일이 종료일보다 클 수 없습니다.")
+		}
+		else {
+			location.href='${contextPath}/admin/order/order_list.do?search_option='+searchOption+'&search_value='+searchDate;
+
+		}
+		
+	}
+	// 포함된 아이디 기준 조회
+	else if (searchOption == "userId" || searchOption == "productId") {
+		if (searchText.match(/\s/g)) {
+			alert("검색어에 공백은 포함될 수 없습니다.")
+		}
+		else {
+			if(searchOption == "userId") {
+				searchText = document.getElementById('search_option_id').value;	
+			}
+			else {
+				searchText = document.getElementById('search_option_product').value;
+			}
+			
+			location.href='${contextPath}/admin/order/order_list.do?search_option='+searchOption+'&search_value='+searchText;
+		}
+	}
+	
+	// 주문 상태 기준 조회
+	else if (searchOption == "state") {
+			location.href='${contextPath}/admin/order/order_list.do?search_option='+searchOption+'&search_value='+searchState;
+	}
+
+	// 전체 회원 조회
+	else if (searchOption == "all") {
+		location.href='${contextPath}/admin/order/order_list.do';
+	}
+	
+}
+
 /* 주문 상태 수정 ajax */
 
 function update_state(target) {
@@ -226,7 +322,7 @@ function update_state(target) {
 		}
 		
 		else {
-			let delivery_id = prompt("주문 번호 "+order_id+" 의 운송장 번호를 입력해주세요");
+			let order_delivery_id = prompt("주문 번호 "+order_id+" 의 운송장 번호를 입력해주세요");
 			
 			$.ajax({
 				type : "post",
@@ -235,7 +331,7 @@ function update_state(target) {
 				dataType : "text",
 				data : {
 					"order_id" : order_id,
-					"delivery_id" : delivery_id
+					"order_delivery_id" : order_delivery_id
 				},
 				success : function(message) {
 					alert(message);
@@ -285,4 +381,54 @@ function pageMove(no) {
 	}
 }
 
+
+window.addEventListener('load', function() {
+	
+	   if(${search_option != null && search_option != ""}) {
+	    selectedOption("search_option_category", "${search_option}");
+
+	    var main_option = document.getElementById("search_option_category").value;
+	    selectLookup(main_option);
+	    
+	    var begin = "";
+	    var end = "";
+	    if("${search_option}" == "orderDate") {
+	    	var splitDate = "${search_value}".split(",");
+	    }
+	    
+	    switch("${search_option}") {
+	    case "orderDate" :
+	    	document.getElementById("search_option_date_begin").value = splitDate[0];
+	    	document.getElementById("search_option_date_end").value = splitDate[1];
+	       break;
+	    
+	    case "productId" :
+	    	document.getElementById("search_option_product").value = "${search_value}";
+	       break;
+	       
+	    case "userId" :
+	    	document.getElementById("search_option_id").value = "${search_value}";
+	       break;
+	       
+	    case "state" :
+	    	selectedOption("search_option_state", "${search_value}");
+		   break;
+	    }
+	    
+	   }
+
+	});
+
+	// id에는 select의 id값, value에는 선택하고자 하는 option의 value 값을 파라미터로 입력한다.
+	function selectedOption(id, value) {
+		
+		var obj = document.getElementById(id);
+
+		for (i=0 ; i<obj.length ; i++) {
+		if(obj[i].value == value) {
+		obj[i].selected = true;
+		
+		      }
+		   }
+		}
 </script>

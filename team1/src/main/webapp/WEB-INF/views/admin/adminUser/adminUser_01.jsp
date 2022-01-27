@@ -106,7 +106,7 @@
 			</div>
 			<div id="search_option_text_box">
 				검색할 키워드 : <input id="search_option_text"
-					class="adminUser_01-select-box-lookup" type="text">
+					class="adminUser_01-select-box-lookup" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_user_to_option();}">
 			</div>
 		</div>
 
@@ -534,11 +534,13 @@ window.addEventListener('load', function() {
 
 // id에는 select의 id값, value에는 선택하고자 하는 option의 value 값을 파라미터로 입력한다.
 function selectedOption(id, value) {
+	
 	var obj = document.getElementById(id);
 
 	for (i=0 ; i<obj.length ; i++) {
 	if(obj[i].value == value) {
 	obj[i].selected = true;
+	
 	      }
 	   }
 	}

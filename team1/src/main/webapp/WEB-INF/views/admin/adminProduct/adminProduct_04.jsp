@@ -87,10 +87,10 @@
 				<input id="adminProduct_01-productUpDate-end" type="date"> 까지
 			</div>
 			<div id="adminProduct_01-productUpDate_search">
-				검색할 상품명 : <input id="adminProduct_01-productName-text" type="text">
+				검색할 상품명 : <input id="adminProduct_01-productName-text" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_product_to_option();}">
 			</div>
 			<div id="adminProduct_01-productUpDate_count">
-				<input id="adminProduct_01-productAmount-text" type="number">개 이하 상품 조회
+				<input id="adminProduct_01-productAmount-text" type="number" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_product_to_option();}">개 이하 상품 조회
 			</div>
 		</div>
 		<div class="col-lg-3 text-center adminUser_01-content-header">
