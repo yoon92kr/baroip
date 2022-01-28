@@ -24,6 +24,6 @@ public interface MyPageDAO {
 	// 조회 조건에 따른 주문 리스트 조회 DAO
 	public List<Map<String, Object>> myOrder( Map<String, String> option) throws DataAccessException;
 	
-	// 구매확정 DAO
-	public void deliveryCompleted(Map<String, String> option) throws DataAccessException;
+	// 주문상태 변경 DAO
+	public void updateOrder(Map<String, String> option) throws DataAccessException;
 }

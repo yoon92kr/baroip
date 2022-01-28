@@ -62,11 +62,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return orderList;
 	}
 
-	// 구매 확정 서비스
+	// 주문상태 변경 서비스
 	@Override
-	public void deliveryCompleted(Map<String, String> option) throws Exception {
+	public void updateOrder(Map<String, String> option) throws Exception {
 		
-		myPageDAO.deliveryCompleted(option);
+		myPageDAO.updateOrder(option);
 		
 	}
 

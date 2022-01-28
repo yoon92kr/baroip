@@ -224,16 +224,16 @@ public class MyPageControllerImpl implements MyPageConroller{
 		return fullList;
 	}
 	
-	// 구매 확정 컨트롤러
+	// 주문 상태 변경 컨트롤러
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "/deliveryCompleted.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
-	public String deliveryCompleted(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception {
+	@RequestMapping(value = "/updateOrder.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
+	public String updateOrder(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception {
 		HttpSession session = request.getSession();
 		
-		String order_id = info.get("order_id");
 		String point = info.get("point");
-		myPageService.deliveryCompleted(info);
+		String message = "";
+		myPageService.updateOrder(info);
 		
 		UserVO userVO = (UserVO)session.getAttribute("userInfo");
 		Map<String, String> userMap = new HashMap<String, String>();
@@ -244,9 +244,16 @@ public class MyPageControllerImpl implements MyPageConroller{
 		session.removeAttribute("userInfo");
 		session.setAttribute("userInfo", newUserInfo);
 		
-		String message = "해당 주문의 상태가 구매확정으로 변경 되었습니다. 적립 포인트 : "+point;
-
-		System.out.printf("baorip : [%s]의 배송 상태가 [구매확정]으로 변경되었습니다.%n", order_id);
+		if(info.get("update_option").equals("deliveryCompleted")) {
+			message = "해당 주문의 상태가 구매확정으로 변경 되었습니다. 적립 포인트 : "+point;
+		}
+		else if (info.get("update_option").equals("cancelOrder")) {
+			message = "해당 주문이 정상적으로 취소되었습니다.";
+		}
+		else {
+			message = "해당 주문의 반품/교환 신청이 정상적으로 완료되었습니다.";
+		}
+		
 
 		return message;
 	}

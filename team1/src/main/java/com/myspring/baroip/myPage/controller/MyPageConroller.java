@@ -27,8 +27,8 @@ public interface MyPageConroller {
 	// 조회 기준에 따른 주문정보 조회 컨트롤러
 	public ModelAndView myOrder(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	// 구매확정 컨트롤러
-	public String deliveryCompleted(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception;
+	// 주문 상태변경 컨트롤러
+	public String updateOrder(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception;
 }
 
 

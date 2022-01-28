@@ -21,6 +21,6 @@ public interface MyPageService {
 	// 조회 조건에 따른 주문 리스트 조회 서비스
 	public List<Map<String, Object>> myOrder( Map<String, String> option) throws Exception;
 	
-	// 구매 확정 서비스
-	public void deliveryCompleted(Map<String, String> option) throws Exception;
+	// 주문 상태 변경 서비스
+	public void updateOrder(Map<String, String> option) throws Exception;
 }

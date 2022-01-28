@@ -53,24 +53,32 @@
 
 	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
 	<select id="selectOrder" resultMap="orderResult" parameterType="java.util.Map">
-		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_delivery_id, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where o.user_id = #{user_id}
-		
+		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_delivery_id, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where o.user_id = #{user_id} and o.order_state between 0 and 2
 		<if test="search_option != null and !search_option.equals('')">
 			<if test='search_option == "orderDate"'>
 				and o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
 			</if>
+			<if test='search_option == "productId"'>
+				and p.product_main_title like concat('%', #{search_value}, '%') order by o.order_date desc
+			</if>
+
+			<if test='search_option == "state"'>
+				and o.order_state = #{search_value} order by o.order_date desc
+			</if>
 		</if>
-		
+
 		<if test="search_option == null or search_option.equals('')">
 				 order by o.order_date desc
-		</if>		
+		</if>
 
 
 	</select>
 
-	<!-- 구매확정 쿼리 -->
-	<update id="deliveryCompleted" parameterType="java.util.Map">
+	<!-- 주문상태 수정 쿼리 -->
+	<update id="updateOrder" parameterType="java.util.Map">
 
+	<!-- 구매확정 쿼리 -->
+	<if test='update_option == "deliveryCompleted"'>
 		update orders as o, user as u set 
 		o.order_state=2,
 		u.user_point = u.user_point + #{point},
@@ -78,6 +86,33 @@
 		where	 
 		o.order_id = #{order_id}
 		and u.user_id = #{user_id}
-
+	</if>
+	
+	<!-- 주문취소 쿼리 -->
+	<if test='update_option == "cancelOrder"'>
+			update orders as o, user as u set 
+		o.order_state = -1,
+		u.user_total_amount = u.user_total_amount - #{amount},
+		u.user_total_count = u.user_total_count - #{count}
+		where	 
+		o.order_id = #{order_id}
+		and u.user_id = #{user_id}
+	</if>
+	
+	<!-- 반품승인 쿼리 
+	<if test='update_option == "refund"'>
+			update orders as o, user as u set 
+		o.order_state = -2,
+		u.user_total_amount = u.user_total_amount - #{amount},
+		u.user_total_count = u.user_total_count - #{count},
+		u.user_point = u.user_point - #{point},
+		u.user_total_point = u.user_total_point - #{point}
+		where	 
+		o.order_id = #{order_id}
+		and u.user_id = #{user_id}
+	</if>
+	-->
 	</update>
+
+		
 </mapper>

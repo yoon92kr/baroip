@@ -90,6 +90,8 @@
 		<div class="col-lg-6 text-center adminUser_01-content-header">
 		
 			<select id="search_option_state" class="adminUser_01-select-box-lookup">
+				<option value="-2">반품/교환</option>
+				<option value="-1">주문 취소</option>
 				<option value="0">상품 준비중</option>
 				<option value="1">상품 배송중</option>
 				<option value="2">배송 완료</option>

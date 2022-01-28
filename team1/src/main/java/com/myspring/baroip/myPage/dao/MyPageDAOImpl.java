@@ -51,10 +51,10 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return orderList;
 	}
 	
-	// 구매 확정 DAO
+	// 주문상태 변경 DAO
 		@Override
-		public void deliveryCompleted(Map<String, String> option) throws DataAccessException {
-			sqlSession.update("mapper.myPage.deliveryCompleted", option);
+		public void updateOrder(Map<String, String> option) throws DataAccessException {
+			sqlSession.update("mapper.myPage.updateOrder", option);
 			
 		}
 
