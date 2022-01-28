@@ -23,5 +23,8 @@ public interface ImageService {
 	
 	
 	public List<ImageVO> selectAllImage(Map<String, String> option) throws Exception;
+	
 	public List<ImageVO> selectImgOne (String product_id) throws DataAccessException;
+	
+	public List<ImageVO> commentImgList(String notice_id) throws Exception;
 }

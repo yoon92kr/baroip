@@ -3,7 +3,6 @@
 package com.myspring.baroip.notice.controller;
 
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.notice.service.NoticeService;
 import com.myspring.baroip.notice.vo.NoticeVO;
+import com.myspring.baroip.product.service.ProductService;
 
 
 @Controller("noticeController")
@@ -28,6 +28,9 @@ public class NoticeControllerImpl implements NoticeController {
 	NoticeService noticeService;
 	@Autowired
 	NoticeVO noticeVO;
+	
+	@Autowired
+	private ProductService productService;
 
 	// 2022.01.12 윤상현 수정
 	// 공지사항 리스트페이지
@@ -75,20 +78,84 @@ public class NoticeControllerImpl implements NoticeController {
 		return mav;
 	}
 	
+//	상품 후기
+	@Override
 	@RequestMapping(value= "/productComment.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView productComment(@RequestParam("product_id") String product_id,
+	public ModelAndView productComment(@RequestParam("product_id") String product_id, @RequestParam Map<String, String> info,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		String pageNo = info.get("pageNo");
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		Map<String, Object> commentList = noticeService.productComment(product_id);
+		Map<String, Map<String, Object>> productImg = productService.productDetail(product_id);
+		
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (commentList.size()+3)/4;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
+		} else {
+			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
+		}
+
+		mav.addObject("commentList", commentList);
+		mav.addObject("product_id", product_id);
+		mav.addObject("productInfo", productImg);
+		mav.setViewName(viewName);
+		
+		return mav;
+		
+	}
+	
+//	상품 문의
+	@Override
+	@RequestMapping(value= "/PQAListPage.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView PQAListPage(@RequestParam("product_id") String product_id, @RequestParam Map<String, String> info,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String pageNo = info.get("pageNo");
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		
-		Map<String, Object> commentList = noticeService.productComment(product_id);
+		Map<String, Object> PQAList = noticeService.productQuestion(product_id);
+		Map<String, Map<String, Object>> productImg = productService.productDetail(product_id);
 		
-		mav.addObject("commentList", commentList);
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (PQAList.size()+7)/8;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
+		} else {
+			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
+		}
+		
+		mav.addObject("PQAList", PQAList);
 		mav.addObject("product_id", product_id);
+		mav.addObject("productInfo", productImg);
 		mav.setViewName(viewName);
 		return mav;
+		
 	}
+	
+	
 
 		
 }

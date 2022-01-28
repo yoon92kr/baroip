@@ -9,10 +9,10 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text product_03_mini_category_text">
-			<a href="${contextPath}/product/product_02.do">상품 상세정보</a> 
-			<a href="${contextPath}/product/productReview.do">고객 후기</a> 
-			<a href="${contextPath}/product/product_04.do">배송 / 교환 /반품 안내</a> 
-			<a href="${contextPath}/product/product_05.do">상품 문의</a>
+			<a href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품 상세정보</a> 
+			<a href="${contextPath}/notice/productComment.do?product_id=${product_id}">고객 후기</a> 
+			<a>배송 / 교환 /반품 안내</a> 
+			<a href="${contextPath}/notice/PQAListPage.do?product_id=${product_id}">상품 문의</a>
 		</div>
 	</div>
 
@@ -28,7 +28,7 @@
        
 	<div class="row">	
 		<div class="offset-lg-1 col-lg-2 text-left product_04_text_title" ><span>배송 비용</span></div>
-		<div class="col-lg-8 text-left product_04_text_body" ><span>3,000원 (특정 상품의 경우 배송비가 상이할 수 있습니다.)</span></div>
+		<div class="col-lg-8 text-left product_04_text_body" ><span>5,000원 (특정 상품의 경우 배송비가 상이할 수 있습니다.)</span></div>
     </div> 
     
 	<div class="row">	

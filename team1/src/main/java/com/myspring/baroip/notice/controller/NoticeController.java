@@ -19,4 +19,12 @@ public interface NoticeController {
 	public ModelAndView notice_detail(@RequestParam("NoticeVO") String notice_id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+//	상품 후기
+	public ModelAndView productComment(@RequestParam("product_id") String product_id, @RequestParam Map<String, String> info,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+//	상품 문의
+	public ModelAndView PQAListPage(@RequestParam("product_id") String product_id, @RequestParam Map<String, String> info,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }

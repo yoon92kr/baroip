@@ -25,11 +25,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_03.jsp" />
 	</definition>
 
-	<definition name="/product/product_04" extends="MainLayout">
+	<definition name="/product/productInfoPage" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_04.jsp" />
 	</definition>
 
-	<definition name="/product/product_05" extends="MainLayout">
+	<definition name="/notice/PQAListPage" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_05.jsp" />
 	</definition>
 

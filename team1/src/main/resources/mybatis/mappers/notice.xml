@@ -32,7 +32,13 @@
 	
 	<select id="selectProductComment" resultType="NoticeVO" parameterType="String">
 		<![CDATA[
-			select * from notice where product_id = #{product_id} and notice_category = 'comment' order by 'desc'
+			select * from notice where product_id = #{product_id} and notice_category = 'comment' order by notice_cre_date desc
+		]]>
+	</select>
+	
+	<select id="selectProductQuestion" resultType="NoticeVO" parameterType="String">
+		<![CDATA[
+			select * from notice where product_id = #{product_id} and notice_category = 'PQA' order by notice_cre_date desc
 		]]>
 	</select>
 	

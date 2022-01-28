@@ -73,5 +73,14 @@ public class ImageDAOImpl implements ImageDAO {
 		return imageList;
 	}
 	
+//	상품 후기 고객 등록 이미지
+	@Override
+	public List<ImageVO> selectCommentImg (String notice_id) throws DataAccessException {
+		
+		List<ImageVO> commentImg = sqlSession.selectList("mapper.image.commentImg", notice_id);
+		
+		return commentImg;
+		
+	}
 
 }

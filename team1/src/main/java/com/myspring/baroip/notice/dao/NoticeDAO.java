@@ -16,6 +16,10 @@ public interface NoticeDAO {
 //	공지사항 상세
 	public NoticeVO noticeDetail(String notice_id) throws DataAccessException;
 
+//	상품후기
 	public List<NoticeVO> selectCommentList(String product_id) throws DataAccessException;
+	
+//	상품 문의
+	public List<NoticeVO> selectPQAList(String product_id) throws DataAccessException;
 
 }

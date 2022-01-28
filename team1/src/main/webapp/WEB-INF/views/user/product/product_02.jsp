@@ -71,9 +71,9 @@
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text">
 			<a href="#">상품 상세정보</a> 
-			<a onclick="productReview();">고객 후기</a> 
-			<a href="${contextPath}/product/product_04.do">배송 / 교환 /반품 안내</a> 
-			<a href="${contextPath}/product/product_05.do">상품 문의</a>
+			<a id="productCommentPage" onclick="productReview(this.id);">고객 후기</a> 
+			<a id="productInfoPage" onclick="productReview(this.id);">배송 / 교환 /반품 안내</a> 
+			<a id="productPQAPage" onclick="productReview(this.id);">상품 문의</a>
 		</div>
 	</div>
 
@@ -99,7 +99,7 @@
 </div>
 <script>
 
-	function productReview() {
+	function productReview(id) {
 		
 		let form = document.getElementById("NextPageInfo");
 		let input = document.createElement("input");
@@ -108,7 +108,15 @@
 		input.setAttribute("name", "product_id");
 		input.setAttribute("value", "${VO.product_id}");
 		
-		form.action="${contextPath}/notice/productComment.do";
+		if(id == "productCommentPage") {
+			form.action="${contextPath}/notice/productComment.do";
+			
+		} else if(id == "productPQAPage") {
+			form.action="${contextPath}/notice/PQAListPage.do";
+		} else if(id == "productInfoPage") {
+			form.action="${contextPath}/product/productInfoPage.do";
+		}
+		
 		form.method="GET";
 		form.appendChild(input);
 		form.submit();

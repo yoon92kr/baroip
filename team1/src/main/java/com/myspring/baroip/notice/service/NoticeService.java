@@ -17,4 +17,7 @@ public interface NoticeService {
 	
 //	상품후기
 	public Map<String, Object> productComment(String product_id) throws Exception;
+	
+//	상품 문의
+	public Map<String, Object> productQuestion(String product_id) throws Exception;
 }

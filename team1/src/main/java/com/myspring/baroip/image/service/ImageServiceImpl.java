@@ -76,5 +76,11 @@ public class ImageServiceImpl implements ImageService {
 		return imageList;
 	}
 	
+	@Override
+	public List<ImageVO> commentImgList(String notice_id) throws Exception {
+		
+		List<ImageVO> imageList = imageDAO.selectCommentImg(notice_id);
+		return imageList;
+	}
 
 }

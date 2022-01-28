@@ -280,5 +280,16 @@ public class ProductControllerImpl implements ProductController {
 			return fullList;
 		}
 	
+//	배송,교환,반품 안내
+		@RequestMapping(value = "/productInfoPage.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView productInfoPage(@RequestParam("product_id") String product_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String) request.getAttribute("viewName");
 
+			mav.addObject("product_id", product_id);
+			mav.setViewName(viewName);
+			
+			return mav;
+		}
+		
 }

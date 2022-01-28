@@ -34,8 +34,14 @@ public class NoticeDAOImpl implements NoticeDAO {
 	@Override
 	public List<NoticeVO> selectCommentList(String product_id) throws DataAccessException {
 		List<NoticeVO> commentList = sqlSession.selectList("mapper.notice.selectProductComment", product_id);
-		System.out.println("DAO : " + commentList);
 		return commentList;
+	}
+	
+//	상품 문의
+	@Override
+	public List<NoticeVO> selectPQAList(String product_id) throws DataAccessException {
+		List<NoticeVO> PQAList = sqlSession.selectList("mapper.notice.selectProductQuestion", product_id);
+		return PQAList;
 	}
 
 }

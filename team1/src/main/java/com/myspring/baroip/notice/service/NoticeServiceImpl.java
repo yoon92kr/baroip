@@ -2,6 +2,8 @@
 
 package com.myspring.baroip.notice.service;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private ImageService imageService;
 	
+	
 //	공지사항 리스트페이지
 	public List<NoticeVO> noticeList() throws Exception {
 		List<NoticeVO> NTList = noticeDAO.noticeList();
@@ -39,16 +42,32 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public Map<String, Object> productComment(String product_id) throws Exception {
 		List<NoticeVO> productCommentList = noticeDAO.selectCommentList(product_id);
-		List<ImageVO> productImg = imageService.selectImgOne(product_id);
-		
 		Map<String, Object> commentList = new HashMap<String, Object>();
 		
-		productImg.get(0).getImage_category().equals("main");
-		
-		commentList.put("noticeList", productCommentList);
-		commentList.put("productImg", productImg);
+		for(int i = 0; productCommentList.size() > i; i++) {
+			
+			Map<String, Object> noticeItem = new HashMap<String, Object>();
+			noticeItem.put("noticeList", productCommentList.get(i));
+			commentList.put("noticeItem" + (i+1), noticeItem);
+		}
 		
 		return commentList;
+		
+	}
+	
+//	상품 문의
+	@Override
+	public Map<String, Object> productQuestion(String product_id) throws Exception {
+		List<NoticeVO> productQuestionList = noticeDAO.selectPQAList(product_id);
+		Map<String, Object> QuestionList = new HashMap<String, Object>();
+		
+		for(int i = 0; productQuestionList.size() > i; i++) {
+			Map<String, Object> noticeItem = new HashMap<String, Object>();
+			noticeItem.put("noticeList", productQuestionList.get(i));
+			QuestionList.put("noticeItem" + (i+1), noticeItem);
+		}
+		
+		return QuestionList;
 		
 	}
 	
