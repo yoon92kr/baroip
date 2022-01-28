@@ -2,6 +2,9 @@
 
 package com.myspring.baroip.myPage.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.baroip.user.vo.UserVO;
@@ -17,4 +20,10 @@ public interface MyPageDAO {
 	
 	// 회원정보 수정 DAO
 	public int updateMyInfo(UserVO userVO) throws DataAccessException;
+	
+	// 조회 조건에 따른 주문 리스트 조회 DAO
+	public List<Map<String, Object>> myOrder( Map<String, String> option) throws DataAccessException;
+	
+	// 구매확정 DAO
+	public void deliveryCompleted(Map<String, String> option) throws DataAccessException;
 }

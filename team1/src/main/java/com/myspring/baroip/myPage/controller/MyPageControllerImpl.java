@@ -3,6 +3,10 @@
 package com.myspring.baroip.myPage.controller;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,9 +17,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.myPage.service.MyPageService;
+import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
 
@@ -26,6 +32,8 @@ public class MyPageControllerImpl implements MyPageConroller{
 	
 	@Autowired
 	private MyPageService myPageService;
+	@Autowired
+	private UserService userService;
 
 	
 
@@ -71,7 +79,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 	
 	// 회원정보 수정
 	@RequestMapping(value= "/checkPassword.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView user_mypage_02(@RequestParam("user_pw") String user_pw, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView checkPassword(@RequestParam("user_pw") String user_pw, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session=request.getSession();
 		ModelAndView mav = new ModelAndView();
 		UserVO userInfo = (UserVO)session.getAttribute("userInfo");
@@ -117,153 +125,129 @@ public class MyPageControllerImpl implements MyPageConroller{
 	}
 
 
+	@Override
+	@RequestMapping(value = "/myOrder.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView myOrder(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
+		}
+		List<Map<String, Object>> orderList = getFullList(info, request);
+		
+				
+		String pageNo = info.get("pageNo");
+		
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (orderList.size()+4)/5;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
+		} else {
+			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
+		}
+		mav.addObject("orderList", orderList);
+		return mav;
+
+	}
 	
-//	
+
+	// 주문 조회 필터 사용시, 세션에 있는 주문정보 확인 후 서비스로 처리하는 메소드
+	public List<Map<String, Object>> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
+		
+		// Map options에는 조회하고자 하는 조건유형 option, 조건에 해당하는 value 가 반드시 포함되어야한다.
+		// search_option(검색 조건) = value [orderDate / productId / userId/ states ]
+		// search_value(검색 값) = value [yyyy-mm-dd,yyyy-mm-dd / product_id / user_id / 0 or 1 or 2)]
+		Map<String, String> options = new HashMap<String, String>();
+		
+		String paramOption = info.get("search_option");
+		String paramValue = info.get("search_value");
+		
+		String sessionOption = (String) session.getAttribute("search_option");
+		String sessionValue = (String) session.getAttribute("search_value");
+			
+		// param, session 모두 option이 바인딩 되어있는 경우
+		if (paramOption != null && sessionOption != null) {
+
+				// 두 옵션이 일치할 경우, options에 기존 session의 값을 대입한다.
+				if (paramOption.equals(sessionOption) && paramValue.equals(sessionValue)) {
+					options.put("search_option", sessionOption);
+					options.put("search_value", sessionValue);
+				}
+
+				// 두 옵션이 일치하지 않을 경우, options에 paramOption을 대입하고, 기존 세션을 Override 한다.
+				else {
+					options.put("search_option", paramOption);
+					options.put("search_value", paramValue);
+
+					session.setAttribute("search_option", paramOption);
+					session.setAttribute("search_value", paramValue);
+				}
+			}
+
+			// 세션에 바인딩된 option이 없을경우, options에 paramOption을 대입하고, 세션에 set 한다.
+			else if (paramOption != null && sessionOption == null) {
+				options.put("search_option", paramOption);
+				options.put("search_value", paramValue);
+
+				session.setAttribute("search_option", paramOption);
+				session.setAttribute("search_value", paramValue);
+			}
+		
+			// param에 바인딩된 option이 없을경우, session의 option을 대입한다.
+			else if (paramOption == null && sessionOption != null) {
+				options.put("search_option", sessionOption);
+				options.put("search_value", sessionValue);
+			}
+		
+		UserVO userVO = (UserVO)session.getAttribute("userInfo");
+		
+		options.put("user_id", userVO.getUser_id());
+			
+		
+		List<Map<String, Object>> fullList = myPageService.myOrder(options);
+		
+		return fullList;
+	}
 	
-//	
-//	// 회원탈퇴
-//	@RequestMapping(value= "/dropOut_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView dropOut_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 회원탈퇴 완료
-//	@RequestMapping(value= "/dropOut_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView dropOut_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//
-//
-//	@RequestMapping(value= "/myPage_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
+	// 구매 확정 컨트롤러
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/deliveryCompleted.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
+	public String deliveryCompleted(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception {
+		HttpSession session = request.getSession();
+		
+		String order_id = info.get("order_id");
+		String point = info.get("point");
+		myPageService.deliveryCompleted(info);
+		
+		UserVO userVO = (UserVO)session.getAttribute("userInfo");
+		Map<String, String> userMap = new HashMap<String, String>();
+		userMap.put("user_id", userVO.getUser_id());
+		userMap.put("user_pw", userVO.getUser_pw());
+		
+		UserVO newUserInfo = userService.login(userMap);
+		session.removeAttribute("userInfo");
+		session.setAttribute("userInfo", newUserInfo);
+		
+		String message = "해당 주문의 상태가 구매확정으로 변경 되었습니다. 적립 포인트 : "+point;
 
-//	// 회원정보 수정 입력
-//	@RequestMapping(value= "/myPage_02_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_02_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 주문 배송 조회
-//	@RequestMapping(value= "/myPage_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 주문 상세 정보
-//	@RequestMapping(value= "/myPage_03_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_03_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 반품 교환 신청
-//	@RequestMapping(value= "/myPage_03_02.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_03_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 상품 후기
-//	@RequestMapping(value= "/myPage_03_03.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_03_03(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 포인트 내역
-//	@RequestMapping(value= "/myPage_04.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_04(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 회원등급 안내
-//	@RequestMapping(value= "/myPage_05.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_05(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 문의 내역
-//	@RequestMapping(value= "/myPage_06.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_06(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 문의 내역 상세
-//	@RequestMapping(value= "/myPage_06_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_06_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	// 상품 후기
-//	@RequestMapping(value= "/myPage_07.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_07(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//	
-//	
-//	// 상품 후기 수정
-//	@RequestMapping(value= "/myPage_07_01.do" ,method={RequestMethod.POST,RequestMethod.GET})
-//	public ModelAndView user_mypage_07_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		// HttpSession session;
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String)request.getAttribute("viewName");
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
+		System.out.printf("baorip : [%s]의 배송 상태가 [구매확정]으로 변경되었습니다.%n", order_id);
 
-
-
-	
+		return message;
+	}
 }

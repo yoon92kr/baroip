@@ -13,12 +13,12 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 text-center">
 
-			<a href="${contextPath}/myPage/myInfo.do"  class="no-underline">내정보</a>
-			<a href="${contextPath}/myPage/myPage_02.do"  class="no-underline">회원정보 수정</a>
-			<a href="${contextPath}/myPage/myPage_03.do"  class="no-underline">주문/배송조회</a>
+			<a id="myInfo" href="${contextPath}/myPage/myInfo.do"  class="no-underline">내정보</a>
+			<a id="updateMyInfo" href="${contextPath}/myPage/updateMyInfo.do"  class="no-underline">회원정보 수정</a>
+			<a id="myOrder" href="${contextPath}/myPage/myOrder.do"  class="no-underline">주문/배송조회</a>
 			<a href="${contextPath}/cart/cartList.do"  class="no-underline">장바구니</a>
-			<a href="${contextPath}/myPage/myPage_04.do"  class="no-underline">포인트 내역</a>
-			<a href="${contextPath}/myPage/myPage_05.do"  class="no-underline">회원등급 안내</a>
+			<a id="myPoint" href="${contextPath}/myPage/myPoint.do"  class="no-underline">포인트 내역</a>
+			<a id="membership" href="${contextPath}/myPage/membership.do"  class="no-underline">회원등급 안내</a>
 			<a href="${contextPath}/myPage/myPage_06.do"  class="no-underline">문의내역</a>
 			<a href="${contextPath}/myPage/myPage_07.do"  class="no-underline">상품후기</a>
 	
@@ -26,3 +26,25 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+	window.addEventListener('load',function() {
+		if('${viewName}'.indexOf('myInfo') != -1) {
+			document.getElementById("myInfo").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('membership') != -1) {
+			document.getElementById("membership").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('myOrder') != -1) {
+			document.getElementById("myOrder").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('myPoint') != -1) {
+			document.getElementById("myPoint").style.fontFamily = "kopub_bold";
+		}
+		else if('${viewName}'.indexOf('updateMyInfo') != -1) {
+			document.getElementById("updateMyInfo").style.fontFamily = "kopub_bold";
+		}		
+								
+	});
+</script>

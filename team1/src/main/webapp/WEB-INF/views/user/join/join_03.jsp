@@ -24,7 +24,7 @@ request.setCharacterEncoding("UTF-8");
     <div class="row">
         <div class="col-lg-10 offset-lg-1 text-center">
         	<h3 class="join_03-id-text">
-        		환영합니다${user_name }님! 회원가입이 성공적으로 완료되었습니다.
+        		환영합니다 <B> ${user_name } </B>님! 회원가입이 성공적으로 완료되었습니다.
         	</h3>
         </div>
     </div>

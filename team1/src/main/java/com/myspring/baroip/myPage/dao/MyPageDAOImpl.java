@@ -2,6 +2,9 @@
 
 package com.myspring.baroip.myPage.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -38,5 +41,21 @@ public class MyPageDAOImpl implements MyPageDAO {
 		
 		return flag;
 	}
+	
+	// 조회 조건에 따른 주문 리스트 조회 DAO
+	@Override
+	public List<Map<String, Object>> myOrder( Map<String, String> option) throws DataAccessException {
+		
+		List<Map<String, Object>> orderList = sqlSession.selectList("mapper.myPage.selectOrder", option);
+
+		return orderList;
+	}
+	
+	// 구매 확정 DAO
+		@Override
+		public void deliveryCompleted(Map<String, String> option) throws DataAccessException {
+			sqlSession.update("mapper.myPage.deliveryCompleted", option);
+			
+		}
 
 }

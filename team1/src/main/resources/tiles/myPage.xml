@@ -18,7 +18,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_01.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_02" extends="MyPageLayout">
+	<definition name="/myPage/updateMyInfo" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_02.jsp" />
 	</definition>
 
@@ -26,7 +26,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_02_01.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_03" extends="MyPageLayout">
+	<definition name="/myPage/myOrder" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03.jsp" />
 	</definition>
 
@@ -42,11 +42,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03_03.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_04" extends="MyPageLayout">
+	<definition name="/myPage/myPoint" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_04.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_05" extends="MyPageLayout">
+	<definition name="/myPage/membership" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_05.jsp" />
 	</definition>
 

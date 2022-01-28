@@ -4,6 +4,22 @@
 <!-- 2022.01.24 윤상현 -->
 <mapper namespace="mapper.myPage">
 
+	<!-- 주문정보와 상품정보를 담기 위한 ResultMap -->
+	<resultMap id="orderResult" type="java.util.Map">
+
+		<result property="order_id" column="order_id" />
+		<result property="user_id" column="user_id" />
+		<result property="product_id" column="product_id" />
+		<result property="order_amount" column="order_amount" />
+		<result property="order_date" column="order_date" />
+		<result property="order_state" column="order_state" />
+		<result property="product_main_title" column="product_main_title" />
+		<result property="product_price" column="product_price" />
+		<result property="product_discount" column="product_discount" />
+		<result property="order_delivery_id" column="order_delivery_id" />
+
+	</resultMap>
+
 	<!-- 장바구니 수량 조회 쿼리 -->
 	<select id="myPageCartCount" resultType="java.lang.Integer" parameterType="userVO">
 
@@ -13,13 +29,13 @@
 
 	<select id="myPageOrderCount" resultType="java.lang.Integer" parameterType="userVO">
 
-		select count(*) from orders where user_id = #{user_id} and order_state between 0 and 3
+		select count(*) from orders where user_id = #{user_id} and order_state between 0 and 1
 
 	</select>
-	
+
 	<!-- 회원정보 수정 쿼리 -->
 	<update id="updateMyInfo" parameterType="java.util.Map">
-		
+
 		<![CDATA[
 		update user set
 			user_pw = #{user_pw},
@@ -31,7 +47,37 @@
 			user_detail_address = #{user_detail_address}
 		where user_id = #{user_id}
 		]]>
-	
+
 	</update>
 
+
+	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
+	<select id="selectOrder" resultMap="orderResult" parameterType="java.util.Map">
+		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_delivery_id, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where o.user_id = #{user_id}
+		
+		<if test="search_option != null and !search_option.equals('')">
+			<if test='search_option == "orderDate"'>
+				and o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
+			</if>
+		</if>
+		
+		<if test="search_option == null or search_option.equals('')">
+				 order by o.order_date desc
+		</if>		
+
+
+	</select>
+
+	<!-- 구매확정 쿼리 -->
+	<update id="deliveryCompleted" parameterType="java.util.Map">
+
+		update orders as o, user as u set 
+		o.order_state=2,
+		u.user_point = u.user_point + #{point},
+		u.user_total_point = u.user_total_point + #{point}
+		where	 
+		o.order_id = #{order_id}
+		and u.user_id = #{user_id}
+
+	</update>
 </mapper>

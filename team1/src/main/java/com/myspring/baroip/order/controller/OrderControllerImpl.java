@@ -231,6 +231,9 @@ public class OrderControllerImpl implements OrderController {
 		}
 		
 		else {
+			Map<String, String> userMap = new HashMap<String, String>();
+			userMap.put("user_id", userVO.getUser_id());
+			userMap.put("user_pw", userVO.getUser_pw());
 			
 			orderService.updatePointToOrder(orderVO);
 			userVO.setUser_point(userVO.getUser_point() - usePoint);
@@ -246,13 +249,14 @@ public class OrderControllerImpl implements OrderController {
 				orderVO.setOrder_amount(amount);
 				orderVO.setUser_id(user_id);
 			
-
 				orderService.addOrder(orderVO);
 							
-		}
-		
-		
-		
+			}
+			
+			UserVO newUserInfo = userService.login(userMap);
+			session.removeAttribute("userInfo");
+			session.setAttribute("userInfo", newUserInfo);
+				
 		}
 				
 	}

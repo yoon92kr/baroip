@@ -2,6 +2,9 @@
 
 package com.myspring.baroip.myPage.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +41,33 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		return flag;
 	}
+	
+	// 조회 조건에 따른 주문 리스트 조회 서비스
+	@Override
+	public List<Map<String, Object>> myOrder( Map<String, String> option) throws Exception {
+		
+		
+		
+		if(option.get("search_option") != null && option.get("search_option").equals("orderDate")) {
+			String[] date = option.get("search_value").split(",");
+		
+			option.remove("search_value");
+			option.put("begin", date[0]);
+			option.put("end", date[1]);
+ 
+		}
 
+		List<Map<String, Object>> orderList = myPageDAO.myOrder(option);
+		
+		return orderList;
+	}
+
+	// 구매 확정 서비스
+	@Override
+	public void deliveryCompleted(Map<String, String> option) throws Exception {
+		
+		myPageDAO.deliveryCompleted(option);
+		
+	}
 
 }
