@@ -30,11 +30,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_03_01" extends="MyPageLayout">
+	<definition name="/myPage/orderDetail" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03_01.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_03_02" extends="MyPageLayout">
+	<definition name="/myPage/refundForm" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03_02.jsp" />
 	</definition>
 

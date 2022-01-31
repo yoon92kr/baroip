@@ -47,7 +47,7 @@
 			<span>주문 번호</span>
 		</div>
 		<div class="col-lg-4 cs_02_02_box02">
-			<span>[상품 주문 번호]</span>
+			<span>${order_id }</span>
 		</div>
 
 

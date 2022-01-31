@@ -29,6 +29,9 @@ public interface MyPageConroller {
 	
 	// 주문 상태변경 컨트롤러
 	public String updateOrder(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception;
+	
+	// 주문 취소 페이지 이동 컨트롤러
+	public ModelAndView refundForm(@RequestParam("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
 
 

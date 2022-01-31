@@ -178,7 +178,7 @@
 								<div class="text-center MyPage_03_text_position_02">배송 완료</div>
 							</div>
 							<div class="col-lg-2">
-									<input class="MyPage_03-submit-box-02" type="button" value="상품 후기" onclick="order_cancel()">
+									<input class="MyPage_03-submit-box-02" type="button" value="상품 후기" onclick="">
 									<input class="MyPage_03_order_cancel-box" type="button" id="refund_${j}" value="반품 / 교환 신청" onclick="update_state(this.id)">
 							</div>
 
@@ -313,7 +313,7 @@ function update_state(target) {
 	let user_id = "${userInfo.user_id}";
 	let update_option = strArray[0];
 	let point = "";
-	let submitFlag;
+	let submitFlag = false;
 	
     switch("${userInfo.user_membership}") {
     case "1" :
@@ -340,7 +340,12 @@ function update_state(target) {
     	submitFlag = confirm("해당 주문을 취소 하시겠습니까?");
     }
     else {
-    	submitFlag = confirm("수령하신 상품을 반품/교환 신청 하시겠습니까?");
+    	refundFlag = confirm("수령하신 상품을 반품/교환 신청 하시겠습니까?");
+    	
+    	// 구매취소 신청 양식 이동
+    	if(refundFlag) {
+    		location.href='${contextPath}/myPage/refundForm.do?order_id='+order_id;
+    	}
     }
 			
 		if(submitFlag) {
@@ -362,13 +367,14 @@ function update_state(target) {
 			 		location.reload();
 				},
 				error : function() {
-					alert("구매확정에 문제가 발생하였습니다.");
+					alert("주문상태 변경에 문제가 발생하였습니다.");
 				}
 
 			});	
 		}
 				
 }
+
 
 function search_order_to_date() {
 

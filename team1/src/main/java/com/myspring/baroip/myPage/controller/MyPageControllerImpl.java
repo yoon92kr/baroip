@@ -250,11 +250,23 @@ public class MyPageControllerImpl implements MyPageConroller{
 		else if (info.get("update_option").equals("cancelOrder")) {
 			message = "해당 주문이 정상적으로 취소되었습니다.";
 		}
-		else {
-			message = "해당 주문의 반품/교환 신청이 정상적으로 완료되었습니다.";
-		}
-		
+	
 
 		return message;
+	}
+	
+
+	@Override
+	@RequestMapping(value = "/refundForm.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView refundForm(@RequestParam("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		mav.setViewName(viewName);
+		mav.addObject("order_id", order_id);
+		
+		return mav;
+
 	}
 }

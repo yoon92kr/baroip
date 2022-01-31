@@ -90,11 +90,12 @@
 		<div class="col-lg-6 text-center adminUser_01-content-header">
 		
 			<select id="search_option_state" class="adminUser_01-select-box-lookup">
-				<option value="-2">반품/교환</option>
-				<option value="-1">주문 취소</option>
 				<option value="0">상품 준비중</option>
 				<option value="1">상품 배송중</option>
 				<option value="2">배송 완료</option>
+				<option value="-1">주문 취소</option>
+				<option value="-2">반품 / 교환</option>
+				
 			</select>
 		
 			<div id="search_option_date">
@@ -181,7 +182,13 @@
         	</c:if>    
         	<c:if test='${itemList[j].order_state == 2}'>
         		<div class="text-center"> 배송 완료 </div>
-        	</c:if>         	    	
+        	</c:if> 
+        	<c:if test='${itemList[j].order_state == -1}'>
+        		<div class="text-center"> 주문 취소 </div>
+        	</c:if>       
+        	<c:if test='${itemList[j].order_state == -2}'>
+        		<div class="text-center"> 반품 / 교환 </div>
+        	</c:if>   	    	
         </div>
     </div>
 			</c:if>
