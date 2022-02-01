@@ -30,13 +30,14 @@
 		</div>
 	</div>
 
-
+<form action="${contextPath}/myPage/askRefund.do" method="post" enctype="multipart/form-data" id="ask_refund">
+	<input type="hidden" name="order_id" value="${order_id }">
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 			<span>제목</span>
 		</div>
 		<div class="col-lg-4 text-left cs_02_02_box02">
-			<input type="text" class="form-control" placeholder="제목을 입력하세요.">
+			<input name="notice_title" type="text" class="form-control form_upload_check" placeholder="제목을 입력하세요.">
 		</div>
 
 	</div>
@@ -60,15 +61,15 @@
 			<span>반품/교환 사유</span>
 		</div>
 		<div class="col-lg-4 text-left cs_02_02_box02">
-			<form>
-				<select class="cs_02_select">
+
+				<select class="cs_02_select" name="notice_type">
 
 
-					<option value="017">상품불량</option>
-					<option value="017">오배송</option>
-					<option value="016">기타</option>
+					<option value="상품불량">상품불량</option>
+					<option value="오배송">오배송</option>
+					<option value="기타">기타</option>
 				</select>
-			</form>
+
 
 		</div>
 	</div>
@@ -82,7 +83,7 @@
 		</div>
 		<div class="col-lg-4 text-left cs_02_02_box04">
 			<div class="form-group">
-				<textarea class="form-control" rows="8" placeholder="내용을 입력하세요."></textarea>
+				<textarea class="form-control form_upload_check" rows="8" name="notice_body" placeholder="내용을 입력하세요."></textarea>
 			</div>
 
 
@@ -94,44 +95,57 @@
 			<span>사진 첨부</span>
 		</div>
 		<div class="col-lg-4 cs_02_02_box02">
-			<input class="form-control" type="file" id="formFileMultiple"
+			<input class="form-control" style="border:0px;" type="file" id="formFileMultiple"
 				multiple>
 		</div>
 
 
 	</div>
 
-
+</form>
 
 
 </div>
 
 
-<div class="container-fluid">
-
-	<div class="row">
-		<div class="offset-lg-4 col-lg-2 text-center">
-			<div class="cs_correct_btn">
-				<form>
-					<input type="image"
-						src="${contextPath}/resources/img/common/myPage_application.png"
-						alt="반품/취소사유 신청하기 이미지">
-				</form>
+		<div class="row">
+			<div class="offset-lg-4 col-lg-2 text-center">
+				<div class="cs_correct_btn">
+					<input onclick="submit_refund_product()" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="신청하기">							
+				</div>
 			</div>
-		</div>
-
-		<div class="col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<a href="${contextPath}/myPage_03.do"><img
-					src="${contextPath}/resources/img/common/cs_return.png"
-					alt="반품/취소사유 돌아가기 이미지"></a>
+			<div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<a href="${contextPath}/myPage/myOrder.do">			
+						<input class="user_btn_gray" type="button" id="cs_02_02_list_btn" value="돌아가기">
+					</a>
+				</div>
 			</div>
 		</div>
 
 
 
-	</div>
-</div>
+<script>
+// 반품 신청 전 누락사항 확인 스크립트
+function submit_refund_product() {
+	// 전체 input 태그 value를 체크하기위한 클래스 select
+	var elements = document.getElementsByClassName('form_upload_check');
+	var checkFlag = true;
+	for (var i = 0; i < elements.length; i++) {
 
+		let uploadItem = elements[i].value;
+		
+		// 비어있는 파일이 하나라도 있다면 flag를 false로 대입.
+		if (!uploadItem) {
+			checkFlag = false;
+		}
 
+	}
+	if (checkFlag) {
+		document.getElementById('ask_refund').submit();
+	} else {
+		alert("반품/교환 신청시 제목과 내용은 필수입력 사항입니다.");
+	}
 
+} 
+</script>

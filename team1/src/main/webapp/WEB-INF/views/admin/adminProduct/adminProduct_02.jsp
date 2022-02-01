@@ -268,7 +268,7 @@
 		if (checkFlag) {
 			document.getElementById('admin_product_add').submit();
 		} else {
-			alert("[ * ] 이 표시된 항목은 반드시 입력해주셔야 합니다.\n\n[ 미입력 항목 ]\n\n"+incompleteTag)
+			alert("[ * ] 이 표시된 항목은 반드시 입력해주셔야 합니다.\n\n[ 미입력 항목 ]\n\n"+incompleteTag);
 		}
 
 	} 

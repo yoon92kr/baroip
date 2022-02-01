@@ -152,8 +152,21 @@
 						</div>
 						<div class="col-lg-1 MyPage_03_text_position_02"><fmt:formatNumber value="${itemList[j].order_amount}" /> 개</div>
 						<div class="col-lg-2 MyPage_03_text_position_02"><fmt:formatNumber value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" /> 원</div>
-						
-
+							
+							<c:if test='${itemList[j].order_state == -2}'>
+							<div class="col-lg-2">
+								<div class="text-center MyPage_03_text_position_02">반품 / 교환 완료</div>
+							</div>
+							<div class="col-lg-2"></div>
+							</c:if>	
+												
+							<c:if test='${itemList[j].order_state == -1}'>
+							<div class="col-lg-2">
+								<div class="text-center MyPage_03_text_position_02">주문 취소</div>
+							</div>
+							<div class="col-lg-2"></div>
+							</c:if>
+							
 							<c:if test='${itemList[j].order_state == 0}'>
 							<div class="col-lg-2">
 								<div class="text-center MyPage_03_text_position_02">상품 준비 중</div>
@@ -344,9 +357,21 @@ function update_state(target) {
     	
     	// 구매취소 신청 양식 이동
     	if(refundFlag) {
-    		location.href='${contextPath}/myPage/refundForm.do?order_id='+order_id;
+    	       var form = document.createElement("form");
+    	       form.setAttribute("charset", "UTF-8");
+    	       form.setAttribute("method", "Post");
+    	       form.setAttribute("action", "${contextPath}/myPage/myOrder/refundForm.do");
+    	     	  
+    	           var hiddenField = document.createElement("input");
+    	           hiddenField.setAttribute("type", "hidden");
+    	           hiddenField.setAttribute("name", "order_id");
+    	           hiddenField.setAttribute("value", order_id);
+    	           form.appendChild(hiddenField);
+
+    	     
+    	       document.body.appendChild(form);
+    	       form.submit();
     	}
-    }
 			
 		if(submitFlag) {
 			$.ajax({
@@ -373,6 +398,7 @@ function update_state(target) {
 			});	
 		}
 				
+}
 }
 
 

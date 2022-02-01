@@ -257,7 +257,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 	
 
 	@Override
-	@RequestMapping(value = "/refundForm.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/myOrder/refundForm.do", method =RequestMethod.POST)
 	public ModelAndView refundForm(@RequestParam("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();

@@ -53,7 +53,7 @@
 
 	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
 	<select id="selectOrder" resultMap="orderResult" parameterType="java.util.Map">
-		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_delivery_id, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where o.user_id = #{user_id} and o.order_state between 0 and 2
+		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_delivery_id, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where o.user_id = #{user_id}
 		<if test="search_option != null and !search_option.equals('')">
 			<if test='search_option == "orderDate"'>
 				and o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
