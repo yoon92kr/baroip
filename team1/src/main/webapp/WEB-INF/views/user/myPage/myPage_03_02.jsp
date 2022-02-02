@@ -95,8 +95,7 @@
 			<span>사진 첨부</span>
 		</div>
 		<div class="col-lg-4 cs_02_02_box02">
-			<input class="form-control" style="border:0px;" type="file" id="formFileMultiple"
-				multiple>
+			<input class="form-control" style="border:0px;" type="file" name="refund" accept="image/*">
 		</div>
 
 

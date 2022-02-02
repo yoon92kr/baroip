@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.user.vo.UserVO;
 
 public interface MyPageConroller {
@@ -32,6 +34,9 @@ public interface MyPageConroller {
 	
 	// 주문 취소 페이지 이동 컨트롤러
 	public ModelAndView refundForm(@RequestParam("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	// 반품/교환 신청 컨트롤러
+	public ModelAndView askRefund(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 }
 
 

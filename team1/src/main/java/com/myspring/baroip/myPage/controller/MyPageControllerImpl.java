@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.baroip.image.controller.ImageController;
 import com.myspring.baroip.myPage.service.MyPageService;
+import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
@@ -34,6 +37,8 @@ public class MyPageControllerImpl implements MyPageConroller{
 	private MyPageService myPageService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ImageController imageController;
 
 	
 
@@ -255,7 +260,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 		return message;
 	}
 	
-
+	
 	@Override
 	@RequestMapping(value = "/myOrder/refundForm.do", method =RequestMethod.POST)
 	public ModelAndView refundForm(@RequestParam("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -266,6 +271,24 @@ public class MyPageControllerImpl implements MyPageConroller{
 		mav.setViewName(viewName);
 		mav.addObject("order_id", order_id);
 		
+		return mav;
+
+	}
+	
+	@Override
+	@RequestMapping(value = "/myOrder/askRefund.do", method =RequestMethod.POST)
+	public ModelAndView askRefund(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		String message = "[]의 임시등록이 완료되었습니다.";
+		HttpSession session = multipartRequest.getSession();
+		session.setAttribute("message", message);
+
+		mav.setViewName("redirect:/myPage/myOrder.do");
+		System.out.println("baroip : " + message);
+		imageController.ImageSetImageVO(multipartRequest, "g");
+
+		// 등록된 상품 이미지 파일 저장
 		return mav;
 
 	}

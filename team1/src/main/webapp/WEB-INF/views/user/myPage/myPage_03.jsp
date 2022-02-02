@@ -154,17 +154,15 @@
 						<div class="col-lg-2 MyPage_03_text_position_02"><fmt:formatNumber value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" /> 원</div>
 							
 							<c:if test='${itemList[j].order_state == -2}'>
-							<div class="col-lg-2">
-								<div class="text-center MyPage_03_text_position_02">반품 / 교환 완료</div>
+							<div class="col-lg-4">
+								<div class="text-center MyPage_03_text_position_02">반품 / 교환 신청 완료</div>
 							</div>
-							<div class="col-lg-2"></div>
 							</c:if>	
 												
 							<c:if test='${itemList[j].order_state == -1}'>
-							<div class="col-lg-2">
+							<div class="col-lg-4">
 								<div class="text-center MyPage_03_text_position_02">주문 취소</div>
 							</div>
-							<div class="col-lg-2"></div>
 							</c:if>
 							
 							<c:if test='${itemList[j].order_state == 0}'>

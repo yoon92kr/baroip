@@ -22,7 +22,7 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 			// 요청 view 설정
 			String viewName = getViewName(request);
 			// 이전 요청 view 설정
-			String lastViewName = getLastViewName(request);
+			// String lastViewName = getLastViewName(request);
 			// 헤더 색상 변경
 			setHeader(request, viewName);
 			
@@ -49,7 +49,7 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 				request.setAttribute("viewName", viewName);
 			}
 
-			request.setAttribute("lastViewName", lastViewName);
+			// request.setAttribute("lastViewName", lastViewName);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,34 +118,34 @@ public class MainInterceptor extends HandlerInterceptorAdapter {
 		}
 	}
 	
-	private String getLastViewName(HttpServletRequest request) throws Exception {
-
-
-		String contextPath = request.getContextPath();
-		String uri = (String) request.getHeader("REFERER");
-		String lastUri = "";
-	
-		if (uri == null || uri.trim().equals("") || contextPath == null || contextPath.trim().equals("")) {
-			System.out.println("baroip : 이전 URI가 존재하지 않습니다.");
-		}
-		
-		else {
-			int begin = uri.indexOf(contextPath)+contextPath.length();
-			int end = 0;
-			if (uri.indexOf("?") != -1 && uri.indexOf(".do") != -1) {
-				
-				end = uri.indexOf("?")-3; 
-			}
-			else {
-				end = uri.indexOf(".do");
-			}
-			lastUri = uri.substring(begin, end);
-		}
-		
-
-		return lastUri;
-		
-	}
-	
+//	private String getLastViewName(HttpServletRequest request) throws Exception {
+//
+//
+//		String contextPath = request.getContextPath();
+//		String uri = (String) request.getHeader("REFERER");
+//		String lastUri = "";
+//	
+//		if (uri == null || uri.trim().equals("") || contextPath == null || contextPath.trim().equals("")) {
+//			System.out.println("baroip : 이전 URI가 존재하지 않습니다.");
+//		}
+//		
+//		else {
+//			int begin = uri.indexOf(contextPath)+contextPath.length();
+//			int end = 0;
+//			if (uri.indexOf("?") != -1 && uri.indexOf(".do") != -1) {
+//				
+//				end = uri.indexOf("?")-3; 
+//			}
+//			else {
+//				end = uri.indexOf(".do");
+//			}
+//			lastUri = uri.substring(begin, end);
+//		}
+//		
+//
+//		return lastUri;
+//		
+//	}
+//	
 
 }
