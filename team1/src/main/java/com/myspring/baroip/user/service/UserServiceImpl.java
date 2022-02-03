@@ -56,13 +56,13 @@ public class UserServiceImpl implements UserService {
 //	핸드폰 인증
 	@Override
 	public void userPhoneCheck(String mobile, int randomNumber) {
-		String api_key = "NCSSVQWN3YKS1DCX";
-		String api_secret = "WTMKELCNIM41T5XSQYCAWFLV4ZLIA9RA";
+		String api_key = "NCSD82BYMIRY1ADB";
+		String api_secret = "TDY85PNGZVY1MNPES0C9VQKVPCKPA92E";
 		Message coolsms = new Message(api_key, api_secret);
 		
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", mobile);
-		params.put("from", "01075422294");
+		params.put("from", "01086739295");
 		params.put("type", "SMS");
 		params.put("text", "바로입 인증번호는 " + "[" + randomNumber + "]" + " 입니다.");
 		params.put("app_version", "test app 1.2");
