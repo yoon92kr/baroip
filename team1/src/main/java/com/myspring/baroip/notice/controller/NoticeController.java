@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface NoticeController {
 	
+	public ModelAndView notice(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 //	공지사항 리스트 페이지
 	public ModelAndView notice_list(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 

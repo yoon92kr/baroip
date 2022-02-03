@@ -3,6 +3,7 @@
 package com.myspring.baroip.notice.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +31,22 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return noticeVO;
 	}
 	
-//	상품후기
+//	상품후기 리스트
 	@Override
-	public List<NoticeVO> selectCommentList(String product_id) throws DataAccessException {
-		List<NoticeVO> commentList = sqlSession.selectList("mapper.notice.selectProductComment", product_id);
+	public List<Map<String, Object>> selectCommentList(String product_id) throws DataAccessException {
+		List<Map<String, Object>> commentList = sqlSession.selectList("mapper.notice.selectProductComment", product_id);
 		return commentList;
 	}
 	
-//	상품 문의
+//	상품 문의 리스트
 	@Override
 	public List<NoticeVO> selectPQAList(String product_id) throws DataAccessException {
 		List<NoticeVO> PQAList = sqlSession.selectList("mapper.notice.selectProductQuestion", product_id);
 		return PQAList;
+	}
+	
+	public void insertPQA(NoticeVO noticeVO) throws DataAccessException {
+		sqlSession.selectList("mapper.notice.insertPQA", noticeVO);
 	}
 
 }

@@ -16,8 +16,11 @@ public interface NoticeService {
 	public NoticeVO noticeDetail(String notice_id) throws Exception;
 	
 //	상품후기
-	public Map<String, Object> productComment(String product_id) throws Exception;
+	public List<Map<String, Object>> productComment(String product_id) throws Exception;
 	
 //	상품 문의
 	public Map<String, Object> productQuestion(String product_id) throws Exception;
+	
+//	상품 문의 작성 페이지
+	public void addPQA(NoticeVO noticeVO) throws Exception;
 }

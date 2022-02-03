@@ -30,5 +30,4 @@ public interface ImageDAO {
 	
 	public List<ImageVO> selectImgOne (String product_id) throws DataAccessException;
 	
-	public List<ImageVO> selectCommentImg (String notice_id) throws DataAccessException;
 }

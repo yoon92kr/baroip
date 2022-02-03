@@ -33,7 +33,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_05.jsp" />
 	</definition>
 
-	<definition name="/product/product_06" extends="MainLayout">
+	<definition name="/notice/add_PQA_form" extends="MainLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/product/product_06.jsp" />
 	</definition>
 	
