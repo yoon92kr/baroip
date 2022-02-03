@@ -106,13 +106,5 @@
 		]]>
 
 	</select>
-	
-	<select id="commentImg" resultType="imageVO" parameterType="java.lang.String">
-		<![CDATA[
-			select * from image where image_match_id = #{notice_id} and image_category = 'comment'
-		]]>
-	</select>
-	
-
 
 </mapper>

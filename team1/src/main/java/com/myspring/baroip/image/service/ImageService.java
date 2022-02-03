@@ -26,5 +26,4 @@ public interface ImageService {
 	
 	public List<ImageVO> selectImgOne (String product_id) throws DataAccessException;
 	
-	public List<ImageVO> commentImgList(String notice_id) throws Exception;
 }

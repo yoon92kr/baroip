@@ -3,22 +3,17 @@
 
 <mapper namespace="mapper.notice">
 	<!-- 리절트 맵 정의  -->
-	<resultMap id="noticeResult" type="NoticeVO">
+	<resultMap id="noticeResult" type="java.util.Map">
 		<result property="notice_id" column="notice_id" />
 		<result property="user_id" column="user_id" />
-		<result property="notice_category" column="notice_category" />
-		<result property="notice_pw" column="notice_pw" />
 		<result property="notice_title" column="notice_title" />
 		<result property="notice_body" column="notice_body" />
 		<result property="notice_cre_date" column="notice_cre_date" />
 		<result property="notice_grade" column="notice_grade" />
-		<result property="notice_private" column="notice_private" />
-		<result property="notice_type" column="notice_type" />
-		<result property="order_id" column="order_id" />
-		<result property="product_id" column="product_id" />
+		<result property="image_file" column="image_file" />
 	</resultMap>
 	
-	<select id="noticeList" resultMap="noticeResult" parameterType="NoticeVO">
+	<select id="noticeList"  resultType="NoticeVO" parameterType="NoticeVO">
 		<![CDATA[
 		select * from notice where notice_category = 'notice' order by notice_id * 1
 		]]>
@@ -30,9 +25,13 @@
 		]]>
 	</select>
 	
-	<select id="selectProductComment" resultType="NoticeVO" parameterType="String">
+	<select id="selectProductComment" resultMap="noticeResult" parameterType="String">
 		<![CDATA[
-			select * from notice where product_id = #{product_id} and notice_category = 'comment' order by notice_cre_date desc
+			select n.notice_id, n.user_id, n.notice_title, n.notice_body, n.notice_cre_date, n.notice_grade, i.image_file 
+			from notice as n inner join image as i 
+			on n.notice_id = i.image_match_id 
+			where notice_category = 'comment' and n.product_id = #{product_id} 
+			order by n.notice_cre_date asc
 		]]>
 	</select>
 	
@@ -41,5 +40,28 @@
 			select * from notice where product_id = #{product_id} and notice_category = 'PQA' order by notice_cre_date desc
 		]]>
 	</select>
+	
+	<insert id="insertPQA" parameterType="java.lang.String">
+		<![CDATA[
+			insert into notice(notice_id, 
+					user_id, 
+                    notice_category, 
+                    notice_title, 
+                    notice_body, 
+                    notice_cre_date, 
+                    product_id, 
+                    notice_match_no, 
+                    notice_parent_no)
+			values(concat('notice_', nextval('notice')),
+					#{user_id}, 
+                    'PQA', 
+                    #{notice_title}, 
+                    #{notice_body}, 
+                    now(), 
+                    #{product_id}, 
+                    '0', 
+                    '0');
+		]]>
+	</insert>
 	
 </mapper>

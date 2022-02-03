@@ -40,16 +40,21 @@
 	<div class="row">
 		<div
 			class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text product_03_mini_category_text">
-			<a href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품 상세정보</a> 
-			<a>고객 후기</a> 
-			<a href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송 / 교환 /반품 안내</a> 
-			<a href="${contextPath}/notice/PQAListPage.do?product_id=${product_id}">상품 문의</a>
+			<a
+				href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품
+				상세정보</a> <a>고객 후기</a> <a
+				href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송
+				/ 교환 /반품 안내</a> <a
+				href="${contextPath}/notice/PQAListPage.do?product_id=${product_id}">상품
+				문의</a>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-2 offset-lg-1">
-			<img class="product_03_main_img" src="data:image/jpeg;base64,${productInfo.product.main}" alt="상품 대표 이미지">
+			<img class="product_03_main_img"
+				src="data:image/jpeg;base64,${productInfo.product.main}"
+				alt="상품 대표 이미지">
 		</div>
 		<div class="col-lg-7 text-center">
 			<div class="product_03_title">${productInfo.product.productVO.product_main_title}</div>
@@ -78,70 +83,90 @@
 	<c:choose>
 		<c:when test="${empty itemList}">
 			<div class="row">
-	            <div class="offset-lg-1 col-lg-10 text-center notice_01_section">
-	               <span>작성된 상품 후기가 없습니다.</span>
-	            </div>
-        	</div>
+				<div class="offset-lg-1 col-lg-10 text-center notice_01_section">
+					<span>작성된 상품 후기가 없습니다.</span>
+				</div>
+			</div>
 		</c:when>
 		<c:when test="${not empty  itemList}">
 			<c:forEach var="i" begin="1" end="${itemSize}">
-			<c:set var="list" value="noticeItem${i}" />
 			<c:set var="desc" value="${itemSize - i + 1}" />		
 			<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
-					<div class="row">
-						<div class="offset-lg-1 col-lg-2 text-center notice_01_section">
-							<span>${j}</span>
-						</div>
-						<div class="col-lg-1 text-left notice_01_section">
-							<span>${itemList[list].noticeList.user_id}</span>
-						</div>
-						<div class="col-lg-1 text-center notice_01_section">
-							<img class="product_03_user_img" src="data:image/jpeg;base64,${productInfo.product.main}" alt="고객후기 첨부 이미지">
-						</div>
-						<div class="col-lg-3 text-center notice_01_section">
-							<a> <span class="">${itemList[list].noticeList.notice_title}</span> </a>
-						</div>
-						<div class="col-lg-1 text-center notice_01_section">
-							<span>${itemList[list].noticeList.notice_grade}</span>
-						</div>
-						<div class="col-lg-2 text-center notice_01_section">
-							<span>${itemList[list].noticeList.notice_cre_date}</span>
+				<div class="row">
+					<div class="offset-lg-1 col-lg-2 text-center notice_01_section">
+						<span>${j}</span>
+					</div>
+					<div class="col-lg-1 text-left notice_01_section">
+						<span>${itemList[j-1].user_id}</span>
+					</div>
+					<div class="col-lg-1 text-center notice_01_section">
+						<img class="product_03_user_img"
+							src="data:image/jpeg;base64,${itemList[j-1].image_file}"
+							alt="고객후기 첨부 이미지">
+					</div>
+					<div class="col-lg-3 text-center notice_01_section">
+						<div class="faq-content">
+							<button class="question text-center" id="que-${j}" onclick="openCloseAnswer(this.id)">
+								<span id="que-${j}-toggle" class="cs_01-que-tollge">${itemList[j-1].notice_title}</span>
+							</button>
+							<div class="answer" id="ans-${j}">▶ ${itemList[j-1].notice_body}</div>
 						</div>
 					</div>
+					<div class="col-lg-1 text-center notice_01_section">
+						<span>${itemList[j-1].notice_grade}</span>
+					</div>
+					<div class="col-lg-2 text-center notice_01_section">
+						<span>${itemList[j-1].notice_cre_date}</span>
+					</div>
+				</div>
 			</c:forEach>
 		</c:when>
 	</c:choose>
-	
+
 	<c:if test="${itemSize > pageNoMax}">
 
-				<div class="row">
+		<div class="row">
 
-					<div class="col-lg-12 text-center admin_product_page_index">
-						<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
-						<c:if test="${itemSize > pageNoMax}">
-						
-							<c:set var="maxNo" value="${itemSize+pageNoMax-1}" />
-							
-							<c:forEach var="x" begin="1" end="${maxNo / pageNoMax}">
-								<fmt:parseNumber type="number" integerOnly="true" var="noFlag" value="${(pageNo+pageNoMax-1) / pageNoMax}" />
-							
-								<c:if test="${(noFlag * pageNoMax) - (pageNoMax-1) <= x and x <= (noFlag * pageNoMax)}">
-									<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
-								</c:if>
-							</c:forEach>
-							
+			<div class="col-lg-12 text-center admin_product_page_index">
+				<a href="#" onclick="pageMove(this.id)" id="이전">이전</a>
+				<c:if test="${itemSize > pageNoMax}">
+
+					<c:set var="maxNo" value="${itemSize+pageNoMax-1}" />
+
+					<c:forEach var="x" begin="1" end="${maxNo / pageNoMax}">
+						<fmt:parseNumber type="number" integerOnly="true" var="noFlag"
+							value="${(pageNo+pageNoMax-1) / pageNoMax}" />
+
+						<c:if
+							test="${(noFlag * pageNoMax) - (pageNoMax-1) <= x and x <= (noFlag * pageNoMax)}">
+							<a href="#" onclick="pageMove(this.id)" id="${x}">${x}</a>
 						</c:if>
+					</c:forEach>
 
-						<a href="#" onclick="pageMove(this.id)" id="다음">다음</a>
-					</div>
-					
-				</div>
+				</c:if>
 
-			</c:if>
-	
+				<a href="#" onclick="pageMove(this.id)" id="다음">다음</a>
+			</div>
+
+		</div>
+
+	</c:if>
+
 </div>
 
 <script>
+
+function openCloseAnswer(target) {
+    let answerId = target.replace('que', 'ans');
+    	    
+	    if(document.getElementById(answerId).style.display === 'block') {
+	      document.getElementById(answerId).style.display = 'none';
+	    } else {
+	      document.getElementById(answerId).style.display = 'block';
+	    }
+    
+  }  
+
 //페이지 이동 스크립트
 function pageMove(no) {
 	var getValue = 0;

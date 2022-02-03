@@ -3,6 +3,7 @@
 package com.myspring.baroip.notice.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -17,9 +18,12 @@ public interface NoticeDAO {
 	public NoticeVO noticeDetail(String notice_id) throws DataAccessException;
 
 //	상품후기
-	public List<NoticeVO> selectCommentList(String product_id) throws DataAccessException;
+	public List<Map<String, Object>> selectCommentList(String product_id) throws DataAccessException;
 	
-//	상품 문의
+//	상품 문의 리스트
 	public List<NoticeVO> selectPQAList(String product_id) throws DataAccessException;
+	
+//	상품 문의 작성 페이지
+	public void insertPQA(NoticeVO noticeVO) throws DataAccessException;
 
 }
