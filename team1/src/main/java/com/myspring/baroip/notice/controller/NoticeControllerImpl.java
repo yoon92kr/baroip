@@ -173,6 +173,8 @@ public class NoticeControllerImpl implements NoticeController {
 		
 	}
 	
+//	2022.02.03 한건희 
+//	상품 문의 작성 페이지
 	@RequestMapping(value= "/add_PQA_form" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView add_PQA_form(@RequestParam("product_id") String product_id, @RequestParam("product_main_title") String product_main_title, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -186,6 +188,8 @@ public class NoticeControllerImpl implements NoticeController {
 		
 	}
 	
+//	2022.02.03 한건희 
+//	상품 문의 작성
 	@RequestMapping(value= "/add_PQA" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView add_PQA(@RequestParam("NoticeVO") NoticeVO noticeVO) throws Exception{
 		
