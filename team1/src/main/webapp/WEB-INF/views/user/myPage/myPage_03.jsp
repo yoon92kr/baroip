@@ -1,5 +1,5 @@
 <!-- 2021.11.30 임석희 myPage_03 -->
-
+<!-- 2022.02.03 윤상현 수정 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
@@ -143,8 +143,8 @@
 					<input type="hidden" value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" id="orderAmount_${j}">
 						<div class="col-lg-2 text-center">
 								<div class=" "><fmt:formatDate value="${itemList[j].order_date}" pattern="yyyy-MM-dd" /></div>
-							<input class="MyPage_03-submit-box-01" type="button"
-								value="주문 상세 정보">
+							<input class="MyPage_03-submit-box-01" type="button" id="orderDetail_${j}" 
+								value="주문 상세 정보" onclick="order_detail(this.id)">
 						</div>
 						
 						<div class="col-lg-3 MyPage_03_text_position_02">
@@ -152,10 +152,16 @@
 						</div>
 						<div class="col-lg-1 MyPage_03_text_position_02"><fmt:formatNumber value="${itemList[j].order_amount}" /> 개</div>
 						<div class="col-lg-2 MyPage_03_text_position_02"><fmt:formatNumber value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" /> 원</div>
-							
+				
+							<c:if test='${itemList[j].order_state == -3}'>
+							<div class="col-lg-4">
+								<div class="text-center MyPage_03_text_position_02">반품 / 교환 처리 완료</div>
+							</div>
+							</c:if>	
+														
 							<c:if test='${itemList[j].order_state == -2}'>
 							<div class="col-lg-4">
-								<div class="text-center MyPage_03_text_position_02">반품 / 교환 신청 완료</div>
+								<div class="text-center MyPage_03_text_position_02">반품 / 교환 신청 접수</div>
 							</div>
 							</c:if>	
 												
@@ -313,6 +319,34 @@ function checkDelivery(order_delivery_id) {
 	
 }
 
+// 주문 상세 스크립트
+function order_detail(target){
+	var strArray = target.split('_');
+	var target_no = strArray[1];
+
+	let order_id = document.getElementById('orderID_'.concat(target_no)).value;
+	let user_id = "${userInfo.user_id}";
+
+	let order_array = order_id.split('_');
+	let order_id_group = 'baroip_order_'.concat(order_array[2], '_', order_array[3]);
+		
+    var form = document.createElement("form");
+    form.setAttribute("charset", "UTF-8");
+    form.setAttribute("method", "Post");
+    form.setAttribute("action", "${contextPath}/myPage/myOrder/orderDetail.do");
+  	  
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "order_id");
+        hiddenField.setAttribute("value", order_id_group);
+        form.appendChild(hiddenField);
+
+  
+    document.body.appendChild(form);
+    form.submit();
+	
+}
+
 // 구매확정 스크립트
 function update_state(target) {
 	var strArray = target.split('_');
@@ -325,6 +359,7 @@ function update_state(target) {
 	let update_option = strArray[0];
 	let point = "";
 	let submitFlag = false;
+	let refundFlag = false;
 	
     switch("${userInfo.user_membership}") {
     case "1" :
@@ -343,7 +378,7 @@ function update_state(target) {
     	point = order_amount * 0.1
 	   break;
     }
-    
+   
     if(update_option == "deliveryCompleted") {
     	submitFlag = confirm("해당 주문을 구매확정 처리 하시겠습니까?");
     }  
@@ -352,7 +387,7 @@ function update_state(target) {
     }
     else {
     	refundFlag = confirm("수령하신 상품을 반품/교환 신청 하시겠습니까?");
-    	
+    }	
     	// 구매취소 신청 양식 이동
     	if(refundFlag) {
     	       var form = document.createElement("form");
@@ -371,7 +406,7 @@ function update_state(target) {
     	       form.submit();
     	}
 			
-		if(submitFlag) {
+    	else if(submitFlag) {
 			$.ajax({
 				type : "post",
 				async : false,
@@ -396,7 +431,6 @@ function update_state(target) {
 			});	
 		}
 				
-}
 }
 
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.user.vo.UserVO;
 
 @Repository("myPageDAO")
@@ -57,5 +58,17 @@ public class MyPageDAOImpl implements MyPageDAO {
 			sqlSession.update("mapper.myPage.updateOrder", option);
 			
 		}
+		
+	// 반품 등록 DAO 
+		@Override
+		public String askRefund(NoticeVO noticeVO) throws DataAccessException {
+			
+			sqlSession.insert("mapper.myPage.askRefund",noticeVO);
+			sqlSession.update("mapper.myPage.askRefundUpdate", noticeVO);
+			String notice_id = noticeVO.getNotice_id();
+						
+			return notice_id;
+		}
+		
 
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.user.vo.UserVO;
 
 public interface MyPageDAO {
@@ -26,4 +27,8 @@ public interface MyPageDAO {
 	
 	// 주문상태 변경 DAO
 	public void updateOrder(Map<String, String> option) throws DataAccessException;
+	
+	
+	// 반품 등록 DAO
+	public String askRefund(NoticeVO noticeVO) throws DataAccessException;
 }

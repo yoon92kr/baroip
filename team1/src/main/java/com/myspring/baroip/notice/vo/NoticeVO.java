@@ -18,7 +18,7 @@ public class NoticeVO {
 	private int notice_grade;
 	private String notice_private;
 	private String notice_type;
-	private int order_id;
+	private String order_id;
 	private String product_id;
 	private String notice_match_no;
 	private String notice_parent_no;
@@ -82,10 +82,10 @@ public class NoticeVO {
 	public void setNotice_type(String notice_type) {
 		this.notice_type = notice_type;
 	}
-	public int getOrder_id() {
+	public String getOrder_id() {
 		return order_id;
 	}
-	public void setOrder_id(int order_id) {
+	public void setOrder_id(String order_id) {
 		this.order_id = order_id;
 	}
 	public String getProduct_id() {

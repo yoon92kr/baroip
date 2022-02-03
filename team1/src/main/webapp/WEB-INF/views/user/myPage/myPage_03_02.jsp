@@ -30,8 +30,10 @@
 		</div>
 	</div>
 
-<form action="${contextPath}/myPage/askRefund.do" method="post" enctype="multipart/form-data" id="ask_refund">
+<form action="${contextPath}/myPage/myOrder/askRefund.do" method="post" enctype="multipart/form-data" id="ask_refund">
 	<input type="hidden" name="order_id" value="${order_id }">
+	<input type="hidden" name="user_id" value="${userInfo.user_id }">
+	<input type="hidden" name="notice_category" value="refund">
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 			<span>제목</span>

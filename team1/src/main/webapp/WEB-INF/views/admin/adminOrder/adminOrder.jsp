@@ -137,7 +137,7 @@
 	        <h6 class="order_01-content-hedaer-text">주문 일자</h6>
 	    </div>
 		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-	        <h6 class="order_01-content-hedaer-text">배송 상태 수정</h6>
+	        <h6 class="order_01-content-hedaer-text">배송 상태</h6>
 	    </div>
 	</div>
 	

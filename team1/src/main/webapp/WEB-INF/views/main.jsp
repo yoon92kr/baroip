@@ -125,11 +125,8 @@
 						</div>
 
 						<div class="col-lg-3 text-right">
-							<button class="main_cartImage" id="main_cartImage${i}"
-								type="button" value="${bestProducts[key].product_id}"
-								onclick="cartBTN(this);">
-								<img src="${contextPath}/resources/img/common/cart-put-icon.png"
-									alt="카트 담기 버튼 이미지">
+							<button class="main_cartImage" id="main_cartImage${i}" type="button" value="${bestProducts[key].product_id}" onclick="cartBTN(this);">
+								<img src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
 							</button>
 							<input id="main_bestItemTitle${i}" type="hidden"
 								value="${bestProducts[key].product_main_title}">
@@ -169,7 +166,7 @@
 			if (userFind == null || userFind == "") {
 				let notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
 				if (notUser == false) {
-					location = '${contextPath}/user/login_01.do';
+					location = '${contextPath}/user/loginpage.do';
 				} else {
 					$.ajax({
 						url : "${contextPath}/cart/addProductInCart.do",

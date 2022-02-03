@@ -63,7 +63,13 @@
 			</if>
 
 			<if test='search_option == "state"'>
+			<if test='search_value lt -1'>
+				and o.order_state between -2 and -3 order by o.order_date desc
+			</if>
+			<if test='search_value gte -1'>
 				and o.order_state = #{search_value} order by o.order_date desc
+			</if>
+			
 			</if>
 		</if>
 
@@ -80,38 +86,70 @@
 	<!-- 구매확정 쿼리 -->
 	<if test='update_option == "deliveryCompleted"'>
 		update orders as o, user as u set 
-		o.order_state=2,
-		u.user_point = u.user_point + #{point},
-		u.user_total_point = u.user_total_point + #{point}
+			o.order_state=2,
+			u.user_point = u.user_point + #{point},
+			u.user_total_point = u.user_total_point + #{point}
 		where	 
-		o.order_id = #{order_id}
-		and u.user_id = #{user_id}
+			o.order_id = #{order_id}
+			and u.user_id = #{user_id}
 	</if>
 	
 	<!-- 주문취소 쿼리 -->
 	<if test='update_option == "cancelOrder"'>
-			update orders as o, user as u set 
-		o.order_state = -1,
-		u.user_total_amount = u.user_total_amount - #{amount},
-		u.user_total_count = u.user_total_count - #{count}
+		update orders as o, user as u set 
+			o.order_state = -1,
+			u.user_total_amount = u.user_total_amount - #{amount},
+			u.user_total_count = u.user_total_count - #{count}
 		where	 
-		o.order_id = #{order_id}
-		and u.user_id = #{user_id}
+			o.order_id = #{order_id}
+			and u.user_id = #{user_id}
 	</if>
+
+	</update>
 	
-	<!-- 반품승인 쿼리 
-	<if test='update_option == "refund"'>
-			update orders as o, user as u set 
-		o.order_state = -2,
-		u.user_total_amount = u.user_total_amount - #{amount},
-		u.user_total_count = u.user_total_count - #{count},
-		u.user_point = u.user_point - #{point},
-		u.user_total_point = u.user_total_point - #{point}
+		<!-- 반품 등록 쿼리 -->
+	<insert id="askRefund" parameterType="NoticeVO" useGeneratedKeys="true" keyColumn="notice_id" keyProperty="notice_id">
+
+	<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
+		select concat('notice_', (select nextval('notice')))
+	</selectKey>
+	
+		<![CDATA[
+			insert into notice (
+				notice_id, 
+				user_id,
+				notice_category, 
+				notice_title,
+				notice_body,
+				notice_type,
+				order_id,
+				notice_match_no,
+				notice_parent_no
+				)
+			values (
+				#{notice_id},
+				#{user_id},
+				#{notice_category}, 
+				#{notice_title},
+				#{notice_body}, 
+				#{notice_type}, 
+				#{order_id},
+				#{notice_id},
+				0
+				)	
+		]]>
+
+	</insert>
+	
+		<!-- 반품 접수 쿼리 -->
+	<update id="askRefundUpdate" parameterType="NoticeVO">
+
+		update orders as o, user as u set 
+			o.order_state = -2
 		where	 
-		o.order_id = #{order_id}
-		and u.user_id = #{user_id}
-	</if>
-	-->
+			o.order_id = #{order_id}
+			and u.user_id = #{user_id}
+
 	</update>
 
 		

@@ -260,7 +260,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 		return message;
 	}
 	
-	
+	// 주문 취소 페이지 이동 컨트롤러
 	@Override
 	@RequestMapping(value = "/myOrder/refundForm.do", method =RequestMethod.POST)
 	public ModelAndView refundForm(@RequestParam("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -275,20 +275,37 @@ public class MyPageControllerImpl implements MyPageConroller{
 
 	}
 	
+	// 반품/교환 신청 컨트롤러
 	@Override
 	@RequestMapping(value = "/myOrder/askRefund.do", method =RequestMethod.POST)
 	public ModelAndView askRefund(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-		String message = "[]의 임시등록이 완료되었습니다.";
 		HttpSession session = multipartRequest.getSession();
+				
+		String notice_id = myPageService.askRefund(noticeVO);
+		String message = "해당 주문의 반품 / 교환 신청이 완료되었습니다.";
+		
 		session.setAttribute("message", message);
 
 		mav.setViewName("redirect:/myPage/myOrder.do");
 		System.out.println("baroip : " + message);
-		imageController.ImageSetImageVO(multipartRequest, "g");
+		imageController.ImageSetImageVO(multipartRequest, notice_id);
 
-		// 등록된 상품 이미지 파일 저장
+		return mav;
+
+	}
+	
+	// 주문 상세페이지 컨트롤러
+	@Override
+	@RequestMapping(value = "/myOrder/orderDetail.do", method =RequestMethod.POST)
+	public ModelAndView orderDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		mav.setViewName(viewName);
+
 		return mav;
 
 	}

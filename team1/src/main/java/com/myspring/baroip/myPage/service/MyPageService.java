@@ -5,6 +5,7 @@ package com.myspring.baroip.myPage.service;
 import java.util.List;
 import java.util.Map;
 
+import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.user.vo.UserVO;
 
 public interface MyPageService {
@@ -23,4 +24,7 @@ public interface MyPageService {
 	
 	// 주문 상태 변경 서비스
 	public void updateOrder(Map<String, String> option) throws Exception;
+	
+	// 반품 등록 서비스
+	public String askRefund(NoticeVO noticeVO) throws Exception;
 }

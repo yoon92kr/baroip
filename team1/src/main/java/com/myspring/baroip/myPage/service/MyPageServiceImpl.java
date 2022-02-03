@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myspring.baroip.myPage.dao.MyPageDAO;
+import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.user.vo.UserVO;
 
 @Service("myPageService")
@@ -68,6 +69,15 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		myPageDAO.updateOrder(option);
 		
+	}
+	
+	// 반품 등록 서비스
+	@Override
+	public String askRefund(NoticeVO noticeVO) throws Exception {
+		
+		String product_id = myPageDAO.askRefund(noticeVO);
+		
+		return product_id;
 	}
 
 }

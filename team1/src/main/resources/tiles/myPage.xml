@@ -30,7 +30,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03.jsp" />
 	</definition>
 
-	<definition name="/myPage/orderDetail" extends="MyPageLayout">
+	<definition name="/myPage/myOrder/orderDetail" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_03_01.jsp" />
 	</definition>
 

@@ -37,6 +37,9 @@ public interface MyPageConroller {
 	
 	// 반품/교환 신청 컨트롤러
 	public ModelAndView askRefund(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
+	
+	// 주문 상세페이지 컨트롤러
+	public ModelAndView orderDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
 
 
