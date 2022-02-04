@@ -37,30 +37,38 @@
 	
 	<select id="selectProductQuestion" resultType="NoticeVO" parameterType="String">
 		<![CDATA[
-			select * from notice where product_id = #{product_id} and notice_category = 'PQA' order by notice_cre_date desc
+			select * from notice where product_id = #{product_id} and notice_category = 'PQA' and user_id != 'admin' order by notice_cre_date desc
 		]]>
 	</select>
 	
 	<insert id="insertPQA" parameterType="java.lang.String">
+	
+	<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
+		select concat('notice_', (select nextval('notice')))
+	</selectKey>
 		<![CDATA[
 			insert into notice(notice_id, 
-					user_id, 
+					user_id,
                     notice_category, 
+                    notice_pw, 
                     notice_title, 
                     notice_body, 
                     notice_cre_date, 
+                    notice_private, 
                     product_id, 
                     notice_match_no, 
                     notice_parent_no)
-			values(concat('notice_', nextval('notice')),
+			values(#{notice_id},
 					#{user_id}, 
-                    'PQA', 
+                    #{notice_category}, 
+                    #{notice_pw},
                     #{notice_title}, 
                     #{notice_body}, 
                     now(), 
+                    #{notice_private}, 
                     #{product_id}, 
-                    '0', 
-                    '0');
+                    #{notice_id}, 
+                    '0')
 		]]>
 	</insert>
 	

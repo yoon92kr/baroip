@@ -43,7 +43,7 @@
 			<a href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품 상세정보</a> 
 			<a href="${contextPath}/notice/productComment.do?product_id=${product_id}">고객 후기</a> 
 			<a href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송/ 교환 /반품 안내</a> 
-			<a href="${contextPath}/product/PQAListPage.do">상품 문의</a>
+			<a>상품 문의</a>
 		</div>
 	</div>
 

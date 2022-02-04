@@ -30,13 +30,13 @@
 		</div>
 	</div>
 
-	<form id="add_UQA" action="${contextPath}/notice/add_PQA.do" method="post">
+	<form id="PQAForm">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 				<span>제목</span>
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
-				<input type="text" class="form-control" placeholder="제목을 입력하세요.">
+				<input name="notice_title" type="text" class="form-control notice_upload_check" placeholder="제목을 입력하세요.">
 			</div>
 
 		</div>
@@ -51,18 +51,16 @@
 			</div>
 		</div>
 
-
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box01">
 				<span>공개여부</span>
 			</div>
 			<div class="col-lg-4 cs_02_02_box02">
-				<label> <input id="NPY" type="radio" name="notice_private"
-					value="1" onClick="this.form.notice_pw.disabled=true"
-					checked="checked"> 공개
-				</label> <label> <input id="NPN" class="cs_02_01_private_btn"
-					type="radio" onClick="this.form.notice_pw.disabled=false"
-					name="notice_private" value="0"> 비공개
+				<label> <input id="PQAPY" type="radio" name="notice_private" value="1" 
+				onClick="this.form.notice_pw.disabled=true" checked="checked"> 공개
+				</label> 
+				<label> <input id="PQAPN" class="cs_02_01_private_btn" type="radio" 
+				onClick="this.form.notice_pw.disabled=false" name="notice_private" value="0"> 비공개
 				</label>
 			</div>
 		</div>
@@ -73,7 +71,7 @@
 				<span>비밀번호</span>
 			</div>
 			<div class="col-lg-1 text-left cs_02_02_ex01box02">
-				<input id="NPPwd" type="password" class="form-control"
+				<input id="PQAPwd" type="password" class="form-control"
 					name="notice_pw" disabled placeholder="비밀번호" maxlength='10'>
 
 			</div>
@@ -91,35 +89,77 @@
 				<span>내용</span>
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box04">
-				<textarea class="form-control" rows="8" placeholder="내용을 입력하세요."></textarea>
+				<textarea name="notice_body" class="form-control notice_upload_check" rows="8" placeholder="내용을 입력하세요."></textarea>
 			</div>
 		</div>
+		<input type="hidden" name="user_id" value="${userInfo.user_id}" >
+		<input type="hidden" name="notice_category" value="PQA" >
+		<input type="hidden" name="notice_parent_no" value="0" >
 	</form>
 
 	<div class="row">
 		<div class="offset-lg-4 col-lg-2 text-center">
-			<div class="cs_correct_btn">
-				<form>
-					<input type="image"
-						src="${contextPath}/resources/img/common/cs_register.png"
-						alt="product 문의 등록 버튼 이미지">
-				</form>
-			</div>
-		</div>
-
-		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
-				<a href="${contextPath}/product_05.do"> <img
-					src="${contextPath}/resources/img/common/cs_return.png"
-					alt="product 문의 이전 버튼 이미지">
+				<a href="${contextPath}/notice/PQAListPage.do?product_id=${product_id}"> 
+					<input class="user_btn_gray" type="button" value="이전 페이지">
 				</a>
 			</div>
 		</div>
-
-
-
+		
+		<div class="col-lg-2 text-center">
+			<div class="cs_correct_btn">
+				<input id="add_PQA_btn" class="user_btn_Dgray" type="button" value="작성하기" onclick="add_PQA();">
+			</div>
+		</div>
 	</div>
 </div>
+
+<script>
+	function add_PQA() {
+		
+		var form = document.getElementById("PQAForm");
+		var input = document.createElement("input");
+		
+		var elements = document.getElementsByClassName('notice_upload_check');
+		var checkFlag = true;
+		var private_Flag = $('input:radio[name=notice_private]:checked').val();
+		for (var i = 0; i < elements.length; i++) {
+
+			let uploadItem = elements[i].value;
+			// 비어있는 파일이 하나라도 있다면 flag를 false로 대입.
+			if (!uploadItem) {
+				checkFlag = false;
+			}
+
+		}
+		
+		if(private_Flag == 0) {
+			
+			var private_value = document.getElementById('PQAPwd').value;
+			
+			if(private_value.length < 4) {
+				alert("비밀번호를 4글자 이상 입력해주세요");
+				checkFlag = false;
+			}
+
+			
+		}
+		else if(!checkFlag) {
+			alert("제목과 내용은 반드시 입력해주셔야 합니다.");
+		}
+		
+		if (checkFlag) {
+			input.setAttribute("type", "hidden");
+			input.setAttribute("name", "product_id");
+			input.setAttribute("value", "${product_id}");
+			form.action="${contextPath}/notice/add_PQA.do";
+			form.method="POST";
+			form.appendChild(input);
+			form.submit();
+		}
+		
+	}
+</script>
 
 
 

@@ -40,13 +40,10 @@
 	<div class="row">
 		<div
 			class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text product_03_mini_category_text">
-			<a
-				href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품
-				상세정보</a> <a>고객 후기</a> <a
-				href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송
-				/ 교환 /반품 안내</a> <a
-				href="${contextPath}/notice/PQAListPage.do?product_id=${product_id}">상품
-				문의</a>
+			<a href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품 상세정보</a> 
+			<a>고객 후기</a> 
+			<a href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송 /교환 /반품 안내</a> 
+			<a href="${contextPath}/notice/PQAListPage.do?product_id=${product_id}">상품 문의</a>
 		</div>
 	</div>
 

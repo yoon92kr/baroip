@@ -70,7 +70,7 @@
 
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text">
-			<a href="#">상품 상세정보</a> 
+			<a>상품 상세정보</a> 
 			<a id="productCommentPage" onclick="productReview(this.id);">고객 후기</a> 
 			<a id="productInfoPage" onclick="productReview(this.id);">배송 / 교환 /반품 안내</a> 
 			<a id="productPQAPage" onclick="productReview(this.id);">상품 문의</a>

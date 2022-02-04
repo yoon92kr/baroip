@@ -73,6 +73,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return QuestionList;
 	}
 	
+//	상품 문의 작성
 	public void addPQA(NoticeVO noticeVO) throws Exception {
 		noticeDAO.insertPQA(noticeVO);
 	}

@@ -191,13 +191,13 @@ public class NoticeControllerImpl implements NoticeController {
 //	2022.02.03 한건희 
 //	상품 문의 작성
 	@RequestMapping(value= "/add_PQA" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView add_PQA(@RequestParam("NoticeVO") NoticeVO noticeVO) throws Exception{
+	public ModelAndView add_PQA(NoticeVO noticeVO) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
-		
+		String product_id = noticeVO.getProduct_id();
 		noticeService.addPQA(noticeVO);
 		
-		mav.setViewName("redirect:/PQAListPage.do");
+		mav.setViewName("redirect:/notice/PQAListPage.do?product_id=" + product_id);
 		return mav;
 		
 	}
