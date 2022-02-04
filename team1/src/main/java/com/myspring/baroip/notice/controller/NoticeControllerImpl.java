@@ -20,6 +20,7 @@ import com.myspring.baroip.image.service.ImageService;
 import com.myspring.baroip.notice.service.NoticeService;
 import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.product.service.ProductService;
+import com.myspring.baroip.user.service.UserService;
 
 
 @Controller("noticeController")
@@ -31,7 +32,8 @@ public class NoticeControllerImpl implements NoticeController {
 	NoticeVO noticeVO;
 	@Autowired
 	private ProductService productService;
-	
+	@Autowired
+	private UserService userService;
 	@Autowired
 	ImageService imageService;
 	
@@ -175,6 +177,7 @@ public class NoticeControllerImpl implements NoticeController {
 	
 //	2022.02.03 한건희 
 //	상품 문의 작성 페이지
+	@Override
 	@RequestMapping(value= "/add_PQA_form" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView add_PQA_form(@RequestParam("product_id") String product_id, @RequestParam("product_main_title") String product_main_title, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -190,10 +193,20 @@ public class NoticeControllerImpl implements NoticeController {
 	
 //	2022.02.03 한건희 
 //	상품 문의 작성
+	@Override
 	@RequestMapping(value= "/add_PQA" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView add_PQA(NoticeVO noticeVO) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
+		System.out.println("controller : " + noticeVO.getUser_id());
+		
+		String user_id = noticeVO.getUser_id();
+				
+		if(user_id == null || user_id == "") {		
+			user_id = userService.guestJoin();
+			noticeVO.setUser_id(user_id);
+		}
+		
 		String product_id = noticeVO.getProduct_id();
 		noticeService.addPQA(noticeVO);
 		

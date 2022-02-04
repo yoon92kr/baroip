@@ -74,6 +74,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 //	상품 문의 작성
+	@Override
 	public void addPQA(NoticeVO noticeVO) throws Exception {
 		noticeDAO.insertPQA(noticeVO);
 	}
