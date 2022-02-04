@@ -70,5 +70,14 @@ public class MyPageDAOImpl implements MyPageDAO {
 			return notice_id;
 		}
 		
+		// 주문 정보 호출 DAO
+		@Override
+		public List<Map<String, Object>> orderDetail(String order_id) throws DataAccessException {
+			
+			List<Map<String, Object>> orderList = sqlSession.selectList("mapper.myPage.orderDetail", order_id);
+
+			return orderList;
+		}
+		
 
 }

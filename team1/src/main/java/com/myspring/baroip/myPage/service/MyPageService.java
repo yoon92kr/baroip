@@ -27,4 +27,7 @@ public interface MyPageService {
 	
 	// 반품 등록 서비스
 	public String askRefund(NoticeVO noticeVO) throws Exception;
+	
+	// 주문 정보 호출 DAO
+	public List<Map<String, Object>> orderDetail(String order_id) throws Exception;
 }

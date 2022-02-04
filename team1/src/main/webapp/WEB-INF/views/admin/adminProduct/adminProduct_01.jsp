@@ -414,7 +414,7 @@
 				alert("정확한 조회 기간을 입력해주세요.");
 			}
 			else if(beginDate > endDate) {
-				alert("조회 기준일이 종료일보다 클 수 없습니다.")
+				alert("조회 기준일이 종료일보다 클 수 없습니다.");
 			}
 			else {
 
@@ -425,7 +425,10 @@
 		}
 		else if (searchOption == "productTitle") {
 			if (searchText.match(/\s/g)) {
-				alert("검색어에 공백은 포함될 수 없습니다.")
+				alert("검색어에 공백은 포함될 수 없습니다.");
+			}
+			else if(searchText == null || searchText == ""){
+				alert("검색어를 입력해주세요.");
 			}
 			else {
 				location.href='${contextPath}/admin/product/extra_list.do?search_option='+searchOption+'&search_value='+searchText;

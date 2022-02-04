@@ -31,4 +31,7 @@ public interface MyPageDAO {
 	
 	// 반품 등록 DAO
 	public String askRefund(NoticeVO noticeVO) throws DataAccessException;
+	
+	// 주문 정보 호출 DAO
+	public List<Map<String, Object>> orderDetail(String order_id) throws DataAccessException;
 }

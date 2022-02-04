@@ -20,6 +20,7 @@
 
 	</resultMap>
 
+	
 	<!-- 장바구니 수량 조회 쿼리 -->
 	<select id="myPageCartCount" resultType="java.lang.Integer" parameterType="userVO">
 
@@ -152,5 +153,21 @@
 
 	</update>
 
+	<!-- 주문 상세 쿼리 -->
+	<select id="orderDetail" resultType="java.util.Map" parameterType="String">
+		select 
+			o.*, 
+			p.product_main_title, p.product_price, p.product_discount, 
+			u.user_name, u.user_mobile_1, u.user_mobile_2, u.user_mobile_3 
+			i.image_file
+		from orders as o inner join product as p on o.product_id = p.product_id 
+			inner join user as u on o.user_id = u.user_id
+			inner join image as i on o.product_id = i.image_match_id
+		where
+			o.order_id like concat(#{order_id}, '_', '%')
+			and i.image_category = 'main'
+
+	</select>
+	
 		
 </mapper>

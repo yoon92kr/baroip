@@ -430,6 +430,9 @@
 			if (searchText.match(/\s/g)) {
 				alert("검색어에 공백은 포함될 수 없습니다.")
 			}
+			else if(searchText == null || searchText == ""){
+				alert("검색어를 입력해주세요.");
+			}
 			else {
 				location.href='${contextPath}/admin/product/general_list.do?search_option='+searchOption+'&search_value='+searchText;
 			}

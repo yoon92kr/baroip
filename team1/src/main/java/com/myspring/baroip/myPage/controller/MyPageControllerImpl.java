@@ -304,6 +304,9 @@ public class MyPageControllerImpl implements MyPageConroller{
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
 		
+		List<Map<String, Object>> orderList = myPageService.orderDetail(order_id);
+
+		mav.addObject("orderList", orderList);
 		mav.setViewName(viewName);
 
 		return mav;

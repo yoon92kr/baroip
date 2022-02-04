@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.myPage.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +79,21 @@ public class MyPageServiceImpl implements MyPageService {
 		String product_id = myPageDAO.askRefund(noticeVO);
 		
 		return product_id;
+	}
+	
+	// 주문 정보 호출 DAO
+	@Override
+	public List<Map<String, Object>> orderDetail(String order_id) throws Exception {
+		
+		List<Map<String, Object>> orderList = myPageDAO.orderDetail(order_id);
+		
+		for(int i=0 ; i<orderList.size() ; i++) {
+			String encodeImage = Base64.getEncoder().encodeToString((byte[]) orderList.get(i).get("image_file"));
+			orderList.get(i).remove("image_file");
+			orderList.get(i).put("image_file", encodeImage);
+		}
+		
+		return orderList;
 	}
 
 }
