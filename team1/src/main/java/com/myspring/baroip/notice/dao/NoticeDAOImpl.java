@@ -46,6 +46,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 	
 //	상품 문의 작성
+	@Override
 	public void insertPQA(NoticeVO noticeVO) throws DataAccessException {
 		sqlSession.selectList("mapper.notice.insertPQA", noticeVO);
 	}

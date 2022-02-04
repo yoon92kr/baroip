@@ -42,7 +42,7 @@
 			class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text product_03_mini_category_text">
 			<a href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품 상세정보</a> 
 			<a href="${contextPath}/notice/productComment.do?product_id=${product_id}">고객 후기</a> 
-			<a href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송/ 교환 /반품 안내</a> 
+			<a href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송 /교환 /반품 안내</a> 
 			<a>상품 문의</a>
 		</div>
 	</div>
@@ -50,15 +50,17 @@
 	<div class="row">
 		<div class="col-lg-2 offset-lg-1">
 			<img class="product_03_main_img"
-				src="data:image/jpeg;base64,${productInfo.product.main}" alt="상품 대표 이미지">
+				src="data:image/jpeg;base64,${productInfo.product.main}"
+				alt="상품 대표 이미지">
 		</div>
 		<div class="col-lg-7 text-center">
 			<div class="product_03_title">${productInfo.product.productVO.product_main_title}</div>
 		</div>
 		<div class="col-lg-1 text-center">
 			<form action="${contextPath}/notice/add_PQA_form.do" method="GET">
-				<input type="hidden" name="product_main_title" value="${productInfo.product.productVO.product_main_title}" />
-				<input type="hidden" name="product_id" value="${product_id}">
+				<input type="hidden" name="product_main_title"
+					value="${productInfo.product.productVO.product_main_title}" /> 
+				<input type="hidden" name="product_id" value="${product_id}"> 
 				<input class="UQA_add_btn PQA_add_btn" type="submit" value="글쓰기" />
 			</form>
 		</div>
@@ -66,11 +68,14 @@
 
 	<div class="row">
 		<div
-			class="offset-lg-1 col-lg-2 text-center product_05_detail_title_header">
+			class="offset-lg-1 col-lg-1 text-center product_05_detail_title_header">
 			<span>번호</span>
 		</div>
-		<div class="col-lg-1 text-left product_05_detail_title_header">
+		<div class="col-lg-1 text-center product_05_detail_title_header">
 			<span>작성자</span>
+		</div>
+		<div class="col-lg-1 text-center product_05_detail_title_header">
+			<span>공개 여부</span>
 		</div>
 		<div class="col-lg-4 text-center product_05_detail_title_header">
 			<span>제목</span>
@@ -88,27 +93,39 @@
 					<span>작성된 상품 후기가 없습니다.</span>
 				</div>
 			</div>
-		</c:when>		
+		</c:when>
 		<c:when test="${not empty itemList}">
 			<c:forEach var="i" begin="1" end="${itemSize}">
-			<c:set var="list" value="noticeItem${i}" />
-			<c:set var="desc" value="${itemSize - i + 1}" />	
-			<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
+				<c:set var="list" value="noticeItem${i}" />
+				<c:set var="desc" value="${itemSize - i + 1}" />
+				<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
 				<div class="row">
-					<div class="offset-lg-1 col-lg-2 text-center notice_01_section">
+					<div class="offset-lg-1 col-lg-1 text-center notice_01_section">
 						<span>${j}</span>
 					</div>
-					<div class="col-lg-1 text-left notice_01_section">
+					<div class="col-lg-1 text-center notice_01_section">
 						<span>${itemList[list].noticeList.user_id}</span>
 					</div>
+					<div class="col-lg-1 text-center notice_01_section">
+						<c:if test="${itemList[list].noticeList.notice_private == 0}">
+							<input type="hidden" id="PQAPW_${j}"
+								value="${itemList[list].noticeList.notice_pw}">
+							<span>비공개</span>
+						</c:if>
+						<c:if test="${itemList[list].noticeList.notice_private == 1}">
+							<span>공개</span>
+						</c:if>
+					</div>
 					<div class="col-lg-4 text-center notice_01_section">
-						<a> <span class="">${itemList[list].noticeList.notice_title}</span>
-						</a>
+						<a id="PQAdetail_${j}" onclick="PQA_detail(this.id);">${itemList[list].noticeList.notice_title}</a>
 					</div>
 					<div class="col-lg-3 text-center notice_01_section">
 						<span>${itemList[list].noticeList.notice_cre_date}</span>
 					</div>
 				</div>
+				<input type="hidden" id="PQAprivate_${j}" value="${itemList[list].noticeList.notice_private}">
+				<input type="hidden" id="PQAnoticeID_${j}" value="${itemList[list].noticeList.notice_id}">
+				<input type="hidden" id="PQAuserID_${j}" value="${itemList[list].noticeList.user_id}">
 			</c:forEach>
 		</c:when>
 	</c:choose>
@@ -145,6 +162,39 @@
 </div>
 
 <script>
+
+function PQA_detail(no) {
+	let strArray = no.split('_');
+	let target = document.getElementById('PQAprivate_'.concat(strArray[1])).value;
+	let notice_id = document.getElementById('PQAnoticeID_'.concat(strArray[1])).value;
+	let user_id = document.getElementById('PQAuserID_'.concat(strArray[1])).value;
+	
+	if(target == 1) {
+		document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+	}
+	else if(target == 0) {
+		
+		let notice_pw = document.getElementById('PQAPW_'.concat(strArray[1])).value;
+		
+		if ("${userInfo.user_id}" == user_id || "${userInfo.user_rank}" > 1) {
+			document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+		}
+		else {
+			let pwFlag = prompt("비밀글입니다. 비밀번호를 입력해주세요.");
+			if (notice_pw == pwFlag) {
+				document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+			}
+			else if(pwFlag == null) {
+				
+			}
+			else if(notice_pw != pwFlag){
+				alert("비밀번호가 올바르지 않습니다. 다시 확인해주세요.")
+			}
+		}
+	}
+
+
+}
 
 	//페이지 이동 스크립트
 	function pageMove(no) {
