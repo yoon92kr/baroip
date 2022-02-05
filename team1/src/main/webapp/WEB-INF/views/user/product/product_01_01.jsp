@@ -304,10 +304,17 @@ function cartBTN(item) {
 		}
 	}
 
+// 검색 필터 스크립트(최상단 우선순위 조건)
 function serach_title() {
 	let title = document.getElementById("search_title").value;
 	
-	if(title != null && title != "") {
+	if (title.match(/\s/g)) {
+		alert("검색어에 공백은 포함될 수 없습니다.");
+	}
+	else if(title == null || title == ""){
+		alert("검색어를 입력해주세요.");
+	}
+	else {
 		document.location='${contextPath}/product/product_list/farm.do?title_option='+title;
 	}
 	

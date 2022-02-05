@@ -36,38 +36,46 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-4 order_01-content-body">
+		<div class="col-lg-5 order_01-content-body">
 			<div class="myPage_03_01-content-body-left">상품 정보</div>
 		</div>
 		<div class="col-lg-1 text-center order_01-content-body">수량</div>
 		<div class="col-lg-2 text-center order_01-content-body">가격</div>
 		<div class="col-lg-2  text-center order_01-content-body">할인</div>
-		<div class="col-lg-3 text-center order_01-content-body">주문 금액</div>
+		<div class="col-lg-2 text-center order_01-content-body">주문 금액</div>
 	</div>
 
 	<c:forEach var="i" begin="0" end="${itemSize -1}">
 
 			<div class="row">
-				<div class="col-lg-4 order_01-content-item-img">
-					<a href="${contextPath}/product_02.do"> <img
+				<div class="col-lg-5 order_01-content-item-img">
+					<a href="${contextPath}/product/productDetail.do?product_id=${itemList[i].product_id}"> <img
 						class="cart_image_clip"
 						src="data:image/jpeg;base64,${itemList[i].image_file}"
 						alt="상품 이미지">
-					</a> <a class="order_01-item-name" href="${contextPath}/product_02.do">${itemList[i].product_main_title}</a>
+					</a> <a class="order_01-item-name" href="${contextPath}/product/productDetail.do?product_id=${itemList[key].product_id}">${itemList[i].product_main_title}</a>
 				</div>
 				<div class="col-lg-1 text-center order_01-content-item"><fmt:formatNumber value="${itemList[i].order_amount}" /> 개</div>
 				<div class="col-lg-2 text-center order_01-content-item"><fmt:formatNumber value="${itemList[i].product_price * itemList[i].order_amount}" /> 원</div>
 				<div class="col-lg-2  text-center order_01-content-item"><fmt:formatNumber value="${itemList[i].product_discount * itemList[i].order_amount}" /> 원</div>
-				<div class="col-lg-3 text-center order_01-content-item"><fmt:formatNumber value="${(itemList[i].product_price - itemList[i].product_discount) * itemList[i].order_amount}" /> 원</div>
+				<div class="col-lg-2 text-center order_01-content-item"><fmt:formatNumber value="${(itemList[i].product_price - itemList[i].product_discount) * itemList[i].order_amount}" /> 원</div>
 			</div>
-			<c:set var="total_price" value="${total_price + (itemList[i].product_price - itemList[i].product_discount) * itemList[i].count.order_amount }" />
+			<c:set var="total_price" value="${total_price + (itemList[i].product_price - itemList[i].product_discount) * itemList[i].order_amount }" />
 	</c:forEach>
 
 	<div class="row">
 		<div class="col-lg-12 text-right">
 			<div class="myPage_03_01-content-item-price">
-				<span>최종 주문 금액</span> <span class="myPage_03_01-content-price">배송비</span>
-				<span class="myPage_03_01-content-price">[최종 금액 합계]원</span>
+
+				<c:if test='${total_price >= 30000 }'>
+					<span>최종 주문 금액 : </span> <span class="myPage_03_01-content-price"><fmt:formatNumber value="${total_price}" />원</span>
+					<span class="order_01-content-price order_red_font_small">(배송비 무료)</span>
+				</c:if>
+				<c:if test='${total_price < 30000 }'>
+					<span>최종 주문 금액 : </span> <span class="myPage_03_01-content-price"><fmt:formatNumber value="${total_price+5000}" />원</span>	
+					<span class="order_01-content-price order_red_font_small">(배송비 5,000원 포함)</span>
+				</c:if>
+				
 			</div>
 		</div>
 	</div>
