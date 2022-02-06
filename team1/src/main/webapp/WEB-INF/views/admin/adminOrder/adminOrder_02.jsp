@@ -1,5 +1,4 @@
-<!-- 2021.11.29 한건희 -->
-<!-- 2022.02.03 윤상현 수정 -->
+<!-- 2022.02.06 윤상현 수정 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -280,7 +279,7 @@
 		<div class="col-lg-6 offset-lg-3">
 			<!-- 로그인 페이지 하단 버튼 -->
 			<div class="myPage_03_01-bottom-btn">
-				<a class="myPage_03_01-myPage-btn login_05-btn MyPage_02_button_02" href="${contextPath}/myPage/myOrder.do"> 돌아가기	</a>
+				<a class="myPage_03_01-myPage-btn login_05-btn MyPage_02_button_02" href="${contextPath}/admin/order/order_list.do"> 돌아가기	</a>
 			</div>
 		</div>
 	</div>

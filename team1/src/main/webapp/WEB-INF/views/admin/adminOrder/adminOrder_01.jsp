@@ -69,7 +69,7 @@
     		<div class="col-lg-12 text-left myPage_03_01-content-body">
     			<h6 class="order_01-sub-title-page">
     				<a href="${contextPath}/admin/order/order_list.do" class="order_01-sub-title adminOrder_hov">주문 관리</a>
-    				<a href="${contextPath}/admin/order/return_list.do" class="order_01-sub-title adminOrder_hov" style="margin-left: 50px;">반품 / 교환</a>
+    				<a href="${contextPath}/admin/order/return_list.do" class="adminOrder_hov" style="margin-left: 50px;">반품 / 교환</a>
     			</h6>    			    		
    			</div>
 	    </div>
@@ -94,7 +94,8 @@
 				<option value="1">상품 배송중</option>
 				<option value="2">배송 완료</option>
 				<option value="-1">주문 취소</option>
-				<option value="-2">반품 / 교환</option>
+				<option value="-2">반품 / 교환 요청</option>
+				<option value="-3">반품 / 교환 완료</option>
 				
 			</select>
 		
@@ -156,8 +157,9 @@
         <div class="col-lg-2 text-center admin_order_content_info">
         	<div>${itemList[j].user_id}</div>
         </div>
+        
         <div class="col-lg-2 text-center admin_order_content_info">
-        	${itemList[j].order_id}
+        	<a id="orderDetail_${j}" onclick="order_detail(this.id)">${itemList[j].order_id}</a>
         </div>
         <div class="col-lg-2 text-center admin_order_content_info">
         	<fmt:formatNumber value="${itemList[j].order_amount}" /> 개
@@ -187,8 +189,11 @@
         		<div class="text-center"> 주문 취소 </div>
         	</c:if>       
         	<c:if test='${itemList[j].order_state == -2}'>
-        		<div class="text-center"> 반품 / 교환 </div>
-        	</c:if>   	    	
+        		<div class="text-center"> 반품 / 교환 요청 </div>
+        	</c:if>   	
+        	<c:if test='${itemList[j].order_state == -3}'>
+        		<div class="text-center"> 반품 / 교환 완료</div>
+        	</c:if>        	    	
         </div>
     </div>
 			</c:if>
@@ -428,7 +433,6 @@ window.addEventListener('load', function() {
 	    }
 	    
 	   }
-
 	});
 
 	// id에는 select의 id값, value에는 선택하고자 하는 option의 value 값을 파라미터로 입력한다.
@@ -443,4 +447,33 @@ window.addEventListener('load', function() {
 		      }
 		   }
 		}
+	
+	// 주문 상세 스크립트
+	function order_detail(target){
+		var strArray = target.split('_');
+		var target_no = strArray[1];
+
+		let order_id = document.getElementById('orderID_'.concat(target_no)).value;
+		let user_id = "${userInfo.user_id}";
+
+		let order_array = order_id.split('_');
+		let order_id_group = 'baroip_order_'.concat(order_array[2], '_', order_array[3]);
+			
+	    var form = document.createElement("form");
+	    form.setAttribute("charset", "UTF-8");
+	    form.setAttribute("method", "Post");
+	    form.setAttribute("action", "${contextPath}/admin/order/orderDetail.do");
+	  	  
+	        var hiddenField = document.createElement("input");
+	        hiddenField.setAttribute("type", "hidden");
+	        hiddenField.setAttribute("name", "order_id");
+	        hiddenField.setAttribute("value", order_id_group);
+	        form.appendChild(hiddenField);
+
+	  
+	    document.body.appendChild(form);
+	    form.submit();
+		
+	}
+
 </script>

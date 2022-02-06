@@ -15,7 +15,7 @@
     	<div class="row">
     		<div class="col-lg-12 text-left myPage_03_01-content-body">
     			<h6 class="order_01-sub-title-page">
-    				<a href="${contextPath}/admin/order/order_list.do" class="order_01-sub-title adminOrder_hov">주문 관리</a>
+    				<a href="${contextPath}/admin/order/order_list.do" class="adminOrder_hov">주문 관리</a>
     				<a href="${contextPath}/admin/order/return_list.do" class="order_01-sub-title adminOrder_hov" style="margin-left: 50px;">반품 / 교환</a>
     			</h6>    			    		
    			</div>

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,5 +21,8 @@ public interface AdminOrderController {
 	
 	// 주문 상태 수정 컨트롤러
 	public String update_amount(@RequestParam Map<String, String> info) throws Exception;
+	
+	// 주문 상세페이지 컨트롤러
+	public ModelAndView orderDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

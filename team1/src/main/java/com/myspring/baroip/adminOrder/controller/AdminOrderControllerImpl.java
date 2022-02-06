@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.baroip.adminOrder.service.AdminOrderService;
+import com.myspring.baroip.myPage.service.MyPageService;
 
 @Controller("adminOrderController")
 @RequestMapping(value = "/admin/order")
@@ -26,6 +28,9 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 
 	@Autowired
 	private AdminOrderService adminOrderService;
+	
+	@Autowired
+	private MyPageService myPageService;
 
 	// 주문관리 페이지 전체 mapping
 	@Override
@@ -146,6 +151,23 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 		List<Map<String, Object>> fullList = adminOrderService.orderListToOption(options);
 		
 		return fullList;
+	}
+	
+	// 주문 상세페이지 컨트롤러
+	@Override
+	@RequestMapping(value = "/orderDetail.do", method =RequestMethod.POST)
+	public ModelAndView orderDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		List<Map<String, Object>> orderList = myPageService.orderDetail(order_id);
+
+		mav.addObject("orderList", orderList);
+		mav.setViewName(viewName);
+
+		return mav;
+
 	}
 
 }

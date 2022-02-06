@@ -5,12 +5,15 @@
 <tiles-definitions>
 
 	<definition name="/admin/order/order_list" extends="AdminLayout">
-		<put-attribute name="body" value="/WEB-INF/views/admin/adminOrder/adminOrder.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminOrder/adminOrder_01.jsp" />
+	</definition>
+	
+	<definition name="/admin/order/orderDetail" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminOrder/adminOrder_02.jsp" />
 	</definition>
 	
 	<definition name="/admin/order/return_list" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminReturn/adminReturn_01.jsp" />
 	</definition>
-
-
+	
 </tiles-definitions>
