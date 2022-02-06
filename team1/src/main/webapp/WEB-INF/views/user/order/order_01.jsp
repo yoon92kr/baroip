@@ -599,7 +599,7 @@
 		   }
 		   
 		   if(${userInfo.user_id == null}) {
-			   user_id = "guest";
+			   user_id = "Not_log_in";
 		   }
 		   
 			$.ajax({

@@ -219,11 +219,9 @@ public class OrderControllerImpl implements OrderController {
 		String order_id = orderVO.getOrder_id();
 		String user_id = orderVO.getUser_id();
 		int usePoint = orderVO.getOrder_payment_point();
-		
-		if(user_id.equals("guest")) {
+		if(user_id.equals("Not_log_in")) {
 			user_id = userService.guestJoin();
 		}
-		
 		if(userVO.getUser_point() < usePoint) {
 			
 			session.setAttribute("resultOrder", "false");

@@ -28,15 +28,41 @@
 			alt="로고 이미지">
 	</p>
 
-	<pre class="popUp_body text-left">
+<pre class="popUp_body text-left">
+
   ■ SNS 로그인 API
   - 테스트 API로 사전에 인증된 네이버 계정만 로그인 가능합니다.
   ■ 마이페이지 포인트내역 / 문의내역 / 상품후기
-  ■ 관리자페이지 후기 / 문의 관리
+  ■ 관리자페이지 후기 관리 / 문의 관리 / 반품 관리
+  ■ 상품 상세페이지  후기 / 상품 문의
+  ■ 비회원 주문 조회
   
 </pre>
 
-	<p>2022.01.26 Team1</p>
+	<p id="popUp_sub_title">
+		문제 사항
+	</p>
+
+<pre class="popUp_body text-left">
+
+  ■ Connection 에러로 연결에 문제가 종종 발생합니다.
+  - 해결중인 문제로, 문제 발생시 새로고침을 시도해주세요.
+  
+</pre>
+
+	<p id="popUp_sub_title">
+		공개 ID
+	</p>
+
+<pre class="popUp_body text-left">
+
+  ■ 관리자 페이지 열람용으로 제공해드리는 ID입니다
+  - ID : baroip
+  - PW : 0000
+  
+</pre>
+
+	<p>2022.02.06 Team1</p>
 
 	<input type="checkbox" id="MainCheckBox" onclick="NoPopup()"> <a onclick="NoPopup()">오늘 하루동안 보지않기</a>
 </div>

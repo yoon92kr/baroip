@@ -23,7 +23,7 @@
 	<select id="selectOrderToOption" resultMap="orderResult" parameterType="java.util.Map">
 	
 	<if test="search_option == null or search_option.equals('')">
-		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id
+		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id order by o.order_date desc
 	</if>
 	
 	<if test="search_option != null and !search_option.equals('')">
