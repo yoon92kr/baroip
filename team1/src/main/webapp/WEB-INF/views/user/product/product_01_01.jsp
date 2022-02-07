@@ -184,7 +184,7 @@ function cartBTN(item) {
 	if (userFind == null || userFind == "") {
 		let notUser = confirm("현재 비회원 상태 입니다. 비회원으로 주문 하시겠습니까?확인(예), 취소(로그인 or 회원가입)");
 		if (notUser == false) {
-			location = '${contextPath}/user/login_01.do';
+			location = '${contextPath}/user/loginpage.do';
 		} else {
 			$.ajax({
 				url : "${contextPath}/cart/addProductInCart.do",

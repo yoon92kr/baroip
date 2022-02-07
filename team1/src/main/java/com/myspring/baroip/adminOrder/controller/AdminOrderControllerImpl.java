@@ -169,5 +169,44 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 		return mav;
 
 	}
+	
+
+	@Override
+	@RequestMapping(value = "/return_list.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView returnList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
+		}
+		List<Map<String, Object>> orderList = getFullList(info, request);
+		
+		String pageNo = info.get("pageNo");
+		
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (orderList.size()+8)/9;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
+		} else {
+			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
+		}
+		mav.addObject("orderList", orderList);
+		return mav;
+
+	}
+	
 
 }

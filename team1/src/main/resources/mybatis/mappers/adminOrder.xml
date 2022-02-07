@@ -19,37 +19,50 @@
 
 	</resultMap>
 
+	<!-- 반품요청정보와 상품정보를 담기 위한 ResultMap -->
+	<resultMap id="refundResult" type="java.util.Map">
+	
+		<result property="order_id" column="order_id" />
+		<result property="user_id" column="user_id" />
+		<result property="product_id" column="product_id" />
+		<result property="order_amount" column="order_amount" />
+		<result property="order_date" column="order_date" />
+		<result property="order_state" column="order_state" />
+		<result property="product_main_title" column="product_main_title" />
+		<result property="product_price" column="product_price" />
+		<result property="product_discount" column="product_discount" />
+		<result property="notice_cre_date" column="notice_cre_date" />
+		<result property="notice_type" column="notice_type" />
+		
+	</resultMap>
+
 	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
 	<select id="selectOrderToOption" resultMap="orderResult" parameterType="java.util.Map">
 	
-	<if test="search_option == null or search_option.equals('')">
-		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id order by o.order_date desc
-	</if>
+		<if test="search_option == null or search_option.equals('')">
+			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id order by o.order_date desc
+		</if>
+		
+		<if test="search_option != null and !search_option.equals('')">
+			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where
+			
+			<if test='search_option == "orderDate"'>
+					o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
+			</if>
 	
-	<if test="search_option != null and !search_option.equals('')">
-		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where
-		
-		<if test='search_option == "orderDate"'>
-				o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
-		</if>
-
-		<if test='search_option == "userId"'>
-				o.user_id = #{search_value} order by o.order_date desc
-		</if>
-		
-		<if test='search_option == "productId"'>
-				p.product_main_title like concat('%', #{search_value}, '%') order by o.order_date desc
-		</if>		
-
-		<if test='search_option == "state"'>
-				o.order_state = #{search_value} order by o.order_date desc
-		</if>
-				
-	</if>	
-
-
-
-		
+			<if test='search_option == "userId"'>
+					o.user_id = #{search_value} order by o.order_date desc
+			</if>
+			
+			<if test='search_option == "productId"'>
+					p.product_main_title like concat('%', #{search_value}, '%') order by o.order_date desc
+			</if>		
+	
+			<if test='search_option == "state"'>
+					o.order_state = #{search_value} order by o.order_date desc
+			</if>
+					
+		</if>	
 
 	</select>
 	
@@ -64,4 +77,35 @@
 
 	</update>
 
+
+	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
+	<select id="selectRefundToOption" resultMap="refundResult" parameterType="java.util.Map">
+	
+		<if test="search_option == null or search_option.equals('')">
+			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id where o.order_state = -2 order by o.order_date desc
+		</if>
+		
+		<if test="search_option != null and !search_option.equals('')">
+			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id where o.order_state = -2 and
+			
+			<if test='search_option == "orderDate"'>
+					o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
+			</if>
+	
+			<if test='search_option == "userId"'>
+					o.user_id = #{search_value} order by o.order_date desc
+			</if>
+			
+			<if test='search_option == "productId"'>
+					p.product_main_title like concat('%', #{search_value}, '%') order by o.order_date desc
+			</if>		
+	
+			<if test='search_option == "state"'>
+					o.order_state = #{search_value} order by o.order_date desc
+			</if>
+					
+		</if>	
+
+	</select>
+	
 </mapper>

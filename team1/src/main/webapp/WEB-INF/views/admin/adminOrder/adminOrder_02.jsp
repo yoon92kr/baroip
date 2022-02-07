@@ -39,8 +39,8 @@
 			<div class="myPage_03_01-content-body-left">상품 정보</div>
 		</div>
 		<div class="col-lg-1 text-center order_01-content-body">수량</div>
-		<div class="col-lg-2 text-center order_01-content-body">가격</div>
-		<div class="col-lg-2  text-center order_01-content-body">할인</div>
+		<div class="col-lg-2 text-center order_01-content-body">배송 상태</div>
+		<div class="col-lg-2  text-center order_01-content-body">주문 번호</div>
 		<div class="col-lg-2 text-center order_01-content-body">주문 금액</div>
 	</div>
 
@@ -55,8 +55,24 @@
 					</a> <a class="order_01-item-name" href="${contextPath}/product/productDetail.do?product_id=${itemList[key].product_id}">${itemList[i].product_main_title}</a>
 				</div>
 				<div class="col-lg-1 text-center order_01-content-item"><fmt:formatNumber value="${itemList[i].order_amount}" /> 개</div>
-				<div class="col-lg-2 text-center order_01-content-item"><fmt:formatNumber value="${itemList[i].product_price * itemList[i].order_amount}" /> 원</div>
-				<div class="col-lg-2  text-center order_01-content-item"><fmt:formatNumber value="${itemList[i].product_discount * itemList[i].order_amount}" /> 원</div>
+				<div class="col-lg-2 text-center order_01-content-item">
+					<c:if test='${itemList[i].order_state == 1}'>
+		        		상품 배송중
+		        	</c:if>    
+		        	<c:if test='${itemList[i].order_state == 2}'>
+		        		배송 완료
+		        	</c:if> 
+		        	<c:if test='${itemList[i].order_state == -1}'>
+		        		주문 취소
+		        	</c:if>       
+		        	<c:if test='${itemList[i].order_state == -2}'>
+		        		반품 / 교환 요청
+		        	</c:if>   	
+		        	<c:if test='${itemList[i].order_state == -3}'>
+		        		반품 / 교환 완료
+		        	</c:if>
+				</div>
+				<div class="col-lg-2  text-center order_01-content-item">${itemList[i].order_id}</div>
 				<div class="col-lg-2 text-center order_01-content-item"><fmt:formatNumber value="${(itemList[i].product_price - itemList[i].product_discount) * itemList[i].order_amount}" /> 원</div>
 			</div>
 			<c:set var="total_price" value="${total_price + (itemList[i].product_price - itemList[i].product_discount) * itemList[i].order_amount }" />
