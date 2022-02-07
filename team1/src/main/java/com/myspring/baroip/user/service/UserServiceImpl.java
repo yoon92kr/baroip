@@ -44,7 +44,9 @@ public class UserServiceImpl implements UserService {
 //	비회원 주문시 아이디 생성 및 아이디 조회
 	@Override
 	public String guestJoin() throws Exception {
-		return userDAO.insertGuestId();
+		UserVO userVO = new UserVO();
+		userVO.setUser_name("비회원");
+		return userDAO.insertGuestId(userVO);
 	}
 	
 //	naver로그인 시 아이디 생성

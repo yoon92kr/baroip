@@ -216,7 +216,7 @@ function PQA_detail(no) {
 				alert("마지막 페이지 입니다.");
 			}
 			else {
-			document.location='${contextPath}/notice/PQAListPage.do?pageNo='+(--getValue);
+			document.location='${contextPath}/notice/PQAListPage.do?product_id=${product_id}&pageNo='+(--getValue);
 			}
 		}
 		else if (no == "다음") {
@@ -224,7 +224,7 @@ function PQA_detail(no) {
 				alert("마지막 페이지 입니다.");
 			}
 			else {
-			document.location='${contextPath}/notice/PQAListPage.do?pageNo='+(++getValue);
+			document.location='${contextPath}/notice/PQAListPage.do?product_id=${product_id}&pageNo='+(++getValue);
 			}
 		}
 		else {

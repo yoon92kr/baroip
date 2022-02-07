@@ -41,16 +41,10 @@ public class UserDAOImpl implements UserDAO {
 	
 //	비회원 주문시 아이디 생성
 	@Override
-	public String insertGuestId() throws DataAccessException {
-		String guestId;
-		int result = sqlSession.insert("mapper.user.guestUser");
-		if(result == 1) {
-			guestId = sqlSession.selectOne("mapper.user.selectGuestId");
-		}
-		else {
-			guestId = "";
-		}
-		return guestId;
+	public String insertGuestId(UserVO userVO) throws DataAccessException {
+		sqlSession.insert("mapper.user.guestUser", userVO);
+		String result = userVO.getUser_id();
+		return result;
 	}
 	
 //	아이디 찾기

@@ -86,22 +86,25 @@
 	</select>
 	
 	<!-- 비회원 주문시 아이디 생성 -->
-	<insert id="guestUser" parameterType="UserVO">
+	<insert id="guestUser" useGeneratedKeys="true" keyColumn="user_id" keyProperty="user_id" parameterType="UserVO">
+	<selectKey keyProperty="user_id" resultType="String" order="BEFORE">
+		select concat('guest_', (select nextval('guest')))
+	</selectKey>
 		<![CDATA[
 		insert into user(user_id,
 						user_name, user_last_date)
-					values(concat('guest_', nextval('guest')), 
-						'비회원', now())
+					values(#{user_id}, 
+						#{user_name}, now())
 		]]>
 	</insert>
 	
 	<!-- 비회원 주문시 생성된 아이디 조회 -->
-	<select id="selectGuestId" resultType="String">
+	<!-- <select id="selectGuestId" resultType="String">
 		<![CDATA[
 			select max(user_id) from user where user_id like 'guest%' limit 1
 		]]>
 	</select>
-	
+	 -->
 	<!-- 아이디 찾기 -->
 	<select id="selectUserIdFind" resultType="String" parameterType="UserVO">
 		<![CDATA[
