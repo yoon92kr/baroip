@@ -46,27 +46,12 @@
 		</div>
 	</div>
 
-
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
-			<h3>문의 내역</h3>
+		<div class="offset-lg-2 col-lg-8 text-left cs_01_subtitle">
+			<h3>${userInfo.user_name}  님의 문의내역</h3>
 		</div>
 	</div>
-
-
-
-	<div class="row">
-		<div class="offset-lg-2 col-lg-8">
-			<hr>
-		</div>
-	</div>
-</div>
-
-
-
-
-<div class="container-fluid">
-
+	
 	<div class="row">
 		<div class="offset-lg-2 col-lg-1 text-center cs_01_01header">
 			<span>작성일자</span>
