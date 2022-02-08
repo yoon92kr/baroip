@@ -312,4 +312,58 @@ public class MyPageControllerImpl implements MyPageConroller{
 		return mav;
 
 	}
+	
+//	2022.02.08 한건희
+	
+//	상품문의 리스트
+		@Override
+		@RequestMapping(value = "/myQuestion.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView myQuestion(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception {
+			
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String) request.getAttribute("viewName");
+			HttpSession session = request.getSession();
+			UserVO userVO = (UserVO) session.getAttribute("userInfo");
+			String user_id = userVO.getUser_id();
+			String pageNo = info.get("pageNo");
+			List<NoticeVO> questionList = myPageService.questionList(user_id);
+			
+			if (pageNo != null && pageNo != "") {
+				int lastNo = (questionList.size()+7)/8;
+				
+				if (Integer.parseInt(pageNo) > lastNo) {
+					mav.addObject("pageNo", 1);
+					mav.setViewName("redirect:"+viewName +".do");
+				}
+				else {
+					mav.addObject("pageNo", pageNo);	
+					mav.setViewName(viewName);
+				}
+				
+			} else {
+				mav.addObject("pageNo", 1);
+				mav.setViewName(viewName);
+			}
+			
+			mav.addObject("questionList", questionList);
+			mav.setViewName(viewName);
+
+			return mav;
+
+		}
+		
+		@Override
+		@RequestMapping(value = "/myQuestion/QuestionDetail.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView QuestionDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception {
+			
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String) request.getAttribute("viewName");
+			System.out.println("controller : " + notice_id);
+			Map<String, Object> result = myPageService.questionDetail(notice_id);
+			
+			mav.addObject("detail", result);
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
 }

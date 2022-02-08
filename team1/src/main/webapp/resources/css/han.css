@@ -2,6 +2,10 @@
 
 /* ==================== 중간중간 수정 ================================= */
 /* main 장바구니 이미지 */
+
+.myQuestionTitle {
+	color: #000;
+}
 .main_cartImage {
 	outline: none;
 	border: none;

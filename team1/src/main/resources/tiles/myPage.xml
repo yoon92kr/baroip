@@ -50,11 +50,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_05.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_06" extends="MyPageLayout">
+	<definition name="/myPage/myQuestion" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06.jsp" />
 	</definition>
 
-	<definition name="/myPage/myPage_06_01" extends="MyPageLayout">
+	<definition name="/myPage/myQuestion/QuestionDetail" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06_01.jsp" />
 	</definition>
 

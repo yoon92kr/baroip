@@ -30,4 +30,10 @@ public interface MyPageService {
 	
 	// 주문 정보 호출 DAO
 	public List<Map<String, Object>> orderDetail(String order_id) throws Exception;
+	
+//	상품문의 리스트
+	public List<NoticeVO> questionList(String user_id) throws Exception;
+	
+//	문의 내역 페이지
+	public Map<String, Object> questionDetail(String notice_id) throws Exception;
 }

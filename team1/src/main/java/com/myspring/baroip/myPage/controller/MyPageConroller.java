@@ -40,6 +40,12 @@ public interface MyPageConroller {
 	
 	// 주문 상세페이지 컨트롤러
 	public ModelAndView orderDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+//	문의 리스트
+	public ModelAndView myQuestion(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception;
+	
+//	문의 디테일
+	public ModelAndView QuestionDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception;
 }
 
 

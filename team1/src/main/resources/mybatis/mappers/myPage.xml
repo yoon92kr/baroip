@@ -19,8 +19,8 @@
 		<result property="order_delivery_id" column="order_delivery_id" />
 
 	</resultMap>
-
 	
+
 	<!-- 장바구니 수량 조회 쿼리 -->
 	<select id="myPageCartCount" resultType="java.lang.Integer" parameterType="userVO">
 
@@ -169,5 +169,24 @@
 
 	</select>
 	
+	<!-- 문의 리스트 -->
+	<select id="questionList" resultType="NoticeVO" parameterType="String">
+		<![CDATA[
+			select * from notice where user_id=#{user_id} and notice_category in ('PQA', 'UQA') order by notice_cre_date asc
+		]]>
+	</select>
+	
+	<!-- 문의 내역 페이지 -->
+	<select id="questionDetail" resultType="NoticeVO" parameterType="String">
+		<![CDATA[
+			select * from notice where notice_match_no=#{notice_id}
+		]]>
+	</select>
+	
+	<select id="PQADetail" resultType="ProductVO" parameterType="String">
+		<![CDATA[
+			select product_main_title from product where product_id=#{product_id}
+		]]>
+	</select>
 		
 </mapper>

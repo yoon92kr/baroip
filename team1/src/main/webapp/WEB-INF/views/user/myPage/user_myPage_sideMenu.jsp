@@ -19,7 +19,7 @@
 			<a href="${contextPath}/cart/cartList.do"  class="no-underline">장바구니</a>
 			<a id="myPoint" href="${contextPath}/myPage/myPoint.do"  class="no-underline">포인트 내역</a>
 			<a id="membership" href="${contextPath}/myPage/membership.do"  class="no-underline">회원등급 안내</a>
-			<a href="${contextPath}/myPage/myPage_06.do"  class="no-underline">문의내역</a>
+			<a href="${contextPath}/myPage/myQuestion.do"  class="no-underline">문의내역</a>
 			<a href="${contextPath}/myPage/myPage_07.do"  class="no-underline">상품후기</a>
 	
 			</div>
