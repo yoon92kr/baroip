@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
-<c:set var="pageNoMax" value="9" />
+<c:set var="pageNoMax" value="6" />
 <!-- itemSize에는 표시할 item의 size를 대입한다. -->
 <c:set var="itemSize" value="${orderList.size()}" />
 <!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
@@ -114,10 +114,10 @@
 	    <div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">주문 내역</h6>
 	    </div>
-	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	    <div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">결제 금액</h6>
 	    </div>
-	    <div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">반품 / 교환 사유</h6>
 	    </div>
 	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
@@ -134,21 +134,26 @@
 		<c:forEach var="i" begin="0" end="${itemSize}">
 			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
 			<c:if test="${not empty itemList[j] && i < pageNoMax}">
-			    
-   	<div class="AdminReturn_center-box-01 text-center">
+	<input type="hidden" value="${itemList[j].order_id }" id="orderID_${j}">		    
+   	<div class="AdminReturn_center_box_01 text-center">
 	<div class="row">
         <div class="col-lg-2 text-center">
-        	<div>[회원아이디]</div>
-        	<input class="MyPage_03-submit-box-01" type="button" value="반품 신청서 확인" onclick="location.href='${contextPath}/adminReturn_02.do'">
-        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보" onclick="location.href='${contextPath}/myPage_03_01.do'">
+        	<div>${itemList[j].user_id}</div>
+        	<input id="returnDetail_${j}" class="MyPage_03-submit-box-01" type="button" value="반품 신청서 확인" onclick="order_detail(this.id)">
         </div>
-        	<div class="col-lg-2 MyPage_03_text_position_04">[주문 상품 명]</div>
-        	<div class="col-lg-2 MyPage_03_text_position_04">[결제 금액]</div>
-        	<div class="col-lg-2 MyPage_03_text_position_04">[반품 / 교환 사유]</div>
+        	<div class="col-lg-3 MyPage_03_text_position_04_update">
+        		<a id="orderDetail_${j}" onclick="order_detail(this.id)">
+        			${itemList[j].product_main_title}
+        		</a>
+        	</div>
+        	<div class="col-lg-3 MyPage_03_text_position_04_update">
+        		<fmt:formatNumber value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" /> 원
+        	</div>
+        	<div class="col-lg-2 MyPage_03_text_position_04_update">${itemList[j].notice_type}</div>
         	<div class="col-lg-2 MyPage_03_text_position_03">
         <div>
-        	<input class="MyPage_03-submit-box-01" type="button" value="수 락" onclick="order_cancel()">
-        	<input class="MyPage_03-submit-box-01" type="button" value="거 절" onclick="order_cancel()">
+        	<input class="MyPage_03-submit-box-01" type="button" id="accept_${j}" value="수 락" onclick="update_return_state(this.id)">
+        	<input class="MyPage_03-submit-box-01" type="button" id="negative_${j}" value="거 절" onclick="update_return_state(this.id)">
         </div>
         	</div>
         </div>
@@ -188,38 +193,235 @@
 </div>
 
 <script type="text/javascript">
+//조회 필터 스크립트
 function selectLookup(selectValue) {
-	
-    let adminUser_01_member_ranking = '#adminUser_01-member-ranking-text';
-    let adminUser_01_member_joinDate = '#adminUser_01-member-date-text';
-    let adminUser_01_member_lastAccess = '#adminUser_01-member-date-text';
-    let adminUser_01_member_id = '#adminUser_01-member-id-text';
-    let adminUser_01_member_birthYear = '#adminUser_01-member-date-text';
 
-    let adminUser_member = '#adminUser_01-member-'.concat(selectValue, '-text');
-
-
-    if (adminUser_member == adminUser_01_member_ranking) {
-       document.querySelector(adminUser_01_member_ranking).style.display = 'inline';
-       document.querySelector(adminUser_01_member_joinDate).style.display = 'none';
-       document.querySelector(adminUser_01_member_lastAccess).style.display = 'none';
-       document.querySelector(adminUser_01_member_birthYear).style.display = 'none';
-       document.querySelector(adminUser_01_member_id).style.display = 'none';
+    if (selectValue == "all") {
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'none';
     }
-    else if (adminUser_member == adminUser_01_member_id) {
-       document.querySelector(adminUser_01_member_id).style.display = 'inline';
-       document.querySelector(adminUser_01_member_ranking).style.display = 'none';
-       document.querySelector(adminUser_01_member_joinDate).style.display = 'none';
-       document.querySelector(adminUser_01_member_lastAccess).style.display = 'none';
-       document.querySelector(adminUser_01_member_birthYear).style.display = 'none';
+    else if (selectValue == "orderDate") {
+    	document.getElementById("search_option_date").style.display = 'inline';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'none';
     }
-    else if (adminUser_member == adminUser_01_member_joinDate || adminUser_01_member_lastAccess || adminUser_01_member_birthYear) {
-       document.querySelector(adminUser_01_member_joinDate).style.display = 'inline';
-       document.querySelector(adminUser_01_member_lastAccess).style.display = 'inline';
-       document.querySelector(adminUser_01_member_birthYear).style.display = 'inline';
-       document.querySelector(adminUser_01_member_ranking).style.display = 'none';
-       document.querySelector(adminUser_01_member_id).style.display = 'none';
+    else if (selectValue == "userId") {
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'inline';
+    	document.getElementById("search_option_product_box").style.display = 'none';
     }
+    else if (selectValue == "productId") {
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'inline';
+    }
+    else if (selectValue == "state") {
+    	document.getElementById("search_option_date").style.display = 'none';
+    	document.getElementById("search_option_id_box").style.display = 'none';
+    	document.getElementById("search_option_product_box").style.display = 'none';
+    }
+    
 
+    
  }
+ 
+// 주문 상세 스크립트
+function order_detail(target){
+	var strArray = target.split('_');
+	var target_no = strArray[1];
+
+	let order_id = document.getElementById('orderID_'.concat(target_no)).value;
+	let user_id = "${userInfo.user_id}";
+
+	let order_array = order_id.split('_');
+	let order_id_group = 'baroip_order_'.concat(order_array[2], '_', order_array[3]);
+		
+	    var form = document.createElement("form");
+	    form.setAttribute("charset", "UTF-8");
+	    form.setAttribute("method", "Post");
+	    
+	    if(strArray[0] == "returnDetail") {
+	    	form.setAttribute("action", "${contextPath}/admin/order/return_Detail.do");	
+	    }
+	    else {
+	    	form.setAttribute("action", "${contextPath}/admin/order/orderDetail.do");	
+	    }
+	    
+  	  
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "order_id");
+        hiddenField.setAttribute("value", order_id_group);
+        form.appendChild(hiddenField);
+
+  
+    document.body.appendChild(form);
+    form.submit();
+	
+}
+
+// 반품/교환 승인 거절 스크립트
+function update_return_state(target){
+	var strArray = target.split('_');
+	var target_no = strArray[1];
+
+	let order_id = document.getElementById('orderID_'.concat(target_no)).value;
+	let user_id = "${userInfo.user_id}";
+
+	let order_array = order_id.split('_');
+	let order_id_group = 'baroip_order_'.concat(order_array[2], '_', order_array[3]);
+		
+	    var form = document.createElement("form");
+	    form.setAttribute("charset", "UTF-8");
+	    form.setAttribute("method", "Post");
+	    form.setAttribute("action", "${contextPath}/admin/order/update_return_state.do");	
+ 	  
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "order_id");
+        hiddenField.setAttribute("value", order_id_group);
+        form.appendChild(hiddenField);
+        
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "option");
+	    hiddenField.setAttribute("value", strArray[0]);	
+       
+        form.appendChild(hiddenField);
+
+  
+    document.body.appendChild(form);
+    form.submit();
+	
+}
+//페이지 이동 스크립트
+function pageMove(no) {
+	var getValue = 0;
+	var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
+	if(no == "이전" || no == "다음") {
+		var uriValue = window.location.search;
+		
+		var array = uriValue.split("pageNo=");
+		if(array[1] == "" || array[1] == null) {
+			array[1] = 1;
+		}
+		getValue = array[1];
+	}
+	
+	if(no == "이전") {
+		if(getValue == 1) {
+			alert("마지막 페이지 입니다.");
+		}
+		else {
+		document.location='${contextPath}/admin/order/return_list.do?pageNo='+(--getValue);
+		}
+	}
+	else if (no == "다음") {
+		if(getValue == lastPage) {
+			alert("마지막 페이지 입니다.");
+		}
+		else {
+		document.location='${contextPath}/admin/order/return_list.do?pageNo='+(++getValue);
+		}
+	}
+	else {
+		document.location='${contextPath}/admin/order/return_list.do?pageNo='+no;
+	}
+}
+
+
+window.addEventListener('load', function() {
+	
+	   if(${search_option != null && search_option != ""}) {
+	    selectedOption("search_option_category", "${search_option}");
+
+	    var main_option = document.getElementById("search_option_category").value;
+	    selectLookup(main_option);
+	    
+	    var begin = "";
+	    var end = "";
+	    if("${search_option}" == "orderDate") {
+	    	var splitDate = "${search_value}".split(",");
+	    }
+	    
+	    switch("${search_option}") {
+	    case "orderDate" :
+	    	document.getElementById("search_option_date_begin").value = splitDate[0];
+	    	document.getElementById("search_option_date_end").value = splitDate[1];
+	       break;
+	    
+	    case "productId" :
+	    	document.getElementById("search_option_product").value = "${search_value}";
+	       break;
+	       
+	    case "userId" :
+	    	document.getElementById("search_option_id").value = "${search_value}";
+	       break;
+	    }
+	    
+	   }
+	});
+
+// id에는 select의 id값, value에는 선택하고자 하는 option의 value 값을 파라미터로 입력한다.
+function selectedOption(id, value) {
+	
+	var obj = document.getElementById(id);
+
+	for (i=0 ; i<obj.length ; i++) {
+	if(obj[i].value == value) {
+	obj[i].selected = true;
+	
+	      }
+	   }
+	}
+	
+function search_order_to_option() {
+	let searchOption = document.getElementById('search_option_category').value;
+	let beginDate = document.getElementById('search_option_date_begin').value;
+	let endDate = document.getElementById('search_option_date_end').value;
+	let searchDate = beginDate.concat(',', endDate);
+	let searchText = "";
+	
+	// 날짜 기준 조회
+	if (searchOption == "orderDate") {
+		if(endDate == "" || beginDate == "") {
+			alert("정확한 조회 기간을 입력해주세요.");
+		}
+		else if(beginDate > endDate) {
+			alert("조회 기준일이 종료일보다 클 수 없습니다.")
+		}
+		else {
+			location.href='${contextPath}/admin/order/return_list.do?search_option='+searchOption+'&search_value='+searchDate;
+
+		}
+		
+	}
+	// 포함된 아이디 기준 조회
+	else if (searchOption == "userId" || searchOption == "productId") {
+		
+		if(searchOption == "userId") {
+			searchText = document.getElementById('search_option_id').value;	
+		}
+		else {
+			searchText = document.getElementById('search_option_product').value;
+		}
+		
+		if (searchText.match(/\s/g)) {
+			alert("검색어에 공백은 포함될 수 없습니다.")
+		}
+		else if(searchText == null || searchText == ""){
+			alert("검색어를 입력해주세요.");
+		}
+		else {			
+			location.href='${contextPath}/admin/order/return_list.do?search_option='+searchOption+'&search_value='+searchText;
+		}
+	}
+	
+	// 전체 회원 조회
+	else if (searchOption == "all") {
+		location.href='${contextPath}/admin/order/return_list.do';
+	}
+	
+}
 </script>

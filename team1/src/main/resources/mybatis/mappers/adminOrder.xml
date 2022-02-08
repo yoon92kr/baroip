@@ -76,35 +76,66 @@
 		order_id=#{order_id}
 
 	</update>
+	
+	<!-- 반품/교환 상태 변경 쿼리 줬던 포인트 회수, 구매건수 및 구매액 회수 -->
+	<update id="updateReturnState" parameterType="java.util.Map">
+
+	<if test='option == "accept"'>
+	
+	</if>
+	
+	<if test='option == "negative"'>
+	
+	</if>
+		update orders as o, user as u set 
+			o.order_state = -3,
+			u.user_total_amount = u.user_total_amount - #{amount},
+			u.user_total_count = u.user_total_count - #{count}
+		where	 
+			o.order_id = #{order_id}
+			and u.user_id = #{user_id}
+
+	</update>
 
 
 	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
 	<select id="selectRefundToOption" resultMap="refundResult" parameterType="java.util.Map">
 	
 		<if test="search_option == null or search_option.equals('')">
-			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id where o.order_state = -2 order by o.order_date desc
+			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date, n.notice_type from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id where o.order_state = -2 order by n.notice_cre_date desc
 		</if>
 		
 		<if test="search_option != null and !search_option.equals('')">
-			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id where o.order_state = -2 and
+			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date, n.notice_type from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id where o.order_state = -2 and
 			
 			<if test='search_option == "orderDate"'>
-					o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
+					n.notice_cre_date between #{begin} and date_add(#{end}, interval 1 day) order by n.notice_cre_date desc
 			</if>
 	
 			<if test='search_option == "userId"'>
-					o.user_id = #{search_value} order by o.order_date desc
+					o.user_id = #{search_value} order by n.notice_cre_date desc
 			</if>
 			
 			<if test='search_option == "productId"'>
-					p.product_main_title like concat('%', #{search_value}, '%') order by o.order_date desc
+					o.order_id = #{search_value} order by n.notice_cre_date desc
 			</if>		
-	
-			<if test='search_option == "state"'>
-					o.order_state = #{search_value} order by o.order_date desc
-			</if>
+
 					
 		</if>	
+
+	</select>
+	
+		<!-- 주문 상세 쿼리 -->
+	<select id="returnDetail" resultType="java.util.Map" parameterType="String">
+		select 
+			o.order_id, 
+			n.notice_id, n.notice_type, n.notice_body, n.notice_title,
+			i.image_file
+		from orders as o inner join notice as n on o.order_id = n.order_id 
+			inner join image as i on o.product_id = i.image_match_id
+		where
+			n.order_id like concat(#{order_id}, '_', '%')
+			and i.image_category = 'main'
 
 	</select>
 	

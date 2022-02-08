@@ -28,4 +28,10 @@ public interface AdminOrderController {
 	//  반품 / 교환 요청 리스트 컨트롤러
 	public ModelAndView returnList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	// 반품 신청서 상세페이지 컨트롤러
+	public ModelAndView returnDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	// 주문 상태 수정 컨트롤러
+	public ModelAndView updateReturnState(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }

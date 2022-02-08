@@ -295,6 +295,14 @@ function search_order_to_option() {
 	}
 	// 포함된 아이디 기준 조회
 	else if (searchOption == "userId" || searchOption == "productId") {
+		
+		if(searchOption == "userId") {
+			searchText = document.getElementById('search_option_id').value;	
+		}
+		else {
+			searchText = document.getElementById('search_option_product').value;
+		}
+		
 		if (searchText.match(/\s/g)) {
 			alert("검색어에 공백은 포함될 수 없습니다.")
 		}
@@ -302,13 +310,6 @@ function search_order_to_option() {
 			alert("검색어를 입력해주세요.");
 		}
 		else {
-			if(searchOption == "userId") {
-				searchText = document.getElementById('search_option_id').value;	
-			}
-			else {
-				searchText = document.getElementById('search_option_product').value;
-			}
-			
 			location.href='${contextPath}/admin/order/order_list.do?search_option='+searchOption+'&search_value='+searchText;
 		}
 	}

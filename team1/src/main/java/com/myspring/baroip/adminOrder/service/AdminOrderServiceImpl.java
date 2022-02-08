@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.adminOrder.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,26 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		return orderList;
 	}
 	
+	// 조회 조건에 따른 반품 리스트 조회 서비스
+	@Override
+	public List<Map<String, Object>> selectRefundToOption( Map<String, String> option) throws Exception {
+		
+		
+		
+		if(option.get("search_option") != null && option.get("search_option").equals("orderDate")) {
+			String[] date = option.get("search_value").split(",");
+		
+			option.remove("search_value");
+			option.put("begin", date[0]);
+			option.put("end", date[1]);
+ 
+		}
+
+		List<Map<String, Object>> orderList = adminOrderDAO.selectRefundToOption(option);
+		
+		return orderList;
+	}
+	
 	// 주문 상태 변경서비스
 	@Override
 	public void updateState(Map<String, String> option) throws Exception {
@@ -46,4 +67,17 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		adminOrderDAO.updateState(option);
 		
 	}
+	
+	// 반품 정보 호출 서비스
+	@Override
+	public Map<String, Object> returnDetail(String order_id) throws Exception {
+		
+		Map<String, Object> returnInfo = adminOrderDAO.returnDetail(order_id);
+			String encodeImage = Base64.getEncoder().encodeToString((byte[]) returnInfo.get("image_file"));
+			returnInfo.remove("image_file");
+			returnInfo.put("image_file", encodeImage);
+		
+		return returnInfo;
+	}
+
 }

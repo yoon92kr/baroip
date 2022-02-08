@@ -206,8 +206,7 @@ public class OrderControllerImpl implements OrderController {
 		return mav;
 		
 	}
-	
-	// 상품 수량 변경 컨트롤러
+
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/order_product.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
@@ -222,7 +221,7 @@ public class OrderControllerImpl implements OrderController {
 		if(user_id.equals("Not_log_in")) {
 			user_id = userService.guestJoin();
 		}
-		if(userVO.getUser_point() < usePoint) {
+		if(userVO != null && userVO.getUser_point() < usePoint) {
 			
 			session.setAttribute("resultOrder", "false");
 			
@@ -230,13 +229,20 @@ public class OrderControllerImpl implements OrderController {
 		
 		else {
 			Map<String, String> userMap = new HashMap<String, String>();
-			userMap.put("user_id", userVO.getUser_id());
-			userMap.put("user_pw", userVO.getUser_pw());
+			if(userVO != null) {
+				userMap.put("user_id", userVO.getUser_id());
+				userMap.put("user_pw", userVO.getUser_pw());
+				
+				userVO.setUser_point(userVO.getUser_point() - usePoint);
+				session.setAttribute("userInfo", userVO);
+				
+				UserVO newUserInfo = userService.login(userMap);
+				session.removeAttribute("userInfo");
+				session.setAttribute("userInfo", newUserInfo);
+			}
 			
 			orderService.updatePointToOrder(orderVO);
-			userVO.setUser_point(userVO.getUser_point() - usePoint);
-			session.setAttribute("userInfo", userVO);
-			
+		
 			for(int i = 0; order_product_list.size() > i; i++) {
 				String productToAmount = order_product_list.get(i).replace("\"", "").replace("[", "").replace("]", "");
 				String[] splitParam = productToAmount.split("=");
@@ -250,11 +256,7 @@ public class OrderControllerImpl implements OrderController {
 				orderService.addOrder(orderVO);
 							
 			}
-			
-			UserVO newUserInfo = userService.login(userMap);
-			session.removeAttribute("userInfo");
-			session.setAttribute("userInfo", newUserInfo);
-				
+							
 		}
 				
 	}

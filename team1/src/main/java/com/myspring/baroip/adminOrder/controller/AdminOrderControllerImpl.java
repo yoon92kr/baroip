@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.adminOrder.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 			session.removeAttribute("search_option");
 			session.removeAttribute("search_value");
 		}
-		List<Map<String, Object>> orderList = getFullList(info, request);
+		List<Map<String, Object>> orderList = getFullList(info, request, "order");
 		
 		String pageNo = info.get("pageNo");
 		
@@ -95,10 +96,28 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 
 		return message;
 	}
+	
+	// 주문 상태 수정 컨트롤러
+	@Override
+	@RequestMapping(value = "/update_return_state.do", method = RequestMethod.POST)
+	public ModelAndView updateReturnState(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		String message = "해당 주문의 반품 / 교환 요청이 거절되었습니다.";
+		if(info.get("option").equals("accept")) {
+			message = "해당 주문의 반품 / 교환 요청이 수락되었습니다.";
+		}		
+		session.setAttribute("orderList", message);
+		mav.setViewName("redirect:/admin/order/return_list.do");
+		return mav;
+
+	}
 
 
 	// 주문 조회 필터 사용시, 세션에 있는 주문정보 확인 후 서비스로 처리하는 메소드
-	public List<Map<String, Object>> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+	public List<Map<String, Object>> getFullList(Map<String, String> info, HttpServletRequest request,String option) throws Exception {
 		
 		HttpSession session = request.getSession();
 		
@@ -146,9 +165,15 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 				options.put("search_option", sessionOption);
 				options.put("search_value", sessionValue);
 			}
-			
+		List<Map<String, Object>> fullList = new ArrayList<Map<String, Object>>();
 		
-		List<Map<String, Object>> fullList = adminOrderService.orderListToOption(options);
+		if(option.equals("order")) {
+			fullList = adminOrderService.orderListToOption(options);
+		}
+		else {
+			fullList = adminOrderService.selectRefundToOption(options);
+		}
+		
 		
 		return fullList;
 	}
@@ -183,12 +208,12 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 			session.removeAttribute("search_option");
 			session.removeAttribute("search_value");
 		}
-		List<Map<String, Object>> orderList = getFullList(info, request);
+		List<Map<String, Object>> orderList = getFullList(info, request, "refund");
 		
 		String pageNo = info.get("pageNo");
 		
 		if (pageNo != null && pageNo != "") {
-			int lastNo = (orderList.size()+8)/9;
+			int lastNo = (orderList.size()+5)/6;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
 				mav.addObject("pageNo", 1);
@@ -204,6 +229,23 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 			mav.setViewName(viewName);
 		}
 		mav.addObject("orderList", orderList);
+		return mav;
+
+	}
+	
+	// 반품 신청서 상세페이지 컨트롤러
+	@Override
+	@RequestMapping(value = "/return_Detail.do", method =RequestMethod.POST)
+	public ModelAndView returnDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		
+		Map<String, Object> returnInfo = adminOrderService.returnDetail(order_id);
+
+		mav.addObject("returnInfo", returnInfo);
+		mav.setViewName(viewName);
+
 		return mav;
 
 	}

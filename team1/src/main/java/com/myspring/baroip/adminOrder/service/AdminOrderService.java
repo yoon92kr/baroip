@@ -12,4 +12,10 @@ public interface AdminOrderService {
 	
 	// 주문 상태 변경서비스
 	public void updateState(Map<String, String> option) throws Exception;
+	
+	// 조회 조건에 따른 반품 리스트 조회 서비스
+	public List<Map<String, Object>> selectRefundToOption( Map<String, String> option) throws Exception;
+	
+	// 반품 정보 호출 서비스
+	public Map<String, Object> returnDetail(String order_id) throws Exception ;
 }
