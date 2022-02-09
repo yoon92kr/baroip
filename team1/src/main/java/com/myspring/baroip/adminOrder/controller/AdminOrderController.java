@@ -32,6 +32,6 @@ public interface AdminOrderController {
 	public ModelAndView returnDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	// 주문 상태 수정 컨트롤러
-	public ModelAndView updateReturnState(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public String updateReturnState(@RequestParam Map<String, String> info) throws Exception;
 	
 }

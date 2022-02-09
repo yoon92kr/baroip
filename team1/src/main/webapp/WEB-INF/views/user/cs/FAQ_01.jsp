@@ -42,7 +42,7 @@ request.setCharacterEncoding("UTF-8");
 	</div>
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
+		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle_update">
 			<h3>자주 묻는 질문</h3>
 		</div>
 		<div class="col-lg-2 offset-lg-2 text-right">
@@ -53,11 +53,6 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="offset-lg-2 col-lg-8">
-			<hr>
-		</div>
-	</div>
 
 	<div class="row">
 		<div class="offset-lg-2 col-lg-1 text-center cs_01_01header">

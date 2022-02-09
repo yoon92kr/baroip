@@ -33,6 +33,7 @@
 		<result property="product_discount" column="product_discount" />
 		<result property="notice_cre_date" column="notice_cre_date" />
 		<result property="notice_type" column="notice_type" />
+		<result property="user_membership" column="user_membership" />
 		
 	</resultMap>
 
@@ -81,19 +82,23 @@
 	<update id="updateReturnState" parameterType="java.util.Map">
 
 	<if test='option == "accept"'>
-	
-	</if>
-	
-	<if test='option == "negative"'>
-	
-	</if>
 		update orders as o, user as u set 
 			o.order_state = -3,
 			u.user_total_amount = u.user_total_amount - #{amount},
-			u.user_total_count = u.user_total_count - #{count}
+			u.user_total_count = u.user_total_count - #{count},
+			u.user_point = u.user_point - #{point},
+			u.user_total_point = u.user_total_point - #{point}
 		where	 
 			o.order_id = #{order_id}
-			and u.user_id = #{user_id}
+			and u.user_id = #{user_id}	
+	</if>
+	
+	<if test='option == "negative"'>
+		update orders set 
+			order_state = 2
+		where	 
+			order_id = #{order_id}
+	</if>
 
 	</update>
 
@@ -102,7 +107,7 @@
 	<select id="selectRefundToOption" resultMap="refundResult" parameterType="java.util.Map">
 	
 		<if test="search_option == null or search_option.equals('')">
-			select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date, n.notice_type from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id where o.order_state = -2 order by n.notice_cre_date desc
+			select u.user_membership, o.order_id, o.user_id, o.product_id, o.order_amount, o.order_state, p.product_price, p.product_discount, p.product_main_title, n.notice_cre_date, n.notice_type from orders as o inner join product as p on o.product_id = p.product_id inner join notice as n on o.order_id = n.order_id inner join user as u on o.user_id = u.user_id where o.order_state = -2 order by n.notice_cre_date desc
 		</if>
 		
 		<if test="search_option != null and !search_option.equals('')">

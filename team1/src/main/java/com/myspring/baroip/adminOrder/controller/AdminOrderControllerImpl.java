@@ -99,19 +99,14 @@ public class AdminOrderControllerImpl implements AdminOrderController {
 	
 	// 주문 상태 수정 컨트롤러
 	@Override
-	@RequestMapping(value = "/update_return_state.do", method = RequestMethod.POST)
-	public ModelAndView updateReturnState(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@ResponseBody
+	@RequestMapping(value = "/update_return_state.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public String updateReturnState(@RequestParam Map<String, String> info) throws Exception {
+
+		String message = adminOrderService.updateReturnState(info);
 		
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		
-		String message = "해당 주문의 반품 / 교환 요청이 거절되었습니다.";
-		if(info.get("option").equals("accept")) {
-			message = "해당 주문의 반품 / 교환 요청이 수락되었습니다.";
-		}		
-		session.setAttribute("orderList", message);
-		mav.setViewName("redirect:/admin/order/return_list.do");
-		return mav;
+		System.out.println("baroip : "+message);
+		return message;
 
 	}
 

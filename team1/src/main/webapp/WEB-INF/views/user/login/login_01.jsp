@@ -78,12 +78,9 @@
 			<br>
 			<!-- 비회원 주문 조회 버튼 -->
 			<div class="login_01-sns-login-btn">
-				<a class="login_01-non-member-search" href="#"> 
-					<img class="login_01-non-member-search-btn bottom_btn_size"
-						src="${contextPath}/resources/img/common/non_member_search_btn.png"
-						alt="로그인페이지 비회원 조회 버튼 이미지">
-				</a>
+				<input id="guest_search_login" type="button" value="비회원 주문 조회" onclick="guest_order_search()">
 			</div>
+			<br>
 		</div>
 	</div>
 	
@@ -100,6 +97,17 @@
 		loginForm.action="${contextPath}/user/login.do";
 		loginForm.submit();
 		
+	}
+	
+	function guest_order_search() {
+		var url = "${contextPath}/guest/search_order.do";
+		var name = "바로입 프로젝트";
+		var popupX = (document.body.offsetWidth / 2) - (500 / 2);
+		var popupY= (window.screen.height / 2) - (500 / 2);
+		
+		var option = "width = 500, height = 500, left="+popupX+ ", top="+popupY+", location = no, directories = no, resizable = no, menubar = no, scrollbars = no, toolbars = no, status = no";
+
+		window.open(url, name, option);
 	}
 
 </script>

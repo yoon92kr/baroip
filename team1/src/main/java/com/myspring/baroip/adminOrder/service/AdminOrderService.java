@@ -18,4 +18,7 @@ public interface AdminOrderService {
 	
 	// 반품 정보 호출 서비스
 	public Map<String, Object> returnDetail(String order_id) throws Exception ;
+	
+	// 반품요청 상태 변경서비스
+	public String updateReturnState(Map<String, String> option) throws Exception;
 }

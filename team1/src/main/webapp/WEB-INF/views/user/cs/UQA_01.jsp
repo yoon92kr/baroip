@@ -48,7 +48,7 @@
 	</div>
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
+		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle_update">
 			<h3>1:1 문의</h3>
 		</div>
 		<div class="col-lg-4 text-right cs_02_writebtn">

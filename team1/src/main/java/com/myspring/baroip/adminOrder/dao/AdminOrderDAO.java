@@ -20,4 +20,7 @@ public interface AdminOrderDAO {
 	
 	// 반품 정보 호출 DAO
 	public Map<String, Object> returnDetail(String order_id) throws DataAccessException;
+	
+	// 반품요청 상태 변경 DAO
+	public int updateReturnState(Map<String, String> option) throws DataAccessException;
 }

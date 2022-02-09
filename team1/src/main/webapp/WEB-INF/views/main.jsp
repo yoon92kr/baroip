@@ -18,8 +18,10 @@
 		
 		var url = "${contextPath}/popUp.do";
 		var name = "바로입 프로젝트";
-		var option = "width = 500, height = 500, top = 200, left = 700, location = no, directories = no, resizable = no, menubar = no, scrollbars = no, toolbars = no, status = no";
-
+		var popupX = (document.body.offsetWidth / 2) - (500 / 2);
+		var popupY= (window.screen.height / 2) - (500 / 2);
+		
+		var option = "width = 500, height = 500, left="+popupX+ ", top="+popupY+", location = no, directories = no, resizable = no, menubar = no, scrollbars = no, toolbars = no, status = no";
 		window.open(url, name, option);
 		});
 	</script>

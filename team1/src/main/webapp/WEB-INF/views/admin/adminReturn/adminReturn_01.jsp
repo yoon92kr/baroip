@@ -134,11 +134,14 @@
 		<c:forEach var="i" begin="0" end="${itemSize}">
 			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
 			<c:if test="${not empty itemList[j] && i < pageNoMax}">
-	<input type="hidden" value="${itemList[j].order_id }" id="orderID_${j}">		    
+	<input type="hidden" value="${itemList[j].order_id }" id="orderID_${j}">		
+	<input type="hidden" value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" id="orderAmount_${j}">	
+	<input type="hidden" value="${itemList[j].user_membership }" id="membership_${j}">	 
+	<input type="hidden" value="${itemList[j].order_amount }" id="count_${j}">	    
    	<div class="AdminReturn_center_box_01 text-center">
 	<div class="row">
         <div class="col-lg-2 text-center">
-        	<div>${itemList[j].user_id}</div>
+        	<div id="userID_${j}">${itemList[j].user_id}</div>
         	<input id="returnDetail_${j}" class="MyPage_03-submit-box-01" type="button" value="반품 신청서 확인" onclick="order_detail(this.id)">
         </div>
         	<div class="col-lg-3 MyPage_03_text_position_04_update">
@@ -265,34 +268,53 @@ function order_detail(target){
 function update_return_state(target){
 	var strArray = target.split('_');
 	var target_no = strArray[1];
-
+	
 	let order_id = document.getElementById('orderID_'.concat(target_no)).value;
-	let user_id = "${userInfo.user_id}";
-
-	let order_array = order_id.split('_');
-	let order_id_group = 'baroip_order_'.concat(order_array[2], '_', order_array[3]);
-		
-	    var form = document.createElement("form");
-	    form.setAttribute("charset", "UTF-8");
-	    form.setAttribute("method", "Post");
-	    form.setAttribute("action", "${contextPath}/admin/order/update_return_state.do");	
- 	  
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", "order_id");
-        hiddenField.setAttribute("value", order_id_group);
-        form.appendChild(hiddenField);
-        
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", "option");
-	    hiddenField.setAttribute("value", strArray[0]);	
+	let user_id = document.getElementById('userID_'.concat(target_no)).innerHTML;
+	let order_count = document.getElementById('count_'.concat(target_no)).value;
+	let order_amount = document.getElementById('orderAmount_'.concat(target_no)).value;
+	let user_membership = document.getElementById('membership_'.concat(target_no)).value;
+	let point;
+    switch(user_membership) {
+    case "1" :
+    	point = order_amount * 0.01
+       break;
+    
+    case "2" :
+    	point = order_amount * 0.03
+       break;
        
-        form.appendChild(hiddenField);
+    case "3" :
+    	point = order_amount * 0.05
+       break;
+       
+    case "4" :
+    	point = order_amount * 0.1
+	   break;
+    }
 
-  
-    document.body.appendChild(form);
-    form.submit();
+	$.ajax({
+		type : "post",
+		async : false,
+		url : "${contextPath}/admin/order/update_return_state.do",
+		dataType : "text",
+		data : {
+			"option" : strArray[0],
+			"order_id" : order_id,
+			"point" : point,
+			"user_id" : user_id,
+			"amount" : order_amount,
+			"count" : order_count
+		},
+		success : function(message) {
+			alert(message);
+	 		location.reload();
+		},
+		error : function() {
+			alert("주문상태 변경에 문제가 발생하였습니다.");
+		}
+
+	});	
 	
 }
 //페이지 이동 스크립트

@@ -97,7 +97,7 @@
 			<span>사진 첨부</span>
 		</div>
 		<div class="col-lg-4 cs_02_02_box02">
-			<input class="form-control" style="border:0px;" type="file" name="refund" accept="image/*">
+			<input class="form-control form_upload_check" style="border:0px;" type="file" name="refund" accept="image/*">
 		</div>
 
 
@@ -145,7 +145,7 @@ function submit_refund_product() {
 	if (checkFlag) {
 		document.getElementById('ask_refund').submit();
 	} else {
-		alert("반품/교환 신청시 제목과 내용은 필수입력 사항입니다.");
+		alert("반품/교환 신청시 제목과 내용 및 사진은 필수입력 사항입니다.");
 	}
 
 } 

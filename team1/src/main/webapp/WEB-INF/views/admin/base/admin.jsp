@@ -33,8 +33,8 @@
     		
     		<div class="MyPage_01_content MyPage_01_subtitle">
     		<div class="row">
-    			<a href="#" class="col-lg-3 text-center">[총 주문 건수]</a>
-        		<a href="#" class="col-lg-3 text-center">[총 배송 진행중 건수]</a>
+    			<a href="${contextPath}/admin/order/order_list.do" class="col-lg-3 text-center">[총 주문 건수]</a>
+        		<a href="${contextPath}/admin/order/order_list.do" class="col-lg-3 text-center">[총 배송 진행중 건수]</a>
         		<a href="#" class="col-lg-3 text-center">[미답변 문의 내역 건수]</a>
         		<a href="#" class="col-lg-3 text-center">[미답변 후기 내역 건수]</a>
     		</div>

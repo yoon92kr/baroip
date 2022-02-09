@@ -79,5 +79,23 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		
 		return returnInfo;
 	}
+	
+	// 반품요청 상태 변경서비스
+	@Override
+	public String updateReturnState(Map<String, String> option) throws Exception {
+		
+		int result = adminOrderDAO.updateReturnState(option);
+		System.out.println(result);
+		String message = "";
+		if(result > 0 && option.get("option").equals("accept")) {
+			message = "해당 주문의 반품 / 교환 요청이 수락되었습니다.";
+		}
+		else if(result > 0 && option.get("option").equals("negative")) {
+			message = "해당 주문의 반품 / 교환 요청이 거절되었습니다.";
+		}
+		
+		return message;
+		
+	}
 
 }
