@@ -3,6 +3,7 @@
 package com.myspring.baroip.myPage.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -315,7 +316,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 	
 //	2022.02.08 한건희
 	
-//	상품문의 리스트
+//	문의 리스트
 		@Override
 		@RequestMapping(value = "/myQuestion.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView myQuestion(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception {
@@ -326,7 +327,18 @@ public class MyPageControllerImpl implements MyPageConroller{
 			UserVO userVO = (UserVO) session.getAttribute("userInfo");
 			String user_id = userVO.getUser_id();
 			String pageNo = info.get("pageNo");
-			List<NoticeVO> questionList = myPageService.questionList(user_id);
+			Map<String, Object> questionList = myPageService.questionList(user_id);
+			
+			List<NoticeVO> userQuestion = new ArrayList<NoticeVO>();
+			List<NoticeVO> adminAnswer = new ArrayList<NoticeVO>();
+			
+			for(int i=0; questionList.size()>i; i++) {
+				if(questionList.get("question"+(i+1)) != null) {
+					userQuestion.add((NoticeVO) questionList.get("question"+(i+1)));
+				} else {
+					adminAnswer.add((NoticeVO) questionList.get("answer"+(i+1)));
+				}
+			}
 			
 			if (pageNo != null && pageNo != "") {
 				int lastNo = (questionList.size()+7)/8;
@@ -345,7 +357,8 @@ public class MyPageControllerImpl implements MyPageConroller{
 				mav.setViewName(viewName);
 			}
 			
-			mav.addObject("questionList", questionList);
+			mav.addObject("userQuestion", userQuestion);
+			mav.addObject("adminAnswer", adminAnswer);
 			mav.setViewName(viewName);
 
 			return mav;
@@ -358,7 +371,6 @@ public class MyPageControllerImpl implements MyPageConroller{
 			
 			ModelAndView mav = new ModelAndView();
 			String viewName = (String) request.getAttribute("viewName");
-			System.out.println("controller : " + notice_id);
 			Map<String, Object> result = myPageService.questionDetail(notice_id);
 			
 			mav.addObject("detail", result);

@@ -101,9 +101,18 @@ public class MyPageServiceImpl implements MyPageService {
 	
 //	문의 리스트
 	@Override
-	public List<NoticeVO> questionList(String user_id) throws Exception {
+	public Map<String, Object> questionList(String user_id) throws Exception {
 		List<NoticeVO> result = myPageDAO.questionList(user_id);
-		return result;
+		Map<String, Object> PQAListAll = new HashMap<String, Object>();
+		for(int i=0; result.size()>i; i++) {
+			if(result.get(i).getUser_id().equals(user_id)) {
+				PQAListAll.put("question"+(i+1), result.get(i));
+			} else {
+				PQAListAll.put("answer"+(i+1), result.get(i));
+			}
+			
+		}
+		return PQAListAll;
 	}
 	
 //	문의 내역 페이지
@@ -112,7 +121,6 @@ public class MyPageServiceImpl implements MyPageService {
 		Map<String, Object> detail = new HashMap<String, Object>();
 		
 		for(int i=0; result.size() > i; i++) {
-			System.out.println("service : " + result.get(i).getProduct_id());
 			if(result.get(i).getUser_id().equals("admin")) {
 //				답변
 				detail.put("answer", (NoticeVO) result.get(i));

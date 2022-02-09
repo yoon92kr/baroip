@@ -172,7 +172,9 @@
 	<!-- 문의 리스트 -->
 	<select id="questionList" resultType="NoticeVO" parameterType="String">
 		<![CDATA[
-			select * from notice where user_id=#{user_id} and notice_category in ('PQA', 'UQA') order by notice_cre_date asc
+			select notice_id, notice_category, notice_title, notice_type, notice_cre_date, user_id
+			from notice where notice_match_no = any(select notice_id from notice where user_id=#{user_id}) 
+			and notice_category in('PQA', 'UQA') order by notice_cre_date asc
 		]]>
 	</select>
 	

@@ -82,7 +82,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 		
 //		2022.02.08 한건희
 		
-		// 상품문의 리스트
+		// 문의 리스트
 		@Override
 		public List<NoticeVO> questionList(String user_id) throws DataAccessException {
 			List<NoticeVO> result = sqlSession.selectList("mapper.myPage.questionList", user_id);

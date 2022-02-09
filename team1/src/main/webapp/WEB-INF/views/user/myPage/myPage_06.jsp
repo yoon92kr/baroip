@@ -10,9 +10,9 @@
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
 <c:set var="pageNoMax" value="8" />
 <!-- itemSize에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemSize" value="${questionList.size()}" />
+<c:set var="itemSize" value="${userQuestion.size()}" />
 <!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
-<c:set var="itemList" value="${questionList}" />
+<c:set var="itemList" value="${userQuestion}" />
 <c:if test='${not empty pageNo}'>
 	<script>
 		window
@@ -82,26 +82,31 @@
 			<c:forEach var="i" begin="1" end="${itemSize}">
 				<c:set var="desc" value="${itemSize - i + 1}" />
 				<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
+				<c:set var="Num" value="${j-1}"/>
 				<div class="row">
 					<div class="offset-lg-2 col-lg-1 text-center cs_02_listsection">
-						${itemList[j-1].notice_cre_date}
+						${itemList[Num].notice_cre_date}
 					</div>
 					<div class="col-lg-1 text-center cs_02_listsection">
-						<c:if test="${itemList[j-1].notice_category == 'PQA'}">
+						<c:if test="${itemList[Num].notice_category == 'PQA'}">
 							<span>상품문의</span>
 						</c:if>
-						<c:if test="${itemList[j-1].notice_category == 'UQA'}">
+						<c:if test="${itemList[Num].notice_category == 'UQA'}">
 							<span>1:1문의</span>
 						</c:if>
 					</div>
 					<div class="col-lg-1 text-center cs_02_listsection">
-						<span class="myQuestionListId">${itemList[j-1].notice_id.split('_')[1]}</span>
+						<span class="myQuestionListId">${itemList[Num].notice_id.split('_')[1]}</span>
 					</div>
 					<div class="col-lg-3 text-center cs_02_listsection">
-						<a class="myQuestionTitle" href="${contextPath}/myPage/myQuestion/QuestionDetail.do?notice_id=${itemList[j-1].notice_id}">${itemList[j-1].notice_title}</a>
+						<a class="myQuestionTitle" href="${contextPath}/myPage/myQuestion/QuestionDetail.do?notice_id=${itemList[Num].notice_id}">
+							${itemList[Num].notice_title}
+						</a>
 					</div>
 					<div class="col-lg-2 text-center cs_02_listsection">
-						<span>진행 상태</span>
+						<c:if test="${itemList[Num].notice_id == adminAnswer[Num].notice_match_no}">
+							<span>답변 완료</span>
+						</c:if>	
 					</div>
 				</div>
 			</c:forEach>
@@ -139,6 +144,7 @@
 </div>
 
 <script>
+
 //페이지 이동 스크립트
 function pageMove(no) {
 	var getValue = 0;
