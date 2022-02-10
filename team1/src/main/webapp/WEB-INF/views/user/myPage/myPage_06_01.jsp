@@ -73,32 +73,69 @@
 			<span>${detail.answer.notice_body}</span>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="offset-lg-3 col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<form>
-					<input type="image"
-						src="${contextPath}/resources/img/common/cs_correct_01.png"
-						alt="mypage06 문의 수정하기 버튼 이미지">
-				</form>
+	
+	<form id="changeDeleteForm">
+		
+	</form>
+	
+	<c:if test="${empty detail.answer}">
+		<div class="row">
+			<div class="offset-lg-3 col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<input class="user_btn_Bgreen" type="button" value="수정하기" onclick="">
+				</div>
+			</div>
+	
+			<div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<input class="user_btn_gray" type="button" value="목록" onclick="history.back();">
+				</div>
+			</div>
+	
+			<div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<input class="user_btn_Dgray" type="button" value="삭제하기" onclick="deleteBtn();">
+				</div>
 			</div>
 		</div>
-
-		<div class="col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<input class="user_btn_gray" type="button" value="목록" onclick="history.back();">
+	</c:if>
+	
+	<c:if test="${not empty detail.answer}">
+		<div class="row">
+			<div class="offset-lg-4 col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<input class="user_btn_gray" type="button" value="목록" onclick="history.back();">
+				</div>
+			</div>
+	
+			<div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<input class="user_btn_Dgray" type="button" value="삭제하기" onclick="deleteBtn();">
+				</div>
 			</div>
 		</div>
-
-		<div class="col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<input class="user_btn_Dgray" type="button" value="삭제하기" onclick="">
-			</div>
-		</div>
-
-	</div>
+	</c:if>
 </div>
 
-
+<script>
+	function deleteBtn() {
+		
+		let deleteQuestion = confirm("문의 내용을 삭제하시겠습니까?");
+		
+		if(deleteQuestion == true) {
+			let form = document.getElementById("changeDeleteForm");
+			let input = document.createElement("input");
+			
+			input.setAttribute("type", "hidden");
+			input.setAttribute("name", "notice_id");
+			input.setAttribute("value", "${detail.question.notice_id}");
+			
+			form.method="GET";
+			form.action="${contextPath}/myPage/myQuestion/questionDelete.do";
+			form.appendChild(input);
+			form.submit();
+		}
+		
+	}
+</script>
 

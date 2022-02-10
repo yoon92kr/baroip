@@ -35,6 +35,15 @@
 	session.removeAttribute("message");
 	%>
 </c:if>
+<c:if test='${not empty resultMSG }'>
+
+	<script>
+		alert("${resultMSG}");
+	</script>
+	<%
+	session.removeAttribute("resultMSG");
+	%>
+</c:if>
 
 
 

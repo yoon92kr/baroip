@@ -171,19 +171,19 @@ function PQA_detail(no) {
 	let user_id = document.getElementById('PQAuserID_'.concat(strArray[1])).value;
 	
 	if(target == 1) {
-		document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+		document.location="${contextPath}/myQuestion/QuestionDetail.do?notice_id="+notice_id;
 	}
 	else if(target == 0) {
 		
 		let notice_pw = document.getElementById('PQAPW_'.concat(strArray[1])).value;
 		
 		if ("${userInfo.user_id}" == user_id || "${userInfo.user_rank}" > 1) {
-			document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+			document.location="${contextPath}/myQuestion/QuestionDetail.do?notice_id="+notice_id;
 		}
 		else {
 			let pwFlag = prompt("비밀글입니다. 비밀번호를 입력해주세요.");
 			if (notice_pw == pwFlag) {
-				document.location="${contextPath}/cs/UQA_datail.do?notice_id="+notice_id;
+				document.location="${contextPath}/myQuestion/QuestionDetail.do?notice_id="+notice_id;
 			}
 			else if(pwFlag == null) {
 				

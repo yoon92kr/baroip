@@ -44,4 +44,7 @@ public interface MyPageDAO {
 	
 //	상품 문의 시 title 불러오기
 	public String productQuestion(String product_id) throws DataAccessException;
+	
+//	문의 삭제
+	public int questionDelete(String notice_id) throws DataAccessException;
 }

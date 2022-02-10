@@ -193,5 +193,11 @@
 			select product_main_title from product where product_id=#{product_id}
 		]]>
 	</select>
+	
+	<delete id="questionDelete" parameterType="String">
+		<![CDATA[
+			delete from notice where notice_match_no = #{notice_id}
+		]]>
+	</delete>
 		
 </mapper>

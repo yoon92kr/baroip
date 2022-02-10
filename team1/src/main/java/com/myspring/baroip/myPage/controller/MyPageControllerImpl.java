@@ -353,6 +353,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 
 		}
 		
+//		문의 상세 페이지
 		@Override
 		@RequestMapping(value = "/myQuestion/QuestionDetail.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView QuestionDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception {
@@ -366,4 +367,22 @@ public class MyPageControllerImpl implements MyPageConroller{
 			return mav;
 		}
 		
+//		문의 삭제 컨트롤러
+		@RequestMapping(value = "/myQuestion/questionDelete.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView questionDelete(@RequestParam("notice_id") String notice_id) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			
+			int result = myPageService.deleteQuestion(notice_id);
+			String resultMSG = "";
+			
+			if(result == 1) {
+				resultMSG = "해당 문의가 삭제되었습니다.";
+			} else if(result == 0 ) {
+				resultMSG = "문의 삭제가 실패했습니다.";
+			}
+			
+			mav.addObject("resultMSG", resultMSG);
+			mav.setViewName("redirect:/myPage/myQuestion.do");
+			return mav;
+		}
 }

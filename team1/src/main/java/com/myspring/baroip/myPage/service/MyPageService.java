@@ -36,4 +36,7 @@ public interface MyPageService {
 	
 //	문의 내역 페이지
 	public Map<String, Object> questionDetail(String notice_id) throws Exception;
+	
+//	문의 삭제
+	public int deleteQuestion(String notice_id) throws Exception;
 }

@@ -107,20 +107,13 @@ public class MyPageServiceImpl implements MyPageService {
 		List<NoticeVO> questionAll = new ArrayList<NoticeVO>();
 		List<NoticeVO> answer = new ArrayList<NoticeVO>();
 		
-		System.out.println("questionAnswerAll : " + questionAnswerAll.size());
-		System.out.println("parameter(user_id) : " + user_id);
-		
 		for(int i=0; questionAnswerAll.size()>i; i++) {
-			System.out.println("questionAnswerAll(user_id) : " + questionAnswerAll.get(i).getUser_id());
 			if(questionAnswerAll.get(i).getUser_id().equals(user_id)) {
 				questionAll.add(questionAnswerAll.get(i));
 			} else{
 				answer.add(questionAnswerAll.get(i));
 			}
 		}
-		
-		System.out.println("answer : " + answer.size());
-		System.out.println("questionAll : " + questionAll.size());
 		
 		for(int i=0; answer.size()>i; i++) {
 			for(int j=0; questionAll.size()>j; j++) {
@@ -154,6 +147,14 @@ public class MyPageServiceImpl implements MyPageService {
 			}
 		}
 		return detail;
+	}
+	
+//	문의 삭제
+	@Override
+	public int deleteQuestion(String notice_id) throws Exception {
+		int result = myPageDAO.questionDelete(notice_id);
+		
+		return result;
 	}
 
 }

@@ -105,4 +105,12 @@ public class MyPageDAOImpl implements MyPageDAO {
 			return product_title;
 		}
 		
+//		문의 삭제
+		@Override
+		public int questionDelete(String notice_id) throws DataAccessException {
+			int result = sqlSession.delete("mapper.myPage.questionDelete", notice_id);
+			
+			return result;
+		}
+		
 }
