@@ -16,6 +16,14 @@
 	margin-top: 40px;
 }
 
+.answerComplete {
+	color: #03c75a;
+}
+
+.answerWaiting {
+	color:#dc3545;
+}
+
 /* product_01 검색창 추가 */
 .product_01_search-box {
 	padding-left: 55px;

@@ -32,7 +32,7 @@ public interface MyPageService {
 	public List<Map<String, Object>> orderDetail(String order_id) throws Exception;
 	
 //	문의 리스트
-	public Map<String, Object> questionList(String user_id) throws Exception;
+	public List<NoticeVO> questionList(String user_id) throws Exception;
 	
 //	문의 내역 페이지
 	public Map<String, Object> questionDetail(String notice_id) throws Exception;

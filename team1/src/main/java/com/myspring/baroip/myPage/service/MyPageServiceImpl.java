@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.myPage.service;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -101,18 +102,35 @@ public class MyPageServiceImpl implements MyPageService {
 	
 //	문의 리스트
 	@Override
-	public Map<String, Object> questionList(String user_id) throws Exception {
-		List<NoticeVO> result = myPageDAO.questionList(user_id);
-		Map<String, Object> PQAListAll = new HashMap<String, Object>();
-		for(int i=0; result.size()>i; i++) {
-			if(result.get(i).getUser_id().equals(user_id)) {
-				PQAListAll.put("question"+(i+1), result.get(i));
-			} else {
-				PQAListAll.put("answer"+(i+1), result.get(i));
+	public List<NoticeVO> questionList(String user_id) throws Exception {
+		List<NoticeVO> questionAnswerAll = myPageDAO.questionList(user_id);
+		List<NoticeVO> questionAll = new ArrayList<NoticeVO>();
+		List<NoticeVO> answer = new ArrayList<NoticeVO>();
+		
+		System.out.println("questionAnswerAll : " + questionAnswerAll.size());
+		System.out.println("parameter(user_id) : " + user_id);
+		
+		for(int i=0; questionAnswerAll.size()>i; i++) {
+			System.out.println("questionAnswerAll(user_id) : " + questionAnswerAll.get(i).getUser_id());
+			if(questionAnswerAll.get(i).getUser_id().equals(user_id)) {
+				questionAll.add(questionAnswerAll.get(i));
+			} else{
+				answer.add(questionAnswerAll.get(i));
 			}
-			
 		}
-		return PQAListAll;
+		
+		System.out.println("answer : " + answer.size());
+		System.out.println("questionAll : " + questionAll.size());
+		
+		for(int i=0; answer.size()>i; i++) {
+			for(int j=0; questionAll.size()>j; j++) {
+				if(answer.get(i).getNotice_match_no().equals(questionAll.get(j).getNotice_id())) {
+					questionAll.get(j).setNotice_parent_no("1");
+				}
+			}
+		}
+		
+		return questionAll;
 	}
 	
 //	문의 내역 페이지

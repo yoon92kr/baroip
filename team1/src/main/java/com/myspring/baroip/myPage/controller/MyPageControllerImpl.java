@@ -327,18 +327,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 			UserVO userVO = (UserVO) session.getAttribute("userInfo");
 			String user_id = userVO.getUser_id();
 			String pageNo = info.get("pageNo");
-			Map<String, Object> questionList = myPageService.questionList(user_id);
-			
-			List<NoticeVO> userQuestion = new ArrayList<NoticeVO>();
-			List<NoticeVO> adminAnswer = new ArrayList<NoticeVO>();
-			
-			for(int i=0; questionList.size()>i; i++) {
-				if(questionList.get("question"+(i+1)) != null) {
-					userQuestion.add((NoticeVO) questionList.get("question"+(i+1)));
-				} else {
-					adminAnswer.add((NoticeVO) questionList.get("answer"+(i+1)));
-				}
-			}
+			List<NoticeVO> questionList = myPageService.questionList(user_id);
 			
 			if (pageNo != null && pageNo != "") {
 				int lastNo = (questionList.size()+7)/8;
@@ -357,8 +346,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 				mav.setViewName(viewName);
 			}
 			
-			mav.addObject("userQuestion", userQuestion);
-			mav.addObject("adminAnswer", adminAnswer);
+			mav.addObject("questionList", questionList);
 			mav.setViewName(viewName);
 
 			return mav;

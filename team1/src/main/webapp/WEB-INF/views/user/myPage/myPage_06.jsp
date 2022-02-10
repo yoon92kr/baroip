@@ -10,9 +10,9 @@
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
 <c:set var="pageNoMax" value="8" />
 <!-- itemSize에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemSize" value="${userQuestion.size()}" />
+<c:set var="itemSize" value="${questionList.size()}" />
 <!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
-<c:set var="itemList" value="${userQuestion}" />
+<c:set var="itemList" value="${questionList}" />
 <c:if test='${not empty pageNo}'>
 	<script>
 		window
@@ -83,6 +83,9 @@
 				<c:set var="desc" value="${itemSize - i + 1}" />
 				<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
 				<c:set var="Num" value="${j-1}"/>
+				
+				<c:if test="${not empty itemList[Num].notice_category && i< pageNoMax+1}">
+				
 				<div class="row">
 					<div class="offset-lg-2 col-lg-1 text-center cs_02_listsection">
 						${itemList[Num].notice_cre_date}
@@ -104,11 +107,16 @@
 						</a>
 					</div>
 					<div class="col-lg-2 text-center cs_02_listsection">
-						<c:if test="${itemList[Num].notice_id == adminAnswer[Num].notice_match_no}">
-							<span>답변 완료</span>
-						</c:if>	
+						<c:if test="${itemList[Num].notice_parent_no == '1'}">
+							<span class="answerComplete">답변 완료</span>
+						</c:if>
+						<c:if test="${itemList[Num].notice_parent_no == '0'}">
+							<span class="answerWaiting">답변 대기중</span>
+						</c:if>
 					</div>
 				</div>
+				</c:if>
+				
 			</c:forEach>
 		</c:when>
 	</c:choose>
