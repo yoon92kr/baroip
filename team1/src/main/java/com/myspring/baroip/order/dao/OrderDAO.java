@@ -2,6 +2,9 @@
 
 package com.myspring.baroip.order.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.baroip.cart.vo.CartVO;
@@ -17,5 +20,11 @@ public interface OrderDAO {
 
 	// 주문시 기존 포인트 차감 DAO
 	public void updatePointToOrder(OrderVO orderVO) throws DataAccessException;
+	
+	// 비회원 주문 정보 호출 DAO
+	public List<Map<String, Object>> guestOrderDetail(Map<String, String> guestInfo) throws DataAccessException;
+	
+	// 비회원 주문 취소 DAO
+	public int cancelOrder(String orderID) throws DataAccessException;
 
 }

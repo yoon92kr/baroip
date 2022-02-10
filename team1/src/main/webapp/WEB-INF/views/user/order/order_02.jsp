@@ -87,6 +87,14 @@
         </c:if>        
         </div>
     </div>
+    <c:if test="${empty userInfo}">   
+         <div class="row">
+            <div class="col-lg-12 text-center">
+            <br><br>
+               <span class="cart_notUser">비회원 주문 시 배송조회 및 주문상태 변경을 위해 반드시 주문 번호를 메모해주세요.</span>
+            </div>
+         </div>
+    </c:if>
     <br><br>
     <div class="row">
         <div class="col-lg-4 offset-lg-4 text-center">

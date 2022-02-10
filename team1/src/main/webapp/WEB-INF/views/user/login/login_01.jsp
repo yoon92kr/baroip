@@ -7,14 +7,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:if test='${not empty message }'>
 	<script>
-		window.onload=function() {
-			result();
-		}
-	
-		function result(){
-			alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
-		}
+		alert("${message}");
 	</script>
+	<%
+	session.removeAttribute("message");
+	%>
 </c:if>
 
 <c:if test="${not empty userPwdChange}">
@@ -88,6 +85,8 @@
 
 <script type="text/javascript">
 		
+	window.name = "parent";
+
 	function loginBtn() {
 		
 		let loginForm = document.Login_01_LoginForm;

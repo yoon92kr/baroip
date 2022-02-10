@@ -2,8 +2,11 @@
 
 package com.myspring.baroip.order.service;
 
+import java.util.Base64;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.myspring.baroip.cart.vo.CartVO;
@@ -36,9 +39,37 @@ public class OrderServiceImpl implements OrderService{
 	
 	// 주문시 기존 포인트 차감 Service
 	@Override
-	public void updatePointToOrder(OrderVO orderVO) throws DataAccessException {
+	public void updatePointToOrder(OrderVO orderVO) throws Exception {
 		
 		orderDAO.updatePointToOrder(orderVO);
+	}
+	
+	// 비회원 주문 정보 호출 Service
+	@Override
+	public List<Map<String, Object>> guestOrderDetail(Map<String, String> guestInfo) throws Exception {
+		
+		List<Map<String, Object>> guestOrder = orderDAO.guestOrderDetail(guestInfo);
+		
+		for(int i=0 ; i<guestOrder.size() ; i++) {
+			String encodeImage = Base64.getEncoder().encodeToString((byte[]) guestOrder.get(i).get("image_file"));
+			guestOrder.get(i).remove("image_file");
+			guestOrder.get(i).put("image_file", encodeImage);
+		}
+		
+		return guestOrder;
+	}
+	
+	// 비회원 주문 취소 Service
+	@Override
+	public String cancelOrder(String orderID) throws Exception {
+		
+		int result = orderDAO.cancelOrder(orderID);
+		String message = "주문상태 변경에 문제가 발생하였습니다.";
+		if(result > 0) {
+			message = "해당 주문이 정상적으로 취소되었습니다.";
+		}
+		
+		return message;
 	}
 
 }

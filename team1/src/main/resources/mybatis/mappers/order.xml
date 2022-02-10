@@ -72,7 +72,31 @@
 	
 	</insert>
 	
+		<!-- 비회원 주문 상세 쿼리 -->
+	<select id="guestOrderDetail" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			o.*, 
+			p.product_main_title, p.product_price, p.product_discount,
+			i.image_file
+		from orders as o inner join product as p on o.product_id = p.product_id
+			inner join image as i on o.product_id = i.image_match_id
+		where
+			o.order_id like concat(#{order_id}, '_', '%')
+			and o.order_receiver_name = #{user_name}
+			and i.image_category = 'main'
+			and o.user_id like concat('guest', '_', '%')
 
+	</select>
+	
+	<!-- 비회원 주문취소 쿼리 -->
+	<update id="cancelOrder" parameterType="String">
+
+		update orders set 
+			order_state = -1
+		where	 
+			order_id like concat(#{order_id}, '_', '%')
+
+	</update>
 	
 	
 	
