@@ -57,6 +57,14 @@
 	<definition name="/myPage/myQuestion/QuestionDetail" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06_01.jsp" />
 	</definition>
+	
+	<definition name="/myPage/myQuestion/myUQAUpdate" extends="MyPageLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06_02.jsp" />
+	</definition>
+	
+	<definition name="/myPage/myQuestion/myPQAUpdate" extends="MyPageLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06_03.jsp" />
+	</definition>
 
 	<definition name="/myPage/myPage_07" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_07.jsp" />

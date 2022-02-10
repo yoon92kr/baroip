@@ -194,6 +194,7 @@
 		]]>
 	</select>
 	
+	<!-- 문의 내역/ 문의 삭제 -->
 	<delete id="questionDelete" parameterType="String">
 		<![CDATA[
 			delete from notice where notice_match_no = #{notice_id}

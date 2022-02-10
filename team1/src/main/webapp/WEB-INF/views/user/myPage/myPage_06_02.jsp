@@ -1,5 +1,4 @@
-<!--  2021.11.29 강보석 -->
-<!--2022.01.14 윤상현 수정 -->
+<!-- 2022.02.10 한건희 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -13,17 +12,17 @@
 
 	<div class="row">
 		<div class="col-lg-4 offset-lg-4 text-center">
-			<h1 class="page_title">고객센터</h1>
+			<h1 class="page_title">마이페이지</h1>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-8 text-left cs_01_subtitle">
-			<h3>1:1 문의 내용 작성</h3>
+		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
+			<h3>문의 내용 수정</h3>
 		</div>
 	</div>
-	
-	<form id="add_UQA" action="${contextPath}/cs/add_UQA.do" method="post">
+
+	<form id="myUQAUpdate">
 		
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
@@ -31,7 +30,7 @@
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
 				<input type="text" class="form-control notice_upload_check" name="notice_title" 
-				placeholder="제목을 입력하세요.">
+				value="${detail.question.notice_title }">
 			</div>
 		</div>
 	
@@ -41,6 +40,7 @@
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
 				<select class="cs_02_select" name="notice_type">
+					<option value="${detail.question.notice_type}">${detail.question.notice_type}</option>
 					<option value="상품문의">상품문의</option>
 					<option value="계정문의">계정문의</option>
 					<option value="결제문의">결제문의</option>
@@ -81,7 +81,7 @@
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box04">
 				<textarea class="form-control notice_upload_check" name="notice_body"
-				rows="8" placeholder="내용을 입력하세요."></textarea>
+				rows="8" placeholder="내용을 입력하세요.">${detail.question.notice_body }</textarea>
 			</div>
 		</div>
 		
@@ -93,14 +93,12 @@
 		<div class="row">
 			<div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
-					<input onclick="submit_add_notice()" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="등록하기">							
+					<input onclick="submit_add_notice()" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="수정하기">							
 				</div>
 			</div>
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="${contextPath}/cs/UQA_list.do">			
-						<input class="user_btn_gray" type="button" id="cs_02_02_list_btn" value="돌아가기">
-					</a>
+					<input class="user_btn_gray" type="button" value="돌아가기" onclick="history.go(-2);">
 				</div>
 			</div>
 		</div>

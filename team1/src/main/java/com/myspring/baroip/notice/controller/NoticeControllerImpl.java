@@ -198,8 +198,6 @@ public class NoticeControllerImpl implements NoticeController {
 	public ModelAndView add_PQA(NoticeVO noticeVO) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
-		System.out.println("controller : " + noticeVO.getUser_id());
-		
 		String user_id = noticeVO.getUser_id();
 				
 		if(user_id == null || user_id == "") {		

@@ -20,18 +20,10 @@
 
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
+		<div class="offset-lg-2 col-lg-8 text-left cs_01_subtitle">
 			<h3>1:1 문의</h3>
 		</div>
 	</div>
-
-
-	<div class="row">
-		<div class="offset-lg-2 col-lg-8 cs_02_02_row">
-			<hr>
-		</div>
-	</div>
-
 
 	<div class="row">
 		<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">

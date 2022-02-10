@@ -368,6 +368,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 		}
 		
 //		문의 삭제 컨트롤러
+		@Override
 		@RequestMapping(value = "/myQuestion/questionDelete.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView questionDelete(@RequestParam("notice_id") String notice_id) throws Exception {
 			ModelAndView mav = new ModelAndView();
@@ -385,4 +386,16 @@ public class MyPageControllerImpl implements MyPageConroller{
 			mav.setViewName("redirect:/myPage/myQuestion.do");
 			return mav;
 		}
+		
+		@RequestMapping(value = {"/myQuestion/myUQAUpdate.do", "/myQuestion/myPQAUpdate.do"}, method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView myUQAUpdate(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String) request.getAttribute("viewName");
+			Map<String, Object> result = myPageService.questionDetail(notice_id);
+			
+			mav.addObject("detail", result);
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
 }

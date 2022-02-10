@@ -13,14 +13,14 @@
 
 	<div class="row">
 		<div class="col-lg-4 offset-lg-4 text-center">
-			<h1 class="page_title">문의 작성</h1>
+			<h1 class="page_title">마이페이지</h1>
 		</div>
 	</div>
 
 
 	<div class="row">
 		<div class="offset-lg-2 col-lg-8 text-left cs_01_subtitle">
-			<h3>문의 내용 작성</h3>
+			<h3>문의 내용 수정</h3>
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@
 				<span>제목</span>
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
-				<input name="notice_title" type="text" class="form-control notice_upload_check" placeholder="제목을 입력하세요.">
+				<input name="notice_title" type="text" class="form-control notice_upload_check" value="${detail.question.notice_title }">
 			</div>
 
 		</div>
@@ -41,7 +41,7 @@
 				<span>상품명</span>
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
-				<span>${product_main_title}</span>
+				<span>${detail.product_title}</span>
 			</div>
 		</div>
 
@@ -83,7 +83,7 @@
 				<span>내용</span>
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box04">
-				<textarea name="notice_body" class="form-control notice_upload_check" rows="8" placeholder="내용을 입력하세요."></textarea>
+				<textarea name="notice_body" class="form-control notice_upload_check" rows="8" placeholder="내용을 입력하세요.">${detail.question.notice_body}</textarea>
 			</div>
 		</div>
 		<input type="hidden" name="user_id" value="${userInfo.user_id}" >
@@ -92,20 +92,17 @@
 	</form>
 
 	<div class="row">
-		<div class="offset-lg-4 col-lg-2 text-center">
-			<div class="notice_back_btn">
-				<a href="${contextPath}/notice/PQAListPage.do?product_id=${product_id}"> 
-					<input class="user_btn_gray" type="button" value="이전 페이지">
-				</a>
+			<div class="offset-lg-4 col-lg-2 text-center">
+				<div class="cs_correct_btn">
+					<input onclick="submit_add_notice()" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="수정하기">							
+				</div>
+			</div>
+			<div class="col-lg-2 text-center">
+				<div class="notice_back_btn">
+					<input class="user_btn_gray" type="button" value="돌아가기" onclick="history.go(-2);">
+				</div>
 			</div>
 		</div>
-		
-		<div class="col-lg-2 text-center">
-			<div class="cs_correct_btn">
-				<input id="add_PQA_btn" class="user_btn_Dgray" type="button" value="작성하기" onclick="add_PQA();">
-			</div>
-		</div>
-	</div>
 </div>
 
 <script>
