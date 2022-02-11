@@ -35,17 +35,6 @@
 	session.removeAttribute("message");
 	%>
 </c:if>
-<c:if test='${not empty resultMSG }'>
-
-	<script>
-		alert("${resultMSG}");
-	</script>
-	<%
-	session.removeAttribute("resultMSG");
-	%>
-</c:if>
-
-
 
 <div class="container-fluid">
 
@@ -83,7 +72,7 @@
 		<c:when test="${empty itemList}">
 			<div class="row">
 				<div class="offset-lg-2 col-lg-8 text-center cs_02_listsection">
-					<span>작성된 상품 문의가 없습니다.</span>
+					<span>작성하신 문의가 없습니다.</span>
 				</div>
 			</div>
 		</c:when>

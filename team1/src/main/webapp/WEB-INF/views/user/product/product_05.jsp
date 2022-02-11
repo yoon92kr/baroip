@@ -41,10 +41,13 @@
 	<div class="row">
 		<div
 			class="col-lg-10 offset-lg-1 text-left product_02_mini_category_text product_03_mini_category_text">
-			<a href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품 상세정보</a> 
-			<a href="${contextPath}/notice/productComment.do?product_id=${product_id}">고객 후기</a> 
-			<a href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송 /교환 /반품 안내</a> 
-			<a>상품 문의</a>
+			<a
+				href="${contextPath}/product/productDetail.do?product_id=${product_id}">상품
+				상세정보</a> <a
+				href="${contextPath}/notice/productComment.do?product_id=${product_id}">고객
+				후기</a> <a
+				href="${contextPath}/product/productInfoPage.do?product_id=${product_id}">배송
+				/교환 /반품 안내</a> <a>상품 문의</a>
 		</div>
 	</div>
 
@@ -60,9 +63,9 @@
 		<div class="col-lg-1 text-center">
 			<form action="${contextPath}/notice/add_PQA_form.do" method="GET">
 				<input type="hidden" name="product_main_title"
-					value="${productInfo.product.productVO.product_main_title}" /> 
-				<input type="hidden" name="product_id" value="${product_id}"> 
-				<input class="UQA_add_btn PQA_add_btn" type="submit" value="글쓰기" />
+					value="${productInfo.product.productVO.product_main_title}" /> <input
+					type="hidden" name="product_id" value="${product_id}"> <input
+					class="UQA_add_btn PQA_add_btn" type="submit" value="글쓰기" />
 			</form>
 		</div>
 	</div>
@@ -100,33 +103,41 @@
 				<c:set var="list" value="noticeItem${i}" />
 				<c:set var="desc" value="${itemSize - i + 1}" />
 				<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
-				<div class="row">
-					<div class="offset-lg-1 col-lg-1 text-center notice_01_section">
-						<span>${j}</span>
+
+				<c:if
+					test="${not empty itemList[list].noticeList.notice_id && i< pageNoMax+1}">
+
+					<div class="row">
+						<div class="offset-lg-1 col-lg-1 text-center notice_01_section">
+							<span>${j}</span>
+						</div>
+						<div class="col-lg-1 text-center notice_01_section">
+							<span>${itemList[list].noticeList.user_id}</span>
+						</div>
+						<div class="col-lg-1 text-center notice_01_section">
+							<c:if test="${itemList[list].noticeList.notice_private == 0}">
+								<input type="hidden" id="PQAPW_${j}"
+									value="${itemList[list].noticeList.notice_pw}">
+								<span>비공개</span>
+							</c:if>
+							<c:if test="${itemList[list].noticeList.notice_private == 1}">
+								<span>공개</span>
+							</c:if>
+						</div>
+						<div class="col-lg-4 text-center notice_01_section">
+							<a id="PQAdetail_${j}" onclick="PQA_detail(this.id);">${itemList[list].noticeList.notice_title}</a>
+						</div>
+						<div class="col-lg-3 text-center notice_01_section">
+							<span>${itemList[list].noticeList.notice_cre_date}</span>
+						</div>
 					</div>
-					<div class="col-lg-1 text-center notice_01_section">
-						<span>${itemList[list].noticeList.user_id}</span>
-					</div>
-					<div class="col-lg-1 text-center notice_01_section">
-						<c:if test="${itemList[list].noticeList.notice_private == 0}">
-							<input type="hidden" id="PQAPW_${j}"
-								value="${itemList[list].noticeList.notice_pw}">
-							<span>비공개</span>
-						</c:if>
-						<c:if test="${itemList[list].noticeList.notice_private == 1}">
-							<span>공개</span>
-						</c:if>
-					</div>
-					<div class="col-lg-4 text-center notice_01_section">
-						<a id="PQAdetail_${j}" onclick="PQA_detail(this.id);">${itemList[list].noticeList.notice_title}</a>
-					</div>
-					<div class="col-lg-3 text-center notice_01_section">
-						<span>${itemList[list].noticeList.notice_cre_date}</span>
-					</div>
-				</div>
-				<input type="hidden" id="PQAprivate_${j}" value="${itemList[list].noticeList.notice_private}">
-				<input type="hidden" id="PQAnoticeID_${j}" value="${itemList[list].noticeList.notice_id}">
-				<input type="hidden" id="PQAuserID_${j}" value="${itemList[list].noticeList.user_id}">
+					<input type="hidden" id="PQAprivate_${j}"
+						value="${itemList[list].noticeList.notice_private}">
+					<input type="hidden" id="PQAnoticeID_${j}"
+						value="${itemList[list].noticeList.notice_id}">
+					<input type="hidden" id="PQAuserID_${j}"
+						value="${itemList[list].noticeList.user_id}">
+				</c:if>
 			</c:forEach>
 		</c:when>
 	</c:choose>
@@ -171,19 +182,19 @@ function PQA_detail(no) {
 	let user_id = document.getElementById('PQAuserID_'.concat(strArray[1])).value;
 	
 	if(target == 1) {
-		document.location="${contextPath}/myQuestion/QuestionDetail.do?notice_id="+notice_id;
+		document.location="${contextPath}/myPage/myQuestion/QuestionDetail.do?notice_id="+notice_id;
 	}
 	else if(target == 0) {
 		
 		let notice_pw = document.getElementById('PQAPW_'.concat(strArray[1])).value;
 		
 		if ("${userInfo.user_id}" == user_id || "${userInfo.user_rank}" > 1) {
-			document.location="${contextPath}/myQuestion/QuestionDetail.do?notice_id="+notice_id;
+			document.location="${contextPath}/myPage/myQuestion/QuestionDetail.do?notice_id="+notice_id;
 		}
 		else {
 			let pwFlag = prompt("비밀글입니다. 비밀번호를 입력해주세요.");
 			if (notice_pw == pwFlag) {
-				document.location="${contextPath}/myQuestion/QuestionDetail.do?notice_id="+notice_id;
+				document.location="${contextPath}/myPage/myQuestion/QuestionDetail.do?notice_id="+notice_id;
 			}
 			else if(pwFlag == null) {
 				

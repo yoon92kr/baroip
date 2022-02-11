@@ -76,8 +76,6 @@
 			</div>
 		</div>
 
-
-
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
 				<span>내용</span>
@@ -94,7 +92,7 @@
 	<div class="row">
 			<div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
-					<input onclick="submit_add_notice()" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="수정하기">							
+					<input onclick="submit_update_notice();" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="수정하기">							
 				</div>
 			</div>
 			<div class="col-lg-2 text-center">
@@ -106,7 +104,7 @@
 </div>
 
 <script>
-	function add_PQA() {
+	function submit_update_notice() {
 		
 		var form = document.getElementById("PQAForm");
 		var input = document.createElement("input");
@@ -143,7 +141,7 @@
 			input.setAttribute("type", "hidden");
 			input.setAttribute("name", "product_id");
 			input.setAttribute("value", "${product_id}");
-			form.action="${contextPath}/notice/add_PQA.do";
+			form.action="${contextPath}/myPage/myQuestion/myQuestionUpdate.do";
 			form.method="POST";
 			form.appendChild(input);
 			form.submit();

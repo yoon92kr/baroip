@@ -73,44 +73,47 @@
 			<span>${detail.answer.notice_body}</span>
 		</div>
 	</div>
-	
-	<form id="changeDeleteForm">
-		
-	</form>
-	
+
+	<form id="changeDeleteForm"></form>
+
 	<c:if test="${empty detail.answer}">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<input class="user_btn_Bgreen" type="button" value="수정하기" onclick="questionUpdate();">
+					<input class="user_btn_Bgreen" type="button" value="수정하기"
+						onclick="questionUpdate();">
 				</div>
 			</div>
-	
+
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<input class="user_btn_gray" type="button" value="목록" onclick="history.back();">
+					<input class="user_btn_gray" type="button" value="목록"
+						onclick="history.back();">
 				</div>
 			</div>
-	
+
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<input class="user_btn_Dgray" type="button" value="삭제하기" onclick="deleteBtn();">
+					<input class="user_btn_Dgray" type="button" value="삭제하기"
+						onclick="deleteBtn();">
 				</div>
 			</div>
 		</div>
 	</c:if>
-	
+
 	<c:if test="${not empty detail.answer}">
 		<div class="row">
 			<div class="offset-lg-4 col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<input class="user_btn_gray" type="button" value="목록" onclick="history.back();">
+					<input class="user_btn_gray" type="button" value="목록"
+						onclick="history.back();">
 				</div>
 			</div>
-	
+
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<input class="user_btn_Dgray" type="button" value="삭제하기" onclick="deleteBtn();">
+					<input class="user_btn_Dgray" type="button" value="삭제하기"
+						onclick="deleteBtn();">
 				</div>
 			</div>
 		</div>
@@ -118,64 +121,70 @@
 </div>
 
 <script>
-
 	/* 수정 버튼 */
 	function questionUpdate() {
-		
-		let form = document.getElementById("changeDeleteForm");
-		let input = document.createElement("input");
-		
-		input.setAttribute("type", "hidden");
-		input.setAttribute("name", "notice_id");
-		input.setAttribute("value", "${detail.question.notice_id}");
-		
-		if("${detail.question.product_id}" == null || "${detail.question.product_id}" == "") {
-			
-			form.method="GET";
-			form.action="${contextPath}/myPage/myQuestion/myUQAUpdate.do";
-			form.appendChild(input);
-			form.submit();
-			
-		} else if("${detail.question.product_id}" != null || "${detail.question.product_id}" != "") {
-			
-			let input2 = document.createElement("input");
-			
-			input2.setAttribute("type", "hidden");
-			input2.setAttribute("name", "product_id");
-			input2.setAttribute("value", "${detail.question.product_id}");
-			
-			form.method="GET";
-			form.action="${contextPath}/myPage/myQuestion/myPQAUpdate.do";
-			form.appendChild(input);
-			form.appendChild(input2);
-			form.submit();
-			
+
+		if ("${detail.question.user_id}" == "${userInfo.user_id}") {
+			let form = document.getElementById("changeDeleteForm");
+			let input = document.createElement("input");
+
+			input.setAttribute("type", "hidden");
+			input.setAttribute("name", "notice_id");
+			input.setAttribute("value", "${detail.question.notice_id}");
+
+			if ("${detail.question.product_id}" == null
+					|| "${detail.question.product_id}" == "") {
+
+				form.method = "GET";
+				form.action = "${contextPath}/myPage/myQuestion/myUQAUpdate.do";
+				form.appendChild(input);
+				form.submit();
+
+			} else if ("${detail.question.product_id}" != null
+					|| "${detail.question.product_id}" != "") {
+
+				let input2 = document.createElement("input");
+
+				input2.setAttribute("type", "hidden");
+				input2.setAttribute("name", "product_id");
+				input2.setAttribute("value", "${detail.question.product_id}");
+
+				form.method = "GET";
+				form.action = "${contextPath}/myPage/myQuestion/myPQAUpdate.do";
+				form.appendChild(input);
+				form.appendChild(input2);
+				form.submit();
+
+			}
+
+		} else {
+			alert("수정은 문의 작성한 해당 아이디만 가능합니다.");
+			location.replace('${contextPath}/main.do');
 		}
-		
-		
+
 	}
 
 	/* 삭제 버튼 */
 	function deleteBtn() {
-		
+
 		let deleteQuestion = confirm("문의 내용을 삭제하시겠습니까?");
-		
-		if(deleteQuestion == true) {
-			
+
+		if (deleteQuestion == true) {
+
 			let form = document.getElementById("changeDeleteForm");
 			let input = document.createElement("input");
-			
+
 			input.setAttribute("type", "hidden");
 			input.setAttribute("name", "notice_id");
 			input.setAttribute("value", "${detail.question.notice_id}");
-			
-			form.method="GET";
-			form.action="${contextPath}/myPage/myQuestion/questionDelete.do";
+
+			form.method = "GET";
+			form.action = "${contextPath}/myPage/myQuestion/questionDelete.do";
 			form.appendChild(input);
 			form.submit();
-			
+
 		}
-		
+
 	}
 </script>
 

@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
 				<input type="text" class="form-control notice_upload_check" name="notice_title" 
-				value="${detail.question.notice_title }">
+				value="${detail.question.notice_title}">
 			</div>
 		</div>
 	
@@ -40,11 +40,10 @@
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
 				<select class="cs_02_select" name="notice_type">
-					<option value="${detail.question.notice_type}">${detail.question.notice_type}</option>
-					<option value="상품문의">상품문의</option>
-					<option value="계정문의">계정문의</option>
-					<option value="결제문의">결제문의</option>
-					<option value="기타문의">기타문의</option>
+					<option class="UQA_update_options" value="상품문의">상품문의</option>
+					<option class="UQA_update_options" value="계정문의">계정문의</option>
+					<option class="UQA_update_options" value="결제문의">결제문의</option>
+					<option class="UQA_update_options" value="기타문의">기타문의</option>
 				</select>
 			</div>
 		</div>
@@ -67,7 +66,7 @@
 				<span>비밀번호</span>
 			</div>
 			<div class="col-lg-1 text-left cs_02_02_ex01box02">
-				<input id="NPPwd" type="password" class="form-control" name="notice_pw" 
+				<input id="updatePwd" type="password" class="form-control" name="notice_pw" 
 				disabled placeholder="비밀번호" maxlength='10'> 
 					
 			</div>
@@ -93,7 +92,7 @@
 		<div class="row">
 			<div class="offset-lg-4 col-lg-2 text-center">
 				<div class="cs_correct_btn">
-					<input onclick="submit_add_notice()" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="수정하기">							
+					<input onclick="submit_update_notice();" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="수정하기">							
 				</div>
 			</div>
 			<div class="col-lg-2 text-center">
@@ -108,8 +107,10 @@
 
 <script>
 
+
+
 // 공지 등록 전 rank 및 null 확인 스크립트
-function submit_add_notice() {
+function submit_update_notice() {
 	// 전체 input 태그 value를 체크하기위한 클래스 select
 	var elements = document.getElementsByClassName('notice_upload_check');
 	var checkFlag = true;
@@ -126,7 +127,7 @@ function submit_add_notice() {
 	
 	if(private_Flag == 0) {
 		
-		var private_value = document.getElementById('NPPwd').value;
+		var private_value = document.getElementById('updatePwd').value;
 		
 		if(private_value.length < 4) {
 			alert("비밀번호를 4글자 이상 입력해주세요");
@@ -140,7 +141,12 @@ function submit_add_notice() {
 	}
 	
 	if (checkFlag) {
-		document.getElementById('add_UQA').submit();
+		let form = document.getElementById('myUQAUpdate');
+		
+		form.method="POST";
+		form.action="${contextPath}/myPage/myQuestion/myQuestionUpdate.do";
+		form.submit();
+		
 	}
 }
 </script>

@@ -3,7 +3,6 @@
 package com.myspring.baroip.myPage.controller;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.baroip.adminNotice.service.AdminNoticeService;
 import com.myspring.baroip.image.controller.ImageController;
 import com.myspring.baroip.myPage.service.MyPageService;
 import com.myspring.baroip.notice.vo.NoticeVO;
@@ -40,6 +40,8 @@ public class MyPageControllerImpl implements MyPageConroller{
 	private UserService userService;
 	@Autowired
 	private ImageController imageController;
+	@Autowired
+	private AdminNoticeService adminNoticeService;
 
 	
 
@@ -370,19 +372,20 @@ public class MyPageControllerImpl implements MyPageConroller{
 //		문의 삭제 컨트롤러
 		@Override
 		@RequestMapping(value = "/myQuestion/questionDelete.do", method = { RequestMethod.POST, RequestMethod.GET })
-		public ModelAndView questionDelete(@RequestParam("notice_id") String notice_id) throws Exception {
+		public ModelAndView questionDelete(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception {
 			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
 			
 			int result = myPageService.deleteQuestion(notice_id);
-			String resultMSG = "";
+			String message = "";
 			
 			if(result == 1) {
-				resultMSG = "해당 문의가 삭제되었습니다.";
+				message = "baroip : 해당 문의가 삭제되었습니다.";
 			} else if(result == 0 ) {
-				resultMSG = "문의 삭제가 실패했습니다.";
+				message = "baroip : 문의 삭제에 문제가 발생했습니다.";
 			}
 			
-			mav.addObject("resultMSG", resultMSG);
+			session.setAttribute("message", message);
 			mav.setViewName("redirect:/myPage/myQuestion.do");
 			return mav;
 		}
@@ -395,6 +398,22 @@ public class MyPageControllerImpl implements MyPageConroller{
 			
 			mav.addObject("detail", result);
 			mav.setViewName(viewName);
+			return mav;
+		}
+		
+		@RequestMapping(value = "/myQuestion/myQuestionUpdate.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView myNoticeUpdate(NoticeVO noticeVO, HttpServletRequest request) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			UserVO userVO = (UserVO) session.getAttribute("userInfo");
+			String user_id = userVO.getUser_id();
+			String message = "";
+			if(noticeVO.getUser_id().equals(user_id)) {
+				message = adminNoticeService.updateNotice(noticeVO);
+			}
+			
+			session.setAttribute("message", message);
+			mav.setViewName("redirect:/myPage/myQuestion.do");
 			return mav;
 		}
 		

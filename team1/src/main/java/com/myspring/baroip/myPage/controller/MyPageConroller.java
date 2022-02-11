@@ -48,7 +48,8 @@ public interface MyPageConroller {
 	public ModelAndView QuestionDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception;
 	
 //	문의 삭제
-	public ModelAndView questionDelete(@RequestParam("notice_id") String notice_id) throws Exception;
+	public ModelAndView questionDelete(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception;
+
 }
 
 

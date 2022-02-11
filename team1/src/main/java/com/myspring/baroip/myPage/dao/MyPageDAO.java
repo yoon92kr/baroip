@@ -47,4 +47,5 @@ public interface MyPageDAO {
 	
 //	문의 삭제
 	public int questionDelete(String notice_id) throws DataAccessException;
+
 }

@@ -113,4 +113,5 @@ public class MyPageDAOImpl implements MyPageDAO {
 			return result;
 		}
 		
+
 }

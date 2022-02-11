@@ -39,4 +39,5 @@ public interface MyPageService {
 	
 //	문의 삭제
 	public int deleteQuestion(String notice_id) throws Exception;
+
 }
