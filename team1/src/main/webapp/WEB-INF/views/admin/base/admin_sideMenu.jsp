@@ -19,8 +19,8 @@
 			<a id="user" href="${contextPath}/admin/user/user_list.do" class="no-underline">회원 관리</a>
 			<a id="extra" href="${contextPath}/admin/product/extra_list.do"  class="no-underline">임시 상품 관리</a>
 			<a id="order" href="${contextPath}/admin/order/order_list.do"  class="no-underline">주문 / 반품 관리</a>
-			<a id="CS" href="${contextPath}/adminCS_02.do"  class="no-underline">문의 관리</a>
-			<a id="reivew" href="${contextPath}/adminReview_01.do"  class="no-underline">후기 관리</a>
+			<a id="QA" href="${contextPath}/admin/CS/QA_list.do"  class="no-underline">문의 관리</a>
+			<a id="review" href="${contextPath}/admin/CS/review_list.do"  class="no-underline">후기 관리</a>
 			<a href="https://channel.io/ko?utm_source=powered_by&utm_medium=localhost%3A8080&utm_channel_id=67859&utm_content=%EB%B0%94%EB%A1%9C%EC%9E%85" target="_blank" class="no-underline">실시간 채팅</a>
 			<a id="notice" href="${contextPath}/admin/notice/notice_list.do" class="no-underline">공지 관리</a>
 			<a id="FAQ" href="${contextPath}/admin/FAQ/FAQ_list.do"  class="no-underline">FAQ 관리</a>
@@ -47,11 +47,11 @@
 		else if('${viewName}'.indexOf('order') != -1) {
 			document.getElementById("order").style.fontFamily = "kopub_bold";
 		}
-		else if('${viewName}'.indexOf('CS') != -1) {
-			document.getElementById("CS").style.fontFamily = "kopub_bold";
+		else if('${viewName}'.indexOf('QA') != -1) {
+			document.getElementById("QA").style.fontFamily = "kopub_bold";
 		}
-		else if('${viewName}'.indexOf('reivew') != -1) {
-			document.getElementById("reivew").style.fontFamily = "kopub_bold";
+		else if('${viewName}'.indexOf('review') != -1) {
+			document.getElementById("review").style.fontFamily = "kopub_bold";
 		}
 		else if('${viewName}'.indexOf('notice') != -1) {
 			document.getElementById("notice").style.fontFamily = "kopub_bold";

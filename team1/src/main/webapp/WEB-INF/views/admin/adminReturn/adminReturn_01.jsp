@@ -266,55 +266,63 @@ function order_detail(target){
 
 // 반품/교환 승인 거절 스크립트
 function update_return_state(target){
-	var strArray = target.split('_');
-	var target_no = strArray[1];
 	
-	let order_id = document.getElementById('orderID_'.concat(target_no)).value;
-	let user_id = document.getElementById('userID_'.concat(target_no)).innerHTML;
-	let order_count = document.getElementById('count_'.concat(target_no)).value;
-	let order_amount = document.getElementById('orderAmount_'.concat(target_no)).value;
-	let user_membership = document.getElementById('membership_'.concat(target_no)).value;
-	let point;
-    switch(user_membership) {
-    case "1" :
-    	point = order_amount * 0.01
-       break;
-    
-    case "2" :
-    	point = order_amount * 0.03
-       break;
-       
-    case "3" :
-    	point = order_amount * 0.05
-       break;
-       
-    case "4" :
-    	point = order_amount * 0.1
-	   break;
-    }
+	if(${userInfo.user_rank > 2}) {
+		var strArray = target.split('_');
+		var target_no = strArray[1];
+		
+		let order_id = document.getElementById('orderID_'.concat(target_no)).value;
+		let user_id = document.getElementById('userID_'.concat(target_no)).innerHTML;
+		let order_count = document.getElementById('count_'.concat(target_no)).value;
+		let order_amount = document.getElementById('orderAmount_'.concat(target_no)).value;
+		let user_membership = document.getElementById('membership_'.concat(target_no)).value;
+		let point;
+	    switch(user_membership) {
+	    case "1" :
+	    	point = order_amount * 0.01
+	       break;
+	    
+	    case "2" :
+	    	point = order_amount * 0.03
+	       break;
+	       
+	    case "3" :
+	    	point = order_amount * 0.05
+	       break;
+	       
+	    case "4" :
+	    	point = order_amount * 0.1
+		   break;
+	    }
 
-	$.ajax({
-		type : "post",
-		async : false,
-		url : "${contextPath}/admin/order/update_return_state.do",
-		dataType : "text",
-		data : {
-			"option" : strArray[0],
-			"order_id" : order_id,
-			"point" : point,
-			"user_id" : user_id,
-			"amount" : order_amount,
-			"count" : order_count
-		},
-		success : function(message) {
-			alert(message);
-	 		location.reload();
-		},
-		error : function() {
-			alert("주문상태 변경에 문제가 발생하였습니다.");
-		}
+		$.ajax({
+			type : "post",
+			async : false,
+			url : "${contextPath}/admin/order/update_return_state.do",
+			dataType : "text",
+			data : {
+				"option" : strArray[0],
+				"order_id" : order_id,
+				"point" : point,
+				"user_id" : user_id,
+				"amount" : order_amount,
+				"count" : order_count
+			},
+			success : function(message) {
+				alert(message);
+		 		location.reload();
+			},
+			error : function() {
+				alert("주문상태 변경에 문제가 발생하였습니다.");
+			}
 
-	});	
+		});	
+	}
+	
+	else {
+		alert("상태를 수정할 권한이 없습니다.");
+	}
+	
 	
 }
 //페이지 이동 스크립트

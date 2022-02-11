@@ -103,7 +103,7 @@
 			</div>
 			
 			<div id="search_option_product_box">
-				검색할 상품 : <input id="search_option_product" class="adminUser_01-select-box-lookup" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_order_to_option();}">
+				검색할 상품 : <input id="search_option_product" class="adminUser_01-select-box-lookup" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_order_to_date();}">
 			</div>
 
 		</div>

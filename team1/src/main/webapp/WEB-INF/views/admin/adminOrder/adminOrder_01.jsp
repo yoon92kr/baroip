@@ -335,32 +335,40 @@ function update_state(target) {
 		let order_id = document.getElementById('orderID_'.concat(target_no)).value;
 		let orderState = document.getElementById('orderState_'.concat(target_no)).value;
 		
-		if(orderState == 0) {
-			alert("주문의 상태를 변경해주세요.")
-		}
-		
-		else {
-			let order_delivery_id = prompt("주문 번호 "+order_id+" 의 운송장 번호를 입력해주세요");
+		if(${userInfo.user_rank > 2}) {
 			
-			$.ajax({
-				type : "post",
-				async : false,
-				url : "${contextPath}/admin/order/update_state.do",
-				dataType : "text",
-				data : {
-					"order_id" : order_id,
-					"order_delivery_id" : order_delivery_id
-				},
-				success : function(message) {
-					alert(message);
-			 		location.reload();
-				},
-				error : function() {
-					alert("주문상태 변경에 문제가 발생하였습니다.");
-				}
+			if(orderState == 0) {
+				alert("주문의 상태를 변경해주세요.")
+			}
+			
+			else {
+				let order_delivery_id = prompt("주문 번호 "+order_id+" 의 운송장 번호를 입력해주세요");
+				
+				$.ajax({
+					type : "post",
+					async : false,
+					url : "${contextPath}/admin/order/update_state.do",
+					dataType : "text",
+					data : {
+						"order_id" : order_id,
+						"order_delivery_id" : order_delivery_id
+					},
+					success : function(message) {
+						alert(message);
+				 		location.reload();
+					},
+					error : function() {
+						alert("주문상태 변경에 문제가 발생하였습니다.");
+					}
 
-			});			
+				});			
+			}
+			
 		}
+		else {
+			alert("상태를 수정할 권한이 없습니다.");
+		}
+
 		
 	
 	}
