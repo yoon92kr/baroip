@@ -6,11 +6,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
-<c:set var="pageNoMax" value="7" />
+<c:set var="pageNoMax" value="6" />
 <!-- itemSize에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemSize" value="${noticeList.size()}" />
+<c:set var="itemSize" value="${CSList.size()}" />
 <!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
-<c:set var="itemList" value="${noticeList}" />
+<c:set var="itemList" value="${CSList}" />
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:if test='${not empty pageNo}'>
@@ -134,34 +134,38 @@
 	</c:if>
 	
 	<c:if test="${not empty itemList}">
-		<c:forEach var="i" begin="1" end="${itemSize}">
-			<c:set var="desc" value="${itemSize - i + 1}" />		
-			<c:set var="j" value="${(pageNoMax - pageNo * pageNoMax) + desc}" />
-			<c:set var="key" value="notice${j}" />
-			
-			<c:if test="${not empty itemList[key].notice.notice_id && i< pageNoMax+1}">
+		<c:forEach var="i" begin="0" end="${itemSize}">
+			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
+			<c:if test="${not empty itemList[j] && i < pageNoMax}">
 				
 				<div class="row">
 			        <div class="col-lg-2 text-center order_01-content-item">
-			        	<div>[문의 일자]</div>
+			        	<div><fmt:formatDate value="${itemList[j].notice_cre_date}" pattern="yyyy-MM-dd" /></div>
 			        </div>
 			        <div class="col-lg-2 text-center order_01-content-item">
-			        	[작성자ID]
+			        	${itemList[j].user_id}
 			        </div>
 			        <div class="col-lg-4 text-center order_01-content-item">
-			        	[문의 제목]
+			        	${itemList[j].notice_title}
 			        </div>
-			        <div class="col-lg-2 text-center order_01-content-item">
-			        	[상태]
-			        </div>
-			        <div class="col-lg-2 text-center adminProduct_01-content-item">
-			        	<input class="adminProduct_01-product adminProduct_01-product-top" 
-			        	 type="button" value="후기 삭제" onclick="alert('삭제하시겠습니까?')">
-			        	 <form action="${contextPath}/adminCS_02_01.do">
-			        	<input class="adminProduct_01-product" type="submit"  value="답변 작성">
-			        	</form>
-			        	
-			        </div>
+			        <c:if test="${itemList[j].notice_parent_no == 0 }">
+				        <div class="col-lg-2 text-center order_01-content-item">
+				        	답변 대기중
+				        </div>
+				        <div class="col-lg-2 text-center adminProduct_01-content-item">
+				        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제" onclick="alert('삭제하시겠습니까?')">
+				        	<input class="adminProduct_01-product" type="button"  value="답변 작성">			        	
+				        </div>			        
+			        </c:if>
+			        
+			        <c:if test="${itemList[j].notice_parent_no == 1 }">
+				        <div class="col-lg-2 text-center order_01-content-item">
+				        	답변 완료
+				        </div>
+				        <div class="col-lg-2 text-center adminProduct_01-content-item">
+				        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제" onclick="alert('삭제하시겠습니까?')">		        	
+				        </div>			        
+			        </c:if>
 				</div>
 				
 			</c:if>
@@ -240,4 +244,41 @@ function selectLookup(selectValue) {
 
     
  }
+ 
+
+//페이지 이동 스크립트
+function pageMove(no) {
+	var getValue = 0;
+	var lastPage = parseInt(${itemSize+pageNoMax-1} / ${pageNoMax});
+	if(no == "이전" || no == "다음") {
+		var uriValue = window.location.search;
+		
+		var array = uriValue.split("pageNo=");
+		if(array[1] == "" || array[1] == null) {
+			array[1] = 1;
+		}
+		getValue = array[1];
+	}
+	
+	if(no == "이전") {
+		if(getValue == 1) {
+			alert("마지막 페이지 입니다.");
+		}
+		else {
+		document.location='${contextPath}/admin/CS/QA_list.do?pageNo='+(--getValue);
+		}
+	}
+	else if (no == "다음") {
+		if(getValue == lastPage) {
+			alert("마지막 페이지 입니다.");
+		}
+		else {
+		document.location='${contextPath}/admin/CS/QA_list.do?pageNo='+(++getValue);
+		}
+	}
+	else {
+		document.location='${contextPath}/admin/CS/QA_list.do?pageNo='+no;
+	}
+}
+
 </script>

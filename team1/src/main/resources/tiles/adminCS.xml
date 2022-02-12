@@ -7,9 +7,17 @@
 	<definition name="/admin/CS/QA_list" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01.jsp" />
 	</definition>
-	
+
 	<definition name="/admin/CS/review_list" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminReview_01.jsp" />
+	</definition>
+
+	<definition name="/admin/CS/add_QA_form" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminCS_02.jsp" />
+	</definition>
+
+	<definition name="/admin/CS/add_review_form" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminReview_02.jsp" />
 	</definition>
 
 </tiles-definitions>

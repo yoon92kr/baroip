@@ -18,7 +18,7 @@
  		from notice as A inner join notice as B on (A.notice_match_no = B.notice_id) 
 		where A.notice_category in ('UQA', 'PQA') 
 		group by B.notice_id 
-		order by A.notice_cre_date desc
+		order by B.notice_cre_date desc
 	</if>
 	</select>
 	

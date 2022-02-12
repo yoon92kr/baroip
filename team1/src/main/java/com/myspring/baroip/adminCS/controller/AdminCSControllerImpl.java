@@ -3,6 +3,7 @@
 package com.myspring.baroip.adminCS.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,35 +19,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspring.baroip.adminNotice.service.AdminNoticeService;
-import com.myspring.baroip.notice.service.NoticeService;
+import com.myspring.baroip.adminCS.service.AdminCSService;
 import com.myspring.baroip.notice.vo.NoticeVO;
 
 @Controller("adminCSController")
 @RequestMapping(value="/admin/CS")
 public class AdminCSControllerImpl implements AdminCSController {
 	@Autowired
-	AdminNoticeService adminNoticeService;
-	@Autowired
-	NoticeService noticeService;
-	// 공지관리 페이지 전체 mapping
-	@Override
-	@RequestMapping(value = "/*", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView adminNotice(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	AdminCSService adminCSService;
 
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String) request.getAttribute("viewName");
-		mav.setViewName(viewName);
-
-		return mav;
-	}
-	
 	//	문의 관리 컨트롤러
 	@RequestMapping(value= "/QA_list.do", method= {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView adminNoticeList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView QAList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
+		String pageNo = info.get("pageNo");
+		
+		info.put("option", "QA");
+		List<NoticeVO> CSList = getFullList(info, request);
+		
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (CSList.size()+5)/6;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
+		} else {
+			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
+		}
+		
+		mav.addObject("CSList", CSList);
 		mav.setViewName(viewName);
 
 		return mav;
@@ -55,7 +65,7 @@ public class AdminCSControllerImpl implements AdminCSController {
 	// 후기 관리 컨트롤러
 	@Override
 	@RequestMapping(value = "/review_list.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView addNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView reviewList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
@@ -64,43 +74,55 @@ public class AdminCSControllerImpl implements AdminCSController {
 		return mav;
 	}
 	
-	// 공지 삭제 컨트롤러
+	// CS 삭제 컨트롤러
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "/delete_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public String deleteNotice(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/delete_CS.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public String deleteCS(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String message = adminNoticeService.deleteNotice(notice_id);
+		String message = "";
 		System.out.println(message);
 		return message;
 	}
 
 	
-	// 공지 수정 양식 컨트롤러
+	// CS 답변 추가 양식 컨트롤러
 	@Override
-	@RequestMapping(value = "/update_notice_form.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView updateNoticeForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/add_QA_form.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView addCSForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		String viewName = (String) request.getAttribute("viewName");
-		NoticeVO noticeVO = noticeService.noticeDetail(notice_id);
 		
-		mav.addObject("noticeVO", noticeVO);
+		mav.setViewName(viewName);
+		return mav;
+
+	}
+	
+	// review 답변 추가 양식 컨트롤러
+	@Override
+	@RequestMapping(value = "/add_review_form.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView addReviewForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String viewName = (String) request.getAttribute("viewName");
+		
 		mav.setViewName(viewName);
 		return mav;
 
 	}
 
-	// 공지 수정 컨트롤러
+	// CS 답변 추가 컨트롤러
 	@Override
-	@RequestMapping(value = "/update_notice.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView updateNotice(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/add_CS.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView addCS(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		
-		String message = adminNoticeService.updateNotice(noticeVO);
+		String message = "";
 		session.setAttribute("message", message);
 		
 		mav.setViewName("redirect:/admin/notice/notice_list.do");
@@ -108,8 +130,8 @@ public class AdminCSControllerImpl implements AdminCSController {
 		return mav;
 	}
 	
-	// 상품 조회 필터 사용시, 세션에 있는 상품정보를 확인 후 서비스로 처리하는 메소드
-		public Map<String, Map<String, Object>> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+	// CS 조회 필터 사용시, 세션에 있는 검색 조건 정보를 확인 후 서비스로 처리하는 메소드
+		public List<NoticeVO> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
 			
 			HttpSession session = request.getSession();
 			
@@ -205,9 +227,8 @@ public class AdminCSControllerImpl implements AdminCSController {
 					}
 				} 
 			
-			} 
-			options.put("notice_category", info.get("notice_category"));
-			Map<String, Map<String, Object>> fullList = adminNoticeService.noticeListToOption(options);
+			}
+			List<NoticeVO> fullList = adminCSService.CSListToOption(options);
 			
 			return fullList;
 		}
