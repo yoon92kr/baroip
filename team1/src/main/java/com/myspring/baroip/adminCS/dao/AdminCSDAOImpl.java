@@ -29,21 +29,21 @@ public class AdminCSDAOImpl implements AdminCSDAO {
 	// CS 삭제 DAO
 	@Override
 	public int deleteCS(String notice_id) throws DataAccessException {
-		int result=sqlSession.delete("mapper.adminNotice.deleteCS", notice_id);
+		int result=sqlSession.delete("mapper.adminCS.deleteCS", notice_id);
 		return result;
 	}
 	
 	// CS 상세정보 DAO
 	@Override
 	public int CSDetail(Map<String, String> option) throws DataAccessException {
-		int result = sqlSession.insert("mapper.adminNotice.CSDetail", option);
+		int result = sqlSession.insert("mapper.adminCS.CSDetail", option);
 		return result;
 	}
 	
 	// cs 답글 등록 DAO
 	@Override
 	public int addCS(NoticeVO noticeVO) throws DataAccessException {
-		int result = sqlSession.update("mapper.adminNotice.updateNotice", noticeVO);
+		int result = sqlSession.update("mapper.adminCS.updateNotice", noticeVO);
 		return result;
 	}
 }

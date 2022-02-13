@@ -6,26 +6,47 @@
 
 	<!-- CS 리스트 -->
 	<select id="CSList" resultType="NoticeVO" parameterType="java.util.Map">
+	
 	<if test='option = "QA"'>
-		select 
-			B.notice_id, 
-			B.user_id, 
-			B.notice_category, 
-			B.notice_title, 
-			B.notice_cre_Date, 
-			B.notice_match_no, 
-			(count(B.notice_match_no) -1) as notice_parent_no
- 		from notice as A inner join notice as B on (A.notice_match_no = B.notice_id) 
-		where A.notice_category in ('UQA', 'PQA') 
-		group by B.notice_id 
-		order by B.notice_cre_date desc
+			select 
+				B.notice_id, 
+				B.user_id, 
+				B.notice_category, 
+				B.notice_title, 
+				B.notice_cre_Date, 
+				B.notice_match_no, 
+				(count(B.notice_match_no) -1) as notice_parent_no
+ 			from notice as A inner join notice as B on (A.notice_match_no = B.notice_id) 
+			where A.notice_category in ('UQA', 'PQA') 
+
+		<if test="search_option != null and !search_option.equals('')">
+		
+			<if test='search_option == "noticeDate"'>
+				and B.notice_cre_Date between #{begin} and date_add(#{end}, interval 1 day) group by B.notice_id order by B.notice_cre_date desc
+			</if>
+			<if test='search_option == "userID"'>
+				and B.user_id = #{search_value} group by B.notice_id order by B.notice_cre_date desc
+			</if>
+
+			<if test='search_option == "state"'>
+ 				group by B.notice_id 
+				having notice_parent_no = #{search_value}
+				order by B.notice_cre_date desc
+			</if>
+		</if>
+		
+		<if test="search_option == null or search_option.equals('')">
+				 group by B.notice_id order by B.notice_cre_date desc
+		</if>
+
 	</if>
+	
 	</select>
 	
 	<!-- CS 삭제 쿼리  -->
 	<delete id="deleteCS" parameterType="java.lang.String">
 
-		delete from notice, image where notice_match_no = #{notice_id}	
+		delete from notice where notice_match_no = #{notice_id}	
 		
 	</delete>
 	

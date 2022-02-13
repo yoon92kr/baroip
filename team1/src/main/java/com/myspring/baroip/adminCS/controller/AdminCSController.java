@@ -26,7 +26,7 @@ public interface AdminCSController {
 	public String deleteCS(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	// CS 답변 추가 양식 컨트롤러
-	public ModelAndView addCSForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addQAForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//review 답변 추가 양식 컨트롤러
 	public ModelAndView addReviewForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -37,4 +37,9 @@ public interface AdminCSController {
 	// CS 조회 필터 사용시, 세션에 있는 검색 조건 정보를 확인 후 서비스로 처리하는 메소드
 	public List<NoticeVO> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception;
 	
+	// QA 상세페이지 컨트롤러
+	public ModelAndView QADetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	// review 상세페이지 컨트롤러
+	public ModelAndView reviewDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

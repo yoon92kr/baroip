@@ -32,15 +32,22 @@ public class AdminCSControllerImpl implements AdminCSController {
 	@RequestMapping(value= "/QA_list.do", method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView QAList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
 		String pageNo = info.get("pageNo");
+		
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
+		}
 		
 		info.put("option", "QA");
 		List<NoticeVO> CSList = getFullList(info, request);
 		
 		if (pageNo != null && pageNo != "") {
-			int lastNo = (CSList.size()+5)/6;
+			int lastNo = (CSList.size()+6)/7;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
 				mav.addObject("pageNo", 1);
@@ -77,19 +84,19 @@ public class AdminCSControllerImpl implements AdminCSController {
 	// CS 삭제 컨트롤러
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "/delete_CS.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/delete_CS.do", method = { RequestMethod.POST, RequestMethod.GET }, produces = "application/text; charset=UTF-8")
 	public String deleteCS(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String message = "";
+		String message = adminCSService.deleteCS(notice_id);
 		System.out.println(message);
 		return message;
 	}
 
 	
-	// CS 답변 추가 양식 컨트롤러
+	// QA 답변 추가 양식 컨트롤러
 	@Override
 	@RequestMapping(value = "/add_QA_form.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView addCSForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addQAForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -114,6 +121,34 @@ public class AdminCSControllerImpl implements AdminCSController {
 
 	}
 
+	// QA 상세페이지 컨트롤러
+	@Override
+	@RequestMapping(value = "/QA_detail.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView QADetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String viewName = (String) request.getAttribute("viewName");
+		
+		mav.setViewName(viewName);
+		return mav;
+
+	}
+	
+	// review 상세페이지 컨트롤러
+	@Override
+	@RequestMapping(value = "/review_detail.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView reviewDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String viewName = (String) request.getAttribute("viewName");
+		
+		mav.setViewName(viewName);
+		return mav;
+
+	}
+	
 	// CS 답변 추가 컨트롤러
 	@Override
 	@RequestMapping(value = "/add_CS.do", method = { RequestMethod.POST, RequestMethod.GET })
@@ -229,7 +264,6 @@ public class AdminCSControllerImpl implements AdminCSController {
 			
 			}
 			List<NoticeVO> fullList = adminCSService.CSListToOption(options);
-			
 			return fullList;
 		}
 }

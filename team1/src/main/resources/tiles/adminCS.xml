@@ -13,7 +13,7 @@
 	</definition>
 
 	<definition name="/admin/CS/add_QA_form" extends="AdminLayout">
-		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminCS_02.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_02.jsp" />
 	</definition>
 
 	<definition name="/admin/CS/add_review_form" extends="AdminLayout">

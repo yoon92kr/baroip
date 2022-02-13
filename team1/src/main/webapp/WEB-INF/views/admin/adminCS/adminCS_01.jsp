@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
-<c:set var="pageNoMax" value="6" />
+<c:set var="pageNoMax" value="7" />
 <!-- itemSize에는 표시할 item의 size를 대입한다. -->
 <c:set var="itemSize" value="${CSList.size()}" />
 <!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
@@ -86,8 +86,8 @@
 		<div class="col-lg-6 text-center adminUser_01-content-header">
 
 			<select id="search_option_state" class="adminUser_01-select-box-lookup">
-				<option value="1">미답변</option>
-				<option value="2">답변 완료</option>
+				<option value="0">답변 대기중</option>
+				<option value="1">답변 완료</option>
 			</select>
 		
 			<div id="search_option_date">
@@ -98,7 +98,7 @@
 			</div>
 			
 			<div id="search_option_product_box">
-				작성자 ID : <input id="search_option_product_box" class="adminUser_01-select-box-lookup" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_notice_to_option();}">
+				작성자 ID : <input id="search_option_product" class="adminUser_01-select-box-lookup" type="text" onkeypress="if(event.keyCode=='13'){event.preventDefault(); search_notice_to_option();}">
 			</div>
 
 		</div>
@@ -137,33 +137,33 @@
 		<c:forEach var="i" begin="0" end="${itemSize}">
 			<c:set var="j" value="${(pageNo * pageNoMax - pageNoMax) + i}" />
 			<c:if test="${not empty itemList[j] && i < pageNoMax}">
-				
+				<input type="hidden" id="noticeID_${j}" value="${itemList[j].notice_id}">
 				<div class="row">
-			        <div class="col-lg-2 text-center order_01-content-item">
+			        <div class="col-lg-2 text-center admin_CS_QAList">
 			        	<div><fmt:formatDate value="${itemList[j].notice_cre_date}" pattern="yyyy-MM-dd" /></div>
 			        </div>
-			        <div class="col-lg-2 text-center order_01-content-item">
+			        <div class="col-lg-2 text-center admin_CS_QAList">
 			        	${itemList[j].user_id}
 			        </div>
-			        <div class="col-lg-4 text-center order_01-content-item">
-			        	${itemList[j].notice_title}
+			        <div class="col-lg-4 text-center admin_CS_QAList">
+			        	<a id="detail_${j}" onclick="update_state(this.id)">${itemList[j].notice_title}</a>
 			        </div>
 			        <c:if test="${itemList[j].notice_parent_no == 0 }">
-				        <div class="col-lg-2 text-center order_01-content-item">
+				        <div class="col-lg-2 text-center admin_CS_QAList">
 				        	답변 대기중
 				        </div>
-				        <div class="col-lg-2 text-center adminProduct_01-content-item">
-				        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제" onclick="alert('삭제하시겠습니까?')">
-				        	<input class="adminProduct_01-product" type="button"  value="답변 작성">			        	
+				        <div class="col-lg-2 text-center admin_CS_QAList_oth">
+				        	<input class="adminProduct_01-product adminProduct_01-product-top_yoon" id="deleteCS_${j}" type="button" value="문의 삭제" onclick="update_state(this.id)">
+				        	<input class="adminProduct_01-product" id="addCS_${j}" type="button" onclick="update_state(this.id)" value="답변 작성">			        	
 				        </div>			        
 			        </c:if>
 			        
 			        <c:if test="${itemList[j].notice_parent_no == 1 }">
-				        <div class="col-lg-2 text-center order_01-content-item">
+				        <div class="col-lg-2 text-center admin_CS_QAList">
 				        	답변 완료
 				        </div>
-				        <div class="col-lg-2 text-center adminProduct_01-content-item">
-				        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제" onclick="alert('삭제하시겠습니까?')">		        	
+				        <div class="col-lg-2 text-center admin_CS_QAList">
+				        	<input class="adminProduct_01-product" id="deleteCS_${j}" type="button" value="문의 삭제" onclick="update_state(this.id)">			        	
 				        </div>			        
 			        </c:if>
 				</div>
@@ -281,4 +281,140 @@ function pageMove(no) {
 	}
 }
 
+
+function search_notice_to_option() {
+
+	let searchOption = document.getElementById('search_option_category').value;
+	let beginDate = document.getElementById('search_option_date_begin').value;
+	let endDate = document.getElementById('search_option_date_end').value;
+	let searchDate = beginDate.concat(',', endDate);
+	let searchText = document.getElementById('search_option_product').value;
+	let searchState = document.getElementById('search_option_state').value;
+	
+	// 날짜 기준 조회
+	if (searchOption == "noticeDate") {
+		if(endDate == "" || beginDate == "") {
+			alert("정확한 조회 기간을 입력해주세요.");
+		}
+		else if(beginDate > endDate) {
+			alert("조회 기준일이 종료일보다 클 수 없습니다.")
+		}
+		else {
+			location.href='${contextPath}/admin/CS/QA_list.do?search_option='+searchOption+'&search_value='+searchDate;
+
+		}
+		
+	}
+	// 포함된 아이디 기준 조회
+	else if (searchOption == "userID") {
+		if (searchText.match(/\s/g)) {
+			alert("검색어에 공백은 포함될 수 없습니다.")
+		}
+		else if(searchText == null || searchText == ""){
+			alert("검색어를 입력해주세요.");
+		}
+		else {
+			location.href='${contextPath}/admin/CS/QA_list.do?search_option='+searchOption+'&search_value='+searchText;
+		}
+	}
+	
+	// 주문 상태 기준 조회
+	else if (searchOption == "state") {
+			location.href='${contextPath}/admin/CS/QA_list.do?search_option='+searchOption+'&search_value='+searchState;
+	}
+
+	// 전체 회원 조회
+	else if (searchOption == "all") {
+		location.href='${contextPath}/admin/CS/QA_list.do';
+	}
+	
+}
+
+// 문의 삭제 및 답변 작성 Form 스크립트
+function update_state(target) {
+	var strArray = target.split('_');
+	var target_no = strArray[1];
+	var update_option = strArray[0];
+	
+	let notice_id = document.getElementById('noticeID_'.concat(target_no)).value;
+	let submitFlag = false;
+	
+    if(update_option == "addCS") {
+    	location.href='${contextPath}/admin/CS/add_QA_form.do?notice_id='+notice_id;
+    }  
+    else if (update_option == "deleteCS") {
+    	submitFlag = confirm("해당 문의를 삭제하시겠습니까?");
+    	
+    	if(submitFlag) {
+			$.ajax({
+				type : "post",
+				async : false,
+				url : "${contextPath}/admin/CS/delete_CS.do",
+				dataType : "text",
+				data : {
+					"notice_id" : notice_id
+				},
+				success : function(message) {
+					alert(message);
+			 		location.reload();
+				},
+				error : function() {
+					alert("문의 삭제에 문제가 발생하였습니다.");
+				}
+
+			});	
+		}
+    }
+    else if(update_option == "detail") {
+    	location.href='${contextPath}/admin/CS/QA_list.do';
+    }
+
+
+				
+}
+window.addEventListener('load', function() {
+	
+	   if(${search_option != null && search_option != ""}) {
+	    selectedOption("search_option_category", "${search_option}");
+
+	    var main_option = document.getElementById("search_option_category").value;
+	    selectLookup(main_option);
+	    
+	    var begin = "";
+	    var end = "";
+	    if("${search_option}" == "noticeDate") {
+	    	var splitDate = "${search_value}".split(",");
+	    }
+	    
+	    switch("${search_option}") {
+	    case "noticeDate" :
+	    	document.getElementById("search_option_date_begin").value = splitDate[0];
+	    	document.getElementById("search_option_date_end").value = splitDate[1];
+	       break;
+	    
+	    case "userID" :
+	    	document.getElementById("search_option_product").value = "${search_value}";
+	       break;
+	       
+	    case "state" :
+	    	selectedOption("search_option_state", "${search_value}");
+		   break;
+	    }
+	    
+	   }
+
+	});
+	
+//id에는 select의 id값, value에는 선택하고자 하는 option의 value 값을 파라미터로 입력한다.
+function selectedOption(id, value) {
+	
+	var obj = document.getElementById(id);
+
+	for (i=0 ; i<obj.length ; i++) {
+	if(obj[i].value == value) {
+	obj[i].selected = true;
+	
+	      }
+	   }
+	}
 </script>

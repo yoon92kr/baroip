@@ -21,7 +21,7 @@ public class AdminCSServiceImpl implements AdminCSService {
 		public List<NoticeVO> CSListToOption(Map<String, String> option) throws Exception {
 
 			// option이 productCreDate일 경우, value로 전달된 yyyy-mm-dd,yyyy-mm-dd를 begin, end로 변형하여 다시 대입한다.
-			if(option.get("search_option") != null && option.get("search_option").equals("notice_cre_date")) {
+			if(option.get("search_option") != null && option.get("search_option").equals("noticeDate")) {
 				String[] date = option.get("search_value").split(",");
 			
 				option.remove("search_value");
