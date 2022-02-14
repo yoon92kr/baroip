@@ -18,7 +18,7 @@ public class AdminCSServiceImpl implements AdminCSService {
 		
 	// 조회 조건에 따른 CS 리스트 조회 서비스
 		@Override
-		public List<NoticeVO> CSListToOption(Map<String, String> option) throws Exception {
+		public List<Map<String, Object>> CSListToOption(Map<String, String> option) throws Exception {
 
 			// option이 productCreDate일 경우, value로 전달된 yyyy-mm-dd,yyyy-mm-dd를 begin, end로 변형하여 다시 대입한다.
 			if(option.get("search_option") != null && option.get("search_option").equals("noticeDate")) {
@@ -30,7 +30,7 @@ public class AdminCSServiceImpl implements AdminCSService {
 
 			}
 			
-			List<NoticeVO> CSList = adminCSDAO.CSListToOption(option);
+			List<Map<String, Object>> CSList = adminCSDAO.CSListToOption(option);
 			
 
 			return CSList;
@@ -49,26 +49,22 @@ public class AdminCSServiceImpl implements AdminCSService {
 	
 	// CS 상세정보 Service
 	@Override
-	public String CSDetail(Map<String, String> option) throws Exception {
-		int result = adminCSDAO.CSDetail(option);
-		String message = "baroip : 게시글 등록에 문제가 발생하였습니다.";
+	public Map<String, Object> CSDetail(Map<String, String> option) throws Exception {
 		
-		if(result > 0) {
-			message = "baroip : 게시글이 등록되었습니다.";
-		}
+		Map<String, Object> result = adminCSDAO.CSDetail(option);
 		
-		return message;
+		return result;
 	}
 	
 	// cs 답글 등록 Service
 	@Override
 	public String addCS(NoticeVO noticeVO) throws Exception {
 		int result = adminCSDAO.addCS(noticeVO);
-		String notice_title = noticeVO.getNotice_title();
-		String message = "baroip : 게시글 등록에 문제가 발생하였습니다.";
+		String notice_id = noticeVO.getNotice_id();
+		String message = "baroip : 답글 등록에 문제가 발생하였습니다.";
 		
 		if(result > 0) {
-			message = "baroip : "+notice_title+"게시글이 수정되었습니다.";
+			message = "baroip : "+notice_id+"게시글에 답글이 생성되었습니다.";
 		}
 		
 		return message;

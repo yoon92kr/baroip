@@ -12,13 +12,13 @@ import com.myspring.baroip.notice.vo.NoticeVO;
 public interface AdminCSDAO {
 	
 	// 옵션에 따른 CS select DAO
-	public List<NoticeVO> CSListToOption(Map<String, String> option) throws DataAccessException;
+	public List<Map<String, Object>> CSListToOption(Map<String, String> option) throws DataAccessException;
 	
 	// CS 삭제 DAO
 	public int deleteCS(String notice_id) throws DataAccessException;
 
 	// CS 상세정보 DAO
-	public int CSDetail(Map<String, String> option) throws DataAccessException;
+	public Map<String, Object> CSDetail(Map<String, String> option) throws DataAccessException;
 	
 	// cs 답글 등록 DAO
 	public int addCS(NoticeVO noticeVO) throws DataAccessException;

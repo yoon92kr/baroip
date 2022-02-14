@@ -3,6 +3,7 @@
 package com.myspring.baroip.adminCS.controller;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class AdminCSControllerImpl implements AdminCSController {
 		}
 		
 		info.put("option", "QA");
-		List<NoticeVO> CSList = getFullList(info, request);
+		List<Map<String, Object>> CSList = getFullList(info, request);
 		
 		if (pageNo != null && pageNo != "") {
 			int lastNo = (CSList.size()+6)/7;
@@ -74,8 +75,38 @@ public class AdminCSControllerImpl implements AdminCSController {
 	@RequestMapping(value = "/review_list.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView reviewList(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
+		String pageNo = info.get("pageNo");
+		
+		// get 요청이 없을경우, 기존의 session을 제거
+		if (info.isEmpty()) {
+			session.removeAttribute("search_option");
+			session.removeAttribute("search_value");
+		}
+		
+		info.put("option", "comment");
+		List<Map<String, Object>> CSList = getFullList(info, request);
+		
+		if (pageNo != null && pageNo != "") {
+			int lastNo = (CSList.size()+6)/7;
+			
+			if (Integer.parseInt(pageNo) > lastNo) {
+				mav.addObject("pageNo", 1);
+				mav.setViewName("redirect:"+viewName +".do");
+			}
+			else {
+				mav.addObject("pageNo", pageNo);	
+				mav.setViewName(viewName);
+			}
+			
+		} else {
+			mav.addObject("pageNo", 1);
+			mav.setViewName(viewName);
+		}
+		
+		mav.addObject("CSList", CSList);
 		mav.setViewName(viewName);
 
 		return mav;
@@ -96,12 +127,14 @@ public class AdminCSControllerImpl implements AdminCSController {
 	// QA 답변 추가 양식 컨트롤러
 	@Override
 	@RequestMapping(value = "/add_QA_form.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView addQAForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addQAForm(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
+		Map<String, Object> QAInfo = adminCSService.CSDetail(info);
 		
 		String viewName = (String) request.getAttribute("viewName");
 		
+		mav.addObject("QAInfo", QAInfo);
 		mav.setViewName(viewName);
 		return mav;
 
@@ -124,13 +157,24 @@ public class AdminCSControllerImpl implements AdminCSController {
 	// QA 상세페이지 컨트롤러
 	@Override
 	@RequestMapping(value = "/QA_detail.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView QADetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView QADetail(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
 		
+		Map<String, Object> QAInfo = adminCSService.CSDetail(info);
+		
+		Iterator<Map.Entry<String, Object>> entries = QAInfo.entrySet().iterator();
+		while (entries.hasNext()) {
+		    Map.Entry<String, Object> entry = entries.next();
+		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		}
+
+
+		
+		mav.addObject("QAInfo", QAInfo);
 		mav.setViewName(viewName);
+		
 		return mav;
 
 	}
@@ -155,18 +199,23 @@ public class AdminCSControllerImpl implements AdminCSController {
 	public ModelAndView addCS(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		
-		String message = "";
+		HttpSession session = request.getSession();	
+		String notice_category = noticeVO.getNotice_category();
+		String message = adminCSService.addCS(noticeVO);
 		session.setAttribute("message", message);
 		
-		mav.setViewName("redirect:/admin/notice/notice_list.do");
+		if(notice_category.equals("UQA") || notice_category.equals("PQA")) {
+			mav.setViewName("redirect:/admin/CS/QA_list.do");
+		}
+		else {
+			mav.setViewName("redirect:/admin/CS/review_list.do");
+		}
 		
 		return mav;
 	}
 	
 	// CS 조회 필터 사용시, 세션에 있는 검색 조건 정보를 확인 후 서비스로 처리하는 메소드
-		public List<NoticeVO> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
+		public List<Map<String, Object>> getFullList(@RequestParam Map<String, String> info, HttpServletRequest request) throws Exception {
 			
 			HttpSession session = request.getSession();
 			
@@ -263,7 +312,8 @@ public class AdminCSControllerImpl implements AdminCSController {
 				} 
 			
 			}
-			List<NoticeVO> fullList = adminCSService.CSListToOption(options);
+			options.put("option", info.get("option"));
+			List<Map<String, Object>> fullList = adminCSService.CSListToOption(options);
 			return fullList;
 		}
 }
