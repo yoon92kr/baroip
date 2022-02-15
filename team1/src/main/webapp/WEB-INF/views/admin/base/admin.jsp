@@ -13,8 +13,8 @@
     	</div>
     	
     	<div class="row">
-    		<div class="col-lg-2 text-center"><img class="admin_main_image" src="${contextPath}/resources/img/common/admin_icon.png" alt="관리자 이미지"></div>
-    		<div class="col-lg-10 text-left MyPage_padding">환영합니다 [관리자 이름] 님!</div>
+    		<div class="col-lg-2 text-center"><img class="admin_main_page_favicon" src="${contextPath}/resources/img/common/admin_icon.png" alt="관리자 이미지"></div>
+    		<div class="col-lg-10 text-left MyPage_padding">환영합니다 ${userInfo.user_id} 님!</div>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>
@@ -26,17 +26,17 @@
 			<div class="MyPage_01_title">
 				<div class="row">
         		<div class="col-lg-3 text-center">배송 대기 내역</div>
-        		<div class="col-lg-3 text-center">배송 내역</div>
-        		<div class="col-lg-3 text-center">문의 내역</div>
-        		<div class="col-lg-3 text-center">후기 내역</div>
+        		<div class="col-lg-3 text-center">배송 진행 중</div>
+        		<div class="col-lg-3 text-center">미답변 문의 내역</div>
+        		<div class="col-lg-3 text-center">미답변 후기 내역</div>
     		</div>
     		
     		<div class="MyPage_01_content MyPage_01_subtitle">
-    		<div class="row">
-    			<a href="${contextPath}/admin/order/order_list.do" class="col-lg-3 text-center">[총 주문 건수]</a>
-        		<a href="${contextPath}/admin/order/order_list.do" class="col-lg-3 text-center">[총 배송 진행중 건수]</a>
-        		<a href="#" class="col-lg-3 text-center">[미답변 문의 내역 건수]</a>
-        		<a href="#" class="col-lg-3 text-center">[미답변 후기 내역 건수]</a>
+    		<div class="row admin_main_count">
+    			<a href="${contextPath}/admin/order/order_list.do" class="col-lg-3 text-center">${mainInfo.total_order}건</a>
+        		<a href="${contextPath}/admin/order/order_list.do" class="col-lg-3 text-center">${mainInfo.total_delivery}건</a>
+        		<a href="${contextPath}/admin/CS/QA_list.do" class="col-lg-3 text-center">${mainInfo.total_QA}건</a>
+        		<a href="${contextPath}/admin/CS/review_list.do" class="col-lg-3 text-center">${mainInfo.total_comment}건</a>
     		</div>
     		
     		

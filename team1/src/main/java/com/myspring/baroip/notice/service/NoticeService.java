@@ -23,4 +23,7 @@ public interface NoticeService {
 	
 //	상품 문의 작성 페이지
 	public void addPQA(NoticeVO noticeVO) throws Exception;
+	
+	//	1:1문의 리스트
+	public List<Map<String, Object>> UQAList() throws Exception;
 }

@@ -71,6 +71,8 @@ public class UserControllerImpl implements UserController{
 			session.setAttribute("loginOn", true);
 			// 회원정보 세션 set
 			session.setAttribute("userInfo",userVO);
+			
+			userService.updateLastDate(userVO.getUser_id());
 
 			mav.setViewName("redirect:/main.do");
 			System.out.printf("baroip : 권한[%s]레벨의 [%s]님이 로그인 하셨습니다.%n", userVO.getUser_rank(), userVO.getUser_id());

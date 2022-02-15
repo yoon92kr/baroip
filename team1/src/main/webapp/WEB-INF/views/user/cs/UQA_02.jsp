@@ -64,7 +64,15 @@
 			<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${noticeVO.notice_body}</textarea>
 		</div>
 	</div>
-	
+
+	<div class="row">
+		<div class="offset-lg-3 col-lg-2 text-center cs_02_02_box03">
+			<span>답글</span>
+		</div>
+		<div class="col-lg-4 text-center cs_02_02_box04">
+			<textarea class="cs_02_02_quest_content" name="notice_body" readonly>${noticeVO.review}</textarea>
+		</div>
+	</div>	
 
 
 	<div class="row">

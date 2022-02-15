@@ -25,5 +25,8 @@ public interface NoticeDAO {
 	
 //	상품 문의 작성 페이지
 	public void insertPQA(NoticeVO noticeVO) throws DataAccessException;
+	
+//	1:1 문의 리스트
+	public List<Map<String, Object>> UQAList() throws DataAccessException;
 
 }

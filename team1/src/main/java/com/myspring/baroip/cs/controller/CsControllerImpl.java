@@ -1,5 +1,7 @@
 package com.myspring.baroip.cs.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.baroip.adminCS.service.AdminCSService;
 import com.myspring.baroip.adminNotice.controller.AdminNoticeController;
 import com.myspring.baroip.adminNotice.service.AdminNoticeService;
 import com.myspring.baroip.notice.service.NoticeService;
 import com.myspring.baroip.notice.vo.NoticeVO;
 import com.myspring.baroip.user.service.UserService;
+
 
 @Controller("csController")
 @RequestMapping(value = "/cs")
@@ -29,6 +33,8 @@ public class CsControllerImpl implements CsController {
 	AdminNoticeService adminNoticeService;
 	@Autowired
 	NoticeService noticeService;
+	@Autowired
+	AdminCSService adminCSService;
 	@Autowired
 	NoticeVO noticeVO;
 	@Autowired
@@ -98,14 +104,14 @@ public class CsControllerImpl implements CsController {
 		}
 		
 		info.put("notice_category", "UQA");
-		Map<String, Map<String, Object>> noticeList = adminNoticeController.getFullList(info, request);
+		List<Map<String, Object>> UQAList = noticeService.UQAList();
 		
 		String pageNo = info.get("pageNo");
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String) request.getAttribute("viewName");
 		
 		if (pageNo != null && pageNo != "") {
-			int lastNo = (noticeList.size()+6)/7;
+			int lastNo = (UQAList.size()+6)/7;
 			
 			if (Integer.parseInt(pageNo) > lastNo) {
 				mav.addObject("pageNo", 1);
@@ -120,7 +126,7 @@ public class CsControllerImpl implements CsController {
 			mav.addObject("pageNo", 1);
 			mav.setViewName(viewName);
 		}
-		mav.addObject("noticeList", noticeList);
+		mav.addObject("UQAList", UQAList);
 		return mav;
 	}
 
@@ -152,10 +158,16 @@ public class CsControllerImpl implements CsController {
 	@RequestMapping(value = "/UQA_datail.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView UQADetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		noticeVO = noticeService.noticeDetail(notice_id);
+		Map<String, String> option = new HashMap<String, String>();
+		
+		option.put("option", "UQA");
+		option.put("notice_id", notice_id);
+		
+		Map<String, Object> result = adminCSService.CSDetail(option);
+		
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
-		mav.addObject("noticeVO", noticeVO);
+		mav.addObject("noticeVO", result);
 		mav.setViewName(viewName);
 		return mav;
 	}

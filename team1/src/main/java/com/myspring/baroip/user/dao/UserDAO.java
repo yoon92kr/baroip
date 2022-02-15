@@ -28,4 +28,6 @@ public interface UserDAO {
 //	비밀번호 찾기 후 비밀번호 변경
 	public void updateFindUserPwd(UserVO userVO) throws DataAccessException;
 	
+	public void updateLastDate(String user_id) throws DataAccessException;
+	
 }

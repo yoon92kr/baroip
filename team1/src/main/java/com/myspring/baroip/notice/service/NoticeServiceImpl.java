@@ -10,7 +10,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myspring.baroip.image.service.ImageService;
 import com.myspring.baroip.notice.dao.NoticeDAO;
 import com.myspring.baroip.notice.vo.NoticeVO;
 
@@ -20,8 +19,6 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeDAO noticeDAO;
 
-	@Autowired
-	private ImageService imageService;
 
 //	공지사항 리스트페이지
 	public List<NoticeVO> noticeList() throws Exception {
@@ -77,6 +74,13 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void addPQA(NoticeVO noticeVO) throws Exception {
 		noticeDAO.insertPQA(noticeVO);
+	}
+	
+	//	1:1문의 리스트
+	@Override
+	public List<Map<String, Object>> UQAList() throws Exception {
+		List<Map<String, Object>> UQAList = noticeDAO.UQAList();
+		return UQAList;
 	}
 
 }

@@ -28,4 +28,6 @@ public interface UserService {
 	
 //	비밀번호 찾기 후 비밀번호 변경
 	public void updateUserPwd(UserVO userVO) throws Exception;
+	
+	public void updateLastDate(String user_id) throws Exception;
 }

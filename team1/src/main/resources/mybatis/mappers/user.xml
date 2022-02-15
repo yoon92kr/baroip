@@ -31,8 +31,8 @@
 			 and user_pw=#{user_pw}
 		]]>
 	</select>
-	
-	
+
+
 	<!-- 회원가입 -->
 	<insert id="insertNewUser" parameterType="UserVO">
 		<![CDATA[
@@ -52,7 +52,7 @@
 							#{user_email}, 1, 1)
 		]]>
 	</insert>
-	
+
 	<!-- naver아이디 -->
 	<insert id="insertNaverUser" parameterType="UserVO">
 		<![CDATA[
@@ -84,10 +84,10 @@
 			where user_id = #{id}
 		]]>
 	</select>
-	
+
 	<!-- 비회원 주문시 아이디 생성 -->
 	<insert id="guestUser" useGeneratedKeys="true" keyColumn="user_id" keyProperty="user_id" parameterType="UserVO">
-	<selectKey keyProperty="user_id" resultType="String" order="BEFORE">
+		<selectKey keyProperty="user_id" resultType="String" order="BEFORE">
 		select concat('guest_', (select nextval('guest')))
 	</selectKey>
 		<![CDATA[
@@ -97,7 +97,7 @@
 						#{user_name}, now())
 		]]>
 	</insert>
-	
+
 	<!-- 비회원 주문시 생성된 아이디 조회 -->
 	<!-- <select id="selectGuestId" resultType="String">
 		<![CDATA[
@@ -112,7 +112,7 @@
 											and user_mobile_2 = #{user_mobile_2} and user_mobile_3 = #{user_mobile_3}
 		]]>
 	</select>
-	
+
 	<!-- 비밀번호 찾기 -->
 	<select id="selectUserPwdFind" resultType="userVO" parameterType="UserVO">
 		select * from user where user_id = #{user_id}
@@ -120,7 +120,7 @@
 			<when test='user_email != null and user_email != "" '>
 				and user_email = #{user_email}
 			</when>
-			
+
 			<when test='user_email == null and user_email == ""'>
 				and user_mobile_1 = #{user_mobile_1}
 				and user_mobile_2 = #{user_mobile_2}
@@ -128,12 +128,18 @@
 			</when>
 		</choose>
 	</select>
-	
+
 	<!-- 비밀번호 찾기 인증 성공시 비밀번호 변경 -->
 	<update id="updateUserPwd" parameterType="UserVO">
 		<![CDATA[
 			update user set user_pw = #{user_pw} where user_id = #{user_id}
 		]]>
 	</update>
-	
+
+	<!-- 로그인시 최종 로그인 날짜 업데이트 -->
+	<update id="updateLastDate" parameterType="String">
+		<![CDATA[
+			update user set user_last_date = now() where user_id = #{user_id}
+		]]>
+	</update>
 </mapper>

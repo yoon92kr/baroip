@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 	
 	@Override
-	public UserVO login(Map  loginMap) throws Exception {
+	public UserVO login(Map loginMap) throws Exception {
 		return userDAO.login(loginMap);
 	}
 	
@@ -96,5 +95,11 @@ public class UserServiceImpl implements UserService {
 		userDAO.updateFindUserPwd(userVO);
 		
 	}
-
+	
+	//	마지막 접속일 업데이트 Service
+	@Override
+	public void updateLastDate(String user_id) throws Exception {
+		userDAO.updateLastDate(user_id);
+		
+	}
 }

@@ -84,9 +84,9 @@
 	</div>
 	<div class="row">
 		<div
-			class="col-lg-2 text-center MyPage_02_01_menu-left admin_review_detail_image_height">
+			class="col-lg-2 text-center admin_review_detail_menu-left admin_review_detail_image_height">
 			첨부 이미지</div>
-		<div class="col-lg-9 text-center MyPage_02_01_menu-right admin_review_detail_image_height">
+		<div class="col-lg-9 text-center admin_review_detail_menu-right admin_review_detail_image_height">
 			<img class="admin_review_detail_image" src="data:image/jpeg;base64,${QAInfo.image_file}"
 				alt="상품 관리 페이지 상품 이미지">
 		</div>

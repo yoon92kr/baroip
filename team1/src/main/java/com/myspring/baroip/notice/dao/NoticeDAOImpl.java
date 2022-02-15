@@ -50,5 +50,12 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public void insertPQA(NoticeVO noticeVO) throws DataAccessException {
 		sqlSession.selectList("mapper.notice.insertPQA", noticeVO);
 	}
+	
+	//	1:1 문의 리스트
+	@Override
+	public List<Map<String, Object>> UQAList() throws DataAccessException{
+		List<Map<String, Object>> noticeList = sqlSession.selectList("mapper.notice.UQAList");
+		return noticeList;
+	}
 
 }

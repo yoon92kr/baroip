@@ -66,5 +66,10 @@ public class UserDAOImpl implements UserDAO {
 	public void updateFindUserPwd(UserVO userVO) throws DataAccessException {
 		sqlSession.update("mapper.user.updateUserPwd", userVO);
 	}
+	
+	@Override
+	public void updateLastDate(String user_id) throws DataAccessException {
+		sqlSession.update("mapper.user.updateLastDate", user_id);
+	}
 
 }
