@@ -3,7 +3,6 @@
 package com.myspring.baroip.adminCS.controller;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -143,12 +142,14 @@ public class AdminCSControllerImpl implements AdminCSController {
 	// review 답변 추가 양식 컨트롤러
 	@Override
 	@RequestMapping(value = "/add_review_form.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView addReviewForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addReviewForm(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
+		Map<String, Object> QAInfo = adminCSService.CSDetail(info);
 		
 		String viewName = (String) request.getAttribute("viewName");
 		
+		mav.addObject("QAInfo", QAInfo);
 		mav.setViewName(viewName);
 		return mav;
 
@@ -163,15 +164,7 @@ public class AdminCSControllerImpl implements AdminCSController {
 		ModelAndView mav = new ModelAndView();
 		
 		Map<String, Object> QAInfo = adminCSService.CSDetail(info);
-		
-		Iterator<Map.Entry<String, Object>> entries = QAInfo.entrySet().iterator();
-		while (entries.hasNext()) {
-		    Map.Entry<String, Object> entry = entries.next();
-		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-		}
-
-
-		
+				
 		mav.addObject("QAInfo", QAInfo);
 		mav.setViewName(viewName);
 		
@@ -182,13 +175,16 @@ public class AdminCSControllerImpl implements AdminCSController {
 	// review 상세페이지 컨트롤러
 	@Override
 	@RequestMapping(value = "/review_detail.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView reviewDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView reviewDetail(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
 		
+		Map<String, Object> QAInfo = adminCSService.CSDetail(info);
+		
+		mav.addObject("QAInfo", QAInfo);
 		mav.setViewName(viewName);
+		
 		return mav;
 
 	}

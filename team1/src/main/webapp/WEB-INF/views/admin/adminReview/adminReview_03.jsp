@@ -1,5 +1,4 @@
-<!-- 2021.12.03 임석희 adminReview_01_01 -->
-<!-- 2022.02.11 윤상현  -->
+<!-- 2022.02.15 윤상현  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -98,22 +97,14 @@
 		id="reply">
 		<div class="row">
 
-			<input type="hidden" name="notice_id" value="${QAInfo.notice_id }">
-			<input type="hidden" name="user_id" value="${userInfo.user_id }">
-			<input type="hidden" name="product_id" value="${QAInfo.product_id }">
-			<input type="hidden" name="notice_type" value="${QAInfo.notice_type }">
-			<input type="hidden" name="notice_title" value="${QAInfo.notice_id} 답글">
-			<input type="hidden" name="notice_category"
-				value="${QAInfo.notice_category }">
-
 			<div
 				class="col-lg-2 text-center MyPage_02_01_menu-left AdminReturn_02-height-04">
 				답 변</div>
 			<div
 				class="col-lg-9 MyPage_02_01_menu-right AdminReturn_02-height-04">
-
-				<textarea name="notice_body"
-					class="AdminReturn_02-height-06 AdminReturn_02-textarea"></textarea>
+				<textarea
+					class="AdminReturn_02-height-06 AdminReturn_02-textarea text-center"
+					disabled placeholder="${QAInfo.review}"></textarea>
 
 			</div>
 
@@ -121,16 +112,9 @@
 	</form>
 	<br> <br>
 	<div class="row">
-		<a href="#" onclick="addCS()"
-			class="col-lg-2 text-center AdminReturn_02-bottom-button-2">답변 등록</a>
-		<a href="${contextPath}/admin/CS/review_list.do"
-			class="col-lg-2 text-center AdminReturn_02-bottom-button-3">목 록</a>
+		<a href="${contextPath}/admin/CS/QA_list.do"
+			class="col-lg-2 offset-6 text-center AdminReturn_02-bottom-button-3">목
+			록</a>
 	</div>
 
 </div>
-
-<script>
-function addCS() {
-	document.getElementById("reply").submit();
-}
-</script>

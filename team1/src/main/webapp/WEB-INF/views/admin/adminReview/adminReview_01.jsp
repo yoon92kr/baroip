@@ -374,7 +374,7 @@ function update_state(target) {
         var form = document.createElement("form");
         form.setAttribute("charset", "UTF-8");
         form.setAttribute("method", "Post");
-        form.setAttribute("action", "${contextPath}/admin/CS/add_QA_form.do");
+        form.setAttribute("action", "${contextPath}/admin/CS/add_review_form.do");
       	  
             var hiddenField = document.createElement("input");
             hiddenField.setAttribute("type", "hidden");
@@ -429,7 +429,7 @@ function update_state(target) {
         var form = document.createElement("form");
         form.setAttribute("charset", "UTF-8");
         form.setAttribute("method", "Post");
-        form.setAttribute("action", "${contextPath}/admin/CS/QA_detail.do");
+        form.setAttribute("action", "${contextPath}/admin/CS/review_detail.do");
       	  
             var hiddenField = document.createElement("input");
             hiddenField.setAttribute("type", "hidden");

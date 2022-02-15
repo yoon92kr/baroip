@@ -2,6 +2,7 @@
 
 package com.myspring.baroip.adminCS.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,13 @@ public class AdminCSServiceImpl implements AdminCSService {
 	public Map<String, Object> CSDetail(Map<String, String> option) throws Exception {
 		
 		Map<String, Object> result = adminCSDAO.CSDetail(option);
+		
+		if(option.get("option").equals("comment")) {
+			
+			String encodeImage = Base64.getEncoder().encodeToString((byte[]) result.get("image_file"));
+			result.remove("image_file");
+			result.put("image_file", encodeImage);
+		}
 		
 		return result;
 	}

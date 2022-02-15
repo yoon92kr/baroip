@@ -107,6 +107,13 @@
 		</if>
 		
 		<if test='option == "comment"'>
+    select 
+				(select notice_body from notice where notice_match_no = #{notice_id} and notice_parent_no = 1) as review, 
+				n.notice_id, n.notice_title, n.notice_body, n.notice_category, n.product_id, n.notice_grade, p.product_main_title, i.image_file, i.image_category
+			from notice as n 
+			inner join product as p on n.product_id = p.product_id 
+            inner join image as i on n.notice_id = i.image_match_id
+			where notice_match_no = #{notice_id} and notice_parent_no = 0 and i.image_category = 'comment'
 		</if>
 	</select>
 	
@@ -161,7 +168,30 @@
 				)		
 		</if>		
 
-	
+		<if test='notice_category == "comment"'>
+		insert into notice (
+			notice_id,
+			user_id,
+			notice_category,
+			notice_title,
+			notice_body,
+			product_id,
+			notice_match_no,
+			notice_parent_no
+			)
+
+			values (
+				concat('notice_', nextval('notice')),
+				#{user_id},
+				#{notice_category},
+				#{notice_title},
+				#{notice_body},
+				#{product_id},
+				#{notice_id},
+				1
+				)		
+		</if>
+			
 	</insert>
 	
 </mapper>

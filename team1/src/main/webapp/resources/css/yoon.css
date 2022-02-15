@@ -755,3 +755,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	border-bottom: 1px solid;
 	height: 60px;
 }
+
+.admin_review_detail_image {
+	height: 400px;
+	width: 700px;
+}
+
+.admin_review_detail_image_height {
+	height: 415px;
+}

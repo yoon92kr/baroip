@@ -23,5 +23,9 @@
 	<definition name="/admin/CS/QA_detail" extends="AdminLayout">
 		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_03.jsp" />
 	</definition>
-	
+
+	<definition name="/admin/CS/review_detail" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminReview_03.jsp" />
+	</definition>
+
 </tiles-definitions>

@@ -29,7 +29,7 @@ public interface AdminCSController {
 	public ModelAndView addQAForm(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//review 답변 추가 양식 컨트롤러
-	public ModelAndView addReviewForm(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addReviewForm(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	// CS 답변 추가 컨트롤러
 	public ModelAndView addCS(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest Request, HttpServletResponse response) throws Exception;
@@ -41,5 +41,5 @@ public interface AdminCSController {
 	public ModelAndView QADetail(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	// review 상세페이지 컨트롤러
-	public ModelAndView reviewDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView reviewDetail(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
