@@ -84,6 +84,7 @@
 			</div>
 		</div>
 		
+		<input type="hidden" name="notice_id" value="${detail.question.notice_id }">
 		<input type="hidden" name="user_id" value="${userInfo.user_id}" >
 		<input type="hidden" name="notice_category" value="UQA" >
 		<input type="hidden" name="notice_parent_no" value="0" >
@@ -144,7 +145,7 @@ function submit_update_notice() {
 		let form = document.getElementById('myUQAUpdate');
 		
 		form.method="POST";
-		form.action="${contextPath}/myPage/myQuestion/myQuestionUpdate.do";
+		form.action="${contextPath}/myPage/myQuestion/questionUpdate.do";
 		form.submit();
 		
 	}

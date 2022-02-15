@@ -19,7 +19,6 @@
 		<result property="order_delivery_id" column="order_delivery_id" />
 
 	</resultMap>
-	
 
 	<!-- 장바구니 수량 조회 쿼리 -->
 	<select id="myPageCartCount" resultType="java.lang.Integer" parameterType="userVO">
@@ -169,6 +168,7 @@
 
 	</select>
 	
+	<!-- 한건희 -->
 	<!-- 문의 리스트 -->
 	<select id="questionList" resultType="NoticeVO" parameterType="String">
 		<![CDATA[
@@ -200,5 +200,58 @@
 			delete from notice where notice_match_no = #{notice_id}
 		]]>
 	</delete>
+	
+	<update id="questionUpdate" parameterType="NoticeVO">
+			<if test='notice_private == 0'>
+				update notice set  
+					notice_private = #{notice_private},
+					notice_pw = #{notice_pw},
+					notice_type = #{notice_type},
+					notice_title = #{notice_title},
+					notice_body = #{notice_body}
+				where notice_id = #{notice_id}			
+			</if>		
+			<if test='notice_private == 1'>
+				update notice set  
+					notice_type = #{notice_type},
+					notice_title = #{notice_title},
+					notice_body = #{notice_body}
+				where notice_id = #{notice_id}
+			</if>
+	</update>
+	
+	<select id="selectMyCommentList" resultType="NoticeVO" parameterType="String">
+		<![CDATA[
+			select notice_title, product_id, notice_cre_date from notice where user_id=#{user_id} and notice_category='comment'
+		]]>
+	</select>
+	
+	<insert id="insertComment" parameterType="NoticeVO">
+		<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
+			select concat('notice_', (select nextval('notice')))
+		</selectKey>
+			insert into notice(notice_id, 
+								user_id, 
+								notice_category, 
+								notice_title, 
+								notice_body, 
+								notice_grade, 
+								notice_match_no, 
+								notice_parent_no)
+						values(#{notice_id}, 
+								#{user_id}, 
+								'comment', 
+								#{notice_title}, 
+								#{notice_body}, 
+								#Pnotice_grade}, 
+								#{notice_id}, 
+								'0')
+	</insert>
+	
+	<select id="selectMatchID" resultType="String">
+		<![CDATA[
+			select count_no from sequences where sequence_name='notice'
+		]]>
+	</select>
 		
 </mapper>

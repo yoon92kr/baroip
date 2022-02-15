@@ -127,15 +127,12 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 //	문의 내역 페이지
-	public  Map<String, Object> questionDetail(String notice_id) throws Exception {
+	public  Map<String, Object> questionDetail(String notice_id, String user_id) throws Exception {
 		List<NoticeVO> result = myPageDAO.questionDetail(notice_id);
 		Map<String, Object> detail = new HashMap<String, Object>();
 		
 		for(int i=0; result.size() > i; i++) {
-			if(result.get(i).getUser_id().equals("admin")) {
-//				답변
-				detail.put("answer", (NoticeVO) result.get(i));
-			} else {
+			if(result.get(i).getUser_id().equals(user_id)) {
 				if(result.get(i).getProduct_id() != null) {
 					String product_title = myPageDAO.productQuestion(result.get(i).getProduct_id());
 					detail.put("product_title", product_title);
@@ -144,6 +141,9 @@ public class MyPageServiceImpl implements MyPageService {
 				} else if(result.get(i).getProduct_id() == null) {
 					detail.put("question", (NoticeVO) result.get(i));					
 				}
+			} else {
+//				답변
+				detail.put("answer", (NoticeVO) result.get(i));
 			}
 		}
 		return detail;
@@ -155,6 +155,38 @@ public class MyPageServiceImpl implements MyPageService {
 		int result = myPageDAO.questionDelete(notice_id);
 		
 		return result;
+	}
+	
+//	문의 수정
+	@Override
+	public String updateQuestion(NoticeVO noticeVO) throws Exception {
+		int result = myPageDAO.questionUpdate(noticeVO);
+		String notice_title = noticeVO.getNotice_title();
+		String message = "";
+		
+		if(result == 1) {
+			message = "baroip : " + notice_title + " 게시글이 수정되었습니다.";
+		} else if(result == 0) {
+			message = "baroip : 게시글 수정에 문제가 생겼습니다.";
+		}
+		
+		return message;
+	}
+	
+//	상품 후기 리스트
+	@Override
+	public List<NoticeVO> commentList(String user_id) throws Exception {
+		List<NoticeVO> myCommentList = myPageDAO.commentList(user_id);
+
+		return myCommentList;
+	}
+	
+//	상품 후기 작성
+	@Override
+	public String addComment(NoticeVO noticeVO) throws Exception {
+		String notice_id = myPageDAO.insertComment(noticeVO);
+		
+		return notice_id;
 	}
 
 }

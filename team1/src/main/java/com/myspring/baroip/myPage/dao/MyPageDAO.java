@@ -47,5 +47,14 @@ public interface MyPageDAO {
 	
 //	문의 삭제
 	public int questionDelete(String notice_id) throws DataAccessException;
-
+	
+//	문의 수정
+	public int questionUpdate(NoticeVO noticeVO) throws DataAccessException;
+	
+//	상품 후기 리스트
+	public List<NoticeVO> commentList(String user_id) throws DataAccessException;
+	
+//	상품 후기 작성
+	public String insertComment(NoticeVO noticeVO) throws DataAccessException;
+	
 }

@@ -2,10 +2,31 @@
 
 /* ==================== 중간중간 수정 ================================= */
 /* main 장바구니 이미지 */
-
 .myQuestionTitle {
 	color: #000;
 }
+
+.myCommentListUpdateBtn {
+	font-family: "kopub_bold";
+	width: 60px;
+	height: 40px;
+	font-size: 14px;
+	border: none;
+	background: #456B2B;
+	color: #fff;
+}
+
+.myCommentListDeleteBtn {
+	font-family: "kopub_bold";
+	width: 60px;
+	height: 40px;
+	font-size: 14px;
+	border: none;
+	background: #7f7f7f;
+	color: #fff;
+}
+
+
 .main_cartImage {
 	outline: none;
 	border: none;

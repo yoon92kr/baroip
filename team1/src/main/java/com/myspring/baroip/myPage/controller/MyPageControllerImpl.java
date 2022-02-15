@@ -3,6 +3,7 @@
 package com.myspring.baroip.myPage.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspring.baroip.adminNotice.service.AdminNoticeService;
 import com.myspring.baroip.image.controller.ImageController;
 import com.myspring.baroip.myPage.service.MyPageService;
 import com.myspring.baroip.notice.vo.NoticeVO;
+import com.myspring.baroip.product.service.ProductService;
+import com.myspring.baroip.product.vo.ProductVO;
 import com.myspring.baroip.user.service.UserService;
 import com.myspring.baroip.user.vo.UserVO;
 
@@ -41,7 +43,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 	@Autowired
 	private ImageController imageController;
 	@Autowired
-	private AdminNoticeService adminNoticeService;
+	private ProductService productService;
 
 	
 
@@ -362,7 +364,10 @@ public class MyPageControllerImpl implements MyPageConroller{
 			
 			ModelAndView mav = new ModelAndView();
 			String viewName = (String) request.getAttribute("viewName");
-			Map<String, Object> result = myPageService.questionDetail(notice_id);
+			HttpSession session = request.getSession();
+			UserVO userVO = (UserVO) session.getAttribute("userInfo");
+			String user_id = userVO.getUser_id();
+			Map<String, Object> result = myPageService.questionDetail(notice_id, user_id);
 			
 			mav.addObject("detail", result);
 			mav.setViewName(viewName);
@@ -390,30 +395,91 @@ public class MyPageControllerImpl implements MyPageConroller{
 			return mav;
 		}
 		
+//		문의 내역 상세 페이지
 		@RequestMapping(value = {"/myQuestion/myUQAUpdate.do", "/myQuestion/myPQAUpdate.do"}, method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView myUQAUpdate(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception {
 			ModelAndView mav = new ModelAndView();
 			String viewName = (String) request.getAttribute("viewName");
-			Map<String, Object> result = myPageService.questionDetail(notice_id);
+			HttpSession session = request.getSession();
+			UserVO userVO = (UserVO) session.getAttribute("userInfo");
+			String user_id = userVO.getUser_id();
+			
+			Map<String, Object> result = myPageService.questionDetail(notice_id, user_id);
 			
 			mav.addObject("detail", result);
 			mav.setViewName(viewName);
 			return mav;
 		}
 		
-		@RequestMapping(value = "/myQuestion/myQuestionUpdate.do", method = { RequestMethod.POST, RequestMethod.GET })
-		public ModelAndView myNoticeUpdate(NoticeVO noticeVO, HttpServletRequest request) throws Exception {
+//		문의 수정
+		@RequestMapping(value = "/myQuestion/questionUpdate.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView questionUpdate(@ModelAttribute("noticeVO") NoticeVO noticeVO, HttpServletRequest request) throws Exception {
 			ModelAndView mav = new ModelAndView();
 			HttpSession session = request.getSession();
 			UserVO userVO = (UserVO) session.getAttribute("userInfo");
 			String user_id = userVO.getUser_id();
 			String message = "";
+			
 			if(noticeVO.getUser_id().equals(user_id)) {
-				message = adminNoticeService.updateNotice(noticeVO);
+				message = myPageService.updateQuestion(noticeVO);
 			}
 			
 			session.setAttribute("message", message);
 			mav.setViewName("redirect:/myPage/myQuestion.do");
+			return mav;
+		}
+		
+//		상품 후기 작성 페이지
+		@RequestMapping(value = "/myComment/buyProductComment.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView buyProductComment(@ModelAttribute("product_id") String product_id, HttpServletRequest request) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String) request.getAttribute("viewName");
+			Map<String, Map<String, Object>>productInfo = productService.productDetail(product_id);
+			ProductVO product = (ProductVO) productInfo.get("product").get("productVO");
+			String product_main_title = product.getProduct_main_title();
+			
+			mav.addObject("product_main_title", product_main_title);
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		상품 후기 리스트
+		@RequestMapping(value = "/myComment.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView myComment(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String) request.getAttribute("viewName");
+			HttpSession session = request.getSession();
+			
+			UserVO userVO = (UserVO) session.getAttribute("userInfo");
+			String user_id = userVO.getUser_id();
+			
+			List<NoticeVO> myComments = myPageService.commentList(user_id);
+			List<Object> product = new ArrayList<Object>();
+
+			for(int i=0; myComments.size() > i; i++) {
+				String product_id = myComments.get(i).getProduct_id();
+				Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);
+				product.add(productInfo);
+			}
+
+			mav.addObject("myComments", myComments);
+			mav.addObject("product", product);
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
+//		상품후기 작성
+		@RequestMapping(value = "/myComment/commentAdd.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView commentAdd(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = multipartRequest.getSession();
+			UserVO userVO = (UserVO) session.getAttribute("userInfo");
+			noticeVO.setUser_id(userVO.getUser_id());
+
+			String notice_id = myPageService.addComment(noticeVO);
+			imageController.ImageSetImageVO(multipartRequest, notice_id);
+			
+			mav.setViewName("redirect:myPage/myOrder.do");
 			return mav;
 		}
 		

@@ -35,9 +35,18 @@ public interface MyPageService {
 	public List<NoticeVO> questionList(String user_id) throws Exception;
 	
 //	문의 내역 페이지
-	public Map<String, Object> questionDetail(String notice_id) throws Exception;
+	public Map<String, Object> questionDetail(String notice_id, String user_id) throws Exception;
 	
 //	문의 삭제
 	public int deleteQuestion(String notice_id) throws Exception;
+	
+//	문의 수정
+	public String updateQuestion(NoticeVO noticeVO) throws Exception;
+	
+//	상품 후기 리스트
+	public List<NoticeVO> commentList(String user_id) throws Exception;
+	
+//	상품 후기 작성
+	public String addComment(NoticeVO noticeVO) throws Exception;
 
 }

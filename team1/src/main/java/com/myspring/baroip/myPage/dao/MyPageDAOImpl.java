@@ -53,65 +53,88 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return orderList;
 	}
 	
-	// 주문상태 변경 DAO
-		@Override
-		public void updateOrder(Map<String, String> option) throws DataAccessException {
+// 주문상태 변경 DAO
+	@Override
+	public void updateOrder(Map<String, String> option) throws DataAccessException {
 			sqlSession.update("mapper.myPage.updateOrder", option);
 			
-		}
+	}
 		
-	// 반품 등록 DAO 
-		@Override
-		public String askRefund(NoticeVO noticeVO) throws DataAccessException {
-			
-			sqlSession.insert("mapper.myPage.askRefund",noticeVO);
-			sqlSession.update("mapper.myPage.askRefundUpdate", noticeVO);
-			String notice_id = noticeVO.getNotice_id();
-						
-			return notice_id;
-		}
+// 반품 등록 DAO 
+	@Override
+	public String askRefund(NoticeVO noticeVO) throws DataAccessException {
 		
-		// 주문 정보 호출 DAO
-		@Override
-		public List<Map<String, Object>> orderDetail(String order_id) throws DataAccessException {
-			
-			List<Map<String, Object>> orderList = sqlSession.selectList("mapper.myPage.orderDetail", order_id);
-
+		sqlSession.insert("mapper.myPage.askRefund",noticeVO);
+		sqlSession.update("mapper.myPage.askRefundUpdate", noticeVO);
+		String notice_id = noticeVO.getNotice_id();
+					
+		return notice_id;
+	}
+		
+	// 주문 정보 호출 DAO
+	@Override
+	public List<Map<String, Object>> orderDetail(String order_id) throws DataAccessException {
+		
+		List<Map<String, Object>> orderList = sqlSession.selectList("mapper.myPage.orderDetail", order_id);
 			return orderList;
-		}
-		
+	}
+	
 //		2022.02.08 한건희
 		
-		// 문의 리스트
-		@Override
-		public List<NoticeVO> questionList(String user_id) throws DataAccessException {
-			List<NoticeVO> result = sqlSession.selectList("mapper.myPage.questionList", user_id);
-			return result;
-		}
+	// 문의 리스트
+	@Override
+	public List<NoticeVO> questionList(String user_id) throws DataAccessException {
+		List<NoticeVO> result = sqlSession.selectList("mapper.myPage.questionList", user_id);
+		return result;
+	}
+	
+//	문의 내역 페이지
+	@Override
+	public List<NoticeVO> questionDetail(String notice_id) throws DataAccessException {
+		List<NoticeVO> result = sqlSession.selectList("mapper.myPage.questionDetail", notice_id);
+		return result;
+	}
+	
+//	상품 명
+	@Override
+	public String productQuestion(String product_id) throws DataAccessException {
+		ProductVO productVO = sqlSession.selectOne("mapper.myPage.PQADetail", product_id);
+		String product_title = productVO.getProduct_main_title();
 		
-//		문의 내역 페이지
-		@Override
-		public List<NoticeVO> questionDetail(String notice_id) throws DataAccessException {
-			List<NoticeVO> result = sqlSession.selectList("mapper.myPage.questionDetail", notice_id);
-			return result;
-		}
+		return product_title;
+	}
+	
+//	문의 삭제
+	@Override
+	public int questionDelete(String notice_id) throws DataAccessException {
+		int result = sqlSession.delete("mapper.myPage.questionDelete", notice_id);
 		
-//		상품 명
-		@Override
-		public String productQuestion(String product_id) throws DataAccessException {
-			ProductVO productVO = sqlSession.selectOne("mapper.myPage.PQADetail", product_id);
-			String product_title = productVO.getProduct_main_title();
-			
-			return product_title;
-		}
+		return result;
+	}
 		
-//		문의 삭제
-		@Override
-		public int questionDelete(String notice_id) throws DataAccessException {
-			int result = sqlSession.delete("mapper.myPage.questionDelete", notice_id);
-			
-			return result;
-		}
+//	문의 수정
+	@Override
+	public int questionUpdate(NoticeVO noticeVO) throws DataAccessException {
+		int result = sqlSession.delete("mapper.myPage.questionUpdate", noticeVO);
 		
-
+		return result;
+	}
+	
+//	상품 후기 리스트
+	@Override
+	public List<NoticeVO> commentList(String user_id) throws DataAccessException {
+		List<NoticeVO> myCommentList = sqlSession.selectList("mapper.myPage.selectMyCommentList", user_id);
+		
+		return myCommentList;
+	}
+	
+//	상품 후기 작성
+	@Override
+	public String insertComment(NoticeVO noticeVO) throws DataAccessException {
+		sqlSession.insert("mapper.myPage.insertComment", noticeVO);
+		
+		String notice_id = "notice_" + sqlSession.selectOne("mapper.myPage.selectMatchID");
+		
+		return notice_id;
+	}
 }

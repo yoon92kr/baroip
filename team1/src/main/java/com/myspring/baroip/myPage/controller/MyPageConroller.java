@@ -49,6 +49,12 @@ public interface MyPageConroller {
 	
 //	문의 삭제
 	public ModelAndView questionDelete(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception;
+	
+//	문의 수정
+	public ModelAndView questionUpdate(@ModelAttribute("NoticeVO") NoticeVO noticeVO, HttpServletRequest request) throws Exception;
+	
+//	상품 후기 리스트
+	public ModelAndView myComment(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception;
 
 }
 

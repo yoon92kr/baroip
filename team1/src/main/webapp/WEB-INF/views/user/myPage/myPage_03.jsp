@@ -195,7 +195,9 @@
 								<div class="text-center MyPage_03_text_position_02">배송 완료</div>
 							</div>
 							<div class="col-lg-2">
-									<input class="MyPage_03-submit-box-02" type="button" value="상품 후기" onclick="">
+								<a href="${contextPath}/myPage/myComment/buyProductComment.do?product_id=${itemList[j].product_id}">
+									<input class="MyPage_03-submit-box-02" type="button" value="상품 후기">
+								</a>
 									<input class="MyPage_03_order_cancel-box" type="button" id="refund_${j}" value="반품 / 교환 신청" onclick="update_state(this.id)">
 							</div>
 

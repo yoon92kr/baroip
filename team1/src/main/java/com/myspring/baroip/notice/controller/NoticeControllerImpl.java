@@ -96,7 +96,7 @@ public class NoticeControllerImpl implements NoticeController {
 	}
 	
 //	2022.02.03 한건희 수정
-//	상품 후기
+//	productDetail > 상품후기 페이지
 	@Override
 	@RequestMapping(value= "/productComment.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView productComment(@RequestParam("product_id") String product_id, @RequestParam Map<String, String> info,
