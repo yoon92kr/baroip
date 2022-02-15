@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	
-	<form id="productCommentForm">
+	<form id="productCommentForm" enctype="multipart/form-data">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 				<span>제목</span>
@@ -45,7 +45,7 @@
 				<span>상품 평점</span>
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box02">
-				<input type="radio" name="notice_grade" value="5 " checked="checked"> 매우 만족 
+				<input type="radio" name="notice_grade" value="5" checked> 매우 만족 
 				<input type="radio" class="mypage_radiobox" name="notice_grade" value="4"> 만족 
 				<input type="radio"class="mypage_radiobox" name="notice_grade" value="3"> 보통 
 				<input type="radio" class="mypage_radiobox" name="notice_grade" value="2"> 불만족 
@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-lg-4 text-left cs_02_02_box04">
 				<div class="form-group">
-					<textarea class="form-control" rows="8" placeholder="내용을 입력하세요."></textarea>
+					<textarea name="notice_body" class="form-control" rows="8" placeholder="내용을 입력하세요."></textarea>
 				</div>
 			</div>
 		</div>

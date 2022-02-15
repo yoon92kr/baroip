@@ -243,7 +243,7 @@
 								'comment', 
 								#{notice_title}, 
 								#{notice_body}, 
-								#Pnotice_grade}, 
+								#{notice_grade}, 
 								#{notice_id}, 
 								'0')
 	</insert>

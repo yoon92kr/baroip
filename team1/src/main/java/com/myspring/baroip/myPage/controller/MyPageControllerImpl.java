@@ -429,20 +429,6 @@ public class MyPageControllerImpl implements MyPageConroller{
 			return mav;
 		}
 		
-//		상품 후기 작성 페이지
-		@RequestMapping(value = "/myComment/buyProductComment.do", method = { RequestMethod.POST, RequestMethod.GET })
-		public ModelAndView buyProductComment(@ModelAttribute("product_id") String product_id, HttpServletRequest request) throws Exception {
-			ModelAndView mav = new ModelAndView();
-			String viewName = (String) request.getAttribute("viewName");
-			Map<String, Map<String, Object>>productInfo = productService.productDetail(product_id);
-			ProductVO product = (ProductVO) productInfo.get("product").get("productVO");
-			String product_main_title = product.getProduct_main_title();
-			
-			mav.addObject("product_main_title", product_main_title);
-			mav.setViewName(viewName);
-			return mav;
-		}
-		
 //		상품 후기 리스트
 		@RequestMapping(value = "/myComment.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView myComment(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception {
@@ -468,6 +454,20 @@ public class MyPageControllerImpl implements MyPageConroller{
 			return mav;
 		}
 		
+//		상품 후기 작성 페이지
+		@RequestMapping(value = "/myComment/buyProductComment.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView buyProductComment(@ModelAttribute("product_id") String product_id, HttpServletRequest request) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			String viewName = (String) request.getAttribute("viewName");
+			Map<String, Map<String, Object>>productInfo = productService.productDetail(product_id);
+			ProductVO product = (ProductVO) productInfo.get("product").get("productVO");
+			String product_main_title = product.getProduct_main_title();
+			
+			mav.addObject("product_main_title", product_main_title);
+			mav.setViewName(viewName);
+			return mav;
+		}
+		
 //		상품후기 작성
 		@RequestMapping(value = "/myComment/commentAdd.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView commentAdd(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest) throws Exception {
@@ -477,9 +477,9 @@ public class MyPageControllerImpl implements MyPageConroller{
 			noticeVO.setUser_id(userVO.getUser_id());
 
 			String notice_id = myPageService.addComment(noticeVO);
+			mav.setViewName("redirect:myPage/myOrder.do");
 			imageController.ImageSetImageVO(multipartRequest, notice_id);
 			
-			mav.setViewName("redirect:myPage/myOrder.do");
 			return mav;
 		}
 		
