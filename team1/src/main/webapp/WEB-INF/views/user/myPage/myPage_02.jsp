@@ -6,12 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<c:if test='${not empty message }'>
-<script>
-	alert("${message}");
-</script>
-</c:if>
-
 <div class="container">
     <div class="row">
         <div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">마이 페이지</h1></div>

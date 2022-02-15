@@ -31,7 +31,7 @@
         	아이디
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        		<input class="MyPage_02_01_text-box check_update_form" type="text" value="${userInfo.user_id}" disabled name="user_id">
+        		<input class="MyPage_02_01_text-box check_update_form background_gray" type="text" value="${userInfo.user_id}" readonly name="user_id">
         </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
         	비밀번호
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        		<input class="MyPage_02_01_text-box" type="password" name="user_pw">
+        		<input id="pw1" class="MyPage_02_01_text-box" type="password" name="user_pw">
         </div>
     </div>
     
@@ -50,7 +50,7 @@
         	비밀번호 확인
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        		<input class="MyPage_02_01_text-box" type="password" name="user_pw">
+        		<input id="pw2"  class="MyPage_02_01_text-box" type="password">
         </div>
     </div>
     
@@ -59,7 +59,7 @@
         	이 름
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
-        		<input class="MyPage_02_01_text-box check_update_form" type="text" value="${userInfo.user_name}" disabled name="user_name">
+        		<input class="MyPage_02_01_text-box check_update_form background_gray" type="text" value="${userInfo.user_name}" readonly name="user_name">
         </div>
     </div>
     
@@ -69,11 +69,11 @@
         </div>
         <div class="col-lg-9 MyPage_02_01_menu-right">
         
-        		<input class="MyPage_02_01-year-month-day check_update_form" type="text" value="${userInfo.user_birth_year}" disabled name="user_birth_year"> 
+        		<input class="MyPage_02_01-year-month-day check_update_form background_gray" type="text" value="${userInfo.user_birth_year}" readonly name="user_birth_year"> 
         		<span class="MyPage_02_01-year-month-day-text">년</span>
-        		<input class="MyPage_02_01-year-month-day check_update_form" type="text" value="${userInfo.user_birth_month}" disabled name="user_birth_month"> 
+        		<input class="MyPage_02_01-year-month-day check_update_form background_gray" type="text" value="${userInfo.user_birth_month}" readonly name="user_birth_month"> 
         		<span class="MyPage_02_01-year-month-day-text">월</span>
-        		<input class="MyPage_02_01-year-month-day check_update_form" type="text" value="${userInfo.user_birth_day}" disabled name="user_birth_day"> 
+        		<input class="MyPage_02_01-year-month-day check_update_form background_gray" type="text" value="${userInfo.user_birth_day}" readonly name="user_birth_day"> 
         		<span class="MyPage_02_01-year-month-day-text">일</span>
         	
         </div>
@@ -147,7 +147,7 @@
     <div class="MyPage_02_01_button">
       <div class="row">
     	<a href="#" onclick="submit_mypage_info_update()">
-    		<input type="button" class="MyPage_02_01_button_03" value="수정하기">
+    		<input type="button" class="MyPage_02_01_button_03 col-lg-12" value="수정하기">
     	</a>
     	
     	<a href="myPage_01.do" class="col-lg-3 text-center MyPage_02_01_button_04">돌아가기</a>
@@ -239,8 +239,35 @@ function submit_mypage_info_update() {
 	}
 	
 	
+	
 	if (checkFlag == true) {
-		document.getElementById('myPage_user_update').submit();	   
+		
+		let pw1 = document.getElementById('pw1').value;
+		let pw2 = document.getElementById('pw2').value;
+		
+		// 비밀번호 입력시 공백여부 확인
+		if (pw1.match(/\s/g)) {
+			alert("비밀번호에 공백은 포함될 수 없습니다.");
+		}
+		// 비밀번호 미입력시 기존 비밀번호 입력
+		else if(pw1 == null || pw1 == ""){
+			document.getElementById('pw1').value = "${userInfo.user_pw}";
+			document.getElementById('myPage_user_update').submit();
+		}
+		
+		// 비밀번호 입력시 일치여부 확인
+		else {			
+			
+			if(pw1 == pw2) {
+				document.getElementById('myPage_user_update').submit();
+			}
+			else {
+				alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+			}
+			
+		}
+
+	    
 	}
 
 	else {

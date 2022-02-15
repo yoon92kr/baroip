@@ -109,30 +109,40 @@ public class MyPageControllerImpl implements MyPageConroller{
 	}
 	
 	// 회원정보 수정 컨트롤러
-	@Override
-	@RequestMapping(value = "/update_MyInfo.do", method = RequestMethod.POST)
-	public ModelAndView updateMyInfo(@ModelAttribute("userVO") UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		ModelAndView mav = new ModelAndView();
+		@Override
+		@RequestMapping(value = "/update_MyInfo.do", method = RequestMethod.POST)
+		public ModelAndView updateMyInfo(@ModelAttribute("userVO") UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+			HttpSession session = request.getSession();
+			ModelAndView mav = new ModelAndView();
+
+			// 회원정보 수정 성공시 1, 아닐경우 0 을 반환
+			int flag = myPageService.updateMyInfo(userVO);
+			String message = "";
+			if (flag == 1) {
+				
+				UserVO loginUser = (UserVO) session.getAttribute("userInfo");
+				message = "회원 " + loginUser.getUser_id() + " 님이 [" + userVO.getUser_id() + "]의 수정을 완료했습니다.";
+				
+				Map<String, String> userMap = new HashMap<String, String>();
+				userMap.put("user_id", userVO.getUser_id());
+				userMap.put("user_pw", userVO.getUser_pw());
+				
+				UserVO newUserVO = userService.login(userMap);
+				
+				session.removeAttribute("userInfo");
+				session.setAttribute("userInfo",newUserVO);
+				
+			}
+			else if (flag == 0) {
+				message = "회원정보 수정에 문제가 발생하였습니다.";
+			}
 		
-		// 회원정보 수정 성공시 1, 아닐경우 0 을 반환
-		int flag = myPageService.updateMyInfo(userVO);
-		String message = "";
-		if (flag == 1) {
+			session.setAttribute("message", message);
+			mav.setViewName("redirect:/myPage/myInfo.do");
+			System.out.println("baroip : " + message);
 			
-			UserVO loginUser = (UserVO) session.getAttribute("userInfo");
-			message = "회원 " + loginUser.getUser_id() + " 님이 [" + userVO.getUser_id() + "]의 수정을 완료했습니다.";
+			return mav;
 		}
-		else if (flag == 0) {
-			message = "회원정보 수정에 문제가 발생하였습니다.";
-		}
-		
-		session.setAttribute("message", message);
-		mav.setViewName("redirect:/myPage/myInfo.do");
-		System.out.println("baroip : " + message);
-		
-		return mav;
-	}
 
 
 	@Override

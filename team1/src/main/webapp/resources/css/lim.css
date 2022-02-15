@@ -539,3 +539,7 @@ margin-top: 60px;
     height: 290px;
     border: 1px solid #d9d9d9;
 }
+
+.background_gray {
+	background: #d9d9d9;
+}
