@@ -19,6 +19,22 @@
 		<result property="order_delivery_id" column="order_delivery_id" />
 
 	</resultMap>
+	
+	<resultMap id="noticeUserResult" type="java.util.Map">
+	
+		<result property="notice_id" column="notice_id" />
+		<result property="notice_title" column="notice_title" />
+		<result property="notice_body" column="notice_body" />
+		<result property="notice_cre_date" column="notice_cre_date" />
+		<result property="notice_type" column="notice_type" />
+		<result property="notice_grade" column="notice_grade" />
+		<result property="product_id" column="product_id" />
+		<result property="notice_match_no" column="notice_match_no" />
+		<result property="notice_parent_no" column="notice_parent_no" />
+		<result property="user_id" column="user_id" />
+		<result property="user_rank" column="user_rank" />
+		
+	</resultMap>
 
 	<!-- 장바구니 수량 조회 쿼리 -->
 	<select id="myPageCartCount" resultType="java.lang.Integer" parameterType="userVO">
@@ -182,9 +198,11 @@
 	</select>
 	
 	<!-- 문의 내역 페이지 -->
-	<select id="questionDetail" resultType="NoticeVO" parameterType="String">
+	<select id="questionDetail" resultMap="noticeUserResult" parameterType="String">
 		<![CDATA[
-			select * from notice where notice_match_no=#{notice_id}
+			select n.notice_id, n.notice_title, n.notice_body, n.notice_grade, n.product_id, n.user_id, u.user_rank from 
+			notice as n inner join user as u on n.user_id = u.user_id where notice_match_no=#{notice_id}
+			
 		]]>
 	</select>
 	
@@ -201,6 +219,7 @@
 		]]>
 	</delete>
 	
+	<!-- 문의 내역 수정 -->
 	<update id="questionUpdate" parameterType="NoticeVO">
 			<if test='notice_private == 0'>
 				update notice set  
@@ -220,12 +239,14 @@
 			</if>
 	</update>
 	
+	<!-- 상품후기 리스트 -->
 	<select id="selectMyCommentList" resultType="NoticeVO" parameterType="String">
 		<![CDATA[
-			select notice_title, product_id, notice_cre_date from notice where user_id=#{user_id} and notice_category='comment'
+			select * from notice where user_id=#{user_id} and notice_category='comment'
 		]]>
 	</select>
 	
+	<!-- 상품후기 작성 -->
 	<insert id="insertComment" parameterType="NoticeVO">
 		<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
 			select concat('notice_', (select nextval('notice')))
@@ -237,6 +258,7 @@
 								notice_body, 
 								notice_grade, 
 								notice_match_no, 
+								product_id, 
 								notice_parent_no)
 						values(#{notice_id}, 
 								#{user_id}, 
@@ -245,6 +267,7 @@
 								#{notice_body}, 
 								#{notice_grade}, 
 								#{notice_id}, 
+								#{product_id}, 
 								'0')
 	</insert>
 	

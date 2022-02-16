@@ -127,23 +127,23 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 //	문의 내역 페이지
-	public  Map<String, Object> questionDetail(String notice_id, String user_id) throws Exception {
-		List<NoticeVO> result = myPageDAO.questionDetail(notice_id);
+	public  Map<String, Object> questionDetail(String notice_id) throws Exception {
+		List<Map<String, Object>> result = myPageDAO.questionDetail(notice_id);
 		Map<String, Object> detail = new HashMap<String, Object>();
 		
 		for(int i=0; result.size() > i; i++) {
-			if(result.get(i).getUser_id().equals(user_id)) {
-				if(result.get(i).getProduct_id() != null) {
-					String product_title = myPageDAO.productQuestion(result.get(i).getProduct_id());
+			if(result.get(i).get("user_rank").equals("1") || result.get(i).get("user_rank").equals("0")) {
+				if(result.get(i).get("product_id") != null) {
+					String product_title = myPageDAO.productQuestion((String) result.get(i).get("product_id"));
 					detail.put("product_title", product_title);
-					detail.put("question", (NoticeVO) result.get(i));
+					detail.put("question", result.get(i));
 					
-				} else if(result.get(i).getProduct_id() == null) {
-					detail.put("question", (NoticeVO) result.get(i));					
+				} else if(result.get(i).get("product_id") == null) {
+					detail.put("question", result.get(i));					
 				}
 			} else {
 //				답변
-				detail.put("answer", (NoticeVO) result.get(i));
+				detail.put("answer", result.get(i));
 			}
 		}
 		return detail;
