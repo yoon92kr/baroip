@@ -452,17 +452,8 @@ public class MyPageControllerImpl implements MyPageConroller{
 			UserVO userVO = (UserVO) session.getAttribute("userInfo");
 			String user_id = userVO.getUser_id();
 			
-			List<NoticeVO> myComments = myPageService.commentList(user_id);
+			Map<String, Object> myComments = myPageService.commentList(user_id);
 			List<Object> product = new ArrayList<Object>();
-
-			System.out.println("controller : " + user_id);
-			System.out.println("controller : " + myComments.get(0).getUser_id());
-			System.out.println("controller : " + myComments.get(0).getProduct_id());
-			for(int i=0; myComments.size() > i; i++) {
-				String product_id = myComments.get(i).getProduct_id();
-				Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);
-				product.add(productInfo);
-			}
 
 			mav.addObject("myComments", myComments);
 			mav.addObject("product", product);

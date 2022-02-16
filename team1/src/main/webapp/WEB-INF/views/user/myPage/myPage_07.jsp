@@ -47,7 +47,7 @@
 
 	<div class="row">
 		<div class="offset-lg-2 col-lg-8 text-left cs_01_subtitle">
-			<h3>문의 내역</h3>
+			<h3>상품후기</h3>
 		</div>
 	</div>
 
@@ -91,7 +91,12 @@
 								<a href="${contextPath}/product/productDetail.do?product_id=${product[Num].product.productVO.product_id}">${product[Num].product.productVO.product_main_title}</a>
 						</div>
 						<div class="col-lg-2 text-center admincs_01listsection">
-							<span>${itemList[Num].notice_title}</span>
+							<button class="question text-center" id="que-${j}" onclick="openCloseAnswer(this.id)">
+								<span id="que-${j}-toggle">${itemList[Num].notice_title}</span>
+							</button>
+							<div class="answer" id="ans-${j}">▶ ${itemList[Num].notice_body}
+							<br> 관리자 답변 : ${itemList[Num].notice_body}
+							</div>
 						</div>
 						<div class="col-lg-2 text-center admincs_01_01listsection">
 							<a class="myCommentListUpdateBtn" href="${contextPath}/myPage_07_01.do">
@@ -138,6 +143,17 @@
 </div>
 
 <script>
+
+function openCloseAnswer(target) {
+    let answerId = target.replace('que', 'ans');
+    	    
+	    if(document.getElementById(answerId).style.display === 'block') {
+	      document.getElementById(answerId).style.display = 'none';
+	    } else {
+	      document.getElementById(answerId).style.display = 'block';
+	    }
+    
+  }  
 //페이지 이동 스크립트
 function pageMove(no) {
 	var getValue = 0;

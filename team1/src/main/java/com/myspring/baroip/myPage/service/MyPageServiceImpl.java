@@ -175,10 +175,21 @@ public class MyPageServiceImpl implements MyPageService {
 	
 //	상품 후기 리스트
 	@Override
-	public List<NoticeVO> commentList(String user_id) throws Exception {
-		List<NoticeVO> myCommentList = myPageDAO.commentList(user_id);
-
-		return myCommentList;
+	public Map<String, Object> commentList(String user_id) throws Exception {
+		List<Map<String, Object>> myCommentList = myPageDAO.commentList(user_id);
+		Map<String, Object> detail = new HashMap<String, Object>();
+		
+		for(int i=0; myCommentList.size() > i; i++) {
+			if(myCommentList.get(i).get("user_rank").equals("1") || myCommentList.get(i).get("user_rank").equals("0")) {
+				String product_title = myPageDAO.productQuestion((String) myCommentList.get(i).get("product_id"));
+				detail.put("product_title"+(i+1), product_title);
+				detail.put("question"+(i+1), myCommentList.get(i));
+			} else {
+//				답변
+				detail.put("answer"+(i+1), myCommentList.get(i));
+			}
+		}
+		return detail;
 	}
 	
 //	상품 후기 작성

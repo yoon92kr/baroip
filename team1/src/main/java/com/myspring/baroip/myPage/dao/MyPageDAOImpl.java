@@ -122,8 +122,8 @@ public class MyPageDAOImpl implements MyPageDAO {
 	
 //	상품 후기 리스트
 	@Override
-	public List<NoticeVO> commentList(String user_id) throws DataAccessException {
-		List<NoticeVO> myCommentList = sqlSession.selectList("mapper.myPage.selectMyCommentList", user_id);
+	public List<Map<String, Object>> commentList(String user_id) throws DataAccessException {
+		List<Map<String, Object>> myCommentList = sqlSession.selectList("mapper.myPage.selectMyCommentList", user_id);
 		
 		return myCommentList;
 	}

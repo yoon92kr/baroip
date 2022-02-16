@@ -20,7 +20,7 @@
 
 	</resultMap>
 	
-	<resultMap id="noticeUserResult" type="java.util.Map">
+	<resultMap id="myQuestionResult" type="java.util.Map">
 	
 		<result property="notice_id" column="notice_id" />
 		<result property="notice_title" column="notice_title" />
@@ -198,14 +198,14 @@
 	</select>
 	
 	<!-- 문의 내역 페이지 -->
-	<select id="questionDetail" resultMap="noticeUserResult" parameterType="String">
+	<select id="questionDetail" resultMap="myQuestionResult" parameterType="String">
 		<![CDATA[
 			select n.notice_id, n.notice_title, n.notice_body, n.notice_grade, n.product_id, n.user_id, u.user_rank from 
 			notice as n inner join user as u on n.user_id = u.user_id where notice_match_no=#{notice_id}
 			
 		]]>
 	</select>
-	
+	<!-- 문의 내역 상세 -->
 	<select id="PQADetail" resultType="ProductVO" parameterType="String">
 		<![CDATA[
 			select product_main_title from product where product_id=#{product_id}
@@ -240,9 +240,13 @@
 	</update>
 	
 	<!-- 상품후기 리스트 -->
-	<select id="selectMyCommentList" resultType="NoticeVO" parameterType="String">
+	<select id="selectMyCommentList" resultMap="myQuestionResult" parameterType="String">
 		<![CDATA[
-			select * from notice where user_id=#{user_id} and notice_category='comment'
+			select n.notice_id, n.notice_title, n.notice_body, n.notice_grade, n.product_id, n.user_id, u.user_rank 
+			from  notice as n 
+		    inner join user as u 
+		    on n.user_id = u.user_id 
+		    where notice_match_no = any(select notice_id from notice where user_id=#{user_id}) and notice_category = 'comment'
 		]]>
 	</select>
 	

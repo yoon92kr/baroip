@@ -56,6 +56,7 @@
 
 	<definition name="/myPage/myQuestion/QuestionDetail" extends="MyPageLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/myPage_06_01.jsp" />
+		<put-attribute name="side" value="" />
 	</definition>
 	
 	<definition name="/myPage/myQuestion/myUQAUpdate" extends="MyPageLayout">

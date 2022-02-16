@@ -52,7 +52,7 @@ public interface MyPageDAO {
 	public int questionUpdate(NoticeVO noticeVO) throws DataAccessException;
 	
 //	상품 후기 리스트
-	public List<NoticeVO> commentList(String user_id) throws DataAccessException;
+	public List<Map<String, Object>> commentList(String user_id) throws DataAccessException;
 	
 //	상품 후기 작성
 	public String insertComment(NoticeVO noticeVO) throws DataAccessException;
