@@ -88,6 +88,7 @@ public class NoticeControllerImpl implements NoticeController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 
 		noticeVO = noticeService.noticeDetail(notice_id);
+
 		ModelAndView mav = new ModelAndView();
 		String viewName = (String)request.getAttribute("viewName");
 		mav.addObject("noticeVO", noticeVO);

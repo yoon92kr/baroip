@@ -76,14 +76,14 @@
 
 
 	<div class="row">
-	<c:if test="${noticeVO.user_id eq userInfo.user_id or noticeVO.notice_private eq 0}">
+	<c:if test="${noticeVO.user_id eq userInfo.user_id}">
 		<div class="offset-lg-3 col-lg-2 text-center">
 			<div class="notice_back_btn">
 				<input onclick="update_notice()" class="user_btn_Bgreen" type="button" id="cs_02_02_update_btn" value="수정하기">
 			</div>
 		</div>	
 	</c:if>
-	<c:if test="${noticeVO.user_id ne userInfo.user_id and noticeVO.notice_private eq 1}">
+	<c:if test="${noticeVO.user_id ne userInfo.user_id}">
 	<div class="offset-lg-3 col-lg-2 text-center"></div>
 	</c:if>	
 
@@ -94,7 +94,7 @@
 				</a>
 			</div>
 		</div>
-	<c:if test="${noticeVO.user_id eq userInfo.user_id or noticeVO.notice_private eq 0}">
+	<c:if test="${noticeVO.user_id eq userInfo.user_id}">
 		<div class="col-lg-2 text-center">
 			<div class="notice_back_btn">
 			<input onclick="delete_notice()" class="user_btn_Dgray" type="button" id="cs_02_02_delete_btn" value="삭제">
@@ -102,7 +102,7 @@
 		</div>	
 	</c:if>
 	
-	<c:if test="${noticeVO.user_id ne userInfo.user_id and noticeVO.notice_private eq 1}">		
+	<c:if test="${noticeVO.user_id ne userInfo.user_id}">		
 		<div class="col-lg-2 text-center"></div>
 	</c:if>	
 

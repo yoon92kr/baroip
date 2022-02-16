@@ -260,7 +260,7 @@
 	<div class="row">
 		<div
 			class="col-lg-10 offset-lg-1 order_01-content-header order_01-content-04">
-			<h4 class="order_01-content-hedaer-text">결제 방법</h4>
+			<h4 class="order_01-content-hedaer-text">결제 방법 [가상계좌만 Test API로 구현되어 있습니다.]</h4>
 		</div>
 	</div>
 

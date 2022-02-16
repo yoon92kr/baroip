@@ -150,7 +150,7 @@ public class UserControllerImpl implements UserController{
 	public String emailCheck(@RequestParam("user_email") String user_email)throws Exception {
 		String subject = "바로입 이메일 인증";
 		String content = "";
-		String from = "baroipweb@gmail.com";
+		String from = "yoon92kr@baroip.shop";
 		String to = user_email;
 		int randomNumber = (int)((Math.random() * (9999 - 1000 * 1)) + 1000);
 		

@@ -91,7 +91,7 @@
 		<if test='option == "UQA"'>
 			select 
 				(select notice_body from notice where notice_match_no = #{notice_id} and notice_parent_no = 1) as review, 
-				notice_id, notice_title, notice_body, notice_type, notice_category
+				notice_id, notice_title, notice_body, notice_type, notice_category, user_id, notice_private
 			from notice 
 			where notice_match_no = #{notice_id} and notice_parent_no = 0
 		</if>
