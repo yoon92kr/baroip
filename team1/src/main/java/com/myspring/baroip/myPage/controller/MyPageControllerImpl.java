@@ -376,8 +376,13 @@ public class MyPageControllerImpl implements MyPageConroller{
 			String viewName = (String) request.getAttribute("viewName");
 			HttpSession session = request.getSession();
 			UserVO userVO = (UserVO) session.getAttribute("userInfo");
-			String user_id = userVO.getUser_id();
-			Map<String, Object> result = myPageService.questionDetail(notice_id, user_id);
+			String user_id = "";
+			if(userVO == null) {
+				user_id = "guest";
+			} else {
+				user_id = userVO.getUser_id();
+			}
+			Map<String, Object> result = myPageService.questionDetail(notice_id);
 			
 			mav.addObject("detail", result);
 			mav.setViewName(viewName);
@@ -411,10 +416,8 @@ public class MyPageControllerImpl implements MyPageConroller{
 			ModelAndView mav = new ModelAndView();
 			String viewName = (String) request.getAttribute("viewName");
 			HttpSession session = request.getSession();
-			UserVO userVO = (UserVO) session.getAttribute("userInfo");
-			String user_id = userVO.getUser_id();
 			
-			Map<String, Object> result = myPageService.questionDetail(notice_id, user_id);
+			Map<String, Object> result = myPageService.questionDetail(notice_id);
 			
 			mav.addObject("detail", result);
 			mav.setViewName(viewName);
@@ -452,6 +455,9 @@ public class MyPageControllerImpl implements MyPageConroller{
 			List<NoticeVO> myComments = myPageService.commentList(user_id);
 			List<Object> product = new ArrayList<Object>();
 
+			System.out.println("controller : " + user_id);
+			System.out.println("controller : " + myComments.get(0).getUser_id());
+			System.out.println("controller : " + myComments.get(0).getProduct_id());
 			for(int i=0; myComments.size() > i; i++) {
 				String product_id = myComments.get(i).getProduct_id();
 				Map<String, Map<String, Object>> productInfo = productService.productDetail(product_id);

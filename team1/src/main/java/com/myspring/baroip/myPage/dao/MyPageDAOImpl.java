@@ -90,8 +90,8 @@ public class MyPageDAOImpl implements MyPageDAO {
 	
 //	문의 내역 페이지
 	@Override
-	public List<NoticeVO> questionDetail(String notice_id) throws DataAccessException {
-		List<NoticeVO> result = sqlSession.selectList("mapper.myPage.questionDetail", notice_id);
+	public List<Map<String, Object>> questionDetail(String notice_id) throws DataAccessException {
+		List<Map<String, Object>> result = sqlSession.selectList("mapper.myPage.questionDetail", notice_id);
 		return result;
 	}
 	

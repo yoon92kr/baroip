@@ -40,7 +40,7 @@ public interface MyPageDAO {
 	public List<NoticeVO> questionList(String user_id) throws DataAccessException;
 	
 //	문의 내역 페이지
-	public List<NoticeVO> questionDetail(String notice_id) throws DataAccessException;
+	public List<Map<String, Object>> questionDetail(String notice_id) throws DataAccessException;
 	
 //	상품 문의 시 title 불러오기
 	public String productQuestion(String product_id) throws DataAccessException;
