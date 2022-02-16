@@ -144,16 +144,11 @@
     </div>
     
     <div class="container">
-    <div class="MyPage_02_01_button">
       <div class="row">
-    	<a href="#" onclick="submit_mypage_info_update()">
-    		<input type="button" class="MyPage_02_01_button_03 col-lg-12" value="수정하기">
-    	</a>
-    	
-    	<a href="myPage_01.do" class="col-lg-3 text-center MyPage_02_01_button_04">돌아가기</a>
+    	<a href="#" onclick="submit_mypage_info_update()" class="col-lg-offset-3 col-lg-3 col-lg-offset-1 MyPage_02_01_button_03 text-center">수정하기</a>
+	   	<a href="myInfo.do" class="col-lg-3 text-center MyPage_02_01_button_04">돌아가기</a>
     	<a href="dropOut_01.do" class="col-lg-3 text-center MyPage_02_01_button_05">탈퇴하기</a>
       </div>
-    </div>
     </div>
     </div>
 </div>
