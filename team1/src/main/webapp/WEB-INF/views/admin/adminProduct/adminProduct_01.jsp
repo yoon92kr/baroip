@@ -355,27 +355,34 @@
 		
 		let product_title = document.getElementById('admin_product_title'.concat(target_no)).innerText;
 		let product_id = document.getElementById('product_'.concat(target_no)).value;
-		var confirmFlag = confirm(product_title+"을(를) 정말 삭제하시겠습니까?")
-		if(confirmFlag){
-			
-			$.ajax({
-				type : "post",
-				async : false,
-				url : "${contextPath}/admin/product/delete_product.do",
-				dataType : "text",
-				data : {
-					"product_id" : product_id			
-				},
-				success : function(message) {
-					alert(product_title+" 상품이 정상적으로 삭제되었습니다.");
-			 		location.reload();
-				},
-				error : function() {
-					alert("해당 상품 삭제에 문제가 발생하였습니다.");
-				}
+		
+		if(${userInfo.user_rank > 2}) {
+			var confirmFlag = confirm(product_title+"을(를) 정말 삭제하시겠습니까?");
+			if(confirmFlag){
+				
+				$.ajax({
+					type : "post",
+					async : false,
+					url : "${contextPath}/admin/product/delete_product.do",
+					dataType : "text",
+					data : {
+						"product_id" : product_id			
+					},
+					success : function(message) {
+						alert(product_title+" 상품이 정상적으로 삭제되었습니다.");
+				 		location.reload();
+					},
+					error : function() {
+						alert("해당 상품 삭제에 문제가 발생하였습니다.");
+					}
 
-			});
+				});
+			}
 		}
+		else {
+			alert("임시상품을 삭제할 권한이 없습니다.");
+		}
+
 			
 
 	

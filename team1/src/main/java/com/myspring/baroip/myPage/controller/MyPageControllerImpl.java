@@ -475,7 +475,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 		
 //		상품 후기 작성 페이지
 		@RequestMapping(value = "/myComment/buyProductComment.do", method = { RequestMethod.POST, RequestMethod.GET })
-		public ModelAndView buyProductComment(@ModelAttribute("product_id") String product_id, HttpServletRequest request) throws Exception {
+		public ModelAndView buyProductComment(@ModelAttribute("product_id") String product_id, @ModelAttribute("order_id") String order_id,HttpServletRequest request) throws Exception {
 			ModelAndView mav = new ModelAndView();
 			String viewName = (String) request.getAttribute("viewName");
 			Map<String, Map<String, Object>>productInfo = productService.productDetail(product_id);
@@ -483,6 +483,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 			String product_main_title = product.getProduct_main_title();
 			
 			mav.addObject("product_id", product_id);
+			mav.addObject("order_id", order_id);
 			mav.addObject("product_main_title", product_main_title);
 			mav.setViewName(viewName);
 			return mav;
@@ -497,7 +498,8 @@ public class MyPageControllerImpl implements MyPageConroller{
 			noticeVO.setUser_id(userVO.getUser_id());
 
 			String notice_id = myPageService.addComment(noticeVO);
-			mav.setViewName("/myPage/myOrder");
+			session.setAttribute("message", "후기 등록이 완료되었습니다.");
+			mav.setViewName("redirect:/myPage/myOrder.do");
 			imageController.ImageSetImageVO(multipartRequest, notice_id);
 			
 			return mav;

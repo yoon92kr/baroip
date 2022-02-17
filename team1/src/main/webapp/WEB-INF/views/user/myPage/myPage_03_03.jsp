@@ -37,6 +37,7 @@
 			</div>
 			<div class="col-lg-4 cs_02_02_box02">
 			<input type="hidden" name="product_id" value="${product_id}">
+			<input type="hidden" name="order_id" value="${order_id}">
 				<span>${product_main_title}</span>
 			</div>
 		</div>
@@ -70,7 +71,7 @@
 				<span>사진 첨부</span>
 			</div>
 			<div class="col-lg-4 cs_02_02_box02">
-				<input class="form-control" type="file" name="comment" accept="image/*" id="formFileMultiple">
+				<input class="notice_upload_check form-control" type="file" name="comment" accept="image/*" id="formFileMultiple">
 			</div>
 		</div>
 	</form>
@@ -106,7 +107,7 @@
 		}
 		
 		if(!checkFlag) {
-			alert("제목과 내용은 반드시 입력해주셔야 합니다.");
+			alert("제목과 내용, 사진은 반드시 입력해주셔야 합니다.");
 		}
 		
 		if (checkFlag) {

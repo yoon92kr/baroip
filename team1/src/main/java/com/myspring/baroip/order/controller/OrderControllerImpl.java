@@ -213,7 +213,6 @@ public class OrderControllerImpl implements OrderController {
 	public void orderProduct(HttpServletRequest request, @ModelAttribute("orderVO") OrderVO orderVO, @RequestParam("order_product_list") List<String> order_product_list) throws Exception{
 		
 		HttpSession session = request.getSession();
-		
 		UserVO userVO = (UserVO)session.getAttribute("userInfo");
 		String order_id = orderVO.getOrder_id();
 		String user_id = orderVO.getUser_id();
@@ -240,7 +239,6 @@ public class OrderControllerImpl implements OrderController {
 				session.removeAttribute("userInfo");
 				session.setAttribute("userInfo", newUserInfo);
 			}
-			
 			orderService.updatePointToOrder(orderVO);
 		
 			for(int i = 0; order_product_list.size() > i; i++) {

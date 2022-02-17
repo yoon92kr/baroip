@@ -70,7 +70,23 @@
 
 	<!-- 옵션에 따른 주문 정보 조회 쿼리 -->
 	<select id="selectOrder" resultMap="orderResult" parameterType="java.util.Map">
-		select o.order_id, o.user_id, o.product_id, o.order_amount, o.order_delivery_id, o.order_date, o.order_state, p.product_price, p.product_discount, p.product_main_title from orders as o inner join product as p on o.product_id = p.product_id where o.user_id = #{user_id}
+		select 
+			o.order_id, 
+			o.user_id, 
+			o.product_id, 
+			o.order_amount, 
+			o.order_delivery_id,
+			o.order_date, 
+			o.order_state, 
+			p.product_price, 
+			p.product_discount, 
+			p.product_main_title,
+			n.notice_id 
+		from orders as o 
+		inner join product as p on o.product_id = p.product_id 
+		left outer join notice as n on o.order_id = n.order_id
+		where o.user_id = #{user_id}
+		
 		<if test="search_option != null and !search_option.equals('')">
 			<if test='search_option == "orderDate"'>
 				and o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
@@ -272,6 +288,7 @@
 								notice_grade, 
 								notice_match_no, 
 								product_id, 
+								order_id,
 								notice_parent_no)
 						values(#{notice_id}, 
 								#{user_id}, 
@@ -281,6 +298,7 @@
 								#{notice_grade}, 
 								#{notice_id}, 
 								#{product_id}, 
+								#{order_id},
 								'0')
 	</insert>
 	

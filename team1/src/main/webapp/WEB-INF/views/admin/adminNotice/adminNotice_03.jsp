@@ -47,17 +47,11 @@
 
 
 	<div class="row">
-		<div class="offset-lg-2 col-lg-4 text-left cs_01_subtitle">
+		<div class="offset-lg-3 col-lg-6 text-left cs_01_subtitle">
 			<h3>공지 수정</h3>
 		</div>
 	</div>
 
-
-	<div class="row">
-		<div class="offset-lg-2 col-lg-8 cs_02_02_row">
-			<hr>
-		</div>
-	</div>
 
 <form action="${contextPath}/admin/notice/update_notice.do" method="post"
 		id="admin_update_notice">

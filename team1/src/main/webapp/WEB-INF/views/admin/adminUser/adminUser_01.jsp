@@ -340,7 +340,7 @@ function update_user_form(target) {
 	let user_id = document.getElementById('user_id_'.concat(target_no)).innerText;
 	let user_rank = document.getElementById('rank_'.concat(target_no)).value;
 	
-	if(${userInfo.user_rank} >= user_rank) {
+	if(${userInfo.user_rank} >= user_rank && ${userInfo.user_rank} > 2) {
 		
 		if(user_rank == "4" && "${userInfo.user_id}" != user_id) {
 			alert("다른 총 책임자의 정보를 수정할 수 없습니다.");
