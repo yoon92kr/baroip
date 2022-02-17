@@ -459,22 +459,16 @@ public class MyPageControllerImpl implements MyPageConroller{
 			List<Map<String, Object>> myCommentAll = myPageService.commentList(user_id);
 			List<Object> myComments = new ArrayList<Object>();
 			List<Object> answer = new ArrayList<Object>();
-			Map<String, Map<String, Object>> productInfo = new HashMap<String, Map<String, Object>>();
-			List<Object> product = new ArrayList<Object>();
 			for(int i=0; myCommentAll.size() > i; i++) {
 				if(myCommentAll.get(i).get("user_rank").equals("1")) {
-					productInfo = productService.productDetail((String) myCommentAll.get(i).get("product_id"));
 					myComments.add(myCommentAll.get(i));
-					product.add(productInfo);
 				} else if (myCommentAll.get(i).get("user_rank") != "1") {
 					answer.add(myCommentAll.get(i));
 				}
 			}
 			
-
 			mav.addObject("answer", answer);
 			mav.addObject("myComments", myComments);
-			mav.addObject("product", product);
 			mav.setViewName(viewName);
 			return mav;
 		}

@@ -33,6 +33,7 @@
 		<result property="notice_parent_no" column="notice_parent_no" />
 		<result property="user_id" column="user_id" />
 		<result property="user_rank" column="user_rank" />
+		<result property="product_main_title" column="product_main_title" />
 		
 	</resultMap>
 
@@ -246,10 +247,12 @@
 				n.notice_body, n.notice_grade, 
 				n.product_id, n.user_id, 
 				n.notice_match_no, u.user_rank, 
-				n.notice_cre_date
+				n.notice_cre_date, p.product_main_title
 			from  notice as n 
 			    inner join user as u 
 			    on n.user_id = u.user_id 
+			    inner join product as p
+                on n.product_id = p.product_id
 			    where notice_match_no = any(select notice_id from notice where user_id=#{user_id}) 
 			    	and notice_category = 'comment' 
 			    	order by notice_match_no asc, notice_parent_no asc

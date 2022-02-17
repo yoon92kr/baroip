@@ -88,7 +88,7 @@
 						</div>
 						<div class="col-lg-2 text-center admincs_01listsection">
 							<p class="cs">
-								<a href="${contextPath}/product/productDetail.do?product_id=${product[Num].product.productVO.product_id}">${product[Num].product.productVO.product_main_title}</a>
+								<a href="${contextPath}/product/productDetail.do?product_id=${itemList[Num].product_id}">${itemList[Num].product_main_title}</a>
 						</div>
 						<div class="col-lg-2 text-center admincs_01listsection">
 							<button class="question text-center" id="que-${j}" onclick="openCloseAnswer(this.id)">
@@ -97,7 +97,7 @@
 							<div class="answer" id="ans-${j}">▶ ${itemList[Num].notice_body}
 								<c:forEach var="a" begin="0" end="${answer.size()}">
 									<c:if test="${answer[a].notice_match_no == itemList[Num].notice_id}">
-										<br>└ RE : ${answer[Num].notice_body}
+										<br>└ Re : ${answer[a].notice_body}
 									</c:if>
 								</c:forEach>
 							</div>
