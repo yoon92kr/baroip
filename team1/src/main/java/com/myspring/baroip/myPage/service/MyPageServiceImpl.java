@@ -188,5 +188,33 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		return notice_id;
 	}
+	
+//	상품 후기 삭제
+	@Override
+	public int commentDelete(String notice_id) throws Exception {
+		int result = myPageDAO.deleteComment(notice_id);
+		return result;
+	}
+	
+//	상품 후기 수정
+	public Map<String, Object> commentUpdatePage(String notice_id) throws Exception {
+		Map<String, Object> result = myPageDAO.updateCommentPage(notice_id);
+		
+		return result;
+	}
+	
+//	상품 후기 수정
+	public String commentUpdate(NoticeVO noticeVO) throws Exception {
+		int result = myPageDAO.updateMyComment(noticeVO);
+		String message = "";
+		
+		if(result == 1) {
+			message = "후기 수정이 완료되었습니다.";
+		} else {
+			message = "후기 수정 실패";
+		}
+		
+		return message;
+	}
 
 }

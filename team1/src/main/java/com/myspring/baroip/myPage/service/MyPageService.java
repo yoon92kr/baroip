@@ -48,5 +48,14 @@ public interface MyPageService {
 	
 //	상품 후기 작성
 	public String addComment(NoticeVO noticeVO) throws Exception;
+	
+//	상품 후기 삭제
+	public int commentDelete(String notice_id) throws Exception;
+	
+//	상품 후기 수정 페이지
+	public Map<String, Object> commentUpdatePage(String notice_id) throws Exception;
+	
+//	상품 후기 수정
+	public String commentUpdate(NoticeVO noticeVO) throws Exception;
 
 }

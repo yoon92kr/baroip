@@ -6,6 +6,30 @@
 	color: #000;
 }
 
+.myPage_myCommentList_btn_gray {
+	font-family: "kopub_bold";
+	width: 60px;
+	height: 30px;
+	font-size: 14px;
+	border: none;
+	background: #7f7f7f;
+	color: #fff;
+}
+
+.myPage_myCommentList_btn_green {
+	width: 60px;
+	height: 30px;
+	font-size: 14px;
+	border: none;
+	background: #456B2B;
+	color: #fff;
+	margin-bottom: 5px;
+}
+
+.questionList {
+	line-height: none;
+}
+
 .myCommentListUpdateBtn {
 	font-family: "kopub_bold";
 	width: 60px;
@@ -15,17 +39,6 @@
 	background: #456B2B;
 	color: #fff;
 }
-
-.myCommentListDeleteBtn {
-	font-family: "kopub_bold";
-	width: 60px;
-	height: 40px;
-	font-size: 14px;
-	border: none;
-	background: #7f7f7f;
-	color: #fff;
-}
-
 
 .main_cartImage {
 	outline: none;

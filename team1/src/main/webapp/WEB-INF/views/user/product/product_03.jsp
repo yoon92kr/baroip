@@ -104,7 +104,7 @@
 					</div>
 					<div class="col-lg-3 text-center notice_01_section">
 						<div class="faq-content">
-							<button class="question text-center" id="que-${j}" onclick="openCloseAnswer(this.id)">
+							<button class="question text-center questionList" id="que-${j}" onclick="openCloseAnswer(this.id)">
 								<span id="que-${j}-toggle" class="cs_01-que-tollge">${itemList[j-1].notice_title}</span>
 							</button>
 							<div class="answer" id="ans-${j}">▶ ${itemList[j-1].notice_body}

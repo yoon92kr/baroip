@@ -55,7 +55,18 @@ public interface MyPageConroller {
 	
 //	상품 후기 리스트
 	public ModelAndView myComment(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception;
+	
+//	상품후기 작성
+	public ModelAndView commentAdd(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest) throws Exception;
+	
+//	상품 후기 삭제
+	public ModelAndView myCommentDelete(@ModelAttribute("notice_id") String notice_id, HttpServletRequest request) throws Exception;
+	
+//	상품후기 수정 페이지
+	public ModelAndView myCommentUpdate(@ModelAttribute("notice_id") String notice_id, HttpServletRequest request) throws Exception;
 
+//	상품후기 수정
+	public ModelAndView commentUpdate(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest) throws Exception;
 }
 
 

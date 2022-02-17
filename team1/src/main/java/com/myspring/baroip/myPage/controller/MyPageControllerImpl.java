@@ -490,6 +490,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 		}
 		
 //		상품후기 작성
+		@Override
 		@RequestMapping(value = "/myComment/commentAdd.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView commentAdd(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest) throws Exception {
 			ModelAndView mav = new ModelAndView();
@@ -502,6 +503,51 @@ public class MyPageControllerImpl implements MyPageConroller{
 			mav.setViewName("redirect:/myPage/myOrder.do");
 			imageController.ImageSetImageVO(multipartRequest, notice_id);
 			
+			return mav;
+		}
+		
+//		상품후기 삭제
+		@Override
+		@RequestMapping(value = "/myComment/myCommentDelete.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView myCommentDelete(@ModelAttribute("notice_id") String notice_id, HttpServletRequest request) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			int result = myPageService.commentDelete(notice_id);
+			String message = "";
+			if(result == 1) {
+				message = "후기가 삭제되었습니다.";
+			}
+			
+			session.setAttribute("message", message);
+			mav.setViewName("redirect:/myPage/myComment.do");
+			return mav;
+		}
+		
+//		상품후기 수정 페이지
+		@Override
+		@RequestMapping(value = "/myComment/myCommentUpdate.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView myCommentUpdate(@ModelAttribute("notice_id") String notice_id, HttpServletRequest request) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			Map<String, Object> myComment = myPageService.commentUpdatePage(notice_id);
+			String viewName = (String) request.getAttribute("viewName");
+			
+			mav.setViewName(viewName);
+			mav.addObject("myComment", myComment);
+			return mav;
+		}
+		
+//		상품후기 수정
+		@Override
+		@RequestMapping(value = "/myComment/commentUpdate.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public ModelAndView commentUpdate(@ModelAttribute("noticeVO") NoticeVO noticeVO, MultipartHttpServletRequest multipartRequest) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = multipartRequest.getSession();
+			String message = myPageService.commentUpdate(noticeVO);
+			String notice_id = (String) noticeVO.getNotice_id();
+			
+			session.setAttribute("message", message);
+			mav.setViewName("redirect:/myPage/myComment.do");
+			imageController.ImageSetImageVO(multipartRequest, notice_id);
 			return mav;
 		}
 		

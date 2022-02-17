@@ -91,7 +91,7 @@
 								<a href="${contextPath}/product/productDetail.do?product_id=${itemList[Num].product_id}">${itemList[Num].product_main_title}</a>
 						</div>
 						<div class="col-lg-2 text-center admincs_01listsection">
-							<button class="question text-center" id="que-${j}" onclick="openCloseAnswer(this.id)">
+							<button class="question text-center questionList" id="que-${j}" onclick="openCloseAnswer(this.id)">
 								<span id="que-${j}-toggle">${itemList[Num].notice_title}</span>
 							</button>
 							<div class="answer" id="ans-${j}">▶ ${itemList[Num].notice_body}
@@ -103,19 +103,17 @@
 							</div>
 						</div>
 						<div class="col-lg-2 text-center admincs_01_01listsection">
-							<a class="myCommentListUpdateBtn" href="${contextPath}/myPage_07_01.do">
-								<input type="button" value="수정하기">
-							</a> 
+							<input id="update-${itemList[Num].notice_id}" class="myPage_myCommentList_btn_green" type="button" value="수정하기" onclick="deleteAndUpdateBtn(this);">
 							<br> 
-							<a class="myCommentListDeleteBtn" href="#">
-								<input type="button" value="삭제하기">
-							</a>
+							<input id="delete-${itemList[Num].notice_id}" class="myPage_myCommentList_btn_gray" type="button" value="삭제하기" onclick="deleteAndUpdateBtn(this);">
 						</div>
-					</div>
+ 					</div>
 				</c:if>
 			</c:forEach>
 		</c:when>
 	</c:choose>
+	<form id="myComment_delete_update">
+	</form>
 	
 	<c:if test="${itemSize > pageNoMax}">
 
@@ -147,6 +145,30 @@
 </div>
 
 <script>
+function deleteAndUpdateBtn(target) {
+	let notice_id = target.id.split("-");
+	let form = document.getElementById("myComment_delete_update");
+	let input = document.createElement("input");
+	
+	input.setAttribute("type", "hidden");
+	input.setAttribute("name", "notice_id");
+	input.setAttribute("value", notice_id[1]);
+	
+	form.method = "GET";
+	form.appendChild(input);
+	
+	if(notice_id[0] == "update") {
+		form.action = "${contextPath}/myPage/myComment/myCommentUpdate.do";
+		form.submit();
+	}
+	if(notice_id[0] == "delete") {
+		let commentDelete = confirm("해당 후기를 삭제하시겠습니까?");
+		if(commentDelete == true) {
+			form.action = "${contextPath}/myPage/myComment/myCommentDelete.do";
+			form.submit();
+		}
+	}
+}
 
 function openCloseAnswer(target) {
     let answerId = target.replace('que', 'ans');

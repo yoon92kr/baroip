@@ -307,5 +307,44 @@
 			select count_no from sequences where sequence_name='notice'
 		]]>
 	</select>
+	
+	<!-- delete 
+				from notice as n
+				inner join image as i 
+				on n.notice_id = i.image_match_no
+				where notice_match_no=#{notice_id} -->
+	<!-- 상품후기 삭제 -->
+	<delete id="myCommentDelete" parameterType="String">
+		<![CDATA[
+			delete from notice where notice_match_no = #{notice_id}	
+		]]>
+	</delete>
+	
+	<!-- 상품후기 수정 페이지 -->
+	<select id="myCommentUpdatePage" resultType="java.util.Map" parameterType="String">
+		<![CDATA[
+			select n.notice_id, n.notice_title, 
+				n.notice_body, p.product_main_title, 
+				i.image_file
+			from notice n 
+			inner join product p
+			on n.product_id=p.product_id 
+			inner join image i
+			on n.notice_id=i.image_match_id
+			where n.notice_id=#{notice_id}
+		]]>
+	</select>
+	
+	<!-- 상품후기 수정 -->
+	<update id="myCommentUpdate" parameterType="NoticeVO">
+		<![CDATA[
+			update notice set
+					notice_type = #{notice_type},
+					notice_grade = #{notice_grade},
+					notice_title = #{notice_title},
+					notice_body = #{notice_body}
+				where notice_id = #{notice_id}
+		]]>
+	</update>
 		
 </mapper>

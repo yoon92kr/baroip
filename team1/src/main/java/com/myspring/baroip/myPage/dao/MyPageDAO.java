@@ -57,4 +57,13 @@ public interface MyPageDAO {
 //	상품 후기 작성
 	public String insertComment(NoticeVO noticeVO) throws DataAccessException;
 	
+//	상품 후기 삭제
+	public int deleteComment(String notice_id) throws DataAccessException;
+	
+//	상품후기 수정 페이지
+	public Map<String, Object> updateCommentPage(String notice_id) throws DataAccessException;
+	
+//	상품후기 수정
+	public int updateMyComment(NoticeVO noticeVO) throws DataAccessException;
+	
 }

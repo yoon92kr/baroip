@@ -137,4 +137,29 @@ public class MyPageDAOImpl implements MyPageDAO {
 		
 		return notice_id;
 	}
+	
+//	상품 후기 삭제
+	@Override
+	public int deleteComment(String notice_id) throws DataAccessException {
+		int result = sqlSession.delete("mapper.myPage.myCommentDelete", notice_id);
+		return result;
+	}
+	
+//	상품후기 수정 페이지
+	@Override
+	public Map<String, Object> updateCommentPage(String notice_id) throws DataAccessException {
+		Map<String, Object> result = sqlSession.selectOne("mapper.myPage.myCommentUpdatePage", notice_id);
+		
+		return result;
+	}
+	
+//	상품후기 수정
+	@Override
+	public int updateMyComment(NoticeVO noticeVO) throws DataAccessException {
+		int result = sqlSession.update("mapper.myPage.myCommentUpdate", noticeVO);
+		
+		return result;
+	}
+	
+	
 }
