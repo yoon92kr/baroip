@@ -91,7 +91,7 @@
 								<a href="${contextPath}/product/productDetail.do?product_id=${itemList[Num].product_id}">${itemList[Num].product_main_title}</a>
 						</div>
 						<div class="col-lg-2 text-center admincs_01listsection">
-							<button class="question text-center questionList" id="que-${j}" onclick="openCloseAnswer(this.id)">
+							<button class="question_07 text-center questionList" id="que-${j}" onclick="openCloseAnswer(this.id)">
 								<span id="que-${j}-toggle">${itemList[Num].notice_title}</span>
 							</button>
 							<div class="answer" id="ans-${j}">▶ ${itemList[Num].notice_body}
