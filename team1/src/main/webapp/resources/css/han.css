@@ -259,6 +259,12 @@
 	text-align: center;
 	display: block;
 	margin-top: 200px;
+	color: #fff;
+	font-size: 25px;
+}
+
+.login_03-bottom-btn:hover > a {
+	color: #fff;
 }
 
 .login_03-login-page-btn, .join_01-next {
