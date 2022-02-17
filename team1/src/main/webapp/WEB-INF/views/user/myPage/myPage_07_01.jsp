@@ -22,7 +22,7 @@
 			<h3>상품 후기</h3>
 		</div>
 	</div>
-	<form id="notice_update_form">
+	<form id="notice_update_form" method="post" enctype="multipart/form-data">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-2 text-center notice_02_box01">
 				<span>제목</span>
