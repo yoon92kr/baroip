@@ -242,11 +242,17 @@
 	<!-- 상품후기 리스트 -->
 	<select id="selectMyCommentList" resultMap="myQuestionResult" parameterType="String">
 		<![CDATA[
-			select n.notice_id, n.notice_title, n.notice_body, n.notice_grade, n.product_id, n.user_id, u.user_rank 
+			select n.notice_id, n.notice_title, 
+				n.notice_body, n.notice_grade, 
+				n.product_id, n.user_id, 
+				n.notice_match_no, u.user_rank, 
+				n.notice_cre_date
 			from  notice as n 
-		    inner join user as u 
-		    on n.user_id = u.user_id 
-		    where notice_match_no = any(select notice_id from notice where user_id=#{user_id}) and notice_category = 'comment'
+			    inner join user as u 
+			    on n.user_id = u.user_id 
+			    where notice_match_no = any(select notice_id from notice where user_id=#{user_id}) 
+			    	and notice_category = 'comment' 
+			    	order by notice_match_no asc, notice_parent_no asc
 		]]>
 	</select>
 	

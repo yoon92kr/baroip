@@ -95,7 +95,11 @@
 								<span id="que-${j}-toggle">${itemList[Num].notice_title}</span>
 							</button>
 							<div class="answer" id="ans-${j}">▶ ${itemList[Num].notice_body}
-							<br> 관리자 답변 : ${itemList[Num].notice_body}
+								<c:forEach var="a" begin="0" end="${answer.size()}">
+									<c:if test="${answer[a].notice_match_no == itemList[Num].notice_id}">
+										<br>└ RE : ${answer[Num].notice_body}
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="col-lg-2 text-center admincs_01_01listsection">
