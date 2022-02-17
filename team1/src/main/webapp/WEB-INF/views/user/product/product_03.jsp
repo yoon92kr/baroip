@@ -11,9 +11,9 @@
 <!-- pageNoMax에는 화면에 표시할 item의 최대 갯수를 대입한다. -->
 <c:set var="pageNoMax" value="4" />
 <!-- itemSize에는 표시할 item의 size를 대입한다. -->
-<c:set var="itemSize" value="${commentList.size()}" />
+<c:set var="itemSize" value="${productComment.size()}" />
 <!-- itemList에는 java에서 바인딩한 Map 객체를 대입한다. -->
-<c:set var="itemList" value="${commentList}" />
+<c:set var="itemList" value="${productComment}" />
 <c:if test='${not empty pageNo}'>
 	<script>
 	
@@ -107,7 +107,13 @@
 							<button class="question text-center" id="que-${j}" onclick="openCloseAnswer(this.id)">
 								<span id="que-${j}-toggle" class="cs_01-que-tollge">${itemList[j-1].notice_title}</span>
 							</button>
-							<div class="answer" id="ans-${j}">▶ ${itemList[j-1].notice_body}</div>
+							<div class="answer" id="ans-${j}">▶ ${itemList[j-1].notice_body}
+								<c:forEach var="a" begin="0" end="${answer.size()}">
+									<c:if test="${answer[a].notice_match_no == itemList[j-1].notice_id}">
+										<br>└ Re : ${answer[a].notice_body}
+									</c:if>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-1 text-center notice_01_section">

@@ -38,16 +38,18 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<Map<String, Object>> productComment(String product_id) throws Exception {
 
 		List<Map<String, Object>> productCommentList = noticeDAO.selectCommentList(product_id);
-		String encodeImage = "";
+		String encodeImage;
 
 		for (int i = 0; productCommentList.size() > i; i++) {
-			
-			byte[] image = (byte[]) productCommentList.get(i).get("image_file");
+			if(productCommentList.get(i).get("image_file") != null) {
+				byte[] image = (byte[]) productCommentList.get(i).get("image_file");
 
-			encodeImage = Base64.getEncoder().encodeToString(image);
-			productCommentList.get(i).remove("image_file");
-			productCommentList.get(i).put("image_file", encodeImage);
-			
+				encodeImage = Base64.getEncoder().encodeToString(image);
+				productCommentList.get(i).remove("image_file");
+				productCommentList.get(i).put("image_file", encodeImage);
+			} else {
+				encodeImage = "";
+			}
 		}
 
 		return productCommentList;

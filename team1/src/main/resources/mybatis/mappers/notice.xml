@@ -27,11 +27,18 @@
 
 	<select id="selectProductComment" resultMap="noticeResult" parameterType="String">
 		<![CDATA[
-			select n.notice_id, n.user_id, n.notice_title, n.notice_body, n.notice_cre_date, n.notice_grade, i.image_file 
-			from notice as n inner join image as i 
-			on n.notice_id = i.image_match_id 
-			where notice_category = 'comment' and n.product_id = #{product_id} 
-			order by n.notice_cre_date asc
+			select n.notice_id, n.user_id, 
+	n.notice_title, n.notice_body, 
+    n.notice_cre_date, n.notice_grade, 
+    u.user_rank, i.image_file, 
+    n.notice_match_no 
+from notice as n
+	inner join user as u
+    on n.user_id = u.user_id
+	left outer join image as i 
+	on n.notice_id = i.image_match_id 
+	where notice_category = 'comment' and n.product_id = #{product_id}
+	order by n.notice_cre_date asc
 		]]>
 	</select>
 

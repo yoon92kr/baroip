@@ -3,6 +3,7 @@
 package com.myspring.baroip.notice.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -109,6 +110,15 @@ public class NoticeControllerImpl implements NoticeController {
 		
 		List<Map<String, Object>> commentList = noticeService.productComment(product_id);
 		Map<String, Map<String, Object>> productImg = productService.productDetail(product_id);
+		List<Object> productComment = new ArrayList<Object>();
+		List<Object> answer = new ArrayList<Object>();
+		for(int i=0; commentList.size() > i; i++) {
+			if(commentList.get(i).get("user_rank").equals("1") || commentList.get(i).get("user_rank").equals("0")) {
+				productComment.add(commentList.get(i));
+			} else {
+				answer.add(commentList.get(i));
+			}
+		}
 		
 		if (pageNo != null && pageNo != "") {
 			int lastNo = (commentList.size()+3)/4;
@@ -127,7 +137,8 @@ public class NoticeControllerImpl implements NoticeController {
 			mav.setViewName(viewName);
 		}
 
-		mav.addObject("commentList", commentList);
+		mav.addObject("answer", answer);
+		mav.addObject("productComment", productComment);
 		mav.addObject("product_id", product_id);
 		mav.addObject("productInfo", productImg);
 		
