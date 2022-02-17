@@ -36,6 +36,7 @@
 				<span>상품명</span>
 			</div>
 			<div class="col-lg-4 cs_02_02_box02">
+			<input type="hidden" name="product_id" value="${product_id}">
 				<span>${product_main_title}</span>
 			</div>
 		</div>

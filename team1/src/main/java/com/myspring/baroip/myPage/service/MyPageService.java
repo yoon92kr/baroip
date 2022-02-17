@@ -44,7 +44,7 @@ public interface MyPageService {
 	public String updateQuestion(NoticeVO noticeVO) throws Exception;
 	
 //	상품 후기 리스트
-	public Map<String, Object> commentList(String user_id) throws Exception;
+	public List<Map<String, Object>> commentList(String user_id) throws Exception;
 	
 //	상품 후기 작성
 	public String addComment(NoticeVO noticeVO) throws Exception;

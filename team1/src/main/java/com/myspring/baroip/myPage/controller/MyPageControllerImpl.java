@@ -369,7 +369,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 		
 //		문의 상세 페이지
 		@Override
-		@RequestMapping(value = "/myQuestion/QuestionDetail.do", method = { RequestMethod.POST, RequestMethod.GET })
+		@RequestMapping(value = {"/myQuestion/QuestionDetail.do", "/productQuestion/QuestionDetail.do"}, method = { RequestMethod.POST, RequestMethod.GET })
 		public ModelAndView QuestionDetail(@RequestParam("notice_id") String notice_id, HttpServletRequest request) throws Exception {
 			
 			ModelAndView mav = new ModelAndView();
@@ -382,8 +382,13 @@ public class MyPageControllerImpl implements MyPageConroller{
 			} else {
 				user_id = userVO.getUser_id();
 			}
+			String message = "";
+			if(viewName.equals("/myPage/myQuestion/QuestionDetail")) {
+				message = "myQuestion";
+			}
 			Map<String, Object> result = myPageService.questionDetail(notice_id);
 			
+			mav.addObject("message", message);
 			mav.addObject("detail", result);
 			mav.setViewName(viewName);
 			return mav;
@@ -451,10 +456,20 @@ public class MyPageControllerImpl implements MyPageConroller{
 			
 			UserVO userVO = (UserVO) session.getAttribute("userInfo");
 			String user_id = userVO.getUser_id();
+			List<Map<String, Object>> myCommentAll = myPageService.commentList(user_id);
+			List<Object> myComments = new ArrayList<Object>();
+			List<Object> answer = new ArrayList<Object>();
+			for(int i=0; myCommentAll.size() > i; i++) {
+				if(myCommentAll.get(i).get("user_rank").equals("1")) {
+					myComments.add(myCommentAll.get(i));
+				} else if (myCommentAll.get(i).get("user_rank") != "1") {
+					answer.add(myCommentAll.get(i));
+				}
+			}
 			
-			Map<String, Object> myComments = myPageService.commentList(user_id);
 			List<Object> product = new ArrayList<Object>();
 
+			mav.addObject("answer", answer);
 			mav.addObject("myComments", myComments);
 			mav.addObject("product", product);
 			mav.setViewName(viewName);
@@ -470,6 +485,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 			ProductVO product = (ProductVO) productInfo.get("product").get("productVO");
 			String product_main_title = product.getProduct_main_title();
 			
+			mav.addObject("product_id", product_id);
 			mav.addObject("product_main_title", product_main_title);
 			mav.setViewName(viewName);
 			return mav;
@@ -484,7 +500,7 @@ public class MyPageControllerImpl implements MyPageConroller{
 			noticeVO.setUser_id(userVO.getUser_id());
 
 			String notice_id = myPageService.addComment(noticeVO);
-			mav.setViewName("redirect:myPage/myOrder.do");
+			mav.setViewName("/myPage/myOrder");
 			imageController.ImageSetImageVO(multipartRequest, notice_id);
 			
 			return mav;

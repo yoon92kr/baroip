@@ -8,7 +8,15 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <div class="container-fluid">
-
+	
+	<c:if test="${message == 'myQuestion'}">
+		<div class="row">
+			<div class="col-lg-4 offset-lg-4 text-center">
+				<h1 class="page_title">마이페이지</h1>
+			</div>
+		</div>
+	</c:if>
+	
 	<div class="row">
 		<div class="offset-lg-2 col-lg-8 text-left cs_01_subtitle">
 			<h3>문의 내역</h3>
