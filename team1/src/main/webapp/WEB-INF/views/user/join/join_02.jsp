@@ -80,10 +80,10 @@
 			</div>
 			<div class="col-lg-7 join_02-main-right">
 				<input id="join_02_email" class="join_02-text-box" type="email" name="user_email">
-				<input class="join_02-submit-box" type="button" value="이메일 인증번호 전송" onclick="checkEmail();">
+			<%-- 	<input class="join_02-submit-box" type="button" value="이메일 인증번호 전송" onclick="checkEmail();"> --%>
 			</div>
 		</div>
-		
+	<%-- 
 		<div class="row">
 			<div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
 				이메일 인증
@@ -94,7 +94,7 @@
 				<input class="join_02-submit-box" type="button" value="이메일 인증 확인" onclick="checkEmailNum();">
 			</div>
 		</div>
-
+--%>
 		<div class="row">
 			<div class="col-lg-1 offset-lg-2 text-center join_02-main-left">
 				생년월일
@@ -265,8 +265,8 @@
 		let detailAddr = document.getElementById("user_detail_address");
 		let user_MobileNumber = document.getElementById("mobileNumber");
 		let mobileRandomNumber = document.getElementById("mobileCheckNumber");
-		let user_emailNumber = document.getElementById("join_02_emailCheck");
-		let emailRandomNumber = document.getElementById("join_02_emailCheckNum");
+		// let user_emailNumber = document.getElementById("join_02_emailCheck");
+		// let emailRandomNumber = document.getElementById("join_02_emailCheckNum");
 		
 		let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
 		
@@ -306,7 +306,8 @@
 			alert("핸드폰 인증을 해주세요.");
 			user_MobileNumber.focus();
 			return false;
-		} else if(emailRandomNumber.value == "") {
+		}
+<%--		else if(emailRandomNumber.value == "") {
 			alert("이메일 인증을 해주세요.");
 			user_emailNumber.focus();
 			return false;
@@ -314,7 +315,8 @@
 			alert("이메일 인증을 확인해주세요.");
 			user_emailNumber.focus();
 			return false;
-		} else if(postCode.value == "") {
+		} --%>
+		else if(postCode.value == "") {
 			alert("주소를 입력해주세요.");
 			postCode.focus();
 			return false;
@@ -442,11 +444,10 @@
 	
 	/* 모바일 인증번호 확인 */
 	function checkMobile() {
-		
+
 		let user_number = document.getElementById("mobileNumber");
 		let randomNumber = document.getElementById("mobileCheckNumber");
-		
-		if(user_number.value == randomNumber.value) {
+		if(user_number.value != null && user_number.value != "" && user_number.value == randomNumber.value) {
 			alert("인증이 완료되었습니다.");
 		} else {
 			alert("인증번호가 맞지 않습니다.");

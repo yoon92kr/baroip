@@ -168,7 +168,8 @@
         	<fmt:formatNumber value="${(itemList[j].product_price - itemList[j].product_discount) * itemList[j].order_amount}" /> 원
         </div>
         <div class="col-lg-2 text-center admin_order_content_info">
-        	${itemList[j].order_date}
+        <fmt:formatDate value="${itemList[j].order_date}" pattern="yyyy-MM-dd" />
+        	
         </div>
       
         <div class="col-lg-2 text-center admin_order_content_info">

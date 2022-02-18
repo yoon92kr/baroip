@@ -137,10 +137,10 @@
 			n.notice_id, n.notice_type, n.notice_body, n.notice_title,
 			i.image_file
 		from orders as o inner join notice as n on o.order_id = n.order_id 
-			inner join image as i on o.product_id = i.image_match_id
+			inner join image as i on n.notice_id = i.image_match_id
 		where
 			n.order_id like concat(#{order_id}, '_', '%')
-			and i.image_category = 'main'
+			and i.image_category = 'refund'
 
 	</select>
 	
