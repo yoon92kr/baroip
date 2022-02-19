@@ -70,7 +70,7 @@
     			</c:if>     			  			
         		<a href="${contextPath}/myPage/myOrder.do" class="col-lg-3 text-center">${orderCount} 건</a>
         		<a href="${contextPath}/cart/cartList.do" class="col-lg-3 text-center">${cartCount} 건</a>
-        		<a href="#" class="col-lg-3 text-center"><fmt:formatNumber value="${userInfo.user_point}" /> 원</a>
+        		<a href="${contextPath}/myPage/membership.do" class="col-lg-3 text-center"><fmt:formatNumber value="${userInfo.user_point}" /> 원</a>
     		</div>
     		
     		

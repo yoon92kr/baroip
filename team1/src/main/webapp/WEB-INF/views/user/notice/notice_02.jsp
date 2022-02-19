@@ -62,7 +62,7 @@
     <div class="offset-lg-5 col-lg-2 text-right">
 				<div class="notice_back_btn">
 					
-					<a href="${contextPath}/notice/notice_list.do">
+					<a onclick="history.go(-1);">
 						<input type="button" class="admin_btn_gray" value="돌아가기">	
 					</a>
 				</div>

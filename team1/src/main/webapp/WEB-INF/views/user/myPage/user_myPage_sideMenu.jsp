@@ -17,10 +17,10 @@
 			<a id="updateMyInfo" href="${contextPath}/myPage/updateMyInfo.do"  class="no-underline">회원정보 수정</a>
 			<a id="myOrder" href="${contextPath}/myPage/myOrder.do"  class="no-underline">주문/배송조회</a>
 			<a href="${contextPath}/cart/cartList.do"  class="no-underline">장바구니</a>
-			<a id="myPoint" href="${contextPath}/myPage/myPoint.do"  class="no-underline">포인트 내역</a>
+			<%--<a id="myPoint" href="${contextPath}/myPage/myPoint.do"  class="no-underline">포인트 내역</a> --%>
 			<a id="membership" href="${contextPath}/myPage/membership.do"  class="no-underline">회원등급 안내</a>
-			<a href="${contextPath}/myPage/myQuestion.do"  class="no-underline">문의내역</a>
-			<a href="${contextPath}/myPage/myComment.do"  class="no-underline">상품후기</a>
+			<a id="myQuestion" href="${contextPath}/myPage/myQuestion.do"  class="no-underline">문의내역</a>
+			<a id="myComment" href="${contextPath}/myPage/myComment.do"  class="no-underline">상품후기</a>
 	
 			</div>
 		</div>
@@ -44,7 +44,13 @@
 		}
 		else if('${viewName}'.indexOf('updateMyInfo') != -1) {
 			document.getElementById("updateMyInfo").style.fontFamily = "kopub_bold";
-		}		
+		}
+		else if('${viewName}'.indexOf('myQuestion') != -1) {
+			document.getElementById("myQuestion").style.fontFamily = "kopub_bold";
+		}	
+		else if('${viewName}'.indexOf('myComment') != -1) {
+			document.getElementById("myComment").style.fontFamily = "kopub_bold";
+		}	
 								
 	});
 </script>

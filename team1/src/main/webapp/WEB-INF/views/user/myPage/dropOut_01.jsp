@@ -36,7 +36,7 @@
     
     <div class="row">
         <div class="col-lg-2 DropOut_01_02_text">문구 입력</div>
-        <input class="col-lg-offset-1 col-lg-7 DropOut_01_04_text MyPage_02_password_box" style="margin-left:40px" type="text">
+        <input class="col-lg-offset-1 col-lg-7 DropOut_01_04_text MyPage_02_password_box" id="message" style="margin-left:40px" type="text">
     </div>
 
 
@@ -48,7 +48,45 @@
 
     <div class="container">
     <div class="row">
-    	<a href="myPage_01.do" class="col-lg-offset-2 col-lg-3 col-lg-offset-1 text-center DropOut_01_button">돌아가기</a>
-    	<a href="dropOut_02.do" class="col-lg-3 text-center DropOut_01_button_02">탈퇴하기</a>
+    	<a href="${contextPath}/myInfo.do" class="col-lg-offset-2 col-lg-3 col-lg-offset-1 text-center DropOut_01_button">돌아가기</a>
+    	<a onclick="dropOut()" class="col-lg-3 text-center DropOut_01_button_02" style="color:#fff">탈퇴하기</a>
     </div>
     </div>
+    
+    <script>
+    
+    function dropOut() {
+    	let message = document.getElementById("message").value;
+    	
+    	if(message == "유의사항을 확인하였습니다") {
+    		
+    		let submitFlag = false;
+    		
+    		submitFlag = confirm("바로입을 탈퇴하시겠습니까?");
+    		
+    		if(submitFlag == true) {
+                var form = document.createElement("form");
+                form.setAttribute("charset", "UTF-8");
+                form.setAttribute("method", "Post");
+                form.setAttribute("action", "${contextPath}/myPage/dropOut.do");
+              	  
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", "user_id");
+                    hiddenField.setAttribute("value", "${userInfo.user_id}");
+                    form.appendChild(hiddenField);
+              
+                document.body.appendChild(form);
+                form.submit();
+    		}
+
+            
+    	}
+    	else {
+    		alert("문구가 일치하지 않습니다.");
+    	}
+    	
+    	
+    }
+    
+    </script>

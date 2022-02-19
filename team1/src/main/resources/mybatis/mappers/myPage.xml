@@ -19,9 +19,9 @@
 		<result property="order_delivery_id" column="order_delivery_id" />
 
 	</resultMap>
-	
+
 	<resultMap id="myQuestionResult" type="java.util.Map">
-	
+
 		<result property="notice_id" column="notice_id" />
 		<result property="notice_title" column="notice_title" />
 		<result property="notice_body" column="notice_body" />
@@ -34,7 +34,7 @@
 		<result property="user_id" column="user_id" />
 		<result property="user_rank" column="user_rank" />
 		<result property="product_main_title" column="product_main_title" />
-		
+
 	</resultMap>
 
 	<!-- 장바구니 수량 조회 쿼리 -->
@@ -49,6 +49,13 @@
 		select count(*) from orders where user_id = #{user_id} and order_state between 0 and 1
 
 	</select>
+
+	<delete id="dropOut" parameterType="String">
+	
+		<![CDATA[
+			delete from user where user_id = #{user_id}	
+		]]>
+	</delete>
 
 	<!-- 회원정보 수정 쿼리 -->
 	<update id="updateMyInfo" parameterType="java.util.Map">
@@ -86,7 +93,6 @@
 		inner join product as p on o.product_id = p.product_id 
 		left outer join notice as n on o.order_id = n.order_id
 		where o.user_id = #{user_id}
-		
 		<if test="search_option != null and !search_option.equals('')">
 			<if test='search_option == "orderDate"'>
 				and o.order_date between #{begin} and date_add(#{end}, interval 1 day) order by o.order_date desc
@@ -96,13 +102,13 @@
 			</if>
 
 			<if test='search_option == "state"'>
-			<if test='search_value lt -1'>
+				<if test='search_value lt -1'>
 				and o.order_state between -2 and -3 order by o.order_date desc
 			</if>
-			<if test='search_value gte -1'>
+				<if test='search_value gte -1'>
 				and o.order_state = #{search_value} order by o.order_date desc
 			</if>
-			
+
 			</if>
 		</if>
 
@@ -116,8 +122,8 @@
 	<!-- 주문상태 수정 쿼리 -->
 	<update id="updateOrder" parameterType="java.util.Map">
 
-	<!-- 구매확정 쿼리 -->
-	<if test='update_option == "deliveryCompleted"'>
+		<!-- 구매확정 쿼리 -->
+		<if test='update_option == "deliveryCompleted"'>
 		update orders as o, user as u set 
 			o.order_state=2,
 			u.user_point = u.user_point + #{point},
@@ -126,9 +132,9 @@
 			o.order_id = #{order_id}
 			and u.user_id = #{user_id}
 	</if>
-	
-	<!-- 주문취소 쿼리 -->
-	<if test='update_option == "cancelOrder"'>
+
+		<!-- 주문취소 쿼리 -->
+		<if test='update_option == "cancelOrder"'>
 		update orders as o, user as u set 
 			o.order_state = -1,
 			u.user_total_amount = u.user_total_amount - #{amount},
@@ -139,14 +145,14 @@
 	</if>
 
 	</update>
-	
-		<!-- 반품 등록 쿼리 -->
+
+	<!-- 반품 등록 쿼리 -->
 	<insert id="askRefund" parameterType="NoticeVO" useGeneratedKeys="true" keyColumn="notice_id" keyProperty="notice_id">
 
-	<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
+		<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
 		select concat('notice_', (select nextval('notice')))
 	</selectKey>
-	
+
 		<![CDATA[
 			insert into notice (
 				notice_id, 
@@ -173,8 +179,8 @@
 		]]>
 
 	</insert>
-	
-		<!-- 반품 접수 쿼리 -->
+
+	<!-- 반품 접수 쿼리 -->
 	<update id="askRefundUpdate" parameterType="NoticeVO">
 
 		update orders as o, user as u set 
@@ -200,7 +206,7 @@
 			and i.image_category = 'main'
 
 	</select>
-	
+
 	<!-- 한건희 -->
 	<!-- 문의 리스트 -->
 	<select id="questionList" resultType="NoticeVO" parameterType="String">
@@ -213,7 +219,7 @@
 				and notice_category in('PQA','UQA') order by notice_cre_date asc
 		]]>
 	</select>
-	
+
 	<!-- 문의 내역 페이지 -->
 	<select id="questionDetail" resultMap="myQuestionResult" parameterType="String">
 		<![CDATA[
@@ -228,17 +234,17 @@
 			select product_main_title from product where product_id=#{product_id}
 		]]>
 	</select>
-	
+
 	<!-- 문의 내역/ 문의 삭제 -->
 	<delete id="questionDelete" parameterType="String">
 		<![CDATA[
 			delete from notice where notice_match_no = #{notice_id}
 		]]>
 	</delete>
-	
+
 	<!-- 문의 내역 수정 -->
 	<update id="questionUpdate" parameterType="NoticeVO">
-			<if test='notice_private == 0'>
+		<if test='notice_private == 0'>
 				update notice set  
 					notice_private = #{notice_private},
 					notice_pw = #{notice_pw},
@@ -246,8 +252,8 @@
 					notice_title = #{notice_title},
 					notice_body = #{notice_body}
 				where notice_id = #{notice_id}			
-			</if>		
-			<if test='notice_private == 1'>
+			</if>
+		<if test='notice_private == 1'>
 				update notice set  
 					notice_type = #{notice_type},
 					notice_title = #{notice_title},
@@ -255,7 +261,7 @@
 				where notice_id = #{notice_id}
 			</if>
 	</update>
-	
+
 	<!-- 상품후기 리스트 -->
 	<select id="selectMyCommentList" resultMap="myQuestionResult" parameterType="String">
 		<![CDATA[
@@ -274,13 +280,13 @@
 			    	order by notice_match_no asc, notice_parent_no asc
 		]]>
 	</select>
-	
+
 	<!-- 상품후기 작성 -->
 	<insert id="insertComment" parameterType="NoticeVO">
 		<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
 			select concat('notice_', (select nextval('notice')))
 		</selectKey>
-			insert into notice(notice_id, 
+		insert into notice(notice_id, 
 								user_id, 
 								notice_category, 
 								notice_title, 
@@ -301,13 +307,13 @@
 								#{order_id},
 								'0')
 	</insert>
-	
+
 	<select id="selectMatchID" resultType="String">
 		<![CDATA[
 			select count_no from sequences where sequence_name='notice'
 		]]>
 	</select>
-	
+
 	<!-- delete 
 				from notice as n
 				inner join image as i 
@@ -319,7 +325,7 @@
 			delete from notice where notice_match_no = #{notice_id}	
 		]]>
 	</delete>
-	
+
 	<!-- 상품후기 수정 페이지 -->
 	<select id="myCommentUpdatePage" resultType="java.util.Map" parameterType="String">
 		<![CDATA[
@@ -334,7 +340,7 @@
 			where n.notice_id=#{notice_id}
 		]]>
 	</select>
-	
+
 	<!-- 상품후기 수정 -->
 	<update id="myCommentUpdate" parameterType="NoticeVO">
 		<![CDATA[
@@ -346,5 +352,5 @@
 				where notice_id = #{notice_id}
 		]]>
 	</update>
-		
+
 </mapper>

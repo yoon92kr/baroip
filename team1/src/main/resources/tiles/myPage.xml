@@ -80,11 +80,11 @@
 	</definition>
 
 
-	<definition name="/myPage/dropOut_01" extends="UserLayout">
+	<definition name="/myPage/dropOut_form" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/dropOut_01.jsp" />
 	</definition>
 
-	<definition name="/myPage/dropOut_02" extends="UserLayout">
+	<definition name="/myPage/dropOut" extends="UserLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/myPage/dropOut_02.jsp" />
 		<put-attribute name="side" value="" />
 
