@@ -41,6 +41,8 @@ public interface MyPageConroller {
 	// 주문 상세페이지 컨트롤러
 	public ModelAndView orderDetail(@ModelAttribute("order_id") String order_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	// 회원 탈퇴
+	public ModelAndView dropOut(HttpServletRequest request, HttpServletResponse response) throws Exception;
 //	문의 리스트
 	public ModelAndView myQuestion(HttpServletRequest request, @RequestParam Map<String, String> info) throws Exception;
 	

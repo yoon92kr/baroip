@@ -327,6 +327,28 @@ public class MyPageControllerImpl implements MyPageConroller{
 		return mav;
 
 	}
+
+	// È¸¿ø Å»Åð
+	@Override
+	@RequestMapping(value = "/dropOut.do", method =RequestMethod.POST)
+	public ModelAndView dropOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String viewName = (String) request.getAttribute("viewName");
+		UserVO userVO = (UserVO) session.getAttribute("userInfo");
+		String message = myPageService.dropOut(request.getParameter("user_id"));
+		System.out.println(message);
+			
+		mav.addObject("user_name", userVO.getUser_name());	
+		mav.setViewName(viewName);
+
+		session.removeAttribute("loginOn");
+		session.removeAttribute("userInfo");
+		
+		return mav;
+
+	}
 	
 //	2022.02.08 ÇÑ°ÇÈñ
 	

@@ -74,6 +74,21 @@ public class MyPageServiceImpl implements MyPageService {
 		
 	}
 	
+	//	회원 탈퇴
+	@Override
+	public String dropOut(String user_id) throws Exception {
+		
+		int result = myPageDAO.dropOut(user_id);
+		
+		String message = "baroip : 게시글 수정에 문제가 생겼습니다.";
+		
+		if(result == 1) {
+			message = "baroip : " + user_id + " 회원이 탈퇴하였습니다.";
+		}
+		
+		return message;
+	}
+	
 	// 반품 등록 서비스
 	@Override
 	public String askRefund(NoticeVO noticeVO) throws Exception {

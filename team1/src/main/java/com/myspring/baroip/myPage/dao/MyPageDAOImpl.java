@@ -53,6 +53,14 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return orderList;
 	}
 	
+	//	회원 탈퇴
+	@Override
+	public int dropOut(String user_id) throws DataAccessException {
+		
+		int result = sqlSession.delete("mapper.myPage.dropOut", user_id);
+		
+		return result;
+	}
 // 주문상태 변경 DAO
 	@Override
 	public void updateOrder(Map<String, String> option) throws DataAccessException {

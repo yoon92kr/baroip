@@ -16,6 +16,9 @@ public interface MyPageService {
 	// user_id 에 해당하는 order의 배송완료 상품의 전체 수량 select Service
 	public int myPageOrderCount(UserVO userVO) throws Exception;
 	
+	// 회원 탈퇴
+	public String dropOut(String user_id) throws Exception;
+	
 	// 회원정보 수정 서비스
 	public int updateMyInfo(UserVO userVO) throws Exception;
 
